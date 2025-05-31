@@ -9,13 +9,13 @@ import {
   insertFormSubmissionSchema 
 } from "@shared/schema";
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
+// Initialize Stripe only if the secret key is available
+let stripe: Stripe | null = null;
+if (process.env.STRIPE_SECRET_KEY) {
+  stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: "2023-10-16",
+  });
 }
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2024-11-20.acacia",
-});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication routes
@@ -170,21 +170,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
       return res.sendStatus(401);
     }
 
+    if (!stripe) {
+      return res.status(500).json({ 
+        error: { message: 'Payment processing not configured. Please contact support.' } 
+      });
+    }
+
     let user = req.user;
 
     if (user.stripeSubscriptionId) {
-      const subscription = await stripe.subscriptions.retrieve(user.stripeSubscriptionId);
-
-      res.send({
-        subscriptionId: subscription.id,
-        clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
-      });
-
-      return;
+      try {
+        const subscription = await stripe.subscriptions.retrieve(user.stripeSubscriptionId);
+        const invoice = subscription.latest_invoice;
+        
+        res.send({
+          subscriptionId: subscription.id,
+          clientSecret: typeof invoice === 'object' && invoice?.payment_intent && 
+            typeof invoice.payment_intent === 'object' ? 
+            invoice.payment_intent.client_secret : null,
+        });
+        return;
+      } catch (error: any) {
+        return res.status(400).send({ error: { message: error.message } });
+      }
     }
     
     if (!user.email) {
-      throw new Error('No user email on file');
+      return res.status(400).json({ error: { message: 'No user email on file' } });
     }
 
     try {
@@ -199,7 +211,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         process.env.STRIPE_BASIC_PRICE_ID;
 
       if (!priceId) {
-        throw new Error('Stripe price ID not configured');
+        return res.status(500).json({ error: { message: 'Stripe price ID not configured' } });
       }
 
       const subscription = await stripe.subscriptions.create({
@@ -212,10 +224,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       await storage.updateUserStripeInfo(user.id, customer.id, subscription.id);
-  
+      
+      const invoice = subscription.latest_invoice;
       res.send({
         subscriptionId: subscription.id,
-        clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
+        clientSecret: typeof invoice === 'object' && invoice?.payment_intent && 
+          typeof invoice.payment_intent === 'object' ? 
+          invoice.payment_intent.client_secret : null,
       });
     } catch (error: any) {
       return res.status(400).send({ error: { message: error.message } });

@@ -58,11 +58,11 @@ export interface IStorage {
   createFormSubmission(submission: InsertFormSubmission): Promise<FormSubmission>;
   updateFormSubmissionStatus(id: number, status: string): Promise<FormSubmission>;
 
-  sessionStore: session.SessionStore;
+  sessionStore: any;
 }
 
 export class DatabaseStorage implements IStorage {
-  sessionStore: session.SessionStore;
+  sessionStore: any;
 
   constructor() {
     this.sessionStore = new PostgresSessionStore({ 
@@ -149,7 +149,7 @@ export class DatabaseStorage implements IStorage {
   async createWebsite(website: InsertWebsite): Promise<Website> {
     const [newWebsite] = await db
       .insert(websites)
-      .values(website)
+      .values([website])
       .returning();
     return newWebsite;
   }
@@ -172,7 +172,7 @@ export class DatabaseStorage implements IStorage {
   async createWebsiteContent(content: InsertWebsiteContent): Promise<WebsiteContent> {
     const [newContent] = await db
       .insert(websiteContent)
-      .values(content)
+      .values([content])
       .returning();
     return newContent;
   }

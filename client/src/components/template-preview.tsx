@@ -9,7 +9,7 @@ interface TemplatePreviewProps {
 export default function TemplatePreview({ templateSlug, className = "" }: TemplatePreviewProps) {
   if (templateSlug === "modern-business") {
     return (
-      <div className={`bg-white border rounded-lg overflow-hidden ${className}`}>
+      <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{scrollBehavior: 'smooth'}}>
         {/* Header */}
         <div className="bg-white border-b px-6 py-4 flex items-center justify-between shadow-sm">
           <div className="font-bold text-xl">
@@ -18,16 +18,16 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <span className="text-black">Right</span>
           </div>
           <div className="flex space-x-6 text-sm text-gray-700">
-            <span className="hover:text-red-600 cursor-pointer">Home</span>
-            <span className="hover:text-red-600 cursor-pointer">About</span>
-            <span className="hover:text-red-600 cursor-pointer">Services</span>
-            <span className="hover:text-red-600 cursor-pointer">Contact</span>
+            <a href="#hero" className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
+            <a href="#about" className="hover:text-red-600 cursor-pointer transition-colors">About</a>
+            <a href="#services" className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
+            <a href="#contact" className="hover:text-red-600 cursor-pointer transition-colors">Contact</a>
           </div>
           <button className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 font-semibold">Get Started</button>
         </div>
 
         {/* Hero Section with Restaurant Background */}
-        <div className="relative h-screen bg-cover bg-center bg-no-repeat" style={{
+        <div id="hero" className="relative h-screen bg-cover bg-center bg-no-repeat" style={{
           backgroundImage: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")'
         }}>
           <div className="absolute inset-0 flex items-center">
@@ -39,12 +39,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
                 </p>
                 <div className="flex space-x-4">
-                  <button className="bg-red-600 px-8 py-4 rounded font-semibold text-lg hover:bg-red-700 transition-colors">
+                  <a href="#contact" className="bg-red-600 px-8 py-4 rounded font-semibold text-lg hover:bg-red-700 transition-colors inline-block">
                     Schedule Consultation
-                  </button>
-                  <button className="border-2 border-white px-8 py-4 rounded font-semibold text-lg hover:bg-white hover:text-black transition-colors">
+                  </a>
+                  <a href="#about" className="border-2 border-white px-8 py-4 rounded font-semibold text-lg hover:bg-white hover:text-black transition-colors inline-block">
                     Learn More
-                  </button>
+                  </a>
                 </div>
               </div>
               <div className="flex justify-center">
@@ -68,7 +68,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* About John Smith Section */}
-        <div className="px-6 py-16 bg-gray-50">
+        <div id="about" className="px-6 py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center">About John Smith</h2>
             <div className="grid grid-cols-2 gap-12 items-center">
@@ -109,7 +109,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Financial Services & Products */}
-        <div className="px-6 py-16 bg-gray-50">
+        <div id="services" className="px-6 py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">
@@ -303,9 +303,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
 
             <div className="text-center">
-              <button className="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 font-semibold">
+              <a href="#contact" className="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 font-semibold inline-block">
                 Contact Us Today
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -426,7 +426,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Contact Us Section */}
-        <div className="px-6 py-16 bg-gray-50">
+        <div id="contact" className="px-6 py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center">Contact Us</h2>
             <div className="grid grid-cols-2 gap-12">

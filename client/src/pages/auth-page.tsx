@@ -114,7 +114,7 @@ export default function AuthPage() {
                           <SelectValue placeholder="Select site type" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="single-page">Single Page</SelectItem>
+                          <SelectItem value="single-page">Splash Page</SelectItem>
                           <SelectItem value="full-site">Full Site</SelectItem>
                         </SelectContent>
                       </Select>
@@ -180,7 +180,7 @@ export default function AuthPage() {
                           <SelectValue placeholder="Select site type" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="single-page">Single Page</SelectItem>
+                          <SelectItem value="single-page">Splash Page</SelectItem>
                           <SelectItem value="full-site">Full Site</SelectItem>
                         </SelectContent>
                       </Select>

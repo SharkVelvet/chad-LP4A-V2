@@ -7,9 +7,18 @@ interface TemplatePreviewProps {
 }
 
 export default function TemplatePreview({ templateSlug, className = "" }: TemplatePreviewProps) {
+  
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   if (templateSlug === "modern-business") {
     return (
-      <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{scrollBehavior: 'smooth'}}>
+      <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Header */}
         <div className="bg-white border-b px-6 py-4 flex items-center justify-between shadow-sm">
           <div className="font-bold text-xl">
@@ -18,10 +27,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <span className="text-black">Right</span>
           </div>
           <div className="flex space-x-6 text-sm text-gray-700">
-            <a href="#hero" className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
-            <a href="#about" className="hover:text-red-600 cursor-pointer transition-colors">About</a>
-            <a href="#services" className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
-            <a href="#contact" className="hover:text-red-600 cursor-pointer transition-colors">Contact</a>
+            <a href="#hero" onClick={(e) => handleSmoothScroll(e, 'hero')} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
+            <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
+            <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
+            <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="hover:text-red-600 cursor-pointer transition-colors">Contact</a>
           </div>
           <button className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 font-semibold">Get Started</button>
         </div>

@@ -50,13 +50,9 @@ export default function TemplateCard({ template, isSelected, onSelect }: Templat
             <Badge variant="outline">{template.category}</Badge>
           </div>
           
-          <p className="text-gray-600 mb-4 text-sm">
-            {template.description}
-          </p>
-          
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-500">
-              Best for: {template.category}
+              Professional Layout
             </span>
             <div className="flex gap-2">
               <Button 

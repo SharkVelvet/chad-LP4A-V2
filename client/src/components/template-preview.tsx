@@ -303,7 +303,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
             <div className="text-center">
               <button className="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 font-semibold">
-                Schedule a Consultation
+                Contact Us Today
               </button>
             </div>
           </div>
@@ -424,46 +424,101 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Contact Information */}
-        <div className="px-6 py-16 bg-gray-900 text-white">
+        {/* Contact Us Section */}
+        <div className="px-6 py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">General Questions?</h2>
-            <div className="grid grid-cols-4 gap-8 text-center">
-              <div>
-                <div className="w-12 h-12 bg-red-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white">📞</span>
-                </div>
-                <h3 className="font-semibold mb-2">Phone</h3>
-                <p className="text-gray-300">(555) 123-PROC</p>
+            <h2 className="text-3xl font-bold mb-12 text-center">Contact Us</h2>
+            <div className="grid grid-cols-2 gap-12">
+              {/* Contact Form */}
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <h3 className="text-xl font-bold mb-6">Get In Touch</h3>
+                <form className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                    <input 
+                      type="text" 
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      placeholder="Your full name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input 
+                      type="email" 
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                    <input 
+                      type="text" 
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      placeholder="How can we help you?"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                    <textarea 
+                      rows={5}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      placeholder="Tell us about your project or inquiry..."
+                    ></textarea>
+                  </div>
+                  <button 
+                    type="submit"
+                    className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 font-semibold transition-colors"
+                  >
+                    Send Message
+                  </button>
+                </form>
               </div>
-              <div>
-                <div className="w-12 h-12 bg-red-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white">✉️</span>
+
+              {/* Contact Information */}
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-xl font-bold mb-6">Contact Information</h3>
+                  <div className="space-y-6">
+                    <div className="flex items-start">
+                      <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                        <div className="w-6 h-6 bg-white rounded"></div>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Address</h4>
+                        <p className="text-gray-600">123 Financial District<br/>Business Center, Suite 456<br/>New York, NY 10001</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                        <div className="w-6 h-6 bg-white rounded"></div>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Phone</h4>
+                        <p className="text-gray-600">(555) 123-PLAN<br/>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                        <div className="w-6 h-6 bg-white rounded"></div>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Email</h4>
+                        <p className="text-gray-600">john@planright.com<br/>info@planright.com</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-semibold mb-2">Email</h3>
-                <p className="text-gray-300">john@procurex.com</p>
+
+                <div>
+                  <h3 className="text-xl font-bold mb-6">Follow Us</h3>
+                  <div className="flex space-x-4">
+                    <div className="w-10 h-10 bg-red-600 rounded-lg"></div>
+                    <div className="w-10 h-10 bg-red-600 rounded-lg"></div>
+                    <div className="w-10 h-10 bg-red-600 rounded-lg"></div>
+                    <div className="w-10 h-10 bg-red-600 rounded-lg"></div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <div className="w-12 h-12 bg-red-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white">📍</span>
-                </div>
-                <h3 className="font-semibold mb-2">Address</h3>
-                <p className="text-gray-300">123 Financial District</p>
-              </div>
-              <div>
-                <div className="w-12 h-12 bg-red-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white">🌐</span>
-                </div>
-                <h3 className="font-semibold mb-2">Social</h3>
-                <div className="flex justify-center space-x-2">
-                  <div className="w-6 h-6 bg-red-600 rounded"></div>
-                  <div className="w-6 h-6 bg-red-600 rounded"></div>
-                  <div className="w-6 h-6 bg-red-600 rounded"></div>
-                </div>
-              </div>
-            </div>
-            <div className="text-center mt-12">
-              <button className="bg-red-600 text-white px-12 py-4 rounded-lg hover:bg-red-700 font-semibold text-lg">Get in Touch</button>
             </div>
           </div>
         </div>

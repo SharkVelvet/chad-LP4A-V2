@@ -29,8 +29,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div className="relative bg-gray-800 text-white px-6 py-20" style={{backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'%3E%3Cg fill-opacity=\'0.1\'%3E%3Cpolygon fill=\'%23fff\' points=\'50 0 60 40 100 50 60 60 50 100 40 60 0 50 40 40\'/%3E%3C/g%3E%3C/svg%3E")'}}>
           <div className="max-w-6xl mx-auto grid grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-5xl font-bold mb-4 text-yellow-400">John Smith</h1>
-              <p className="text-xl text-yellow-300 mb-2">President of Financial Services</p>
+              <h1 className="text-5xl font-bold mb-4 text-white">John Smith</h1>
+              <p className="text-xl text-white mb-2">President of Financial Services</p>
               <p className="text-lg text-gray-300 mb-6 leading-relaxed">
                 Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
               </p>
@@ -40,7 +40,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
             <div className="flex justify-center">
-              <div className="w-80 h-80 bg-gradient-to-br from-gray-600 to-gray-700 rounded-lg shadow-2xl flex items-center justify-center">
+              <div className="w-80 h-80 bg-gradient-to-br from-gray-600 to-gray-700 rounded-full shadow-2xl flex items-center justify-center">
                 <div className="text-center text-gray-300">
                   <div className="text-4xl mb-2">👨‍💼</div>
                   <div className="text-sm">Professional Photo</div>

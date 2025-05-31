@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Eye } from "lucide-react";
+import TemplatePreview from "./template-preview";
 
 type Template = {
   id: number;
@@ -76,11 +77,15 @@ export default function TemplateCard({ template, isSelected, onSelect }: Templat
                   </DialogDescription>
                 </DialogHeader>
                 <div className="w-full h-[60vh] overflow-auto">
-                  <img
-                    src={template.previewImage}
-                    alt={`${template.name} full preview`}
-                    className="w-full h-auto rounded-lg"
-                  />
+                  {template.slug === "modern-business" ? (
+                    <TemplatePreview templateSlug={template.slug} className="scale-50 origin-top-left w-[200%] h-[200%]" />
+                  ) : (
+                    <img
+                      src={template.previewImage}
+                      alt={`${template.name} full preview`}
+                      className="w-full h-auto rounded-lg"
+                    />
+                  )}
                   <div className="mt-4 space-y-2">
                     <h3 className="font-semibold">{template.name}</h3>
                     <p className="text-gray-600">{template.description}</p>

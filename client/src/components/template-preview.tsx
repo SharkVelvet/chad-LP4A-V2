@@ -48,10 +48,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
                 </p>
                 <div className="flex space-x-4">
-                  <a href="#contact" className="bg-red-600 px-8 py-4 rounded font-semibold text-lg hover:bg-red-700 transition-colors inline-block">
+                  <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 px-8 py-4 rounded font-semibold text-lg hover:bg-red-700 transition-colors inline-block">
                     Schedule Consultation
                   </a>
-                  <a href="#about" className="border-2 border-white px-8 py-4 rounded font-semibold text-lg hover:bg-white hover:text-black transition-colors inline-block">
+                  <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white px-8 py-4 rounded font-semibold text-lg hover:bg-white hover:text-black transition-colors inline-block">
                     Learn More
                   </a>
                 </div>

@@ -87,30 +87,204 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Financial Services & Solutions */}
-        <div className="px-6 py-16 bg-white">
+        {/* Financial Services & Products */}
+        <div className="px-6 py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Financial Services & Solutions</h2>
-            <div className="grid grid-cols-3 gap-8">
-              {[
-                { title: "Strategic Planning", desc: "Comprehensive business strategy development and implementation" },
-                { title: "Investment Management", desc: "Portfolio optimization and risk management solutions" },
-                { title: "Procurement Services", desc: "Cost-effective procurement strategies and vendor management" },
-                { title: "Financial Analysis", desc: "In-depth financial reporting and performance analysis" },
-                { title: "Risk Assessment", desc: "Comprehensive risk evaluation and mitigation strategies" },
-                { title: "Business Consulting", desc: "Expert guidance for business growth and optimization" }
-              ].map((service, i) => (
-                <div key={i} className="text-center p-6 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow">
-                  <div className="w-16 h-16 bg-red-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <div className="w-8 h-8 bg-white rounded"></div>
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">{service.title}</h3>
-                  <p className="text-gray-600 text-sm">{service.desc}</p>
-                </div>
-              ))}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">
+                Financial <span className="text-red-600">Services & Products</span>
+              </h2>
+              <p className="text-gray-600 max-w-3xl mx-auto">
+                Comprehensive solutions designed to protect your assets, grow your wealth, and secure your financial future.
+              </p>
             </div>
-            <div className="text-center mt-12">
-              <button className="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 font-semibold">View All Services</button>
+            
+            <div className="grid grid-cols-3 gap-8 mb-12">
+              {/* Life Insurance */}
+              <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-red-600 text-xl">🛡️</span>
+                  </div>
+                  <h3 className="text-xl font-bold">Life Insurance</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Protect your loved ones and ensure financial security with customized life insurance policies.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Term Life Insurance
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Whole Life Insurance
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Universal Life Insurance
+                  </li>
+                </ul>
+                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                  Learn More →
+                </button>
+              </div>
+
+              {/* Investment Planning */}
+              <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-red-600 text-xl">📈</span>
+                  </div>
+                  <h3 className="text-xl font-bold">Investment Planning</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Strategic investment solutions to help grow your wealth and achieve long-term financial goals.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Retirement Accounts
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Mutual Funds
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Portfolio Management
+                  </li>
+                </ul>
+                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                  Learn More →
+                </button>
+              </div>
+
+              {/* Retirement Planning */}
+              <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-red-600 text-xl">🏠</span>
+                  </div>
+                  <h3 className="text-xl font-bold">Retirement Planning</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Comprehensive retirement strategies to ensure financial independence during your golden years.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    401(k) & IRA Planning
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Income Strategies
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Social Security Optimization
+                  </li>
+                </ul>
+                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                  Learn More →
+                </button>
+              </div>
+
+              {/* Education Planning */}
+              <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-red-600 text-xl">🎓</span>
+                  </div>
+                  <h3 className="text-xl font-bold">Education Planning</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Strategic education funding solutions to help prepare for future academic expenses.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    529 College Savings
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    UGMA/UTMA Accounts
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Education Trusts
+                  </li>
+                </ul>
+                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                  Learn More →
+                </button>
+              </div>
+
+              {/* Health Insurance */}
+              <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-red-600 text-xl">❤️</span>
+                  </div>
+                  <h3 className="text-xl font-bold">Health Insurance</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Comprehensive health coverage options to protect your well-being and financial health.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Medical Insurance
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Long-Term Care
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Disability Insurance
+                  </li>
+                </ul>
+                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                  Learn More →
+                </button>
+              </div>
+
+              {/* Estate Planning */}
+              <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-red-600 text-xl">📋</span>
+                  </div>
+                  <h3 className="text-xl font-bold">Estate Planning</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Comprehensive estate strategies to protect your assets and secure your legacy.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Wills & Trusts
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Legacy Planning
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Asset Protection
+                  </li>
+                </ul>
+                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                  Learn More →
+                </button>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <button className="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 font-semibold">
+                Schedule a Consultation
+              </button>
             </div>
           </div>
         </div>

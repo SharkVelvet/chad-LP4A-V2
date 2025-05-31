@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
 interface TemplatePreviewProps {
   templateSlug: string;
@@ -481,7 +482,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <div className="space-y-6">
                     <div className="flex items-start">
                       <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                        <div className="w-6 h-6 bg-white rounded"></div>
+                        <MapPin className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-900">Address</h4>
@@ -490,7 +491,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     </div>
                     <div className="flex items-start">
                       <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                        <div className="w-6 h-6 bg-white rounded"></div>
+                        <Phone className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-900">Phone</h4>
@@ -499,7 +500,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     </div>
                     <div className="flex items-start">
                       <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                        <div className="w-6 h-6 bg-white rounded"></div>
+                        <Mail className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-900">Email</h4>
@@ -512,10 +513,18 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <div>
                   <h3 className="text-xl font-bold mb-6">Follow Us</h3>
                   <div className="flex space-x-4">
-                    <div className="w-10 h-10 bg-red-600 rounded-lg"></div>
-                    <div className="w-10 h-10 bg-red-600 rounded-lg"></div>
-                    <div className="w-10 h-10 bg-red-600 rounded-lg"></div>
-                    <div className="w-10 h-10 bg-red-600 rounded-lg"></div>
+                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Facebook className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Twitter className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Linkedin className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Instagram className="w-5 h-5 text-white" />
+                    </div>
                   </div>
                 </div>
               </div>

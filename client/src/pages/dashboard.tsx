@@ -123,9 +123,14 @@ export default function Dashboard() {
             <p className="text-gray-600 mb-4">
               You haven't set up a website yet. Please complete the setup process first.
             </p>
-            <Button onClick={() => window.location.href = "/templates"}>
-              Set Up Website
-            </Button>
+            <div className="space-y-2">
+              <Button onClick={() => window.location.href = "/templates"}>
+                Set Up Website
+              </Button>
+              <Button variant="outline" onClick={handleLogout}>
+                Logout (to test signup)
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </div>

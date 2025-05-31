@@ -24,7 +24,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="font-bold text-xl">
             <span className="text-red-600">Plan</span>
             <span className="text-gray-400 mx-1">|</span>
-            <span className="text-black">Right</span>
+            <span className="text-black">right</span>
           </div>
           <div className="flex space-x-6 text-sm text-gray-700">
             <a href="#hero" onClick={(e) => handleSmoothScroll(e, 'hero')} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>

@@ -164,7 +164,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-red-600 text-xl">🏠</span>
+                    <div className="w-6 h-6 bg-red-600 rounded"></div>
                   </div>
                   <h3 className="text-xl font-bold">Retirement Planning</h3>
                 </div>
@@ -194,7 +194,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-red-600 text-xl">🎓</span>
+                    <div className="w-4 h-6 bg-red-600"></div>
                   </div>
                   <h3 className="text-xl font-bold">Education Planning</h3>
                 </div>
@@ -224,7 +224,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-red-600 text-xl">❤️</span>
+                    <div className="w-5 h-5 bg-red-600 rotate-45"></div>
                   </div>
                   <h3 className="text-xl font-bold">Health Insurance</h3>
                 </div>
@@ -254,7 +254,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-red-600 text-xl">📋</span>
+                    <div className="w-6 h-4 bg-red-600 rounded-sm"></div>
                   </div>
                   <h3 className="text-xl font-bold">Estate Planning</h3>
                 </div>

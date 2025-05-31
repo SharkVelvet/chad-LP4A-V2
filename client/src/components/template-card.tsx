@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Eye } from "lucide-react";
 
 type Template = {
   id: number;
@@ -54,16 +56,49 @@ export default function TemplateCard({ template, isSelected, onSelect }: Templat
           <span className="text-sm text-gray-500">
             Best for: {template.category}
           </span>
-          <Button 
-            size="sm"
-            variant={isSelected ? "default" : "outline"}
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelect();
-            }}
-          >
-            {isSelected ? "Selected" : "Select Template"}
-          </Button>
+          <div className="flex gap-2">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  size="sm"
+                  variant="outline"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Eye className="h-4 w-4 mr-1" />
+                  Preview
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl max-h-[80vh]">
+                <DialogHeader>
+                  <DialogTitle>{template.name} - Full Preview</DialogTitle>
+                </DialogHeader>
+                <div className="w-full h-[60vh] overflow-auto">
+                  <img
+                    src={template.previewImage}
+                    alt={`${template.name} full preview`}
+                    className="w-full h-auto rounded-lg"
+                  />
+                  <div className="mt-4 space-y-2">
+                    <h3 className="font-semibold">{template.name}</h3>
+                    <p className="text-gray-600">{template.description}</p>
+                    <div className="flex items-center gap-2">
+                      <Badge variant="outline">{template.category}</Badge>
+                    </div>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+            <Button 
+              size="sm"
+              variant={isSelected ? "default" : "outline"}
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelect();
+              }}
+            >
+              {isSelected ? "Selected" : "Select"}
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>

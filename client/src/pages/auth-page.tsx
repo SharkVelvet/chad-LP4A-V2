@@ -33,10 +33,11 @@ export default function AuthPage() {
   });
 
   // Redirect if already logged in
-  if (user) {
-    navigate("/templates");
-    return null;
-  }
+  React.useEffect(() => {
+    if (user) {
+      navigate("/templates");
+    }
+  }, [user, navigate]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();

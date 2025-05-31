@@ -98,6 +98,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get website for current user's location
+  app.get("/api/website", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const website = await storage.getWebsiteByLocationId(req.user.locationId);
+      if (!website) {
+        return res.status(404).json({ message: "Website not found" });
+      }
+
+      // Get content too
+      const content = await storage.getWebsiteContent(website.id);
+      res.json({ ...website, content });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Website content routes
   app.put("/api/website/content", async (req, res) => {
     if (!req.isAuthenticated()) {

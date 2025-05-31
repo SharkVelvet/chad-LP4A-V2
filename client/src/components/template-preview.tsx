@@ -25,25 +25,41 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <button className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 font-semibold">Get Started</button>
         </div>
 
-        {/* Hero Section with Background */}
-        <div className="relative bg-gray-800 text-white px-6 py-20" style={{backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'%3E%3Cg fill-opacity=\'0.1\'%3E%3Cpolygon fill=\'%23fff\' points=\'50 0 60 40 100 50 60 60 50 100 40 60 0 50 40 40\'/%3E%3C/g%3E%3C/svg%3E")'}}>
-          <div className="max-w-6xl mx-auto grid grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-5xl font-bold mb-4 text-white">John Smith</h1>
-              <p className="text-xl text-white mb-2">President of Financial Services</p>
-              <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-                Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
-              </p>
-              <div className="flex space-x-4 mb-8">
-                <button className="bg-red-600 px-8 py-3 rounded-lg hover:bg-red-700 font-semibold">Schedule Consultation</button>
-                <button className="border border-red-400 px-8 py-3 rounded-lg hover:bg-red-800 font-semibold">Learn More</button>
+        {/* Hero Section with Restaurant Background */}
+        <div className="relative h-screen bg-cover bg-center bg-no-repeat" style={{
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")'
+        }}>
+          <div className="absolute inset-0 flex items-center">
+            <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 gap-12 items-center w-full">
+              <div className="text-white">
+                <h1 className="text-6xl font-bold mb-4 leading-tight">John Smith</h1>
+                <p className="text-2xl mb-2 text-yellow-400">President of Financial Services</p>
+                <p className="text-lg text-gray-200 mb-8 leading-relaxed max-w-lg">
+                  Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
+                </p>
+                <div className="flex space-x-4">
+                  <button className="bg-red-600 px-8 py-4 rounded font-semibold text-lg hover:bg-red-700 transition-colors">
+                    Schedule Consultation
+                  </button>
+                  <button className="border-2 border-white px-8 py-4 rounded font-semibold text-lg hover:bg-white hover:text-black transition-colors">
+                    Learn More
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className="flex justify-center">
-              <div className="w-80 h-80 bg-gradient-to-br from-gray-600 to-gray-700 rounded-full shadow-2xl flex items-center justify-center">
-                <div className="text-center text-gray-300">
-                  <div className="text-4xl mb-2">👨‍💼</div>
-                  <div className="text-sm">Professional Photo</div>
+              <div className="flex justify-center">
+                <div className="relative">
+                  <div className="w-96 h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                    <img 
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                      alt="John Smith" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-lg">
+                    <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-2xl font-bold">JS</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -293,31 +309,56 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Why John Smith Section */}
-        <div className="px-6 py-16 bg-gray-50">
+        {/* Why We Serve Section */}
+        <div className="px-6 py-16 bg-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Why John Smith</h2>
-            <div className="grid grid-cols-2 gap-12">
-              <div className="space-y-8">
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="font-bold text-lg mb-2">Proven Track Record</h3>
-                  <p className="text-gray-600">Consistently delivering exceptional results for over 15 years.</p>
+            <h2 className="text-3xl font-bold mb-12 text-center">Why We Serve</h2>
+            <div className="grid grid-cols-3 gap-8">
+              {[
+                {
+                  image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=626&q=80",
+                  title: "Strategic Planning",
+                  description: "We help businesses develop comprehensive strategic plans that align with their long-term goals and market opportunities."
+                },
+                {
+                  image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                  title: "Financial Analysis",
+                  description: "Our expert team provides detailed financial analysis to help you make informed decisions about your business future."
+                },
+                {
+                  image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                  title: "Investment Planning",
+                  description: "We create personalized investment strategies designed to grow your wealth while managing risk effectively."
+                },
+                {
+                  image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                  title: "Business Consulting",
+                  description: "Our consultants work closely with you to identify opportunities and implement solutions for business growth."
+                },
+                {
+                  image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                  title: "Risk Management",
+                  description: "We help protect your business with comprehensive risk assessment and mitigation strategies."
+                },
+                {
+                  image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                  title: "Team Development",
+                  description: "Building stronger teams through leadership development and organizational excellence programs."
+                }
+              ].map((item, i) => (
+                <div key={i} className="group">
+                  <div className="relative overflow-hidden rounded-lg mb-4">
+                    <img 
+                      src={item.image} 
+                      alt={item.title}
+                      className="w-full h-64 object-cover transition-transform group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-opacity"></div>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="font-bold text-lg mb-2">Industry Expertise</h3>
-                  <p className="text-gray-600">Deep knowledge across multiple industries and financial sectors.</p>
-                </div>
-              </div>
-              <div className="space-y-8">
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="font-bold text-lg mb-2">Personalized Approach</h3>
-                  <p className="text-gray-600">Tailored solutions designed specifically for your business needs.</p>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="font-bold text-lg mb-2">Ongoing Support</h3>
-                  <p className="text-gray-600">Continuous partnership and support throughout your journey.</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

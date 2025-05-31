@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Eye } from "lucide-react";
 
 type Template = {
@@ -71,6 +71,9 @@ export default function TemplateCard({ template, isSelected, onSelect }: Templat
               <DialogContent className="max-w-4xl max-h-[80vh]">
                 <DialogHeader>
                   <DialogTitle>{template.name} - Full Preview</DialogTitle>
+                  <DialogDescription>
+                    Preview of the {template.name} template design and layout
+                  </DialogDescription>
                 </DialogHeader>
                 <div className="w-full h-[60vh] overflow-auto">
                   <img

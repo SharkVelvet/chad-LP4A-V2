@@ -147,9 +147,18 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createWebsite(website: InsertWebsite): Promise<Website> {
+    const websiteData = {
+      locationId: website.locationId,
+      templateId: website.templateId,
+      subscriptionPlan: website.subscriptionPlan,
+      domain: website.domain || null,
+      domainPreferences: website.domainPreferences || null,
+      isActive: website.isActive !== undefined ? website.isActive : true
+    };
+    
     const [newWebsite] = await db
       .insert(websites)
-      .values([website])
+      .values(websiteData)
       .returning();
     return newWebsite;
   }
@@ -170,17 +179,31 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createWebsiteContent(content: InsertWebsiteContent): Promise<WebsiteContent> {
+    const contentData = {
+      websiteId: content.websiteId,
+      businessName: content.businessName || null,
+      tagline: content.tagline || null,
+      aboutUs: content.aboutUs || null,
+      phone: content.phone || null,
+      email: content.email || null,
+      address: content.address || null,
+      heroImage: content.heroImage || null,
+      logo: content.logo || null,
+      galleryImages: content.galleryImages || null
+    };
+    
     const [newContent] = await db
       .insert(websiteContent)
-      .values([content])
+      .values(contentData)
       .returning();
     return newContent;
   }
 
   async updateWebsiteContent(websiteId: number, content: Partial<InsertWebsiteContent>): Promise<WebsiteContent> {
+    const updateData = { ...content, updatedAt: new Date() };
     const [updatedContent] = await db
       .update(websiteContent)
-      .set({ ...content, updatedAt: new Date() })
+      .set(updateData)
       .where(eq(websiteContent.websiteId, websiteId))
       .returning();
     return updatedContent;

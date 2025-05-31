@@ -184,11 +184,24 @@ export default function WebsiteSetup() {
             </Card>
 
             {/* Payment Information */}
-            <SubscriptionForm 
-              plan={selectedPlan}
-              onSuccess={handleSetupComplete}
-              isLoading={createWebsiteMutation.isPending}
-            />
+            <Card>
+              <CardHeader>
+                <CardTitle>Complete Setup</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Payment processing will be configured once Stripe credentials are provided.
+                </p>
+                <Button 
+                  size="lg"
+                  className="w-full"
+                  onClick={handleSetupComplete}
+                  disabled={createWebsiteMutation.isPending || domains[0].trim() === ''}
+                >
+                  {createWebsiteMutation.isPending ? "Creating Website..." : "Create Website (Payment Setup Pending)"}
+                </Button>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Order Summary */}

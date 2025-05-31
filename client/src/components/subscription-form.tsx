@@ -95,9 +95,9 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
   });
 
   // Create subscription when component mounts
-  useState(() => {
+  React.useEffect(() => {
     createSubscriptionMutation.mutate();
-  });
+  }, []);
 
   if (!clientSecret) {
     return (

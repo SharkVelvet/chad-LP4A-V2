@@ -613,116 +613,503 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
   if (templateSlug === "restaurant-food") {
     return (
-      <div className={`bg-white border rounded-lg overflow-hidden ${className}`}>
+      <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Header */}
-        <div className="bg-white border-b px-6 py-3 flex items-center justify-between">
-          <div className="text-green-600 font-bold text-lg">BUSINESS PRO</div>
-          <div className="flex space-x-4 text-sm text-gray-600">
-            <span>Home</span>
-            <span>About</span>
-            <span>Services</span>
-            <span>Contact</span>
+        <div className="bg-white border-b px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
+          <div className="font-bold text-xl">
+            <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-black">right</span>
           </div>
-          <button className="bg-green-600 text-white px-4 py-1 rounded text-sm">Get Quote</button>
-        </div>
-
-        {/* Hero Section */}
-        <div className="bg-gradient-to-r from-green-900 to-emerald-800 text-white px-6 py-12">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl font-bold mb-2">Michael Johnson</h1>
-            <p className="text-xl text-green-300 mb-4">Senior Business Consultant</p>
-            <p className="text-green-400 mb-6 max-w-2xl">
-              Delivering strategic business solutions and growth strategies for enterprises. 
-              Specialized in operational excellence and market expansion.
-            </p>
-            <div className="flex space-x-4">
-              <button className="bg-green-600 px-6 py-2 rounded">Schedule Meeting</button>
-              <button className="border border-green-400 px-6 py-2 rounded">Learn More</button>
+          <div className="flex items-center space-x-6">
+            <div className="flex space-x-6 text-sm text-gray-700">
+              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
+              <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
+              <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
+              <a href="#why-we-serve" onClick={(e) => handleSmoothScroll(e, 'why-we-serve')} className="hover:text-red-600 cursor-pointer transition-colors">Why We Serve</a>
+              <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="hover:text-red-600 cursor-pointer transition-colors">Testimonials</a>
             </div>
+            <button 
+              onClick={(e) => handleSmoothScroll(e, 'contact')} 
+              className="bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors text-sm"
+            >
+              Contact Us
+            </button>
           </div>
         </div>
 
-        {/* About Section */}
-        <div className="px-6 py-8 bg-gray-50">
-          <h2 className="text-2xl font-bold mb-4">About Michael Johnson</h2>
-          <div className="grid grid-cols-3 gap-6">
-            <div className="bg-white p-4 rounded shadow-sm">
-              <div className="w-full h-24 bg-green-200 rounded mb-3"></div>
-              <h3 className="font-semibold text-sm">Strategic Planning</h3>
-            </div>
-            <div className="bg-white p-4 rounded shadow-sm">
-              <div className="w-full h-24 bg-green-200 rounded mb-3"></div>
-              <h3 className="font-semibold text-sm">Business Growth</h3>
-            </div>
-            <div className="bg-white p-4 rounded shadow-sm">
-              <div className="w-full h-24 bg-green-200 rounded mb-3"></div>
-              <h3 className="font-semibold text-sm">Market Analysis</h3>
-            </div>
-          </div>
-        </div>
-
-        {/* Services Grid */}
-        <div className="px-6 py-8">
-          <h2 className="text-2xl font-bold mb-6 text-center">Consulting Services & Solutions</h2>
-          <div className="grid grid-cols-3 gap-4">
-            {[1,2,3,4,5,6].map(i => (
-              <div key={i} className="text-center p-4">
-                <div className="w-8 h-8 bg-green-600 rounded-full mx-auto mb-2"></div>
-                <h3 className="font-semibold text-sm mb-1">Service {i}</h3>
-                <p className="text-xs text-gray-600">Professional guidance</p>
+        {/* Hero Section with Restaurant Background */}
+        <div id="hero" className="relative h-screen bg-cover bg-center bg-no-repeat" style={{
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")'
+        }}>
+          <div className="absolute inset-0 flex items-center">
+            <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 gap-12 items-center w-full">
+              <div className="text-white">
+                <h1 className="text-6xl font-bold mb-4 leading-tight">John Smith</h1>
+                <p className="text-2xl mb-2 text-white">President of Financial Services</p>
+                <p className="text-lg text-white mb-8 leading-relaxed max-w-lg">
+                  Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
+                </p>
+                <div className="flex space-x-4">
+                  <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-flex items-center justify-center">
+                    Contact Us
+                  </a>
+                  <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white text-white px-6 py-3 rounded font-semibold hover:bg-white hover:text-black transition-colors inline-flex items-center justify-center">
+                    Learn More
+                  </a>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Testimonials */}
-        <div className="px-6 py-8 bg-gray-50">
-          <h2 className="text-2xl font-bold mb-6 text-center">Client Success Stories</h2>
-          <div className="grid grid-cols-3 gap-4">
-            {[1,2,3].map(i => (
-              <div key={i} className="bg-white p-4 rounded shadow-sm">
-                <div className="flex items-center mb-2">
-                  <div className="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
-                  <div>
-                    <div className="font-semibold text-sm">Client Name</div>
-                    <div className="text-xs text-gray-500">Company</div>
+              <div className="relative">
+                <div className="relative w-96 h-96 mx-auto">
+                  <div className="absolute inset-0 bg-white rounded-full shadow-2xl overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                      alt="John Smith" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-lg">
+                    <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-2xl font-bold">JS</span>
+                    </div>
                   </div>
                 </div>
-                <p className="text-xs text-gray-600">"Outstanding consulting results..."</p>
               </div>
-            ))}
+            </div>
+          </div>
+        </div>
+
+        {/* About John Smith Section */}
+        <div id="about" className="px-6 py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">About John Smith</h2>
+            <div className="grid grid-cols-2 gap-12 items-center">
+              <div>
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
+                </p>
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
+                </p>
+                <div className="grid grid-cols-2 gap-6 mt-8">
+                  <div className="flex items-center">
+                    <Clock className="w-4 h-4 text-red-600 mr-3" />
+                    <span className="text-sm font-medium">15+ Years Experience</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Users className="w-4 h-4 text-red-600 mr-3" />
+                    <span className="text-sm font-medium">500+ Clients Served</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Award className="w-4 h-4 text-red-600 mr-3" />
+                    <span className="text-sm font-medium">Certified Financial Planner</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Star className="w-4 h-4 text-red-600 mr-3" />
+                    <span className="text-sm font-medium">Award-Winning Service</span>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img 
+                    src={temp1Image} 
+                    alt="Financial workspace with laptop and documents" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img 
+                    src={temp2Image} 
+                    alt="Professional business meeting and handshake" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img 
+                    src={temp3Image} 
+                    alt="Professional businesswoman with tablet outdoors" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img 
+                    src={temp4Image} 
+                    alt="Modern office building architecture" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Financial Services & Products */}
+        <div id="services" className="px-6 py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center">Financial Services & Products</h2>
+            <div className="grid grid-cols-3 gap-8">
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <Shield className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Financial Planning</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Comprehensive financial planning services to secure your future and optimize your wealth management strategy.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Retirement Planning
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Estate Planning
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Tax Strategy
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Risk Management
+                  </li>
+                </ul>
+                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <TrendingUp className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Investment Planning</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Strategic investment solutions to help grow your wealth and achieve long-term financial goals.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Retirement Accounts
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Portfolio Management
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Asset Allocation
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Market Analysis
+                  </li>
+                </ul>
+                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <Home className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Retirement Planning</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Comprehensive retirement strategies to ensure financial independence during your golden years.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    401(k) & IRA Planning
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Income Strategies
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Social Security Optimization
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Healthcare Planning
+                  </li>
+                </ul>
+                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <GraduationCap className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Education Planning</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Strategic savings plans to fund educational goals for you or your children's future success.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    529 College Plans
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Educational Savings
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Cost Projections
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Funding Strategies
+                  </li>
+                </ul>
+                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <Heart className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Insurance Solutions</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Comprehensive insurance coverage to protect your family and assets against unforeseen circumstances.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Life Insurance
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Disability Insurance
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Long-term Care
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Property Protection
+                  </li>
+                </ul>
+                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <FileText className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Business Services</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Specialized financial services designed to help businesses grow and optimize their financial operations.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Business Planning
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Employee Benefits
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Succession Planning
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Key Person Insurance
+                  </li>
+                </ul>
+                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Why We Serve Section */}
+        <div id="why-we-serve" className="px-6 py-16 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center">Why We Serve</h2>
+            <div className="grid grid-cols-3 gap-8">
+              {[
+                {
+                  image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=626&q=80",
+                  title: "Strategic Planning",
+                  description: "We help businesses develop comprehensive strategic plans that align with their long-term goals and market opportunities."
+                },
+                {
+                  image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                  title: "Financial Analysis",
+                  description: "Our expert team provides detailed financial analysis to help you make informed decisions about your business future."
+                },
+                {
+                  image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                  title: "Investment Planning",
+                  description: "We create personalized investment strategies designed to grow your wealth while managing risk effectively."
+                }
+              ].map((item, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-full h-48 bg-gray-200 rounded-lg mb-6 overflow-hidden">
+                    <img 
+                      src={item.image} 
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold mb-4">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Client Testimonials */}
+        <div id="testimonials" className="px-6 py-16 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center">Client Testimonials</h2>
+            <div className="grid grid-cols-3 gap-8">
+              {[
+                {
+                  name: "Sarah Johnson",
+                  title: "CEO, Tech Solutions Inc.",
+                  image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                },
+                {
+                  name: "Michael Chen",
+                  title: "CFO, Global Ventures",
+                  image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                },
+                {
+                  name: "Emily Rodriguez",
+                  title: "President, Innovate Corp",
+                  image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                }
+              ].map((testimonial, i) => (
+                <div key={i} className="bg-gray-50 p-6 rounded-lg">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 rounded-full mr-4 overflow-hidden">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <div className="font-semibold">{testimonial.name}</div>
+                      <div className="text-sm text-gray-500">{testimonial.title}</div>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 text-sm italic">"John's expertise in financial planning transformed our business operations and significantly improved our bottom line."</p>
+                  <div className="flex mt-4">
+                    {[1,2,3,4,5].map(star => (
+                      <Star key={star} className="w-4 h-4 text-yellow-500 fill-yellow-500 mr-1" />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Contact Section */}
-        <div className="px-6 py-8 bg-green-800 text-white">
-          <div className="grid grid-cols-2 gap-8">
-            <div>
-              <h2 className="text-xl font-bold mb-4">Schedule Consultation</h2>
-              <div className="bg-white text-black p-4 rounded">
-                <div className="text-sm space-y-2">
-                  <div className="flex justify-between">
-                    <span>Mon - Fri</span>
-                    <span>9:00 AM - 6:00 PM</span>
+        <div id="contact" className="px-6 py-16 bg-gray-800 text-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 gap-12">
+              <div>
+                <h2 className="text-3xl font-bold mb-8">Get In Touch</h2>
+                <div className="space-y-6">
+                  <div className="flex items-center">
+                    <Phone className="w-6 h-6 text-red-600 mr-4" />
+                    <div>
+                      <div className="font-semibold">Phone</div>
+                      <div className="text-gray-300">(555) 123-4567</div>
+                    </div>
                   </div>
-                  <div className="text-xs text-gray-600">Available for consultations</div>
+                  <div className="flex items-center">
+                    <Mail className="w-6 h-6 text-red-600 mr-4" />
+                    <div>
+                      <div className="font-semibold">Email</div>
+                      <div className="text-gray-300">john@planright.com</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="w-6 h-6 text-red-600 mr-4" />
+                    <div>
+                      <div className="font-semibold">Office</div>
+                      <div className="text-gray-300">123 Financial District<br />New York, NY 10004</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex space-x-4 mt-8">
+                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
+                    <Facebook className="w-5 h-5" />
+                  </div>
+                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
+                    <Twitter className="w-5 h-5" />
+                  </div>
+                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
+                    <Linkedin className="w-5 h-5" />
+                  </div>
+                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
+                    <Instagram className="w-5 h-5" />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-6">Business Hours</h3>
+                <div className="bg-gray-700 p-6 rounded-lg">
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span>Monday - Friday</span>
+                      <span>9:00 AM - 6:00 PM</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Saturday</span>
+                      <span>10:00 AM - 2:00 PM</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Sunday</span>
+                      <span>By Appointment</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+                  <div className="grid grid-cols-2 gap-4 text-sm text-gray-300">
+                    <div className="space-y-2">
+                      <div>About Us</div>
+                      <div>Our Team</div>
+                      <div>Careers</div>
+                      <div>Contact</div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-4">Connect</h4>
+                  <div className="space-y-2 text-sm text-gray-400">
+                    <div>LinkedIn</div>
+                    <div>Twitter</div>
+                    <div>Facebook</div>
+                    <div>Newsletter</div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div>
-              <h2 className="text-xl font-bold mb-4">Contact Information</h2>
-              <div className="space-y-2 text-sm">
-                <div>Phone: (555) 123-4567</div>
-                <div>Email: michael@businesspro.com</div>
-                <div>Address: 456 Business Center</div>
-              </div>
-            </div>
           </div>
-        </div>
-
-        {/* Footer */}
-        <div className="bg-green-900 text-white px-6 py-4 text-center text-xs">
-          © 2024 Business Pro. All rights reserved.
+          <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
+            © 2025 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
+          </div>
         </div>
       </div>
     );

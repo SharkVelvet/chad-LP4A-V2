@@ -112,10 +112,34 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="w-full h-48 bg-gray-300 rounded-lg shadow-sm"></div>
-                <div className="w-full h-48 bg-gray-300 rounded-lg shadow-sm"></div>
-                <div className="w-full h-48 bg-gray-300 rounded-lg shadow-sm"></div>
-                <div className="w-full h-48 bg-gray-300 rounded-lg shadow-sm"></div>
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img 
+                    src="/attached_assets/temp1-pr.jpg" 
+                    alt="Financial workspace with laptop and documents" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img 
+                    src="/attached_assets/temp2-pr.jpg" 
+                    alt="Professional business meeting and handshake" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img 
+                    src="/attached_assets/temp3-pr.jpg" 
+                    alt="Professional businesswoman with tablet outdoors" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img 
+                    src="/attached_assets/temp4-pr.jpg" 
+                    alt="Modern office building architecture" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           </div>

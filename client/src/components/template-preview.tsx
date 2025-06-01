@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText } from "lucide-react";
 
 interface TemplatePreviewProps {
   templateSlug: string;
@@ -132,7 +132,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <div className="w-6 h-6 bg-red-600 rounded-full"></div>
+                    <Shield className="w-6 h-6 text-red-600" />
                   </div>
                   <h3 className="text-xl font-bold">Life Insurance</h3>
                 </div>
@@ -162,7 +162,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <div className="w-6 h-3 bg-red-600"></div>
+                    <TrendingUp className="w-6 h-6 text-red-600" />
                   </div>
                   <h3 className="text-xl font-bold">Investment Planning</h3>
                 </div>
@@ -192,7 +192,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <div className="w-6 h-6 bg-red-600 rounded"></div>
+                    <Home className="w-6 h-6 text-red-600" />
                   </div>
                   <h3 className="text-xl font-bold">Retirement Planning</h3>
                 </div>
@@ -222,7 +222,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <div className="w-4 h-6 bg-red-600"></div>
+                    <GraduationCap className="w-6 h-6 text-red-600" />
                   </div>
                   <h3 className="text-xl font-bold">Education Planning</h3>
                 </div>
@@ -252,7 +252,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <div className="w-5 h-5 bg-red-600 rotate-45"></div>
+                    <Heart className="w-6 h-6 text-red-600" />
                   </div>
                   <h3 className="text-xl font-bold">Health Insurance</h3>
                 </div>
@@ -282,7 +282,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <div className="w-6 h-4 bg-red-600 rounded-sm"></div>
+                    <FileText className="w-6 h-6 text-red-600" />
                   </div>
                   <h3 className="text-xl font-bold">Estate Planning</h3>
                 </div>

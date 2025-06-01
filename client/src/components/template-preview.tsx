@@ -22,9 +22,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Header */}
         <div className="bg-white border-b px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50">
           <div className="font-bold text-xl">
-            <span className="text-red-600">Plan</span>
-            <span className="text-gray-400 mx-1">|</span>
-            <span className="text-black">right</span>
+            <span className="text-red-600">Plan</span><span className="text-gray-400">|</span><span className="text-black">right</span>
           </div>
           <div className="flex space-x-6 text-sm text-gray-700">
             <a href="#hero" onClick={(e) => handleSmoothScroll(e, 'hero')} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
@@ -581,7 +579,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
           </div>
           <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-            © 2024 Plan | right. All rights reserved. | Privacy Policy | Terms of Service
+            © 2024 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
           </div>
         </div>
       </div>

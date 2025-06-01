@@ -397,40 +397,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Schedule Visit Section */}
-        <div className="px-6 py-16 bg-red-800 text-white">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Schedule Visit</h2>
-            <div className="grid grid-cols-2 gap-12">
-              <div>
-                <h3 className="text-xl font-bold mb-6">Book Your Consultation</h3>
-                <div className="bg-white text-black p-6 rounded-lg">
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center border-b pb-2">
-                      <span className="font-semibold">Monday - Friday</span>
-                      <span>9:00 AM - 5:00 PM</span>
-                    </div>
-                    <div className="flex justify-between items-center border-b pb-2">
-                      <span className="font-semibold">Saturday</span>
-                      <span>10:00 AM - 2:00 PM</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="font-semibold">Sunday</span>
-                      <span>By Appointment</span>
-                    </div>
-                  </div>
-                  <button className="w-full bg-red-600 text-white py-3 rounded-lg mt-6 hover:bg-red-700 font-semibold">Book Now</button>
-                </div>
-              </div>
-              <div className="w-full h-80 bg-red-700 rounded-lg flex items-center justify-center">
-                <div className="text-center text-red-200">
-                  <div className="text-4xl mb-2">📍</div>
-                  <div className="text-sm">Office Location Map</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
         {/* Contact Us Section */}
         <div id="contact" className="px-6 py-16 bg-gray-50">

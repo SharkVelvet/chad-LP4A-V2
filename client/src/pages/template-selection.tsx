@@ -18,7 +18,6 @@ type Template = {
 };
 
 export default function TemplateSelection() {
-  const { user, logoutMutation } = useAuth();
   const [, navigate] = useLocation();
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
 
@@ -36,9 +35,7 @@ export default function TemplateSelection() {
     }
   };
 
-  const handleLogout = () => {
-    logoutMutation.mutate();
-  };
+
 
   if (isLoading) {
     return (
@@ -56,13 +53,6 @@ export default function TemplateSelection() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               <h1 className="text-xl font-semibold text-gray-900">LocationSite Pro</h1>
-              <Badge variant="secondary">Location ID: {user?.locationId}</Badge>
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">{user?.email}</span>
-              <Button variant="ghost" size="sm" onClick={handleLogout}>
-                Sign Out
-              </Button>
             </div>
           </div>
         </div>
@@ -94,6 +84,18 @@ export default function TemplateSelection() {
               onSelect={() => handleSelectTemplate(template)}
             />
           ))}
+        </div>
+
+        {/* Skip Selection Button */}
+        <div className="text-center mb-8">
+          <Button
+            variant="outline"
+            size="lg"
+            className="px-8 py-3"
+            onClick={() => navigate('/setup')}
+          >
+            I know which template I want to use, go to next step
+          </Button>
         </div>
 
         {/* Selected Template Display */}

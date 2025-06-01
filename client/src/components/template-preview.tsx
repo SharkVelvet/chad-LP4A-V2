@@ -1279,7 +1279,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <div className="bg-red-100 text-red-800 px-4 py-2 rounded-full inline-block text-sm font-semibold mb-6">
                   FINANCIAL PLANNING EXCELLENCE
                 </div>
-                <h1 className="text-6xl font-bold mb-6 text-gray-900 leading-tight">
+                <h1 className="text-5xl font-bold mb-6 text-gray-900 leading-tight">
                   Transform Your <span className="text-red-600">Financial Future</span>
                 </h1>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
@@ -1345,7 +1345,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-red-100 text-red-800 px-4 py-2 rounded-full inline-block text-sm font-semibold mb-4">
                 ABOUT OUR EXPERTISE
               </div>
-              <h2 className="text-5xl font-bold mb-6 text-gray-900">
+              <h2 className="text-4xl font-bold mb-6 text-gray-900">
                 Meet <span className="text-red-600">John Smith</span>
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -1368,7 +1368,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
               
               <div>
-                <h3 className="text-3xl font-bold mb-6 text-gray-900">Professional Excellence</h3>
+                <h3 className="text-2xl font-bold mb-6 text-gray-900">Professional Excellence</h3>
                 <p className="text-base text-gray-600 mb-8 leading-relaxed">
                   His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
                 </p>
@@ -1416,7 +1416,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-red-100 text-red-800 px-4 py-2 rounded-full inline-block text-sm font-semibold mb-4">
                 OUR APPROACH
               </div>
-              <h2 className="text-5xl font-bold mb-6 text-gray-900">
+              <h2 className="text-4xl font-bold mb-6 text-gray-900">
                 Why We <span className="text-red-600">Serve</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">

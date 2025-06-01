@@ -1913,6 +1913,50 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
           </div>
         </div>
+
+        {/* Footer */}
+        <div className="bg-gray-900 text-white px-6 py-8 border-t border-gray-700">
+          <div className="max-w-6xl mx-auto grid grid-cols-4 gap-8">
+            <div>
+              <div className="font-bold text-xl mb-4">
+                <span className="text-red-600">Plan</span>
+                <span className="text-gray-400 font-thin mx-1">|</span>
+                <span className="text-white">right</span>
+              </div>
+              <p className="text-gray-400 text-sm">Professional financial services and procurement solutions for modern businesses.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Services</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>Financial Planning</div>
+                <div>Investment Management</div>
+                <div>Procurement Services</div>
+                <div>Business Consulting</div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>About Us</div>
+                <div>Our Team</div>
+                <div>Careers</div>
+                <div>Contact</div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Connect</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>LinkedIn</div>
+                <div>Twitter</div>
+                <div>Facebook</div>
+                <div>Newsletter</div>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
+            © 2025 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
+          </div>
+        </div>
       </div>
     );
   }

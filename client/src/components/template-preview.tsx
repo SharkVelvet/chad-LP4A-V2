@@ -513,7 +513,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="font-bold text-xl mb-4">
                 <span className="text-red-600">Plan</span>
                 <span className="text-gray-400 mx-1">|</span>
-                <span className="text-white">Right</span>
+                <span className="text-white">right</span>
               </div>
               <p className="text-gray-400 text-sm">Professional financial services and procurement solutions for modern businesses.</p>
             </div>

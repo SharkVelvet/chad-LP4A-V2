@@ -16,11 +16,11 @@ function Router() {
   return (
     <Switch>
       <Route path="/auth" component={AuthPage} />
-      <ProtectedRoute path="/templates" component={TemplateSelection} />
-      <ProtectedRoute path="/template-preview" component={TemplatePreviewPage} />
-      <ProtectedRoute path="/setup" component={WebsiteSetup} />
+      <Route path="/templates" component={TemplateSelection} />
+      <Route path="/template-preview" component={TemplatePreviewPage} />
+      <Route path="/setup" component={WebsiteSetup} />
       <ProtectedRoute path="/dashboard" component={Dashboard} />
-      <ProtectedRoute path="/" component={Dashboard} />
+      <Route path="/" component={TemplateSelection} />
       <Route component={NotFound} />
     </Switch>
   );

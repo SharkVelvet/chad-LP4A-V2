@@ -1,11 +1,22 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowLeft } from "lucide-react";
+
+type Template = {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  category: string;
+  previewImage: string;
+  isActive: boolean;
+};
 
 export default function WebsiteSetup() {
   const [, navigate] = useLocation();
@@ -17,6 +28,10 @@ export default function WebsiteSetup() {
     domain1: "",
     domain2: "",
     domain3: ""
+  });
+
+  const { data: templates, isLoading: templatesLoading } = useQuery<Template[]>({
+    queryKey: ["/api/templates"],
   });
 
   const handleInputChange = (field: string, value: string) => {
@@ -114,19 +129,43 @@ export default function WebsiteSetup() {
           <Card>
             <CardHeader>
               <CardTitle>Template Selection</CardTitle>
+              <p className="text-gray-600">Choose the template that best fits your business style.</p>
             </CardHeader>
             <CardContent>
-              <Label htmlFor="template">Which template would you like to use? *</Label>
-              <Select value={formData.template} onValueChange={(value) => handleInputChange("template", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a template" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="template1">Template 1</SelectItem>
-                  <SelectItem value="template2">Template 2</SelectItem>
-                  <SelectItem value="template3">Template 3</SelectItem>
-                </SelectContent>
-              </Select>
+              <Label>Which template would you like to use? *</Label>
+              {templatesLoading ? (
+                <div className="flex items-center justify-center py-8">
+                  <div className="animate-spin w-6 h-6 border-4 border-primary border-t-transparent rounded-full" />
+                </div>
+              ) : (
+                <RadioGroup
+                  value={formData.template}
+                  onValueChange={(value) => handleInputChange("template", value)}
+                  className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4"
+                >
+                  {templates?.map((template) => (
+                    <div key={template.id} className="relative">
+                      <RadioGroupItem
+                        value={template.slug}
+                        id={template.slug}
+                        className="peer sr-only"
+                      />
+                      <Label
+                        htmlFor={template.slug}
+                        className="flex flex-col items-center justify-center rounded-lg border-2 border-border p-4 hover:bg-gray-50 peer-checked:border-primary peer-checked:bg-blue-50 cursor-pointer transition-all"
+                      >
+                        <img
+                          src={template.previewImage}
+                          alt={template.name}
+                          className="w-full h-32 object-cover rounded-md mb-3 border border-gray-200"
+                        />
+                        <h3 className="font-medium text-center">{template.name}</h3>
+                        <p className="text-sm text-gray-600 text-center mt-1">{template.description}</p>
+                      </Label>
+                    </div>
+                  ))}
+                </RadioGroup>
+              )}
             </CardContent>
           </Card>
 

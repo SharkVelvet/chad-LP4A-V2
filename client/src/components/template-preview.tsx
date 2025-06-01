@@ -1322,7 +1322,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                       />
                     </div>
                   </div>
-                  <div className="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-xl">
+                  <div className="absolute -bottom-4 right-4 bg-white rounded-xl p-4 shadow-xl">
                     <div className="text-center">
                       <div className="text-lg font-bold text-red-600 mb-1">John Smith</div>
                       <div className="text-xs text-gray-600 font-medium">President of Financial Services</div>

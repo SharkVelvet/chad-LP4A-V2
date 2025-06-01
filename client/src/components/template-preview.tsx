@@ -46,44 +46,31 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white py-32">
+        <div className="relative bg-gray-50 py-20">
           <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-2 gap-12 items-center">
-              <div>
-                <h1 className="text-5xl font-bold mb-6 leading-tight">
-                  Transform Your <span className="text-yellow-300">Financial Future</span>
-                </h1>
-                <p className="text-xl mb-8 text-blue-100 leading-relaxed">
-                  With over 15 years of experience in financial services and procurement, John Smith provides comprehensive financial solutions and strategic guidance for businesses across all industries.
-                </p>
-                <div className="flex space-x-4">
-                  <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
-                    Get Started
-                  </button>
-                  <button onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
-                    Learn More
-                  </button>
-                </div>
+            <div className="text-center mb-16">
+              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                Professional Business <br />
+                <span className="text-blue-600">Solutions</span>
+              </h1>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                Transform your business with our comprehensive suite of professional services designed to drive growth and efficiency.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                  Get Started
+                </button>
+                <button onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                  Learn More
+                </button>
               </div>
-              <div className="relative">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                  <div className="text-center">
-                    <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white/20 shadow-xl">
-                      <img 
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                        alt="John Smith" 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-2">John Smith</h3>
-                    <p className="text-blue-200 mb-4">President of Financial Services</p>
-                    <div className="flex justify-center space-x-4 text-sm">
-                      <span className="bg-white/20 px-3 py-1 rounded-full">CFP Certified</span>
-                      <span className="bg-white/20 px-3 py-1 rounded-full">15+ Years</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>
+            <div className="relative">
+              <img 
+                src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600&q=80" 
+                alt="Professional business team" 
+                className="w-full h-96 object-cover rounded-2xl shadow-xl"
+              />
             </div>
           </div>
         </div>
@@ -93,19 +80,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">About John Smith</h2>
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">About Our Company</h2>
                 <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                  With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
+                  We are a leading provider of innovative business solutions, dedicated to helping companies achieve their goals through strategic planning and expert execution.
                 </p>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
+                  Our team of experienced professionals brings deep industry knowledge and a commitment to excellence in every project we undertake.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-6">
                   <div className="flex items-center p-4 bg-blue-50 rounded-lg">
                     <Clock className="w-8 h-8 text-blue-600 mr-3" />
                     <div>
-                      <div className="text-xl font-bold text-gray-900">15+</div>
+                      <div className="text-xl font-bold text-gray-900">10+</div>
                       <div className="text-sm text-gray-600">Years Experience</div>
                     </div>
                   </div>
@@ -113,8 +100,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <div className="flex items-center p-4 bg-purple-50 rounded-lg">
                     <Users className="w-8 h-8 text-purple-600 mr-3" />
                     <div>
-                      <div className="text-xl font-bold text-gray-900">500+</div>
-                      <div className="text-sm text-gray-600">Clients Served</div>
+                      <div className="text-xl font-bold text-gray-900">200+</div>
+                      <div className="text-sm text-gray-600">Happy Clients</div>
                     </div>
                   </div>
                 </div>
@@ -130,8 +117,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <div className="flex items-center space-x-2">
                     <Award className="w-8 h-8 text-yellow-500" />
                     <div>
-                      <div className="text-lg font-bold text-gray-900">CFP</div>
-                      <div className="text-sm text-gray-600">Certified Financial Planner</div>
+                      <div className="text-lg font-bold text-gray-900">Award</div>
+                      <div className="text-sm text-gray-600">Winning Service</div>
                     </div>
                   </div>
                 </div>
@@ -140,75 +127,75 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Financial Services & Products */}
+        {/* Services */}
         <div id="services" className="px-6 py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">
-                Financial <span className="text-red-600">Services & Products</span>
+                Our <span className="text-blue-600">Services</span>
               </h2>
               <p className="text-gray-600 max-w-3xl mx-auto">
-                Comprehensive solutions designed to protect your assets, grow your wealth, and secure your financial future.
+                We provide comprehensive business solutions tailored to meet your unique needs and drive sustainable growth.
               </p>
             </div>
             
             <div className="grid grid-cols-3 gap-8 mb-12">
-              {/* Life Insurance */}
-              <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
+              {/* Strategy Consulting */}
+              <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-blue-600">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <Shield className="w-6 h-6 text-red-600" />
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <TrendingUp className="w-6 h-6 text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-bold">Life Insurance</h3>
+                  <h3 className="text-xl font-bold">Strategy Consulting</h3>
                 </div>
                 <p className="text-gray-600 text-sm mb-4">
-                  Protect your loved ones and ensure financial security with customized life insurance policies.
+                  Strategic planning and business optimization to drive growth and competitive advantage.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center">
-                    <span className="text-red-600 mr-2">✓</span>
-                    Term Life Insurance
+                    <span className="text-blue-600 mr-2">✓</span>
+                    Business Planning
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-600 mr-2">✓</span>
-                    Whole Life Insurance
+                    <span className="text-blue-600 mr-2">✓</span>
+                    Market Analysis
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-600 mr-2">✓</span>
-                    Universal Life Insurance
+                    <span className="text-blue-600 mr-2">✓</span>
+                    Growth Strategies
                   </li>
                 </ul>
-                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                <button className="text-blue-600 text-sm font-semibold hover:text-blue-700">
                   Learn More →
                 </button>
               </div>
 
-              {/* Investment Planning */}
-              <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
+              {/* Digital Transformation */}
+              <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-blue-600">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <TrendingUp className="w-6 h-6 text-red-600" />
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <Settings className="w-6 h-6 text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-bold">Investment Planning</h3>
+                  <h3 className="text-xl font-bold">Digital Solutions</h3>
                 </div>
                 <p className="text-gray-600 text-sm mb-4">
-                  Strategic investment solutions to help grow your wealth and achieve long-term financial goals.
+                  Modern technology solutions to streamline operations and enhance productivity.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center">
-                    <span className="text-red-600 mr-2">✓</span>
-                    Retirement Accounts
+                    <span className="text-blue-600 mr-2">✓</span>
+                    Process Automation
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-600 mr-2">✓</span>
-                    Mutual Funds
+                    <span className="text-blue-600 mr-2">✓</span>
+                    System Integration
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-600 mr-2">✓</span>
-                    Portfolio Management
+                    <span className="text-blue-600 mr-2">✓</span>
+                    Digital Platforms
                   </li>
                 </ul>
-                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                <button className="text-blue-600 text-sm font-semibold hover:text-blue-700">
                   Learn More →
                 </button>
               </div>

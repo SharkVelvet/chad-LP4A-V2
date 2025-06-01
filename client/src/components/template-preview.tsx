@@ -42,21 +42,21 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="text-white">
                 <h1 className="text-6xl font-bold mb-4 leading-tight">John Smith</h1>
                 <p className="text-2xl mb-2 text-yellow-400">President of Financial Services</p>
-                <p className="text-lg text-gray-200 mb-8 leading-relaxed max-w-lg">
+                <p className="text-lg text-white mb-8 leading-relaxed max-w-lg">
                   Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
                 </p>
                 <div className="flex space-x-4">
-                  <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 px-8 py-4 rounded font-semibold text-lg hover:bg-red-700 transition-colors inline-block">
+                  <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-block">
                     Schedule Consultation
                   </a>
-                  <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white px-8 py-4 rounded font-semibold text-lg hover:bg-white hover:text-black transition-colors inline-block">
+                  <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white text-white px-6 py-3 rounded font-semibold hover:bg-white hover:text-black transition-colors inline-block">
                     Learn More
                   </a>
                 </div>
               </div>
               <div className="flex justify-center">
                 <div className="relative">
-                  <div className="w-96 h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                  <div className="w-72 h-72 rounded-full overflow-hidden shadow-2xl border-4 border-white">
                     <img 
                       src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                       alt="John Smith" 

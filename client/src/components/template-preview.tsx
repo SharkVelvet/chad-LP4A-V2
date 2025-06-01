@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle } from "lucide-react";
 import temp1Image from "@assets/temp1-pr.jpg";
 import temp2Image from "@assets/temp2-pr.jpg";
 import temp3Image from "@assets/temp3-pr.jpg";
@@ -617,11 +617,17 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Top Header Bar */}
         <div className="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-3 text-center">
           <div className="flex justify-between items-center">
-            <div className="text-sm">📞 (555) 123-4567</div>
+            <div className="text-sm flex items-center">
+              <Phone className="w-4 h-4 text-white mr-2" />
+              (555) 123-4567
+            </div>
             <div className="font-bold text-xl">
               <span className="text-white">Plan</span><span className="text-red-200 font-thin mx-1">|</span><span className="text-white">right</span>
             </div>
-            <div className="text-sm">📧 john@planright.com</div>
+            <div className="text-sm flex items-center">
+              <Mail className="w-4 h-4 text-white mr-2" />
+              john@planright.com
+            </div>
           </div>
         </div>
 
@@ -646,23 +652,29 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             <nav className="p-4">
               <div className="space-y-2">
-                <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  🏠 Home
+                <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
+                  <Home className="w-5 h-5 text-red-600 mr-3" />
+                  Home
                 </a>
-                <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  👨‍💼 About John
+                <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
+                  <Users className="w-5 h-5 text-red-600 mr-3" />
+                  About John
                 </a>
-                <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  💼 Services
+                <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
+                  <FileText className="w-5 h-5 text-red-600 mr-3" />
+                  Services
                 </a>
-                <a href="#why-we-serve" onClick={(e) => handleSmoothScroll(e, 'why-we-serve')} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  🎯 Our Approach
+                <a href="#why-we-serve" onClick={(e) => handleSmoothScroll(e, 'why-we-serve')} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
+                  <Award className="w-5 h-5 text-red-600 mr-3" />
+                  Our Approach
                 </a>
-                <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  ⭐ Testimonials
+                <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
+                  <Star className="w-5 h-5 text-red-600 mr-3" />
+                  Testimonials
                 </a>
-                <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  📞 Contact
+                <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
+                  <Phone className="w-5 h-5 text-red-600 mr-3" />
+                  Contact
                 </a>
               </div>
               
@@ -677,10 +689,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               
               <div className="mt-6 p-4 bg-gray-50 rounded-lg">
                 <h4 className="font-semibold text-sm mb-2">Quick Stats</h4>
-                <div className="space-y-1 text-xs text-gray-600">
-                  <div>✓ Certified Financial Planner</div>
-                  <div>✓ Industry Recognition</div>
-                  <div>✓ Comprehensive Solutions</div>
+                <div className="space-y-2 text-xs text-gray-600">
+                  <div className="flex items-center">
+                    <Shield className="w-4 h-4 text-red-600 mr-2" />
+                    Certified Financial Planner
+                  </div>
+                  <div className="flex items-center">
+                    <Award className="w-4 h-4 text-red-600 mr-2" />
+                    Industry Recognition
+                  </div>
+                  <div className="flex items-center">
+                    <TrendingUp className="w-4 h-4 text-red-600 mr-2" />
+                    Comprehensive Solutions
+                  </div>
                 </div>
               </div>
             </nav>
@@ -729,19 +750,31 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             {/* Quick Stats Cards */}
             <div className="grid grid-cols-4 gap-4 mb-6">
               <div className="bg-white rounded-lg p-6 text-center shadow-md">
+                <div className="flex justify-center mb-3">
+                  <Clock className="w-8 h-8 text-red-600" />
+                </div>
                 <div className="text-3xl font-bold text-red-600 mb-2">15+</div>
                 <div className="text-sm text-gray-600">Years Experience</div>
               </div>
               <div className="bg-white rounded-lg p-6 text-center shadow-md">
+                <div className="flex justify-center mb-3">
+                  <Users className="w-8 h-8 text-red-600" />
+                </div>
                 <div className="text-3xl font-bold text-red-600 mb-2">500+</div>
                 <div className="text-sm text-gray-600">Clients Served</div>
               </div>
               <div className="bg-white rounded-lg p-6 text-center shadow-md">
+                <div className="flex justify-center mb-3">
+                  <Shield className="w-8 h-8 text-red-600" />
+                </div>
                 <div className="text-3xl font-bold text-red-600 mb-2">CFP</div>
                 <div className="text-sm text-gray-600">Certified Planner</div>
               </div>
               <div className="bg-white rounded-lg p-6 text-center shadow-md">
-                <div className="text-3xl font-bold text-red-600 mb-2">★★★★★</div>
+                <div className="flex justify-center mb-3">
+                  <Star className="w-8 h-8 text-red-600 fill-red-600" />
+                </div>
+                <div className="text-3xl font-bold text-red-600 mb-2">5.0</div>
                 <div className="text-sm text-gray-600">Client Rating</div>
               </div>
             </div>

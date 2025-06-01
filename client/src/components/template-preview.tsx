@@ -45,156 +45,100 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Modern Hero Section */}
-        <section className="bg-white py-20">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Financial Planning Excellence with <span className="text-red-600">John Smith</span>
-              </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
-                Providing comprehensive financial solutions and procurement strategies for businesses across all industries with over 15 years of expertise.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors">
-                  Schedule Consultation
-                </button>
-                <button onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-red-600 text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-red-50 transition-colors">
-                  Learn More
-                </button>
+        {/* Hero Section */}
+        <div className="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white py-32">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-2 gap-12 items-center">
+              <div>
+                <h1 className="text-5xl font-bold mb-6 leading-tight">
+                  Transform Your <span className="text-yellow-300">Financial Future</span>
+                </h1>
+                <p className="text-xl mb-8 text-blue-100 leading-relaxed">
+                  With over 15 years of experience in financial services and procurement, John Smith provides comprehensive financial solutions and strategic guidance for businesses across all industries.
+                </p>
+                <div className="flex space-x-4">
+                  <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
+                    Get Started
+                  </button>
+                  <button onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
+                    Learn More
+                  </button>
+                </div>
               </div>
-            </div>
-
-            {/* Hero Image and Profile Card */}
-            <div className="relative max-w-4xl mx-auto">
-              <div className="bg-gray-100 rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                  alt="Professional financial consultation" 
-                  className="w-full h-96 object-cover"
-                />
-                
-                {/* Floating Profile Card */}
-                <div className="absolute bottom-8 left-8 bg-white rounded-xl p-6 shadow-xl max-w-sm">
-                  <div className="flex items-center mb-4">
-                    <div className="w-16 h-16 rounded-full overflow-hidden mr-4 shadow-lg">
+              <div className="relative">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                  <div className="text-center">
+                    <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white/20 shadow-xl">
                       <img 
                         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                         alt="John Smith" 
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900">John Smith</h3>
-                      <p className="text-red-600 font-medium">President of Financial Services</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center space-x-4 text-sm text-gray-600">
-                    <div className="flex items-center">
-                      <Shield className="w-4 h-4 text-red-600 mr-1" />
-                      <span>CFP Certified</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Clock className="w-4 h-4 text-red-600 mr-1" />
-                      <span>15+ Years</span>
+                    <h3 className="text-2xl font-bold mb-2">John Smith</h3>
+                    <p className="text-blue-200 mb-4">President of Financial Services</p>
+                    <div className="flex justify-center space-x-4 text-sm">
+                      <span className="bg-white/20 px-3 py-1 rounded-full">CFP Certified</span>
+                      <span className="bg-white/20 px-3 py-1 rounded-full">15+ Years</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
         {/* About Section */}
-        <section id="about" className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                About <span className="text-red-600">John Smith</span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+        <div id="about" className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-2 gap-16 items-center">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Professional Excellence</h3>
-                <p className="text-gray-600 mb-8 leading-relaxed">
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">About John Smith</h2>
+                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                  With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
+                </p>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-6">
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <div className="flex items-center mb-3">
-                      <Clock className="w-8 h-8 text-red-600 mr-3" />
-                      <div>
-                        <div className="text-2xl font-bold text-gray-900">15+</div>
-                        <div className="text-sm text-gray-600">Years Experience</div>
-                      </div>
+                  <div className="flex items-center p-4 bg-blue-50 rounded-lg">
+                    <Clock className="w-8 h-8 text-blue-600 mr-3" />
+                    <div>
+                      <div className="text-xl font-bold text-gray-900">15+</div>
+                      <div className="text-sm text-gray-600">Years Experience</div>
                     </div>
                   </div>
                   
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <div className="flex items-center mb-3">
-                      <Users className="w-8 h-8 text-red-600 mr-3" />
-                      <div>
-                        <div className="text-2xl font-bold text-gray-900">500+</div>
-                        <div className="text-sm text-gray-600">Clients Served</div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <div className="flex items-center mb-3">
-                      <Award className="w-8 h-8 text-red-600 mr-3" />
-                      <div>
-                        <div className="text-lg font-bold text-gray-900">CFP</div>
-                        <div className="text-sm text-gray-600">Certified Planner</div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <div className="flex items-center mb-3">
-                      <Star className="w-8 h-8 text-red-600 mr-3" />
-                      <div>
-                        <div className="text-lg font-bold text-gray-900">Award</div>
-                        <div className="text-sm text-gray-600">Winning Service</div>
-                      </div>
+                  <div className="flex items-center p-4 bg-purple-50 rounded-lg">
+                    <Users className="w-8 h-8 text-purple-600 mr-3" />
+                    <div>
+                      <div className="text-xl font-bold text-gray-900">500+</div>
+                      <div className="text-sm text-gray-600">Clients Served</div>
                     </div>
                   </div>
                 </div>
               </div>
               
               <div className="relative">
-                <div className="grid grid-cols-2 gap-4">
-                  <img 
-                    src={temp1Image} 
-                    alt="Financial workspace with laptop and documents" 
-                    className="w-full h-48 object-cover rounded-lg shadow-lg"
-                  />
-                  <img 
-                    src={temp2Image} 
-                    alt="Professional business meeting and handshake" 
-                    className="w-full h-48 object-cover rounded-lg shadow-lg"
-                  />
-                  <img 
-                    src={temp3Image} 
-                    alt="Professional businesswoman with tablet outdoors" 
-                    className="w-full h-48 object-cover rounded-lg shadow-lg"
-                  />
-                  <img 
-                    src={temp4Image} 
-                    alt="Modern office building architecture" 
-                    className="w-full h-48 object-cover rounded-lg shadow-lg"
-                  />
+                <img 
+                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Professional consultation" 
+                  className="w-full h-96 object-cover rounded-2xl shadow-xl"
+                />
+                <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl">
+                  <div className="flex items-center space-x-2">
+                    <Award className="w-8 h-8 text-yellow-500" />
+                    <div>
+                      <div className="text-lg font-bold text-gray-900">CFP</div>
+                      <div className="text-sm text-gray-600">Certified Financial Planner</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
         {/* Financial Services & Products */}
         <div id="services" className="px-6 py-16 bg-gray-50">

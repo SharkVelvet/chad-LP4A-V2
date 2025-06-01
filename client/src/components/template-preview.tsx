@@ -1207,59 +1207,72 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     </div>
                   </div>
                 </div>
-                <div className="flex space-x-4 mt-8">
-                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
-                    <Facebook className="w-5 h-5" />
-                  </div>
-                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
-                    <Twitter className="w-5 h-5" />
-                  </div>
-                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
-                    <Linkedin className="w-5 h-5" />
-                  </div>
-                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
-                    <Instagram className="w-5 h-5" />
-                  </div>
-                </div>
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-6">Business Hours</h3>
-                <div className="bg-gray-700 p-6 rounded-lg">
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span>Monday - Friday</span>
-                      <span>9:00 AM - 6:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Saturday</span>
-                      <span>10:00 AM - 2:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Sunday</span>
-                      <span>By Appointment</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-6">
-                  <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-                  <div className="grid grid-cols-2 gap-4 text-sm text-gray-300">
-                    <div className="space-y-2">
-                      <div>About Us</div>
-                      <div>Our Team</div>
-                      <div>Careers</div>
-                      <div>Contact</div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-4">Connect</h4>
-                  <div className="space-y-2 text-sm text-gray-400">
-                    <div>LinkedIn</div>
-                    <div>Twitter</div>
-                    <div>Facebook</div>
-                    <div>Newsletter</div>
-                  </div>
-                </div>
+                <form className="space-y-4">
+                  <input 
+                    type="text" 
+                    placeholder="Your Name" 
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+                  />
+                  <input 
+                    type="email" 
+                    placeholder="Your Email" 
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+                  />
+                  <textarea 
+                    placeholder="Your Message" 
+                    rows={4}
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+                  ></textarea>
+                  <button 
+                    type="submit" 
+                    className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="bg-gray-900 text-white px-6 py-8 border-t border-gray-700">
+          <div className="max-w-6xl mx-auto grid grid-cols-4 gap-8">
+            <div>
+              <div className="font-bold text-xl mb-4">
+                <span className="text-red-600">Plan</span>
+                <span className="text-gray-400 font-thin mx-1">|</span>
+                <span className="text-white">right</span>
+              </div>
+              <p className="text-gray-400 text-sm">Professional financial services and procurement solutions for modern businesses.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Services</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>Financial Planning</div>
+                <div>Investment Management</div>
+                <div>Procurement Services</div>
+                <div>Business Consulting</div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>About Us</div>
+                <div>Our Team</div>
+                <div>Careers</div>
+                <div>Contact</div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Connect</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>LinkedIn</div>
+                <div>Twitter</div>
+                <div>Facebook</div>
+                <div>Newsletter</div>
               </div>
             </div>
           </div>

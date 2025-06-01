@@ -41,7 +41,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 gap-12 items-center w-full">
               <div className="text-white">
                 <h1 className="text-6xl font-bold mb-4 leading-tight">John Smith</h1>
-                <p className="text-2xl mb-2 text-yellow-400">President of Financial Services</p>
+                <p className="text-2xl mb-2 text-white">President of Financial Services</p>
                 <p className="text-lg text-white mb-8 leading-relaxed max-w-lg">
                   Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
                 </p>

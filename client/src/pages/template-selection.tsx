@@ -131,17 +131,7 @@ export default function TemplateSelection() {
           </Card>
         )}
 
-        {/* Continue Button */}
-        <div className="text-center">
-          <Button
-            size="lg"
-            className="px-8 py-3"
-            disabled={!selectedTemplate}
-            onClick={handleContinue}
-          >
-            Continue to Website Setup
-          </Button>
-        </div>
+
       </div>
     </div>
   );

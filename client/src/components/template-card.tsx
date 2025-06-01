@@ -45,39 +45,26 @@ export default function TemplateCard({ template, isSelected, onSelect }: Templat
         </div>
 
         <div className="p-6">
-          <div className="flex items-center justify-between mb-2">
+          <div className="mb-2">
             <h3 className="text-lg font-semibold">{template.name}</h3>
-            <Badge variant="outline">{template.category}</Badge>
           </div>
           
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-500">
               Professional Layout
             </span>
-            <div className="flex gap-2">
-              <Button 
-                size="sm"
-                variant="outline"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const siteType = localStorage.getItem('selectedSiteType') || 'single-page';
-                  navigate(`/template-preview?template=${template.slug}&type=${siteType}`);
-                }}
-              >
-                <Eye className="h-4 w-4 mr-1" />
-                Preview
-              </Button>
-              <Button 
-                size="sm"
-                variant={isSelected ? "default" : "outline"}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onSelect();
-                }}
-              >
-                {isSelected ? "Selected" : "Select"}
-              </Button>
-            </div>
+            <Button 
+              size="sm"
+              variant="outline"
+              onClick={(e) => {
+                e.stopPropagation();
+                const siteType = localStorage.getItem('selectedSiteType') || 'single-page';
+                navigate(`/template-preview?template=${template.slug}&type=${siteType}`);
+              }}
+            >
+              <Eye className="h-4 w-4 mr-1" />
+              Preview
+            </Button>
           </div>
         </div>
       </CardContent>

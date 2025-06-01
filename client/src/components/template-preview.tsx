@@ -23,6 +23,167 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
   if (templateSlug === "template-1") {
     return (
       <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
+        <div className="bg-white shadow-sm px-6 py-4 sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto flex justify-between items-center">
+            <div className="font-bold text-2xl">
+              <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-gray-900">right</span>
+            </div>
+            <nav className="hidden lg:flex space-x-8">
+              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-gray-700 hover:text-red-600 font-medium transition-colors">Home</a>
+              <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="text-gray-700 hover:text-red-600 font-medium transition-colors">About</a>
+              <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="text-gray-700 hover:text-red-600 font-medium transition-colors">Services</a>
+              <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-gray-700 hover:text-red-600 font-medium transition-colors">Contact</a>
+            </nav>
+          </div>
+        </div>
+
+        <div id="hero" className="relative h-screen bg-cover bg-center bg-no-repeat" style={{
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")'
+        }}>
+          <div className="absolute inset-0 flex items-center">
+            <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 gap-12 items-center w-full">
+              <div className="text-white">
+                <h1 className="text-6xl font-bold mb-4 leading-tight">John Smith</h1>
+                <p className="text-2xl mb-2 text-white">President of Financial Services</p>
+                <p className="text-lg text-white mb-8 leading-relaxed max-w-lg">
+                  Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
+                </p>
+                <div className="flex space-x-4">
+                  <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-flex items-center justify-center">
+                    Contact Us
+                  </a>
+                  <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white text-white px-6 py-3 rounded font-semibold hover:bg-white hover:text-black transition-colors inline-flex items-center justify-center">
+                    Learn More
+                  </a>
+                </div>
+              </div>
+              <div className="flex justify-center">
+                <div className="relative">
+                  <div className="w-72 h-72 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                    <img 
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                      alt="John Smith" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-lg">
+                    <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-2xl font-bold">JS</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="contact" className="px-6 py-16 bg-gray-800 text-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 gap-12">
+              <div>
+                <h2 className="text-3xl font-bold mb-8">Get In Touch</h2>
+                <div className="space-y-6">
+                  <div className="flex items-center">
+                    <Phone className="w-6 h-6 text-red-600 mr-4" />
+                    <div>
+                      <div className="font-semibold">Phone</div>
+                      <div className="text-gray-300">(555) 123-4567</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <Mail className="w-6 h-6 text-red-600 mr-4" />
+                    <div>
+                      <div className="font-semibold">Email</div>
+                      <div className="text-gray-300">john@planright.com</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="w-6 h-6 text-red-600 mr-4" />
+                    <div>
+                      <div className="font-semibold">Office</div>
+                      <div className="text-gray-300">123 Financial District<br />New York, NY 10004</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <form className="space-y-4">
+                  <input 
+                    type="text" 
+                    placeholder="Your Name" 
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+                  />
+                  <input 
+                    type="email" 
+                    placeholder="Your Email" 
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+                  />
+                  <textarea 
+                    placeholder="Your Message" 
+                    rows={4}
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+                  ></textarea>
+                  <button 
+                    type="submit" 
+                    className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gray-900 text-white px-6 py-8 border-t border-gray-700">
+          <div className="max-w-6xl mx-auto grid grid-cols-4 gap-8">
+            <div>
+              <div className="font-bold text-xl mb-4">
+                <span className="text-red-600">Plan</span>
+                <span className="text-gray-400 font-thin mx-1">|</span>
+                <span className="text-white">right</span>
+              </div>
+              <p className="text-gray-400 text-sm">Professional financial services and procurement solutions for modern businesses.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Services</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>Financial Planning</div>
+                <div>Investment Management</div>
+                <div>Procurement Services</div>
+                <div>Business Consulting</div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>About Us</div>
+                <div>Our Team</div>
+                <div>Careers</div>
+                <div>Contact</div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Connect</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>LinkedIn</div>
+                <div>Twitter</div>
+                <div>Facebook</div>
+                <div>Newsletter</div>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
+            © 2025 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (templateSlug === "template-2") {
+    return (
+      <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Header */}
         <div className="bg-white border-b px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
           <div className="font-bold text-xl">
@@ -131,6 +292,202 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* About Section */}
+        <div id="about" className="px-6 py-16 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">About John Smith</h2>
+            <div className="grid grid-cols-2 gap-12 items-center">
+              <div>
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
+                </p>
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
+                </p>
+                <div className="grid grid-cols-2 gap-6 mt-8">
+                  <div className="flex items-center">
+                    <Clock className="w-4 h-4 text-red-600 mr-3" />
+                    <span className="text-sm font-medium">15+ Years Experience</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Users className="w-4 h-4 text-red-600 mr-3" />
+                    <span className="text-sm font-medium">500+ Clients Served</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Award className="w-4 h-4 text-red-600 mr-3" />
+                    <span className="text-sm font-medium">Certified Financial Planner</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Star className="w-4 h-4 text-red-600 mr-3" />
+                    <span className="text-sm font-medium">Award-Winning Service</span>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img src={temp1Image} alt="Financial planning" className="w-full h-full object-cover" />
+                </div>
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img src={temp2Image} alt="Investment management" className="w-full h-full object-cover" />
+                </div>
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img src={temp3Image} alt="Business consulting" className="w-full h-full object-cover" />
+                </div>
+                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                  <img src={temp4Image} alt="Procurement services" className="w-full h-full object-cover" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Services Section */}
+        <div id="services" className="px-6 py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Our Services</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <Card className="p-6 bg-white">
+                <TrendingUp className="w-8 h-8 text-red-600 mb-4" />
+                <h3 className="text-lg font-semibold mb-3">Financial Planning</h3>
+                <p className="text-gray-600 text-sm">
+                  Comprehensive financial planning strategies tailored to your business needs and long-term goals.
+                </p>
+              </Card>
+              <Card className="p-6 bg-white">
+                <Briefcase className="w-8 h-8 text-red-600 mb-4" />
+                <h3 className="text-lg font-semibold mb-3">Investment Management</h3>
+                <p className="text-gray-600 text-sm">
+                  Expert investment portfolio management with risk assessment and growth optimization.
+                </p>
+              </Card>
+              <Card className="p-6 bg-white">
+                <Target className="w-8 h-8 text-red-600 mb-4" />
+                <h3 className="text-lg font-semibold mb-3">Procurement Services</h3>
+                <p className="text-gray-600 text-sm">
+                  Strategic procurement solutions to optimize costs and improve operational efficiency.
+                </p>
+              </Card>
+              <Card className="p-6 bg-white">
+                <MessageSquare className="w-8 h-8 text-red-600 mb-4" />
+                <h3 className="text-lg font-semibold mb-3">Business Consulting</h3>
+                <p className="text-gray-600 text-sm">
+                  Strategic business consulting to drive growth and improve market positioning.
+                </p>
+              </Card>
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonials Section */}
+        <div id="testimonials" className="px-6 py-16 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">What Our Clients Say</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="p-6">
+                <div className="flex items-center mb-4">
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                </div>
+                <p className="text-gray-600 mb-4 italic">
+                  "John's financial planning expertise helped us increase our profitability by 40% in just one year."
+                </p>
+                <div className="font-semibold">Sarah Johnson</div>
+                <div className="text-sm text-gray-500">CEO, Tech Innovations</div>
+              </Card>
+              <Card className="p-6">
+                <div className="flex items-center mb-4">
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                </div>
+                <p className="text-gray-600 mb-4 italic">
+                  "Outstanding procurement services that saved us over $200K annually while improving quality."
+                </p>
+                <div className="font-semibold">Michael Chen</div>
+                <div className="text-sm text-gray-500">Operations Director, Global Manufacturing</div>
+              </Card>
+              <Card className="p-6">
+                <div className="flex items-center mb-4">
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                </div>
+                <p className="text-gray-600 mb-4 italic">
+                  "Professional, reliable, and results-driven. John exceeded all our expectations."
+                </p>
+                <div className="font-semibold">Emily Rodriguez</div>
+                <div className="text-sm text-gray-500">CFO, Healthcare Solutions</div>
+              </Card>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div id="contact" className="px-6 py-16 bg-gray-800 text-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 gap-12">
+              <div>
+                <h2 className="text-3xl font-bold mb-8">Get In Touch</h2>
+                <div className="space-y-6">
+                  <div className="flex items-center">
+                    <Phone className="w-6 h-6 text-red-600 mr-4" />
+                    <div>
+                      <div className="font-semibold">Phone</div>
+                      <div className="text-gray-300">(555) 123-4567</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <Mail className="w-6 h-6 text-red-600 mr-4" />
+                    <div>
+                      <div className="font-semibold">Email</div>
+                      <div className="text-gray-300">john@planright.com</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="w-6 h-6 text-red-600 mr-4" />
+                    <div>
+                      <div className="font-semibold">Office</div>
+                      <div className="text-gray-300">123 Financial District<br />New York, NY 10004</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <form className="space-y-4">
+                  <input 
+                    type="text" 
+                    placeholder="Your Name" 
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+                  />
+                  <input 
+                    type="email" 
+                    placeholder="Your Email" 
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+                  />
+                  <textarea 
+                    placeholder="Your Message" 
+                    rows={4}
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+                  ></textarea>
+                  <button 
+                    type="submit" 
+                    className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                  >
+                    Send Message
+                  </button>
+                </form>
               </div>
             </div>
           </div>

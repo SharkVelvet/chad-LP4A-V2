@@ -1748,8 +1748,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-white">right</span>
                 </div>
                 <div className="text-gray-400 text-sm">
-                  <div>Building Agents.</div>
-                  <div>Growing Futures.</div>
+                  Building Agents. Growing Futures.
                 </div>
               </div>
               <div>

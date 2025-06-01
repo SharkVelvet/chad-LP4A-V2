@@ -45,7 +45,7 @@ export default function WebsiteSetup() {
               <Button variant="ghost" size="sm" onClick={handleGoBack}>
                 <ArrowLeft className="h-4 w-4" />
               </Button>
-              <h1 className="text-xl font-semibold text-gray-900">LocationSite Pro</h1>
+              <h1 className="text-xl font-semibold text-gray-900">Plan|right Splash Page Onboarding</h1>
             </div>
           </div>
         </div>

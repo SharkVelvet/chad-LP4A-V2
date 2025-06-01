@@ -1357,9 +1357,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="relative">
                 <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professional consultation" className="w-full h-96 object-cover rounded-2xl shadow-xl" />
                 <div className="absolute -bottom-6 -right-6 bg-red-600 text-white p-4 rounded-xl shadow-xl">
-                  <div className="text-center flex items-center space-x-2">
-                    <Shield className="w-5 h-5 text-white" />
-                    <div>
+                  <div className="flex items-center space-x-2">
+                    <Shield className="w-5 h-5 text-white flex-shrink-0" />
+                    <div className="text-left">
                       <div className="text-lg font-bold">CFP</div>
                       <div className="text-xs">Certified Financial Planner</div>
                     </div>

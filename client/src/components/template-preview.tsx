@@ -1240,7 +1240,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 onClick={(e) => handleSmoothScroll(e, 'contact')} 
                 className="bg-red-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg"
               >
-                Get Started
+                Contact Us
               </button>
             </div>
           </div>
@@ -1295,7 +1295,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                       onClick={(e) => handleSmoothScroll(e, 'contact')} 
                       className="bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-full font-semibold hover:from-red-700 hover:to-red-800 transition-all transform hover:scale-105 shadow-lg"
                     >
-                      Start Your Journey
+                      Contact Us
                     </button>
                     <button 
                       onClick={(e) => handleSmoothScroll(e, 'about')} 

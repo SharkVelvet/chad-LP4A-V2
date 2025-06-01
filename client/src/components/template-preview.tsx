@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star } from "lucide-react";
 
 interface TemplatePreviewProps {
   templateSlug: string;
@@ -88,19 +88,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </p>
                 <div className="grid grid-cols-2 gap-6 mt-8">
                   <div className="flex items-center">
-                    <div className="w-4 h-4 bg-red-600 rounded-full mr-3"></div>
+                    <Clock className="w-4 h-4 text-red-600 mr-3" />
                     <span className="text-sm font-medium">15+ Years Experience</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 bg-red-600 rounded-full mr-3"></div>
+                    <Users className="w-4 h-4 text-red-600 mr-3" />
                     <span className="text-sm font-medium">500+ Clients Served</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 bg-red-600 rounded-full mr-3"></div>
+                    <Award className="w-4 h-4 text-red-600 mr-3" />
                     <span className="text-sm font-medium">Certified Financial Planner</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-4 h-4 bg-red-600 rounded-full mr-3"></div>
+                    <Star className="w-4 h-4 text-red-600 mr-3" />
                     <span className="text-sm font-medium">Award-Winning Service</span>
                   </div>
                 </div>

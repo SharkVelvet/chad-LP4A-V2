@@ -119,16 +119,16 @@ export default function Dashboard() {
       <div className="min-h-screen flex items-center justify-center">
         <Card className="w-full max-w-md mx-4">
           <CardContent className="pt-6 text-center">
-            <h2 className="text-xl font-semibold mb-2">No Website Found</h2>
+            <h2 className="text-xl font-semibold mb-2">Get Started</h2>
             <p className="text-gray-600 mb-4">
-              You haven't set up a website yet. Please complete the setup process first.
+              Ready to get your website? Choose a template, tell us your preferred domains, and we'll build it for you.
             </p>
             <div className="space-y-2">
               <Button onClick={() => window.location.href = "/templates"}>
-                Set Up Website
+                Choose Template
               </Button>
               <Button variant="outline" onClick={handleLogout}>
-                Logout (to test signup)
+                Logout
               </Button>
             </div>
           </CardContent>

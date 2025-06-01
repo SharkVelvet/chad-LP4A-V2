@@ -415,7 +415,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 {
                   name: "Sarah Johnson",
                   title: "CEO, Tech Solutions Inc.",
-                  image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                  image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
                 },
                 {
                   name: "Michael Chen",

@@ -423,7 +423,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <p className="text-gray-600 text-sm italic">"John's expertise in financial planning transformed our business operations and significantly improved our bottom line."</p>
                   <div className="flex mt-4">
                     {[1,2,3,4,5].map(star => (
-                      <div key={star} className="w-4 h-4 bg-red-600 rounded-full mr-1"></div>
+                      <Star key={star} className="w-4 h-4 text-yellow-500 fill-yellow-500 mr-1" />
                     ))}
                   </div>
                 </div>

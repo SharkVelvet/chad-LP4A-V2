@@ -1247,9 +1247,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Modern Hero Section */}
-        <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-hidden">
+        <div className="relative min-h-screen bg-white overflow-hidden">
           {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 opacity-5">
             <div className="absolute top-20 left-20 w-72 h-72 bg-red-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
             <div className="absolute top-40 right-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
             <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
@@ -1257,9 +1257,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           
           <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-32">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
-              <div className="text-white space-y-8">
+              <div className="text-gray-900 space-y-8">
                 <div className="space-y-4">
-                  <div className="inline-flex items-center px-4 py-2 bg-red-600/20 border border-red-500/30 rounded-full text-red-400 text-sm font-medium">
+                  <div className="inline-flex items-center px-4 py-2 bg-red-100 border border-red-200 rounded-full text-red-600 text-sm font-medium">
                     <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
                     Financial Excellence Since 2008
                   </div>
@@ -1269,7 +1269,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                       Financial Future
                     </span>
                   </h1>
-                  <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
+                  <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
                     Providing comprehensive financial solutions and procurement strategies for businesses across all industries with over 15 years of expertise.
                   </p>
                 </div>
@@ -1277,16 +1277,16 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <div className="space-y-6">
                   <div className="flex items-center space-x-6">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-white">15+</div>
-                      <div className="text-sm text-gray-400">Years Experience</div>
+                      <div className="text-3xl font-bold text-gray-900">15+</div>
+                      <div className="text-sm text-gray-500">Years Experience</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-white">500+</div>
-                      <div className="text-sm text-gray-400">Happy Clients</div>
+                      <div className="text-3xl font-bold text-gray-900">500+</div>
+                      <div className="text-sm text-gray-500">Happy Clients</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-white">CFP</div>
-                      <div className="text-sm text-gray-400">Certified</div>
+                      <div className="text-3xl font-bold text-gray-900">CFP</div>
+                      <div className="text-sm text-gray-500">Certified</div>
                     </div>
                   </div>
                   
@@ -1299,7 +1299,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     </button>
                     <button 
                       onClick={(e) => handleSmoothScroll(e, 'about')} 
-                      className="border-2 border-gray-400 text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all"
+                      className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 hover:border-gray-400 transition-all"
                     >
                       Learn More
                     </button>

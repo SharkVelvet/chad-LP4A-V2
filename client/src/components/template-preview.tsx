@@ -868,7 +868,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     Funding Strategies
                   </li>
                 </ul>
-                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+                <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
               <div className="bg-white p-8 rounded-lg shadow-sm">
@@ -899,7 +899,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     Property Protection
                   </li>
                 </ul>
-                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+                <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
               <div className="bg-white p-8 rounded-lg shadow-sm">
@@ -930,7 +930,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     Key Person Insurance
                   </li>
                 </ul>
-                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+                <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
             </div>
           </div>

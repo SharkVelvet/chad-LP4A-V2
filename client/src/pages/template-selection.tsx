@@ -69,6 +69,16 @@ export default function TemplateSelection() {
       </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Step Indicator */}
+        <div className="mb-6">
+          <div className="text-center">
+            <p className="text-sm font-medium text-gray-500 mb-2">Step 1 of 5</p>
+            <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+              <div className="bg-blue-600 h-2 rounded-full" style={{ width: '20%' }}></div>
+            </div>
+          </div>
+        </div>
+
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Choose Your Website Template</h2>
           <p className="text-gray-600">Select the template that best represents your business. You can customize content later.</p>

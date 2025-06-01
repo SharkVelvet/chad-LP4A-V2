@@ -29,7 +29,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <a href="#hero" onClick={(e) => handleSmoothScroll(e, 'hero')} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
               <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
               <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
-              <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="hover:text-red-600 cursor-pointer transition-colors">Contact</a>
             </div>
             <button 
               onClick={(e) => handleSmoothScroll(e, 'contact')} 

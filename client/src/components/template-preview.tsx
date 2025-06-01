@@ -24,13 +24,20 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="font-bold text-xl">
             <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-black">right</span>
           </div>
-          <div className="flex space-x-6 text-sm text-gray-700">
-            <a href="#hero" onClick={(e) => handleSmoothScroll(e, 'hero')} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
-            <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
-            <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
-            <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="hover:text-red-600 cursor-pointer transition-colors">Contact</a>
+          <div className="flex items-center space-x-6">
+            <div className="flex space-x-6 text-sm text-gray-700">
+              <a href="#hero" onClick={(e) => handleSmoothScroll(e, 'hero')} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
+              <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
+              <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
+              <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="hover:text-red-600 cursor-pointer transition-colors">Contact</a>
+            </div>
+            <button 
+              onClick={(e) => handleSmoothScroll(e, 'contact')} 
+              className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 font-semibold"
+            >
+              Contact Us
+            </button>
           </div>
-          <button className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 font-semibold">Get Started</button>
         </div>
 
         {/* Hero Section with Restaurant Background */}

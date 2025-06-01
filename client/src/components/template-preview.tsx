@@ -38,7 +38,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
             <button 
               onClick={(e) => handleSmoothScroll(e, 'contact')} 
-              className="bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors"
+              className="bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors text-sm"
             >
               Contact Us
             </button>
@@ -58,10 +58,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
                 </p>
                 <div className="flex space-x-4">
-                  <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-block">
+                  <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-flex items-center justify-center">
                     Contact Us
                   </a>
-                  <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white text-white px-6 py-3 rounded font-semibold hover:bg-white hover:text-black transition-colors inline-block">
+                  <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white text-white px-6 py-3 rounded font-semibold hover:bg-white hover:text-black transition-colors inline-flex items-center justify-center">
                     Learn More
                   </a>
                 </div>

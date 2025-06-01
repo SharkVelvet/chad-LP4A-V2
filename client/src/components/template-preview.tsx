@@ -613,171 +613,192 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
   if (templateSlug === "restaurant-food") {
     return (
-      <div className={`bg-gray-100 border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
-        {/* Top Header Bar */}
-        <div className="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-3 text-center">
-          <div className="flex justify-between items-center">
-            <div className="text-sm flex items-center">
-              <Phone className="w-4 h-4 text-white mr-2" />
-              (555) 123-4567
+      <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
+        {/* Clean Header */}
+        <div className="bg-white shadow-sm px-6 py-4 sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto flex justify-between items-center">
+            <div className="font-bold text-2xl">
+              <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-gray-900">right</span>
             </div>
-            <div className="font-bold text-xl">
-              <span className="text-white">Plan</span><span className="text-red-200 font-thin mx-1">|</span><span className="text-white">right</span>
-            </div>
-            <div className="text-sm flex items-center">
-              <Mail className="w-4 h-4 text-white mr-2" />
-              john@planright.com
+            <nav className="hidden lg:flex space-x-8">
+              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-gray-700 hover:text-red-600 font-medium transition-colors">Home</a>
+              <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="text-gray-700 hover:text-red-600 font-medium transition-colors">About</a>
+              <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="text-gray-700 hover:text-red-600 font-medium transition-colors">Services</a>
+              <a href="#why-we-serve" onClick={(e) => handleSmoothScroll(e, 'why-we-serve')} className="text-gray-700 hover:text-red-600 font-medium transition-colors">Why We Serve</a>
+              <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="text-gray-700 hover:text-red-600 font-medium transition-colors">Testimonials</a>
+            </nav>
+            <div className="flex items-center space-x-4">
+              <div className="hidden md:flex items-center text-sm text-gray-600">
+                <Phone className="w-4 h-4 mr-1" />
+                (555) 123-4567
+              </div>
+              <button 
+                onClick={(e) => handleSmoothScroll(e, 'contact')} 
+                className="bg-red-600 text-white px-6 py-2 rounded font-medium hover:bg-red-700 transition-colors"
+              >
+                Contact Us
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Main Layout with Sidebar */}
-        <div className="flex min-h-screen">
-          {/* Sidebar Navigation */}
-          <div className="w-80 bg-white shadow-lg border-r">
-            <div className="p-6 border-b bg-gray-50">
-              <div className="text-center">
-                <div className="w-24 h-24 bg-red-100 rounded-full mx-auto mb-4 overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                    alt="John Smith" 
-                    className="w-full h-full object-cover"
-                  />
+        {/* Hero Section */}
+        <div className="bg-gradient-to-br from-gray-50 to-white py-20">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full text-red-600 text-sm font-medium mb-6">
+                  <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                  Financial Excellence Since 2008
                 </div>
-                <h3 className="font-bold text-lg">John Smith</h3>
-                <p className="text-red-600 text-sm font-medium">President of Financial Services</p>
-                <p className="text-gray-600 text-xs mt-2">15+ Years Experience | 500+ Clients</p>
-              </div>
-            </div>
-            
-            <nav className="p-4">
-              <div className="space-y-2">
-                <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  <Home className="w-5 h-5 text-red-600 mr-3" />
-                  Home
-                </a>
-                <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  <Users className="w-5 h-5 text-red-600 mr-3" />
-                  About John
-                </a>
-                <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  <FileText className="w-5 h-5 text-red-600 mr-3" />
-                  Services
-                </a>
-                <a href="#why-we-serve" onClick={(e) => handleSmoothScroll(e, 'why-we-serve')} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  <Award className="w-5 h-5 text-red-600 mr-3" />
-                  Our Approach
-                </a>
-                <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  <Star className="w-5 h-5 text-red-600 mr-3" />
-                  Testimonials
-                </a>
-                <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors font-medium">
-                  <Phone className="w-5 h-5 text-red-600 mr-3" />
-                  Contact
-                </a>
-              </div>
-              
-              <div className="mt-6">
-                <button 
-                  onClick={(e) => handleSmoothScroll(e, 'contact')} 
-                  className="w-full bg-red-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors shadow-md"
-                >
-                  Schedule Free Consultation
-                </button>
-              </div>
-              
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                <h4 className="font-semibold text-sm mb-2">Quick Stats</h4>
-                <div className="space-y-2 text-xs text-gray-600">
-                  <div className="flex items-center">
-                    <Shield className="w-4 h-4 text-red-600 mr-2" />
-                    Certified Financial Planner
+                <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                  Transform Your 
+                  <span className="text-red-600">Financial Future</span>
+                </h1>
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                  Providing comprehensive financial solutions and procurement strategies for businesses across all industries with over 15 years of expertise.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                  <button 
+                    onClick={(e) => handleSmoothScroll(e, 'contact')} 
+                    className="bg-red-600 text-white px-8 py-4 rounded font-semibold hover:bg-red-700 transition-colors shadow-lg"
+                  >
+                    Contact Us
+                  </button>
+                  <button 
+                    onClick={(e) => handleSmoothScroll(e, 'services')} 
+                    className="border-2 border-red-600 text-red-600 px-8 py-4 rounded font-semibold hover:bg-red-50 transition-colors"
+                  >
+                    View Services
+                  </button>
+                </div>
+                <div className="grid grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-red-600">15+</div>
+                    <div className="text-sm text-gray-500">Years Experience</div>
                   </div>
-                  <div className="flex items-center">
-                    <Award className="w-4 h-4 text-red-600 mr-2" />
-                    Industry Recognition
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-red-600">500+</div>
+                    <div className="text-sm text-gray-500">Happy Clients</div>
                   </div>
-                  <div className="flex items-center">
-                    <TrendingUp className="w-4 h-4 text-red-600 mr-2" />
-                    Comprehensive Solutions
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-red-600">CFP</div>
+                    <div className="text-sm text-gray-500">Certified</div>
                   </div>
                 </div>
               </div>
-            </nav>
-          </div>
-          
-          {/* Main Content Area */}
-          <div className="flex-1 bg-gray-100 p-6">
-
-            {/* Hero Welcome Card */}
-            <div className="bg-white rounded-xl shadow-lg p-8 mb-6">
-              <div className="grid grid-cols-3 gap-8 items-center">
-                <div className="col-span-2">
-                  <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-1 rounded-lg inline-block mb-4">
-                    <span className="px-3 py-1 text-sm font-medium">Welcome to Plan|right Financial Services</span>
-                  </div>
-                  <h1 className="text-4xl font-bold mb-4 text-gray-800">Transform Your Financial Future</h1>
-                  <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-                    Providing comprehensive financial solutions and procurement strategies for businesses across all industries with over 15 years of expertise.
-                  </p>
-                  <div className="flex space-x-4">
-                    <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors shadow-md">
-                      Start Your Journey
-                    </button>
-                    <button onClick={(e) => handleSmoothScroll(e, 'services')} className="border-2 border-red-600 text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-red-50 transition-colors">
-                      View Services
-                    </button>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="bg-gradient-to-br from-red-100 to-red-200 rounded-2xl p-6">
-                    <div className="w-32 h-32 bg-white rounded-full mx-auto mb-4 shadow-lg overflow-hidden">
+              <div className="relative">
+                <div className="bg-white rounded-3xl p-8 shadow-2xl">
+                  <div className="text-center">
+                    <div className="w-48 h-48 bg-gray-100 rounded-2xl mx-auto mb-6 overflow-hidden">
                       <img 
                         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                         alt="John Smith" 
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium">
-                      Your Financial Expert
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">John Smith</h3>
+                    <p className="text-red-600 font-medium mb-4">President of Financial Services</p>
+                    <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
+                      <div className="flex items-center">
+                        <Shield className="w-4 h-4 text-red-600 mr-2" />
+                        CFP Certified
+                      </div>
+                      <div className="flex items-center">
+                        <Award className="w-4 h-4 text-red-600 mr-2" />
+                        Award Winner
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Quick Stats Cards */}
-            <div className="grid grid-cols-4 gap-4 mb-6">
-              <div className="bg-white rounded-lg p-6 text-center shadow-md">
-                <div className="flex justify-center mb-3">
-                  <Clock className="w-8 h-8 text-red-600" />
+        {/* About Section */}
+        <div id="about" className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">About John Smith</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                  His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
+                </p>
+                
+                <div className="grid grid-cols-2 gap-6 mb-8">
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="flex items-center mb-3">
+                      <Clock className="w-6 h-6 text-red-600 mr-3" />
+                      <span className="font-semibold text-gray-900">15+ Years</span>
+                    </div>
+                    <p className="text-sm text-gray-600">Experience in Financial Planning</p>
+                  </div>
+                  
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="flex items-center mb-3">
+                      <Users className="w-6 h-6 text-red-600 mr-3" />
+                      <span className="font-semibold text-gray-900">500+ Clients</span>
+                    </div>
+                    <p className="text-sm text-gray-600">Successfully Served</p>
+                  </div>
+                  
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="flex items-center mb-3">
+                      <Award className="w-6 h-6 text-red-600 mr-3" />
+                      <span className="font-semibold text-gray-900">Award Winner</span>
+                    </div>
+                    <p className="text-sm text-gray-600">Industry Recognition</p>
+                  </div>
+                  
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="flex items-center mb-3">
+                      <Shield className="w-6 h-6 text-red-600 mr-3" />
+                      <span className="font-semibold text-gray-900">CFP Certified</span>
+                    </div>
+                    <p className="text-sm text-gray-600">Financial Planner</p>
+                  </div>
                 </div>
-                <div className="text-3xl font-bold text-red-600 mb-2">15+</div>
-                <div className="text-sm text-gray-600">Years Experience</div>
+                
+                <button 
+                  onClick={(e) => handleSmoothScroll(e, 'contact')} 
+                  className="bg-red-600 text-white px-8 py-3 rounded font-semibold hover:bg-red-700 transition-colors"
+                >
+                  Schedule Consultation
+                </button>
               </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-md">
-                <div className="flex justify-center mb-3">
-                  <Users className="w-8 h-8 text-red-600" />
-                </div>
-                <div className="text-3xl font-bold text-red-600 mb-2">500+</div>
-                <div className="text-sm text-gray-600">Clients Served</div>
-              </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-md">
-                <div className="flex justify-center mb-3">
-                  <Shield className="w-8 h-8 text-red-600" />
-                </div>
-                <div className="text-3xl font-bold text-red-600 mb-2">CFP</div>
-                <div className="text-sm text-gray-600">Certified Planner</div>
-              </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-md">
-                <div className="flex justify-center mb-3">
-                  <Star className="w-8 h-8 text-red-600 fill-red-600" />
-                </div>
-                <div className="text-3xl font-bold text-red-600 mb-2">5.0</div>
-                <div className="text-sm text-gray-600">Client Rating</div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Professional consultation" 
+                  className="w-full h-64 object-cover rounded-xl shadow-lg"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Financial planning session" 
+                  className="w-full h-64 object-cover rounded-xl shadow-lg mt-8"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Business meeting" 
+                  className="w-full h-64 object-cover rounded-xl shadow-lg -mt-8"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Strategic analysis" 
+                  className="w-full h-64 object-cover rounded-xl shadow-lg"
+                />
               </div>
             </div>
+          </div>
+        </div>
 
             {/* About John Smith Section */}
             <div id="about" className="bg-white rounded-xl shadow-lg p-8 mb-6">
@@ -1211,8 +1232,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
           <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
             © 2025 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
-          </div>
-        </div>
           </div>
         </div>
       </div>

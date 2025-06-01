@@ -30,7 +30,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
           <div className="flex items-center space-x-6">
             <div className="flex space-x-6 text-sm text-gray-700">
-              <a href="#hero" onClick={(e) => handleSmoothScroll(e, 'hero')} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
               <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
               <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
               <a href="#why-we-serve" onClick={(e) => handleSmoothScroll(e, 'why-we-serve')} className="hover:text-red-600 cursor-pointer transition-colors">Why We Serve</a>

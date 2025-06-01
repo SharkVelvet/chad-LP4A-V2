@@ -88,13 +88,14 @@ export default function TemplateSelection() {
 
         {/* Skip Selection Button */}
         <div className="text-center mb-8">
+          <p className="text-gray-600 mb-3">I know which template I want to use</p>
           <Button
             variant="outline"
             size="lg"
             className="px-8 py-3"
             onClick={() => navigate('/setup')}
           >
-            I know which template I want to use, go to next step
+            Go to Next Step
           </Button>
         </div>
 

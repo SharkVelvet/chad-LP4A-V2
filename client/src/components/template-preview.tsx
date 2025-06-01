@@ -642,72 +642,105 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Hero Section */}
-        <div className="bg-gradient-to-br from-gray-50 to-white py-20">
+        {/* Hero Section - Split Layout */}
+        <div className="min-h-screen bg-white">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full text-red-600 text-sm font-medium mb-6">
-                  <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
-                  Financial Excellence Since 2008
-                </div>
-                <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Transform Your 
-                  <span className="text-red-600">Financial Future</span>
-                </h1>
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Providing comprehensive financial solutions and procurement strategies for businesses across all industries with over 15 years of expertise.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                  <button 
-                    onClick={(e) => handleSmoothScroll(e, 'contact')} 
-                    className="bg-red-600 text-white px-8 py-4 rounded font-semibold hover:bg-red-700 transition-colors shadow-lg"
-                  >
-                    Contact Us
-                  </button>
-                  <button 
-                    onClick={(e) => handleSmoothScroll(e, 'services')} 
-                    className="border-2 border-red-600 text-red-600 px-8 py-4 rounded font-semibold hover:bg-red-50 transition-colors"
-                  >
-                    View Services
-                  </button>
-                </div>
-                <div className="grid grid-cols-3 gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-red-600">15+</div>
-                    <div className="text-sm text-gray-500">Years Experience</div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-screen">
+              {/* Left Content */}
+              <div className="flex items-center py-20">
+                <div className="w-full">
+                  <div className="mb-6">
+                    <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-medium">
+                      Financial Excellence Since 2008
+                    </span>
                   </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-red-600">500+</div>
-                    <div className="text-sm text-gray-500">Happy Clients</div>
+                  <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+                    Financial
+                    <br />
+                    <span className="text-red-600">Excellence</span>
+                    <br />
+                    Delivered
+                  </h1>
+                  <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg">
+                    Providing comprehensive financial solutions and procurement strategies for businesses across all industries with over 15 years of expertise.
+                  </p>
+                  
+                  {/* Stats Row */}
+                  <div className="flex items-center space-x-8 mb-10">
+                    <div>
+                      <div className="text-4xl font-bold text-gray-900">15+</div>
+                      <div className="text-sm text-gray-500 uppercase tracking-wide">Years Experience</div>
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold text-gray-900">500+</div>
+                      <div className="text-sm text-gray-500 uppercase tracking-wide">Happy Clients</div>
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold text-gray-900">CFP</div>
+                      <div className="text-sm text-gray-500 uppercase tracking-wide">Certified</div>
+                    </div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-red-600">CFP</div>
-                    <div className="text-sm text-gray-500">Certified</div>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <button 
+                      onClick={(e) => handleSmoothScroll(e, 'contact')} 
+                      className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg"
+                    >
+                      Get Started Today
+                    </button>
+                    <button 
+                      onClick={(e) => handleSmoothScroll(e, 'about')} 
+                      className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:border-red-600 hover:text-red-600 transition-colors"
+                    >
+                      Learn More About Us
+                    </button>
                   </div>
                 </div>
               </div>
-              <div className="relative">
-                <div className="bg-white rounded-3xl p-8 shadow-2xl">
-                  <div className="text-center">
-                    <div className="w-48 h-48 bg-gray-100 rounded-2xl mx-auto mb-6 overflow-hidden">
-                      <img 
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                        alt="John Smith" 
-                        className="w-full h-full object-cover"
-                      />
+              
+              {/* Right Visual */}
+              <div className="relative flex items-center justify-center py-20">
+                <div className="relative">
+                  {/* Background Elements */}
+                  <div className="absolute -top-10 -right-10 w-32 h-32 bg-red-100 rounded-full"></div>
+                  <div className="absolute -bottom-10 -left-10 w-24 h-24 bg-blue-100 rounded-full"></div>
+                  
+                  {/* Main Profile Card */}
+                  <div className="relative bg-white rounded-3xl p-10 shadow-2xl max-w-md">
+                    <div className="text-center">
+                      <div className="w-32 h-32 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl mx-auto mb-6 overflow-hidden">
+                        <img 
+                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                          alt="John Smith" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">John Smith</h3>
+                      <p className="text-red-600 font-semibold mb-6">President of Financial Services</p>
+                      
+                      {/* Credentials */}
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-center bg-gray-50 px-4 py-2 rounded-lg">
+                          <Shield className="w-4 h-4 text-red-600 mr-2" />
+                          <span className="text-sm font-medium">CFP Certified Professional</span>
+                        </div>
+                        <div className="flex items-center justify-center bg-gray-50 px-4 py-2 rounded-lg">
+                          <Award className="w-4 h-4 text-red-600 mr-2" />
+                          <span className="text-sm font-medium">Industry Award Winner</span>
+                        </div>
+                        <div className="flex items-center justify-center bg-gray-50 px-4 py-2 rounded-lg">
+                          <Star className="w-4 h-4 text-red-600 mr-2" />
+                          <span className="text-sm font-medium">5.0 Client Rating</span>
+                        </div>
+                      </div>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">John Smith</h3>
-                    <p className="text-red-600 font-medium mb-4">President of Financial Services</p>
-                    <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
-                      <div className="flex items-center">
-                        <Shield className="w-4 h-4 text-red-600 mr-2" />
-                        CFP Certified
-                      </div>
-                      <div className="flex items-center">
-                        <Award className="w-4 h-4 text-red-600 mr-2" />
-                        Award Winner
-                      </div>
+                  </div>
+                  
+                  {/* Floating Achievement Badge */}
+                  <div className="absolute -top-4 -left-4 bg-red-600 text-white px-4 py-2 rounded-xl shadow-lg transform rotate-12">
+                    <div className="text-center">
+                      <div className="text-sm font-bold">15+ Years</div>
+                      <div className="text-xs">Excellence</div>
                     </div>
                   </div>
                 </div>

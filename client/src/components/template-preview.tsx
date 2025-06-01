@@ -191,40 +191,32 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <h2 className="text-3xl font-bold mb-8 text-center">Our Services</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <Card className="p-6 bg-white">
-                <CardContent className="p-0">
-                  <TrendingUp className="w-8 h-8 text-red-600 mb-4" />
-                  <h3 className="text-lg font-semibold mb-3">Financial Planning</h3>
-                  <p className="text-gray-600 text-sm">
-                    Comprehensive financial planning strategies tailored to your business needs and long-term goals.
-                  </p>
-                </CardContent>
+                <TrendingUp className="w-8 h-8 text-red-600 mb-4" />
+                <h3 className="text-lg font-semibold mb-3">Financial Planning</h3>
+                <p className="text-gray-600 text-sm">
+                  Comprehensive financial planning strategies tailored to your business needs and long-term goals.
+                </p>
               </Card>
               <Card className="p-6 bg-white">
-                <CardContent className="p-0">
-                  <Briefcase className="w-8 h-8 text-red-600 mb-4" />
-                  <h3 className="text-lg font-semibold mb-3">Investment Management</h3>
-                  <p className="text-gray-600 text-sm">
-                    Expert investment portfolio management with risk assessment and growth optimization.
-                  </p>
-                </CardContent>
+                <Briefcase className="w-8 h-8 text-red-600 mb-4" />
+                <h3 className="text-lg font-semibold mb-3">Investment Management</h3>
+                <p className="text-gray-600 text-sm">
+                  Expert investment portfolio management with risk assessment and growth optimization.
+                </p>
               </Card>
               <Card className="p-6 bg-white">
-                <CardContent className="p-0">
-                  <Target className="w-8 h-8 text-red-600 mb-4" />
-                  <h3 className="text-lg font-semibold mb-3">Procurement Services</h3>
-                  <p className="text-gray-600 text-sm">
-                    Strategic procurement solutions to optimize costs and improve operational efficiency.
-                  </p>
-                </CardContent>
+                <Target className="w-8 h-8 text-red-600 mb-4" />
+                <h3 className="text-lg font-semibold mb-3">Procurement Services</h3>
+                <p className="text-gray-600 text-sm">
+                  Strategic procurement solutions to optimize costs and improve operational efficiency.
+                </p>
               </Card>
               <Card className="p-6 bg-white">
-                <CardContent className="p-0">
-                  <MessageSquare className="w-8 h-8 text-red-600 mb-4" />
-                  <h3 className="text-lg font-semibold mb-3">Business Consulting</h3>
-                  <p className="text-gray-600 text-sm">
-                    Strategic business consulting to drive growth and improve market positioning.
-                  </p>
-                </CardContent>
+                <MessageSquare className="w-8 h-8 text-red-600 mb-4" />
+                <h3 className="text-lg font-semibold mb-3">Business Consulting</h3>
+                <p className="text-gray-600 text-sm">
+                  Strategic business consulting to drive growth and improve market positioning.
+                </p>
               </Card>
             </div>
           </div>
@@ -236,52 +228,46 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <h2 className="text-3xl font-bold mb-8 text-center">What Our Clients Say</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <Card className="p-6">
-                <CardContent className="p-0">
-                  <div className="flex items-center mb-4">
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  </div>
-                  <p className="text-gray-600 mb-4 italic">
-                    "John's financial planning expertise helped us increase our profitability by 40% in just one year."
-                  </p>
-                  <div className="font-semibold">Sarah Johnson</div>
-                  <div className="text-sm text-gray-500">CEO, Tech Innovations</div>
-                </CardContent>
+                <div className="flex items-center mb-4">
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                </div>
+                <p className="text-gray-600 mb-4 italic">
+                  "John's financial planning expertise helped us increase our profitability by 40% in just one year."
+                </p>
+                <div className="font-semibold">Sarah Johnson</div>
+                <div className="text-sm text-gray-500">CEO, Tech Innovations</div>
               </Card>
               <Card className="p-6">
-                <CardContent className="p-0">
-                  <div className="flex items-center mb-4">
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  </div>
-                  <p className="text-gray-600 mb-4 italic">
-                    "Outstanding procurement services that saved us over $200K annually while improving quality."
-                  </p>
-                  <div className="font-semibold">Michael Chen</div>
-                  <div className="text-sm text-gray-500">Operations Director, Global Manufacturing</div>
-                </CardContent>
+                <div className="flex items-center mb-4">
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                </div>
+                <p className="text-gray-600 mb-4 italic">
+                  "Outstanding procurement services that saved us over $200K annually while improving quality."
+                </p>
+                <div className="font-semibold">Michael Chen</div>
+                <div className="text-sm text-gray-500">Operations Director, Global Manufacturing</div>
               </Card>
               <Card className="p-6">
-                <CardContent className="p-0">
-                  <div className="flex items-center mb-4">
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                    <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  </div>
-                  <p className="text-gray-600 mb-4 italic">
-                    "Professional, reliable, and results-driven. John exceeded all our expectations."
-                  </p>
-                  <div className="font-semibold">Emily Rodriguez</div>
-                  <div className="text-sm text-gray-500">CFO, Healthcare Solutions</div>
-                </CardContent>
+                <div className="flex items-center mb-4">
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                </div>
+                <p className="text-gray-600 mb-4 italic">
+                  "Professional, reliable, and results-driven. John exceeded all our expectations."
+                </p>
+                <div className="font-semibold">Emily Rodriguez</div>
+                <div className="text-sm text-gray-500">CFO, Healthcare Solutions</div>
               </Card>
             </div>
           </div>

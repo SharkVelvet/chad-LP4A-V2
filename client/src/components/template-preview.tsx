@@ -1799,43 +1799,41 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-900 text-white px-6 py-12">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-4 gap-8 mb-8">
-              <div>
-                <div className="font-bold text-xl mb-4">
-                  <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-white">right</span>
-                </div>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  Providing comprehensive financial solutions and strategic guidance to help you achieve your financial goals.
-                </p>
+        <div className="bg-gray-900 text-white px-6 py-8 border-t border-gray-700">
+          <div className="max-w-6xl mx-auto grid grid-cols-4 gap-8">
+            <div>
+              <div className="font-bold text-xl mb-4">
+                <span className="text-red-600">Plan</span>
+                <span className="text-gray-400 font-thin mx-1">|</span>
+                <span className="text-white">right</span>
               </div>
-              <div>
-                <h4 className="font-semibold mb-4">Services</h4>
-                <div className="space-y-2 text-sm text-gray-400">
-                  <div>Retirement Planning</div>
-                  <div>Investment Management</div>
-                  <div>Insurance Solutions</div>
-                  <div>Tax Planning</div>
-                </div>
+              <p className="text-gray-400 text-sm">Professional financial services and procurement solutions for modern businesses.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Services</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>Financial Planning</div>
+                <div>Investment Management</div>
+                <div>Procurement Services</div>
+                <div>Business Consulting</div>
               </div>
-              <div>
-                <h4 className="font-semibold mb-4">About</h4>
-                <div className="space-y-2 text-sm text-gray-400">
-                  <div>Our Team</div>
-                  <div>Our Process</div>
-                  <div>Client Resources</div>
-                  <div>Testimonials</div>
-                </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>About Us</div>
+                <div>Our Team</div>
+                <div>Careers</div>
+                <div>Contact</div>
               </div>
-              <div>
-                <h4 className="font-semibold mb-4">Connect</h4>
-                <div className="space-y-2 text-sm text-gray-400">
-                  <div>LinkedIn</div>
-                  <div>Twitter</div>
-                  <div>Facebook</div>
-                  <div>Newsletter</div>
-                </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Connect</h4>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div>LinkedIn</div>
+                <div>Twitter</div>
+                <div>Facebook</div>
+                <div>Newsletter</div>
               </div>
             </div>
           </div>

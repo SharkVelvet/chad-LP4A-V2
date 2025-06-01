@@ -1180,6 +1180,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             © 2025 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
           </div>
         </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -47,7 +47,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </p>
                 <div className="flex space-x-4">
                   <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-block">
-                    Schedule Consultation
+                    Contact Us
                   </a>
                   <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white text-white px-6 py-3 rounded font-semibold hover:bg-white hover:text-black transition-colors inline-block">
                     Learn More

@@ -1313,7 +1313,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               
               <div className="relative">
                 <div className="relative z-10">
-                  <div className="w-96 h-96 bg-gradient-to-br from-red-100 to-red-200 rounded-3xl p-8 shadow-2xl">
+                  <div className="w-[450px] h-[450px] bg-gradient-to-br from-red-100 to-red-200 rounded-3xl p-8 shadow-2xl">
                     <div className="w-full h-full bg-white rounded-2xl overflow-hidden shadow-lg">
                       <img 
                         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 

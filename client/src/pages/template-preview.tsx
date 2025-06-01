@@ -81,7 +81,7 @@ export default function TemplatePreviewPage() {
 
       {/* Template Preview */}
       <div className="w-full">
-        {["modern-business", "restaurant-food", "retail-store"].includes(template.slug) ? (
+        {["template-1", "template-2", "template-3"].includes(template.slug) ? (
           <TemplatePreview templateSlug={template.slug} className="w-full min-h-screen" />
         ) : (
           <div className="w-full min-h-screen bg-white">

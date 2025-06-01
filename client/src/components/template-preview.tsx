@@ -1263,9 +1263,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
           </div>
-          <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-            © 2025 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
-          </div>
         </div>
       </div>
     );

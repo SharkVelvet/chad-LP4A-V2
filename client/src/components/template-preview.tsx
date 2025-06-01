@@ -34,6 +34,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
               <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
               <a href="#why-we-serve" onClick={(e) => handleSmoothScroll(e, 'why-we-serve')} className="hover:text-red-600 cursor-pointer transition-colors">Why We Serve</a>
+              <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="hover:text-red-600 cursor-pointer transition-colors">Testimonials</a>
             </div>
             <button 
               onClick={(e) => handleSmoothScroll(e, 'contact')} 
@@ -407,7 +408,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Client Testimonials */}
-        <div className="px-6 py-16 bg-white">
+        <div id="testimonials" className="px-6 py-16 bg-white">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center">Client Testimonials</h2>
             <div className="grid grid-cols-3 gap-8">

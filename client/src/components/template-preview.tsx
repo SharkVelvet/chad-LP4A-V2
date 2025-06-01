@@ -411,13 +411,35 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center">Client Testimonials</h2>
             <div className="grid grid-cols-3 gap-8">
-              {[1,2,3].map(i => (
+              {[
+                {
+                  name: "Sarah Johnson",
+                  title: "CEO, Tech Solutions Inc.",
+                  image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                },
+                {
+                  name: "Michael Chen",
+                  title: "CFO, Global Ventures",
+                  image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                },
+                {
+                  name: "Emily Rodriguez",
+                  title: "President, Innovate Corp",
+                  image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                }
+              ].map((testimonial, i) => (
                 <div key={i} className="bg-gray-50 p-6 rounded-lg">
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+                    <div className="w-12 h-12 rounded-full mr-4 overflow-hidden">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                     <div>
-                      <div className="font-semibold">Client Name</div>
-                      <div className="text-sm text-gray-500">CEO, Company Name</div>
+                      <div className="font-semibold">{testimonial.name}</div>
+                      <div className="text-sm text-gray-500">{testimonial.title}</div>
                     </div>
                   </div>
                   <p className="text-gray-600 text-sm italic">"John's expertise in financial planning transformed our business operations and significantly improved our bottom line."</p>

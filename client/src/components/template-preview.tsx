@@ -12,7 +12,7 @@ interface TemplatePreviewProps {
 
 export default function TemplatePreview({ templateSlug, className = "" }: TemplatePreviewProps) {
   
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
@@ -775,7 +775,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     Risk Management
                   </li>
                 </ul>
-                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+                <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
               <div className="bg-white p-8 rounded-lg shadow-sm">
@@ -806,7 +806,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     Market Analysis
                   </li>
                 </ul>
-                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+                <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
               <div className="bg-white p-8 rounded-lg shadow-sm">
@@ -837,7 +837,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     Healthcare Planning
                   </li>
                 </ul>
-                <button className="text-red-600 font-semibold text-sm hover:text-red-700">Learn More →</button>
+                <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
               <div className="bg-white p-8 rounded-lg shadow-sm">

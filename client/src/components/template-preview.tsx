@@ -26,7 +26,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Header */}
         <div className="bg-white border-b px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
           <div className="font-bold text-xl">
-            <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-black">right</span>
+            <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1"> | </span><span className="text-black">right</span>
           </div>
           <div className="flex items-center space-x-6">
             <div className="flex space-x-6 text-sm text-gray-700">

@@ -1264,9 +1264,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </nav>
             <button 
               onClick={(e) => handleSmoothScroll(e, 'contact')} 
-              className="bg-red-600 text-white px-8 py-3 rounded-full font-bold hover:bg-red-700 transition-colors text-sm shadow-lg"
+              className="bg-red-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-700 transition-colors text-sm shadow-lg"
             >
-              GET CONSULTATION
+              Contact Us
             </button>
           </div>
         </div>
@@ -1282,14 +1282,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <h1 className="text-6xl font-bold mb-6 text-gray-900 leading-tight">
                   Transform Your <span className="text-red-600">Financial Future</span>
                 </h1>
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   Providing comprehensive financial solutions and procurement strategies for businesses across all industries with over 15 years of expertise.
                 </p>
                 <div className="flex space-x-4 mb-12">
-                  <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-8 py-4 rounded-full font-bold hover:bg-red-700 transition-all shadow-lg transform hover:scale-105">
+                  <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-red-700 transition-all shadow-lg transform hover:scale-105 text-sm">
                     GET CONSULTATION
                   </button>
-                  <button onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-red-600 text-red-600 px-8 py-4 rounded-full font-bold hover:bg-red-50 transition-all">
+                  <button onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-red-600 text-red-600 px-6 py-3 rounded-full font-semibold hover:bg-red-50 transition-all text-sm">
                     LEARN MORE
                   </button>
                 </div>
@@ -1322,10 +1322,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                       />
                     </div>
                   </div>
-                  <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-6 shadow-xl">
+                  <div className="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-xl">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-red-600 mb-1">John Smith</div>
-                      <div className="text-sm text-gray-600 font-medium">President of Financial Services</div>
+                      <div className="text-lg font-bold text-red-600 mb-1">John Smith</div>
+                      <div className="text-xs text-gray-600 font-medium">President of Financial Services</div>
                     </div>
                   </div>
                 </div>
@@ -1348,7 +1348,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <h2 className="text-5xl font-bold mb-6 text-gray-900">
                 Meet <span className="text-red-600">John Smith</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
               </p>
             </div>
@@ -1356,17 +1356,20 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="grid grid-cols-2 gap-16 items-center mb-16">
               <div className="relative">
                 <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professional consultation" className="w-full h-96 object-cover rounded-2xl shadow-xl" />
-                <div className="absolute -bottom-8 -right-8 bg-red-600 text-white p-8 rounded-2xl shadow-xl">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold mb-2">CFP</div>
-                    <div className="text-sm">Certified Financial Planner</div>
+                <div className="absolute -bottom-6 -right-6 bg-red-600 text-white p-4 rounded-xl shadow-xl">
+                  <div className="text-center flex items-center space-x-2">
+                    <Shield className="w-5 h-5 text-white" />
+                    <div>
+                      <div className="text-lg font-bold">CFP</div>
+                      <div className="text-xs">Certified Financial Planner</div>
+                    </div>
                   </div>
                 </div>
               </div>
               
               <div>
                 <h3 className="text-3xl font-bold mb-6 text-gray-900">Professional Excellence</h3>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                <p className="text-base text-gray-600 mb-8 leading-relaxed">
                   His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
                 </p>
                 

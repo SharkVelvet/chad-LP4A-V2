@@ -138,33 +138,34 @@ export default function WebsiteSetup() {
                   <div className="animate-spin w-6 h-6 border-4 border-primary border-t-transparent rounded-full" />
                 </div>
               ) : (
-                <RadioGroup
-                  value={formData.template}
-                  onValueChange={(value) => handleInputChange("template", value)}
-                  className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4"
-                >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                   {templates?.map((template) => (
-                    <div key={template.id} className="relative">
-                      <RadioGroupItem
-                        value={template.slug}
-                        id={template.slug}
-                        className="peer sr-only"
+                    <div key={template.id} className="flex flex-col items-center p-4 border rounded-lg">
+                      <img
+                        src={template.previewImage}
+                        alt={template.name}
+                        className="w-full h-32 object-cover rounded-md mb-3 border border-gray-200"
                       />
-                      <Label
-                        htmlFor={template.slug}
-                        className="flex flex-col items-center justify-center rounded-lg border-2 border-border p-4 hover:bg-gray-50 peer-checked:border-primary peer-checked:bg-blue-50 cursor-pointer transition-all"
-                      >
-                        <img
-                          src={template.previewImage}
-                          alt={template.name}
-                          className="w-full h-32 object-cover rounded-md mb-3 border border-gray-200"
+                      <h3 className="font-medium text-center mb-2">{template.name}</h3>
+                      <p className="text-sm text-gray-600 text-center mb-3">{template.description}</p>
+                      
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="radio"
+                          id={template.slug}
+                          name="template"
+                          value={template.slug}
+                          checked={formData.template === template.slug}
+                          onChange={(e) => handleInputChange("template", e.target.value)}
+                          className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
                         />
-                        <h3 className="font-medium text-center">{template.name}</h3>
-                        <p className="text-sm text-gray-600 text-center mt-1">{template.description}</p>
-                      </Label>
+                        <Label htmlFor={template.slug} className="text-sm font-medium cursor-pointer">
+                          Select this template
+                        </Label>
+                      </div>
                     </div>
                   ))}
-                </RadioGroup>
+                </div>
               )}
             </CardContent>
           </Card>

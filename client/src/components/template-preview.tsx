@@ -1,5 +1,9 @@
 import { Card } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star } from "lucide-react";
+import temp1Image from "@assets/temp1-pr.jpg";
+import temp2Image from "@assets/temp2-pr.jpg";
+import temp3Image from "@assets/temp3-pr.jpg";
+import temp4Image from "@assets/temp4-pr.jpg";
 
 interface TemplatePreviewProps {
   templateSlug: string;
@@ -114,28 +118,28 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="grid grid-cols-2 gap-4">
                 <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
                   <img 
-                    src="/attached_assets/temp1-pr.jpg" 
+                    src={temp1Image} 
                     alt="Financial workspace with laptop and documents" 
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
                   <img 
-                    src="/attached_assets/temp2-pr.jpg" 
+                    src={temp2Image} 
                     alt="Professional business meeting and handshake" 
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
                   <img 
-                    src="/attached_assets/temp3-pr.jpg" 
+                    src={temp3Image} 
                     alt="Professional businesswoman with tablet outdoors" 
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
                   <img 
-                    src="/attached_assets/temp4-pr.jpg" 
+                    src={temp4Image} 
                     alt="Modern office building architecture" 
                     className="w-full h-full object-cover"
                   />

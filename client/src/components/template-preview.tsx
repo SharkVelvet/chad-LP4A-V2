@@ -1747,9 +1747,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <div className="font-bold text-xl mb-4">
                   <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-white">right</span>
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  Providing comprehensive financial solutions and strategic guidance to help you achieve your financial goals.
-                </p>
+                <div className="text-gray-400 text-sm">
+                  <div>Building Agents.</div>
+                  <div>Growing Futures.</div>
+                </div>
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Services</h4>

@@ -353,7 +353,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Why We Serve Section */}
-        <div className="px-6 py-16 bg-white">
+        <div id="why-we-serve" className="px-6 py-16 bg-white">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center">Why We Serve</h2>
             <div className="grid grid-cols-3 gap-8">
@@ -581,7 +581,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
           </div>
           <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-            © 2024 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
+            © 2025 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
           </div>
         </div>
       </div>

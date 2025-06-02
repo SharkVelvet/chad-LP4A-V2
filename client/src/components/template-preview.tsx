@@ -495,7 +495,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
-  // Template 3: Business consulting template with modern design
+  // Template 3: Clean modern template with green theme
   if (templateSlug === "business-consulting") {
     const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
       e.preventDefault();
@@ -508,225 +508,235 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     return (
       <div className={`bg-white ${className}`}>
         {/* Header */}
-        <header className="bg-white shadow-sm border-b sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="bg-white shadow-sm sticky top-0 z-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center">
-                <div className="text-2xl font-bold text-blue-900">Smith Financial</div>
+                <div className="text-2xl font-light text-gray-900">Smith Financial</div>
               </div>
-              <nav className="hidden md:flex space-x-8">
-                <a href="#home" onClick={(e) => handleSmoothScroll(e, 'home')} className="text-gray-700 hover:text-blue-900 transition-colors">Home</a>
-                <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="text-gray-700 hover:text-blue-900 transition-colors">Services</a>
-                <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="text-gray-700 hover:text-blue-900 transition-colors">About</a>
-                <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="text-gray-700 hover:text-blue-900 transition-colors">Testimonials</a>
-                <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-gray-700 hover:text-blue-900 transition-colors">Contact</a>
+              <nav className="hidden md:flex space-x-12">
+                <a href="#home" onClick={(e) => handleSmoothScroll(e, 'home')} className="text-gray-600 hover:text-emerald-600 transition-colors font-light">Home</a>
+                <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="text-gray-600 hover:text-emerald-600 transition-colors font-light">Services</a>
+                <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="text-gray-600 hover:text-emerald-600 transition-colors font-light">About</a>
+                <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="text-gray-600 hover:text-emerald-600 transition-colors font-light">Testimonials</a>
+                <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-gray-600 hover:text-emerald-600 transition-colors font-light">Contact</a>
               </nav>
             </div>
           </div>
         </header>
 
         {/* Hero Section */}
-        <section id="home" className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <section id="home" className="py-32 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Strategic Financial Solutions for <span className="text-blue-900">Your Success</span>
+                <h1 className="text-6xl font-light text-gray-900 mb-8 leading-tight">
+                  Smart Financial
+                  <br />
+                  <span className="text-emerald-600">Solutions</span>
                 </h1>
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Transform your financial future with expert guidance, innovative strategies, and personalized solutions designed to help you achieve your most ambitious goals.
+                <p className="text-xl text-gray-600 mb-12 leading-relaxed font-light">
+                  Thoughtful financial planning that grows with your life. We believe in simple, transparent strategies that deliver lasting results.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <button className="bg-blue-900 text-white px-8 py-4 rounded-lg hover:bg-blue-800 transition-colors font-semibold">
-                    Get Started Today
-                  </button>
-                  <button className="border border-blue-900 text-blue-900 px-8 py-4 rounded-lg hover:bg-blue-900 hover:text-white transition-colors font-semibold">
-                    Learn More
-                  </button>
-                </div>
+                <button className="bg-emerald-600 text-white px-8 py-3 hover:bg-emerald-700 transition-colors font-light">
+                  Start Planning
+                </button>
               </div>
               <div className="relative">
+                <div className="w-full h-96 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-none"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Financial Planning" 
-                  className="rounded-2xl shadow-2xl"
+                  src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Financial Growth" 
+                  className="absolute inset-0 w-full h-full object-cover opacity-80"
                 />
-                <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
-                  <div className="text-2xl font-bold text-blue-900">15+</div>
-                  <div className="text-gray-600">Years Experience</div>
-                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Comprehensive financial solutions tailored to your unique needs and objectives
+        <section id="services" className="py-24 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl font-light text-gray-900 mb-6">Our Services</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto font-light">
+                Clear, straightforward financial services designed to help you reach your goals
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-xl shadow-lg border hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
-                  <div className="w-8 h-8 bg-blue-900 rounded"></div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-emerald-100 mx-auto mb-8 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-emerald-600"></div>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Investment Planning</h3>
-                <p className="text-gray-600 mb-6">Strategic portfolio management and investment advice to maximize your returns while minimizing risk.</p>
-                <a href="#contact" className="text-blue-900 font-semibold hover:text-blue-800 transition-colors">Learn More →</a>
+                <h3 className="text-xl font-light text-gray-900 mb-4">Investment Planning</h3>
+                <p className="text-gray-600 font-light leading-relaxed">Build a diversified portfolio that aligns with your risk tolerance and financial timeline through thoughtful investment strategies.</p>
               </div>
-              <div className="bg-white p-8 rounded-xl shadow-lg border hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-6">
-                  <div className="w-8 h-8 bg-green-600 rounded"></div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-emerald-100 mx-auto mb-8 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-emerald-600"></div>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Retirement Planning</h3>
-                <p className="text-gray-600 mb-6">Secure your future with comprehensive retirement strategies and long-term financial planning.</p>
-                <a href="#contact" className="text-blue-900 font-semibold hover:text-blue-800 transition-colors">Learn More →</a>
+                <h3 className="text-xl font-light text-gray-900 mb-4">Retirement Planning</h3>
+                <p className="text-gray-600 font-light leading-relaxed">Create a sustainable retirement income plan with clear milestones and regular progress reviews to keep you on track.</p>
               </div>
-              <div className="bg-white p-8 rounded-xl shadow-lg border hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
-                  <div className="w-8 h-8 bg-purple-600 rounded"></div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-emerald-100 mx-auto mb-8 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-emerald-600"></div>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Tax Optimization</h3>
-                <p className="text-gray-600 mb-6">Minimize your tax burden with smart strategies and expert guidance on tax-efficient investing.</p>
-                <a href="#contact" className="text-blue-900 font-semibold hover:text-blue-800 transition-colors">Learn More →</a>
+                <h3 className="text-xl font-light text-gray-900 mb-4">Financial Planning</h3>
+                <p className="text-gray-600 font-light leading-relaxed">Comprehensive financial planning that covers budgeting, debt management, and goal-setting for your unique situation.</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <section id="about" className="py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-4xl font-light text-gray-900 mb-8">Meet John Smith</h2>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed font-light">
+                  With over 15 years of experience in financial planning, John believes in building long-term relationships based on trust and transparency. His approach focuses on understanding your unique situation and creating strategies that evolve with your life.
+                </p>
+                <p className="text-lg text-gray-600 mb-12 leading-relaxed font-light">
+                  John holds certifications in financial planning and continues his education to stay current with industry best practices. He's committed to providing clear, honest advice that puts your interests first.
+                </p>
+                <div className="grid grid-cols-2 gap-8">
+                  <div className="text-center">
+                    <div className="text-3xl font-light text-emerald-600">500+</div>
+                    <div className="text-gray-600 font-light">Clients Served</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-light text-emerald-600">15+</div>
+                    <div className="text-gray-600 font-light">Years Experience</div>
+                  </div>
+                </div>
+              </div>
               <div>
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                   alt="John Smith" 
-                  className="rounded-2xl shadow-xl"
+                  className="w-full shadow-lg"
                 />
-              </div>
-              <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">About John Smith</h2>
-                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                  With over 15 years of experience in financial planning and investment management, John Smith has helped hundreds of clients achieve their financial goals. His expertise spans across investment planning, retirement strategies, and tax optimization.
-                </p>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  John holds a CFA designation and is committed to providing personalized financial solutions that align with each client's unique circumstances and objectives.
-                </p>
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-900">500+</div>
-                    <div className="text-gray-600">Happy Clients</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-900">$50M+</div>
-                    <div className="text-gray-600">Assets Managed</div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-20 bg-white">
+        <section id="testimonials" className="py-24 bg-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-              <p className="text-xl text-gray-600">Real stories from real people who achieved their financial goals</p>
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-bold mb-6 text-white">Client Excellence</h2>
+              <p className="text-xl text-gray-400">Testimonials from industry leaders and successful entrepreneurs</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-gray-50 p-8 rounded-xl">
-                <div className="flex items-center mb-6">
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-10 rounded-2xl border border-gray-700">
+                <div className="flex items-center mb-8">
                   <img 
                     src="https://images.unsplash.com/photo-1494790108755-2616b332647c?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
                     alt="Sarah Johnson" 
-                    className="w-16 h-16 rounded-full object-cover mr-4"
+                    className="w-20 h-20 rounded-full object-cover mr-6 border-2 border-amber-500"
                   />
                   <div>
-                    <div className="font-semibold text-gray-900">Sarah Johnson</div>
-                    <div className="text-gray-600 text-sm">CEO, TechStart Inc.</div>
+                    <div className="font-bold text-white text-lg">Sarah Johnson</div>
+                    <div className="text-amber-400 font-semibold">CEO, TechStart Inc.</div>
+                    <div className="text-gray-400 text-sm">$50M+ Revenue</div>
                   </div>
                 </div>
-                <p className="text-gray-600 italic mb-4">"John's investment strategies helped us grow our portfolio by 40% in just two years. His expertise is unmatched."</p>
-                <div className="flex text-yellow-400">⭐⭐⭐⭐⭐</div>
+                <p className="text-gray-300 italic text-lg mb-6 leading-relaxed">"John's sophisticated investment strategies generated 45% returns while other advisors delivered single digits. His expertise in alternative investments is exceptional."</p>
+                <div className="flex text-amber-400 text-xl">★★★★★</div>
               </div>
-              <div className="bg-gray-50 p-8 rounded-xl">
-                <div className="flex items-center mb-6">
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-10 rounded-2xl border border-gray-700">
+                <div className="flex items-center mb-8">
                   <img 
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
                     alt="Michael Chen" 
-                    className="w-16 h-16 rounded-full object-cover mr-4"
+                    className="w-20 h-20 rounded-full object-cover mr-6 border-2 border-amber-500"
                   />
                   <div>
-                    <div className="font-semibold text-gray-900">Michael Chen</div>
-                    <div className="text-gray-600 text-sm">CFO, Global Ventures</div>
+                    <div className="font-bold text-white text-lg">Michael Chen</div>
+                    <div className="text-amber-400 font-semibold">CFO, Global Ventures</div>
+                    <div className="text-gray-400 text-sm">Fortune 500</div>
                   </div>
                 </div>
-                <p className="text-gray-600 italic mb-4">"The retirement planning service exceeded our expectations. We're now confident about our financial future."</p>
-                <div className="flex text-yellow-400">⭐⭐⭐⭐⭐</div>
+                <p className="text-gray-300 italic text-lg mb-6 leading-relaxed">"The level of service and strategic thinking John provides is unmatched. Our corporate treasury management has never been more efficient."</p>
+                <div className="flex text-amber-400 text-xl">★★★★★</div>
               </div>
-              <div className="bg-gray-50 p-8 rounded-xl">
-                <div className="flex items-center mb-6">
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-10 rounded-2xl border border-gray-700">
+                <div className="flex items-center mb-8">
                   <img 
                     src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
                     alt="Emily Rodriguez" 
-                    className="w-16 h-16 rounded-full object-cover mr-4"
+                    className="w-20 h-20 rounded-full object-cover mr-6 border-2 border-amber-500"
                   />
                   <div>
-                    <div className="font-semibold text-gray-900">Emily Rodriguez</div>
-                    <div className="text-gray-600 text-sm">President, Innovate Corp</div>
+                    <div className="font-bold text-white text-lg">Emily Rodriguez</div>
+                    <div className="text-amber-400 font-semibold">Founder, Innovate Corp</div>
+                    <div className="text-gray-400 text-sm">$100M+ Valuation</div>
                   </div>
                 </div>
-                <p className="text-gray-600 italic mb-4">"Professional, knowledgeable, and always available. John transformed our approach to financial planning."</p>
-                <div className="flex text-yellow-400">⭐⭐⭐⭐⭐</div>
+                <p className="text-gray-300 italic text-lg mb-6 leading-relaxed">"John structured our exit strategy that resulted in a 10x return. His network and market insights are invaluable for serious entrepreneurs."</p>
+                <div className="flex text-amber-400 text-xl">★★★★★</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20 bg-gray-900 text-white">
+        <section id="contact" className="py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
-              <p className="text-xl text-gray-300">Ready to take control of your financial future? Let's start the conversation.</p>
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-bold mb-6 text-white">Exclusive Access</h2>
+              <p className="text-xl text-gray-400">Schedule a private consultation to discuss your wealth management needs</p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <div>
-                <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
-                <div className="space-y-4">
+                <h3 className="text-3xl font-bold mb-8 text-white">Executive Office</h3>
+                <div className="space-y-6">
                   <div className="flex items-center">
-                    <div className="w-6 h-6 bg-blue-600 rounded mr-4"></div>
-                    <span>john.smith@financialexpert.com</span>
+                    <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg mr-6"></div>
+                    <span className="text-gray-300 text-lg">john.smith@financialexpert.com</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-6 h-6 bg-blue-600 rounded mr-4"></div>
-                    <span>(555) 123-4567</span>
+                    <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg mr-6"></div>
+                    <span className="text-gray-300 text-lg">(555) 123-4567</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-6 h-6 bg-blue-600 rounded mr-4"></div>
-                    <span>123 Financial District, Suite 100, New York, NY 10004</span>
+                    <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg mr-6"></div>
+                    <span className="text-gray-300 text-lg">123 Financial District, Penthouse Suite, New York, NY 10004</span>
                   </div>
                 </div>
+                <div className="mt-12 p-8 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-2xl border border-amber-500/20">
+                  <h4 className="text-xl font-bold text-amber-400 mb-4">Minimum Investment</h4>
+                  <p className="text-gray-300">$5M minimum for private wealth management services</p>
+                </div>
               </div>
-              <div>
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-10 rounded-2xl border border-gray-700">
                 <form className="space-y-6">
                   <div>
-                    <input type="text" placeholder="Your Name" className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-blue-600 focus:outline-none" />
+                    <input type="text" placeholder="Full Name" className="w-full px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-amber-500 focus:outline-none text-lg" />
                   </div>
                   <div>
-                    <input type="email" placeholder="Your Email" className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-blue-600 focus:outline-none" />
+                    <input type="email" placeholder="Email Address" className="w-full px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-amber-500 focus:outline-none text-lg" />
                   </div>
                   <div>
-                    <textarea rows={4} placeholder="Your Message" className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-blue-600 focus:outline-none resize-none"></textarea>
+                    <input type="tel" placeholder="Phone Number" className="w-full px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-amber-500 focus:outline-none text-lg" />
                   </div>
-                  <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold">
-                    Send Message
+                  <div>
+                    <select className="w-full px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-amber-500 focus:outline-none text-lg">
+                      <option value="">Investment Portfolio Size</option>
+                      <option value="5-10m">$5M - $10M</option>
+                      <option value="10-25m">$10M - $25M</option>
+                      <option value="25-50m">$25M - $50M</option>
+                      <option value="50m+">$50M+</option>
+                    </select>
+                  </div>
+                  <div>
+                    <textarea rows={4} placeholder="Brief overview of your investment goals" className="w-full px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-amber-500 focus:outline-none resize-none text-lg"></textarea>
+                  </div>
+                  <button type="submit" className="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black py-4 rounded-lg hover:from-amber-400 hover:to-orange-500 transition-all font-bold text-lg shadow-2xl">
+                    Request Private Consultation
                   </button>
                 </form>
               </div>
@@ -735,14 +745,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </section>
 
         {/* Footer */}
-        <footer className="bg-white border-t py-8">
+        <footer className="bg-black border-t border-gray-800 py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="text-gray-600 mb-4 md:mb-0">
-                © 2024 Smith Financial. All rights reserved.
+              <div className="text-gray-400 mb-4 md:mb-0 text-lg">
+                © 2024 Smith Financial. All rights reserved. | Licensed Investment Advisor
               </div>
-              <div className="text-gray-600">
-                Powered by <span className="font-semibold">Plan|right</span>
+              <div className="text-gray-400 text-lg">
+                Powered by <span className="font-semibold text-amber-400">Plan|right</span>
               </div>
             </div>
           </div>

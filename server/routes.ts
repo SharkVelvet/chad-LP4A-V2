@@ -184,16 +184,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Stripe subscription route for guest checkout
   app.post('/api/create-subscription', async (req, res) => {
-    if (!stripe) {
-      return res.status(500).json({ 
-        error: { message: 'Payment processing not configured. Please contact support.' } 
-      });
-    }
-
     const { email, customerName } = req.body;
     
     if (!email) {
       return res.status(400).json({ error: { message: 'Email is required for receipts' } });
+    }
+
+    if (!stripe) {
+      return res.status(500).json({ 
+        error: { message: 'Payment processing requires valid Stripe API keys. Please contact support.' } 
+      });
     }
 
     try {
@@ -215,16 +215,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
         },
       });
 
+      // Create a product first
+      const product = await stripe.products.create({
+        name: 'Planright Website Service',
+        description: 'Monthly website hosting and domain management',
+      });
+
       // Create the ongoing subscription starting next month ($18/month)
       const subscription = await stripe.subscriptions.create({
         customer: customer.id,
         items: [{
           price_data: {
             currency: 'usd',
-            product_data: {
-              name: 'Planright Website Service',
-              description: 'Monthly website hosting and domain management',
-            },
+            product: product.id,
             unit_amount: 1800, // $18 for ongoing months
             recurring: {
               interval: 'month',
@@ -239,6 +242,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         clientSecret: paymentIntent.client_secret,
       });
     } catch (error: any) {
+      console.error('Stripe error:', error);
       return res.status(400).send({ error: { message: error.message } });
     }
   });

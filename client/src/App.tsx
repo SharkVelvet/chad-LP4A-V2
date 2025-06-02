@@ -9,6 +9,8 @@ import AuthPage from "@/pages/auth-page";
 import TemplateSelection from "@/pages/template-selection";
 import TemplatePreviewPage from "@/pages/template-preview";
 import WebsiteSetup from "@/pages/website-setup";
+import Step3Pricing from "@/pages/step3-pricing";
+import Step4Payment from "@/pages/step4-payment";
 import Dashboard from "@/pages/dashboard";
 import NotFound from "@/pages/not-found";
 
@@ -19,6 +21,8 @@ function Router() {
       <Route path="/templates" component={TemplateSelection} />
       <Route path="/template-preview" component={TemplatePreviewPage} />
       <Route path="/setup" component={WebsiteSetup} />
+      <Route path="/step3" component={Step3Pricing} />
+      <Route path="/step4-payment" component={Step4Payment} />
       <ProtectedRoute path="/dashboard" component={Dashboard} />
       <Route path="/" component={TemplateSelection} />
       <Route component={NotFound} />

@@ -354,10 +354,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Why We Serve Section */}
-        <div id="why-we-serve" className="px-6 py-16 bg-white">
+        <div id="why-we-serve" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Why We Serve</h2>
-            <div className="grid grid-cols-3 gap-8">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Why We Serve</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
                 {
                   image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=626&q=80",
@@ -408,10 +408,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Client Testimonials */}
-        <div id="testimonials" className="px-6 py-16 bg-white">
+        <div id="testimonials" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Client Testimonials</h2>
-            <div className="grid grid-cols-3 gap-8">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Client Testimonials</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
                 {
                   name: "Sarah Johnson",
@@ -458,9 +458,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
 
         {/* Contact Us Section */}
-        <div id="contact" className="px-6 py-16 bg-gray-50">
+        <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Contact Us</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Contact Us</h2>
             <div className="grid grid-cols-2 gap-12">
               {/* Contact Form */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
@@ -565,7 +565,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-900 text-white px-6 py-16 border-t border-gray-700">
+        <div className="bg-gray-900 text-white px-4 sm:px-6 py-12 sm:py-16 border-t border-gray-700">
           <div className="max-w-6xl mx-auto grid grid-cols-4 gap-12">
             <div>
               <div className="font-bold text-xl mb-4">
@@ -885,10 +885,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Financial Services & Products */}
-        <div id="services" className="px-6 py-16 bg-gray-50">
+        <div id="services" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Financial Services & Products</h2>
-            <div className="grid grid-cols-3 gap-8">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Financial Services & Products</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
@@ -1079,10 +1079,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Why We Serve Section */}
-        <div id="why-we-serve" className="px-6 py-16 bg-white">
+        <div id="why-we-serve" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Why We Serve</h2>
-            <div className="grid grid-cols-3 gap-8">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Why We Serve</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
                 {
                   image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=626&q=80",
@@ -1117,10 +1117,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Client Testimonials */}
-        <div id="testimonials" className="px-6 py-16 bg-white">
+        <div id="testimonials" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Client Testimonials</h2>
-            <div className="grid grid-cols-3 gap-8">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Client Testimonials</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
                 {
                   name: "Sarah Johnson",
@@ -1165,9 +1165,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Contact Us Section */}
-        <div id="contact" className="px-6 py-16 bg-gray-50">
+        <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Contact Us</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Contact Us</h2>
             <div className="grid grid-cols-2 gap-12">
               {/* Contact Form */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
@@ -1272,7 +1272,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-900 text-white px-6 py-16 border-t border-gray-700">
+        <div className="bg-gray-900 text-white px-4 sm:px-6 py-12 sm:py-16 border-t border-gray-700">
           <div className="max-w-6xl mx-auto grid grid-cols-4 gap-12">
             <div>
               <div className="font-bold text-xl mb-4">
@@ -1528,10 +1528,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Why We Serve Section */}
-        <div id="why-we-serve" className="px-6 py-16 bg-white">
+        <div id="why-we-serve" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Why We Serve</h2>
-            <div className="grid grid-cols-3 gap-8 mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Why We Serve</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
               {[
                 {
                   image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -1566,10 +1566,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Client Testimonials */}
-        <div id="testimonials" className="px-6 py-16 bg-white">
+        <div id="testimonials" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Client Testimonials</h2>
-            <div className="grid grid-cols-3 gap-8">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Client Testimonials</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
                 {
                   name: "Sarah Johnson",
@@ -1614,9 +1614,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Financial Services & Products */}
-        <div id="services" className="px-6 py-16 bg-gray-50">
+        <div id="services" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Financial Services & Products</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Financial Services & Products</h2>
             <div className="grid grid-cols-2 gap-8">
               
               <div className="bg-white p-8 rounded-lg shadow-sm">
@@ -1793,9 +1793,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Contact Us Section */}
-        <div id="contact" className="px-6 py-16 bg-gray-50">
+        <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Contact Us</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Contact Us</h2>
             <div className="grid grid-cols-2 gap-12">
               {/* Contact Form */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
@@ -1900,7 +1900,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-900 text-white px-6 py-16 border-t border-gray-700">
+        <div className="bg-gray-900 text-white px-4 sm:px-6 py-12 sm:py-16 border-t border-gray-700">
           <div className="max-w-6xl mx-auto grid grid-cols-4 gap-12">
             <div>
               <div className="font-bold text-xl mb-4">

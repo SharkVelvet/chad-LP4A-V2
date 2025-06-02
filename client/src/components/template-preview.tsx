@@ -565,8 +565,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-900 text-white px-6 py-8 border-t border-gray-700">
-          <div className="max-w-6xl mx-auto grid grid-cols-4 gap-8">
+        <div className="bg-gray-900 text-white px-6 py-16 border-t border-gray-700">
+          <div className="max-w-6xl mx-auto grid grid-cols-4 gap-12">
             <div>
               <div className="font-bold text-xl mb-4">
                 <span className="text-red-600">Plan</span>

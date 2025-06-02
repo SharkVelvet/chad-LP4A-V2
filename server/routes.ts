@@ -13,7 +13,7 @@ import {
 let stripe: Stripe | null = null;
 if (process.env.STRIPE_SECRET_KEY) {
   stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: "2023-10-16",
+    apiVersion: "2024-06-20",
   });
 }
 
@@ -225,32 +225,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
         name: user.username,
       });
 
-      const { plan = 'basic' } = req.body;
-      const priceId = plan === 'professional' ? 
-        process.env.STRIPE_PROFESSIONAL_PRICE_ID : 
-        process.env.STRIPE_BASIC_PRICE_ID;
+      // Create payment intent for first month ($38)
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: 3800, // $38 for first month
+        currency: 'usd',
+        customer: customer.id,
+        description: 'Planright first month - Website setup and hosting',
+        metadata: {
+          type: 'first_month_payment',
+          userId: user.id.toString(),
+        },
+      });
 
-      if (!priceId) {
-        return res.status(500).json({ error: { message: 'Stripe price ID not configured' } });
-      }
-
+      // Create the ongoing subscription starting next month ($18/month)
       const subscription = await stripe.subscriptions.create({
         customer: customer.id,
         items: [{
-          price: priceId,
+          price_data: {
+            currency: 'usd',
+            product: {
+              name: 'Planright Website Service',
+              description: 'Monthly website hosting and domain management',
+            },
+            unit_amount: 1800, // $18 for ongoing months
+            recurring: {
+              interval: 'month',
+            },
+          },
         }],
-        payment_behavior: 'default_incomplete',
-        expand: ['latest_invoice.payment_intent'],
+        trial_end: Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60), // Start billing in 30 days
       });
 
       await storage.updateUserStripeInfo(user.id, customer.id, subscription.id);
       
-      const invoice = subscription.latest_invoice;
       res.send({
         subscriptionId: subscription.id,
-        clientSecret: typeof invoice === 'object' && invoice?.payment_intent && 
-          typeof invoice.payment_intent === 'object' ? 
-          invoice.payment_intent.client_secret : null,
+        clientSecret: paymentIntent.client_secret,
       });
     } catch (error: any) {
       return res.status(400).send({ error: { message: error.message } });

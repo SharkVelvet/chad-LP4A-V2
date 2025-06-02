@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, CreditCard, Shield, Check } from "lucide-react";
-// Stripe integration will be added once components are ready
+import SubscriptionForm from '@/components/subscription-form';
 
 export default function Step4Payment() {
   const [, navigate] = useLocation();
@@ -69,15 +69,11 @@ export default function Step4Payment() {
                   </ul>
                 </div>
 
-                <div className="p-6 bg-gray-50 rounded-lg text-center">
-                  <p className="text-gray-600">Payment integration will be completed here</p>
-                  <Button 
-                    className="mt-4"
-                    onClick={handlePaymentSuccess}
-                  >
-                    Continue (Demo)
-                  </Button>
-                </div>
+                <SubscriptionForm 
+                  plan="planright-website"
+                  onSuccess={handlePaymentSuccess}
+                  isLoading={isProcessing}
+                />
               </CardContent>
             </Card>
           </div>

@@ -2,20 +2,62 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, CreditCard, Shield, Check } from "lucide-react";
+import { ArrowLeft, CreditCard, Shield, Check, User } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { insertUserSchema } from "@shared/schema";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import SubscriptionForm from '@/components/subscription-form';
 
 export default function Step4Payment() {
   const [, navigate] = useLocation();
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showAuthForm, setShowAuthForm] = useState(false);
+  const { user, isLoading, registerMutation } = useAuth();
+
+  const form = useForm({
+    resolver: zodResolver(insertUserSchema.extend({
+      confirmPassword: insertUserSchema.shape.password,
+    }).refine((data) => data.password === data.confirmPassword, {
+      message: "Passwords don't match",
+      path: ["confirmPassword"],
+    })),
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
 
   const handleGoBack = () => {
     navigate("/step3");
   };
 
   const handlePaymentSuccess = () => {
-    navigate("/step5-confirmation");
+    navigate("/dashboard");
   };
+
+  const onRegisterSubmit = (data: any) => {
+    registerMutation.mutate({
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      locationId: 1, // Default location for new users
+    }, {
+      onSuccess: () => {
+        setShowAuthForm(false);
+      },
+    });
+  };
+
+  // Show auth form if user is not logged in
+  if (!isLoading && !user && !showAuthForm) {
+    setShowAuthForm(true);
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -52,30 +94,116 @@ export default function Step4Payment() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Payment Form */}
           <div>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <CreditCard className="h-5 w-5 mr-2 text-blue-600" />
-                  Payment Information
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h4 className="font-semibold text-blue-900 mb-2">Billing Schedule</h4>
-                  <ul className="space-y-1 text-sm text-blue-700">
-                    <li>• <strong>Today:</strong> $38 (Planright first month)</li>
-                    <li>• <strong>Every 30 days:</strong> $18 (Planright renewal)</li>
-                    <li>• <strong>Total contract:</strong> 12 months</li>
-                  </ul>
-                </div>
+            {showAuthForm ? (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <User className="h-5 w-5 mr-2 text-blue-600" />
+                    Create Your Account
+                  </CardTitle>
+                  <p className="text-muted-foreground">
+                    Please create an account to complete your subscription setup.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onRegisterSubmit)} className="space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
+                          name="username"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Username</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Enter username" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email</FormLabel>
+                              <FormControl>
+                                <Input type="email" placeholder="Enter email" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
+                          name="password"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Password</FormLabel>
+                              <FormControl>
+                                <Input type="password" placeholder="Enter password" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="confirmPassword"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Confirm Password</FormLabel>
+                              <FormControl>
+                                <Input type="password" placeholder="Confirm password" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      <Button 
+                        type="submit" 
+                        className="w-full" 
+                        size="lg"
+                        disabled={registerMutation.isPending}
+                      >
+                        {registerMutation.isPending ? "Creating Account..." : "Create Account & Continue"}
+                      </Button>
+                    </form>
+                  </Form>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <CreditCard className="h-5 w-5 mr-2 text-blue-600" />
+                    Payment Information
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <h4 className="font-semibold text-blue-900 mb-2">Billing Schedule</h4>
+                    <ul className="space-y-1 text-sm text-blue-700">
+                      <li>• <strong>Today:</strong> $38 (Planright first month)</li>
+                      <li>• <strong>Every 30 days:</strong> $18 (Planright renewal)</li>
+                      <li>• <strong>Total contract:</strong> 12 months</li>
+                    </ul>
+                  </div>
 
-                <SubscriptionForm 
-                  plan="planright-website"
-                  onSuccess={handlePaymentSuccess}
-                  isLoading={isProcessing}
-                />
-              </CardContent>
-            </Card>
+                  {user && (
+                    <SubscriptionForm 
+                      plan="planright-website"
+                      onSuccess={handlePaymentSuccess}
+                      isLoading={isProcessing}
+                    />
+                  )}
+                </CardContent>
+              </Card>
+            )}
           </div>
 
           {/* Order Summary */}

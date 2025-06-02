@@ -5,7 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "./lib/protected-route";
+import { PasswordProtectedRoute } from "./lib/password-protected-route";
 import AuthPage from "@/pages/auth-page";
+import HomePage from "@/pages/home-page";
 import TemplateSelection from "@/pages/template-selection";
 import TemplatePreviewPage from "@/pages/template-preview";
 import WebsiteSetup from "@/pages/website-setup";
@@ -19,14 +21,14 @@ function Router() {
   return (
     <Switch>
       <Route path="/auth" component={AuthPage} />
-      <Route path="/template-selection" component={TemplateSelection} />
-      <Route path="/template-preview" component={TemplatePreviewPage} />
-      <Route path="/setup" component={WebsiteSetup} />
-      <Route path="/step3" component={Step3Pricing} />
-      <Route path="/step4-payment" component={Step4Payment} />
-      <Route path="/step5-success" component={Step5Success} />
+      <PasswordProtectedRoute path="/template-selection" component={TemplateSelection} />
+      <PasswordProtectedRoute path="/template-preview" component={TemplatePreviewPage} />
+      <PasswordProtectedRoute path="/setup" component={WebsiteSetup} />
+      <PasswordProtectedRoute path="/step3" component={Step3Pricing} />
+      <PasswordProtectedRoute path="/step4-payment" component={Step4Payment} />
+      <PasswordProtectedRoute path="/step5-success" component={Step5Success} />
       <ProtectedRoute path="/dashboard" component={Dashboard} />
-      <Route path="/" component={TemplateSelection} />
+      <Route path="/" component={HomePage} />
       <Route component={NotFound} />
     </Switch>
   );

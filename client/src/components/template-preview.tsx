@@ -1762,59 +1762,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Contact Section */}
-        <div id="contact" className="px-6 py-16 bg-gray-800 text-white">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-2 gap-12">
-              <div>
-                <h2 className="text-3xl font-bold mb-8">Get In Touch</h2>
-                <div className="space-y-6">
-                  <div className="flex items-center">
-                    <Phone className="w-6 h-6 text-red-600 mr-4" />
-                    <div>
-                      <div className="font-semibold">Phone</div>
-                      <div className="text-gray-300">(555) 123-4567</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <Mail className="w-6 h-6 text-red-600 mr-4" />
-                    <div>
-                      <div className="font-semibold">Email</div>
-                      <div className="text-gray-300">john@planright.com</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="w-6 h-6 text-red-600 mr-4" />
-                    <div>
-                      <div className="font-semibold">Office</div>
-                      <div className="text-gray-300">123 Financial District<br />New York, NY 10004</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gray-700 p-8 rounded-lg">
-                <h3 className="text-xl font-semibold mb-6">Send us a message</h3>
-                <form className="space-y-4">
-                  <div>
-                    <input type="text" placeholder="Your Name" className="w-full p-3 rounded bg-gray-600 text-white placeholder-gray-400 border border-gray-600 focus:border-red-600 focus:outline-none" />
-                  </div>
-                  <div>
-                    <input type="email" placeholder="Your Email" className="w-full p-3 rounded bg-gray-600 text-white placeholder-gray-400 border border-gray-600 focus:border-red-600 focus:outline-none" />
-                  </div>
-                  <div>
-                    <input type="text" placeholder="Subject" className="w-full p-3 rounded bg-gray-600 text-white placeholder-gray-400 border border-gray-600 focus:border-red-600 focus:outline-none" />
-                  </div>
-                  <div>
-                    <textarea rows={4} placeholder="Your Message" className="w-full p-3 rounded bg-gray-600 text-white placeholder-gray-400 border border-gray-600 focus:border-red-600 focus:outline-none resize-none"></textarea>
-                  </div>
-                  <button type="submit" className="w-full bg-red-600 text-white p-3 rounded font-semibold hover:bg-red-700 transition-colors">
-                    Send Message
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
     );
   }

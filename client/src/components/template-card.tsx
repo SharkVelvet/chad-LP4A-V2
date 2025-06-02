@@ -16,19 +16,13 @@ type Template = {
 
 interface TemplateCardProps {
   template: Template;
-  isSelected: boolean;
-  onSelect: () => void;
 }
 
-export default function TemplateCard({ template, isSelected, onSelect }: TemplateCardProps) {
+export default function TemplateCard({ template }: TemplateCardProps) {
   const [, navigate] = useLocation();
   
   return (
-    <Card 
-      className={`cursor-pointer transition-all hover:shadow-lg ${
-        isSelected ? 'border-primary ring-2 ring-primary ring-opacity-20' : 'border-border'
-      }`}
-      onClick={onSelect}
+    <Card className="transition-all hover:shadow-lg border-border"
     >
       <CardContent className="p-0">
         <div className="relative overflow-hidden rounded-t-lg">

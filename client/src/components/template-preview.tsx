@@ -24,12 +24,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     return (
       <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Header */}
-        <div className="bg-white border-b px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
-          <div className="font-bold text-xl">
+        <div className="bg-white border-b px-4 sm:px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
+          <div className="font-bold text-lg sm:text-xl">
             <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-black">right</span>
           </div>
-          <div className="flex items-center space-x-6">
-            <div className="flex space-x-6 text-sm text-gray-700">
+          <div className="flex items-center space-x-2 sm:space-x-6">
+            <div className="hidden md:flex space-x-6 text-sm text-gray-700">
               <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
               <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
               <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
@@ -38,9 +38,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
             <button 
               onClick={(e) => handleSmoothScroll(e, 'contact')} 
-              className="bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors text-sm"
+              className="bg-red-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded font-semibold hover:bg-red-700 transition-colors text-xs sm:text-sm"
             >
-              Contact Us
+              Contact
             </button>
           </div>
         </div>
@@ -50,34 +50,34 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           backgroundImage: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")'
         }}>
           <div className="absolute inset-0 flex items-center">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
-              <div className="text-white">
-                <h1 className="text-6xl font-bold mb-4 leading-tight">John Smith</h1>
-                <p className="text-2xl mb-2 text-white">President of Financial Services</p>
-                <p className="text-lg text-white mb-8 leading-relaxed max-w-lg">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
+              <div className="text-white text-center lg:text-left">
+                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 leading-tight">John Smith</h1>
+                <p className="text-lg sm:text-xl lg:text-2xl mb-2 text-white">President of Financial Services</p>
+                <p className="text-sm sm:text-base lg:text-lg text-white mb-6 lg:mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
                   Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
                 </p>
-                <div className="flex space-x-4">
-                  <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-flex items-center justify-center">
+                <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
+                  <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-flex items-center justify-center text-sm sm:text-base">
                     Contact Us
                   </a>
-                  <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white text-white px-6 py-3 rounded font-semibold hover:bg-white hover:text-black transition-colors inline-flex items-center justify-center">
+                  <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="border-2 border-white text-white px-4 sm:px-6 py-2 sm:py-3 rounded font-semibold hover:bg-white hover:text-black transition-colors inline-flex items-center justify-center text-sm sm:text-base">
                     Learn More
                   </a>
                 </div>
               </div>
               <div className="flex justify-center">
                 <div className="relative">
-                  <div className="w-72 h-72 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                  <div className="w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden shadow-2xl border-4 border-white">
                     <img 
                       src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                       alt="John Smith" 
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-lg">
-                    <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
-                      <span className="text-white text-2xl font-bold">JS</span>
+                  <div className="absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 bg-white rounded-full p-2 sm:p-4 shadow-lg">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-red-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-lg sm:text-2xl font-bold">JS</span>
                     </div>
                   </div>
                 </div>
@@ -87,59 +87,59 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* About John Smith Section */}
-        <div id="about" className="px-6 py-16 bg-gray-50">
+        <div id="about" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">About John Smith</h2>
-            <div className="grid grid-cols-2 gap-12 items-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">About John Smith</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
-                <p className="text-gray-700 mb-6 leading-relaxed">
+                <p className="text-gray-700 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                   With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
                 </p>
-                <p className="text-gray-700 mb-6 leading-relaxed">
+                <p className="text-gray-700 mb-6 leading-relaxed text-sm sm:text-base">
                   His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
                 </p>
-                <div className="grid grid-cols-2 gap-6 mt-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
                   <div className="flex items-center">
-                    <Clock className="w-4 h-4 text-red-600 mr-3" />
+                    <Clock className="w-4 h-4 text-red-600 mr-3 flex-shrink-0" />
                     <span className="text-sm font-medium">15+ Years Experience</span>
                   </div>
                   <div className="flex items-center">
-                    <Users className="w-4 h-4 text-red-600 mr-3" />
+                    <Users className="w-4 h-4 text-red-600 mr-3 flex-shrink-0" />
                     <span className="text-sm font-medium">500+ Clients Served</span>
                   </div>
                   <div className="flex items-center">
-                    <Award className="w-4 h-4 text-red-600 mr-3" />
+                    <Award className="w-4 h-4 text-red-600 mr-3 flex-shrink-0" />
                     <span className="text-sm font-medium">Certified Financial Planner</span>
                   </div>
                   <div className="flex items-center">
-                    <Star className="w-4 h-4 text-red-600 mr-3" />
+                    <Star className="w-4 h-4 text-red-600 mr-3 flex-shrink-0" />
                     <span className="text-sm font-medium">Award-Winning Service</span>
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="w-full h-32 sm:h-48 rounded-lg shadow-sm overflow-hidden">
                   <img 
                     src={temp1Image} 
                     alt="Financial workspace with laptop and documents" 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                <div className="w-full h-32 sm:h-48 rounded-lg shadow-sm overflow-hidden">
                   <img 
                     src={temp2Image} 
                     alt="Professional business meeting and handshake" 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                <div className="w-full h-32 sm:h-48 rounded-lg shadow-sm overflow-hidden">
                   <img 
                     src={temp3Image} 
                     alt="Professional businesswoman with tablet outdoors" 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
+                <div className="w-full h-32 sm:h-48 rounded-lg shadow-sm overflow-hidden">
                   <img 
                     src={temp4Image} 
                     alt="Modern office building architecture" 
@@ -152,18 +152,18 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Financial Services & Products */}
-        <div id="services" className="px-6 py-16 bg-gray-50">
+        <div id="services" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Financial <span className="text-red-600">Services & Products</span>
               </h2>
-              <p className="text-gray-600 max-w-3xl mx-auto">
+              <p className="text-gray-600 max-w-3xl mx-auto text-sm sm:text-base">
                 Comprehensive solutions designed to protect your assets, grow your wealth, and secure your financial future.
               </p>
             </div>
             
-            <div className="grid grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8 sm:mb-12">
               {/* Life Insurance */}
               <div className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-600">
                 <div className="flex items-center mb-4">

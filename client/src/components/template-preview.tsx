@@ -672,7 +672,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                       onClick={(e) => handleSmoothScroll(e, 'contact')} 
                       className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg"
                     >
-                      Get Started Today
+                      Contact Us
                     </button>
                     <button 
                       onClick={(e) => handleSmoothScroll(e, 'about')} 

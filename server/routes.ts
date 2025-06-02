@@ -8,7 +8,7 @@ import {
   insertWebsiteContentSchema, 
   insertFormSubmissionSchema 
 } from "@shared/schema";
-import { sendCustomerNotification } from "./email";
+import { sendCustomerNotification, testEmailConnection } from "./email";
 
 // Initialize Stripe only if the secret key is available
 let stripe: Stripe | null = null;
@@ -180,6 +180,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(submission);
     } catch (error: any) {
       res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Test email connection
+  app.get('/api/test-email', async (req, res) => {
+    try {
+      const isConnected = await testEmailConnection();
+      if (isConnected) {
+        res.json({ success: true, message: 'Email connection successful' });
+      } else {
+        res.status(500).json({ success: false, message: 'Email connection failed' });
+      }
+    } catch (error: any) {
+      res.status(500).json({ success: false, message: error.message });
     }
   });
 

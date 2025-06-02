@@ -34,6 +34,18 @@ export default function WebsiteSetup() {
     queryKey: ["/api/templates"],
   });
 
+  // Get template ID from URL and set it in form
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const templateId = urlParams.get('templateId');
+    if (templateId && templates) {
+      const selectedTemplate = templates.find(t => t.id === parseInt(templateId));
+      if (selectedTemplate) {
+        setFormData(prev => ({ ...prev, template: selectedTemplate.slug }));
+      }
+    }
+  }, [templates]);
+
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };

@@ -215,20 +215,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
         },
       });
 
+      // First create a product
+      const product = await stripe.products.create({
+        name: 'Planright Website Service',
+      });
+
+      // Then create a price for the product
+      const price = await stripe.prices.create({
+        currency: 'usd',
+        unit_amount: 1800, // $18 for ongoing months
+        recurring: {
+          interval: 'month',
+        },
+        product: product.id,
+      });
+
       // Create the ongoing subscription starting next month ($18/month)
       const subscription = await stripe.subscriptions.create({
         customer: customer.id,
         items: [{
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'Planright Website Service',
-            },
-            unit_amount: 1800, // $18 for ongoing months
-            recurring: {
-              interval: 'month',
-            },
-          },
+          price: price.id,
         }],
         trial_end: Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60), // Start billing in 30 days
       });

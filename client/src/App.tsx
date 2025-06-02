@@ -18,7 +18,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/auth" component={AuthPage} />
-      <Route path="/templates" component={TemplateSelection} />
+      <Route path="/template-selection" component={TemplateSelection} />
       <Route path="/template-preview" component={TemplatePreviewPage} />
       <Route path="/setup" component={WebsiteSetup} />
       <Route path="/step3" component={Step3Pricing} />

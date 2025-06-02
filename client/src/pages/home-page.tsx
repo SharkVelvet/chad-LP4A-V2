@@ -16,17 +16,32 @@ export default function HomePage() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simple password check - you can change this password
-    const correctPassword = "planright2025";
-    
-    if (password === correctPassword) {
-      // Store authentication in localStorage
-      localStorage.setItem("planright_authenticated", "true");
-      setLocation("/template-selection");
-    } else {
+    try {
+      const response = await fetch('/api/validate-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      const result = await response.json();
+      
+      if (result.valid) {
+        // Store authentication in localStorage
+        localStorage.setItem("planright_authenticated", "true");
+        setLocation("/template-selection");
+      } else {
+        toast({
+          title: "Access Denied",
+          description: "Incorrect password. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
       toast({
-        title: "Access Denied",
-        description: "Incorrect password. Please try again.",
+        title: "Error",
+        description: "Unable to validate password. Please try again.",
         variant: "destructive",
       });
     }

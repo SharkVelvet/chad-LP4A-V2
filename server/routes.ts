@@ -9,6 +9,7 @@ import {
   insertFormSubmissionSchema 
 } from "@shared/schema";
 import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection } from "./email";
+import { validatePassword } from "./passwords";
 
 // Initialize Stripe only if the secret key is available
 let stripe: Stripe | null = null;
@@ -19,6 +20,18 @@ if (process.env.STRIPE_SECRET_KEY) {
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication routes
   setupAuth(app);
+
+  // Password validation endpoint
+  app.post("/api/validate-password", async (req, res) => {
+    const { password } = req.body;
+    
+    if (!password) {
+      return res.status(400).json({ valid: false, message: "Password is required" });
+    }
+    
+    const isValid = validatePassword(password);
+    res.json({ valid: isValid });
+  });
 
   // Location routes
   app.get("/api/locations", async (req, res) => {

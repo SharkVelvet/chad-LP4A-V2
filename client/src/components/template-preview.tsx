@@ -463,14 +463,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Contact Us</h2>
             <div className="grid grid-cols-2 gap-12">
               {/* Contact Form */}
-              <div className="bg-white p-8 rounded-lg shadow-sm">
-                <h3 className="text-xl font-bold mb-6">Get In Touch</h3>
-                <form className="space-y-6">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
+                <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Get In Touch</h3>
+                <form className="space-y-4 sm:space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
                     <input 
                       type="text" 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="Your full name"
                     />
                   </div>
@@ -478,7 +478,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                     <input 
                       type="email" 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -486,7 +486,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
                     <input 
                       type="text" 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="How can we help you?"
                     />
                   </div>
@@ -494,7 +494,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                     <textarea 
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="Tell us about your project or inquiry..."
                     ></textarea>
                   </div>
@@ -510,8 +510,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               {/* Contact Information */}
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-bold mb-6">Contact Information</h3>
-                  <div className="space-y-6">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Contact Information</h3>
+                  <div className="space-y-4 sm:space-y-6">
                     <div className="flex items-start">
                       <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                         <MapPin className="w-6 h-6 text-white" />
@@ -543,7 +543,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold mb-6">Follow Us</h3>
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Follow Us</h3>
                   <div className="flex space-x-4">
                     <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
                       <Facebook className="w-5 h-5 text-white" />
@@ -566,7 +566,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Footer */}
         <div className="bg-gray-900 text-white px-4 sm:px-6 py-12 sm:py-16 border-t border-gray-700">
-          <div className="max-w-6xl mx-auto grid grid-cols-4 gap-12">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
             <div>
               <div className="font-bold text-xl mb-4">
                 <span className="text-red-600">Plan</span>
@@ -889,7 +889,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Financial Services & Products</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <Shield className="w-6 h-6 text-red-600" />
@@ -920,7 +920,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <TrendingUp className="w-6 h-6 text-red-600" />
@@ -951,7 +951,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <Home className="w-6 h-6 text-red-600" />
@@ -982,7 +982,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <GraduationCap className="w-6 h-6 text-red-600" />
@@ -1013,7 +1013,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <Heart className="w-6 h-6 text-red-600" />
@@ -1044,7 +1044,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <FileText className="w-6 h-6 text-red-600" />
@@ -1170,14 +1170,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Contact Us</h2>
             <div className="grid grid-cols-2 gap-12">
               {/* Contact Form */}
-              <div className="bg-white p-8 rounded-lg shadow-sm">
-                <h3 className="text-xl font-bold mb-6">Get In Touch</h3>
-                <form className="space-y-6">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
+                <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Get In Touch</h3>
+                <form className="space-y-4 sm:space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
                     <input 
                       type="text" 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="Your full name"
                     />
                   </div>
@@ -1185,7 +1185,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                     <input 
                       type="email" 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -1193,7 +1193,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
                     <input 
                       type="text" 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="How can we help you?"
                     />
                   </div>
@@ -1201,7 +1201,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                     <textarea 
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="Tell us about your project or inquiry..."
                     ></textarea>
                   </div>
@@ -1217,8 +1217,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               {/* Contact Information */}
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-bold mb-6">Contact Information</h3>
-                  <div className="space-y-6">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Contact Information</h3>
+                  <div className="space-y-4 sm:space-y-6">
                     <div className="flex items-start">
                       <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                         <MapPin className="w-6 h-6 text-white" />
@@ -1250,7 +1250,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold mb-6">Follow Us</h3>
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Follow Us</h3>
                   <div className="flex space-x-4">
                     <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
                       <Facebook className="w-5 h-5 text-white" />
@@ -1273,7 +1273,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Footer */}
         <div className="bg-gray-900 text-white px-4 sm:px-6 py-12 sm:py-16 border-t border-gray-700">
-          <div className="max-w-6xl mx-auto grid grid-cols-4 gap-12">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
             <div>
               <div className="font-bold text-xl mb-4">
                 <span className="text-red-600">Plan</span>
@@ -1357,7 +1357,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              <div className="text-gray-900 space-y-6 sm:space-y-8 text-center lg:text-left">
+              <div className="text-gray-900 space-y-4 sm:space-y-6 sm:space-y-8 text-center lg:text-left">
                 <div className="space-y-4">
                   <div className="inline-flex items-center px-4 py-2 bg-red-100 border border-red-200 rounded-full text-red-600 text-sm font-medium">
                     <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
@@ -1374,7 +1374,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   </p>
                 </div>
                 
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   <div className="flex items-center space-x-6">
                     <div className="text-center">
                       <div className="text-3xl font-bold text-gray-900">15+</div>
@@ -1451,7 +1451,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   <p className="text-lg text-gray-700 leading-relaxed">
                     His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
                   </p>
@@ -1619,7 +1619,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Financial Services & Products</h2>
             <div className="grid grid-cols-2 gap-8">
               
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <Shield className="w-6 h-6 text-red-600" />
@@ -1652,7 +1652,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <TrendingUp className="w-6 h-6 text-red-600" />
@@ -1681,7 +1681,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <Home className="w-6 h-6 text-red-600" />
@@ -1710,7 +1710,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <GraduationCap className="w-6 h-6 text-red-600" />
@@ -1735,7 +1735,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <Heart className="w-6 h-6 text-red-600" />
@@ -1764,7 +1764,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <button onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-red-600 font-semibold text-sm hover:text-red-700 cursor-pointer">Learn More →</button>
               </div>
               
-              <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <FileText className="w-6 h-6 text-red-600" />
@@ -1798,14 +1798,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Contact Us</h2>
             <div className="grid grid-cols-2 gap-12">
               {/* Contact Form */}
-              <div className="bg-white p-8 rounded-lg shadow-sm">
-                <h3 className="text-xl font-bold mb-6">Get In Touch</h3>
-                <form className="space-y-6">
+              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
+                <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Get In Touch</h3>
+                <form className="space-y-4 sm:space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
                     <input 
                       type="text" 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="Your full name"
                     />
                   </div>
@@ -1813,7 +1813,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                     <input 
                       type="email" 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -1821,7 +1821,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
                     <input 
                       type="text" 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="How can we help you?"
                     />
                   </div>
@@ -1829,7 +1829,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                     <textarea 
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       placeholder="Tell us about your project or inquiry..."
                     ></textarea>
                   </div>
@@ -1845,8 +1845,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               {/* Contact Information */}
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-bold mb-6">Contact Information</h3>
-                  <div className="space-y-6">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Contact Information</h3>
+                  <div className="space-y-4 sm:space-y-6">
                     <div className="flex items-start">
                       <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                         <MapPin className="w-6 h-6 text-white" />
@@ -1878,7 +1878,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold mb-6">Follow Us</h3>
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Follow Us</h3>
                   <div className="flex space-x-4">
                     <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
                       <Facebook className="w-5 h-5 text-white" />
@@ -1901,7 +1901,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Footer */}
         <div className="bg-gray-900 text-white px-4 sm:px-6 py-12 sm:py-16 border-t border-gray-700">
-          <div className="max-w-6xl mx-auto grid grid-cols-4 gap-12">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
             <div>
               <div className="font-bold text-xl mb-4">
                 <span className="text-red-600">Plan</span>

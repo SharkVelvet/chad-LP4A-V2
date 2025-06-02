@@ -50,7 +50,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           backgroundImage: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")'
         }}>
           <div className="absolute inset-0 flex items-center">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-[75%_25%] gap-12 items-center w-full">
+            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
               <div className="text-white">
                 <h1 className="text-6xl font-bold mb-4 leading-tight">John Smith</h1>
                 <p className="text-2xl mb-2 text-white">President of Financial Services</p>
@@ -665,21 +665,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     Providing comprehensive financial solutions and procurement strategies for businesses across all industries with over 15 years of expertise.
                   </p>
                   
-                  {/* Stats Row */}
-                  <div className="flex items-center space-x-8 mb-10">
-                    <div>
-                      <div className="text-4xl font-bold text-gray-900">15+</div>
-                      <div className="text-sm text-gray-500 uppercase tracking-wide">Years Experience</div>
-                    </div>
-                    <div>
-                      <div className="text-4xl font-bold text-gray-900">500+</div>
-                      <div className="text-sm text-gray-500 uppercase tracking-wide">Happy Clients</div>
-                    </div>
-                    <div>
-                      <div className="text-4xl font-bold text-gray-900">CFP</div>
-                      <div className="text-sm text-gray-500 uppercase tracking-wide">Certified</div>
-                    </div>
-                  </div>
+
                   
                   <div className="flex flex-col sm:flex-row gap-4">
                     <button 

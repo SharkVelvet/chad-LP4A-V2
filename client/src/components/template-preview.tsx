@@ -1317,7 +1317,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Modern Hero Section */}
-        <div className="relative min-h-screen bg-white overflow-hidden">
+        <div className="relative bg-white overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-20 left-20 w-72 h-72 bg-red-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -1325,8 +1325,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
           </div>
           
-          <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-32">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
+          <div className="relative max-w-7xl mx-auto px-6 py-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="text-gray-900 space-y-8">
                 <div className="space-y-4">
                   <div className="inline-flex items-center px-4 py-2 bg-red-100 border border-red-200 rounded-full text-red-600 text-sm font-medium">

@@ -819,70 +819,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-            {/* About John Smith Section */}
-            <div id="about" className="bg-white rounded-xl shadow-lg p-8 mb-6">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">About John Smith</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              <div>
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
-                </p>
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
-                </p>
-                <div className="grid grid-cols-2 gap-6 mt-8">
-                  <div className="flex items-center">
-                    <Clock className="w-4 h-4 text-red-600 mr-3" />
-                    <span className="text-sm font-medium">15+ Years Experience</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Users className="w-4 h-4 text-red-600 mr-3" />
-                    <span className="text-sm font-medium">500+ Clients Served</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Award className="w-4 h-4 text-red-600 mr-3" />
-                    <span className="text-sm font-medium">Certified Financial Planner</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Star className="w-4 h-4 text-red-600 mr-3" />
-                    <span className="text-sm font-medium">Award-Winning Service</span>
-                  </div>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
-                  <img 
-                    src={temp1Image} 
-                    alt="Financial workspace with laptop and documents" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
-                  <img 
-                    src={temp2Image} 
-                    alt="Professional business meeting and handshake" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
-                  <img 
-                    src={temp3Image} 
-                    alt="Professional businesswoman with tablet outdoors" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="w-full h-48 rounded-lg shadow-sm overflow-hidden">
-                  <img 
-                    src={temp4Image} 
-                    alt="Modern office building architecture" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    
 
         {/* Financial Services & Products */}
         <div id="services" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">

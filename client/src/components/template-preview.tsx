@@ -1289,14 +1289,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               {/* Profile Picture with Floating Badge */}
               <div className="relative inline-block mb-8">
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                  alt="John Smith" 
-                  className="w-24 h-24 object-cover rounded-full border-4 border-white shadow-lg mx-auto"
+                  src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                  alt="Sarah Johnson" 
+                  className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg mx-auto"
                 />
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
                   <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full text-red-700 text-xs font-medium border-2 border-white shadow-md whitespace-nowrap">
                     <span className="w-2 h-2 bg-red-600 rounded-full mr-2"></span>
-                    Financial Excellence Since 2008
+                    Sarah Johnson, CFP
                   </div>
                 </div>
               </div>

@@ -1178,53 +1178,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Contact Section */}
-        <div id="contact" className="px-6 py-16 bg-gray-800 text-white">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-2 gap-12">
-              <div>
-                <h2 className="text-3xl font-bold mb-8">Get In Touch</h2>
-                <div className="space-y-6">
-                  <div className="flex items-center">
-                    <Phone className="w-6 h-6 text-red-600 mr-4" />
-                    <div>
-                      <div className="font-semibold">Phone</div>
-                      <div className="text-gray-300">(555) 123-4567</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <Mail className="w-6 h-6 text-red-600 mr-4" />
-                    <div>
-                      <div className="font-semibold">Email</div>
-                      <div className="text-gray-300">john@planright.com</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="w-6 h-6 text-red-600 mr-4" />
-                    <div>
-                      <div className="font-semibold">Office</div>
-                      <div className="text-gray-300">123 Financial District<br />New York, NY 10004</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex space-x-4 mt-8">
-                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
-                    <Facebook className="w-5 h-5" />
-                  </div>
-                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
-                    <Twitter className="w-5 h-5" />
-                  </div>
-                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
-                    <Linkedin className="w-5 h-5" />
-                  </div>
-                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 cursor-pointer">
-                    <Instagram className="w-5 h-5" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
     );
   }

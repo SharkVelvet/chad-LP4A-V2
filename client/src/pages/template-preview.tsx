@@ -54,27 +54,16 @@ export default function TemplatePreviewPage() {
       {/* Sticky Banner */}
       <div className="sticky top-0 z-50 bg-white border-b shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="outline"
-                onClick={handleBackToTemplates}
-                className="flex items-center space-x-2"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span>Back to All Templates</span>
-              </Button>
-              <div>
-                <h1 className="text-xl font-semibold">{template.name}</h1>
-                <p className="text-sm text-gray-600">{template.description}</p>
-              </div>
-            </div>
+          <div className="flex items-center justify-center space-x-4">
             <Button
-              onClick={handleChooseTemplate}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
+              variant="outline"
+              onClick={handleBackToTemplates}
+              className="flex items-center space-x-2"
             >
-              Choose This Template
+              <ArrowLeft className="h-4 w-4" />
+              <span>Back to All Templates</span>
             </Button>
+            <h1 className="text-xl font-semibold">{template.name}</h1>
           </div>
         </div>
       </div>

@@ -1732,46 +1732,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     </div>
   );
 }
-            <h2 className="text-3xl font-bold mb-12 text-center">Why We Serve</h2>
-            <div className="grid grid-cols-3 gap-8 mb-12">
-              {[
-                {
-                  image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-                  title: "Client-Centered Approach",
-                  description: "We prioritize your unique financial goals and develop customized strategies that align with your vision for success."
-                },
-                {
-                  image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-                  title: "Financial Analysis",
-                  description: "Our expert team provides detailed financial analysis to help you make informed decisions about your business future."
-                },
-                {
-                  image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-                  title: "Investment Planning",
-                  description: "We create personalized investment strategies designed to grow your wealth while managing risk effectively."
-                }
-              ].map((item, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-full h-48 bg-gray-200 rounded-lg mb-6 overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold mb-4">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Client Testimonials */}
-        <div id="testimonials" className="px-6 py-16 bg-white">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Client Testimonials</h2>
-            <div className="grid grid-cols-3 gap-8">
               {[
                 {
                   name: "Sarah Johnson",

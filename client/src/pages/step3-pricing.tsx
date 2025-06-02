@@ -122,10 +122,7 @@ export default function Step3Pricing() {
                     <Check className="h-3 w-3 mr-2 text-green-500" />
                     Content consultation and updates
                   </li>
-                  <li className="flex items-center">
-                    <Check className="h-3 w-3 mr-2 text-green-500" />
-                    Professional photo integration
-                  </li>
+
                   <li className="flex items-center">
                     <Check className="h-3 w-3 mr-2 text-green-500" />
                     Complete website launch
@@ -155,10 +152,7 @@ export default function Step3Pricing() {
                     <Check className="h-3 w-3 mr-2 text-green-500" />
                     Security updates and backups
                   </li>
-                  <li className="flex items-center">
-                    <Check className="h-3 w-3 mr-2 text-green-500" />
-                    Technical support
-                  </li>
+
                 </ul>
               </div>
             </div>

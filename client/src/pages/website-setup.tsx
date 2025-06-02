@@ -54,7 +54,25 @@ export default function WebsiteSetup() {
     e.preventDefault();
     console.log("Form submitted:", formData);
     
-    // Store onboarding data for later use in email notification
+    // Store form data in localStorage and server for later use
+    const templateData = { name: formData.template };
+    const domainData = [
+      formData.domain1 + '.com',
+      formData.domain2 + '.com', 
+      formData.domain3 + '.com'
+    ];
+    const customerData = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone
+    };
+
+    // Store in localStorage for payment step
+    localStorage.setItem('selectedTemplate', JSON.stringify(templateData));
+    localStorage.setItem('domainPreferences', JSON.stringify(domainData));
+    localStorage.setItem('customerData', JSON.stringify(customerData));
+
+    // Also store on server for email notifications
     try {
       const response = await fetch('/api/store-onboarding-data', {
         method: 'POST',
@@ -64,11 +82,7 @@ export default function WebsiteSetup() {
         body: JSON.stringify({
           email: formData.email,
           templateSelected: formData.template,
-          domainPreferences: [
-            formData.domain1 + '.com',
-            formData.domain2 + '.com', 
-            formData.domain3 + '.com'
-          ],
+          domainPreferences: domainData,
           customerInfo: {
             name: formData.name,
             phone: formData.phone

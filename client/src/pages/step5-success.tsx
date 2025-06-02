@@ -80,10 +80,7 @@ export default function Step5Success() {
                 <span>Website Development</span>
                 <span className="text-blue-600 font-medium">Starting Now</span>
               </div>
-              <div className="flex justify-between">
-                <span>Website Delivery</span>
-                <span className="text-gray-500">1-2 Business Days</span>
-              </div>
+
             </div>
           </div>
 

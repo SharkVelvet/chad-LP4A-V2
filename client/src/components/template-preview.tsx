@@ -20,7 +20,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     }
   };
 
-  if (templateSlug === "modern-business") {
+  if (templateSlug === "Template-1") {
     return (
       <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Header */}
@@ -611,7 +611,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
-  if (templateSlug === "restaurant-food") {
+  if (templateSlug === "Template-2") {
     return (
       <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Clean Header */}
@@ -1333,7 +1333,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
-  if (templateSlug === "retail-store") {
+  if (templateSlug === "Template-3") {
     return (
       <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Modern Header with Dark Background */}

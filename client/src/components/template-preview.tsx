@@ -1358,9 +1358,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Business Hero Section */}
-        <div className="relative bg-gradient-to-br from-blue-50 via-white to-gray-50 py-20">
+        <div className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 py-20">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
                 <div className="space-y-6">
                   <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
@@ -1368,25 +1368,25 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     Professional Financial Services
                   </div>
                   <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                    Secure Your
-                    <span className="text-red-600 block">Financial Success</span>
+                    Build Your
+                    <span className="text-blue-600 block">Financial Legacy</span>
                   </h1>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    Expert financial planning and investment management services designed to help you achieve your long-term financial goals with confidence and security.
+                  <p className="text-xl text-gray-600 leading-relaxed">
+                    Comprehensive financial planning and investment management designed to secure your future and create lasting wealth for generations.
                   </p>
                 </div>
                 
-                <div className="flex items-center space-x-8">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-900">15+</div>
+                <div className="grid grid-cols-3 gap-6">
+                  <div className="text-center p-4">
+                    <div className="text-3xl font-bold text-gray-900">15+</div>
                     <div className="text-sm text-gray-500">Years Experience</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-900">500+</div>
+                  <div className="text-center p-4">
+                    <div className="text-3xl font-bold text-gray-900">500+</div>
                     <div className="text-sm text-gray-500">Clients Served</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-900">$50M+</div>
+                  <div className="text-center p-4">
+                    <div className="text-3xl font-bold text-gray-900">$50M+</div>
                     <div className="text-sm text-gray-500">Assets Managed</div>
                   </div>
                 </div>
@@ -1394,29 +1394,30 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button 
                     onClick={(e) => handleSmoothScroll(e, 'contact')} 
-                    className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors shadow-lg"
+                    className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
                   >
-                    Schedule Consultation
+                    Get Free Consultation
                   </button>
                   <button 
-                    onClick={(e) => handleSmoothScroll(e, 'services')} 
-                    className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+                    onClick={(e) => handleSmoothScroll(e, 'about')} 
+                    className="border border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
                   >
-                    Our Services
+                    Learn More
                   </button>
                 </div>
               </div>
               
               <div className="relative">
-                <div className="bg-white rounded-2xl shadow-2xl p-8 border">
+                <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
                   <div className="space-y-6">
                     <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
-                        <span className="text-red-600 font-bold text-lg">JS</span>
+                      <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center">
+                        <span className="text-blue-600 font-bold text-xl">JS</span>
                       </div>
                       <div>
-                        <h3 className="font-bold text-lg text-gray-900">John Smith</h3>
+                        <h3 className="font-bold text-xl text-gray-900">John Smith</h3>
                         <p className="text-gray-600">Certified Financial Planner</p>
+                        <p className="text-sm text-blue-600 font-medium">CFP® Professional</p>
                       </div>
                     </div>
                     <div className="space-y-4">
@@ -1424,19 +1425,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                         <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                           <span className="text-green-600 text-sm">✓</span>
                         </div>
-                        <span className="text-gray-700">CFP Certified Professional</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                          <span className="text-green-600 text-sm">✓</span>
-                        </div>
-                        <span className="text-gray-700">15+ Years Experience</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                          <span className="text-green-600 text-sm">✓</span>
-                        </div>
                         <span className="text-gray-700">Fiduciary Standard</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                          <span className="text-green-600 text-sm">✓</span>
+                        </div>
+                        <span className="text-gray-700">Fee-Only Advisory</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                          <span className="text-green-600 text-sm">✓</span>
+                        </div>
+                        <span className="text-gray-700">Comprehensive Planning</span>
                       </div>
                     </div>
                   </div>
@@ -1451,35 +1452,34 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">About John Smith</h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                With over 15 years of experience in financial planning and investment management, 
-                I help individuals and businesses achieve their financial goals through personalized strategies and expert guidance.
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+                With over 15 years of experience in financial planning and investment management, John helps individuals and businesses achieve their financial goals through personalized strategies and expert guidance.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="text-center p-6">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-blue-600 text-2xl">🎯</span>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-6">
+                  <span className="text-blue-600 text-3xl">🎯</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Strategic Planning</h3>
-                <p className="text-gray-600">Comprehensive financial strategies tailored to your unique goals and circumstances.</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Strategic Planning</h3>
+                <p className="text-gray-600">Comprehensive financial strategies tailored to your unique goals and circumstances with long-term vision.</p>
               </div>
               
-              <div className="text-center p-6">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-green-600 text-2xl">📈</span>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-6">
+                  <span className="text-green-600 text-3xl">📈</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Investment Management</h3>
-                <p className="text-gray-600">Professional portfolio management designed to maximize returns while managing risk.</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Investment Management</h3>
+                <p className="text-gray-600">Professional portfolio management designed to maximize returns while effectively managing risk.</p>
               </div>
               
-              <div className="text-center p-6">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-red-600 text-2xl">🛡️</span>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-6">
+                  <span className="text-purple-600 text-3xl">🛡️</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Risk Protection</h3>
-                <p className="text-gray-600">Insurance and protection strategies to safeguard your financial future.</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Wealth Protection</h3>
+                <p className="text-gray-600">Insurance and protection strategies to safeguard your financial future and legacy.</p>
               </div>
             </div>
           </div>
@@ -1490,48 +1490,48 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Services</h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Comprehensive financial services designed to help you build, protect, and transfer wealth effectively.
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+                Comprehensive financial services designed to help you build, protect, and transfer wealth effectively across all life stages.
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                  <span className="text-blue-600 text-xl">💼</span>
+              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+                <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                  <span className="text-blue-600 text-2xl">💼</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Financial Planning</h3>
-                <p className="text-gray-600 mb-6">Comprehensive financial plans to help you achieve your short and long-term goals.</p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Retirement Planning</li>
-                  <li>• Tax Planning</li>
-                  <li>• Estate Planning</li>
+                <p className="text-gray-600 mb-6">Comprehensive financial plans to help you achieve your short and long-term goals with confidence.</p>
+                <ul className="space-y-3 text-sm text-gray-600">
+                  <li className="flex items-center"><span className="text-blue-600 mr-2">✓</span>Retirement Planning</li>
+                  <li className="flex items-center"><span className="text-blue-600 mr-2">✓</span>Tax Planning</li>
+                  <li className="flex items-center"><span className="text-blue-600 mr-2">✓</span>Estate Planning</li>
                 </ul>
               </div>
               
-              <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                  <span className="text-green-600 text-xl">📊</span>
+              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+                <div className="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-6">
+                  <span className="text-green-600 text-2xl">📊</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Investment Advisory</h3>
-                <p className="text-gray-600 mb-6">Professional investment management and advisory services.</p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Portfolio Management</li>
-                  <li>• Asset Allocation</li>
-                  <li>• Risk Assessment</li>
+                <p className="text-gray-600 mb-6">Professional investment management and advisory services tailored to your risk profile.</p>
+                <ul className="space-y-3 text-sm text-gray-600">
+                  <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>Portfolio Management</li>
+                  <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>Asset Allocation</li>
+                  <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>Risk Assessment</li>
                 </ul>
               </div>
               
-              <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                  <span className="text-red-600 text-xl">🏢</span>
+              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                  <span className="text-purple-600 text-2xl">🏢</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Business Services</h3>
-                <p className="text-gray-600 mb-6">Financial solutions for businesses and entrepreneurs.</p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Business Planning</li>
-                  <li>• Employee Benefits</li>
-                  <li>• Succession Planning</li>
+                <p className="text-gray-600 mb-6">Financial solutions for businesses and entrepreneurs to drive growth and success.</p>
+                <ul className="space-y-3 text-sm text-gray-600">
+                  <li className="flex items-center"><span className="text-purple-600 mr-2">✓</span>Business Planning</li>
+                  <li className="flex items-center"><span className="text-purple-600 mr-2">✓</span>Employee Benefits</li>
+                  <li className="flex items-center"><span className="text-purple-600 mr-2">✓</span>Succession Planning</li>
                 </ul>
               </div>
             </div>
@@ -1543,42 +1543,42 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Ready to take control of your financial future? Contact us today to schedule your complimentary consultation.
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+                Ready to take control of your financial future? Contact us today to schedule your complimentary consultation and start building your legacy.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <div className="space-y-8">
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-red-600 text-sm">📧</span>
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-blue-600 text-sm">📧</span>
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">Email</p>
+                        <p className="font-semibold text-gray-900">Email</p>
                         <p className="text-gray-600">john.smith@planright.com</p>
                       </div>
                     </div>
                     
                     <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-red-600 text-sm">📱</span>
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-blue-600 text-sm">📱</span>
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">Phone</p>
+                        <p className="font-semibold text-gray-900">Phone</p>
                         <p className="text-gray-600">(555) 123-4567</p>
                       </div>
                     </div>
                     
                     <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-red-600 text-sm">📍</span>
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-blue-600 text-sm">📍</span>
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">Address</p>
+                        <p className="font-semibold text-gray-900">Address</p>
                         <p className="text-gray-600">123 Financial District<br />Business City, BC 12345</p>
                       </div>
                     </div>
@@ -1587,53 +1587,53 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 
                 <div>
                   <h4 className="text-lg font-bold text-gray-900 mb-4">Office Hours</h4>
-                  <div className="space-y-2 text-gray-600">
+                  <div className="space-y-3 text-gray-600">
                     <div className="flex justify-between">
                       <span>Monday - Friday:</span>
-                      <span>9:00 AM - 6:00 PM</span>
+                      <span className="font-medium">9:00 AM - 6:00 PM</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Saturday:</span>
-                      <span>9:00 AM - 2:00 PM</span>
+                      <span className="font-medium">9:00 AM - 2:00 PM</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Sunday:</span>
-                      <span>Closed</span>
+                      <span className="font-medium">Closed</span>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-gray-50 rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-blue-50 to-gray-50 rounded-3xl p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
                 <form className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                      <input type="text" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" />
+                      <input type="text" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                      <input type="text" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" />
+                      <input type="text" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white" />
                     </div>
                   </div>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                    <input type="email" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" />
+                    <input type="email" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white" />
                   </div>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                    <input type="tel" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" />
+                    <input type="tel" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white" />
                   </div>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                    <textarea rows={4} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none"></textarea>
+                    <textarea rows={4} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none bg-white"></textarea>
                   </div>
                   
-                  <button type="submit" className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                  <button type="submit" className="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg">
                     Send Message
                   </button>
                 </form>
@@ -1732,38 +1732,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     </div>
   );
 }
-                    />
-                  </div>
-                </div>
-                
-                {/* Decorative element */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-red-500 to-orange-500 rounded-full opacity-20"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Why We Serve Section */}
-        <div id="why-we-serve" className="px-6 py-16 bg-white">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Why We Serve</h2>
-            <div className="grid grid-cols-3 gap-8 mb-12">
-              {[
-                {
-                  image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-                  title: "Client-Centered Approach",
-                  description: "We prioritize your unique financial goals and develop customized strategies that align with your vision for success."
-                },
-                {
-                  image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-                  title: "Financial Analysis",
-                  description: "Our expert team provides detailed financial analysis to help you make informed decisions about your business future."
-                },
-                {
-                  image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-                  title: "Investment Planning",
-                  description: "We create personalized investment strategies designed to grow your wealth while managing risk effectively."
-                }
               ].map((item, index) => (
                 <div key={index} className="text-center">
                   <div className="w-full h-48 bg-gray-200 rounded-lg mb-6 overflow-hidden">

@@ -59,9 +59,6 @@ export default function HomePage() {
           <CardTitle className="text-2xl font-bold text-gray-900">
             FOTYPE / Planright Projects
           </CardTitle>
-          <p className="text-gray-600">
-            Enter Password
-          </p>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">

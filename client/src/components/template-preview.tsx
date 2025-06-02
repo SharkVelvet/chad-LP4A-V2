@@ -1732,22 +1732,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     </div>
   );
 }
-              ].map((item, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-full h-48 bg-gray-200 rounded-lg mb-6 overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold mb-4">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* Client Testimonials */}
         <div id="testimonials" className="px-6 py-16 bg-white">

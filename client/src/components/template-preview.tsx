@@ -645,9 +645,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Hero Section - Split Layout */}
         <div className="min-h-screen bg-white">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-screen">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-screen -mx-6">
               {/* Left Content */}
-              <div className="flex items-center py-20">
+              <div className="flex items-center py-20 px-6 pr-2">
                 <div className="w-full">
                   <div className="mb-6">
                     <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-medium">
@@ -685,7 +685,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
               
               {/* Right Visual */}
-              <div className="relative flex items-center justify-center py-20">
+              <div className="relative flex items-center justify-center py-20 px-6 pl-2">
                 <div className="relative">
                   {/* Background Elements */}
                   <div className="absolute -top-10 -right-10 w-32 h-32 bg-red-100 rounded-full"></div>

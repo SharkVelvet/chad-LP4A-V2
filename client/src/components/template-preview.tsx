@@ -1732,39 +1732,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     </div>
   );
 }
-              {[
-                {
-                  name: "Sarah Johnson",
-                  title: "CEO, Tech Solutions Inc.",
-                  image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
-                },
-                {
-                  name: "Michael Chen",
-                  title: "CFO, Global Ventures",
-                  image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
-                },
-                {
-                  name: "Emily Rodriguez",
-                  title: "President, Innovate Corp",
-                  image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
-                }
-              ].map((testimonial, i) => (
-                <div key={i} className="bg-gray-50 p-6 rounded-lg">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 rounded-full mr-4 overflow-hidden">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <div className="font-semibold">{testimonial.name}</div>
-                      <div className="text-sm text-gray-500">{testimonial.title}</div>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 text-sm italic">"John's expertise in financial planning transformed our business operations and significantly improved our bottom line."</p>
-                  <div className="flex mt-4">
                     {[1,2,3,4,5].map(star => (
                       <Star key={star} className="w-4 h-4 text-yellow-500 fill-yellow-500 mr-1" />
                     ))}

@@ -109,7 +109,7 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
     },
   });
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
       toast({
@@ -119,6 +119,22 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
       });
       return;
     }
+
+    // Store onboarding data with the customer's email
+    try {
+      const templateData = localStorage.getItem('selectedTemplate');
+      const domainData = localStorage.getItem('domainPreferences');
+      
+      await apiRequest('POST', '/api/store-onboarding-data', {
+        email: email,
+        templateSelected: templateData ? JSON.parse(templateData).name : null,
+        domainPreferences: domainData ? JSON.parse(domainData) : null,
+        customerInfo: { customerName }
+      });
+    } catch (error) {
+      console.error('Failed to store onboarding data:', error);
+    }
+
     createSubscriptionMutation.mutate();
   };
 

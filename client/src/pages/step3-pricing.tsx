@@ -84,7 +84,7 @@ export default function Step3Pricing() {
                 <span className="font-semibold">12-Month Contract</span>
               </div>
               <p className="text-sm text-gray-600">
-                Total investment: $38 (first month) + $198 (11 months × $18) = <strong>$236 for the full year</strong>
+                Total investment: $38 (first month) + $18 every month after first.
               </p>
             </div>
           </CardContent>

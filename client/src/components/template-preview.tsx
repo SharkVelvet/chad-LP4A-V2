@@ -12,7 +12,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     }
   };
 
-  if (templateSlug === "financial-services") {
+  if (templateSlug === "modern-business") {
     return (
       <div className={`bg-white ${className}`}>
         {/* Header */}

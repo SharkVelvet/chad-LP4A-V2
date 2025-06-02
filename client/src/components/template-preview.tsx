@@ -543,7 +543,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </button>
               </div>
               <div className="relative">
-                <div className="w-full h-96 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-none"></div>
+                <div className="w-full h-96 bg-gradient-to-br from-emerald-50 to-teal-50"></div>
                 <img 
                   src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                   alt="Financial Growth" 
@@ -624,119 +624,100 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-24 bg-gray-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="testimonials" className="py-24 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-20">
-              <h2 className="text-5xl font-bold mb-6 text-white">Client Excellence</h2>
-              <p className="text-xl text-gray-400">Testimonials from industry leaders and successful entrepreneurs</p>
+              <h2 className="text-4xl font-light text-gray-900 mb-6">What Clients Say</h2>
+              <p className="text-lg text-gray-600 font-light">Honest feedback from people we've helped</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-10 rounded-2xl border border-gray-700">
-                <div className="flex items-center mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="bg-white p-8 shadow-sm">
+                <div className="flex items-center mb-6">
                   <img 
                     src="https://images.unsplash.com/photo-1494790108755-2616b332647c?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
                     alt="Sarah Johnson" 
-                    className="w-20 h-20 rounded-full object-cover mr-6 border-2 border-amber-500"
+                    className="w-16 h-16 rounded-full object-cover mr-4"
                   />
                   <div>
-                    <div className="font-bold text-white text-lg">Sarah Johnson</div>
-                    <div className="text-amber-400 font-semibold">CEO, TechStart Inc.</div>
-                    <div className="text-gray-400 text-sm">$50M+ Revenue</div>
+                    <div className="font-light text-gray-900">Sarah Johnson</div>
+                    <div className="text-emerald-600 text-sm font-light">CEO, TechStart Inc.</div>
                   </div>
                 </div>
-                <p className="text-gray-300 italic text-lg mb-6 leading-relaxed">"John's sophisticated investment strategies generated 45% returns while other advisors delivered single digits. His expertise in alternative investments is exceptional."</p>
-                <div className="flex text-amber-400 text-xl">★★★★★</div>
+                <p className="text-gray-600 font-light leading-relaxed">"John's straightforward approach helped us understand our options clearly. His advice has been invaluable for our financial planning."</p>
               </div>
-              <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-10 rounded-2xl border border-gray-700">
-                <div className="flex items-center mb-8">
+              <div className="bg-white p-8 shadow-sm">
+                <div className="flex items-center mb-6">
                   <img 
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
                     alt="Michael Chen" 
-                    className="w-20 h-20 rounded-full object-cover mr-6 border-2 border-amber-500"
+                    className="w-16 h-16 rounded-full object-cover mr-4"
                   />
                   <div>
-                    <div className="font-bold text-white text-lg">Michael Chen</div>
-                    <div className="text-amber-400 font-semibold">CFO, Global Ventures</div>
-                    <div className="text-gray-400 text-sm">Fortune 500</div>
+                    <div className="font-light text-gray-900">Michael Chen</div>
+                    <div className="text-emerald-600 text-sm font-light">CFO, Global Ventures</div>
                   </div>
                 </div>
-                <p className="text-gray-300 italic text-lg mb-6 leading-relaxed">"The level of service and strategic thinking John provides is unmatched. Our corporate treasury management has never been more efficient."</p>
-                <div className="flex text-amber-400 text-xl">★★★★★</div>
+                <p className="text-gray-600 font-light leading-relaxed">"Working with John feels like having a trusted friend who happens to be excellent with finances. He explains everything clearly."</p>
               </div>
-              <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-10 rounded-2xl border border-gray-700">
-                <div className="flex items-center mb-8">
+              <div className="bg-white p-8 shadow-sm">
+                <div className="flex items-center mb-6">
                   <img 
                     src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
                     alt="Emily Rodriguez" 
-                    className="w-20 h-20 rounded-full object-cover mr-6 border-2 border-amber-500"
+                    className="w-16 h-16 rounded-full object-cover mr-4"
                   />
                   <div>
-                    <div className="font-bold text-white text-lg">Emily Rodriguez</div>
-                    <div className="text-amber-400 font-semibold">Founder, Innovate Corp</div>
-                    <div className="text-gray-400 text-sm">$100M+ Valuation</div>
+                    <div className="font-light text-gray-900">Emily Rodriguez</div>
+                    <div className="text-emerald-600 text-sm font-light">President, Innovate Corp</div>
                   </div>
                 </div>
-                <p className="text-gray-300 italic text-lg mb-6 leading-relaxed">"John structured our exit strategy that resulted in a 10x return. His network and market insights are invaluable for serious entrepreneurs."</p>
-                <div className="flex text-amber-400 text-xl">★★★★★</div>
+                <p className="text-gray-600 font-light leading-relaxed">"John's patient guidance helped us navigate complex financial decisions with confidence. Highly recommend his services."</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="contact" className="py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-20">
-              <h2 className="text-5xl font-bold mb-6 text-white">Exclusive Access</h2>
-              <p className="text-xl text-gray-400">Schedule a private consultation to discuss your wealth management needs</p>
+              <h2 className="text-4xl font-light text-gray-900 mb-6">Get In Touch</h2>
+              <p className="text-lg text-gray-600 font-light">Ready to start your financial journey?</p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <div>
-                <h3 className="text-3xl font-bold mb-8 text-white">Executive Office</h3>
+                <h3 className="text-2xl font-light text-gray-900 mb-8">Contact Information</h3>
                 <div className="space-y-6">
                   <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg mr-6"></div>
-                    <span className="text-gray-300 text-lg">john.smith@financialexpert.com</span>
+                    <div className="w-6 h-6 bg-emerald-600 rounded mr-6"></div>
+                    <span className="text-gray-600 font-light">john.smith@financialexpert.com</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg mr-6"></div>
-                    <span className="text-gray-300 text-lg">(555) 123-4567</span>
+                    <div className="w-6 h-6 bg-emerald-600 rounded mr-6"></div>
+                    <span className="text-gray-600 font-light">(555) 123-4567</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg mr-6"></div>
-                    <span className="text-gray-300 text-lg">123 Financial District, Penthouse Suite, New York, NY 10004</span>
+                    <div className="w-6 h-6 bg-emerald-600 rounded mr-6"></div>
+                    <span className="text-gray-600 font-light">123 Financial District, Suite 100, New York, NY 10004</span>
                   </div>
-                </div>
-                <div className="mt-12 p-8 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-2xl border border-amber-500/20">
-                  <h4 className="text-xl font-bold text-amber-400 mb-4">Minimum Investment</h4>
-                  <p className="text-gray-300">$5M minimum for private wealth management services</p>
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-10 rounded-2xl border border-gray-700">
+              <div>
                 <form className="space-y-6">
                   <div>
-                    <input type="text" placeholder="Full Name" className="w-full px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-amber-500 focus:outline-none text-lg" />
+                    <input type="text" placeholder="Your Name" className="w-full px-4 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-emerald-600 focus:border-transparent font-light" />
                   </div>
                   <div>
-                    <input type="email" placeholder="Email Address" className="w-full px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-amber-500 focus:outline-none text-lg" />
+                    <input type="email" placeholder="Your Email" className="w-full px-4 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-emerald-600 focus:border-transparent font-light" />
                   </div>
                   <div>
-                    <input type="tel" placeholder="Phone Number" className="w-full px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-amber-500 focus:outline-none text-lg" />
+                    <input type="text" placeholder="Subject" className="w-full px-4 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-emerald-600 focus:border-transparent font-light" />
                   </div>
                   <div>
-                    <select className="w-full px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-amber-500 focus:outline-none text-lg">
-                      <option value="">Investment Portfolio Size</option>
-                      <option value="5-10m">$5M - $10M</option>
-                      <option value="10-25m">$10M - $25M</option>
-                      <option value="25-50m">$25M - $50M</option>
-                      <option value="50m+">$50M+</option>
-                    </select>
+                    <textarea rows={4} placeholder="Your Message" className="w-full px-4 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-emerald-600 focus:border-transparent resize-none font-light"></textarea>
                   </div>
-                  <div>
-                    <textarea rows={4} placeholder="Brief overview of your investment goals" className="w-full px-6 py-4 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-amber-500 focus:outline-none resize-none text-lg"></textarea>
-                  </div>
-                  <button type="submit" className="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black py-4 rounded-lg hover:from-amber-400 hover:to-orange-500 transition-all font-bold text-lg shadow-2xl">
-                    Request Private Consultation
+                  <button type="submit" className="w-full bg-emerald-600 text-white py-3 rounded hover:bg-emerald-700 transition-colors font-light">
+                    Send Message
                   </button>
                 </form>
               </div>
@@ -745,14 +726,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </section>
 
         {/* Footer */}
-        <footer className="bg-black border-t border-gray-800 py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <footer className="bg-white border-t py-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="text-gray-400 mb-4 md:mb-0 text-lg">
-                © 2024 Smith Financial. All rights reserved. | Licensed Investment Advisor
+              <div className="text-gray-600 mb-4 md:mb-0 font-light">
+                © 2024 Smith Financial. All rights reserved.
               </div>
-              <div className="text-gray-400 text-lg">
-                Powered by <span className="font-semibold text-amber-400">Plan|right</span>
+              <div className="text-gray-600 font-light">
+                Powered by <span className="font-semibold">Plan|right</span>
               </div>
             </div>
           </div>

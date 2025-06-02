@@ -8,6 +8,7 @@ import {
   insertWebsiteContentSchema, 
   insertFormSubmissionSchema 
 } from "@shared/schema";
+import { sendCustomerNotification } from "./email";
 
 // Initialize Stripe only if the secret key is available
 let stripe: Stripe | null = null;
@@ -182,6 +183,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Store customer onboarding data
+  app.post('/api/store-onboarding-data', async (req, res) => {
+    const { email, templateSelected, domainPreferences, customerInfo } = req.body;
+    
+    // Store this data temporarily (you could use a simple in-memory store or database)
+    // For now, we'll store it in a simple object
+    if (!global.onboardingData) {
+      global.onboardingData = new Map();
+    }
+    
+    global.onboardingData.set(email, {
+      templateSelected,
+      domainPreferences,
+      customerInfo,
+      timestamp: new Date(),
+    });
+    
+    res.json({ success: true });
+  });
+
   // Stripe subscription route for guest checkout
   app.post('/api/create-subscription', async (req, res) => {
     const { email, customerName } = req.body;
@@ -239,6 +260,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
         trial_end: Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60), // Start billing in 30 days
       });
       
+      // Get stored onboarding data and send customer notification email
+      try {
+        const onboardingData = global.onboardingData?.get(email) || {};
+        
+        await sendCustomerNotification({
+          email: email,
+          customerName: customerName,
+          templateSelected: onboardingData.templateSelected,
+          domainPreferences: onboardingData.domainPreferences,
+          paymentAmount: 3800, // $38 first month
+          subscriptionId: subscription.id,
+          customerInfo: onboardingData.customerInfo,
+        });
+        
+        // Clean up stored data after sending notification
+        if (global.onboardingData) {
+          global.onboardingData.delete(email);
+        }
+      } catch (emailError) {
+        console.error('Failed to send notification email:', emailError);
+        // Don't fail the payment if email fails
+      }
+
       res.send({
         subscriptionId: subscription.id,
         clientSecret: paymentIntent.client_secret,

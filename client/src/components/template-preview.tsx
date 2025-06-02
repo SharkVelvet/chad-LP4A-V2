@@ -615,9 +615,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     return (
       <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Clean Header */}
-        <div className="bg-white shadow-sm px-6 py-4 sticky top-0 z-50">
+        <div className="bg-white shadow-sm px-4 sm:px-6 py-4 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <div className="font-bold text-2xl">
+            <div className="font-bold text-lg sm:text-2xl">
               <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-gray-900">right</span>
             </div>
             <nav className="hidden lg:flex space-x-8">
@@ -627,16 +627,16 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <a href="#why-we-serve" onClick={(e) => handleSmoothScroll(e, 'why-we-serve')} className="text-gray-700 hover:text-red-600 font-medium transition-colors">Why We Serve</a>
               <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="text-gray-700 hover:text-red-600 font-medium transition-colors">Testimonials</a>
             </nav>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <div className="hidden md:flex items-center text-sm text-gray-600">
                 <Phone className="w-4 h-4 mr-1" />
                 (555) 123-4567
               </div>
               <button 
                 onClick={(e) => handleSmoothScroll(e, 'contact')} 
-                className="bg-red-600 text-white px-6 py-2 rounded font-medium hover:bg-red-700 transition-colors"
+                className="bg-red-600 text-white px-3 sm:px-6 py-2 rounded font-medium hover:bg-red-700 transition-colors text-sm sm:text-base"
               >
-                Contact Us
+                Contact
               </button>
             </div>
           </div>
@@ -644,10 +644,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Hero Section - Split Layout */}
         <div className="min-h-screen bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-screen -mx-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-screen -mx-4 sm:-mx-6">
               {/* Left Content */}
-              <div className="flex items-center py-20 px-6 pr-2">
+              <div className="flex items-center py-12 sm:py-20 px-4 sm:px-6 pr-2">
                 <div className="w-full">
                   <div className="mb-6">
                     <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-medium">
@@ -1323,12 +1323,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     return (
       <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Modern Header with Dark Background */}
-        <div className="bg-gray-900 text-white px-6 py-4 sticky top-0 z-50 shadow-lg">
+        <div className="bg-gray-900 text-white px-4 sm:px-6 py-4 sticky top-0 z-50 shadow-lg">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <div className="font-bold text-2xl">
+            <div className="font-bold text-lg sm:text-2xl">
               <span className="text-red-500">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-white">right</span>
             </div>
-            <div className="flex items-center space-x-8">
+            <div className="flex items-center space-x-4 sm:space-x-8">
               <nav className="hidden md:flex space-x-6 text-sm">
                 <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-red-500 cursor-pointer transition-colors font-medium">Home</a>
                 <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-500 cursor-pointer transition-colors font-medium">About</a>
@@ -1338,9 +1338,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </nav>
               <button 
                 onClick={(e) => handleSmoothScroll(e, 'contact')} 
-                className="bg-red-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg"
+                className="bg-red-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-full font-semibold hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg text-sm sm:text-base"
               >
-                Contact Us
+                Contact
               </button>
             </div>
           </div>
@@ -1355,9 +1355,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
           </div>
           
-          <div className="relative max-w-7xl mx-auto px-6 py-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="text-gray-900 space-y-8">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <div className="text-gray-900 space-y-6 sm:space-y-8 text-center lg:text-left">
                 <div className="space-y-4">
                   <div className="inline-flex items-center px-4 py-2 bg-red-100 border border-red-200 rounded-full text-red-600 text-sm font-medium">
                     <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>

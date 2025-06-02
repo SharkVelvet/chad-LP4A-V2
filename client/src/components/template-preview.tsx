@@ -1732,58 +1732,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     </div>
   );
 }
-                    
-                    <div className="bg-gray-50 rounded-2xl p-6 hover:bg-red-50 transition-colors">
-                      <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
-                        <Users className="w-6 h-6 text-red-600" />
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">500+ Clients Served</h3>
-                      <p className="text-sm text-gray-600">Trusted by individuals and businesses</p>
-                    </div>
-                    
-                    <div className="bg-gray-50 rounded-2xl p-6 hover:bg-red-50 transition-colors">
-                      <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
-                        <Award className="w-6 h-6 text-red-600" />
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Industry Recognition</h3>
-                      <p className="text-sm text-gray-600">Award-winning financial expertise</p>
-                    </div>
-                    
-                    <div className="bg-gray-50 rounded-2xl p-6 hover:bg-red-50 transition-colors">
-                      <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
-                        <Shield className="w-6 h-6 text-red-600" />
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">CFP Certified</h3>
-                      <p className="text-sm text-gray-600">Certified Financial Planner professional</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="relative">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-4">
-                    <img 
-                      src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                      alt="Professional consultation" 
-                      className="w-full h-48 object-cover rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
-                    />
-                    <img 
-                      src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                      alt="Business meeting" 
-                      className="w-full h-32 object-cover rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
-                    />
-                  </div>
-                  <div className="space-y-4 pt-8">
-                    <img 
-                      src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                      alt="Financial planning session" 
-                      className="w-full h-32 object-cover rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
-                    />
-                    <img 
-                      src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                      alt="Strategic analysis" 
-                      className="w-full h-48 object-cover rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
                     />
                   </div>
                 </div>

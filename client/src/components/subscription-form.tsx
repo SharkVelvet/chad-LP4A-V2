@@ -44,7 +44,7 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName }: {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/dashboard`,
+        return_url: `${window.location.origin}/step5-success`,
       },
       redirect: "if_required",
     });

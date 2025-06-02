@@ -14,7 +14,7 @@ export default function Step4Payment() {
   };
 
   const handlePaymentSuccess = () => {
-    navigate("/dashboard");
+    navigate("/step5-success");
   };
 
   return (

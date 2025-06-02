@@ -277,12 +277,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Get stored onboarding data and send customer notification email
       try {
         const onboardingData = global.onboardingData?.get(email) || {};
+        console.log('Retrieved onboarding data for email:', email, onboardingData);
         
         const customerData = {
           email: email,
           customerName: customerName,
-          templateSelected: onboardingData.templateSelected,
-          domainPreferences: onboardingData.domainPreferences,
+          templateSelected: onboardingData.templateSelected || 'Not specified',
+          domainPreferences: onboardingData.domainPreferences || [],
           paymentAmount: 38, // $38 first month
           subscriptionId: subscription.id,
           customerInfo: onboardingData.customerInfo,

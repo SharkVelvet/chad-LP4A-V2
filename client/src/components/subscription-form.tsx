@@ -5,6 +5,8 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
 if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
@@ -19,7 +21,12 @@ interface SubscriptionFormProps {
   isLoading: boolean;
 }
 
-function CheckoutForm({ onSuccess, isLoading }: { onSuccess: () => void; isLoading: boolean }) {
+function CheckoutForm({ onSuccess, isLoading, email, customerName }: { 
+  onSuccess: () => void; 
+  isLoading: boolean;
+  email: string;
+  customerName: string;
+}) {
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
@@ -75,15 +82,23 @@ function CheckoutForm({ onSuccess, isLoading }: { onSuccess: () => void; isLoadi
 
 export default function SubscriptionForm({ plan, onSuccess, isLoading }: SubscriptionFormProps) {
   const [clientSecret, setClientSecret] = useState("");
+  const [email, setEmail] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [showPayment, setShowPayment] = useState(false);
   const { toast } = useToast();
 
   const createSubscriptionMutation = useMutation({
     mutationFn: async () => {
-      const res = await apiRequest("POST", "/api/create-subscription", { plan });
+      const res = await apiRequest("POST", "/api/create-subscription", { 
+        plan, 
+        email,
+        customerName 
+      });
       return res.json();
     },
     onSuccess: (data) => {
       setClientSecret(data.clientSecret);
+      setShowPayment(true);
     },
     onError: (error: any) => {
       toast({
@@ -94,10 +109,64 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
     },
   });
 
-  // Create subscription when component mounts
-  React.useEffect(() => {
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      toast({
+        title: "Email Required",
+        description: "Please enter your email for receipts",
+        variant: "destructive",
+      });
+      return;
+    }
     createSubscriptionMutation.mutate();
-  }, []);
+  };
+
+  if (!showPayment) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Contact Information</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Enter your email to receive receipts and billing information
+          </p>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleEmailSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="email">Email Address *</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="name">Full Name (Optional)</Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Enter your full name"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+              />
+            </div>
+            <Button 
+              type="submit" 
+              className="w-full" 
+              size="lg"
+              disabled={createSubscriptionMutation.isPending}
+            >
+              {createSubscriptionMutation.isPending ? "Setting up..." : "Continue to Payment"}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    );
+  }
 
   if (!clientSecret) {
     return (
@@ -129,7 +198,12 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
             },
           }}
         >
-          <CheckoutForm onSuccess={onSuccess} isLoading={isLoading} />
+          <CheckoutForm 
+            onSuccess={onSuccess} 
+            isLoading={isLoading}
+            email={email}
+            customerName={customerName}
+          />
         </Elements>
       </CardContent>
     </Card>

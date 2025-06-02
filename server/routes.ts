@@ -182,45 +182,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Stripe subscription route
+  // Stripe subscription route for guest checkout
   app.post('/api/create-subscription', async (req, res) => {
-    if (!req.isAuthenticated()) {
-      return res.sendStatus(401);
-    }
-
     if (!stripe) {
       return res.status(500).json({ 
         error: { message: 'Payment processing not configured. Please contact support.' } 
       });
     }
 
-    let user = req.user;
-
-    if (user.stripeSubscriptionId) {
-      try {
-        const subscription = await stripe.subscriptions.retrieve(user.stripeSubscriptionId);
-        const invoice = subscription.latest_invoice;
-        
-        res.send({
-          subscriptionId: subscription.id,
-          clientSecret: typeof invoice === 'object' && invoice?.payment_intent && 
-            typeof invoice.payment_intent === 'object' ? 
-            invoice.payment_intent.client_secret : null,
-        });
-        return;
-      } catch (error: any) {
-        return res.status(400).send({ error: { message: error.message } });
-      }
-    }
+    const { email, customerName } = req.body;
     
-    if (!user.email) {
-      return res.status(400).json({ error: { message: 'No user email on file' } });
+    if (!email) {
+      return res.status(400).json({ error: { message: 'Email is required for receipts' } });
     }
 
     try {
       const customer = await stripe.customers.create({
-        email: user.email,
-        name: user.username,
+        email: email,
+        name: customerName || 'Website Customer',
       });
 
       // Create payment intent for first month ($38)
@@ -229,9 +208,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         currency: 'usd',
         customer: customer.id,
         description: 'Planright first month - Website setup and hosting',
+        receipt_email: email,
         metadata: {
           type: 'first_month_payment',
-          userId: user.id.toString(),
+          customer_email: email,
         },
       });
 
@@ -241,7 +221,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         items: [{
           price_data: {
             currency: 'usd',
-            product: {
+            product_data: {
               name: 'Planright Website Service',
               description: 'Monthly website hosting and domain management',
             },
@@ -253,8 +233,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }],
         trial_end: Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60), // Start billing in 30 days
       });
-
-      await storage.updateUserStripeInfo(user.id, customer.id, subscription.id);
       
       res.send({
         subscriptionId: subscription.id,

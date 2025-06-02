@@ -60,7 +60,7 @@ export default function HomePage() {
             FOTYPE / Planright Projects
           </CardTitle>
           <p className="text-gray-600">
-            Enter password to access the website builder
+            Enter Password
           </p>
         </CardHeader>
         <CardContent>

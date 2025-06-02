@@ -24,6 +24,70 @@ interface CustomerData {
   customerInfo?: any;
 }
 
+export async function sendCustomerReceipt(customerData: CustomerData) {
+  const {
+    email,
+    customerName,
+    templateSelected,
+    domainPreferences,
+    paymentAmount,
+    subscriptionId
+  } = customerData;
+
+  const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #dc2626; border-bottom: 2px solid #dc2626; padding-bottom: 10px;">
+        Payment Confirmation - Welcome to Planright!
+      </h2>
+      
+      <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #374151; margin-top: 0;">Thank you for your purchase!</h3>
+        <p style="color: #6b7280;">Your website setup is now in progress. Here are your order details:</p>
+      </div>
+
+      <div style="background-color: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; margin: 20px 0;">
+        <h4 style="color: #374151; margin-top: 0;">Order Summary</h4>
+        <p><strong>Customer:</strong> ${customerName || 'N/A'}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Template Selected:</strong> ${templateSelected || 'N/A'}</p>
+        <p><strong>Domain Preferences:</strong> ${domainPreferences?.join(', ') || 'N/A'}</p>
+        <p><strong>Amount Paid:</strong> $${paymentAmount}</p>
+        ${subscriptionId ? `<p><strong>Subscription ID:</strong> ${subscriptionId}</p>` : ''}
+      </div>
+
+      <div style="background-color: #dcfce7; border: 1px solid #16a34a; border-radius: 8px; padding: 20px; margin: 20px 0;">
+        <h4 style="color: #15803d; margin-top: 0;">What happens next?</h4>
+        <ul style="color: #374151; margin: 10px 0; padding-left: 20px;">
+          <li>Our team will review your requirements</li>
+          <li>Your website will be set up using your selected template</li>
+          <li>You'll receive updates on the progress</li>
+          <li>Your website will be ready within 1-2 business days</li>
+        </ul>
+      </div>
+
+      <div style="text-align: center; padding: 20px; color: #6b7280; font-size: 14px;">
+        <p>Questions? Reply to this email or contact our support team.</p>
+        <p>Thank you for choosing Planright!</p>
+      </div>
+    </div>
+  `;
+
+  try {
+    await transporter.sendMail({
+      from: process.env.SMTP_USER,
+      to: email,
+      subject: 'Payment Confirmation - Your Website Setup is Starting!',
+      html: htmlContent,
+    });
+
+    console.log('Customer receipt sent successfully to:', email);
+    return true;
+  } catch (error) {
+    console.error('Error sending customer receipt:', error);
+    return false;
+  }
+}
+
 export async function sendCustomerNotification(customerData: CustomerData) {
   if (!process.env.NOTIFICATION_EMAIL) {
     console.error('NOTIFICATION_EMAIL not configured');

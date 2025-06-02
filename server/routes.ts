@@ -8,7 +8,7 @@ import {
   insertWebsiteContentSchema, 
   insertFormSubmissionSchema 
 } from "@shared/schema";
-import { sendCustomerNotification, testEmailConnection } from "./email";
+import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection } from "./email";
 
 // Initialize Stripe only if the secret key is available
 let stripe: Stripe | null = null;
@@ -278,15 +278,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       try {
         const onboardingData = global.onboardingData?.get(email) || {};
         
-        await sendCustomerNotification({
+        const customerData = {
           email: email,
           customerName: customerName,
           templateSelected: onboardingData.templateSelected,
           domainPreferences: onboardingData.domainPreferences,
-          paymentAmount: 3800, // $38 first month
+          paymentAmount: 38, // $38 first month
           subscriptionId: subscription.id,
           customerInfo: onboardingData.customerInfo,
-        });
+        };
+
+        // Send notification to business owner
+        await sendCustomerNotification(customerData);
+        
+        // Send receipt to customer
+        await sendCustomerReceipt(customerData);
         
         // Clean up stored data after sending notification
         if (global.onboardingData) {

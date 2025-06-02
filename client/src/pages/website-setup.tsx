@@ -88,7 +88,7 @@ export default function WebsiteSetup() {
   };
 
   const handleGoBack = () => {
-    navigate("/templates");
+    navigate("/template-selection");
   };
 
   return (

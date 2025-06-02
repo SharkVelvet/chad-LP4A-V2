@@ -120,20 +120,7 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
       return;
     }
 
-    // Store onboarding data with the customer's email
-    try {
-      const templateData = localStorage.getItem('selectedTemplate');
-      const domainData = localStorage.getItem('domainPreferences');
-      
-      await apiRequest('POST', '/api/store-onboarding-data', {
-        email: email,
-        templateSelected: templateData ? JSON.parse(templateData).name : null,
-        domainPreferences: domainData ? JSON.parse(domainData) : null,
-        customerInfo: { customerName }
-      });
-    } catch (error) {
-      console.error('Failed to store onboarding data:', error);
-    }
+    // Data was already stored in Step 2, no need to overwrite it here
 
     createSubscriptionMutation.mutate();
   };

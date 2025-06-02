@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -38,12 +38,41 @@ export default function WebsiteSetup() {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here we would submit the form data
     console.log("Form submitted:", formData);
-    // Navigate to next step (step 3)
-    navigate("/step3");
+    
+    // Store onboarding data for later use in email notification
+    try {
+      const response = await fetch('/api/store-onboarding-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          templateSelected: formData.template,
+          domainPreferences: [
+            formData.domain1 + '.com',
+            formData.domain2 + '.com', 
+            formData.domain3 + '.com'
+          ],
+          customerInfo: {
+            name: formData.name,
+            phone: formData.phone
+          }
+        }),
+      });
+      
+      if (response.ok) {
+        // Navigate to next step (step 3)
+        navigate("/step3");
+      } else {
+        console.error('Failed to store onboarding data');
+      }
+    } catch (error) {
+      console.error('Error storing onboarding data:', error);
+    }
   };
 
   const handleGoBack = () => {

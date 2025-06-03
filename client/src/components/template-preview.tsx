@@ -46,7 +46,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Hero Section with Business Background */}
-        <div id="hero" className="relative h-screen bg-cover bg-center bg-no-repeat" style={{
+        <div id="hero" className="relative h-[80vh] bg-cover bg-center bg-no-repeat" style={{
           backgroundImage: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")'
         }}>
           <div className="absolute inset-0 flex items-center">

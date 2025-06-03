@@ -50,7 +50,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           backgroundImage: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")'
         }}>
           <div className="absolute inset-0 flex items-center">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center w-full">
               <div className="text-white text-center lg:text-left">
                 <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 leading-tight">John Smith</h1>
                 <p className="text-lg sm:text-xl lg:text-2xl mb-2 text-white">President of Financial Services</p>

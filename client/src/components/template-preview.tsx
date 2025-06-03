@@ -532,7 +532,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-900">Email</h4>
-                        <p className="text-gray-600">john@planright.com<br/>info@planright.com</p>
+                        <p className="text-gray-600">sara@planright.com<br/>info@planright.com</p>
                       </div>
                     </div>
                   </div>
@@ -1176,7 +1176,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-900">Email</h4>
-                        <p className="text-gray-600">john@planright.com<br/>info@planright.com</p>
+                        <p className="text-gray-600">sara@planright.com<br/>info@planright.com</p>
                       </div>
                     </div>
                   </div>
@@ -1786,7 +1786,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-900">Email</h4>
-                        <p className="text-gray-600">john@planright.com<br/>info@planright.com</p>
+                        <p className="text-gray-600">sara@planright.com<br/>info@planright.com</p>
                       </div>
                     </div>
                   </div>

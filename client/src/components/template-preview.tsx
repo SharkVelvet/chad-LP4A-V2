@@ -1358,9 +1358,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full text-red-600 text-sm font-medium mb-4">
                 Meet Our Expert
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">About John Smith</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">About Sarah Johnson</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
+                With over 15 years of experience in financial services and procurement, Sarah Johnson has established herself as a leading expert in strategic financial planning and business optimization.
               </p>
             </div>
             
@@ -1368,7 +1368,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="space-y-8">
                 <div className="space-y-4 sm:space-y-6">
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
+                    Her comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

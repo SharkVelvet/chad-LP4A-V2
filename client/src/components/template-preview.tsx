@@ -4,6 +4,7 @@ import temp1Image from "@assets/temp1-pr.jpg";
 import temp2Image from "@assets/temp2-pr.jpg";
 import temp3Image from "@assets/temp3-pr.jpg";
 import temp4Image from "@assets/temp4-pr.jpg";
+import template1HeroImg from "@assets/tempalte1-hero.jpg";
 
 interface TemplatePreviewProps {
   templateSlug: string;
@@ -47,7 +48,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Hero Section with Business Background */}
         <div id="hero" className="relative h-[80vh] bg-cover bg-center bg-no-repeat" style={{
-          backgroundImage: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("/attached_assets/tempalte1-hero.jpg")'
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${template1HeroImg})`
         }}>
           <div className="absolute inset-0 flex items-center">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center w-full">

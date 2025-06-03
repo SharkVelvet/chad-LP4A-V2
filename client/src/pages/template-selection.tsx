@@ -46,6 +46,16 @@ export default function TemplateSelection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Step Indicator */}
+        <div className="mb-8">
+          <div className="text-center">
+            <p className="text-sm font-medium text-gray-500 mb-2">Step 1 of 5</p>
+            <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+              <div className="bg-blue-600 h-2 rounded-full" style={{ width: '20%' }}></div>
+            </div>
+          </div>
+        </div>
+
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Choose Your Template</h1>

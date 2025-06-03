@@ -569,7 +569,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <span className="text-gray-400 font-thin mx-1">|</span>
                 <span className="text-white">right</span>
               </div>
-              <p className="text-gray-400 text-sm">Professional financial services and procurement solutions for modern businesses.</p>
+              <p className="text-gray-400 text-sm">Building Agents. Growing Futures.</p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Services</h4>
@@ -1213,7 +1213,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <span className="text-gray-400 font-thin mx-1">|</span>
                 <span className="text-white">right</span>
               </div>
-              <p className="text-gray-400 text-sm">Professional financial services and procurement solutions for modern businesses.</p>
+              <p className="text-gray-400 text-sm">Building Agents. Growing Futures.</p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Services</h4>
@@ -1823,7 +1823,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <span className="text-gray-400 font-thin mx-1">|</span>
                 <span className="text-white">right</span>
               </div>
-              <p className="text-gray-400 text-sm">Professional financial services and procurement solutions for modern businesses.</p>
+              <p className="text-gray-400 text-sm">Building Agents. Growing Futures.</p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Services</h4>

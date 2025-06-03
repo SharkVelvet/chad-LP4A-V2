@@ -68,17 +68,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
               <div className="flex justify-center">
                 <div className="relative">
-                  <div className="w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                  <div className="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
                     <img 
                       src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                       alt="John Smith" 
                       className="w-full h-full object-cover"
                     />
-                  </div>
-                  <div className="absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 bg-white rounded-full p-2 sm:p-4 shadow-lg">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-red-600 rounded-full flex items-center justify-center">
-                      <span className="text-white text-lg sm:text-2xl font-bold">JS</span>
-                    </div>
                   </div>
                 </div>
               </div>

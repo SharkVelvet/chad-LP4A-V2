@@ -66,7 +66,7 @@ export default function TemplateSelection() {
 
         {/* Templates Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {templates?.map((template) => (
+          {templates?.sort((a, b) => a.id - b.id).map((template) => (
             <TemplateCard 
               key={template.id} 
               template={template}

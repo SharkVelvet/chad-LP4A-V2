@@ -194,7 +194,7 @@ export default function WebsiteSetup() {
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                  {templates?.map((template) => (
+                  {templates?.sort((a, b) => a.id - b.id).map((template) => (
                     <div key={template.id} className="flex flex-col items-center p-4 border rounded-lg">
                       <img
                         src={template.previewImage}

@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import express from "express";
 import { storage } from "./storage";
 import { setupAuth } from "./auth";
 import Stripe from "stripe";
@@ -18,6 +19,9 @@ if (process.env.STRIPE_SECRET_KEY) {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Serve attached assets
+  app.use('/attached_assets', express.static('attached_assets'));
+
   // Setup authentication routes
   setupAuth(app);
 

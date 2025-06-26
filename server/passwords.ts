@@ -104,7 +104,8 @@ const validPasswords = [
   "C5qW8eR1tY4uI7oP",
   "V9eR2tY5uI8oP1lK",
   "B3tY6uI9oP2lK5jH",
-  "N7uI1oP4lK8jH2fD"
+  "N7uI1oP4lK8jH2fD",
+  "AgentPage"
 ];
 
 export function validatePassword(password: string): boolean {

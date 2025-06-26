@@ -37,34 +37,69 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  const server = await registerRoutes(app);
+  try {
+    const server = await registerRoutes(app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
+    app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+      const status = err.status || err.statusCode || 500;
+      const message = err.message || "Internal Server Error";
 
-    res.status(status).json({ message });
-    throw err;
-  });
+      res.status(status).json({ message });
+      if (process.env.NODE_ENV === "development") {
+        console.error(err);
+      }
+    });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
-    await setupVite(app, server);
-  } else {
-    serveStatic(app);
+    // Set NODE_ENV to production if not already set
+    if (!process.env.NODE_ENV) {
+      process.env.NODE_ENV = "production";
+    }
+
+    // Setup vite in development, serve static files in production
+    if (process.env.NODE_ENV === "development") {
+      await setupVite(app, server);
+    } else {
+      serveStatic(app);
+    }
+
+    // Server configuration for deployment compatibility
+    const port = process.env.PORT || 5000;
+    const host = process.env.HOST || "0.0.0.0";
+
+    server.listen(port, host, () => {
+      log(`serving on ${host}:${port} (NODE_ENV: ${process.env.NODE_ENV})`);
+    });
+
+    // Handle server startup errors
+    server.on('error', (err: any) => {
+      if (err.code === 'EADDRINUSE') {
+        log(`Port ${port} is already in use`);
+        process.exit(1);
+      } else {
+        log(`Server error: ${err.message}`);
+        process.exit(1);
+      }
+    });
+
+    // Graceful shutdown handling
+    process.on('SIGTERM', () => {
+      log('SIGTERM received, shutting down gracefully');
+      server.close(() => {
+        log('Process terminated');
+        process.exit(0);
+      });
+    });
+
+    process.on('SIGINT', () => {
+      log('SIGINT received, shutting down gracefully');
+      server.close(() => {
+        log('Process terminated');
+        process.exit(0);
+      });
+    });
+
+  } catch (error) {
+    log(`Failed to start server: ${error}`);
+    process.exit(1);
   }
-
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
 })();

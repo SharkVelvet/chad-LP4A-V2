@@ -60,7 +60,7 @@ export default function TemplateSelection() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Preview Which Template You Like Below</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Browse our professional website templates and preview them before making your choice.
+            Browse our professional website templates below - You will select which template you want to use in the next step.
           </p>
         </div>
 

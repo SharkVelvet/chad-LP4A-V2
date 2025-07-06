@@ -140,6 +140,12 @@ export default function HomePage() {
                 </form>
               </CardContent>
             </Card>
+            
+            <div className="mt-4 text-center">
+              <p className="text-gray-700 font-medium">
+                Have your webpage live within 48 to 72 hours! Some, the same day!
+              </p>
+            </div>
           </div>
         </div>
       </div>

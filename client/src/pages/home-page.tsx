@@ -58,7 +58,7 @@ export default function HomePage() {
             <Lock className="h-10 w-10 text-white" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Plan<span className="text-red-600">|</span>right Website Builder
+            FOTYPE Website Builder for Agents
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Create your professional splash page in just a few simple steps

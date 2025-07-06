@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import TemplateCard from "@/components/template-card";
+import { FileText } from "lucide-react";
 
 type Template = {
   id: number;
@@ -35,10 +36,9 @@ export default function TemplateSelection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
-              <div className="font-bold text-xl">
-                <span className="text-red-600">Plan</span>
-                <span className="text-gray-400 font-thin mx-1">|</span>
-                <span className="text-gray-900">right</span>
+              <div className="flex items-center space-x-2 font-bold text-xl">
+                <FileText className="h-6 w-6 text-red-600" />
+                <span className="text-gray-900">Landing Pages for Agents</span>
               </div>
             </div>
           </div>

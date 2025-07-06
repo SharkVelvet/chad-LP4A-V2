@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, FileText } from "lucide-react";
 
 type Template = {
   id: number;
@@ -115,7 +115,10 @@ export default function WebsiteSetup() {
               <Button variant="ghost" size="sm" onClick={handleGoBack}>
                 <ArrowLeft className="h-4 w-4" />
               </Button>
-              <h1 className="text-xl font-semibold text-gray-900">Plan|right Splash Page Onboarding</h1>
+              <div className="flex items-center space-x-2">
+                <FileText className="h-5 w-5 text-red-600" />
+                <h1 className="text-xl font-semibold text-gray-900">Landing Pages for Agents</h1>
+              </div>
             </div>
           </div>
         </div>

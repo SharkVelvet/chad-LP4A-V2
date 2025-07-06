@@ -116,7 +116,7 @@ export default function HomePage() {
                 <CardTitle className="text-xl font-bold text-white">
                   Ready to Get Started?
                 </CardTitle>
-                <p className="text-red-100 mt-2">Enter your access password to begin building your website</p>
+                <p className="text-red-100 mt-2">Enter your access password to begin building your website. If you need an access code simply ask your manager or email admin@fotype.com</p>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">

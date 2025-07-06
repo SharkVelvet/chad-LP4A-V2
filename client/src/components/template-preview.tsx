@@ -3190,86 +3190,54 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Get In Touch - Elegant Contact */}
         <div id="contact" className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-20">
+          <div className="max-w-5xl mx-auto px-6 text-center">
+            <div className="mb-20">
               <h2 className="text-5xl font-light text-gray-900 mb-6">Get In Touch With Us</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore.
+                Ready to transform your financial future? Contact us today to discuss your goals and create a personalized plan.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              <div className="space-y-8">
-                <form className="space-y-6">
-                  <input 
-                    type="text" 
-                    placeholder="Your Name" 
-                    className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg"
-                  />
-                  <input 
-                    type="email" 
-                    placeholder="Email Address" 
-                    className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg"
-                  />
-                  <select className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg">
-                    <option>I'm Looking for ...</option>
-                    <option>Life Insurance</option>
-                    <option>Investment Planning</option>
-                    <option>Retirement Planning</option>
-                    <option>Education Planning</option>
-                    <option>Health Insurance</option>
-                    <option>Estate Planning</option>
-                  </select>
-                  <input type="text" className="hidden" />
-                  <textarea 
-                    placeholder="Your Message" 
-                    rows={6} 
-                    className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg"
-                  ></textarea>
-                  <button 
-                    type="submit" 
-                    className="w-full bg-red-600 text-white px-8 py-4 rounded-2xl text-lg font-medium hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl"
-                  >
-                    Send Message
-                  </button>
-                </form>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+              <div className="flex flex-col items-center">
+                <div className="w-20 h-20 bg-red-600 rounded-3xl flex items-center justify-center mb-6">
+                  <MapPin className="w-10 h-10 text-white" />
+                </div>
+                <h4 className="font-bold text-gray-900 mb-3 text-xl">Address</h4>
+                <p className="text-gray-600 leading-relaxed">007, Bond Street<br/>Mighty Meadows<br/>Australia</p>
               </div>
               
-              <div className="bg-gray-50 rounded-3xl p-12 space-y-8">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-8">Contact Information</h3>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Address</h4>
-                      <p className="text-gray-600">007, Bond Street, Mighty Meadows, Australia</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Phone</h4>
-                      <p className="text-gray-600">1 800 234 56 78</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Email</h4>
-                      <p className="text-gray-600">sales@planright.com</p>
-                    </div>
-                  </div>
+              <div className="flex flex-col items-center">
+                <div className="w-20 h-20 bg-red-600 rounded-3xl flex items-center justify-center mb-6">
+                  <Phone className="w-10 h-10 text-white" />
                 </div>
-                
-                <div className="pt-8 border-t border-gray-200">
-                  <h4 className="font-semibold text-gray-900 mb-4">Follow Us</h4>
-                  <div className="flex space-x-4">
-                    <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                      <Facebook className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                      <Twitter className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                      <Linkedin className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                      <Instagram className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
+                <h4 className="font-bold text-gray-900 mb-3 text-xl">Phone</h4>
+                <p className="text-gray-600 leading-relaxed">1 800 234 56 78<br/>Mon - Fri: 9:00 AM - 6:00 PM</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-20 h-20 bg-red-600 rounded-3xl flex items-center justify-center mb-6">
+                  <Mail className="w-10 h-10 text-white" />
+                </div>
+                <h4 className="font-bold text-gray-900 mb-3 text-xl">Email</h4>
+                <p className="text-gray-600 leading-relaxed">john@planright.com<br/>info@planright.com</p>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-3xl font-light text-gray-900 mb-8">Follow Us</h3>
+              <div className="flex justify-center space-x-6">
+                <div className="w-16 h-16 bg-red-600 rounded-3xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer shadow-lg hover:shadow-xl">
+                  <Facebook className="w-8 h-8 text-white" />
+                </div>
+                <div className="w-16 h-16 bg-red-600 rounded-3xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer shadow-lg hover:shadow-xl">
+                  <Twitter className="w-8 h-8 text-white" />
+                </div>
+                <div className="w-16 h-16 bg-red-600 rounded-3xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer shadow-lg hover:shadow-xl">
+                  <Linkedin className="w-8 h-8 text-white" />
+                </div>
+                <div className="w-16 h-16 bg-red-600 rounded-3xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer shadow-lg hover:shadow-xl">
+                  <Instagram className="w-8 h-8 text-white" />
                 </div>
               </div>
             </div>

@@ -1976,130 +1976,261 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
-  // Template 5: Creative Portfolio
+  // Template 5: Creative Portfolio - Minimalist Design
   if (templateSlug === "Template-5") {
     return (
-      <div className={`bg-black text-white ${className}`}>
-        {/* Creative Header */}
-        <div className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div className="text-2xl font-light">
-              <span className="font-bold text-yellow-400">CREATIVE</span>
-              <span className="text-white ml-2">STUDIO</span>
+      <div className={`bg-white text-gray-900 ${className}`}>
+        {/* Minimalist Header */}
+        <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+          <div className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+            <div className="text-2xl font-light tracking-wider">
+              <span className="font-bold text-pink-500">ATELIER</span>
+              <span className="text-gray-800 ml-3">CREATIVE</span>
             </div>
-            <div className="hidden md:flex space-x-8 text-sm uppercase tracking-wider">
-              <a href="#" className="hover:text-yellow-400 transition-colors">Work</a>
-              <a href="#" className="hover:text-yellow-400 transition-colors">About</a>
-              <a href="#" className="hover:text-yellow-400 transition-colors">Services</a>
-              <a href="#" className="hover:text-yellow-400 transition-colors">Contact</a>
+            <div className="hidden md:flex space-x-12 text-sm font-medium tracking-wide">
+              <a href="#" className="text-gray-600 hover:text-pink-500 transition-colors">WORK</a>
+              <a href="#" className="text-gray-600 hover:text-pink-500 transition-colors">ABOUT</a>
+              <a href="#" className="text-gray-600 hover:text-pink-500 transition-colors">SERVICES</a>
+              <a href="#" className="text-gray-600 hover:text-pink-500 transition-colors">CONTACT</a>
             </div>
-          </div>
-        </div>
-
-        {/* Creative Hero */}
-        <div className="h-screen flex items-center justify-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-red-500/20"></div>
-          <div className="text-center z-10">
-            <h1 className="text-8xl font-bold mb-6">
-              <span className="block text-yellow-400">CREATIVE</span>
-              <span className="block text-white">VISION</span>
-            </h1>
-            <p className="text-2xl text-gray-300 mb-8 font-light">
-              Bringing ideas to life through exceptional design
-            </p>
-            <button className="border-2 border-yellow-400 text-yellow-400 px-8 py-4 text-lg uppercase tracking-wider hover:bg-yellow-400 hover:text-black transition-all">
-              View Portfolio
+            <button className="bg-pink-500 text-white px-6 py-2 rounded-sm hover:bg-pink-600 transition-colors font-medium">
+              Let's Talk
             </button>
           </div>
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <div className="w-8 h-8 border-2 border-yellow-400 rounded-full flex items-center justify-center">
-              ↓
+        </div>
+
+        {/* Hero Section */}
+        <div className="py-24 bg-gradient-to-br from-pink-50 to-purple-50">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="mb-6">
+                <span className="inline-block bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-sm font-medium tracking-wide">
+                  Creative Excellence Since 2008
+                </span>
+              </div>
+              <h1 className="text-5xl lg:text-6xl font-light mb-6 leading-tight">
+                <span className="text-pink-500 font-bold">Creative</span>
+                <br />
+                Solutions that
+                <br />
+                <span className="text-purple-600 font-bold">Inspire</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                We craft beautiful, functional designs that tell your story and connect with your audience on a deeper level.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-pink-500 text-white px-8 py-4 rounded-sm hover:bg-pink-600 transition-colors font-medium">
+                  View Our Work
+                </button>
+                <button className="border-2 border-pink-500 text-pink-500 px-8 py-4 rounded-sm hover:bg-pink-500 hover:text-white transition-colors font-medium">
+                  Start a Project
+                </button>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-200/50 to-purple-200/50 rounded-2xl transform rotate-3"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Creative workspace"
+                className="relative z-10 w-full h-96 object-cover rounded-2xl shadow-xl"
+              />
             </div>
           </div>
         </div>
 
-        {/* Portfolio Grid */}
-        <div className="py-20 bg-gray-900">
-          <div className="max-w-7xl mx-auto px-6">
+        {/* About Section */}
+        <div className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-6xl font-bold mb-4">
-                <span className="text-yellow-400">RECENT</span> WORK
+              <h2 className="text-4xl font-light mb-4">
+                About <span className="text-pink-500 font-bold">Atelier Creative</span>
               </h2>
-              <p className="text-xl text-gray-400">A selection of our latest creative projects</p>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                We are a boutique creative studio specializing in brand design, digital experiences, and visual storytelling.
+              </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1,2,3,4,5,6].map((item) => (
-                <div key={item} className="group relative overflow-hidden bg-gray-800 aspect-square">
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/80 to-red-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="text-center">
-                      <h3 className="text-2xl font-bold mb-2">Project {item}</h3>
-                      <p className="text-sm uppercase tracking-wider">Brand Design</p>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                  With over 15 years of experience in creative design and brand development, our studio has helped countless businesses establish meaningful connections with their audiences through thoughtful, purposeful design.
+                </p>
+                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                  Our approach combines strategic thinking with creative excellence to deliver solutions that not only look beautiful but also drive real business results.
+                </p>
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="text-center p-6 bg-pink-50 rounded-lg">
+                    <div className="text-3xl font-bold text-pink-500 mb-2">150+</div>
+                    <p className="text-gray-600">Projects Completed</p>
+                  </div>
+                  <div className="text-center p-6 bg-purple-50 rounded-lg">
+                    <div className="text-3xl font-bold text-purple-500 mb-2">98%</div>
+                    <p className="text-gray-600">Client Satisfaction</p>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                  alt="Design process"
+                  className="w-full h-48 object-cover rounded-lg shadow-md"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1542744094-3a31f272c490?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                  alt="Creative team"
+                  className="w-full h-48 object-cover rounded-lg shadow-md"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Services Section */}
+        <div className="py-20 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-light mb-4">
+                Our <span className="text-pink-500 font-bold">Services</span>
+              </h2>
+              <p className="text-xl text-gray-600">Comprehensive creative solutions for modern businesses</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-16 h-16 bg-pink-100 rounded-lg flex items-center justify-center mb-6">
+                  <Star className="w-8 h-8 text-pink-500" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Brand Design</h3>
+                <p className="text-gray-600 mb-6">Complete brand identity development from strategy to visual execution.</p>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-pink-500 mr-2" />Logo Design</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-pink-500 mr-2" />Brand Guidelines</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-pink-500 mr-2" />Visual Identity</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                  <Target className="w-8 h-8 text-purple-500" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Digital Design</h3>
+                <p className="text-gray-600 mb-6">Modern web and digital experiences that engage and convert.</p>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-purple-500 mr-2" />Website Design</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-purple-500 mr-2" />UI/UX Design</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-purple-500 mr-2" />Mobile Apps</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                  <Users className="w-8 h-8 text-blue-500" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Creative Strategy</h3>
+                <p className="text-gray-600 mb-6">Strategic creative direction that aligns with your business goals.</p>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-blue-500 mr-2" />Creative Direction</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-blue-500 mr-2" />Brand Strategy</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-blue-500 mr-2" />Campaign Development</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Portfolio Showcase */}
+        <div className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-light mb-4">
+                Featured <span className="text-pink-500 font-bold">Work</span>
+              </h2>
+              <p className="text-xl text-gray-600">A showcase of our recent creative projects</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[1,2,3,4].map((item) => (
+                <div key={item} className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                  <img 
+                    src={`https://images.unsplash.com/photo-${1580000000000 + item * 100000}?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`}
+                    alt={`Portfolio project ${item}`}
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-6 left-6 text-white">
+                      <h3 className="text-2xl font-bold mb-2">Creative Project {item}</h3>
+                      <p className="text-sm text-gray-200">Brand Design & Digital Experience</p>
                     </div>
                   </div>
-                  <img 
-                    src={`https://images.unsplash.com/photo-${1600000000000 + item}?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80`}
-                    alt={`Portfolio item ${item}`}
-                    className="w-full h-full object-cover"
-                  />
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Services Section */}
-        <div className="py-20 bg-black">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-6xl font-bold mb-4">
-                <span className="text-white">OUR</span> <span className="text-yellow-400">EXPERTISE</span>
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="space-y-8">
-                <div className="border-l-4 border-yellow-400 pl-6">
-                  <h3 className="text-3xl font-bold mb-4 text-yellow-400">BRANDING</h3>
-                  <p className="text-gray-300 text-lg">Complete brand identity development from concept to execution</p>
-                </div>
-                <div className="border-l-4 border-yellow-400 pl-6">
-                  <h3 className="text-3xl font-bold mb-4 text-yellow-400">WEB DESIGN</h3>
-                  <p className="text-gray-300 text-lg">Cutting-edge web experiences that captivate and convert</p>
-                </div>
-              </div>
-              <div className="space-y-8">
-                <div className="border-l-4 border-yellow-400 pl-6">
-                  <h3 className="text-3xl font-bold mb-4 text-yellow-400">PHOTOGRAPHY</h3>
-                  <p className="text-gray-300 text-lg">Professional photography that tells your brand's story</p>
-                </div>
-                <div className="border-l-4 border-yellow-400 pl-6">
-                  <h3 className="text-3xl font-bold mb-4 text-yellow-400">MOTION GRAPHICS</h3>
-                  <p className="text-gray-300 text-lg">Dynamic animations and video content that engage audiences</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Contact CTA */}
-        <div className="py-20 bg-yellow-400 text-black">
+        {/* Contact Section */}
+        <div className="py-20 bg-gradient-to-br from-pink-500 to-purple-600 text-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-6xl font-bold mb-6">LET'S CREATE</h2>
-            <p className="text-2xl mb-8">Ready to bring your vision to life?</p>
-            <button className="bg-black text-yellow-400 px-8 py-4 text-lg uppercase tracking-wider hover:bg-gray-800 transition-all">
-              Start a Project
-            </button>
+            <h2 className="text-4xl font-light mb-6">Ready to Create Something Amazing?</h2>
+            <p className="text-xl mb-8 opacity-90">
+              Let's discuss your project and bring your vision to life with our creative expertise.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-white text-pink-500 px-8 py-4 rounded-sm hover:bg-gray-100 transition-colors font-medium">
+                Start Your Project
+              </button>
+              <button className="border-2 border-white px-8 py-4 rounded-sm hover:bg-white hover:text-pink-500 transition-colors font-medium">
+                View Portfolio
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="bg-black py-12">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <div className="text-2xl font-light mb-4">
-              <span className="font-bold text-yellow-400">CREATIVE</span>
-              <span className="text-white ml-2">STUDIO</span>
+        <div className="bg-gray-900 text-white py-12">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              <div>
+                <div className="text-2xl font-light tracking-wider mb-4">
+                  <span className="font-bold text-pink-400">ATELIER</span>
+                  <span className="text-white ml-3">CREATIVE</span>
+                </div>
+                <p className="text-gray-400">Crafting beautiful experiences that inspire and engage.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4">Services</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li>Brand Design</li>
+                  <li>Digital Design</li>
+                  <li>Creative Strategy</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4">Contact</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li>123 Creative District</li>
+                  <li>(555) 123-4567</li>
+                  <li>hello@ateliercreative.com</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4">Follow</h4>
+                <div className="flex space-x-4">
+                  <div className="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors cursor-pointer">
+                    <span className="text-xs">ig</span>
+                  </div>
+                  <div className="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors cursor-pointer">
+                    <span className="text-xs">be</span>
+                  </div>
+                  <div className="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors cursor-pointer">
+                    <span className="text-xs">dr</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="text-gray-400">© 2025 Creative Studio. All rights reserved.</p>
+            <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
+              © 2025 Atelier Creative. All rights reserved.
+            </div>
           </div>
         </div>
       </div>

@@ -2994,23 +2994,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <p className="text-gray-600 mb-8 leading-relaxed">
                       There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
                     </p>
-                    
-                    <div className="flex items-center justify-between">
-                      <button className="bg-red-600 text-white px-8 py-3 rounded-full font-medium hover:bg-red-700 transition-colors">
-                        Get Quote
-                      </button>
-                      <div className="flex space-x-3">
-                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
-                          <Twitter className="w-5 h-5 text-gray-600" />
-                        </div>
-                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
-                          <Facebook className="w-5 h-5 text-gray-600" />
-                        </div>
-                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
-                          <Linkedin className="w-5 h-5 text-gray-600" />
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -3042,23 +3025,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <p className="text-gray-600 mb-8 leading-relaxed">
                     There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
                   </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <button className="bg-red-600 text-white px-8 py-3 rounded-full font-medium hover:bg-red-700 transition-colors">
-                      Learn More
-                    </button>
-                    <div className="flex space-x-3">
-                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
-                        <Twitter className="w-5 h-5 text-gray-600" />
-                      </div>
-                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
-                        <Facebook className="w-5 h-5 text-gray-600" />
-                      </div>
-                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
-                        <Linkedin className="w-5 h-5 text-gray-600" />
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <div className="relative h-96">
                   <img 
@@ -3107,23 +3073,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <p className="text-gray-600 mb-8 leading-relaxed">
                       There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
                     </p>
-                    
-                    <div className="flex items-center justify-between">
-                      <button className="bg-red-600 text-white px-8 py-3 rounded-full font-medium hover:bg-red-700 transition-colors">
-                        Get Started
-                      </button>
-                      <div className="flex space-x-3">
-                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
-                          <Twitter className="w-5 h-5 text-gray-600" />
-                        </div>
-                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
-                          <Facebook className="w-5 h-5 text-gray-600" />
-                        </div>
-                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
-                          <Linkedin className="w-5 h-5 text-gray-600" />
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

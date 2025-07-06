@@ -61,7 +61,7 @@ export default function HomePage() {
             Plan<span className="text-red-600">|</span>right Website Builder
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Create your professional financial services website in just a few simple steps
+            Create your professional splash page in just a few simple steps
           </p>
         </div>
 

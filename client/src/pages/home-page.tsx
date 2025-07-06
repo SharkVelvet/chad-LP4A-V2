@@ -51,37 +51,84 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
-            <Lock className="h-8 w-8 text-white" />
+      <div className="w-full max-w-4xl">
+        {/* Main Explanation Section */}
+        <div className="text-center mb-8">
+          <div className="mx-auto mb-6 w-20 h-20 bg-red-600 rounded-full flex items-center justify-center">
+            <Lock className="h-10 w-10 text-white" />
           </div>
-          <CardTitle className="text-2xl font-bold text-gray-900">
-            FOTYPE / Planright Projects
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Input
-                type="password"
-                placeholder="Enter access password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="w-full"
-              />
-            </div>
-            <Button 
-              type="submit" 
-              className="w-full bg-red-600 hover:bg-red-700 text-white" 
-              disabled={isLoading}
-            >
-              {isLoading ? "Checking..." : "Access Builder"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            Plan<span className="text-red-600">|</span>right Website Builder
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Create your professional financial services website in just a few simple steps
+          </p>
+        </div>
+
+        {/* Process Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <Card className="text-center">
+            <CardContent className="p-6">
+              <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-lg">1</span>
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Choose Your Template</h3>
+              <p className="text-gray-600">Pick one of 6 professionally designed templates built specifically for financial services</p>
+            </CardContent>
+          </Card>
+
+          <Card className="text-center">
+            <CardContent className="p-6">
+              <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-lg">2</span>
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Select Your Domain</h3>
+              <p className="text-gray-600">Choose your preferred domain name (URL address) for your website</p>
+            </CardContent>
+          </Card>
+
+          <Card className="text-center">
+            <CardContent className="p-6">
+              <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-lg">3</span>
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Go Live</h3>
+              <p className="text-gray-600">Pay a small monthly fee and your professional website will be live within 3 days</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Access Card */}
+        <Card className="w-full max-w-md mx-auto">
+          <CardHeader className="text-center">
+            <CardTitle className="text-xl font-bold text-gray-900">
+              Ready to Get Started?
+            </CardTitle>
+            <p className="text-gray-600 mt-2">Enter your access password to begin building your website</p>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <Input
+                  type="password"
+                  placeholder="Enter access password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="w-full"
+                />
+              </div>
+              <Button 
+                type="submit" 
+                className="w-full bg-red-600 hover:bg-red-700 text-white" 
+                disabled={isLoading}
+              >
+                {isLoading ? "Checking..." : "Access Builder"}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

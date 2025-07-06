@@ -143,16 +143,7 @@ export default function HomePage() {
               </CardContent>
             </Card>
             
-            <div className="mt-6 text-center">
-              <div className="w-[70%] mx-auto">
-                <p className="text-lg italic text-gray-900 mb-2">
-                  Have your webpage live within 48 to 72 hours!
-                </p>
-                <p className="text-lg italic text-gray-900">
-                  Some, the same day!
-                </p>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>

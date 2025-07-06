@@ -74,7 +74,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Choose Your Template</h3>
-                    <p className="text-gray-600">Pick one of 6 professionally designed templates built specifically for financial services</p>
+                    <p className="text-gray-600">Pick one of 6 professionally designed templates built specifically for Insurance Agents</p>
                   </div>
                 </div>
               </CardContent>

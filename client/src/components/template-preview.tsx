@@ -455,105 +455,50 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Contact Us Section */}
         <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Contact Us</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-              {/* Contact Form */}
-              <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
-                <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Get In Touch</h3>
-                <form className="space-y-4 sm:space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                      placeholder="Your full name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                    <input 
-                      type="email" 
-                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                      placeholder="How can we help you?"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                    <textarea 
-                      rows={5}
-                      className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                      placeholder="Tell us about your project or inquiry..."
-                    ></textarea>
-                  </div>
-                  <button 
-                    type="submit"
-                    className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 font-semibold transition-colors"
-                  >
-                    Send Message
-                  </button>
-                </form>
-              </div>
-
-              {/* Contact Information */}
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Contact Information</h3>
-                  <div className="space-y-4 sm:space-y-6">
-                    <div className="flex items-start">
-                      <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                        <MapPin className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900">Address</h4>
-                        <p className="text-gray-600">123 Financial District<br/>Business Center, Suite 456<br/>New York, NY 10001</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start">
-                      <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                        <Phone className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900">Phone</h4>
-                        <p className="text-gray-600">(555) 123-PLAN<br/>Mon - Fri: 9:00 AM - 6:00 PM</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start">
-                      <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                        <Mail className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900">Email</h4>
-                        <p className="text-gray-600">john@planright.com<br/>info@planright.com</p>
-                      </div>
-                    </div>
-                  </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12">Contact Us</h2>
+            <p className="text-lg text-gray-600 mb-12">Ready to take control of your financial future? Let's discuss your goals and create a personalized plan.</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <MapPin className="w-8 h-8 text-white" />
                 </div>
-
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Follow Us</h3>
-                  <div className="flex space-x-4">
-                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                      <Facebook className="w-5 h-5 text-white" />
-                    </div>
-                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                      <Twitter className="w-5 h-5 text-white" />
-                    </div>
-                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                      <Linkedin className="w-5 h-5 text-white" />
-                    </div>
-                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                      <Instagram className="w-5 h-5 text-white" />
-                    </div>
-                  </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Address</h4>
+                <p className="text-gray-600">123 Financial District<br/>Business Center, Suite 456<br/>New York, NY 10001</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Phone className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Phone</h4>
+                <p className="text-gray-600">(555) 123-PLAN<br/>Mon - Fri: 9:00 AM - 6:00 PM</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Mail className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Email</h4>
+                <p className="text-gray-600">john@planright.com<br/>info@planright.com</p>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-bold mb-6">Follow Us</h3>
+              <div className="flex justify-center space-x-4">
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                  <Facebook className="w-6 h-6 text-white" />
+                </div>
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                  <Twitter className="w-6 h-6 text-white" />
+                </div>
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                  <Linkedin className="w-6 h-6 text-white" />
+                </div>
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                  <Instagram className="w-6 h-6 text-white" />
                 </div>
               </div>
             </div>

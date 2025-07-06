@@ -2738,428 +2738,684 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
-  // Template 6: Healthcare Services
+  // Template 6: Modern Elegant Design
   if (templateSlug === "Template-6") {
     return (
       <div className={`bg-white ${className}`}>
-        {/* Clean Medical Header */}
-        <div className="bg-white shadow-sm sticky top-0 z-50">
+        {/* Elegant Header */}
+        <div className="bg-white shadow-lg sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div className="text-2xl font-bold">
-              <span className="text-red-600">Plan</span>
-              <span className="text-gray-400 font-thin mx-1">|</span>
-              <span className="text-gray-900">right</span>
+            <div className="flex items-center">
+              <div className="text-3xl font-bold">
+                <span className="text-red-600">Plan</span>
+                <span className="text-gray-800 font-light mx-1">|</span>
+                <span className="text-gray-800">right</span>
+              </div>
             </div>
-            <div className="hidden md:flex space-x-8 text-gray-700">
-              <a href="#" className="hover:text-red-600 transition-colors">Home</a>
-              <a href="#" className="hover:text-red-600 transition-colors">About</a>
-              <a href="#" className="hover:text-red-600 transition-colors">Services</a>
-              <a href="#" className="hover:text-red-600 transition-colors">Why We Serve</a>
-              <a href="#" className="hover:text-red-600 transition-colors">Testimonials</a>
+            <div className="hidden md:flex space-x-10 text-gray-700 font-medium">
+              <a href="#home" className="hover:text-red-600 transition-colors">Home.</a>
+              <a href="#about" className="hover:text-red-600 transition-colors">About.</a>
+              <a href="#services" className="hover:text-red-600 transition-colors">Services.</a>
+              <a href="#testimonials" className="hover:text-red-600 transition-colors">Testimonials.</a>
+              <a href="#contact" className="hover:text-red-600 transition-colors">Contact.</a>
             </div>
-            <button className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
-              Contact
+            <button className="bg-red-600 text-white px-8 py-3 rounded-full hover:bg-red-700 transition-colors font-medium">
+              Get In Touch
             </button>
           </div>
         </div>
 
-        {/* Medical Hero */}
-        <div className="bg-gradient-to-r from-red-50 to-gray-50 py-20">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="mb-6">
-                <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-medium">
-                  Financial Excellence Since 2008
-                </span>
+        {/* Elegant Hero Section */}
+        <div id="home" className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-red-50 flex items-center">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <h1 className="text-6xl lg:text-7xl font-light text-gray-900 leading-tight">
+                  Elegant
+                  <span className="block text-red-600 font-normal">financial</span>
+                  <span className="block">solutions</span>
+                </h1>
+                <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
+                  There are many variations of financial strategies available, but the majority focus on comprehensive wealth management and strategic business optimization for long-term success.
+                </p>
               </div>
-              <h1 className="text-5xl font-bold text-gray-900 mb-6">
-                <span className="text-red-600">John Smith</span>
-              </h1>
-              <p className="text-xl text-red-600 mb-4 font-semibold">President of Financial Services</p>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
-              </p>
+              
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-700 transition-colors">
-                  Contact Us
+                <button className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-red-700 transition-all shadow-lg hover:shadow-xl">
+                  View Services
                 </button>
-                <button className="border-2 border-red-600 text-red-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-600 hover:text-white transition-colors">
+                <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full text-lg font-medium hover:border-red-600 hover:text-red-600 transition-all">
+                  Get In Touch
+                </button>
+              </div>
+              
+              <div className="bg-white rounded-2xl p-6 shadow-lg inline-block">
+                <p className="text-sm text-gray-500 mb-2">Plans start at</p>
+                <p className="text-3xl font-bold text-red-600">$2,500</p>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-100 to-gray-100 rounded-3xl transform rotate-3"></div>
+              <div className="relative z-10 bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="John Smith" 
+                  className="w-full h-96 object-cover"
+                />
+                <div className="p-6 bg-white">
+                  <h3 className="text-xl font-bold text-gray-900">John Smith</h3>
+                  <p className="text-red-600 font-medium">President of Financial Services</p>
+                  <p className="text-gray-600 mt-2">15+ years of excellence in financial planning</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* We Handle Everything Section */}
+        <div className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-light text-gray-900 mb-6">
+                We handle <span className="text-red-600 font-normal">everything</span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor 
+                incididunt soluta nobis assumenda labore quod maxime.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="text-center group">
+                <div className="relative mb-8">
+                  <img 
+                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                    alt="Financial Appraisal"
+                    className="w-32 h-32 mx-auto rounded-2xl object-cover shadow-lg group-hover:shadow-xl transition-shadow"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Financial Appraisal</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliquais ipsum ultrices.
+                </p>
+              </div>
+              
+              <div className="text-center group">
+                <div className="relative mb-8">
+                  <img 
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                    alt="Price Negotiation"
+                    className="w-32 h-32 mx-auto rounded-2xl object-cover shadow-lg group-hover:shadow-xl transition-shadow"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Price Negotiation</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliquais ipsum ultrices.
+                </p>
+              </div>
+              
+              <div className="text-center group">
+                <div className="relative mb-8">
+                  <img 
+                    src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                    alt="Paperwork Handling"
+                    className="w-32 h-32 mx-auto rounded-2xl object-cover shadow-lg group-hover:shadow-xl transition-shadow"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Paperwork Handling</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliquais ipsum ultrices.
+                </p>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+              <div className="bg-red-50 p-8 rounded-3xl">
+                <h4 className="text-2xl font-bold text-gray-900 mb-4">Want to grow your wealth in the US?</h4>
+                <p className="text-gray-600 mb-4">Get in touch with our financial advisor!</p>
+                <button className="bg-red-600 text-white px-6 py-3 rounded-full font-medium hover:bg-red-700 transition-colors">
                   Learn More
                 </button>
               </div>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-400/20 to-gray-400/20 rounded-2xl transform rotate-3"></div>
-              <div className="relative z-10 w-full h-96 rounded-2xl shadow-xl overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                  alt="John Smith" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute -top-4 -left-4 bg-red-600 text-white px-4 py-2 rounded-xl shadow-lg transform rotate-12">
-                <div className="text-center">
-                  <div className="text-sm font-bold">15+ Years</div>
-                  <div className="text-xs">Excellence</div>
-                </div>
+              <div className="bg-gray-50 p-8 rounded-3xl">
+                <h4 className="text-2xl font-bold text-gray-900 mb-4">Want to secure your retirement?</h4>
+                <p className="text-gray-600 mb-4">Call our advisor for a consultation!</p>
+                <button className="bg-gray-800 text-white px-6 py-3 rounded-full font-medium hover:bg-gray-900 transition-colors">
+                  Get Quote
+                </button>
               </div>
             </div>
           </div>
         </div>
 
         {/* About Section */}
-        <div className="py-20 bg-white">
+        <div id="about" className="py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">About John Smith</h2>
-              <p className="text-xl text-gray-600">Financial expertise you can trust</p>
-            </div>
-            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
+              <div className="space-y-8">
+                <h2 className="text-5xl font-light text-gray-900 leading-tight">
+                  We Connect People <br/>
+                  With Their <span className="text-red-600 font-normal">Dreams</span>
+                </h2>
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt soluta nobis assumenda labore quod maxime.
                 </p>
-                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                  His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  There are many variations of passages of lorem ipsum available. Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
                 </p>
                 
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="bg-red-50 p-6 rounded-xl">
-                    <div className="flex items-center mb-3">
-                      <Clock className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">15+ Years</span>
-                    </div>
-                    <p className="text-sm text-gray-600">Experience</p>
+                <div className="flex items-center space-x-4">
+                  <div className="flex -space-x-2">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b9dc1d05?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" className="w-12 h-12 rounded-full border-2 border-white" alt="" />
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" className="w-12 h-12 rounded-full border-2 border-white" alt="" />
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" className="w-12 h-12 rounded-full border-2 border-white" alt="" />
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" className="w-12 h-12 rounded-full border-2 border-white" alt="" />
                   </div>
-                  <div className="bg-red-50 p-6 rounded-xl">
-                    <div className="flex items-center mb-3">
-                      <Users className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">500+ Clients</span>
-                    </div>
-                    <p className="text-sm text-gray-600">Served</p>
+                </div>
+                
+                <div className="grid grid-cols-3 gap-8">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-red-600">1M+</div>
+                    <div className="text-gray-600">Reviews 4.7 out of 5</div>
                   </div>
-                  <div className="bg-red-50 p-6 rounded-xl">
-                    <div className="flex items-center mb-3">
-                      <Award className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">CFP Certified</span>
-                    </div>
-                    <p className="text-sm text-gray-600">Financial Planner</p>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-red-600">$1,40,221+</div>
+                    <div className="text-gray-600">Average client savings</div>
                   </div>
-                  <div className="bg-red-50 p-6 rounded-xl">
-                    <div className="flex items-center mb-3">
-                      <Star className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">Award-Winning</span>
-                    </div>
-                    <p className="text-sm text-gray-600">Service</p>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-red-600">#1</div>
+                    <div className="text-gray-600">Resource for financial info</div>
                   </div>
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
+              <div className="relative">
                 <img 
-                  src={temp1Image} 
-                  alt="Financial workspace" 
-                  className="w-full h-48 object-cover rounded-xl shadow-lg"
-                />
-                <img 
-                  src={temp2Image} 
-                  alt="Professional meeting" 
-                  className="w-full h-48 object-cover rounded-xl shadow-lg"
-                />
-                <img 
-                  src={temp3Image} 
-                  alt="Business consultation" 
-                  className="w-full h-48 object-cover rounded-xl shadow-lg"
-                />
-                <img 
-                  src={temp4Image} 
-                  alt="Modern office" 
-                  className="w-full h-48 object-cover rounded-xl shadow-lg"
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="John Smith"
+                  className="w-full h-96 object-cover rounded-3xl shadow-2xl"
                 />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Financial Services */}
-        <div className="py-20 bg-gray-50">
+        {/* Featured Financial Services */}
+        <div id="services" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Financial <span className="text-red-600">Services & Products</span>
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-light text-gray-900 mb-6">
+                Our Featured <br/>
+                <span className="text-red-600 font-normal">Financial Services</span>
               </h2>
-              <p className="text-xl text-gray-600">Comprehensive solutions designed to protect your assets, grow your wealth, and secure your financial future.</p>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt soluta nobis assumenda labore quod maxime.
+              </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-red-50 to-gray-50 p-8 rounded-2xl">
-                <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mb-6">
-                  <Shield className="w-8 h-8 text-red-600" />
+            <div className="space-y-12">
+              {/* Life Insurance - Featured Large */}
+              <div className="relative group">
+                <div className="absolute top-6 left-6 bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium z-10">
+                  For Sale
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Life Insurance</h3>
-                <p className="text-gray-600 mb-6">Protect your loved ones and ensure financial security with customized life insurance policies.</p>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Term Life Insurance</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Whole Life Insurance</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Universal Life Insurance</li>
-                </ul>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl overflow-hidden">
+                  <div className="relative h-96">
+                    <img 
+                      src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      alt="Life Insurance"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-12 flex flex-col justify-center">
+                    <div className="mb-6">
+                      <div className="text-gray-600 text-lg mb-2">Comprehensive Protection</div>
+                      <h3 className="text-4xl font-bold text-gray-900 mb-4">Best Life Insurance Plans</h3>
+                      <div className="text-3xl font-bold text-red-600 mb-6">Starting at $25,000</div>
+                    </div>
+                    
+                    <div className="grid grid-cols-3 gap-6 mb-8">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-gray-900">Term</div>
+                        <div className="text-gray-600 text-sm">Life Insurance</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-gray-900">Whole</div>
+                        <div className="text-gray-600 text-sm">Life Coverage</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-gray-900">Universal</div>
+                        <div className="text-gray-600 text-sm">Life Plans</div>
+                      </div>
+                    </div>
+                    
+                    <p className="text-gray-600 mb-8 leading-relaxed">
+                      There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
+                    </p>
+                    
+                    <div className="flex items-center justify-between">
+                      <button className="bg-red-600 text-white px-8 py-3 rounded-full font-medium hover:bg-red-700 transition-colors">
+                        Get Quote
+                      </button>
+                      <div className="flex space-x-3">
+                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
+                          <Twitter className="w-5 h-5 text-gray-600" />
+                        </div>
+                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
+                          <Facebook className="w-5 h-5 text-gray-600" />
+                        </div>
+                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
+                          <Linkedin className="w-5 h-5 text-gray-600" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              
-              <div className="bg-gradient-to-br from-red-50 to-gray-50 p-8 rounded-2xl">
-                <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mb-6">
-                  <TrendingUp className="w-8 h-8 text-red-600" />
+
+              {/* Investment Planning */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div className="p-12 flex flex-col justify-center">
+                  <div className="mb-6">
+                    <div className="text-gray-600 text-lg mb-2">Strategic Growth</div>
+                    <h3 className="text-4xl font-bold text-gray-900 mb-4">Investment Portfolio</h3>
+                    <div className="text-3xl font-bold text-red-600 mb-6">$50,000 minimum</div>
+                  </div>
+                  
+                  <div className="grid grid-cols-3 gap-6 mb-8">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-gray-900">401k</div>
+                      <div className="text-gray-600 text-sm">Retirement</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-gray-900">Mutual</div>
+                      <div className="text-gray-600 text-sm">Funds</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-gray-900">Portfolio</div>
+                      <div className="text-gray-600 text-sm">Management</div>
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-8 leading-relaxed">
+                    There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <button className="bg-red-600 text-white px-8 py-3 rounded-full font-medium hover:bg-red-700 transition-colors">
+                      Learn More
+                    </button>
+                    <div className="flex space-x-3">
+                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
+                        <Twitter className="w-5 h-5 text-gray-600" />
+                      </div>
+                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
+                        <Facebook className="w-5 h-5 text-gray-600" />
+                      </div>
+                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
+                        <Linkedin className="w-5 h-5 text-gray-600" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Investment Planning</h3>
-                <p className="text-gray-600 mb-6">Strategic investment solutions to help grow your wealth and achieve long-term financial goals.</p>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Retirement Accounts</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Mutual Funds</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Portfolio Management</li>
-                </ul>
+                <div className="relative h-96">
+                  <img 
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Investment Planning"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
-              
-              <div className="bg-gradient-to-br from-red-50 to-gray-50 p-8 rounded-2xl">
-                <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mb-6">
-                  <Home className="w-8 h-8 text-red-600" />
+
+              {/* Retirement Planning */}
+              <div className="relative group">
+                <div className="absolute top-6 left-6 bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium z-10">
+                  Popular
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Retirement Planning</h3>
-                <p className="text-gray-600 mb-6">Comprehensive retirement strategies to ensure financial independence during your golden years.</p>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />401(k) & IRA Planning</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Income Strategies</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Social Security Optimization</li>
-                </ul>
-              </div>
-              
-              <div className="bg-gradient-to-br from-red-50 to-gray-50 p-8 rounded-2xl">
-                <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mb-6">
-                  <GraduationCap className="w-8 h-8 text-red-600" />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl overflow-hidden">
+                  <div className="relative h-96">
+                    <img 
+                      src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      alt="Retirement Planning"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-12 flex flex-col justify-center">
+                    <div className="mb-6">
+                      <div className="text-gray-600 text-lg mb-2">Secure Future</div>
+                      <h3 className="text-4xl font-bold text-gray-900 mb-4">Retirement Planning</h3>
+                      <div className="text-3xl font-bold text-red-600 mb-6">$7,261,300</div>
+                    </div>
+                    
+                    <div className="grid grid-cols-3 gap-6 mb-8">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-gray-900">IRA</div>
+                        <div className="text-gray-600 text-sm">Planning</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-gray-900">Income</div>
+                        <div className="text-gray-600 text-sm">Strategies</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-gray-900">Social</div>
+                        <div className="text-gray-600 text-sm">Security</div>
+                      </div>
+                    </div>
+                    
+                    <p className="text-gray-600 mb-8 leading-relaxed">
+                      There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
+                    </p>
+                    
+                    <div className="flex items-center justify-between">
+                      <button className="bg-red-600 text-white px-8 py-3 rounded-full font-medium hover:bg-red-700 transition-colors">
+                        Get Started
+                      </button>
+                      <div className="flex space-x-3">
+                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
+                          <Twitter className="w-5 h-5 text-gray-600" />
+                        </div>
+                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
+                          <Facebook className="w-5 h-5 text-gray-600" />
+                        </div>
+                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
+                          <Linkedin className="w-5 h-5 text-gray-600" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Education Planning</h3>
-                <p className="text-gray-600 mb-6">Strategic education funding solutions to help prepare for future academic expenses.</p>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />529 College Savings</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />UGMA/UTMA Accounts</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Education Trusts</li>
-                </ul>
-              </div>
-              
-              <div className="bg-gradient-to-br from-red-50 to-gray-50 p-8 rounded-2xl">
-                <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mb-6">
-                  <Heart className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Health Insurance</h3>
-                <p className="text-gray-600 mb-6">Comprehensive health coverage options to protect your well-being and financial health.</p>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Medical Insurance</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Long-Term Care</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Disability Insurance</li>
-                </ul>
-              </div>
-              
-              <div className="bg-gradient-to-br from-red-50 to-gray-50 p-8 rounded-2xl">
-                <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mb-6">
-                  <FileText className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Estate Planning</h3>
-                <p className="text-gray-600 mb-6">Comprehensive estate strategies to protect your assets and secure your legacy.</p>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Wills & Trusts</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Legacy Planning</li>
-                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Asset Protection</li>
-                </ul>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Why We Serve */}
-        <div className="py-20 bg-gray-50">
+        {/* Our Services */}
+        <div className="py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why We Serve</h2>
-              <p className="text-xl text-gray-600">Our commitment to excellence in every aspect of financial planning</p>
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-light text-gray-900 mb-6">Our Services</h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor.
+              </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                  <Target className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Strategic Planning</h3>
-                <p className="text-gray-600">We help businesses develop comprehensive strategic plans that align with their long-term goals and market opportunities.</p>
+              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Education Planning</h4>
+                <p className="text-gray-600">There are many variations of passages of lorem ipsum available.</p>
               </div>
-              
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                  <TrendingUp className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Financial Analysis</h3>
-                <p className="text-gray-600">Our expert team provides detailed financial analysis to help you make informed decisions about your business future.</p>
+              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Health Insurance</h4>
+                <p className="text-gray-600">There are many variations of passages of lorem ipsum available.</p>
               </div>
-              
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                  <Briefcase className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Investment Planning</h3>
-                <p className="text-gray-600">We create personalized investment strategies designed to grow your wealth while managing risk effectively.</p>
+              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Estate Planning</h4>
+                <p className="text-gray-600">There are many variations of passages of lorem ipsum available.</p>
               </div>
-              
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                  <MessageSquare className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Business Consulting</h3>
-                <p className="text-gray-600">Our consultants work closely with you to identify opportunities and implement solutions for business growth.</p>
+              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Portfolio Services</h4>
+                <p className="text-gray-600">There are many variations of passages of lorem ipsum available.</p>
               </div>
-              
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                  <Shield className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Risk Management</h3>
-                <p className="text-gray-600">We help protect your business with comprehensive risk assessment and mitigation strategies.</p>
-              </div>
-              
-              <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                  <Users className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Team Development</h3>
-                <p className="text-gray-600">Building stronger teams through leadership development and organizational excellence programs.</p>
+              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Risk Management</h4>
+                <p className="text-gray-600">There are many variations of passages of lorem ipsum available.</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Client Testimonials */}
-        <div className="py-20 bg-white">
+        {/* What Clients Say - Elegant Testimonials */}
+        <div id="testimonials" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Client Testimonials</h2>
-              <p className="text-xl text-gray-600">Hear what our clients say about our services</p>
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-light text-gray-900 mb-6">What clients say</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+              <div className="bg-gray-50 p-10 rounded-3xl hover:shadow-lg transition-shadow">
+                <h4 className="text-2xl font-bold text-gray-900 mb-6">Pristine & Gorgeous</h4>
+                <p className="text-gray-600 mb-8 leading-relaxed">
+                  There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
+                </p>
+                <div className="flex items-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1494790108755-2616b9dc1d05?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                    alt="Eleanor Jensen"
+                    className="w-16 h-16 rounded-full object-cover mr-4"
+                  />
+                  <div>
+                    <h6 className="font-bold text-gray-900">Eleanor Jensen</h6>
+                    <p className="text-gray-600">Business Owner, LA</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gray-50 p-10 rounded-3xl hover:shadow-lg transition-shadow">
+                <h4 className="text-2xl font-bold text-gray-900 mb-6">Reliable People</h4>
+                <p className="text-gray-600 mb-8 leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt aute irure dolor in reprehenderit in voluptate velit esse cillum dolore beatae vitae dicta sunt explicabo magna aliqua.
+                </p>
+                <div className="flex items-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                    alt="Jerry Johnston"
+                    className="w-16 h-16 rounded-full object-cover mr-4"
+                  />
+                  <div>
+                    <h6 className="font-bold text-gray-900">Jerry Johnston</h6>
+                    <p className="text-gray-600">Acme Boutique, UK</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gray-50 p-10 rounded-3xl hover:shadow-lg transition-shadow">
+                <h4 className="text-2xl font-bold text-gray-900 mb-6">Smooth Process</h4>
+                <p className="text-gray-600 mb-8 leading-relaxed">
+                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur odit aut fugit sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt porro quisquam qui dolorem ipsum quia dolor sit consectetur.
+                </p>
+                <div className="flex items-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                    alt="Kamila Anderson"
+                    className="w-16 h-16 rounded-full object-cover mr-4"
+                  />
+                  <div>
+                    <h6 className="font-bold text-gray-900">Kamila Anderson</h6>
+                    <p className="text-gray-600">Financial Advisor, Colorado</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex justify-center mt-12 space-x-3">
+              <div className="w-3 h-3 bg-red-600 rounded-full"></div>
+              <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
+              <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Recent News - Blog Style */}
+        <div className="py-24 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-light text-gray-900 mb-6">Recent News</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt labore et dolore magna aliqua
+              </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-gray-50 p-8 rounded-xl">
-                <div className="flex items-center mb-6">
-                  <img 
-                    src="https://images.unsplash.com/photo-1494790108755-2616b9dc1d05?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                    alt="Sarah Johnson"
-                    className="w-16 h-16 rounded-full object-cover mr-4"
-                  />
-                  <div>
-                    <h4 className="font-bold text-gray-900">Sarah Johnson</h4>
-                    <p className="text-gray-600">CEO, Tech Solutions Inc.</p>
+              <article className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <img 
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                  alt="Financial Independence"
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-8">
+                  <div className="text-red-600 text-sm font-medium mb-3">Financial Planning</div>
+                  <h5 className="text-xl font-bold text-gray-900 mb-4">
+                    <a href="#" className="hover:text-red-600 transition-colors">How to achieve financial independence through planning</a>
+                  </h5>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words.
+                  </p>
+                  <div className="flex items-center">
+                    <img 
+                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                      alt="Emily Anderson"
+                      className="w-8 h-8 rounded-full object-cover mr-3"
+                    />
+                    <div className="text-sm">
+                      <span className="font-medium text-gray-900">by Emily Anderson</span>
+                      <span className="text-gray-500 ml-2">25 January 2021</span>
+                    </div>
                   </div>
                 </div>
-                <p className="text-gray-700 italic">"John's expertise in financial planning transformed our business operations and significantly improved our bottom line."</p>
-              </div>
+              </article>
               
-              <div className="bg-gray-50 p-8 rounded-xl">
-                <div className="flex items-center mb-6">
-                  <img 
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                    alt="Michael Chen"
-                    className="w-16 h-16 rounded-full object-cover mr-4"
-                  />
-                  <div>
-                    <h4 className="font-bold text-gray-900">Michael Chen</h4>
-                    <p className="text-gray-600">CFO, Global Ventures</p>
+              <article className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <img 
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                  alt="Investment Strategies"
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-8">
+                  <div className="text-red-600 text-sm font-medium mb-3">Investment</div>
+                  <h5 className="text-xl font-bold text-gray-900 mb-4">
+                    <a href="#" className="hover:text-red-600 transition-colors">The most popular investment strategies for growth</a>
+                  </h5>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words.
+                  </p>
+                  <div className="flex items-center">
+                    <img 
+                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                      alt="Emily Anderson"
+                      className="w-8 h-8 rounded-full object-cover mr-3"
+                    />
+                    <div className="text-sm">
+                      <span className="font-medium text-gray-900">by Emily Anderson</span>
+                      <span className="text-gray-500 ml-2">12 February 2021</span>
+                    </div>
                   </div>
                 </div>
-                <p className="text-gray-700 italic">"John's expertise in financial planning transformed our business operations and significantly improved our bottom line."</p>
-              </div>
+              </article>
               
-              <div className="bg-gray-50 p-8 rounded-xl">
-                <div className="flex items-center mb-6">
-                  <img 
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                    alt="Emily Rodriguez"
-                    className="w-16 h-16 rounded-full object-cover mr-4"
-                  />
-                  <div>
-                    <h4 className="font-bold text-gray-900">Emily Rodriguez</h4>
-                    <p className="text-gray-600">President, Innovate Corp</p>
+              <article className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <img 
+                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                  alt="Financial Future"
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-8">
+                  <div className="text-red-600 text-sm font-medium mb-3">Planning</div>
+                  <h5 className="text-xl font-bold text-gray-900 mb-4">
+                    <a href="#" className="hover:text-red-600 transition-colors">Learn how financial planning really shapes our future</a>
+                  </h5>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words.
+                  </p>
+                  <div className="flex items-center">
+                    <img 
+                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                      alt="Emily Anderson"
+                      className="w-8 h-8 rounded-full object-cover mr-3"
+                    />
+                    <div className="text-sm">
+                      <span className="font-medium text-gray-900">by Emily Anderson</span>
+                      <span className="text-gray-500 ml-2">13 March 2021</span>
+                    </div>
                   </div>
                 </div>
-                <p className="text-gray-700 italic">"John's expertise in financial planning transformed our business operations and significantly improved our bottom line."</p>
-              </div>
+              </article>
             </div>
           </div>
         </div>
 
-        {/* Contact Section */}
-        <div className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Contact Us Today</h2>
-              <p className="text-xl text-gray-600 mb-8">Ready to take control of your financial future? Let's discuss your goals and create a personalized plan.</p>
-              
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <input type="text" placeholder="First Name" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" />
-                  <input type="text" placeholder="Last Name" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" />
-                </div>
-                <input type="email" placeholder="Email Address" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" />
-                <input type="tel" placeholder="Phone Number" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" />
-                <textarea placeholder="How can we help you?" rows={4} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
-                <button type="submit" className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors">
-                  Send Message
-                </button>
-              </form>
+        {/* Get In Touch - Elegant Contact */}
+        <div id="contact" className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-light text-gray-900 mb-6">Get In Touch With Us</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore.
+              </p>
             </div>
             
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-                <div className="space-y-6">
-                  <div className="flex items-start">
-                    <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4">
-                      <MapPin className="w-6 h-6 text-white" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+              <div className="space-y-8">
+                <form className="space-y-6">
+                  <input 
+                    type="text" 
+                    placeholder="Your Name" 
+                    className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg"
+                  />
+                  <input 
+                    type="email" 
+                    placeholder="Email Address" 
+                    className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg"
+                  />
+                  <select className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg">
+                    <option>I'm Looking for ...</option>
+                    <option>Life Insurance</option>
+                    <option>Investment Planning</option>
+                    <option>Retirement Planning</option>
+                    <option>Education Planning</option>
+                    <option>Health Insurance</option>
+                    <option>Estate Planning</option>
+                  </select>
+                  <input type="text" className="hidden" />
+                  <textarea 
+                    placeholder="Your Message" 
+                    rows={6} 
+                    className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg"
+                  ></textarea>
+                  <button 
+                    type="submit" 
+                    className="w-full bg-red-600 text-white px-8 py-4 rounded-2xl text-lg font-medium hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+              
+              <div className="bg-gray-50 rounded-3xl p-12 space-y-8">
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-8">Contact Information</h3>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Address</h4>
+                      <p className="text-gray-600">007, Bond Street, Mighty Meadows, Australia</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">Address</h4>
-                      <p className="text-gray-600">123 Financial District<br/>Business Center, Suite 456<br/>New York, NY 10001</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4">
-                      <Phone className="w-6 h-6 text-white" />
+                      <h4 className="font-semibold text-gray-900 mb-2">Phone</h4>
+                      <p className="text-gray-600">1 800 234 56 78</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">Phone</h4>
-                      <p className="text-gray-600">(555) 123-PLAN<br/>Mon - Fri: 9:00 AM - 6:00 PM</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Email</h4>
-                      <p className="text-gray-600">john@planright.com<br/>info@planright.com</p>
+                      <h4 className="font-semibold text-gray-900 mb-2">Email</h4>
+                      <p className="text-gray-600">sales@planright.com</p>
                     </div>
                   </div>
                 </div>
-              </div>
-              
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Follow Us</h3>
-                <div className="flex space-x-4">
-                  <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                    <Facebook className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                    <Twitter className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                    <Linkedin className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                    <Instagram className="w-5 h-5 text-white" />
+                
+                <div className="pt-8 border-t border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-4">Follow Us</h4>
+                  <div className="flex space-x-4">
+                    <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Facebook className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Twitter className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Linkedin className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Instagram className="w-6 h-6 text-white" />
+                    </div>
                   </div>
                 </div>
               </div>

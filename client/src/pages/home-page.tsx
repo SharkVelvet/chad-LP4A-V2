@@ -111,12 +111,12 @@ export default function HomePage() {
 
           {/* Right Column - Access Card */}
           <div className="lg:sticky lg:top-8">
-            <Card>
+            <Card className="bg-red-600 border-red-600">
               <CardHeader className="text-center">
-                <CardTitle className="text-xl font-bold text-gray-900">
+                <CardTitle className="text-xl font-bold text-white">
                   Ready to Get Started?
                 </CardTitle>
-                <p className="text-gray-600 mt-2">Enter your access password to begin building your website</p>
+                <p className="text-red-100 mt-2">Enter your access password to begin building your website</p>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -127,12 +127,12 @@ export default function HomePage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="w-full"
+                      className="w-full bg-white border-white placeholder-gray-400 text-gray-900"
                     />
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full bg-red-600 hover:bg-red-700 text-white" 
+                    className="w-full bg-white hover:bg-gray-100 text-red-600 font-semibold" 
                     disabled={isLoading}
                   >
                     {isLoading ? "Checking..." : "Access Builder"}

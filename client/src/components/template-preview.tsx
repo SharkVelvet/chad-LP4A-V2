@@ -1863,7 +1863,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
   }
 
   // Template 4: Modern Business
-  if (templateSlug === "modern-business") {
+  if (templateSlug === "Template-4") {
     return (
       <div className={`bg-white ${className}`}>
         {/* Modern Dark Header */}
@@ -1977,7 +1977,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
   }
 
   // Template 5: Creative Portfolio
-  if (templateSlug === "creative-portfolio") {
+  if (templateSlug === "Template-5") {
     return (
       <div className={`bg-black text-white ${className}`}>
         {/* Creative Header */}
@@ -2107,7 +2107,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
   }
 
   // Template 6: Healthcare Services
-  if (templateSlug === "healthcare-services") {
+  if (templateSlug === "Template-6") {
     return (
       <div className={`bg-white ${className}`}>
         {/* Clean Medical Header */}

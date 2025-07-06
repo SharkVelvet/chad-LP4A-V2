@@ -57,8 +57,11 @@ export default function HomePage() {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             FOTYPE Website Builder for Agents
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 mb-4 max-w-2xl mx-auto">
             Create your professional Agent splash page in just a few simple steps
+          </p>
+          <p className="text-lg text-red-600 font-semibold mb-8 max-w-2xl mx-auto">
+            "Have a professional webpage and email address by the end of the day!"
           </p>
         </div>
 

@@ -88,7 +88,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Select Your Domain</h3>
-                    <p className="text-gray-600">Choose your preferred domain name (URL address) for your website</p>
+                    <p className="text-gray-600">Choose your preferred domain name (URL address) for your website - We take care of purchasing this for you</p>
                   </div>
                 </div>
               </CardContent>

@@ -1862,6 +1862,457 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
+  // Template 4: Modern Business
+  if (templateSlug === "modern-business") {
+    return (
+      <div className={`bg-white ${className}`}>
+        {/* Modern Dark Header */}
+        <div className="bg-slate-900 text-white sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+              ModernBiz
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <a href="#" className="hover:text-blue-400 transition-colors">Home</a>
+              <a href="#" className="hover:text-blue-400 transition-colors">Services</a>
+              <a href="#" className="hover:text-blue-400 transition-colors">About</a>
+              <a href="#" className="hover:text-blue-400 transition-colors">Contact</a>
+            </div>
+            <button className="bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-2 rounded-full hover:shadow-lg transition-all">
+              Get Started
+            </button>
+          </div>
+        </div>
+
+        {/* Modern Hero with Gradient */}
+        <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white py-24">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Transform Your Business
+            </h1>
+            <p className="text-xl mb-8 text-gray-300 max-w-3xl mx-auto">
+              Modern solutions for forward-thinking companies. We help businesses scale, innovate, and succeed in the digital age.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all">
+                Start Your Journey
+              </button>
+              <button className="border-2 border-blue-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-400 hover:text-slate-900 transition-all">
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Modern Services Grid */}
+        <div className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-slate-900 mb-4">Our Services</h2>
+              <p className="text-xl text-gray-600">Comprehensive solutions for modern businesses</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-blue-500">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+                  <Briefcase className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Strategy Consulting</h3>
+                <p className="text-gray-600 mb-6">Strategic planning and business transformation services to accelerate your growth.</p>
+                <ul className="space-y-2">
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-2" />Market Analysis</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-2" />Growth Strategy</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-2" />Digital Transformation</li>
+                </ul>
+              </div>
+              <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-purple-500">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Digital Marketing</h3>
+                <p className="text-gray-600 mb-6">Data-driven marketing strategies that deliver measurable results and ROI.</p>
+                <ul className="space-y-2">
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-2" />SEO & SEM</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-2" />Social Media</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-2" />Analytics</li>
+                </ul>
+              </div>
+              <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-green-500">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center mb-6">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Team Development</h3>
+                <p className="text-gray-600 mb-6">Build high-performing teams with our leadership and development programs.</p>
+                <ul className="space-y-2">
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-2" />Leadership Training</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-2" />Team Building</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-2" />Performance Coaching</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Modern CTA Section */}
+        <div className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
+            <p className="text-xl mb-8">Join hundreds of companies that have accelerated their growth with our proven strategies.</p>
+            <button className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all">
+              Get Started Today
+            </button>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="bg-slate-900 text-white py-12">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <div className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+              ModernBiz
+            </div>
+            <p className="text-gray-400">© 2025 ModernBiz. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Template 5: Creative Portfolio
+  if (templateSlug === "creative-portfolio") {
+    return (
+      <div className={`bg-black text-white ${className}`}>
+        {/* Creative Header */}
+        <div className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div className="text-2xl font-light">
+              <span className="font-bold text-yellow-400">CREATIVE</span>
+              <span className="text-white ml-2">STUDIO</span>
+            </div>
+            <div className="hidden md:flex space-x-8 text-sm uppercase tracking-wider">
+              <a href="#" className="hover:text-yellow-400 transition-colors">Work</a>
+              <a href="#" className="hover:text-yellow-400 transition-colors">About</a>
+              <a href="#" className="hover:text-yellow-400 transition-colors">Services</a>
+              <a href="#" className="hover:text-yellow-400 transition-colors">Contact</a>
+            </div>
+          </div>
+        </div>
+
+        {/* Creative Hero */}
+        <div className="h-screen flex items-center justify-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-red-500/20"></div>
+          <div className="text-center z-10">
+            <h1 className="text-8xl font-bold mb-6">
+              <span className="block text-yellow-400">CREATIVE</span>
+              <span className="block text-white">VISION</span>
+            </h1>
+            <p className="text-2xl text-gray-300 mb-8 font-light">
+              Bringing ideas to life through exceptional design
+            </p>
+            <button className="border-2 border-yellow-400 text-yellow-400 px-8 py-4 text-lg uppercase tracking-wider hover:bg-yellow-400 hover:text-black transition-all">
+              View Portfolio
+            </button>
+          </div>
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div className="w-8 h-8 border-2 border-yellow-400 rounded-full flex items-center justify-center">
+              ↓
+            </div>
+          </div>
+        </div>
+
+        {/* Portfolio Grid */}
+        <div className="py-20 bg-gray-900">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-6xl font-bold mb-4">
+                <span className="text-yellow-400">RECENT</span> WORK
+              </h2>
+              <p className="text-xl text-gray-400">A selection of our latest creative projects</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1,2,3,4,5,6].map((item) => (
+                <div key={item} className="group relative overflow-hidden bg-gray-800 aspect-square">
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/80 to-red-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="text-center">
+                      <h3 className="text-2xl font-bold mb-2">Project {item}</h3>
+                      <p className="text-sm uppercase tracking-wider">Brand Design</p>
+                    </div>
+                  </div>
+                  <img 
+                    src={`https://images.unsplash.com/photo-${1600000000000 + item}?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80`}
+                    alt={`Portfolio item ${item}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Services Section */}
+        <div className="py-20 bg-black">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-6xl font-bold mb-4">
+                <span className="text-white">OUR</span> <span className="text-yellow-400">EXPERTISE</span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="space-y-8">
+                <div className="border-l-4 border-yellow-400 pl-6">
+                  <h3 className="text-3xl font-bold mb-4 text-yellow-400">BRANDING</h3>
+                  <p className="text-gray-300 text-lg">Complete brand identity development from concept to execution</p>
+                </div>
+                <div className="border-l-4 border-yellow-400 pl-6">
+                  <h3 className="text-3xl font-bold mb-4 text-yellow-400">WEB DESIGN</h3>
+                  <p className="text-gray-300 text-lg">Cutting-edge web experiences that captivate and convert</p>
+                </div>
+              </div>
+              <div className="space-y-8">
+                <div className="border-l-4 border-yellow-400 pl-6">
+                  <h3 className="text-3xl font-bold mb-4 text-yellow-400">PHOTOGRAPHY</h3>
+                  <p className="text-gray-300 text-lg">Professional photography that tells your brand's story</p>
+                </div>
+                <div className="border-l-4 border-yellow-400 pl-6">
+                  <h3 className="text-3xl font-bold mb-4 text-yellow-400">MOTION GRAPHICS</h3>
+                  <p className="text-gray-300 text-lg">Dynamic animations and video content that engage audiences</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact CTA */}
+        <div className="py-20 bg-yellow-400 text-black">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-6xl font-bold mb-6">LET'S CREATE</h2>
+            <p className="text-2xl mb-8">Ready to bring your vision to life?</p>
+            <button className="bg-black text-yellow-400 px-8 py-4 text-lg uppercase tracking-wider hover:bg-gray-800 transition-all">
+              Start a Project
+            </button>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="bg-black py-12">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <div className="text-2xl font-light mb-4">
+              <span className="font-bold text-yellow-400">CREATIVE</span>
+              <span className="text-white ml-2">STUDIO</span>
+            </div>
+            <p className="text-gray-400">© 2025 Creative Studio. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Template 6: Healthcare Services
+  if (templateSlug === "healthcare-services") {
+    return (
+      <div className={`bg-white ${className}`}>
+        {/* Clean Medical Header */}
+        <div className="bg-white shadow-sm sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center mr-3">
+                <Heart className="w-6 h-6 text-white" />
+              </div>
+              <div className="text-2xl font-bold text-teal-600">HealthCare+</div>
+            </div>
+            <div className="hidden md:flex space-x-8 text-gray-700">
+              <a href="#" className="hover:text-teal-600 transition-colors">Home</a>
+              <a href="#" className="hover:text-teal-600 transition-colors">Services</a>
+              <a href="#" className="hover:text-teal-600 transition-colors">About</a>
+              <a href="#" className="hover:text-teal-600 transition-colors">Contact</a>
+            </div>
+            <button className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors">
+              Book Appointment
+            </button>
+          </div>
+        </div>
+
+        {/* Medical Hero */}
+        <div className="bg-gradient-to-r from-teal-50 to-blue-50 py-20">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-5xl font-bold text-gray-900 mb-6">
+                Your Health is Our 
+                <span className="text-teal-600 block">Priority</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Providing compassionate, comprehensive healthcare services with state-of-the-art technology and experienced medical professionals.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-teal-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-teal-700 transition-colors">
+                  Schedule Appointment
+                </button>
+                <button className="border-2 border-teal-600 text-teal-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-teal-600 hover:text-white transition-colors">
+                  Emergency Services
+                </button>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-400/20 to-blue-400/20 rounded-2xl transform rotate-3"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Medical professionals"
+                className="relative z-10 w-full h-96 object-cover rounded-2xl shadow-xl"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Medical Services */}
+        <div className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Medical Services</h2>
+              <p className="text-xl text-gray-600">Comprehensive healthcare solutions for you and your family</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-gradient-to-br from-teal-50 to-blue-50 p-8 rounded-2xl">
+                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6">
+                  <Heart className="w-8 h-8 text-teal-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Cardiology</h3>
+                <p className="text-gray-600 mb-6">Comprehensive heart care with advanced diagnostic and treatment options.</p>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-teal-500 mr-2" />ECG & Stress Tests</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-teal-500 mr-2" />Heart Surgery</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-teal-500 mr-2" />Preventive Care</li>
+                </ul>
+              </div>
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl">
+                <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                  <User className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">General Medicine</h3>
+                <p className="text-gray-600 mb-6">Primary care services for patients of all ages with personalized treatment plans.</p>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-blue-500 mr-2" />Regular Checkups</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-blue-500 mr-2" />Vaccinations</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-blue-500 mr-2" />Health Screenings</li>
+                </ul>
+              </div>
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl">
+                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                  <Shield className="w-8 h-8 text-purple-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Emergency Care</h3>
+                <p className="text-gray-600 mb-6">24/7 emergency medical services with rapid response and expert care.</p>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-purple-500 mr-2" />24/7 Availability</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-purple-500 mr-2" />Trauma Care</li>
+                  <li className="flex items-center"><CheckCircle className="w-5 h-5 text-purple-500 mr-2" />Critical Care</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Why Choose Us */}
+        <div className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose HealthCare+</h2>
+              <p className="text-xl text-gray-600">Trusted healthcare with a patient-centered approach</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Award className="w-10 h-10 text-teal-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Expert Doctors</h3>
+                <p className="text-gray-600">Board-certified physicians with years of experience</p>
+              </div>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Clock className="w-10 h-10 text-blue-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">24/7 Support</h3>
+                <p className="text-gray-600">Round-the-clock medical assistance when you need it</p>
+              </div>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Star className="w-10 h-10 text-purple-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Top Rated</h3>
+                <p className="text-gray-600">Consistently rated as the best healthcare provider</p>
+              </div>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Shield className="w-10 h-10 text-green-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Safe & Secure</h3>
+                <p className="text-gray-600">Advanced safety protocols and secure patient data</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact CTA */}
+        <div className="bg-teal-600 text-white py-20">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-4xl font-bold mb-6">Ready to Take Care of Your Health?</h2>
+            <p className="text-xl mb-8">Schedule your appointment today and experience the best in healthcare.</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-white text-teal-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors">
+                Book Appointment
+              </button>
+              <button className="border-2 border-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-teal-600 transition-colors">
+                Call Emergency
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="bg-gray-900 text-white py-12">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              <div>
+                <div className="flex items-center mb-4">
+                  <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center mr-2">
+                    <Heart className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="text-xl font-bold text-teal-400">HealthCare+</div>
+                </div>
+                <p className="text-gray-400">Your trusted healthcare partner for life.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4">Services</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li>Cardiology</li>
+                  <li>General Medicine</li>
+                  <li>Emergency Care</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4">Contact</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li>123 Medical Center Dr</li>
+                  <li>(555) 123-4567</li>
+                  <li>info@healthcare.com</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4">Hours</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li>Mon-Fri: 8AM-8PM</li>
+                  <li>Sat: 9AM-5PM</li>
+                  <li>Emergency: 24/7</li>
+                </ul>
+              </div>
+            </div>
+            <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
+              © 2025 HealthCare+. All rights reserved.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Default fallback for other templates
   return (
     <div className={`bg-gray-100 rounded-lg p-8 ${className}`}>

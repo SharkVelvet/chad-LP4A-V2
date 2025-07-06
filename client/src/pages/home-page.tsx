@@ -60,7 +60,7 @@ export default function HomePage() {
           <p className="text-xl text-gray-600 mb-4 max-w-2xl mx-auto">
             Create your professional Agent splash page in just a few simple steps
           </p>
-          <p className="text-lg text-red-600 font-semibold mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-red-600 font-semibold mb-8 max-w-4xl mx-auto">
             "Have a professional webpage and business email address by the end of the day!"
           </p>
         </div>

@@ -130,13 +130,15 @@ export default function HomePage() {
                       className="w-full bg-white border-white placeholder-gray-400 text-gray-900"
                     />
                   </div>
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-white hover:bg-gray-100 text-red-600 font-semibold" 
-                    disabled={isLoading}
-                  >
-                    {isLoading ? "Checking..." : "Access Builder"}
-                  </Button>
+                  <div className="flex justify-center">
+                    <Button 
+                      type="submit" 
+                      className="px-8 py-3 bg-white hover:bg-gray-100 text-red-600 font-semibold rounded-lg" 
+                      disabled={isLoading}
+                    >
+                      {isLoading ? "Checking..." : "Get Started"}
+                    </Button>
+                  </div>
                 </form>
               </CardContent>
             </Card>

@@ -58,7 +58,7 @@ export default function TemplateSelection() {
 
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Choose Your Template</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Preview Which Template You Like Below</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Browse our professional website templates and preview them before making your choice.
           </p>

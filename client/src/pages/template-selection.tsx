@@ -76,14 +76,13 @@ export default function TemplateSelection() {
 
         {/* Skip to Next Step */}
         <div className="text-center">
-          <p className="text-gray-600 mb-4">Already know which template you want?</p>
+          <p className="text-gray-600 mb-4">Ready to continue with your website?</p>
           <Button
-            variant="outline"
             size="lg"
-            className="px-8 py-3"
+            className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white"
             onClick={() => navigate('/setup')}
           >
-            Skip to Website Setup
+            Go to the Next Step
           </Button>
         </div>
       </div>

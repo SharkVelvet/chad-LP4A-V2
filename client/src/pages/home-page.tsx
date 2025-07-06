@@ -141,9 +141,12 @@ export default function HomePage() {
               </CardContent>
             </Card>
             
-            <div className="mt-4 text-center">
-              <p className="text-gray-700 font-medium">
-                Have your webpage live within 48 to 72 hours! Some, the same day!
+            <div className="mt-6 text-center">
+              <p className="text-2xl font-bold text-gray-900 mb-2">
+                Have your webpage live within 48 to 72 hours!
+              </p>
+              <p className="text-xl font-semibold text-red-600">
+                Some, the same day!
               </p>
             </div>
           </div>

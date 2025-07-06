@@ -102,7 +102,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Go Live</h3>
-                    <p className="text-gray-600">FOTYPE will work with you to get your content updated to your specific needs and have your page live within 3 days</p>
+                    <p className="text-gray-600">FOTYPE will work with you to get your content updated to your specific needs and have your page live quickly</p>
                   </div>
                 </div>
               </CardContent>

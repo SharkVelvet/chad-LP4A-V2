@@ -121,7 +121,7 @@ export default function WebsiteSetup() {
         </div>
       </nav>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Step Indicator */}
         <div className="mb-6">
           <div className="text-center">
@@ -287,7 +287,7 @@ export default function WebsiteSetup() {
           </Card>
 
           <div className="text-center">
-            <Button type="submit" size="lg" className="px-8 py-3">
+            <Button type="submit" size="lg" className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white">
               Continue to Next Step
             </Button>
           </div>

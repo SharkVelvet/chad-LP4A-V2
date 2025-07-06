@@ -54,9 +54,6 @@ export default function HomePage() {
       <div className="w-full max-w-4xl">
         {/* Main Explanation Section */}
         <div className="text-center mb-8">
-          <div className="mx-auto mb-6 w-20 h-20 bg-red-600 rounded-full flex items-center justify-center">
-            <Lock className="h-10 w-10 text-white" />
-          </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             FOTYPE Website Builder for Agents
           </h1>

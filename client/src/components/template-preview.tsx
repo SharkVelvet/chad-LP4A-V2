@@ -5,6 +5,7 @@ import temp2Image from "@assets/temp2-pr.jpg";
 import temp3Image from "@assets/temp3-pr.jpg";
 import temp4Image from "@assets/temp4-pr.jpg";
 import template1HeroImg from "@assets/tempalte1-hero.jpg";
+import jennyImage from "@assets/planright-w2_1751850806336.jpg";
 
 interface TemplatePreviewProps {
   templateSlug: string;
@@ -53,10 +54,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="absolute inset-0 flex items-center">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center w-full">
               <div className="text-white text-center lg:text-left">
-                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 leading-tight">John Smith</h1>
-                <p className="text-lg sm:text-xl lg:text-2xl mb-2 text-white">President of Financial Services</p>
+                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 leading-tight">Jenny Smith</h1>
+                <p className="text-lg sm:text-xl lg:text-2xl mb-2 text-white">Licensed Insurance Agent</p>
                 <p className="text-sm sm:text-base lg:text-lg text-white mb-6 lg:mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                  Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
+                  Specializing in health insurance, life insurance, Medicare, and Medicaid to protect your family's future.
                 </p>
                 <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
                   <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="bg-red-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-flex items-center justify-center text-sm sm:text-base">
@@ -603,7 +604,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     Delivered
                   </h1>
                   <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg">
-                    Providing comprehensive financial solutions and procurement strategies for businesses across all industries with over 15 years of expertise.
+                    Specializing in comprehensive insurance solutions including health coverage, life insurance, Medicare planning, and Medicaid assistance with over 15 years of expertise.
                   </p>
                   
 
@@ -642,18 +643,18 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">John Smith</h3>
-                      <p className="text-red-600 font-semibold mb-6">President of Financial Services</p>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Jenny Smith</h3>
+                      <p className="text-red-600 font-semibold mb-6">Licensed Insurance Agent</p>
                       
                       {/* Credentials */}
                       <div className="space-y-3">
                         <div className="flex items-center justify-center bg-gray-50 px-4 py-2 rounded-lg">
                           <Shield className="w-4 h-4 text-red-600 mr-2" />
-                          <span className="text-sm font-medium">CFP Certified Professional</span>
+                          <span className="text-sm font-medium">Licensed Insurance Agent</span>
                         </div>
                         <div className="flex items-center justify-center bg-gray-50 px-4 py-2 rounded-lg">
                           <Award className="w-4 h-4 text-red-600 mr-2" />
-                          <span className="text-sm font-medium">Industry Award Winner</span>
+                          <span className="text-sm font-medium">15+ Years Experience</span>
                         </div>
                         <div className="flex items-center justify-center bg-gray-50 px-4 py-2 rounded-lg">
                           <Star className="w-4 h-4 text-red-600 mr-2" />
@@ -1727,11 +1728,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-red-400">John Smith</span>
+                <span className="text-red-400">Jenny Smith</span>
               </h1>
-              <p className="text-xl lg:text-2xl mb-4 text-red-300">President of Financial Services</p>
+              <p className="text-xl lg:text-2xl mb-4 text-red-300">Licensed Insurance Agent</p>
               <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
+                Specializing in health insurance, life insurance, Medicare planning, and Medicaid assistance for comprehensive family protection.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transition-all">
@@ -2188,9 +2189,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <br />
                 <span className="text-gray-600 font-bold">Financial</span>
               </h1>
-              <p className="text-xl text-red-600 mb-4 font-semibold">President of Financial Services</p>
+              <p className="text-xl text-red-600 mb-4 font-semibold">Licensed Insurance Agent</p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Providing comprehensive financial solutions and procurement strategies for businesses across all industries.
+                Specializing in health insurance, life insurance, Medicare planning, and Medicaid assistance to protect your family's future.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button className="bg-red-600 text-white px-8 py-4 rounded-sm hover:bg-red-700 transition-colors font-medium">
@@ -2646,14 +2647,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="absolute inset-0 bg-gradient-to-br from-red-100 to-gray-100 rounded-3xl transform rotate-3"></div>
               <div className="relative z-10 bg-white rounded-3xl shadow-2xl overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="John Smith" 
+                  src={jennyImage} 
+                  alt="Jenny Smith" 
                   className="w-full h-96 object-cover"
                 />
                 <div className="p-6 bg-white">
-                  <h3 className="text-xl font-bold text-gray-900">John Smith</h3>
-                  <p className="text-red-600 font-medium">President of Financial Services</p>
-                  <p className="text-gray-600 mt-2">15+ years of excellence in financial planning</p>
+                  <h3 className="text-xl font-bold text-gray-900">Jenny Smith</h3>
+                  <p className="text-red-600 font-medium">Licensed Insurance Agent</p>
+                  <p className="text-gray-600 mt-2">15+ years of excellence in insurance solutions</p>
                 </div>
               </div>
             </div>
@@ -2746,41 +2747,32 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   With Their <span className="text-red-600 font-normal">Dreams</span>
                 </h2>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt soluta nobis assumenda labore quod maxime.
+                  Specializing in comprehensive insurance solutions that protect what matters most - your health, your family, and your future. From Medicare guidance to life insurance protection.
                 </p>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  There are many variations of passages of lorem ipsum available. Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
+                  With over 15 years of experience helping clients navigate complex insurance decisions, I provide personalized guidance for health insurance enrollment, Medicaid applications, Medicare planning, and life insurance coverage that fits your unique needs and budget.
                 </p>
-                
-                <div className="flex items-center space-x-4">
-                  <div className="flex -space-x-2">
-                    <img src="https://images.unsplash.com/photo-1494790108755-2616b9dc1d05?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" className="w-12 h-12 rounded-full border-2 border-white" alt="" />
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" className="w-12 h-12 rounded-full border-2 border-white" alt="" />
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" className="w-12 h-12 rounded-full border-2 border-white" alt="" />
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" className="w-12 h-12 rounded-full border-2 border-white" alt="" />
-                  </div>
-                </div>
                 
                 <div className="grid grid-cols-3 gap-8">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-red-600">1M+</div>
-                    <div className="text-gray-600">Reviews 4.7 out of 5</div>
+                    <div className="text-3xl font-bold text-red-600">500+</div>
+                    <div className="text-gray-600">Families Protected</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-red-600">$1,40,221+</div>
-                    <div className="text-gray-600">Average client savings</div>
+                    <div className="text-3xl font-bold text-red-600">$2,400+</div>
+                    <div className="text-gray-600">Average Annual Savings</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-red-600">#1</div>
-                    <div className="text-gray-600">Resource for financial info</div>
+                    <div className="text-3xl font-bold text-red-600">15+</div>
+                    <div className="text-gray-600">Years Experience</div>
                   </div>
                 </div>
               </div>
               
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="John Smith"
+                  src={jennyImage}
+                  alt="Jenny Smith"
                   className="w-full h-96 object-cover rounded-3xl shadow-2xl"
                 />
               </div>
@@ -2793,12 +2785,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
               <h2 className="text-5xl font-light text-gray-900 mb-6">
-                Our Featured <br/>
-                <span className="text-red-600 font-normal">Financial Services</span>
+                Comprehensive <br/>
+                <span className="text-red-600 font-normal">Insurance Solutions</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt soluta nobis assumenda labore quod maxime.
+                Protecting your health, family, and future with personalized insurance coverage. From Medicare guidance to life insurance protection, I help you find the right coverage at the right price.
               </p>
             </div>
             
@@ -2806,7 +2797,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               {/* Life Insurance - Featured Large */}
               <div className="relative group">
                 <div className="absolute top-6 left-6 bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium z-10">
-                  For Sale
+                  Popular
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl overflow-hidden">
                   <div className="relative h-96">
@@ -2820,7 +2811,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <div className="mb-6">
                       <div className="text-gray-600 text-lg mb-2">Comprehensive Protection</div>
                       <h3 className="text-4xl font-bold text-gray-900 mb-4">Best Life Insurance Plans</h3>
-                      <div className="text-3xl font-bold text-red-600 mb-6">Starting at $25,000</div>
+                      <div className="text-3xl font-bold text-red-600 mb-6">From $25/month</div>
                     </div>
                     
                     <div className="grid grid-cols-3 gap-6 mb-8">
@@ -2839,86 +2830,86 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     </div>
                     
                     <p className="text-gray-600 mb-8 leading-relaxed">
-                      There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
+                      Protect your family's financial future with comprehensive life insurance coverage. Choose from term, whole, or universal life policies designed to meet your specific needs and budget requirements.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Investment Planning */}
+              {/* Health Insurance */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl overflow-hidden">
                 <div className="p-12 flex flex-col justify-center">
                   <div className="mb-6">
-                    <div className="text-gray-600 text-lg mb-2">Strategic Growth</div>
-                    <h3 className="text-4xl font-bold text-gray-900 mb-4">Investment Portfolio</h3>
-                    <div className="text-3xl font-bold text-red-600 mb-6">$50,000 minimum</div>
+                    <div className="text-gray-600 text-lg mb-2">Complete Coverage</div>
+                    <h3 className="text-4xl font-bold text-gray-900 mb-4">Health Insurance Plans</h3>
+                    <div className="text-3xl font-bold text-red-600 mb-6">From $150/month</div>
                   </div>
                   
                   <div className="grid grid-cols-3 gap-6 mb-8">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">401k</div>
-                      <div className="text-gray-600 text-sm">Retirement</div>
+                      <div className="text-2xl font-bold text-gray-900">Individual</div>
+                      <div className="text-gray-600 text-sm">Coverage</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">Mutual</div>
-                      <div className="text-gray-600 text-sm">Funds</div>
+                      <div className="text-2xl font-bold text-gray-900">Family</div>
+                      <div className="text-gray-600 text-sm">Plans</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">Portfolio</div>
-                      <div className="text-gray-600 text-sm">Management</div>
+                      <div className="text-2xl font-bold text-gray-900">Group</div>
+                      <div className="text-gray-600 text-sm">Insurance</div>
                     </div>
                   </div>
                   
                   <p className="text-gray-600 mb-8 leading-relaxed">
-                    There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
+                    Comprehensive health insurance coverage to protect you and your family. Access to quality healthcare with plans that fit your budget and healthcare needs, including preventive care and emergency coverage.
                   </p>
                 </div>
                 <div className="relative h-96">
                   <img 
                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                    alt="Investment Planning"
+                    alt="Health Insurance"
                     className="w-full h-full object-cover"
                   />
                 </div>
               </div>
 
-              {/* Retirement Planning */}
+              {/* Medicare & Medicaid */}
               <div className="relative group">
                 <div className="absolute top-6 left-6 bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium z-10">
-                  Popular
+                  Essential
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl overflow-hidden">
                   <div className="relative h-96">
                     <img 
                       src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                      alt="Retirement Planning"
+                      alt="Medicare Planning"
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="p-12 flex flex-col justify-center">
                     <div className="mb-6">
-                      <div className="text-gray-600 text-lg mb-2">Secure Future</div>
-                      <h3 className="text-4xl font-bold text-gray-900 mb-4">Retirement Planning</h3>
-                      <div className="text-3xl font-bold text-red-600 mb-6">$7,261,300</div>
+                      <div className="text-gray-600 text-lg mb-2">Government Programs</div>
+                      <h3 className="text-4xl font-bold text-gray-900 mb-4">Medicare & Medicaid</h3>
+                      <div className="text-3xl font-bold text-red-600 mb-6">Free Consultation</div>
                     </div>
                     
                     <div className="grid grid-cols-3 gap-6 mb-8">
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-gray-900">IRA</div>
-                        <div className="text-gray-600 text-sm">Planning</div>
+                        <div className="text-2xl font-bold text-gray-900">Medicare</div>
+                        <div className="text-gray-600 text-sm">Enrollment</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-gray-900">Income</div>
-                        <div className="text-gray-600 text-sm">Strategies</div>
+                        <div className="text-2xl font-bold text-gray-900">Medicaid</div>
+                        <div className="text-gray-600 text-sm">Applications</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-gray-900">Social</div>
-                        <div className="text-gray-600 text-sm">Security</div>
+                        <div className="text-2xl font-bold text-gray-900">Benefits</div>
+                        <div className="text-gray-600 text-sm">Optimization</div>
                       </div>
                     </div>
                     
                     <p className="text-gray-600 mb-8 leading-relaxed">
-                      There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
+                      Navigate Medicare and Medicaid programs with confidence. I help seniors and eligible individuals understand their options, enroll in the right programs, and maximize their healthcare benefits while minimizing costs.
                     </p>
                   </div>
                 </div>
@@ -2931,32 +2922,32 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div className="py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
-              <h2 className="text-5xl font-light text-gray-900 mb-6">Our Services</h2>
+              <h2 className="text-5xl font-light text-gray-900 mb-6">Insurance Services</h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor.
+                Comprehensive insurance solutions to protect your health, family, and financial future.
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-                <h4 className="text-xl font-bold text-gray-900 mb-4">Education Planning</h4>
-                <p className="text-gray-600">There are many variations of passages of lorem ipsum available.</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Life Insurance</h4>
+                <p className="text-gray-600">Protect your family's financial future with term, whole, and universal life insurance policies.</p>
               </div>
               <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
                 <h4 className="text-xl font-bold text-gray-900 mb-4">Health Insurance</h4>
-                <p className="text-gray-600">There are many variations of passages of lorem ipsum available.</p>
+                <p className="text-gray-600">Quality healthcare coverage for individuals, families, and groups that fits your budget.</p>
               </div>
               <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-                <h4 className="text-xl font-bold text-gray-900 mb-4">Estate Planning</h4>
-                <p className="text-gray-600">There are many variations of passages of lorem ipsum available.</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Medicare Planning</h4>
+                <p className="text-gray-600">Navigate Medicare options with expert guidance on supplements and advantage plans.</p>
               </div>
               <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-                <h4 className="text-xl font-bold text-gray-900 mb-4">Portfolio Services</h4>
-                <p className="text-gray-600">There are many variations of passages of lorem ipsum available.</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Medicaid Assistance</h4>
+                <p className="text-gray-600">Help with Medicaid applications and enrollment for essential healthcare coverage.</p>
               </div>
               <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-                <h4 className="text-xl font-bold text-gray-900 mb-4">Risk Management</h4>
-                <p className="text-gray-600">There are many variations of passages of lorem ipsum available.</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Claims Support</h4>
+                <p className="text-gray-600">Expert assistance with insurance claims processing and appeals to maximize benefits.</p>
               </div>
             </div>
           </div>
@@ -2973,7 +2964,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-gray-50 p-10 rounded-3xl hover:shadow-lg transition-shadow">
                 <h4 className="text-2xl font-bold text-gray-900 mb-6">Pristine & Gorgeous</h4>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.
+                  "Jenny's expertise in financial planning transformed our business operations and significantly improved our bottom line. Her attention to detail and strategic approach is unmatched."
                 </p>
                 <div className="flex items-center">
                   <img 
@@ -2991,7 +2982,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-gray-50 p-10 rounded-3xl hover:shadow-lg transition-shadow">
                 <h4 className="text-2xl font-bold text-gray-900 mb-6">Reliable People</h4>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt aute irure dolor in reprehenderit in voluptate velit esse cillum dolore beatae vitae dicta sunt explicabo magna aliqua.
+                  "Working with Jenny has been exceptional. Her comprehensive approach to financial planning and dedication to client success makes her stand out in the industry. Highly recommended."
                 </p>
                 <div className="flex items-center">
                   <img 
@@ -3009,16 +3000,16 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-gray-50 p-10 rounded-3xl hover:shadow-lg transition-shadow">
                 <h4 className="text-2xl font-bold text-gray-900 mb-6">Smooth Process</h4>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur odit aut fugit sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt porro quisquam qui dolorem ipsum quia dolor sit consectetur.
+                  "Jenny's professional expertise and personalized service exceeded our expectations. She helped us navigate complex financial decisions with confidence and clarity."
                 </p>
                 <div className="flex items-center">
                   <img 
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                    alt="Kamila Anderson"
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                    alt="Marcus Anderson"
                     className="w-16 h-16 rounded-full object-cover mr-4"
                   />
                   <div>
-                    <h6 className="font-bold text-gray-900">Kamila Anderson</h6>
+                    <h6 className="font-bold text-gray-900">Marcus Anderson</h6>
                     <p className="text-gray-600">Financial Advisor, Colorado</p>
                   </div>
                 </div>
@@ -3067,7 +3058,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <Mail className="w-10 h-10 text-white" />
                 </div>
                 <h4 className="font-bold text-gray-900 mb-3 text-xl">Email</h4>
-                <p className="text-gray-600 leading-relaxed">john@planright.com<br/>info@planright.com</p>
+                <p className="text-gray-600 leading-relaxed">jenny@planright.com<br/>info@planright.com</p>
               </div>
             </div>
             

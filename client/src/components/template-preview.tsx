@@ -6,6 +6,7 @@ import temp3Image from "@assets/temp3-pr.jpg";
 import temp4Image from "@assets/temp4-pr.jpg";
 import template1HeroImg from "@assets/tempalte1-hero.jpg";
 import jennyImage from "@assets/planright-w2_1751850806336.jpg";
+import template4Image from "@assets/planright-w4_1751851299514.jpg";
 
 interface TemplatePreviewProps {
   templateSlug: string;
@@ -1728,7 +1729,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-red-400">Jenny Smith</span>
+                <span className="text-red-400">Cameron Smith</span>
               </h1>
               <p className="text-xl lg:text-2xl mb-4 text-red-300">Licensed Insurance Agent</p>
               <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
@@ -1747,8 +1748,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="relative">
                 <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-red-400">
                   <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                    alt="John Smith" 
+                    src={template4Image} 
+                    alt="Cameron Smith" 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -1767,17 +1768,17 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-slate-900 mb-4">About John Smith</h2>
-              <p className="text-xl text-gray-600">Financial expertise you can trust</p>
+              <h2 className="text-4xl font-bold text-slate-900 mb-4">About Cameron Smith</h2>
+              <p className="text-xl text-gray-600">Insurance expertise you can trust</p>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
+                  With over 15 years of experience in insurance services, Cameron Smith has established herself as a leading expert in health insurance, Medicare planning, and comprehensive family protection.
                 </p>
                 <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                  His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
+                  Her comprehensive approach combines extensive insurance knowledge with personalized service to deliver exceptional coverage solutions for individuals and families across all life stages.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-6">
@@ -2075,7 +2076,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <Mail className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-2">Email</h4>
-                <p className="text-gray-600">john@planright.com<br/>info@planright.com</p>
+                <p className="text-gray-600">cameron@planright.com<br/>info@planright.com</p>
               </div>
             </div>
             

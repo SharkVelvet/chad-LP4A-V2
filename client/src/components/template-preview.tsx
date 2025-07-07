@@ -2214,17 +2214,17 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-red-200/50 to-gray-200/50 rounded-2xl transform rotate-3"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                alt="John Smith"
-                className="relative z-10 w-full h-96 object-cover rounded-2xl shadow-xl"
-              />
-              <div className="absolute -top-4 -left-4 bg-red-600 text-white px-4 py-2 rounded-xl shadow-lg transform rotate-12">
+              <div className="absolute -top-4 -left-4 bg-red-600 text-white px-4 py-2 rounded-xl shadow-lg transform rotate-12 z-20">
                 <div className="text-center">
                   <div className="text-sm font-bold">15+ Years</div>
                   <div className="text-xs">Excellence</div>
                 </div>
               </div>
+              <img 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                alt="John Smith"
+                className="relative z-10 w-full h-96 object-cover rounded-2xl shadow-xl"
+              />
             </div>
           </div>
         </div>

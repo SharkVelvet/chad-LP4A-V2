@@ -1815,8 +1815,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src={temp1Image} 
-                  alt="Financial workspace" 
+                  src={template4Image} 
+                  alt="Cameron Smith" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
                 <img 
@@ -1830,8 +1830,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
                 <img 
-                  src={temp4Image} 
-                  alt="Modern office" 
+                  src={template4Image} 
+                  alt="Cameron Smith Professional" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
               </div>

@@ -7,6 +7,7 @@ import temp4Image from "@assets/temp4-pr.jpg";
 import template1HeroImg from "@assets/tempalte1-hero.jpg";
 import jennyImage from "@assets/planright-w2_1751850806336.jpg";
 import template4Image from "@assets/planright-w4_1751851299514.jpg";
+import parkBackgroundImage from "@assets/planright-park-back_1751851568156.jpg";
 
 interface TemplatePreviewProps {
   templateSlug: string;
@@ -1724,9 +1725,15 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Modern Hero with Gradient */}
-        <div className="bg-gradient-to-br from-slate-900 via-red-900 to-gray-900 text-white py-24">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        {/* Modern Hero with Background Image */}
+        <div className="relative text-white py-24" style={{
+          backgroundImage: `url(${parkBackgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}>
+          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+          <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 <span className="text-red-400">Cameron Smith</span>

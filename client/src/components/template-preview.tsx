@@ -8,6 +8,8 @@ import template1HeroImg from "@assets/tempalte1-hero.jpg";
 import jennyImage from "@assets/planright-w2_1751850806336.jpg";
 import template4Image from "@assets/planright-w4_1751851299514.jpg";
 import parkBackgroundImage from "@assets/planright-park-back_1751851568156.jpg";
+import jennySnapshotImage from "@assets/planright-jenny-snapshot_1751852549427.jpg";
+import cameronSnapshotImage from "@assets/planright-cameron-snapshot_1751852578360.jpg";
 
 interface TemplatePreviewProps {
   templateSlug: string;

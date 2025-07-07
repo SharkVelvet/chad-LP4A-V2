@@ -1822,23 +1822,23 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  src="https://images.unsplash.com/photo-1494790108755-2616b9dc1d05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                   alt="Professional businesswoman" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
                 <img 
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Women in business meeting" 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Business professional" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
                 <img 
-                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                   alt="Female business consultant" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
                 <img 
-                  src="https://images.unsplash.com/photo-1594608661623-aa0bd128aa12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Professional woman with laptop" 
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Professional meeting" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
               </div>

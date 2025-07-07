@@ -1822,7 +1822,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1494790108755-2616b9dc1d05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  src="https://images.unsplash.com/photo-1559911908-1c25b4cee3f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                   alt="Professional businesswoman" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />

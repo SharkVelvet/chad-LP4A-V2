@@ -2001,12 +2001,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-gray-50 p-8 rounded-xl">
                 <div className="flex items-center mb-6">
                   <img 
-                    src="https://images.unsplash.com/photo-1494790108755-2616b9dc1d05?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                    alt="Sarah Johnson"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                    alt="David Johnson"
                     className="w-16 h-16 rounded-full object-cover mr-4"
                   />
                   <div>
-                    <h4 className="font-bold text-gray-900">Sarah Johnson</h4>
+                    <h4 className="font-bold text-gray-900">David Johnson</h4>
                     <p className="text-gray-600">CEO, Tech Solutions Inc.</p>
                   </div>
                 </div>
@@ -2031,12 +2031,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-gray-50 p-8 rounded-xl">
                 <div className="flex items-center mb-6">
                   <img 
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                    alt="Emily Rodriguez"
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                    alt="Carlos Rodriguez"
                     className="w-16 h-16 rounded-full object-cover mr-4"
                   />
                   <div>
-                    <h4 className="font-bold text-gray-900">Emily Rodriguez</h4>
+                    <h4 className="font-bold text-gray-900">Carlos Rodriguez</h4>
                     <p className="text-gray-600">President, Innovate Corp</p>
                   </div>
                 </div>
@@ -2977,12 +2977,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </p>
                 <div className="flex items-center">
                   <img 
-                    src="https://images.unsplash.com/photo-1494790108755-2616b9dc1d05?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                    alt="Eleanor Jensen"
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                    alt="Robert Jensen"
                     className="w-16 h-16 rounded-full object-cover mr-4"
                   />
                   <div>
-                    <h6 className="font-bold text-gray-900">Eleanor Jensen</h6>
+                    <h6 className="font-bold text-gray-900">Robert Jensen</h6>
                     <p className="text-gray-600">Business Owner, LA</p>
                   </div>
                 </div>

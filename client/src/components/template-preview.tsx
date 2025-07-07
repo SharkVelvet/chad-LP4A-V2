@@ -1736,24 +1736,24 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-red-400">Cameron Smith</span>
+                <span className="text-white">Cameron Smith</span>
               </h1>
-              <p className="text-xl lg:text-2xl mb-4 text-red-300">Licensed Insurance Agent</p>
-              <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+              <p className="text-xl lg:text-2xl mb-4 text-white">Licensed Insurance Agent</p>
+              <p className="text-lg text-white mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
                 Specializing in health insurance, life insurance, Medicare planning, and Medicaid assistance for comprehensive family protection.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transition-all">
                   Contact Us
                 </button>
-                <button className="border-2 border-red-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-400 hover:text-slate-900 transition-all">
+                <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-slate-900 transition-all">
                   Learn More
                 </button>
               </div>
             </div>
             <div className="flex justify-center">
-              <div className="relative">
-                <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-red-400">
+              <div className="relative z-20">
+                <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
                   <img 
                     src={template4Image} 
                     alt="Cameron Smith" 

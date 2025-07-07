@@ -1822,23 +1822,23 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src={template4Image} 
-                  alt="Cameron Smith" 
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Professional businesswoman" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
                 <img 
-                  src={temp2Image} 
-                  alt="Professional meeting" 
+                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Women in business meeting" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
                 <img 
-                  src={temp3Image} 
-                  alt="Business consultation" 
+                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Female business consultant" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
                 <img 
-                  src={template4Image} 
-                  alt="Cameron Smith Professional" 
+                  src="https://images.unsplash.com/photo-1594608661623-aa0bd128aa12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Professional woman with laptop" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
               </div>

@@ -1827,8 +1827,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Business professional" 
+                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Female business professional" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
                 <img 
@@ -1837,8 +1837,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
                 <img 
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Professional meeting" 
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Professional woman working" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
                 />
               </div>

@@ -12,10 +12,11 @@ export default function Ideas() {
 
   const categories = [
     "All", "Insurance Agency", "Financial Services", "Real Estate", "Healthcare", 
-    "Legal", "Consulting", "Restaurant", "Salon & Spa", "Fitness", "Education", "Non-Profit"
+    "Legal", "Consulting", "Restaurant", "Salon & Spa", "Fitness", "Education", "Non-Profit", "Entertainment"
   ];
 
   const splashPageExamples = [
+    // Template-based examples (first 6)
     {
       title: "Modern Insurance Agent",
       category: "Insurance Agency",
@@ -70,59 +71,321 @@ export default function Ideas() {
       difficulty: "Professional",
       rating: 5
     },
+    // Additional 34 examples with preview images
     {
-      title: "Property Insurance Agent",
-      category: "Real Estate",
-      description: "Property-focused design with coverage options and market insights",
-      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
-      features: ["Property Coverage", "Market Analysis", "Virtual Tours", "Agent Profile"],
-      difficulty: "Premium",
-      rating: 4
-    },
-    {
-      title: "Medicare Insurance Agent",
-      category: "Healthcare",
-      description: "Clean medical design with Medicare enrollment and patient resources",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
-      features: ["Medicare Plans", "Enrollment Help", "Health Resources", "Insurance Info"],
+      title: "Auto Insurance Agent",
+      category: "Insurance Agency",
+      description: "Vehicle-focused design with instant quotes and coverage comparisons",
+      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Instant Quotes", "Coverage Compare", "Claims Tracker", "Driving Tips"],
       difficulty: "Professional",
       rating: 5
     },
     {
-      title: "Professional Liability Insurance Agent",
+      title: "Home Insurance Agent",
+      category: "Real Estate",
+      description: "Property protection design with home value tools and coverage options",
+      image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Home Valuation", "Coverage Calculator", "Claims Guide", "Safety Tips"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Travel Insurance Agent",
+      category: "Insurance Agency",
+      description: "Adventure-themed design for travel protection and international coverage",
+      image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Trip Protection", "Medical Coverage", "Claim Support", "Travel Alerts"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Disability Insurance Agent",
+      category: "Healthcare",
+      description: "Supportive design focusing on income protection and disability benefits",
+      image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Income Protection", "Benefit Calculator", "Support Resources", "Claims Help"],
+      difficulty: "Premium",
+      rating: 5
+    },
+    {
+      title: "Workers Comp Insurance Agent",
       category: "Legal",
-      description: "Professional design emphasizing liability coverage and expertise",
-      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
-      features: ["Coverage Options", "Risk Assessment", "Consultation Booking", "Agent Profiles"],
+      description: "Professional design for workplace injury coverage and employer protection",
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Workplace Safety", "Injury Claims", "Premium Calculator", "Compliance Tools"],
       difficulty: "Premium",
       rating: 4
     },
     {
-      title: "Business Insurance Agent",
-      category: "Consulting",
-      description: "Strategic design showcasing business insurance expertise and client success",
-      image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
-      features: ["Strategy Tools", "Case Studies", "ROI Calculator", "Expert Insights"],
-      difficulty: "Premium", 
+      title: "Pet Insurance Agent",
+      category: "Insurance Agency",
+      description: "Pet-friendly design with veterinary coverage and animal health resources",
+      image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Vet Network", "Health Plans", "Emergency Coverage", "Pet Care Tips"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Motorcycle Insurance Agent",
+      category: "Insurance Agency",
+      description: "Dynamic design for motorcycle coverage with rider safety focus",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Bike Coverage", "Rider Protection", "Gear Discounts", "Safety Courses"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Boat Insurance Agent",
+      category: "Insurance Agency",
+      description: "Nautical-themed design for watercraft protection and marine coverage",
+      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Marine Coverage", "Boat Valuation", "Safety Equipment", "Weather Alerts"],
+      difficulty: "Premium",
+      rating: 4
+    },
+    {
+      title: "RV Insurance Agent",
+      category: "Insurance Agency",
+      description: "Adventure-focused design for recreational vehicle coverage and travel protection",
+      image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["RV Coverage", "Travel Protection", "Roadside Assistance", "Trip Planning"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Farm Insurance Agent",
+      category: "Insurance Agency",
+      description: "Agricultural design for farm property and livestock protection coverage",
+      image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Farm Coverage", "Livestock Protection", "Equipment Insurance", "Weather Protection"],
+      difficulty: "Premium",
       rating: 5
+    },
+    {
+      title: "Senior Insurance Agent",
+      category: "Healthcare",
+      description: "Senior-friendly design with Medicare supplements and retirement planning",
+      image: "https://images.unsplash.com/photo-1559757175-3ca99b57eedf?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Medicare Supplements", "Senior Discounts", "Health Plans", "Retirement Planning"],
+      difficulty: "Professional",
+      rating: 5
+    },
+    {
+      title: "Young Adult Insurance Agent",
+      category: "Financial Services",
+      description: "Modern design targeting young adults with starter policies and education",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Starter Policies", "Budget Plans", "Education Resources", "Mobile App"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Small Business Insurance Agent",
+      category: "Consulting",
+      description: "Entrepreneur-focused design for small business protection and liability coverage",
+      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Business Protection", "Liability Coverage", "Risk Assessment", "Growth Planning"],
+      difficulty: "Premium",
+      rating: 5
+    },
+    {
+      title: "Technology Insurance Agent",
+      category: "Consulting",
+      description: "Tech-focused design for cyber liability and technology business coverage",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Cyber Protection", "Data Breach Coverage", "Tech Liability", "Digital Assets"],
+      difficulty: "Premium",
+      rating: 5
+    },
+    {
+      title: "Construction Insurance Agent",
+      category: "Consulting",
+      description: "Industrial design for construction business coverage and contractor protection",
+      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Contractor Coverage", "Project Insurance", "Equipment Protection", "Worker Safety"],
+      difficulty: "Premium",
+      rating: 4
     },
     {
       title: "Restaurant Insurance Agent",
       category: "Restaurant",
-      description: "Industry-specific design for restaurant and hospitality insurance coverage",
+      description: "Food service design for restaurant liability and business interruption coverage",
       image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
-      features: ["Industry Coverage", "Risk Management", "Claims Support", "Business Protection"],
+      features: ["Food Service Coverage", "Liability Protection", "Equipment Insurance", "Business Interruption"],
       difficulty: "Professional",
       rating: 4
     },
     {
-      title: "Beauty Business Insurance Agent",
-      category: "Salon & Spa",
-      description: "Specialized design for beauty business insurance and liability coverage",
-      image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
-      features: ["Liability Coverage", "Business Protection", "Claims Support", "Industry Expertise"],
+      title: "Medical Practice Insurance Agent",
+      category: "Healthcare",
+      description: "Healthcare-focused design for medical malpractice and practice coverage",
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Malpractice Coverage", "Practice Protection", "Compliance Tools", "Risk Management"],
+      difficulty: "Premium",
+      rating: 5
+    },
+    {
+      title: "Fitness Business Insurance Agent",
+      category: "Fitness",
+      description: "Active design for gym and fitness business liability and equipment coverage",
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Fitness Liability", "Equipment Coverage", "Member Protection", "Instructor Insurance"],
       difficulty: "Professional",
       rating: 4
+    },
+    {
+      title: "Retail Insurance Agent",
+      category: "Consulting",
+      description: "Commercial design for retail business protection and inventory coverage",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Retail Coverage", "Inventory Protection", "Customer Liability", "Business Interruption"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Professional Services Insurance Agent",
+      category: "Legal",
+      description: "Corporate design for professional liability and errors & omissions coverage",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Professional Liability", "E&O Coverage", "Client Protection", "Practice Management"],
+      difficulty: "Premium",
+      rating: 5
+    },
+    {
+      title: "Event Insurance Agent",
+      category: "Insurance Agency",
+      description: "Celebration-themed design for event protection and special occasion coverage",
+      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Event Protection", "Vendor Coverage", "Weather Insurance", "Cancellation Protection"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Student Insurance Agent",
+      category: "Education",
+      description: "Campus-focused design for student health plans and education coverage",
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Student Health Plans", "Campus Coverage", "International Student", "Budget Options"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "International Insurance Agent",
+      category: "Insurance Agency",
+      description: "Global design for expatriate coverage and international business protection",
+      image: "https://images.unsplash.com/photo-1597149962419-0d71ac2c4292?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Global Coverage", "Expat Insurance", "International Health", "Currency Protection"],
+      difficulty: "Premium",
+      rating: 5
+    },
+    {
+      title: "Non-Profit Insurance Agent",
+      category: "Non-Profit",
+      description: "Community-focused design for non-profit organization coverage and volunteer protection",
+      image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Non-Profit Coverage", "Volunteer Protection", "Event Insurance", "Fundraising Protection"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Entertainment Insurance Agent",
+      category: "Entertainment",
+      description: "Creative design for entertainment industry coverage and production protection",
+      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Production Insurance", "Equipment Coverage", "Talent Protection", "Event Liability"],
+      difficulty: "Premium",
+      rating: 4
+    },
+    {
+      title: "Sports Insurance Agent",
+      category: "Fitness",
+      description: "Athletic design for sports team coverage and athlete protection plans",
+      image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Athlete Protection", "Team Coverage", "Sports Equipment", "Injury Insurance"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Beauty Industry Insurance Agent",
+      category: "Salon & Spa",
+      description: "Elegant design for beauty business liability and professional protection",
+      image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Beauty Liability", "Product Coverage", "Client Protection", "Equipment Insurance"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Transportation Insurance Agent",
+      category: "Insurance Agency",
+      description: "Logistics-focused design for commercial vehicle and transport coverage",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Fleet Coverage", "Cargo Protection", "Driver Insurance", "Route Planning"],
+      difficulty: "Premium",
+      rating: 5
+    },
+    {
+      title: "Manufacturing Insurance Agent",
+      category: "Consulting",
+      description: "Industrial design for manufacturing business coverage and equipment protection",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Manufacturing Coverage", "Equipment Protection", "Product Liability", "Worker Safety"],
+      difficulty: "Premium",
+      rating: 5
+    },
+    {
+      title: "Real Estate Agent Insurance Agent",
+      category: "Real Estate",
+      description: "Property-focused design for real estate professional coverage and transaction protection",
+      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Professional Liability", "E&O Coverage", "Property Protection", "Client Coverage"],
+      difficulty: "Premium",
+      rating: 4
+    },
+    {
+      title: "Freelancer Insurance Agent",
+      category: "Financial Services",
+      description: "Modern design for independent contractor coverage and gig economy protection",
+      image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Contractor Coverage", "Gig Protection", "Income Insurance", "Health Plans"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Wedding Insurance Agent",
+      category: "Insurance Agency",
+      description: "Romantic design for wedding day protection and special event coverage",
+      image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Wedding Protection", "Vendor Coverage", "Weather Insurance", "Gift Protection"],
+      difficulty: "Professional",
+      rating: 4
+    },
+    {
+      title: "Environmental Insurance Agent",
+      category: "Insurance Agency",
+      description: "Green-focused design for environmental liability and sustainability coverage",
+      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Environmental Liability", "Green Business", "Pollution Coverage", "Sustainability Plans"],
+      difficulty: "Premium",
+      rating: 5
+    },
+    {
+      title: "Cyber Security Insurance Agent",
+      category: "Consulting",
+      description: "Tech-security design for cyber liability and data breach protection coverage",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Cyber Liability", "Data Breach Coverage", "Security Assessment", "Recovery Support"],
+      difficulty: "Premium",
+      rating: 5
+    },
+    {
+      title: "Aviation Insurance Agent",
+      category: "Insurance Agency",
+      description: "Aviation-themed design for aircraft coverage and pilot protection plans",
+      image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
+      features: ["Aircraft Coverage", "Pilot Insurance", "Hangar Protection", "Flight Training"],
+      difficulty: "Premium",
+      rating: 5
     }
   ];
 

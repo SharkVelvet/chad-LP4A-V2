@@ -17,7 +17,7 @@ export default function Ideas() {
 
   const splashPageExamples = [
     {
-      title: "Modern Insurance Agency",
+      title: "Modern Insurance Agent",
       category: "Insurance Agency",
       description: "Clean, professional design with trust-building elements and clear call-to-actions",
       image: "/attached_assets/template1-preview.png",
@@ -26,7 +26,7 @@ export default function Ideas() {
       rating: 5
     },
     {
-      title: "Financial Advisor Professional",
+      title: "Financial Insurance Agent",
       category: "Financial Services", 
       description: "Elegant layout focusing on expertise and client testimonials",
       image: "/attached_assets/template2-preview.png",
@@ -35,7 +35,7 @@ export default function Ideas() {
       rating: 5
     },
     {
-      title: "Life Insurance Specialist",
+      title: "Life Insurance Agent",
       category: "Insurance Agency",
       description: "Warm, family-focused design emphasizing protection and security",
       image: "/attached_assets/template3-preview.png",
@@ -44,7 +44,7 @@ export default function Ideas() {
       rating: 4
     },
     {
-      title: "Health Insurance Expert",
+      title: "Health Insurance Agent",
       category: "Healthcare",
       description: "Medical-themed design with health-focused messaging and easy navigation",
       image: "/attached_assets/template4-preview.png",
@@ -53,7 +53,7 @@ export default function Ideas() {
       rating: 5
     },
     {
-      title: "Business Insurance Solutions",
+      title: "Commercial Insurance Agent",
       category: "Insurance Agency",
       description: "Corporate-style layout targeting business owners and entrepreneurs",
       image: "/attached_assets/template5-preview.png",
@@ -62,7 +62,7 @@ export default function Ideas() {
       rating: 4
     },
     {
-      title: "Personal Finance Coach",
+      title: "Personal Insurance Agent",
       category: "Financial Services",
       description: "Approachable design with educational focus and success stories",
       image: "/attached_assets/template6-preview.png",
@@ -71,56 +71,56 @@ export default function Ideas() {
       rating: 5
     },
     {
-      title: "Real Estate Professional",
+      title: "Property Insurance Agent",
       category: "Real Estate",
-      description: "Property-focused design with listing integration and market insights",
+      description: "Property-focused design with coverage options and market insights",
       image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
-      features: ["Property Search", "Market Analysis", "Virtual Tours", "Agent Profile"],
+      features: ["Property Coverage", "Market Analysis", "Virtual Tours", "Agent Profile"],
       difficulty: "Premium",
       rating: 4
     },
     {
-      title: "Medical Practice",
+      title: "Medicare Insurance Agent",
       category: "Healthcare",
-      description: "Clean medical design with appointment booking and patient resources",
+      description: "Clean medical design with Medicare enrollment and patient resources",
       image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
-      features: ["Online Booking", "Patient Portal", "Health Resources", "Insurance Info"],
+      features: ["Medicare Plans", "Enrollment Help", "Health Resources", "Insurance Info"],
       difficulty: "Professional",
       rating: 5
     },
     {
-      title: "Legal Services Firm",
+      title: "Professional Liability Insurance Agent",
       category: "Legal",
-      description: "Professional legal design emphasizing expertise and case results",
+      description: "Professional design emphasizing liability coverage and expertise",
       image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
-      features: ["Case Studies", "Legal Resources", "Consultation Booking", "Attorney Profiles"],
+      features: ["Coverage Options", "Risk Assessment", "Consultation Booking", "Agent Profiles"],
       difficulty: "Premium",
       rating: 4
     },
     {
-      title: "Business Consulting",
+      title: "Business Insurance Agent",
       category: "Consulting",
-      description: "Strategic design showcasing expertise and client success stories",
+      description: "Strategic design showcasing business insurance expertise and client success",
       image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
       features: ["Strategy Tools", "Case Studies", "ROI Calculator", "Expert Insights"],
       difficulty: "Premium", 
       rating: 5
     },
     {
-      title: "Restaurant & Catering",
+      title: "Restaurant Insurance Agent",
       category: "Restaurant",
-      description: "Appetizing design with menu showcase and online ordering",
+      description: "Industry-specific design for restaurant and hospitality insurance coverage",
       image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
-      features: ["Online Menu", "Reservation System", "Photo Gallery", "Special Events"],
+      features: ["Industry Coverage", "Risk Management", "Claims Support", "Business Protection"],
       difficulty: "Professional",
       rating: 4
     },
     {
-      title: "Beauty Salon & Spa",
+      title: "Beauty Business Insurance Agent",
       category: "Salon & Spa",
-      description: "Luxurious design with service showcase and appointment booking",
+      description: "Specialized design for beauty business insurance and liability coverage",
       image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=479&h=360&q=80",
-      features: ["Service Menu", "Online Booking", "Gallery", "Staff Profiles"],
+      features: ["Liability Coverage", "Business Protection", "Claims Support", "Industry Expertise"],
       difficulty: "Professional",
       rating: 4
     }

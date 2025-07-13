@@ -542,8 +542,13 @@ export default function Ideas() {
                     variant="outline"
                     className="group"
                     onClick={() => {
-                      setPreviewExample(example);
-                      setShowPreview(true);
+                      // For the first 6 examples, navigate to template preview
+                      if (index < 6) {
+                        navigate(`/template-preview/${index + 1}`);
+                      } else {
+                        setPreviewExample(example);
+                        setShowPreview(true);
+                      }
                     }}
                   >
                     <Eye className="h-4 w-4 mr-1" />

@@ -2,13 +2,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useLocation } from "wouter";
-import { Filter, Grid, Eye, Star, FileText, Search } from "lucide-react";
+import { Filter, Grid, Eye, Star, FileText, Search, X } from "lucide-react";
 import { useState } from "react";
+import SplashPagePreview from "@/components/splash-page-preview";
 
 export default function Ideas() {
   const [, navigate] = useLocation();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [previewExample, setPreviewExample] = useState<any>(null);
+  const [showPreview, setShowPreview] = useState(false);
 
   const categories = [
     "All", "Insurance Agency", "Financial Services", "Real Estate", "Healthcare", 
@@ -538,7 +541,10 @@ export default function Ideas() {
                     size="sm"
                     variant="outline"
                     className="group"
-                    onClick={() => navigate('/template-selection')}
+                    onClick={() => {
+                      setPreviewExample(example);
+                      setShowPreview(true);
+                    }}
                   >
                     <Eye className="h-4 w-4 mr-1" />
                     Preview
@@ -583,6 +589,39 @@ export default function Ideas() {
           </p>
         </div>
       </div>
+
+      {/* Preview Modal */}
+      {showPreview && previewExample && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto relative">
+            <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between">
+              <h2 className="text-xl font-semibold">Preview: {previewExample.title}</h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowPreview(false)}
+                className="p-2"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+            <div className="p-6">
+              <SplashPagePreview example={previewExample} />
+              <div className="mt-6 text-center">
+                <Button
+                  onClick={() => {
+                    setShowPreview(false);
+                    navigate('/template-selection');
+                  }}
+                  className="bg-red-600 hover:bg-red-700 text-white px-8"
+                >
+                  Use This Style - Choose Template
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

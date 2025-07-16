@@ -254,13 +254,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         name: customerName || 'Website Customer',
       });
 
-      // Create payment intent for first month ($38)
+      // Create payment intent for first month ($38) with setup for future payments
       const paymentIntent = await stripe.paymentIntents.create({
         amount: 3800, // $38 for first month
         currency: 'usd',
         customer: customer.id,
         description: 'Planright first month - Website setup and hosting',
         receipt_email: email,
+        setup_future_usage: 'off_session', // This saves the payment method for future use
         metadata: {
           type: 'first_month_payment',
           customer_email: email,
@@ -283,12 +284,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       // Create the ongoing subscription starting next month ($18/month)
+      // The subscription will be created in incomplete state until payment method is attached
       const subscription = await stripe.subscriptions.create({
         customer: customer.id,
         items: [{
           price: price.id,
         }],
         trial_end: Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60), // Start billing in 30 days
+        collection_method: 'charge_automatically',
+        payment_behavior: 'default_incomplete',
+        metadata: {
+          first_payment_intent: paymentIntent.id,
+        },
       });
       
       // Get stored onboarding data and send customer notification email
@@ -328,6 +335,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Stripe error:', error);
       return res.status(400).send({ error: { message: error.message } });
+    }
+  });
+
+  // Endpoint to update subscription with payment method after successful payment
+  app.post('/api/update-subscription-payment', async (req, res) => {
+    const { subscriptionId, paymentIntentId } = req.body;
+    
+    if (!stripe) {
+      return res.status(500).json({ error: 'Stripe not configured' });
+    }
+
+    try {
+      // Retrieve the payment intent to get the payment method
+      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      
+      if (!paymentIntent.payment_method) {
+        return res.status(400).json({ error: 'Payment method not found' });
+      }
+
+      // Update the subscription with the payment method
+      await stripe.subscriptions.update(subscriptionId, {
+        default_payment_method: paymentIntent.payment_method,
+      });
+
+      console.log(`Updated subscription ${subscriptionId} with payment method ${paymentIntent.payment_method}`);
+      res.json({ success: true });
+    } catch (error: any) {
+      console.error('Error updating subscription payment method:', error);
+      res.status(400).json({ error: error.message });
     }
   });
 

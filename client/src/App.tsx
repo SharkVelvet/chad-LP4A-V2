@@ -16,6 +16,7 @@ import Step4Payment from "@/pages/step4-payment";
 import Step5Success from "@/pages/step5-success";
 import Dashboard from "@/pages/dashboard";
 import Ideas from "@/pages/ideas";
+import AdminFix from "@/pages/admin-fix";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -30,6 +31,7 @@ function Router() {
       <PasswordProtectedRoute path="/step5-success" component={Step5Success} />
       <ProtectedRoute path="/dashboard" component={Dashboard} />
       <Route path="/ideas" component={Ideas} />
+      <Route path="/admin-fix" component={AdminFix} />
       <Route path="/" component={HomePage} />
       <Route component={NotFound} />
     </Switch>

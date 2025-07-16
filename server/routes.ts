@@ -367,7 +367,97 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Fix existing failed subscriptions
+  app.post('/api/fix-failed-subscriptions', async (req, res) => {
+    if (!stripe) {
+      return res.status(500).json({ error: 'Stripe not configured' });
+    }
 
+    try {
+      const results = {
+        processed: 0,
+        fixed: 0,
+        failed: 0,
+        errors: []
+      };
+
+      // Get subscriptions with payment issues
+      const incompleteSubscriptions = await stripe.subscriptions.list({
+        status: 'incomplete',
+        limit: 100,
+      });
+
+      const pastDueSubscriptions = await stripe.subscriptions.list({
+        status: 'past_due',
+        limit: 100,
+      });
+
+      const allProblemSubscriptions = [...incompleteSubscriptions.data, ...pastDueSubscriptions.data];
+
+      for (const subscription of allProblemSubscriptions) {
+        results.processed++;
+        
+        try {
+          // Find the first month payment intent for this customer
+          const paymentIntents = await stripe.paymentIntents.list({
+            customer: subscription.customer,
+            limit: 20,
+          });
+
+          // Look for the $38 first month payment that succeeded
+          const firstMonthPayment = paymentIntents.data.find(pi => 
+            pi.amount === 3800 && 
+            pi.status === 'succeeded'
+          );
+
+          if (!firstMonthPayment || !firstMonthPayment.payment_method) {
+            results.errors.push(`No valid payment method found for customer ${subscription.customer}`);
+            results.failed++;
+            continue;
+          }
+
+          // Update the subscription with the payment method
+          await stripe.subscriptions.update(subscription.id, {
+            default_payment_method: firstMonthPayment.payment_method,
+          });
+
+          // Try to pay any failed invoices
+          const invoices = await stripe.invoices.list({
+            customer: subscription.customer,
+            status: 'open',
+            limit: 5,
+          });
+
+          for (const invoice of invoices.data) {
+            if (invoice.subscription === subscription.id) {
+              try {
+                await stripe.invoices.pay(invoice.id);
+                console.log(`Paid invoice ${invoice.id} for subscription ${subscription.id}`);
+              } catch (payError: any) {
+                console.log(`Failed to pay invoice ${invoice.id}: ${payError.message}`);
+              }
+            }
+          }
+
+          results.fixed++;
+          console.log(`Fixed subscription ${subscription.id} for customer ${subscription.customer}`);
+
+        } catch (error: any) {
+          results.errors.push(`Error fixing subscription ${subscription.id}: ${error.message}`);
+          results.failed++;
+        }
+      }
+
+      res.json({
+        success: true,
+        results: results
+      });
+
+    } catch (error: any) {
+      console.error('Error in fix-failed-subscriptions:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
 
   const httpServer = createServer(app);
 

@@ -14,7 +14,7 @@ const companies = [
   },
   {
     name: "Geico",
-    logo: "https://1000logos.net/wp-content/uploads/2021/04/GEICO-logo.png",
+    logo: "/attached_assets/GEICO-Logo_1753573307157.png",
     website: "https://www.geico.com"
   },
   {

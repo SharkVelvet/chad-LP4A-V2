@@ -361,7 +361,7 @@ export default function InternalOne() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">AgentLanding</h3>
+              <h3 className="text-xl font-bold mb-4">Landing Pages for Agents</h3>
               <p className="text-gray-400">
                 Professional landing pages for insurance agents nationwide.
               </p>
@@ -392,7 +392,7 @@ export default function InternalOne() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 AgentLanding. All rights reserved.</p>
+            <p>&copy; 2025 Landing Pages for Agents. All rights reserved.</p>
           </div>
         </div>
       </footer>

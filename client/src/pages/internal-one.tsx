@@ -294,7 +294,7 @@ export default function InternalOne() {
               Get Online in 3 Simple Steps
             </h2>
             <p className="text-xl text-gray-600">
-              We handle everything so you can focus on what you do best - serving your clients.
+              We handle everything so you can focus on what you do best - serving your clients and hiring new agents.
             </p>
           </div>
 

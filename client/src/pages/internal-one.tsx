@@ -139,7 +139,7 @@ export default function InternalOne() {
             </div>
           </div>
 
-          <div className="rounded-2xl mb-16 overflow-hidden" style={{ backgroundColor: 'rgba(146, 202, 127, 0.1)' }}>
+          <div className="rounded-2xl mb-16 overflow-hidden" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
             <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] items-center gap-0">
               <div className="h-full flex items-center justify-start -ml-4">
                 <img 
@@ -157,7 +157,7 @@ export default function InternalOne() {
                 </p>
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-[#92CA7F] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -166,7 +166,7 @@ export default function InternalOne() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-[#92CA7F] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -175,7 +175,7 @@ export default function InternalOne() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-[#92CA7F] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -418,8 +418,8 @@ export default function InternalOne() {
           </div>
 
           <div className="text-center mt-12">
-            <div className="inline-flex items-center px-6 py-3 rounded-lg" style={{ backgroundColor: 'rgba(146, 202, 127, 0.1)' }}>
-              <CheckCircle className="h-5 w-5 mr-2" style={{ color: '#92CA7F' }} />
+            <div className="inline-flex items-center px-6 py-3 rounded-lg" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
+              <CheckCircle className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
               <span className="font-semibold text-gray-900">No technical skills needed - we handle everything!</span>
             </div>
           </div>

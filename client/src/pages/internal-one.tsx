@@ -286,6 +286,59 @@ export default function InternalOne() {
         </div>
       </section>
 
+      {/* How It Works */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Get Online in 3 Simple Steps
+            </h2>
+            <p className="text-xl text-gray-600">
+              We handle everything so you can focus on what you do best - serving your clients.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#6458AF' }}>
+                <span className="text-2xl font-bold text-white">1</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">We Buy Your Domain</h3>
+              <p className="text-gray-600">
+                Tell us your preferred domain name and we'll purchase it for you. No technical setup required on your end.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#6458AF' }}>
+                <span className="text-2xl font-bold text-white">2</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Choose Your Template</h3>
+              <p className="text-gray-600">
+                Select from our professionally designed templates and customize it with your information, photos, and branding.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#6458AF' }}>
+                <span className="text-2xl font-bold text-white">3</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">We Launch Your Site</h3>
+              <p className="text-gray-600">
+                Within 24 hours, your professional landing page is live and ready to capture leads from potential clients.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <div className="inline-flex items-center px-6 py-3 rounded-lg" style={{ backgroundColor: 'rgba(146, 202, 127, 0.1)' }}>
+              <CheckCircle className="h-5 w-5 mr-2" style={{ color: '#92CA7F' }} />
+              <span className="font-semibold text-gray-900">No technical skills needed - we handle everything!</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing */}
       <section id="pricing" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

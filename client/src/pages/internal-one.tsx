@@ -11,37 +11,37 @@ export default function InternalOne() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-red-600">AgentLanding</h1>
+              <h1 className="text-2xl font-bold" style={{ color: '#6458AF' }}>AgentLanding</h1>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#features" className="text-gray-700 hover:text-red-600">Features</a>
-              <a href="#templates" className="text-gray-700 hover:text-red-600">Templates</a>
-              <a href="#pricing" className="text-gray-700 hover:text-red-600">Pricing</a>
-              <a href="#contact" className="text-gray-700 hover:text-red-600">Contact</a>
+              <a href="#features" className="text-gray-700 hover:opacity-80" onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Features</a>
+              <a href="#templates" className="text-gray-700 hover:opacity-80" onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Templates</a>
+              <a href="#pricing" className="text-gray-700 hover:opacity-80" onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Pricing</a>
+              <a href="#contact" className="text-gray-700 hover:opacity-80" onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Contact</a>
             </nav>
-            <Button className="bg-red-600 hover:bg-red-700">Get Started</Button>
+            <Button style={{ backgroundColor: '#6458AF' }} className="hover:opacity-90">Get Started</Button>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-red-50 to-white py-20">
+      <section className="py-20" style={{ background: 'linear-gradient(135deg, #f8f6ff 0%, #ffffff 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge className="mb-4 bg-red-100 text-red-800">For Insurance Agents Nationwide</Badge>
+            <Badge className="mb-4" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
               Professional Landing Pages for<br />
-              <span className="text-red-600">Insurance Agents</span>
+              <span style={{ color: '#6458AF' }}>Insurance Agents</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Create stunning, conversion-focused landing pages that establish trust and generate leads. 
               Professional templates designed specifically for insurance professionals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-red-600 hover:bg-red-700 px-8 py-4 text-lg">
+              <Button size="lg" className="px-8 py-4 text-lg hover:opacity-90" style={{ backgroundColor: '#6458AF' }}>
                 Start Building Your Page
               </Button>
-              <Button size="lg" variant="outline" className="px-8 py-4 text-lg border-red-600 text-red-600 hover:bg-red-50">
+              <Button size="lg" variant="outline" className="px-8 py-4 text-lg hover:opacity-90" style={{ borderColor: '#6458AF', color: '#6458AF', backgroundColor: 'transparent' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f0eeff'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
                 View Templates
               </Button>
             </div>
@@ -54,19 +54,19 @@ export default function InternalOne() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-red-600 mb-2">500+</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#6458AF' }}>500+</div>
               <div className="text-gray-600">Active Insurance Agents</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-red-600 mb-2">50+</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#6458AF' }}>50+</div>
               <div className="text-gray-600">Professional Templates</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-red-600 mb-2">98%</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#6458AF' }}>98%</div>
               <div className="text-gray-600">Client Satisfaction</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-red-600 mb-2">24/7</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#6458AF' }}>24/7</div>
               <div className="text-gray-600">Support Available</div>
             </div>
           </div>
@@ -115,9 +115,9 @@ export default function InternalOne() {
               </div>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg">
-              <div className="bg-gradient-to-br from-red-100 to-red-50 p-6 rounded-lg">
+              <div className="p-6 rounded-lg" style={{ background: 'linear-gradient(135deg, #f0eeff 0%, #f8f6ff 100%)' }}>
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#6458AF' }}>
                     <Shield className="h-8 w-8 text-white" />
                   </div>
                   <h4 className="font-bold text-gray-900 mb-2">Trust & Credibility</h4>
@@ -128,9 +128,9 @@ export default function InternalOne() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <div className="bg-green-50 p-8 rounded-lg">
+            <div className="p-8 rounded-lg" style={{ backgroundColor: '#f2f8f0' }}>
               <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#92CA7F' }}>
                   <TrendingUp className="h-8 w-8 text-white" />
                 </div>
                 <h4 className="font-bold text-gray-900 mb-2">Lead Generation Focus</h4>
@@ -143,21 +143,21 @@ export default function InternalOne() {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <Zap className="h-6 w-6 text-yellow-500 mr-3 mt-1" />
+                  <Zap className="h-6 w-6 mr-3 mt-1" style={{ color: '#92CA7F' }} />
                   <div>
                     <h4 className="font-semibold text-gray-900">Fast Setup</h4>
                     <p className="text-gray-600">Get your professional page live in under 10 minutes</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <Users className="h-6 w-6 text-blue-500 mr-3 mt-1" />
+                  <Users className="h-6 w-6 mr-3 mt-1" style={{ color: '#6458AF' }} />
                   <div>
                     <h4 className="font-semibold text-gray-900">Contact Management</h4>
                     <p className="text-gray-600">Built-in lead capture and management system</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <Globe className="h-6 w-6 text-purple-500 mr-3 mt-1" />
+                  <Globe className="h-6 w-6 mr-3 mt-1" style={{ color: '#92CA7F' }} />
                   <div>
                     <h4 className="font-semibold text-gray-900">Custom Domains</h4>
                     <p className="text-gray-600">Use your own domain for professional branding</p>
@@ -278,9 +278,9 @@ export default function InternalOne() {
           </div>
 
           <div className="max-w-3xl mx-auto">
-            <Card className="border-2 border-red-200 shadow-lg">
-              <CardHeader className="text-center bg-red-50">
-                <CardTitle className="text-2xl text-red-600">Professional Plan</CardTitle>
+            <Card className="border-2 shadow-lg" style={{ borderColor: '#e5e1ff' }}>
+              <CardHeader className="text-center" style={{ backgroundColor: '#f8f6ff' }}>
+                <CardTitle className="text-2xl" style={{ color: '#6458AF' }}>Professional Plan</CardTitle>
                 <div className="text-4xl font-bold text-gray-900 mt-4">
                   $38 <span className="text-lg font-normal text-gray-600">first month</span>
                 </div>
@@ -315,7 +315,7 @@ export default function InternalOne() {
                     <span>24/7 support</span>
                   </div>
                 </div>
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-lg py-3">
+                <Button className="w-full text-lg py-3 hover:opacity-90" style={{ backgroundColor: '#6458AF' }}>
                   Start Your Professional Page
                 </Button>
               </CardContent>
@@ -325,15 +325,15 @@ export default function InternalOne() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-red-600">
+      <section className="py-20" style={{ backgroundColor: '#6458AF' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
             Ready to Generate More Leads?
           </h2>
-          <p className="text-xl text-red-100 mb-8">
+          <p className="text-xl mb-8" style={{ color: '#e5e1ff' }}>
             Join hundreds of insurance agents who trust AgentLanding to grow their business online.
           </p>
-          <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 text-lg">
+          <Button size="lg" className="px-8 py-4 text-lg hover:bg-gray-100" style={{ backgroundColor: 'white', color: '#6458AF' }}>
             Get Started Today
           </Button>
         </div>

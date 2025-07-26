@@ -125,7 +125,7 @@ export default function InternalOne() {
                   </div>
                 </div>
               </div>
-              <div className="relative">
+              <div>
                 <img 
                   src={templatePreviewImage} 
                   alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"

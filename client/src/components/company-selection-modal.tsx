@@ -19,7 +19,7 @@ const companies = [
   },
   {
     name: "Progressive",
-    logo: "https://logos-world.net/wp-content/uploads/2020/11/Progressive-Logo.png",
+    logo: "/attached_assets/progressive-3-logo-png-transparent_1753573436968.png",
     website: "https://www.progressive.com"
   },
   {

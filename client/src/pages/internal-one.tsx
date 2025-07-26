@@ -125,13 +125,11 @@ export default function InternalOne() {
                   </div>
                 </div>
               </div>
-              <div>
-                <img 
-                  src={templatePreviewImage} 
-                  alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
-                  className="w-full rounded-lg shadow-2xl"
-                />
-              </div>
+              <img 
+                src={templatePreviewImage} 
+                alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
+                className="w-full rounded-lg shadow-2xl"
+              />
             </div>
           </div>
 

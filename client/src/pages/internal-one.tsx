@@ -202,20 +202,91 @@ export default function InternalOne() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
-            {/* Template placeholders - will be replaced with actual template images */}
-            {Array.from({ length: 12 }, (_, index) => (
-              <div key={index} className="aspect-square bg-gray-100 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
-                <div className="w-full h-full bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center mx-auto mb-2">
-                      <FileText className="h-6 w-6 text-white" />
-                    </div>
-                    <span className="text-sm font-medium text-gray-700">Template {index + 1}</span>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {/* Template 1 - Financial Excellence Theme */}
+            <div className="relative aspect-[4/3] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border">
+              <img 
+                src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
+                alt="Financial Excellence Template"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="font-semibold text-lg">Financial Excellence</h3>
+                  <p className="text-sm opacity-90">Modern financial services design</p>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Template 2 - Elegant Financial Theme */}
+            <div className="relative aspect-[4/3] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border">
+              <img 
+                src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
+                alt="Elegant Financial Template"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="font-semibold text-lg">Elegant Financial</h3>
+                  <p className="text-sm opacity-90">Clean and professional layout</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Template 3 - Professional Services Theme */}
+            <div className="relative aspect-[4/3] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border">
+              <img 
+                src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
+                alt="Professional Services Template"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="font-semibold text-lg">Professional Services</h3>
+                  <p className="text-sm opacity-90">Comprehensive business layout</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Template 4 - Corporate Insurance Theme */}
+            <div className="relative aspect-[4/3] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border">
+              <img 
+                src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
+                alt="Corporate Insurance Template"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="font-semibold text-lg">Corporate Insurance</h3>
+                  <p className="text-sm opacity-90">Traditional business approach</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Templates - Placeholder for more designs */}
+            <div className="aspect-[4/3] bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border border-dashed border-purple-300">
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-purple-600 flex items-center justify-center mx-auto mb-4">
+                    <FileText className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="font-semibold text-lg text-gray-700 mb-2">More Templates</h3>
+                  <p className="text-sm text-gray-600">Additional designs coming soon</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="aspect-[4/3] bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border border-dashed border-purple-300">
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-purple-600 flex items-center justify-center mx-auto mb-4">
+                    <FileText className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="font-semibold text-lg text-gray-700 mb-2">Custom Design</h3>
+                  <p className="text-sm text-gray-600">Request a personalized template</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -202,9 +202,9 @@ export default function InternalOne() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-4 mb-12 space-y-4">
             {/* Template 1 - Financial Excellence Theme */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
                 alt="Financial Excellence Template"
@@ -219,7 +219,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 2 - Elegant Financial Theme */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-8">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
                 alt="Elegant Financial Template"
@@ -234,7 +234,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 3 - Professional Services Theme */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-4">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
                 alt="Professional Services Template"
@@ -249,7 +249,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 4 - Corporate Insurance Theme */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-12">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
                 alt="Corporate Insurance Template"
@@ -264,7 +264,7 @@ export default function InternalOne() {
             </div>
 
             {/* Additional Templates - Placeholder for more designs */}
-            <div className="aspect-[16/10] bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border border-dashed border-purple-300">
+            <div className="aspect-[16/10] bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border border-dashed border-purple-300 break-inside-avoid mb-4 mt-6">
               <div className="w-full h-full flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center mx-auto mb-3">
@@ -276,7 +276,7 @@ export default function InternalOne() {
               </div>
             </div>
 
-            <div className="aspect-[16/10] bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border border-dashed border-purple-300">
+            <div className="aspect-[16/10] bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border border-dashed border-purple-300 break-inside-avoid mb-4 mt-2">
               <div className="w-full h-full flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center mx-auto mb-3">

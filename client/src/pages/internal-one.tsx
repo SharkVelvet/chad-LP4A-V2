@@ -115,11 +115,11 @@ export default function InternalOne() {
                 </div>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative p-8 rounded-lg shadow-2xl" style={{ backgroundColor: '#6458AF' }}>
               <img 
                 src={templatePreviewImage} 
                 alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
-                className="w-full rounded-lg shadow-2xl"
+                className="w-full rounded-lg shadow-lg"
               />
             </div>
           </div>

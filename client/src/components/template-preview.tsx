@@ -93,14 +93,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* About John Smith Section */}
+        {/* About Jake Smith Section */}
         <div id="about" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">About John Smith</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">About Jake Smith</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
                 <p className="text-gray-700 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
-                  With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
+                  With over 15 years of experience in financial services and procurement, Jake Smith has established himself as a leading expert in strategic financial planning and business optimization.
                 </p>
                 <p className="text-gray-700 mb-6 leading-relaxed text-sm sm:text-base">
                   His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.

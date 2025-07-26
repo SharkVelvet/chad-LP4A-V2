@@ -205,185 +205,113 @@ export default function InternalOne() {
           <div className="columns-1 md:columns-2 lg:columns-3 gap-4 mb-12 space-y-4">
             {/* Row 1 Templates */}
             {/* Template 1 - Financial Excellence Theme */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
                 alt="Financial Excellence Template"
-                className="w-full h-full object-cover object-[center_10%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_10%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Financial Excellence</h3>
-                  <p className="text-sm opacity-90">Modern financial services design</p>
-                </div>
-              </div>
             </div>
 
             {/* Template 2 - Elegant Financial Theme */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-6">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-6">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
                 alt="Elegant Financial Template"
-                className="w-full h-full object-cover object-[center_10%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_10%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Elegant Financial</h3>
-                  <p className="text-sm opacity-90">Clean and professional layout</p>
-                </div>
-              </div>
             </div>
 
             {/* Template 3 - Professional Services Theme */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-3">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-3">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
                 alt="Professional Services Template"
-                className="w-full h-full object-cover object-[center_10%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_10%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Professional Services</h3>
-                  <p className="text-sm opacity-90">Comprehensive business layout</p>
-                </div>
-              </div>
             </div>
 
             {/* Template 4 - Corporate Insurance Theme */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-9">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-9">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
                 alt="Corporate Insurance Template"
-                className="w-full h-full object-cover object-[center_10%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_10%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Corporate Insurance</h3>
-                  <p className="text-sm opacity-90">Traditional business approach</p>
-                </div>
-              </div>
             </div>
 
             {/* Row 2 Templates */}
             {/* Template 5 - Financial Excellence Variant */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-2">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-2">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
                 alt="Financial Excellence Dark Theme"
-                className="w-full h-full object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_20%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Financial Pro</h3>
-                  <p className="text-sm opacity-90">Dark theme financial design</p>
-                </div>
-              </div>
             </div>
 
             {/* Template 6 - Elegant Financial Variant */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-8">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-8">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
                 alt="Elegant Clean Template"
-                className="w-full h-full object-cover object-[center_30%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_30%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Elegant Clean</h3>
-                  <p className="text-sm opacity-90">Minimalist approach</p>
-                </div>
-              </div>
             </div>
 
             {/* Template 7 - Professional Services Variant */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-5">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-5">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
                 alt="Business Professional Template"
-                className="w-full h-full object-cover object-[center_25%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_25%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Business Pro</h3>
-                  <p className="text-sm opacity-90">Corporate insurance focus</p>
-                </div>
-              </div>
             </div>
 
             {/* Template 8 - Corporate Insurance Variant */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-11">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-11">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
                 alt="Corporate Classic Template"
-                className="w-full h-full object-cover object-[center_15%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_15%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Corporate Classic</h3>
-                  <p className="text-sm opacity-90">Traditional insurance style</p>
-                </div>
-              </div>
             </div>
 
             {/* Row 3 Templates */}
             {/* Template 9 - Financial Excellence - Service Focus */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-4">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-4">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
                 alt="Service Excellence Template"
-                className="w-full h-full object-cover object-[center_40%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_40%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Service Excellence</h3>
-                  <p className="text-sm opacity-90">Client-focused design</p>
-                </div>
-              </div>
             </div>
 
             {/* Template 10 - Elegant Financial - Portfolio Focus */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-10">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-10">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
                 alt="Portfolio Focus Template"
-                className="w-full h-full object-cover object-[center_50%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_50%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Portfolio Focus</h3>
-                  <p className="text-sm opacity-90">Showcase your expertise</p>
-                </div>
-              </div>
             </div>
 
             {/* Template 11 - Professional Services - Team Focus */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-7">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-7">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
                 alt="Team Focus Template"
-                className="w-full h-full object-cover object-[center_35%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_35%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Team Focus</h3>
-                  <p className="text-sm opacity-90">Highlight your team</p>
-                </div>
-              </div>
             </div>
 
             {/* Template 12 - Corporate Insurance - Trust Builder */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-13">
+            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-13">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
                 alt="Trust Builder Template"
-                className="w-full h-full object-cover object-[center_45%] group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover object-[center_45%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold text-lg">Trust Builder</h3>
-                  <p className="text-sm opacity-90">Build client confidence</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

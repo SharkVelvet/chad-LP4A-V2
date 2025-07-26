@@ -12,7 +12,10 @@ export default function InternalOne() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold" style={{ color: '#6458AF' }}>AgentLanding</h1>
+              <div className="text-center">
+                <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+              </div>
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#features" className="text-gray-700 hover:opacity-80" onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Features</a>

@@ -136,7 +136,7 @@ export default function InternalOne() {
           </div>
 
           <div className="rounded-2xl mb-16 overflow-hidden" style={{ backgroundColor: 'rgba(146, 202, 127, 0.1)' }}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-0">
+            <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] items-center gap-0">
               <div className="h-full flex items-center justify-start -ml-4">
                 <img 
                   src="/attached_assets/LD-Internal-2_1753569055610.png" 

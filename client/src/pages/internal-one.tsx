@@ -365,7 +365,13 @@ export default function InternalOne() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Landing Pages for Agents</h3>
+              <div className="flex items-center mb-4">
+                <FileText className="h-6 w-6 mr-2 text-white" />
+                <div className="text-left">
+                  <div className="text-xl font-bold leading-none text-white">Landing Pages</div>
+                  <div className="text-sm font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                </div>
+              </div>
               <p className="text-gray-400">
                 Professional landing pages for insurance agents nationwide.
               </p>

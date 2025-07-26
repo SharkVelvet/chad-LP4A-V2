@@ -86,50 +86,52 @@ export default function InternalOne() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
-            <div className="p-12 rounded-2xl" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
-              <h3 className="text-4xl font-bold text-gray-900 mb-8">
-                Professional Templates Built for Insurance
-              </h3>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Begin exploring professional templates that speak to the most pressing needs of your insurance clients. With sound design principles for a digital world that continues to change and content that addresses your clients' felt needs.
-              </p>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1" style={{ backgroundColor: '#6458AF' }}>
-                    <CheckCircle className="h-5 w-5 text-white" />
+          <div className="p-12 rounded-2xl mb-16" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <h3 className="text-4xl font-bold text-gray-900 mb-8">
+                  Professional Templates Built for Insurance
+                </h3>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                  Begin exploring professional templates that speak to the most pressing needs of your insurance clients. With sound design principles for a digital world that continues to change and content that addresses your clients' felt needs.
+                </p>
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1" style={{ backgroundColor: '#6458AF' }}>
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg mb-1">Industry-Specific Design</h4>
+                      <p className="text-gray-600">Find templates designed specifically for insurance agents with trust-building elements.</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-lg mb-1">Industry-Specific Design</h4>
-                    <p className="text-gray-600">Find templates designed specifically for insurance agents with trust-building elements.</p>
+                  <div className="flex items-start">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1" style={{ backgroundColor: '#6458AF' }}>
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg mb-1">Mobile-First Responsive</h4>
+                      <p className="text-gray-600">Templates optimized for every device of your clients and prospects.</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1" style={{ backgroundColor: '#6458AF' }}>
-                    <CheckCircle className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-lg mb-1">Mobile-First Responsive</h4>
-                    <p className="text-gray-600">Templates optimized for every device of your clients and prospects.</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1" style={{ backgroundColor: '#6458AF' }}>
-                    <CheckCircle className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-lg mb-1">SEO Optimized</h4>
-                    <p className="text-gray-600">Templates built for your local market, holidays, and other opportunities.</p>
+                  <div className="flex items-start">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1" style={{ backgroundColor: '#6458AF' }}>
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg mb-1">SEO Optimized</h4>
+                      <p className="text-gray-600">Templates built for your local market, holidays, and other opportunities.</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="relative">
-              <img 
-                src={templatePreviewImage} 
-                alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
-                className="w-full rounded-lg shadow-2xl"
-              />
+              <div className="relative">
+                <img 
+                  src={templatePreviewImage} 
+                  alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
+                  className="w-full rounded-lg shadow-2xl"
+                />
+              </div>
             </div>
           </div>
 

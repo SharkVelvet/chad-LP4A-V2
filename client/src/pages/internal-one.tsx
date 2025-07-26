@@ -131,7 +131,7 @@ export default function InternalOne() {
               </div>
               <div className="h-full flex items-center justify-end -mr-4">
                 <img 
-                  src={templatePreviewImage} 
+                  src="/attached_assets/LD-Internal-3b_1753570339378.png" 
                   alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
                   className="h-[600px] lg:h-[900px] w-auto object-contain"
                 />

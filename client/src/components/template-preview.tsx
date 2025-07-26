@@ -63,7 +63,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="absolute inset-0 flex items-center">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center w-full">
               <div className="text-white text-center lg:text-left">
-                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 leading-tight">Jenny Smith</h1>
+                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 leading-tight">Jake Smith</h1>
                 <p className="text-lg sm:text-xl lg:text-2xl mb-2 text-white">Licensed Insurance Agent</p>
                 <p className="text-sm sm:text-base lg:text-lg text-white mb-6 lg:mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
                   Specializing in health insurance, life insurance, Medicare, and Medicaid to protect your family's future.

@@ -195,43 +195,26 @@ export default function InternalOne() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Professional Templates for Every Insurance Specialty
+              Professional Templates for Insurance Agents
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose from our collection of industry-specific templates designed to convert visitors into clients.
+              Choose from our collection of professionally designed templates created specifically for insurance professionals.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {[
-              { title: "Auto Insurance", color: "blue", specialty: "Vehicle Coverage" },
-              { title: "Home Insurance", color: "green", specialty: "Property Protection" },
-              { title: "Life Insurance", color: "purple", specialty: "Family Security" },
-              { title: "Health Insurance", color: "red", specialty: "Medical Coverage" },
-              { title: "Business Insurance", color: "orange", specialty: "Commercial Protection" },
-              { title: "General Agent", color: "gray", specialty: "Multi-Line Coverage" }
-            ].map((template, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-between">
-                    <span>{template.title}</span>
-                    <Badge variant="secondary">{template.specialty}</Badge>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className={`h-32 bg-gradient-to-br from-${template.color}-100 to-${template.color}-50 rounded-lg mb-4 flex items-center justify-center`}>
-                    <div className={`w-12 h-12 bg-${template.color}-600 rounded-full flex items-center justify-center`}>
-                      <Shield className="h-6 w-6 text-white" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
+            {/* Template placeholders - will be replaced with actual template images */}
+            {Array.from({ length: 12 }, (_, index) => (
+              <div key={index} className="aspect-square bg-gray-100 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
+                <div className="w-full h-full bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center mx-auto mb-2">
+                      <FileText className="h-6 w-6 text-white" />
                     </div>
+                    <span className="text-sm font-medium text-gray-700">Template {index + 1}</span>
                   </div>
-                  <p className="text-gray-600 text-sm mb-4">
-                    Professional landing page template designed specifically for {template.title.toLowerCase()} agents.
-                  </p>
-                  <Button variant="outline" size="sm" className="w-full">
-                    Preview Template
-                  </Button>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </div>

@@ -19,7 +19,7 @@ export default function InternalOne() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -30,10 +30,54 @@ export default function InternalOne() {
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#features" className="text-gray-700 hover:opacity-80" onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Features</a>
-              <a href="#templates" className="text-gray-700 hover:opacity-80" onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Templates</a>
-              <a href="#pricing" className="text-gray-700 hover:opacity-80" onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Pricing</a>
-              <a href="#contact" className="text-gray-700 hover:opacity-80" onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Contact</a>
+              <a 
+                href="#features" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Features
+              </a>
+              <a 
+                href="#templates" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Templates
+              </a>
+              <a 
+                href="#pricing" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Pricing
+              </a>
+              <a 
+                href="#contact" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Contact
+              </a>
             </nav>
             <Button 
               style={{ backgroundColor: '#6458AF' }} 
@@ -649,7 +693,7 @@ export default function InternalOne() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      <footer id="contact" className="bg-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>

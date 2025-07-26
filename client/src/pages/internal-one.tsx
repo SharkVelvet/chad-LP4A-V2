@@ -3,8 +3,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Star, Users, Globe, TrendingUp, Shield, Clock, Zap, FileText } from "lucide-react";
 import templatePreviewImage from "@assets/LD-Internal-1_1753558470989.png";
+import { CompanySelectionModal } from "@/components/company-selection-modal";
+import { useState } from "react";
 
 export default function InternalOne() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -14,8 +25,8 @@ export default function InternalOne() {
             <div className="flex items-center">
               <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">
-                <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Plan|right</div>
+                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>Landing Pages</div>
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
@@ -24,7 +35,13 @@ export default function InternalOne() {
               <a href="#pricing" className="text-gray-700 hover:opacity-80" onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Pricing</a>
               <a href="#contact" className="text-gray-700 hover:opacity-80" onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Contact</a>
             </nav>
-            <Button style={{ backgroundColor: '#6458AF' }} className="hover:opacity-90">Get Started</Button>
+            <Button 
+              style={{ backgroundColor: '#6458AF' }} 
+              className="hover:opacity-90"
+              onClick={handleModalOpen}
+            >
+              Get Started
+            </Button>
           </div>
         </div>
       </header>
@@ -43,10 +60,23 @@ export default function InternalOne() {
               Professional templates designed specifically for insurance professionals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="px-8 py-4 text-lg hover:opacity-90" style={{ backgroundColor: '#6458AF' }}>
+              <Button 
+                size="lg" 
+                className="px-8 py-4 text-lg hover:opacity-90" 
+                style={{ backgroundColor: '#6458AF' }}
+                onClick={handleModalOpen}
+              >
                 Start Building Your Page
               </Button>
-              <Button size="lg" variant="outline" className="px-8 py-4 text-lg hover:opacity-90" style={{ borderColor: '#6458AF', color: '#6458AF', backgroundColor: 'transparent' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f0eeff'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="px-8 py-4 text-lg hover:opacity-90" 
+                style={{ borderColor: '#6458AF', color: '#6458AF', backgroundColor: 'transparent' }} 
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f0eeff'} 
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                onClick={handleModalOpen}
+              >
                 View Templates
               </Button>
             </div>
@@ -204,7 +234,10 @@ export default function InternalOne() {
 
           <div className="columns-1 md:columns-2 lg:columns-3 gap-4 mb-12 space-y-4">
             {/* Template 1 - Financial Excellence Theme */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
                 alt="Financial Excellence Template"
@@ -213,7 +246,10 @@ export default function InternalOne() {
             </div>
 
             {/* Template 2 - Elegant Financial Theme */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-12">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-12"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
                 alt="Elegant Financial Template"
@@ -222,7 +258,10 @@ export default function InternalOne() {
             </div>
 
             {/* Template 3 - Professional Services Theme */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-6">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-6"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
                 alt="Professional Services Template"
@@ -231,7 +270,10 @@ export default function InternalOne() {
             </div>
 
             {/* Template 4 - Corporate Insurance Theme */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-18">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-18"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
                 alt="Corporate Insurance Template"
@@ -240,7 +282,10 @@ export default function InternalOne() {
             </div>
 
             {/* Template 5 - Financial Excellence Variant */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-8">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-8"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
                 alt="Financial Excellence Dark Theme"
@@ -249,7 +294,10 @@ export default function InternalOne() {
             </div>
 
             {/* Template 6 - Elegant Financial Variant */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-4">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-4"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
                 alt="Elegant Clean Template"
@@ -258,7 +306,10 @@ export default function InternalOne() {
             </div>
 
             {/* Template 7 - Professional Services Variant */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-14">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-14"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
                 alt="Business Professional Template"
@@ -267,7 +318,10 @@ export default function InternalOne() {
             </div>
 
             {/* Template 8 - Corporate Insurance Variant */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-10">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-10"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
                 alt="Corporate Classic Template"
@@ -276,7 +330,10 @@ export default function InternalOne() {
             </div>
 
             {/* Template 9 - Financial Excellence - Service Focus */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-16">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-16"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
                 alt="Service Excellence Template"
@@ -285,7 +342,10 @@ export default function InternalOne() {
             </div>
 
             {/* Template 10 - Elegant Financial - Portfolio Focus */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-8">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-8"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
                 alt="Portfolio Focus Template"
@@ -294,7 +354,10 @@ export default function InternalOne() {
             </div>
 
             {/* Template 11 - Professional Services - Team Focus */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-4">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-4"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
                 alt="Team Focus Template"
@@ -303,7 +366,10 @@ export default function InternalOne() {
             </div>
 
             {/* Template 12 - Corporate Insurance - Trust Builder */}
-            <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-20">
+            <div 
+              className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-20"
+              onClick={handleModalOpen}
+            >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
                 alt="Trust Builder Template"
@@ -571,7 +637,12 @@ export default function InternalOne() {
           <p className="text-xl text-gray-600 mb-8">
             Join hundreds of insurance agents who trust Landing Pages for Agents to grow their business online.
           </p>
-          <Button size="lg" className="px-8 py-4 text-lg hover:opacity-90" style={{ backgroundColor: '#6458AF', color: 'white' }}>
+          <Button 
+            size="lg" 
+            className="px-8 py-4 text-lg hover:opacity-90" 
+            style={{ backgroundColor: '#6458AF', color: 'white' }}
+            onClick={handleModalOpen}
+          >
             Get Started Today
           </Button>
         </div>
@@ -585,8 +656,8 @@ export default function InternalOne() {
               <div className="flex items-center mb-4">
                 <FileText className="h-6 w-6 mr-2 text-white" />
                 <div className="text-left">
-                  <div className="text-xl font-bold leading-none text-white">Landing Pages</div>
-                  <div className="text-sm font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                  <div className="text-xl font-bold leading-none text-white">Plan|right</div>
+                  <div className="text-sm font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>Landing Pages</div>
                 </div>
               </div>
               <p className="text-gray-400">
@@ -623,6 +694,12 @@ export default function InternalOne() {
           </div>
         </div>
       </footer>
+
+      {/* Company Selection Modal */}
+      <CompanySelectionModal 
+        isOpen={isModalOpen} 
+        onClose={handleModalClose} 
+      />
     </div>
   );
 }

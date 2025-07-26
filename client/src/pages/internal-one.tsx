@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Star, Users, Globe, TrendingUp, Shield, Clock, Zap } from "lucide-react";
-import templatePreviewImage from "@assets/LD-Internal-1_1753550550673.png";
+import templatePreviewImage from "@assets/LD-Internal-1_1753558470989.png";
 
 export default function InternalOne() {
   return (

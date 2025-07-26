@@ -60,8 +60,7 @@ const companies = [
   {
     name: "Plan|right",
     logo: "/attached_assets/planright-logo.svg",
-    website: "/internal-one",
-    isDefault: true
+    website: "/internal-one"
   }
 ];
 
@@ -96,9 +95,7 @@ export function CompanySelectionModal({ isOpen, onClose }: CompanySelectionModal
             <Button
               key={company.name}
               variant="outline"
-              className={`h-32 p-4 flex flex-col items-center justify-center hover:bg-gray-50 transition-colors ${
-                company.isDefault ? 'ring-2 ring-[#6458AF] bg-purple-50' : ''
-              }`}
+              className="h-32 p-4 flex flex-col items-center justify-center hover:bg-gray-50 transition-colors"
               onClick={() => handleCompanySelect(company.website)}
             >
               <div className="h-16 w-full mb-2 flex items-center justify-center">
@@ -127,11 +124,7 @@ export function CompanySelectionModal({ isOpen, onClose }: CompanySelectionModal
           ))}
         </div>
 
-        <div className="text-center mt-8 p-4 bg-purple-50 rounded-lg">
-          <p className="text-sm text-gray-600">
-            <strong>Default Option:</strong> Plan|right offers comprehensive insurance website solutions for independent agents and agencies.
-          </p>
-        </div>
+
       </DialogContent>
     </Dialog>
   );

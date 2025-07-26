@@ -32,7 +32,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Header */}
         <div className="bg-white border-b px-4 sm:px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
           <div className="font-bold text-lg sm:text-xl">
-            <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-black">right</span>
+            <div className="flex flex-col items-center">
+              <div>
+                <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-black">Insurance</span>
+              </div>
+              <div className="text-xs font-normal tracking-widest text-gray-600 mt-1">GROUP</div>
+            </div>
           </div>
           <div className="flex items-center space-x-2 sm:space-x-6">
             <div className="hidden md:flex space-x-6 text-sm text-gray-700">
@@ -515,9 +520,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
             <div>
               <div className="font-bold text-xl mb-4">
-                <span className="text-red-600">Plan</span>
-                <span className="text-gray-400 font-thin mx-1">|</span>
-                <span className="text-white">right</span>
+                <div className="flex flex-col">
+                  <div>
+                    <span className="text-red-600">Your</span>
+                    <span className="text-gray-400 font-thin mx-1">|</span>
+                    <span className="text-white">Insurance</span>
+                  </div>
+                  <div className="text-sm font-normal tracking-widest text-gray-400 mt-1">GROUP</div>
+                </div>
               </div>
               <p className="text-gray-400 text-sm">Building Agents. Growing Futures.</p>
             </div>
@@ -550,7 +560,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
           </div>
           <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-            © 2025 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
+            © 2025 Your Insurance Group. All rights reserved. | Privacy Policy | Terms of Service
           </div>
         </div>
       </div>

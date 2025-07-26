@@ -203,6 +203,7 @@ export default function InternalOne() {
           </div>
 
           <div className="columns-1 md:columns-2 lg:columns-3 gap-4 mb-12 space-y-4">
+            {/* Row 1 Templates */}
             {/* Template 1 - Financial Excellence Theme */}
             <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4">
               <img 
@@ -219,7 +220,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 2 - Elegant Financial Theme */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-8">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-6">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
                 alt="Elegant Financial Template"
@@ -234,7 +235,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 3 - Professional Services Theme */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-4">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-3">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
                 alt="Professional Services Template"
@@ -249,7 +250,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 4 - Corporate Insurance Theme */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-12">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-9">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
                 alt="Corporate Insurance Template"
@@ -263,9 +264,9 @@ export default function InternalOne() {
               </div>
             </div>
 
-            {/* Additional Templates - Placeholder for more designs */}
+            {/* Row 2 Templates */}
             {/* Template 5 - Financial Excellence Variant */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-6">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-2">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
                 alt="Financial Excellence Dark Theme"
@@ -280,7 +281,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 6 - Elegant Financial Variant */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-2">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-8">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
                 alt="Elegant Clean Template"
@@ -295,7 +296,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 7 - Professional Services Variant */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-10">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-5">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
                 alt="Business Professional Template"
@@ -310,7 +311,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 8 - Corporate Insurance Variant */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-3">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-11">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
                 alt="Corporate Classic Template"
@@ -324,8 +325,9 @@ export default function InternalOne() {
               </div>
             </div>
 
+            {/* Row 3 Templates */}
             {/* Template 9 - Financial Excellence - Service Focus */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-7">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-4">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
                 alt="Service Excellence Template"
@@ -340,7 +342,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 10 - Elegant Financial - Portfolio Focus */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-1">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-10">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
                 alt="Portfolio Focus Template"
@@ -355,7 +357,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 11 - Professional Services - Team Focus */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-9">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-7">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
                 alt="Team Focus Template"
@@ -370,7 +372,7 @@ export default function InternalOne() {
             </div>
 
             {/* Template 12 - Corporate Insurance - Trust Builder */}
-            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-5">
+            <div className="relative aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border break-inside-avoid mb-4 mt-13">
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
                 alt="Trust Builder Template"

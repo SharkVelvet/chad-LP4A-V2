@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Star, Users, Globe, TrendingUp, Shield, Clock, Zap } from "lucide-react";
+import { CheckCircle, Star, Users, Globe, TrendingUp, Shield, Clock, Zap, FileText } from "lucide-react";
 import templatePreviewImage from "@assets/LD-Internal-1_1753558470989.png";
 
 export default function InternalOne() {
@@ -12,7 +12,8 @@ export default function InternalOne() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
-              <div className="text-center">
+              <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+              <div className="text-left">
                 <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
                 <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>

@@ -125,11 +125,11 @@ export default function InternalOne() {
                   </div>
                 </div>
               </div>
-              <div className="h-full flex items-center justify-end">
+              <div className="h-full flex items-center justify-end -mr-4">
                 <img 
                   src={templatePreviewImage} 
                   alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
-                  className="h-96 lg:h-[500px] w-auto object-contain"
+                  className="h-[400px] lg:h-[600px] w-auto object-contain"
                 />
               </div>
             </div>

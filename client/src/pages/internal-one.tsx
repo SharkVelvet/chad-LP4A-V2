@@ -342,15 +342,15 @@ export default function InternalOne() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20" style={{ backgroundColor: '#6458AF' }}>
+      <section className="py-20" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
             Ready to Generate More Leads?
           </h2>
-          <p className="text-xl mb-8" style={{ color: '#e5e1ff' }}>
-            Join hundreds of insurance agents who trust AgentLanding to grow their business online.
+          <p className="text-xl text-gray-600 mb-8">
+            Join hundreds of insurance agents who trust Landing Pages for Agents to grow their business online.
           </p>
-          <Button size="lg" className="px-8 py-4 text-lg hover:bg-gray-100" style={{ backgroundColor: 'white', color: '#6458AF' }}>
+          <Button size="lg" className="px-8 py-4 text-lg hover:opacity-90" style={{ backgroundColor: '#6458AF', color: 'white' }}>
             Get Started Today
           </Button>
         </div>

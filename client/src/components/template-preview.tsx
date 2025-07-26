@@ -10,6 +10,7 @@ import template4Image from "@assets/planright-w4_1751851299514.jpg";
 import parkBackgroundImage from "@assets/planright-park-back_1751851568156.jpg";
 import jennySnapshotImage from "@assets/planright-jenny-snapshot_1751852549427.jpg";
 import cameronSnapshotImage from "@assets/planright-cameron-snapshot_1751852578360.jpg";
+import jakeImage from "@assets/landing-temp1_1753549944630.png";
 
 interface TemplatePreviewProps {
   templateSlug: string;
@@ -81,8 +82,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <div className="relative">
                   <div className="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
                     <img 
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                      alt="John Smith" 
+                      src={jakeImage} 
+                      alt="Jake Smith" 
                       className="w-full h-full object-cover"
                     />
                   </div>

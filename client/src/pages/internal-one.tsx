@@ -90,7 +90,7 @@ export default function InternalOne() {
             <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-0">
               <div className="p-12">
                 <h3 className="text-4xl font-bold text-gray-900 mb-8">
-                  Professional Templates Built for Insurance
+                  Professional Templates Built for Insurance Agents
                 </h3>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   Begin exploring professional templates that speak to the most pressing needs of your insurance clients. With sound design principles for a digital world that continues to change and content that addresses your clients' felt needs.

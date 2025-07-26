@@ -143,7 +143,7 @@ export default function InternalOne() {
             <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] items-center gap-0">
               <div className="h-full flex items-center justify-start -ml-4">
                 <img 
-                  src="/attached_assets/LD-Internal-2_1753569055610.png" 
+                  src="/attached_assets/LD-Internal-3_1753570248272.png" 
                   alt="Professional Template Preview - Jake Smith Insurance Agent Services Page"
                   className="h-[600px] lg:h-[900px] w-auto object-contain"
                 />

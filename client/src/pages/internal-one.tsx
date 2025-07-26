@@ -80,7 +80,7 @@ export default function InternalOne() {
 
       {/* Features Section */}
       <section id="features" className="py-20 bg-gray-50">
-        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Everything You Need to Succeed Online
@@ -91,118 +91,50 @@ export default function InternalOne() {
           </div>
 
           <div className="rounded-2xl mb-16 overflow-hidden" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
-            <div className="px-12 py-8">
-              <h3 className="text-4xl font-bold text-gray-900 mb-8 text-center">
-                Professional Templates Built for Insurance Agents
-              </h3>
-              <p className="text-lg text-gray-600 mb-12 leading-relaxed text-center max-w-4xl mx-auto">
-                Begin exploring professional templates that speak to the most pressing needs of your insurance clients. With sound design principles for a digital world that continues to change and content that addresses your clients' felt needs.
-              </p>
-
-              {/* Staggered Template Gallery */}
-              <div className="columns-1 md:columns-2 lg:columns-4 gap-4 mb-12">
-                {/* Template 1 */}
-                <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4">
-                  <img 
-                    src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
-                    alt="Financial Excellence Template"
-                    className="w-full h-full object-cover object-[center_10%]"
-                  />
-                </div>
-
-                {/* Template 2 */}
-                <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-6">
-                  <img 
-                    src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
-                    alt="Elegant Financial Template"
-                    className="w-full h-full object-cover object-[center_15%]"
-                  />
-                </div>
-
-                {/* Template 3 */}
-                <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-3">
-                  <img 
-                    src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
-                    alt="Professional Services Template"
-                    className="w-full h-full object-cover object-[center_20%]"
-                  />
-                </div>
-
-                {/* Template 4 */}
-                <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-8">
-                  <img 
-                    src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
-                    alt="Corporate Insurance Template"
-                    className="w-full h-full object-cover object-[center_25%]"
-                  />
-                </div>
-
-                {/* Template 5 */}
-                <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-4">
-                  <img 
-                    src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
-                    alt="Financial Pro Template"
-                    className="w-full h-full object-cover object-[center_30%]"
-                  />
-                </div>
-
-                {/* Template 6 */}
-                <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-9">
-                  <img 
-                    src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
-                    alt="Elegant Clean Template"
-                    className="w-full h-full object-cover object-[center_35%]"
-                  />
-                </div>
-
-                {/* Template 7 */}
-                <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-5">
-                  <img 
-                    src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
-                    alt="Business Professional Template"
-                    className="w-full h-full object-cover object-[center_40%]"
-                  />
-                </div>
-
-                {/* Template 8 */}
-                <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-4 mt-11">
-                  <img 
-                    src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
-                    alt="Corporate Classic Template"
-                    className="w-full h-full object-cover object-[center_45%]"
-                  />
+            <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] items-center gap-0">
+              <div className="px-12 py-8">
+                <h3 className="text-4xl font-bold text-gray-900 mb-8">
+                  Professional Templates Built for Insurance Agents
+                </h3>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                  Begin exploring professional templates that speak to the most pressing needs of your insurance clients. With sound design principles for a digital world that continues to change and content that addresses your clients' felt needs.
+                </p>
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg mb-1">Industry-Specific Design</h4>
+                      <p className="text-gray-600">Find templates designed specifically for insurance agents with trust-building elements.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg mb-1">Mobile-First Responsive</h4>
+                      <p className="text-gray-600">Templates optimized for every device of your clients and prospects.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg mb-1">SEO Optimized</h4>
+                      <p className="text-gray-600">Templates built for your local market, holidays, and other opportunities.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              {/* Feature List */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                    <CheckCircle className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-lg mb-1">Industry-Specific Design</h4>
-                    <p className="text-gray-600">Find templates designed specifically for insurance agents with trust-building elements.</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                    <CheckCircle className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-lg mb-1">Mobile-First Responsive</h4>
-                    <p className="text-gray-600">Templates optimized for every device of your clients and prospects.</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                    <CheckCircle className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-lg mb-1">SEO Optimized</h4>
-                    <p className="text-gray-600">Templates built for your local market, holidays, and other opportunities.</p>
-                  </div>
-                </div>
+              <div className="h-full flex items-center justify-end -mr-4">
+                <img 
+                  src="/attached_assets/LD-Internal-3b_1753570339378.png" 
+                  alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
+                  className="h-[600px] lg:h-[900px] w-auto object-contain"
+                />
               </div>
             </div>
           </div>
@@ -260,7 +192,7 @@ export default function InternalOne() {
 
       {/* Template Showcase */}
       <section id="templates" className="py-20 bg-white">
-        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Professional Templates for Insurance Agents

@@ -86,9 +86,9 @@ export default function InternalOne() {
             </p>
           </div>
 
-          <div className="p-12 rounded-2xl mb-16" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
+          <div className="rounded-2xl mb-16 overflow-hidden" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
+              <div className="p-12">
                 <h3 className="text-4xl font-bold text-gray-900 mb-8">
                   Professional Templates Built for Insurance
                 </h3>
@@ -125,11 +125,13 @@ export default function InternalOne() {
                   </div>
                 </div>
               </div>
-              <img 
-                src={templatePreviewImage} 
-                alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
-                className="w-full rounded-lg"
-              />
+              <div className="h-full flex items-center justify-end">
+                <img 
+                  src={templatePreviewImage} 
+                  alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
+                  className="h-96 lg:h-[500px] w-auto object-contain"
+                />
+              </div>
             </div>
           </div>
 

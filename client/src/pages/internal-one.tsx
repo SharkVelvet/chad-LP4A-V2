@@ -277,7 +277,7 @@ export default function InternalOne() {
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-xl mx-auto">
             <Card className="border-2 shadow-lg" style={{ borderColor: '#e5e1ff' }}>
               <CardHeader className="text-center" style={{ backgroundColor: '#f8f6ff' }}>
                 <CardTitle className="text-2xl" style={{ color: '#6458AF' }}>Professional Plan</CardTitle>

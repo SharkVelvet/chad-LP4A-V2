@@ -92,7 +92,7 @@ export default function InternalOne() {
 
           <div className="rounded-2xl mb-16 overflow-hidden" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
             <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] items-center gap-0">
-              <div className="p-12">
+              <div className="px-12 py-8">
                 <h3 className="text-4xl font-bold text-gray-900 mb-8">
                   Professional Templates Built for Insurance Agents
                 </h3>
@@ -148,7 +148,7 @@ export default function InternalOne() {
                   className="h-[600px] lg:h-[900px] w-auto object-contain"
                 />
               </div>
-              <div className="p-12">
+              <div className="px-12 py-8">
                 <h3 className="text-4xl font-bold text-gray-900 mb-8">
                   Generate More Leads, Close More Deals
                 </h3>

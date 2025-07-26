@@ -86,8 +86,8 @@ export default function InternalOne() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16 p-8 rounded-lg" style={{ backgroundColor: 'rgba(100, 88, 175, 0.2)' }}>
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            <div className="p-8 rounded-lg" style={{ backgroundColor: 'rgba(100, 88, 175, 0.2)' }}>
               <h3 className="text-3xl font-bold text-gray-900 mb-6">
                 Professional Templates Built for Insurance
               </h3>
@@ -119,7 +119,7 @@ export default function InternalOne() {
               <img 
                 src={templatePreviewImage} 
                 alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
-                className="w-full rounded-lg shadow-lg"
+                className="w-full h-full object-cover rounded-lg shadow-lg"
               />
             </div>
           </div>

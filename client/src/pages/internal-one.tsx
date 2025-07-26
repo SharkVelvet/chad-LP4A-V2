@@ -129,7 +129,7 @@ export default function InternalOne() {
                 <img 
                   src={templatePreviewImage} 
                   alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
-                  className="h-[400px] lg:h-[600px] w-auto object-contain"
+                  className="h-[500px] lg:h-[750px] w-auto object-contain"
                 />
               </div>
             </div>

@@ -89,7 +89,7 @@ export default function InternalOne() {
               className="hover:opacity-90"
               onClick={handleModalOpen}
             >
-              Get Started
+              Start the Process
             </Button>
           </div>
         </div>
@@ -108,25 +108,14 @@ export default function InternalOne() {
               Create stunning, conversion-focused landing pages that establish trust and generate leads. 
               Professional templates designed specifically for insurance professionals.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button 
                 size="lg" 
                 className="px-8 py-4 text-lg hover:opacity-90" 
                 style={{ backgroundColor: '#6458AF' }}
                 onClick={handleModalOpen}
               >
-                Start Building Your Page
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="px-8 py-4 text-lg hover:opacity-90" 
-                style={{ borderColor: '#6458AF', color: '#6458AF', backgroundColor: 'transparent' }} 
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f0eeff'} 
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                onClick={handleModalOpen}
-              >
-                View Templates
+                Start the Process
               </Button>
             </div>
           </div>
@@ -668,8 +657,8 @@ export default function InternalOne() {
                     <span>24/7 support</span>
                   </div>
                 </div>
-                <Button className="w-full text-lg py-3 hover:opacity-90" style={{ backgroundColor: '#6458AF' }}>
-                  Start Your Professional Page
+                <Button className="w-full text-lg py-3 hover:opacity-90" style={{ backgroundColor: '#6458AF' }} onClick={handleModalOpen}>
+                  Start the Process
                 </Button>
               </CardContent>
             </Card>
@@ -692,7 +681,7 @@ export default function InternalOne() {
             style={{ backgroundColor: '#6458AF', color: 'white' }}
             onClick={handleModalOpen}
           >
-            Get Started Today
+            Start the Process
           </Button>
         </div>
       </section>

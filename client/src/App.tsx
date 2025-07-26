@@ -17,6 +17,7 @@ import Step5Success from "@/pages/step5-success";
 import Dashboard from "@/pages/dashboard";
 import Ideas from "@/pages/ideas";
 import InternalOne from "@/pages/internal-one";
+import PlanrightHome from "@/pages/planright-home";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -32,6 +33,7 @@ function Router() {
       <ProtectedRoute path="/dashboard" component={Dashboard} />
       <Route path="/ideas" component={Ideas} />
       <Route path="/internal-one" component={InternalOne} />
+      <Route path="/planright-home" component={PlanrightHome} />
       <Route path="/" component={HomePage} />
       <Route component={NotFound} />
     </Switch>

@@ -198,7 +198,7 @@ export default function InternalOne() {
               Professional Templates for Insurance Agents
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose from our collection of professionally designed templates created specifically for insurance professionals.
+              Our team has built a collection of professionally designed templates created specifically for insurance professionals.
             </p>
           </div>
 

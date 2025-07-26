@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Star, Users, Globe, TrendingUp, Shield, Clock, Zap } from "lucide-react";
+import templatePreviewImage from "@assets/LD-Internal-1_1753550550673.png";
 
 export default function InternalOne() {
   return (
@@ -114,16 +115,12 @@ export default function InternalOne() {
                 </div>
               </div>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-lg">
-              <div className="p-6 rounded-lg" style={{ background: 'linear-gradient(135deg, #f0eeff 0%, #f8f6ff 100%)' }}>
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#6458AF' }}>
-                    <Shield className="h-8 w-8 text-white" />
-                  </div>
-                  <h4 className="font-bold text-gray-900 mb-2">Trust & Credibility</h4>
-                  <p className="text-gray-600 text-sm">Professional design that builds immediate trust with potential clients</p>
-                </div>
-              </div>
+            <div className="relative">
+              <img 
+                src={templatePreviewImage} 
+                alt="Professional Template Preview - Jake Smith Insurance Agent Landing Page"
+                className="w-full rounded-lg shadow-2xl"
+              />
             </div>
           </div>
 

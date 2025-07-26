@@ -237,6 +237,93 @@ export default function InternalOne() {
         </div>
       </section>
 
+      {/* Hiring Benefits */}
+      <section className="py-20" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Essential for Building Your Team
+            </h2>
+            <p className="text-xl text-gray-600">
+              Professional websites are crucial for recruiting top talent in today's competitive market.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="text-center">
+              <div className="text-6xl font-bold mb-4" style={{ color: '#6458AF' }}>70%</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Passive Talent</h3>
+              <p className="text-gray-600">
+                70% of the global workforce is considered passive talent, meaning they're open to opportunities but not actively job searching.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="text-6xl font-bold mb-4" style={{ color: '#6458AF' }}>89%</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Brand Impact</h3>
+              <p className="text-gray-600">
+                Companies with strong brands see roughly 89% improvements in applicant quality when recruiting new talent.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="text-6xl font-bold mb-4" style={{ color: '#6458AF' }}>76%</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Online Research</h3>
+              <p className="text-gray-600">
+                76% of new hires look at the company's reputation online before they apply for a position.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-8 shadow-sm">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+              Why Professional Websites Matter for Hiring
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex items-start">
+                <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <CheckCircle className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 text-lg mb-1">Hiring Platform Requirements</h4>
+                  <p className="text-gray-600">Many hiring sites require a professional webpage and business email address to post job opportunities.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <CheckCircle className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 text-lg mb-1">Credibility & Trust</h4>
+                  <p className="text-gray-600">A professional website builds immediate credibility with potential recruits who research your business.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <CheckCircle className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 text-lg mb-1">Attract Quality Candidates</h4>
+                  <p className="text-gray-600">Professional presentation attracts higher-quality candidates who value working for established businesses.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <CheckCircle className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 text-lg mb-1">Showcase Your Success</h4>
+                  <p className="text-gray-600">Display your achievements, team culture, and growth opportunities to appeal to ambitious agents.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

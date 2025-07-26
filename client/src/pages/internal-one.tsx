@@ -303,9 +303,9 @@ export default function InternalOne() {
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#6458AF' }}>
                 <span className="text-2xl font-bold text-white">1</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">We Buy Your Domain</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Tell Us What Domain Name You Want</h3>
               <p className="text-gray-600">
-                Tell us your preferred domain name and we'll purchase it for you. No technical setup required on your end.
+                Simply let us know your preferred domain name and we'll handle all the technical details for you.
               </p>
             </div>
 
@@ -313,9 +313,9 @@ export default function InternalOne() {
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#6458AF' }}>
                 <span className="text-2xl font-bold text-white">2</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Choose Your Template</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Pick Which Template You Want</h3>
               <p className="text-gray-600">
-                Select from our professionally designed templates and customize it with your information, photos, and branding.
+                Choose from our professional insurance agent templates and customize it with your information.
               </p>
             </div>
 
@@ -323,9 +323,9 @@ export default function InternalOne() {
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#6458AF' }}>
                 <span className="text-2xl font-bold text-white">3</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">We Launch Your Site</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Your Page is Live Within 24 Hours</h3>
               <p className="text-gray-600">
-                Within 24 hours, your professional landing page is live and ready to capture leads from potential clients.
+                That's it! Your professional landing page will be live and ready to capture leads from potential clients.
               </p>
             </div>
           </div>

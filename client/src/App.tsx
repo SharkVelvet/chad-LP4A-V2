@@ -18,6 +18,7 @@ import Dashboard from "@/pages/dashboard";
 import Ideas from "@/pages/ideas";
 import InternalOne from "@/pages/internal-one";
 import PlanrightHome from "@/pages/planright-home";
+import StartTheProcess from "@/pages/start-the-process";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -34,6 +35,7 @@ function Router() {
       <Route path="/ideas" component={Ideas} />
       <Route path="/internal-one" component={InternalOne} />
       <Route path="/planright-home" component={PlanrightHome} />
+      <Route path="/start-the-process" component={StartTheProcess} />
       <Route path="/" component={HomePage} />
       <Route component={NotFound} />
     </Switch>

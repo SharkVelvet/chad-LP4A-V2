@@ -657,7 +657,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Jenny Smith</h3>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Jake Smith</h3>
                       <p className="text-red-600 font-semibold mb-6">Licensed Insurance Agent</p>
                       
                       {/* Credentials */}
@@ -2668,11 +2668,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="relative z-10 bg-white rounded-3xl shadow-2xl overflow-hidden">
                 <img 
                   src={jennyImage} 
-                  alt="Jenny Smith" 
+                  alt="Jake Smith" 
                   className="w-full h-96 object-cover"
                 />
                 <div className="p-6 bg-white">
-                  <h3 className="text-xl font-bold text-gray-900">Jenny Smith</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Jake Smith</h3>
                   <p className="text-red-600 font-medium">Licensed Insurance Agent</p>
                   <p className="text-gray-600 mt-2">15+ years of excellence in insurance solutions</p>
                 </div>
@@ -2792,7 +2792,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="relative">
                 <img 
                   src={jennyImage}
-                  alt="Jenny Smith"
+                  alt="Jake Smith"
                   className="w-full h-96 object-cover rounded-3xl shadow-2xl"
                 />
               </div>
@@ -3002,7 +3002,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-gray-50 p-10 rounded-3xl hover:shadow-lg transition-shadow">
                 <h4 className="text-2xl font-bold text-gray-900 mb-6">Reliable People</h4>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  "Working with Jenny has been exceptional. Her comprehensive approach to financial planning and dedication to client success makes her stand out in the industry. Highly recommended."
+                  "Working with Jake has been exceptional. His comprehensive approach to financial planning and dedication to client success makes him stand out in the industry. Highly recommended."
                 </p>
                 <div className="flex items-center">
                   <img 
@@ -3020,7 +3020,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="bg-gray-50 p-10 rounded-3xl hover:shadow-lg transition-shadow">
                 <h4 className="text-2xl font-bold text-gray-900 mb-6">Smooth Process</h4>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  "Jenny's professional expertise and personalized service exceeded our expectations. She helped us navigate complex financial decisions with confidence and clarity."
+                  "Jake's professional expertise and personalized service exceeded our expectations. He helped us navigate complex financial decisions with confidence and clarity."
                 </p>
                 <div className="flex items-center">
                   <img 

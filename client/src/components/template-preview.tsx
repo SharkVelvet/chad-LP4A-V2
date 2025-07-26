@@ -36,7 +36,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div>
                 <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-black">Insurance</span>
               </div>
-              <div className="text-xs font-normal tracking-widest text-gray-600 mt-1">GROUP</div>
+              <div className="text-xs font-normal text-gray-600 mt-1 w-full text-center" style={{ letterSpacing: '0.3em' }}>GROUP</div>
             </div>
           </div>
           <div className="flex items-center space-x-2 sm:space-x-6">
@@ -526,7 +526,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <span className="text-gray-400 font-thin mx-1">|</span>
                     <span className="text-white">Insurance</span>
                   </div>
-                  <div className="text-sm font-normal tracking-widest text-gray-400 mt-1">GROUP</div>
+                  <div className="text-sm font-normal text-gray-400 mt-1 w-full" style={{ letterSpacing: '0.3em' }}>GROUP</div>
                 </div>
               </div>
               <p className="text-gray-400 text-sm">Building Agents. Growing Futures.</p>

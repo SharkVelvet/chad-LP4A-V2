@@ -135,40 +135,49 @@ export default function InternalOne() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <div className="p-8 rounded-lg" style={{ backgroundColor: '#f2f8f0' }}>
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#92CA7F' }}>
-                  <TrendingUp className="h-8 w-8 text-white" />
-                </div>
-                <h4 className="font-bold text-gray-900 mb-2">Lead Generation Focus</h4>
-                <p className="text-gray-600">Conversion-optimized forms and call-to-actions that turn visitors into leads</p>
+          <div className="rounded-2xl mb-16 overflow-hidden" style={{ backgroundColor: 'rgba(146, 202, 127, 0.1)' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-0">
+              <div className="h-full flex items-center justify-start -ml-4">
+                <img 
+                  src="/attached_assets/LD-Internal-2_1753569055610.png" 
+                  alt="Professional Template Preview - Jake Smith Insurance Agent Services Page"
+                  className="h-[500px] lg:h-[750px] w-auto object-contain"
+                />
               </div>
-            </div>
-            <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">
-                Generate More Leads, Close More Deals
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <Zap className="h-6 w-6 mr-3 mt-1" style={{ color: '#92CA7F' }} />
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Fast Setup</h4>
-                    <p className="text-gray-600">Get your professional page live in under 10 minutes</p>
+              <div className="p-12">
+                <h3 className="text-4xl font-bold text-gray-900 mb-8">
+                  Generate More Leads, Close More Deals
+                </h3>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                  Convert more visitors into clients with professionally designed templates that build trust and drive action. Our insurance-focused designs help you capture leads and showcase your expertise effectively.
+                </p>
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1" style={{ backgroundColor: '#92CA7F' }}>
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg mb-1">Lead Capture Forms</h4>
+                      <p className="text-gray-600">Built-in contact forms optimized for insurance lead generation and follow-up.</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start">
-                  <Users className="h-6 w-6 mr-3 mt-1" style={{ color: '#6458AF' }} />
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Contact Management</h4>
-                    <p className="text-gray-600">Built-in lead capture and management system</p>
+                  <div className="flex items-start">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1" style={{ backgroundColor: '#92CA7F' }}>
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg mb-1">Trust-Building Elements</h4>
+                      <p className="text-gray-600">Professional layouts that showcase credentials, testimonials, and expertise.</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start">
-                  <Globe className="h-6 w-6 mr-3 mt-1" style={{ color: '#92CA7F' }} />
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Custom Domains</h4>
-                    <p className="text-gray-600">Use your own domain for professional branding</p>
+                  <div className="flex items-start">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1" style={{ backgroundColor: '#92CA7F' }}>
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg mb-1">Call-to-Action Focus</h4>
+                      <p className="text-gray-600">Strategic placement of contact buttons and forms to maximize conversions.</p>
+                    </div>
                   </div>
                 </div>
               </div>

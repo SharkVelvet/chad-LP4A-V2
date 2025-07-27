@@ -100,7 +100,7 @@ export function CompanySelectionModal({ isOpen, onClose }: CompanySelectionModal
             >
               <div className="h-16 w-full mb-2 flex items-center justify-center">
                 {company.name === "Plan|right" ? (
-                  <div className="text-2xl font-bold text-[#22252f]">Plan|right</div>
+                  <div className="text-2xl font-bold text-[#6458AF]">Plan|right</div>
                 ) : (
                   <img
                     src={company.logo}

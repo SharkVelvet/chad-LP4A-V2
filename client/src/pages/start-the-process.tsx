@@ -22,9 +22,9 @@ export default function StartTheProcess() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              <FileText className="h-10 w-10 mr-3" style={{ color: '#22252f' }} />
+              <FileText className="h-10 w-10 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">
-                <div className="text-2xl font-bold leading-none" style={{ color: '#22252f' }}>Landing Pages</div>
+                <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
                 <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
@@ -42,7 +42,7 @@ export default function StartTheProcess() {
           <p className="text-xl text-gray-600 mb-4 max-w-2xl mx-auto">
             Create your professional landing page in just a few simple steps
           </p>
-          <p className="text-lg font-semibold mb-8 max-w-4xl mx-auto" style={{ color: '#22252f' }}>
+          <p className="text-lg font-semibold mb-8 max-w-4xl mx-auto" style={{ color: '#6458AF' }}>
             "Have a professional webpage and start generating leads by the end of the day!"
           </p>
         </div>
@@ -54,7 +54,7 @@ export default function StartTheProcess() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#22252f' }}>
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#6458AF' }}>
                     <span className="text-white font-bold text-lg">1</span>
                   </div>
                   <div>
@@ -68,7 +68,7 @@ export default function StartTheProcess() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#22252f' }}>
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#6458AF' }}>
                     <span className="text-white font-bold text-lg">2</span>
                   </div>
                   <div>
@@ -82,7 +82,7 @@ export default function StartTheProcess() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#22252f' }}>
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#6458AF' }}>
                     <span className="text-white font-bold text-lg">3</span>
                   </div>
                   <div>
@@ -96,7 +96,7 @@ export default function StartTheProcess() {
 
           {/* Right Column - Get Started Card */}
           <div className="lg:sticky lg:top-8">
-            <Card style={{ backgroundColor: '#22252f', borderColor: '#22252f' }}>
+            <Card style={{ backgroundColor: '#6458AF', borderColor: '#6458AF' }}>
               <CardHeader className="text-center">
                 <CardTitle className="text-xl font-bold text-white">
                   Ready to Get Started?
@@ -109,7 +109,7 @@ export default function StartTheProcess() {
                     <Button 
                       onClick={handleGetStarted}
                       className="px-8 py-3 bg-white hover:bg-gray-100 font-semibold rounded-lg w-full" 
-                      style={{ color: '#22252f' }}
+                      style={{ color: '#6458AF' }}
                       size="lg"
                     >
                       Get Started Now
@@ -137,9 +137,9 @@ export default function StartTheProcess() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center mb-4">
-                <FileText className="h-10 w-10 mr-3" style={{ color: '#22252f' }} />
+                <FileText className="h-10 w-10 mr-3" style={{ color: '#6458AF' }} />
                 <div className="text-left">
-                  <div className="text-2xl font-bold leading-none" style={{ color: '#22252f' }}>Landing Pages</div>
+                  <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
                   <div className="text-sm font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>for Agents</div>
                 </div>
               </div>

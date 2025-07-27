@@ -23,9 +23,9 @@ export default function InternalOne() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              <FileText className="h-10 w-10 mr-3" style={{ color: '#22252f' }} />
+              <FileText className="h-10 w-10 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">
-                <div className="text-2xl font-bold leading-none" style={{ color: '#22252f' }}>Landing Pages</div>
+                <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
                 <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
@@ -33,7 +33,7 @@ export default function InternalOne() {
               <a 
                 href="#features" 
                 className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#22252f'} 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
                 onMouseLeave={(e) => e.currentTarget.style.color = ''}
                 onClick={(e) => {
                   e.preventDefault();
@@ -45,7 +45,7 @@ export default function InternalOne() {
               <a 
                 href="#templates" 
                 className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#22252f'} 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
                 onMouseLeave={(e) => e.currentTarget.style.color = ''}
                 onClick={(e) => {
                   e.preventDefault();
@@ -57,7 +57,7 @@ export default function InternalOne() {
               <a 
                 href="#pricing" 
                 className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#22252f'} 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
                 onMouseLeave={(e) => e.currentTarget.style.color = ''}
                 onClick={(e) => {
                   e.preventDefault();
@@ -69,7 +69,7 @@ export default function InternalOne() {
               <a 
                 href="#contact" 
                 className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#22252f'} 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
                 onMouseLeave={(e) => e.currentTarget.style.color = ''}
                 onClick={(e) => {
                   e.preventDefault();
@@ -80,7 +80,7 @@ export default function InternalOne() {
               </a>
             </nav>
             <Button 
-              style={{ backgroundColor: '#22252f' }} 
+              style={{ backgroundColor: '#6458AF' }} 
               className="hover:opacity-90"
               onClick={handleStartProcess}
             >
@@ -94,10 +94,10 @@ export default function InternalOne() {
       <section className="py-20" style={{ background: 'linear-gradient(135deg, #f8f6ff 0%, #ffffff 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge className="mb-4" style={{ backgroundColor: '#f0eeff', color: '#22252f' }}>For Insurance Agents Nationwide</Badge>
+            <Badge className="mb-4" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
               Professional Landing Pages for<br />
-              <span style={{ color: '#22252f' }}>Insurance Agents</span>
+              <span style={{ color: '#6458AF' }}>Insurance Agents</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Create stunning, conversion-focused landing pages that establish trust and generate leads. 
@@ -107,7 +107,7 @@ export default function InternalOne() {
               <Button 
                 size="lg" 
                 className="px-8 py-4 text-lg hover:opacity-90" 
-                style={{ backgroundColor: '#22252f' }}
+                style={{ backgroundColor: '#6458AF' }}
                 onClick={handleStartProcess}
               >
                 Start the Process
@@ -122,19 +122,19 @@ export default function InternalOne() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2" style={{ color: '#22252f' }}>500+</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#6458AF' }}>500+</div>
               <div className="text-gray-600">Active Insurance Agents</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2" style={{ color: '#22252f' }}>50+</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#6458AF' }}>50+</div>
               <div className="text-gray-600">Professional Templates</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2" style={{ color: '#22252f' }}>98%</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#6458AF' }}>98%</div>
               <div className="text-gray-600">Client Satisfaction</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2" style={{ color: '#22252f' }}>24/7</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#6458AF' }}>24/7</div>
               <div className="text-gray-600">Support Available</div>
             </div>
           </div>
@@ -153,7 +153,7 @@ export default function InternalOne() {
             </p>
           </div>
 
-          <div className="rounded-2xl mb-16 overflow-hidden" style={{ backgroundColor: 'rgba(34, 37, 47, 0.1)' }}>
+          <div className="rounded-2xl mb-16 overflow-hidden" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
             <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] items-center gap-0">
               <div className="px-12 py-8">
                 <h3 className="text-4xl font-bold text-gray-900 mb-8">
@@ -164,7 +164,7 @@ export default function InternalOne() {
                 </p>
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-[#22252f] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -173,7 +173,7 @@ export default function InternalOne() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-[#22252f] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -182,7 +182,7 @@ export default function InternalOne() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-[#22252f] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -202,7 +202,7 @@ export default function InternalOne() {
             </div>
           </div>
 
-          <div className="rounded-2xl mb-16 overflow-hidden" style={{ backgroundColor: 'rgba(34, 37, 47, 0.1)' }}>
+          <div className="rounded-2xl mb-16 overflow-hidden" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
             <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] items-center gap-0">
               <div className="h-full flex items-center justify-start -ml-4">
                 <img 
@@ -220,7 +220,7 @@ export default function InternalOne() {
                 </p>
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-[#22252f] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -229,7 +229,7 @@ export default function InternalOne() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-[#22252f] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -238,7 +238,7 @@ export default function InternalOne() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-[#22252f] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -414,7 +414,7 @@ export default function InternalOne() {
       </section>
 
       {/* Hiring Benefits */}
-      <section className="py-20" style={{ backgroundColor: 'rgba(34, 37, 47, 0.1)' }}>
+      <section className="py-20" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -427,7 +427,7 @@ export default function InternalOne() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="text-center">
-              <div className="text-6xl font-bold mb-4" style={{ color: '#22252f' }}>70%</div>
+              <div className="text-6xl font-bold mb-4" style={{ color: '#6458AF' }}>70%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Passive Talent</h3>
               <p className="text-gray-600">
                 70% of the global workforce is considered passive talent, meaning they're open to opportunities but not actively job searching.
@@ -435,7 +435,7 @@ export default function InternalOne() {
             </div>
 
             <div className="text-center">
-              <div className="text-6xl font-bold mb-4" style={{ color: '#22252f' }}>89%</div>
+              <div className="text-6xl font-bold mb-4" style={{ color: '#6458AF' }}>89%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Brand Impact</h3>
               <p className="text-gray-600">
                 Companies with strong brands see roughly 89% improvements in applicant quality when recruiting new talent.
@@ -443,7 +443,7 @@ export default function InternalOne() {
             </div>
 
             <div className="text-center">
-              <div className="text-6xl font-bold mb-4" style={{ color: '#22252f' }}>76%</div>
+              <div className="text-6xl font-bold mb-4" style={{ color: '#6458AF' }}>76%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Online Research</h3>
               <p className="text-gray-600">
                 76% of new hires look at the company's reputation online before they apply for a position.
@@ -457,7 +457,7 @@ export default function InternalOne() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-[#22252f] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                   <CheckCircle className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -467,7 +467,7 @@ export default function InternalOne() {
               </div>
               
               <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-[#22252f] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                   <CheckCircle className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -477,7 +477,7 @@ export default function InternalOne() {
               </div>
 
               <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-[#22252f] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                   <CheckCircle className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -487,7 +487,7 @@ export default function InternalOne() {
               </div>
 
               <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-[#22252f] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-[#6458AF] flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                   <CheckCircle className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -516,7 +516,7 @@ export default function InternalOne() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#22252f' }}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#6458AF' }}>
                 <span className="text-2xl font-bold text-white">1</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Tell Us What Domain Name You Want</h3>
@@ -526,7 +526,7 @@ export default function InternalOne() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#22252f' }}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#6458AF' }}>
                 <span className="text-2xl font-bold text-white">2</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Pick Which Template You Want</h3>
@@ -536,7 +536,7 @@ export default function InternalOne() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#22252f' }}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#6458AF' }}>
                 <span className="text-2xl font-bold text-white">3</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Your Page is Live Within 24 Hours</h3>
@@ -547,8 +547,8 @@ export default function InternalOne() {
           </div>
 
           <div className="text-center mt-12">
-            <div className="inline-flex items-center px-6 py-3 rounded-lg" style={{ backgroundColor: 'rgba(34, 37, 47, 0.1)' }}>
-              <CheckCircle className="h-5 w-5 mr-2" style={{ color: '#22252f' }} />
+            <div className="inline-flex items-center px-6 py-3 rounded-lg" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
+              <CheckCircle className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
               <span className="font-semibold text-gray-900">No technical skills needed - we handle everything!</span>
             </div>
           </div>
@@ -570,7 +570,7 @@ export default function InternalOne() {
           <div className="max-w-xl mx-auto">
             <Card className="border-2 shadow-lg" style={{ borderColor: '#e5e1ff' }}>
               <CardHeader className="text-center" style={{ backgroundColor: '#f8f6ff' }}>
-                <CardTitle className="text-2xl" style={{ color: '#22252f' }}>Professional Plan</CardTitle>
+                <CardTitle className="text-2xl" style={{ color: '#6458AF' }}>Professional Plan</CardTitle>
                 <div className="text-4xl font-bold text-gray-900 mt-4">
                   $38 <span className="text-lg font-normal text-gray-600">first month</span>
                 </div>
@@ -605,7 +605,7 @@ export default function InternalOne() {
                     <span>24/7 support</span>
                   </div>
                 </div>
-                <Button className="w-full text-lg py-3 hover:opacity-90" style={{ backgroundColor: '#22252f' }} onClick={handleStartProcess}>
+                <Button className="w-full text-lg py-3 hover:opacity-90" style={{ backgroundColor: '#6458AF' }} onClick={handleStartProcess}>
                   Start the Process
                 </Button>
               </CardContent>
@@ -615,7 +615,7 @@ export default function InternalOne() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20" style={{ backgroundColor: 'rgba(34, 37, 47, 0.1)' }}>
+      <section className="py-20" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
             Ready to Build Your Professional Website?
@@ -626,7 +626,7 @@ export default function InternalOne() {
           <Button 
             size="lg" 
             className="px-8 py-4 text-lg hover:opacity-90" 
-            style={{ backgroundColor: '#22252f', color: 'white' }}
+            style={{ backgroundColor: '#6458AF', color: 'white' }}
             onClick={handleStartProcess}
           >
             Start the Process

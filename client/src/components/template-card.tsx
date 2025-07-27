@@ -49,7 +49,7 @@ export default function TemplateCard({ template }: TemplateCardProps) {
           
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-sm font-medium" style={{ color: '#22252f' }}>
+              <span className="text-sm font-medium" style={{ color: '#6458AF' }}>
                 Professional Layout
               </span>
               <span className="text-xs text-gray-500">
@@ -59,7 +59,7 @@ export default function TemplateCard({ template }: TemplateCardProps) {
             <Button 
               size="sm"
               className="flex items-center space-x-2"
-              style={{ backgroundColor: '#22252f', color: 'white' }}
+              style={{ backgroundColor: '#6458AF', color: 'white' }}
               onClick={(e) => {
                 e.stopPropagation();
                 const siteType = localStorage.getItem('selectedSiteType') || 'single-page';

@@ -416,9 +416,9 @@ export default function Ideas() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2 font-bold text-xl">
-                <FileText className="h-8 w-8" style={{ color: '#22252f' }} />
+                <FileText className="h-8 w-8" style={{ color: '#6458AF' }} />
                 <div className="text-left">
-                  <div className="text-2xl font-bold leading-none" style={{ color: '#22252f' }}>Landing Pages</div>
+                  <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
                   <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
                 </div>
               </div>

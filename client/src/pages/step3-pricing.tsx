@@ -29,8 +29,8 @@ export default function Step3Pricing() {
               <Button variant="ghost" size="sm" onClick={handleGoBack}>
                 <ArrowLeft className="h-4 w-4" />
               </Button>
-              <FileText className="h-7 w-7 mr-2" style={{ color: '#22252f' }} />
-              <h1 className="text-xl font-semibold" style={{ color: '#22252f' }}>Landing Pages for Agents</h1>
+              <FileText className="h-7 w-7 mr-2" style={{ color: '#6458AF' }} />
+              <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@ export default function Step3Pricing() {
           <div className="text-center">
             <p className="text-sm font-medium text-gray-500 mb-2">Step 3 of 5</p>
             <div className="w-full bg-gray-200 rounded-full h-2 mb-4 max-w-md mx-auto">
-              <div className="h-2 rounded-full" style={{ width: '60%', backgroundColor: '#22252f' }}></div>
+              <div className="h-2 rounded-full" style={{ width: '60%', backgroundColor: '#6458AF' }}></div>
             </div>
           </div>
         </div>
@@ -62,10 +62,10 @@ export default function Step3Pricing() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 rounded-lg border" style={{ backgroundColor: 'rgba(34, 37, 47, 0.05)', borderColor: 'rgba(34, 37, 47, 0.2)' }}>
-                <h3 className="text-xl font-bold mb-2" style={{ color: '#22252f' }}>First Month (Total charged today)</h3>
-                <div className="text-3xl font-bold mb-2" style={{ color: '#22252f' }}>$38</div>
-                <p className="text-sm" style={{ color: 'rgba(34, 37, 47, 0.7)' }}>
+              <div className="bg-purple-50 p-6 rounded-lg border border-purple-200">
+                <h3 className="text-xl font-bold text-purple-900 mb-2">First Month (Total charged today)</h3>
+                <div className="text-3xl font-bold mb-2" style={{ color: '#6458AF' }}>$38</div>
+                <p className="text-sm text-purple-700">
                   Setup fee includes everything to get your website live and running
                 </p>
               </div>
@@ -103,7 +103,7 @@ export default function Step3Pricing() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                  <Settings className="h-4 w-4 mr-2" style={{ color: '#22252f' }} />
+                  <Settings className="h-4 w-4 mr-2" style={{ color: '#6458AF' }} />
                   First Month Setup ($38)
                 </h4>
                 <ul className="space-y-2 text-sm text-gray-600">
@@ -189,7 +189,7 @@ export default function Step3Pricing() {
                 id="agreement"
                 checked={agreed}
                 onCheckedChange={(checked) => setAgreed(checked as boolean)}
-                className="h-6 w-6 data-[state=checked]:bg-[#22252f] data-[state=checked]:border-[#22252f] border-2"
+                className="h-6 w-6 data-[state=checked]:bg-[#6458AF] data-[state=checked]:border-[#6458AF] border-2"
               />
               <div className="space-y-1">
                 <label
@@ -212,9 +212,9 @@ export default function Step3Pricing() {
           <Button 
             size="lg" 
             className="px-8 py-3 text-white" 
-            style={{ backgroundColor: '#22252f' }} 
+            style={{ backgroundColor: '#6458AF' }} 
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#22252f'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
             disabled={!agreed}
             onClick={handleContinue}
           >
@@ -228,7 +228,7 @@ export default function Step3Pricing() {
         {/* Footer */}
         <div className="text-center mt-12 pt-8 border-t border-gray-200">
           <p className="text-sm text-gray-500">
-            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#22252f' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#22252f'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
+            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
           </p>
         </div>
       </div>

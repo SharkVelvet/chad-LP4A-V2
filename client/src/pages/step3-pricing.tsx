@@ -30,7 +30,7 @@ export default function Step3Pricing() {
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <img 
-                src="/attached_assets/Screenshot 2025-07-26 at 8.32.19 PM_1753576356195.png" 
+                src="/assets/logo.png" 
                 alt="Landing Pages for Agents"
                 className="h-10 w-auto"
               />

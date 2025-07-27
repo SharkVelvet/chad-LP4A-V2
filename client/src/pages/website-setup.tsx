@@ -117,7 +117,7 @@ export default function WebsiteSetup() {
               </Button>
               <div className="flex items-center">
                 <img 
-                  src="/attached_assets/Screenshot 2025-07-26 at 8.32.19 PM_1753576356195.png" 
+                  src="/assets/logo.png" 
                   alt="Landing Pages for Agents"
                   className="h-10 w-auto"
                 />

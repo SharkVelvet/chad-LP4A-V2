@@ -417,7 +417,7 @@ export default function Ideas() {
             <div className="flex items-center space-x-4">
               <div className="flex items-center">
                 <img 
-                  src="/attached_assets/Screenshot 2025-07-26 at 8.32.19 PM_1753576356195.png" 
+                  src="/assets/logo.png" 
                   alt="Landing Pages for Agents"
                   className="h-12 w-auto"
                 />

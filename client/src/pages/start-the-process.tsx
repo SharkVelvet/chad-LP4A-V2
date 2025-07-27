@@ -23,7 +23,7 @@ export default function StartTheProcess() {
               }}
             >
               <img 
-                src="/attached_assets/Screenshot 2025-07-26 at 8.32.19 PM_1753576356195.png" 
+                src="/assets/logo.png" 
                 alt="Landing Pages for Agents"
                 className="h-12 w-auto"
               />
@@ -138,7 +138,7 @@ export default function StartTheProcess() {
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center mb-4">
                 <img 
-                  src="/attached_assets/Screenshot 2025-07-26 at 8.32.19 PM_1753576356195.png" 
+                  src="/assets/logo.png" 
                   alt="Landing Pages for Agents"
                   className="h-12 w-auto"
                 />

@@ -36,7 +36,8 @@ function Router() {
       <Route path="/internal-one" component={InternalOne} />
       <Route path="/planright-home" component={PlanrightHome} />
       <Route path="/start-the-process" component={StartTheProcess} />
-      <Route path="/" component={HomePage} />
+      <Route path="/old-home" component={HomePage} />
+      <Route path="/" component={InternalOne} />
       <Route component={NotFound} />
     </Switch>
   );

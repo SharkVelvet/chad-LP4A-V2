@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Lock } from "lucide-react";
+import { Lock, FileText } from "lucide-react";
 
 export default function StartTheProcess() {
   const [password, setPassword] = useState("");
@@ -50,18 +50,39 @@ export default function StartTheProcess() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div 
+              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
+              <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+              <div className="text-left">
+                <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-white flex items-center justify-center p-4">
       <div className="w-full max-w-4xl">
         {/* Main Explanation Section */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Quick Website Pages for Insurance Agents
+            Professional Landing Pages for Insurance Agents
           </h1>
           <p className="text-xl text-gray-600 mb-4 max-w-2xl mx-auto">
-            Create your professional Agent splash page in just a few simple steps
+            Create your professional landing page in just a few simple steps
           </p>
-          <p className="text-lg text-red-600 font-semibold mb-8 max-w-4xl mx-auto">
-            "Have a professional webpage and a business email address by the end of the day!"
+          <p className="text-lg font-semibold mb-8 max-w-4xl mx-auto" style={{ color: '#6458AF' }}>
+            "Have a professional webpage and start generating leads by the end of the day!"
           </p>
         </div>
 
@@ -72,7 +93,7 @@ export default function StartTheProcess() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#6458AF' }}>
                     <span className="text-white font-bold text-lg">1</span>
                   </div>
                   <div>
@@ -86,7 +107,7 @@ export default function StartTheProcess() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#6458AF' }}>
                     <span className="text-white font-bold text-lg">2</span>
                   </div>
                   <div>
@@ -100,12 +121,12 @@ export default function StartTheProcess() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#6458AF' }}>
                     <span className="text-white font-bold text-lg">3</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Go Live</h3>
-                    <p className="text-gray-600">FOTYPE will work with you to get your content updated to your specific needs and have your page live quickly</p>
+                    <p className="text-gray-600">We'll work with you to get your content updated to your specific needs and have your page live quickly</p>
                   </div>
                 </div>
               </CardContent>
@@ -114,12 +135,12 @@ export default function StartTheProcess() {
 
           {/* Right Column - Access Card */}
           <div className="lg:sticky lg:top-8">
-            <Card className="bg-red-600 border-red-600">
+            <Card style={{ backgroundColor: '#6458AF', borderColor: '#6458AF' }}>
               <CardHeader className="text-center">
                 <CardTitle className="text-xl font-bold text-white">
                   Ready to Get Started?
                 </CardTitle>
-                <p className="text-red-100 mt-2">Enter your access password to begin building your website. <span className="font-bold">If you need an access code simply ask your manager or email admin@fotype.com</span></p>
+                <p className="text-purple-100 mt-2">Enter your access password to begin building your website. <span className="font-bold">If you need an access code simply ask your manager or contact support</span></p>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -136,7 +157,8 @@ export default function StartTheProcess() {
                   <div className="flex justify-center">
                     <Button 
                       type="submit" 
-                      className="px-8 py-3 bg-white hover:bg-gray-100 text-red-600 font-semibold rounded-lg" 
+                      className="px-8 py-3 bg-white hover:bg-gray-100 font-semibold rounded-lg" 
+                      style={{ color: '#6458AF' }}
                       disabled={isLoading}
                     >
                       {isLoading ? "Checking..." : "Get Started"}
@@ -150,13 +172,46 @@ export default function StartTheProcess() {
           </div>
         </div>
         
-        {/* Footer */}
-        <div className="text-center mt-12 pt-8 border-t border-gray-200">
-          <p className="text-sm text-gray-500">
-            built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700 font-medium">FOTYPE</a> | Copyright © 2025
-          </p>
-        </div>
       </div>
+      
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center mb-4">
+                <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+                <div className="text-left">
+                  <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                  <div className="text-sm font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                </div>
+              </div>
+              <p className="text-gray-400 mb-4 max-w-md">
+                Professional landing page templates designed specifically for insurance agents. Build trust, generate leads, and grow your business online.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Product</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
+                <li><a href="#templates" className="hover:text-white transition-colors">Templates</a></li>
+                <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Support</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Landing Pages for Agents. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

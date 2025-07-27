@@ -25,12 +25,12 @@ function Router() {
   return (
     <Switch>
       <Route path="/auth" component={AuthPage} />
-      <PasswordProtectedRoute path="/template-selection" component={TemplateSelection} />
-      <PasswordProtectedRoute path="/template-preview" component={TemplatePreviewPage} />
-      <PasswordProtectedRoute path="/setup" component={WebsiteSetup} />
-      <PasswordProtectedRoute path="/step3" component={Step3Pricing} />
-      <PasswordProtectedRoute path="/step4-payment" component={Step4Payment} />
-      <PasswordProtectedRoute path="/step5-success" component={Step5Success} />
+      <Route path="/template-selection" component={TemplateSelection} />
+      <Route path="/template-preview" component={TemplatePreviewPage} />
+      <Route path="/setup" component={WebsiteSetup} />
+      <Route path="/step3" component={Step3Pricing} />
+      <Route path="/step4-payment" component={Step4Payment} />
+      <Route path="/step5-success" component={Step5Success} />
       <ProtectedRoute path="/dashboard" component={Dashboard} />
       <Route path="/ideas" component={Ideas} />
       <Route path="/internal-one" component={InternalOne} />

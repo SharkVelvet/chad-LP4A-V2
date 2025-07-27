@@ -132,7 +132,7 @@ export default function TemplateSelection() {
               size="lg"
               className="px-8 py-3 text-white font-semibold"
               style={{ backgroundColor: '#6458AF' }}
-              onClick={() => navigate('/website-setup')}
+              onClick={() => navigate('/setup')}
             >
               Continue to Website Setup
             </Button>

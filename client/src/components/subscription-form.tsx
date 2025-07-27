@@ -70,8 +70,11 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName }: {
       <PaymentElement />
       <Button 
         type="submit" 
-        className="w-full mt-6" 
+        className="w-full mt-6 text-white" 
         size="lg"
+        style={{ backgroundColor: '#6458AF' }} 
+        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
         disabled={!stripe || isProcessing || isLoading}
       >
         {isProcessing ? "Processing..." : "Complete Setup & Start Subscription"}
@@ -159,8 +162,11 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
             </div>
             <Button 
               type="submit" 
-              className="w-full" 
+              className="w-full text-white" 
               size="lg"
+              style={{ backgroundColor: '#6458AF' }} 
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
               disabled={createSubscriptionMutation.isPending}
             >
               {createSubscriptionMutation.isPending ? "Setting up..." : "Continue to Payment"}

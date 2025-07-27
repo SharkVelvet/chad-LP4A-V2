@@ -6,8 +6,7 @@ import { setupAuth } from "./auth";
 import Stripe from "stripe";
 import { 
   insertWebsiteSchema, 
-  insertWebsiteContentSchema, 
-  insertFormSubmissionSchema 
+  insertWebsiteContentSchema
 } from "@shared/schema";
 import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection } from "./email";
 import { validatePassword } from "./passwords";
@@ -155,50 +154,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Form submission routes
-  app.get("/api/form-submissions", async (req, res) => {
-    if (!req.isAuthenticated()) {
-      return res.sendStatus(401);
-    }
 
-    try {
-      const website = await storage.getWebsiteByLocationId(req.user.locationId);
-      if (!website) {
-        return res.status(404).json({ message: "Website not found" });
-      }
-
-      const submissions = await storage.getFormSubmissions(website.id);
-      res.json(submissions);
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  });
-
-  app.post("/api/form-submissions", async (req, res) => {
-    try {
-      const submissionData = insertFormSubmissionSchema.parse(req.body);
-      const submission = await storage.createFormSubmission(submissionData);
-      res.status(201).json(submission);
-    } catch (error: any) {
-      res.status(400).json({ message: error.message });
-    }
-  });
-
-  app.patch("/api/form-submissions/:id", async (req, res) => {
-    if (!req.isAuthenticated()) {
-      return res.sendStatus(401);
-    }
-
-    try {
-      const { id } = req.params;
-      const { status } = req.body;
-      
-      const submission = await storage.updateFormSubmissionStatus(parseInt(id), status);
-      res.json(submission);
-    } catch (error: any) {
-      res.status(400).json({ message: error.message });
-    }
-  });
 
   // Test email connection
   app.get('/api/test-email', async (req, res) => {

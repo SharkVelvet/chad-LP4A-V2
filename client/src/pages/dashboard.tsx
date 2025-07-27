@@ -36,16 +36,7 @@ type WebsiteContent = {
   galleryImages: string[] | null;
 };
 
-type FormSubmission = {
-  id: number;
-  websiteId: number;
-  name: string;
-  email: string;
-  subject: string | null;
-  message: string;
-  status: string;
-  submittedAt: string;
-};
+
 
 export default function Dashboard() {
   const { user, logoutMutation } = useAuth();
@@ -56,9 +47,7 @@ export default function Dashboard() {
     queryKey: ["/api/website"],
   });
 
-  const { data: formSubmissions, isLoading: submissionsLoading } = useQuery<FormSubmission[]>({
-    queryKey: ["/api/form-submissions"],
-  });
+
 
   const updateContentMutation = useMutation({
     mutationFn: async (data: Partial<WebsiteContent>) => {
@@ -74,15 +63,7 @@ export default function Dashboard() {
     },
   });
 
-  const updateSubmissionStatusMutation = useMutation({
-    mutationFn: async ({ id, status }: { id: number; status: string }) => {
-      const res = await apiRequest("PATCH", `/api/form-submissions/${id}`, { status });
-      return res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/form-submissions"] });
-    },
-  });
+
 
   const handleContentUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -98,9 +79,7 @@ export default function Dashboard() {
     updateContentMutation.mutate(contentData);
   };
 
-  const handleStatusChange = (submissionId: number, status: string) => {
-    updateSubmissionStatusMutation.mutate({ id: submissionId, status });
-  };
+
 
   const handleLogout = () => {
     logoutMutation.mutate();
@@ -168,9 +147,8 @@ export default function Dashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Dashboard Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
+          <TabsList className="grid w-full grid-cols-2 mb-8">
             <TabsTrigger value="content">Content Management</TabsTrigger>
-            <TabsTrigger value="forms">Form Submissions</TabsTrigger>
             <TabsTrigger value="settings">Site Settings</TabsTrigger>
           </TabsList>
 
@@ -322,69 +300,7 @@ export default function Dashboard() {
             </div>
           </TabsContent>
 
-          {/* Form Submissions Tab */}
-          <TabsContent value="forms">
-            <Card>
-              <CardHeader>
-                <CardTitle>Contact Form Submissions</CardTitle>
-                <p className="text-gray-600">Messages received through your website contact form</p>
-              </CardHeader>
-              <CardContent>
-                {submissionsLoading ? (
-                  <div className="flex justify-center py-8">
-                    <div className="animate-spin w-6 h-6 border-4 border-primary border-t-transparent rounded-full" />
-                  </div>
-                ) : formSubmissions?.length === 0 ? (
-                  <div className="text-center py-8">
-                    <p className="text-gray-500">No form submissions yet.</p>
-                  </div>
-                ) : (
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Date</TableHead>
-                        <TableHead>Name</TableHead>
-                        <TableHead>Email</TableHead>
-                        <TableHead>Subject</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead>Actions</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {formSubmissions?.map((submission) => (
-                        <TableRow key={submission.id}>
-                          <TableCell>
-                            {new Date(submission.submittedAt).toLocaleDateString()}
-                          </TableCell>
-                          <TableCell>{submission.name}</TableCell>
-                          <TableCell>{submission.email}</TableCell>
-                          <TableCell>{submission.subject || "—"}</TableCell>
-                          <TableCell>
-                            <Badge 
-                              variant={submission.status === "new" ? "default" : 
-                                      submission.status === "replied" ? "secondary" : "outline"}
-                            >
-                              {submission.status}
-                            </Badge>
-                          </TableCell>
-                          <TableCell>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleStatusChange(submission.id, 
-                                submission.status === "new" ? "replied" : "new")}
-                            >
-                              {submission.status === "new" ? "Mark Replied" : "Mark New"}
-                            </Button>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
+
 
           {/* Site Settings Tab */}
           <TabsContent value="settings">

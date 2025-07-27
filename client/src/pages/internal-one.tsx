@@ -213,10 +213,10 @@ export default function InternalOne() {
               </div>
               <div className="px-12 py-8">
                 <h3 className="text-4xl font-bold text-gray-900 mb-8">
-                  Generate More Leads, Close More Deals
+                  Build Trust, Showcase Expertise
                 </h3>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  Convert more visitors into clients with professionally designed templates that build trust and drive action. Our insurance-focused designs help you capture leads and showcase your expertise effectively.
+                  Connect with potential clients using professionally designed templates that build trust and showcase your expertise. Our insurance-focused designs help you establish credibility and communicate your services effectively.
                 </p>
                 <div className="space-y-6">
                   <div className="flex items-start">
@@ -224,8 +224,8 @@ export default function InternalOne() {
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 text-lg mb-1">Lead Capture Forms</h4>
-                      <p className="text-gray-600">Built-in contact forms optimized for insurance lead generation and follow-up.</p>
+                      <h4 className="font-semibold text-gray-900 text-lg mb-1">Professional Contact Options</h4>
+                      <p className="text-gray-600">Clear contact information and call-to-action buttons to connect with potential clients.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -243,7 +243,7 @@ export default function InternalOne() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 text-lg mb-1">Call-to-Action Focus</h4>
-                      <p className="text-gray-600">Strategic placement of contact buttons and forms to maximize conversions.</p>
+                      <p className="text-gray-600">Strategic placement of contact buttons and information to encourage client engagement.</p>
                     </div>
                   </div>
                 </div>
@@ -665,10 +665,10 @@ export default function InternalOne() {
       <section className="py-20" style={{ backgroundColor: 'rgba(100, 88, 175, 0.1)' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Ready to Generate More Leads?
+            Ready to Build Your Professional Website?
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            Join hundreds of insurance agents who trust Landing Pages for Agents to grow their business online.
+            Join hundreds of insurance agents who trust Landing Pages for Agents to establish their professional online presence.
           </p>
           <Button 
             size="lg" 

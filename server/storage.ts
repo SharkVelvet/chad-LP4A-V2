@@ -4,7 +4,6 @@ import {
   templates, 
   websites, 
   websiteContent, 
-  formSubmissions,
   type User, 
   type InsertUser,
   type Location,
@@ -14,8 +13,6 @@ import {
   type InsertWebsite,
   type WebsiteContent,
   type InsertWebsiteContent,
-  type FormSubmission,
-  type InsertFormSubmission
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, desc } from "drizzle-orm";
@@ -53,10 +50,7 @@ export interface IStorage {
   createWebsiteContent(content: InsertWebsiteContent): Promise<WebsiteContent>;
   updateWebsiteContent(websiteId: number, content: Partial<InsertWebsiteContent>): Promise<WebsiteContent>;
 
-  // Form submissions
-  getFormSubmissions(websiteId: number): Promise<FormSubmission[]>;
-  createFormSubmission(submission: InsertFormSubmission): Promise<FormSubmission>;
-  updateFormSubmissionStatus(id: number, status: string): Promise<FormSubmission>;
+
 
   sessionStore: any;
 }
@@ -209,31 +203,7 @@ export class DatabaseStorage implements IStorage {
     return updatedContent;
   }
 
-  // Form submissions
-  async getFormSubmissions(websiteId: number): Promise<FormSubmission[]> {
-    return await db
-      .select()
-      .from(formSubmissions)
-      .where(eq(formSubmissions.websiteId, websiteId))
-      .orderBy(desc(formSubmissions.submittedAt));
-  }
 
-  async createFormSubmission(submission: InsertFormSubmission): Promise<FormSubmission> {
-    const [newSubmission] = await db
-      .insert(formSubmissions)
-      .values(submission)
-      .returning();
-    return newSubmission;
-  }
-
-  async updateFormSubmissionStatus(id: number, status: string): Promise<FormSubmission> {
-    const [submission] = await db
-      .update(formSubmissions)
-      .set({ status })
-      .where(eq(formSubmissions.id, id))
-      .returning();
-    return submission;
-  }
 }
 
 export const storage = new DatabaseStorage();

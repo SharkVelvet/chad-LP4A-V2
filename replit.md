@@ -118,6 +118,14 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+- **July 27, 2025**: Removed all lead capture form functionality
+  - Removed form submission routes from server/routes.ts
+  - Removed form submission storage methods from server/storage.ts
+  - Removed form submissions tab from dashboard
+  - Updated homepage messaging to focus on professional website creation instead of lead generation
+  - Changed service branding and messaging throughout the application
+  - Applied consistent purple branding (#6458AF) across all components
+
 - **July 6, 2025**: Applied deployment fixes for Replit Deployments
   - Fixed server host binding to listen on all interfaces (0.0.0.0)
   - Added production environment detection and NODE_ENV handling

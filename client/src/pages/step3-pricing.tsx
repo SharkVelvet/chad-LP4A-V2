@@ -189,6 +189,7 @@ export default function Step3Pricing() {
                 id="agreement"
                 checked={agreed}
                 onCheckedChange={(checked) => setAgreed(checked as boolean)}
+                className="h-6 w-6 data-[state=checked]:bg-[#6458AF] data-[state=checked]:border-[#6458AF] border-2"
               />
               <div className="space-y-1">
                 <label

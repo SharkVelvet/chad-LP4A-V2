@@ -3,18 +3,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Star, Users, Globe, TrendingUp, Shield, Clock, Zap, FileText } from "lucide-react";
 import templatePreviewImage from "@assets/LD-Internal-1_1753558470989.png";
-import { CompanySelectionModal } from "@/components/company-selection-modal";
-import { useState } from "react";
+import { useLocation } from "wouter";
 
 export default function InternalOne() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [, setLocation] = useLocation();
 
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
+  const handleStartProcess = () => {
+    setLocation("/start-the-process");
   };
   return (
     <div className="min-h-screen bg-white">
@@ -87,7 +82,7 @@ export default function InternalOne() {
             <Button 
               style={{ backgroundColor: '#6458AF' }} 
               className="hover:opacity-90"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               Start the Process
             </Button>
@@ -113,7 +108,7 @@ export default function InternalOne() {
                 size="lg" 
                 className="px-8 py-4 text-lg hover:opacity-90" 
                 style={{ backgroundColor: '#6458AF' }}
-                onClick={handleModalOpen}
+                onClick={handleStartProcess}
               >
                 Start the Process
               </Button>
@@ -274,7 +269,7 @@ export default function InternalOne() {
             {/* Template 1 - Financial Excellence Theme */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
@@ -286,7 +281,7 @@ export default function InternalOne() {
             {/* Template 2 - Elegant Financial Theme */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-12"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
@@ -298,7 +293,7 @@ export default function InternalOne() {
             {/* Template 3 - Professional Services Theme */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-6"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
@@ -310,7 +305,7 @@ export default function InternalOne() {
             {/* Template 4 - Corporate Insurance Theme */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-18"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
@@ -322,7 +317,7 @@ export default function InternalOne() {
             {/* Template 5 - Financial Excellence Variant */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-8"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
@@ -334,7 +329,7 @@ export default function InternalOne() {
             {/* Template 6 - Elegant Financial Variant */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-4"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
@@ -346,7 +341,7 @@ export default function InternalOne() {
             {/* Template 7 - Professional Services Variant */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-14"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
@@ -358,7 +353,7 @@ export default function InternalOne() {
             {/* Template 8 - Corporate Insurance Variant */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-10"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
@@ -370,7 +365,7 @@ export default function InternalOne() {
             {/* Template 9 - Financial Excellence - Service Focus */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-16"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_26_1753571277476.png"
@@ -382,7 +377,7 @@ export default function InternalOne() {
             {/* Template 10 - Elegant Financial - Portfolio Focus */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-8"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_39_1753571277476.png"
@@ -394,7 +389,7 @@ export default function InternalOne() {
             {/* Template 11 - Professional Services - Team Focus */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-4"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-19_06_57_1753571277476.png"
@@ -406,7 +401,7 @@ export default function InternalOne() {
             {/* Template 12 - Corporate Insurance - Trust Builder */}
             <div 
               className="aspect-[16/10] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border break-inside-avoid mb-6 mt-20"
-              onClick={handleModalOpen}
+              onClick={handleStartProcess}
             >
               <img 
                 src="/attached_assets/screencapture-3232efe8-c995-406c-9cad-3fc91ebc4968-00-3bfku4kru3453-riker-replit-dev-template-preview-2025-07-26-13_15_37_1753571277470.png"
@@ -657,7 +652,7 @@ export default function InternalOne() {
                     <span>24/7 support</span>
                   </div>
                 </div>
-                <Button className="w-full text-lg py-3 hover:opacity-90" style={{ backgroundColor: '#6458AF' }} onClick={handleModalOpen}>
+                <Button className="w-full text-lg py-3 hover:opacity-90" style={{ backgroundColor: '#6458AF' }} onClick={handleStartProcess}>
                   Start the Process
                 </Button>
               </CardContent>
@@ -679,7 +674,7 @@ export default function InternalOne() {
             size="lg" 
             className="px-8 py-4 text-lg hover:opacity-90" 
             style={{ backgroundColor: '#6458AF', color: 'white' }}
-            onClick={handleModalOpen}
+            onClick={handleStartProcess}
           >
             Start the Process
           </Button>
@@ -733,11 +728,7 @@ export default function InternalOne() {
         </div>
       </footer>
 
-      {/* Company Selection Modal */}
-      <CompanySelectionModal 
-        isOpen={isModalOpen} 
-        onClose={handleModalClose} 
-      />
+
     </div>
   );
 }

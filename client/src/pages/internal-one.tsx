@@ -234,7 +234,7 @@ export default function InternalOne() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 text-lg mb-1">Trust-Building Elements</h4>
-                      <p className="text-gray-600">Professional layouts that showcase credentials, testimonials, and expertise.</p>
+                      <p className="text-gray-600">Professional layouts that showcase credentials, achievements, and expertise.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -500,54 +500,7 @@ export default function InternalOne() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Trusted by Insurance Agents Nationwide
-            </h2>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Sarah Johnson",
-                title: "State Farm Agent",
-                content: "AgentLanding helped me create a professional online presence that generates 3x more leads than my old website.",
-                rating: 5
-              },
-              {
-                name: "Mike Rodriguez",
-                title: "Allstate Agent",
-                content: "The templates are perfect for insurance agents. Setup was quick and my conversion rate has increased by 40%.",
-                rating: 5
-              },
-              {
-                name: "Jennifer Chen",
-                title: "Independent Agent",
-                content: "Finally, a landing page solution built specifically for insurance agents. The results speak for themselves.",
-                rating: 5
-              }
-            ].map((testimonial, index) => (
-              <Card key={index} className="bg-white">
-                <CardContent className="p-6">
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-600 mb-4">"{testimonial.content}"</p>
-                  <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-500">{testimonial.title}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* How It Works */}
       <section className="py-20 bg-gray-50">

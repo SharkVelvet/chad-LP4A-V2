@@ -118,13 +118,16 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
-- **July 27, 2025**: Removed all lead capture form functionality
+- **July 27, 2025**: Updated branding and removed lead capture functionality
+  - Changed all purple backgrounds from #6458AF to #22252f throughout the application
+  - Updated rgba purple values to use the new color scheme
+  - Made pricing page checkboxes larger and purple
+  - Removed testimonials section from homepage
   - Removed form submission routes from server/routes.ts
   - Removed form submission storage methods from server/storage.ts
   - Removed form submissions tab from dashboard
   - Updated homepage messaging to focus on professional website creation instead of lead generation
   - Changed service branding and messaging throughout the application
-  - Applied consistent purple branding (#6458AF) across all components
 
 - **July 6, 2025**: Applied deployment fixes for Replit Deployments
   - Fixed server host binding to listen on all interfaces (0.0.0.0)

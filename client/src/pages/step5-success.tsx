@@ -20,8 +20,8 @@ export default function Step5Success() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
-                <FileText className="h-7 w-7" style={{ color: '#6458AF' }} />
-                <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
+                <FileText className="h-7 w-7" style={{ color: '#22252f' }} />
+                <h1 className="text-xl font-semibold" style={{ color: '#22252f' }}>Landing Pages for Agents</h1>
               </div>
             </div>
             <div className="text-sm text-gray-500">
@@ -31,12 +31,12 @@ export default function Step5Success() {
         </div>
       </nav>
 
-      <div className="bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center px-4 py-12">
+      <div className="flex items-center justify-center px-4 py-12" style={{ background: 'linear-gradient(to bottom right, rgba(34, 37, 47, 0.05), rgba(34, 37, 47, 0.1))' }}>
       <Card className="w-full max-w-2xl shadow-xl">
         <CardContent className="p-8 text-center">
           {/* Success Icon */}
-          <div className="mx-auto w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mb-6">
-            <CheckCircle className="w-12 h-12" style={{ color: '#6458AF' }} />
+          <div className="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(34, 37, 47, 0.1)' }}>
+            <CheckCircle className="w-12 h-12" style={{ color: '#22252f' }} />
           </div>
 
           {/* Main Heading */}
@@ -50,9 +50,9 @@ export default function Step5Success() {
 
           {/* Success Message */}
           <div className="text-left space-y-6 mb-8">
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-              <h3 className="font-semibold text-purple-800 mb-2">Payment Confirmed</h3>
-              <p className="text-purple-700 text-sm">
+            <div className="rounded-lg p-4 border" style={{ backgroundColor: 'rgba(34, 37, 47, 0.05)', borderColor: 'rgba(34, 37, 47, 0.2)' }}>
+              <h3 className="font-semibold mb-2" style={{ color: '#22252f' }}>Payment Confirmed</h3>
+              <p className="text-sm" style={{ color: 'rgba(34, 37, 47, 0.7)' }}>
                 Your payment has been processed successfully. You'll receive a receipt via email shortly.
               </p>
             </div>
@@ -61,7 +61,7 @@ export default function Step5Success() {
               <h3 className="font-semibold text-gray-800 mb-3">What happens next:</h3>
               
               <div className="flex items-start space-x-3">
-                <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#6458AF' }} />
+                <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#22252f' }} />
                 <div>
                   <p className="font-medium text-gray-800">Email Confirmation</p>
                   <p className="text-sm text-gray-600">You'll receive detailed order confirmation and receipt emails</p>
@@ -69,7 +69,7 @@ export default function Step5Success() {
               </div>
 
               <div className="flex items-start space-x-3">
-                <Calendar className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#6458AF' }} />
+                <Calendar className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#22252f' }} />
                 <div>
                   <p className="font-medium text-gray-800">Website Development</p>
                   <p className="text-sm text-gray-600">Our team will start building your website using your selected template and requirements</p>
@@ -77,7 +77,7 @@ export default function Step5Success() {
               </div>
 
               <div className="flex items-start space-x-3">
-                <Globe className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#6458AF' }} />
+                <Globe className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#22252f' }} />
                 <div>
                   <p className="font-medium text-gray-800">Website Delivery</p>
                   <p className="text-sm text-gray-600">Your website will be ready within 1-2 business days</p>
@@ -92,11 +92,11 @@ export default function Step5Success() {
             <div className="text-sm text-gray-600 space-y-2">
               <div className="flex justify-between">
                 <span>Order Confirmation</span>
-                <span className="font-medium" style={{ color: '#6458AF' }}>Complete ✓</span>
+                <span className="font-medium" style={{ color: '#22252f' }}>Complete ✓</span>
               </div>
               <div className="flex justify-between">
                 <span>Website Development</span>
-                <span className="font-medium" style={{ color: '#6458AF' }}>Starting Now</span>
+                <span className="font-medium" style={{ color: '#22252f' }}>Starting Now</span>
               </div>
 
             </div>
@@ -113,9 +113,9 @@ export default function Step5Success() {
             onClick={() => navigate('/template-selection')}
             size="lg"
             className="w-full sm:w-auto px-8 text-white"
-            style={{ backgroundColor: '#6458AF' }} 
+            style={{ backgroundColor: '#22252f' }} 
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#22252f'}
           >
             Start Another Website
           </Button>
@@ -127,7 +127,7 @@ export default function Step5Success() {
       {/* Footer */}
       <div className="text-center py-8 border-t border-gray-200 bg-white">
         <p className="text-sm text-gray-500">
-          Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
+          Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#22252f' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#22252f'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
         </p>
       </div>
     </div>

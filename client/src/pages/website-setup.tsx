@@ -116,8 +116,8 @@ export default function WebsiteSetup() {
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <div className="flex items-center space-x-2">
-                <FileText className="h-7 w-7" style={{ color: '#6458AF' }} />
-                <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
+                <FileText className="h-7 w-7" style={{ color: '#22252f' }} />
+                <h1 className="text-xl font-semibold" style={{ color: '#22252f' }}>Landing Pages for Agents</h1>
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@ export default function WebsiteSetup() {
           <div className="text-center">
             <p className="text-sm font-medium text-gray-500 mb-2">Step 2 of 5</p>
             <div className="w-full bg-gray-200 rounded-full h-2 mb-4 max-w-md mx-auto">
-              <div className="h-2 rounded-full" style={{ width: '40%', backgroundColor: '#6458AF' }}></div>
+              <div className="h-2 rounded-full" style={{ width: '40%', backgroundColor: '#22252f' }}></div>
             </div>
           </div>
         </div>
@@ -217,8 +217,8 @@ export default function WebsiteSetup() {
                           onChange={(e) => handleInputChange("template", e.target.value)}
                           className="w-4 h-4 border-gray-300"
                           style={{ 
-                            accentColor: '#6458AF',
-                            '--tw-ring-color': '#6458AF'
+                            accentColor: '#22252f',
+                            '--tw-ring-color': '#22252f'
                           }}
                         />
                         <Label htmlFor={template.slug} className="text-sm font-medium cursor-pointer">
@@ -294,7 +294,7 @@ export default function WebsiteSetup() {
           </Card>
 
           <div className="text-center">
-            <Button type="submit" size="lg" className="px-8 py-3 text-white" style={{ backgroundColor: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}>
+            <Button type="submit" size="lg" className="px-8 py-3 text-white" style={{ backgroundColor: '#22252f' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#22252f'}>
               Continue to Next Step
             </Button>
           </div>
@@ -303,7 +303,7 @@ export default function WebsiteSetup() {
         {/* Footer */}
         <div className="text-center mt-12 pt-8 border-t border-gray-200">
           <p className="text-sm text-gray-500">
-            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
+            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#22252f' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#22252f'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
           </p>
         </div>
       </div>

@@ -30,9 +30,9 @@ export default function TemplateSelection() {
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2 font-bold text-xl">
-                  <FileText className="h-6 w-6" style={{ color: '#6458AF' }} />
+                  <FileText className="h-6 w-6" style={{ color: '#22252f' }} />
                   <div className="text-left">
-                    <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                    <div className="text-2xl font-bold leading-none" style={{ color: '#22252f' }}>Landing Pages</div>
                     <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
                   </div>
                 </div>
@@ -43,7 +43,7 @@ export default function TemplateSelection() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center mb-12">
-            <div className="animate-spin w-12 h-12 border-4 border-t-transparent rounded-full mx-auto mb-4" style={{ borderColor: '#6458AF', borderTopColor: 'transparent' }} />
+            <div className="animate-spin w-12 h-12 border-4 border-t-transparent rounded-full mx-auto mb-4" style={{ borderColor: '#22252f', borderTopColor: 'transparent' }} />
             <h2 className="text-2xl font-semibold text-gray-900 mb-2">Loading Templates</h2>
             <p className="text-gray-600">Preparing your professional website templates...</p>
           </div>
@@ -60,9 +60,9 @@ export default function TemplateSelection() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2 font-bold text-xl">
-                <FileText className="h-8 w-8" style={{ color: '#6458AF' }} />
+                <FileText className="h-8 w-8" style={{ color: '#22252f' }} />
                 <div className="text-left">
-                  <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                  <div className="text-2xl font-bold leading-none" style={{ color: '#22252f' }}>Landing Pages</div>
                   <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
                 </div>
               </div>
@@ -77,7 +77,7 @@ export default function TemplateSelection() {
           <div className="text-center">
             <p className="text-sm font-medium text-gray-500 mb-2">Step 1 of 5</p>
             <div className="w-full bg-gray-200 rounded-full h-2 mb-4 max-w-md mx-auto">
-              <div className="h-2 rounded-full" style={{ width: '20%', backgroundColor: '#6458AF' }}></div>
+              <div className="h-2 rounded-full" style={{ width: '20%', backgroundColor: '#22252f' }}></div>
             </div>
           </div>
         </div>
@@ -89,8 +89,8 @@ export default function TemplateSelection() {
             Browse our professionally designed website templates created specifically for insurance agents.
           </p>
           <div className="flex justify-center">
-            <div className="bg-purple-50 px-6 py-4 rounded-lg border border-purple-200">
-              <p className="text-lg font-semibold" style={{ color: '#6458AF' }}>
+            <div className="px-6 py-4 rounded-lg border" style={{ backgroundColor: 'rgba(34, 37, 47, 0.05)', borderColor: 'rgba(34, 37, 47, 0.2)' }}>
+              <p className="text-lg font-semibold" style={{ color: '#22252f' }}>
                 💡 Tip: Click "Preview" to see each template in full detail before making your choice
               </p>
             </div>
@@ -131,7 +131,7 @@ export default function TemplateSelection() {
             <Button
               size="lg"
               className="px-8 py-3 text-white font-semibold"
-              style={{ backgroundColor: '#6458AF' }}
+              style={{ backgroundColor: '#22252f' }}
               onClick={() => navigate('/setup')}
             >
               Continue to Website Setup
@@ -145,7 +145,7 @@ export default function TemplateSelection() {
         {/* Footer */}
         <div className="text-center mt-12 pt-8 border-t border-gray-200">
           <p className="text-sm text-gray-500">
-            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#6458AF' }}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
+            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#22252f' }}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
           </p>
         </div>
       </div>

@@ -1,52 +1,13 @@
-import { useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
-import { Lock, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 
 export default function StartTheProcess() {
-  const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [, setLocation] = useLocation();
-  const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const response = await fetch('/api/validate-password', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ password }),
-      });
-
-      const result = await response.json();
-      
-      if (result.valid) {
-        // Store authentication in localStorage
-        localStorage.setItem("planright_authenticated", "true");
-        setLocation("/template-selection");
-      } else {
-        toast({
-          title: "Access Denied",
-          description: "Incorrect password. Please try again.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Unable to validate password. Please try again.",
-        variant: "destructive",
-      });
-    }
-    
-    setIsLoading(false);
+  const handleGetStarted = () => {
+    setLocation("/template-selection");
   };
 
   return (
@@ -133,38 +94,33 @@ export default function StartTheProcess() {
             </Card>
           </div>
 
-          {/* Right Column - Access Card */}
+          {/* Right Column - Get Started Card */}
           <div className="lg:sticky lg:top-8">
             <Card style={{ backgroundColor: '#6458AF', borderColor: '#6458AF' }}>
               <CardHeader className="text-center">
                 <CardTitle className="text-xl font-bold text-white">
                   Ready to Get Started?
                 </CardTitle>
-                <p className="text-purple-100 mt-2">Enter your access password to begin building your website. <span className="font-bold">If you need an access code simply ask your manager or contact support</span></p>
+                <p className="text-purple-100 mt-2">Begin building your professional website now. It only takes a few minutes to have your landing page ready!</p>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <Input
-                      type="password"
-                      placeholder="Enter access password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      className="w-full bg-white border-white placeholder-gray-400 text-gray-900"
-                    />
-                  </div>
-                  <div className="flex justify-center">
+                <div className="space-y-4">
+                  <div className="text-center">
                     <Button 
-                      type="submit" 
-                      className="px-8 py-3 bg-white hover:bg-gray-100 font-semibold rounded-lg" 
+                      onClick={handleGetStarted}
+                      className="px-8 py-3 bg-white hover:bg-gray-100 font-semibold rounded-lg w-full" 
                       style={{ color: '#6458AF' }}
-                      disabled={isLoading}
+                      size="lg"
                     >
-                      {isLoading ? "Checking..." : "Get Started"}
+                      Get Started Now
                     </Button>
                   </div>
-                </form>
+                  <div className="text-center">
+                    <p className="text-purple-100 text-sm">
+                      No setup required • Start immediately
+                    </p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
             

@@ -49,11 +49,11 @@ export default function TemplateCard({ template }: TemplateCardProps) {
           
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-xs text-gray-500 uppercase tracking-wider">
-                {template.category}
-              </span>
               <span className="text-sm font-medium" style={{ color: '#6458AF' }}>
                 Professional Layout
+              </span>
+              <span className="text-xs text-gray-500">
+                Insurance Agent Template
               </span>
             </div>
             <Button 

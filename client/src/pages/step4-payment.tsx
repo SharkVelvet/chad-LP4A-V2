@@ -74,12 +74,12 @@ export default function Step4Payment() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
                   <div className="flex items-center mb-2">
-                    <Check className="h-4 w-4 text-green-600 mr-2" />
-                    <span className="font-medium text-green-900">Landing Pages for Agents Website Service</span>
+                    <Check className="h-4 w-4 mr-2" style={{ color: '#6458AF' }} />
+                    <span className="font-medium text-purple-900">Landing Pages for Agents Website Service</span>
                   </div>
-                  <ul className="text-sm text-green-700 space-y-1 ml-6">
+                  <ul className="text-sm text-purple-700 space-y-1 ml-6">
                     <li>Professional website template</li>
                     <li>Custom domain setup</li>
                     <li>Website hosting</li>

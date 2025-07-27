@@ -31,12 +31,12 @@ export default function Step5Success() {
         </div>
       </nav>
 
-      <div className="bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center px-4 py-12">
+      <div className="bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center px-4 py-12">
       <Card className="w-full max-w-2xl shadow-xl">
         <CardContent className="p-8 text-center">
           {/* Success Icon */}
-          <div className="mx-auto w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
-            <CheckCircle className="w-12 h-12 text-green-600" />
+          <div className="mx-auto w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+            <CheckCircle className="w-12 h-12" style={{ color: '#6458AF' }} />
           </div>
 
           {/* Main Heading */}
@@ -50,9 +50,9 @@ export default function Step5Success() {
 
           {/* Success Message */}
           <div className="text-left space-y-6 mb-8">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <h3 className="font-semibold text-green-800 mb-2">Payment Confirmed</h3>
-              <p className="text-green-700 text-sm">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+              <h3 className="font-semibold text-purple-800 mb-2">Payment Confirmed</h3>
+              <p className="text-purple-700 text-sm">
                 Your payment has been processed successfully. You'll receive a receipt via email shortly.
               </p>
             </div>
@@ -92,7 +92,7 @@ export default function Step5Success() {
             <div className="text-sm text-gray-600 space-y-2">
               <div className="flex justify-between">
                 <span>Order Confirmation</span>
-                <span className="text-green-600 font-medium">Complete ✓</span>
+                <span className="font-medium" style={{ color: '#6458AF' }}>Complete ✓</span>
               </div>
               <div className="flex justify-between">
                 <span>Website Development</span>
@@ -122,12 +122,13 @@ export default function Step5Success() {
         </CardContent>
       </Card>
       
+      </div>
+      
       {/* Footer */}
-      <div className="text-center mt-12 pt-8 border-t border-gray-200">
+      <div className="text-center py-8 border-t border-gray-200 bg-white">
         <p className="text-sm text-gray-500">
           Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
         </p>
-      </div>
       </div>
     </div>
   );

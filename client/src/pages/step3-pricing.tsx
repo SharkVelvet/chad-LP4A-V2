@@ -29,7 +29,11 @@ export default function Step3Pricing() {
               <Button variant="ghost" size="sm" onClick={handleGoBack}>
                 <ArrowLeft className="h-4 w-4" />
               </Button>
-              <h1 className="text-xl font-semibold text-gray-900">Plan|right Splash Page Onboarding</h1>
+              <img 
+                src="/attached_assets/Screenshot 2025-07-26 at 8.32.19 PM_1753576356195.png" 
+                alt="Landing Pages for Agents"
+                className="h-10 w-auto"
+              />
             </div>
           </div>
         </div>
@@ -40,8 +44,8 @@ export default function Step3Pricing() {
         <div className="mb-6">
           <div className="text-center">
             <p className="text-sm font-medium text-gray-500 mb-2">Step 3 of 5</p>
-            <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
-              <div className="bg-blue-600 h-2 rounded-full" style={{ width: '60%' }}></div>
+            <div className="w-full bg-gray-200 rounded-full h-2 mb-4 max-w-md mx-auto">
+              <div className="h-2 rounded-full" style={{ width: '60%', backgroundColor: '#6458AF' }}></div>
             </div>
           </div>
         </div>

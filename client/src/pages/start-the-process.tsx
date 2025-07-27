@@ -22,11 +22,11 @@ export default function StartTheProcess() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
-              <div className="text-left">
-                <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
-              </div>
+              <img 
+                src="/attached_assets/Screenshot 2025-07-26 at 8.32.19 PM_1753576356195.png" 
+                alt="Landing Pages for Agents"
+                className="h-12 w-auto"
+              />
             </div>
           </div>
         </div>
@@ -137,11 +137,11 @@ export default function StartTheProcess() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center mb-4">
-                <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
-                <div className="text-left">
-                  <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                  <div className="text-sm font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>for Agents</div>
-                </div>
+                <img 
+                  src="/attached_assets/Screenshot 2025-07-26 at 8.32.19 PM_1753576356195.png" 
+                  alt="Landing Pages for Agents"
+                  className="h-12 w-auto"
+                />
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
                 Professional landing page templates designed specifically for insurance agents. Build trust, generate leads, and grow your business online.

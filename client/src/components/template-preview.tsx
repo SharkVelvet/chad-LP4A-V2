@@ -1120,9 +1120,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
             <div>
               <div className="font-bold text-xl mb-4">
-                <span className="text-red-600">Plan</span>
-                <span className="text-gray-400 font-thin mx-1">|</span>
-                <span className="text-white">right</span>
+                <div className="flex flex-col">
+                  <div>
+                    <span className="text-red-600">Your</span>
+                    <span className="text-gray-400 font-thin mx-1">|</span>
+                    <span className="text-white">Insurance</span>
+                  </div>
+                  <div className="text-sm font-normal text-gray-400 mt-1 w-full" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+                </div>
               </div>
               <p className="text-gray-400 text-sm">Building Agents. Growing Futures.</p>
             </div>
@@ -1680,9 +1685,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
             <div>
               <div className="font-bold text-xl mb-4">
-                <span className="text-red-600">Plan</span>
-                <span className="text-gray-400 font-thin mx-1">|</span>
-                <span className="text-white">right</span>
+                <div className="flex flex-col">
+                  <div>
+                    <span className="text-red-600">Your</span>
+                    <span className="text-gray-400 font-thin mx-1">|</span>
+                    <span className="text-white">Insurance</span>
+                  </div>
+                  <div className="text-sm font-normal text-gray-400 mt-1 w-full" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+                </div>
               </div>
               <p className="text-gray-400 text-sm">Building Agents. Growing Futures.</p>
             </div>
@@ -2139,9 +2149,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
               <div>
                 <div className="font-bold text-xl mb-4">
-                  <span className="text-red-600">Plan</span>
-                  <span className="text-gray-400 font-thin mx-1">|</span>
-                  <span className="text-white">right</span>
+                  <div className="flex flex-col">
+                    <div>
+                      <span className="text-red-600">Your</span>
+                      <span className="text-gray-400 font-thin mx-1">|</span>
+                      <span className="text-white">Insurance</span>
+                    </div>
+                    <div className="text-sm font-normal text-gray-400 mt-1 w-full" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+                  </div>
                 </div>
                 <p className="text-gray-400">Building Agents. Growing Futures.</p>
               </div>
@@ -3128,9 +3143,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
               <div>
                 <div className="font-bold text-xl mb-4">
-                  <span className="text-red-600">Plan</span>
-                  <span className="text-gray-400 font-thin mx-1">|</span>
-                  <span className="text-white">right</span>
+                  <div className="flex flex-col">
+                    <div>
+                      <span className="text-red-600">Your</span>
+                      <span className="text-gray-400 font-thin mx-1">|</span>
+                      <span className="text-white">Insurance</span>
+                    </div>
+                    <div className="text-sm font-normal text-gray-400 mt-1 w-full" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+                  </div>
                 </div>
                 <p className="text-gray-400">Building Agents. Growing Futures.</p>
               </div>

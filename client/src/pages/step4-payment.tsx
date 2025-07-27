@@ -77,7 +77,7 @@ export default function Step4Payment() {
                 <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
                   <div className="flex items-center mb-2">
                     <Check className="h-4 w-4 text-green-600 mr-2" />
-                    <span className="font-medium text-green-900">Planright Website Service</span>
+                    <span className="font-medium text-green-900">Landing Pages for Agents Website Service</span>
                   </div>
                   <ul className="text-sm text-green-700 space-y-1 ml-6">
                     <li>Professional website template</li>

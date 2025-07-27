@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, CreditCard, Shield, Check } from "lucide-react";
+import { ArrowLeft, CreditCard, Shield, Check, FileText } from "lucide-react";
 import SubscriptionForm from '@/components/subscription-form';
 
 export default function Step4Payment() {

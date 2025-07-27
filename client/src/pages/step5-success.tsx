@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, Mail, Calendar, Globe } from "lucide-react";
+import { CheckCircle, Mail, Calendar, Globe, FileText } from "lucide-react";
 
 export default function Step5Success() {
   const [, navigate] = useLocation();
@@ -13,7 +13,25 @@ export default function Step5Success() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background">
+      {/* Navigation */}
+      <nav className="bg-white shadow-sm border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
+                <FileText className="h-7 w-7" style={{ color: '#6458AF' }} />
+                <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
+              </div>
+            </div>
+            <div className="text-sm text-gray-500">
+              Step 5 of 5 - Complete!
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div className="bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center px-4 py-12">
       <Card className="w-full max-w-2xl shadow-xl">
         <CardContent className="p-8 text-center">
           {/* Success Icon */}
@@ -104,8 +122,9 @@ export default function Step5Success() {
       {/* Footer */}
       <div className="text-center mt-12 pt-8 border-t border-gray-200">
         <p className="text-sm text-gray-500">
-          built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700 font-medium">FOTYPE</a> | Copyright © 2025
+          Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700 font-medium">FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
         </p>
+      </div>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, Check, DollarSign, Calendar, Globe, Settings, Camera, CreditCard } from "lucide-react";
+import { ArrowLeft, Check, DollarSign, Calendar, Globe, Settings, Camera, CreditCard, FileText } from "lucide-react";
 
 export default function Step3Pricing() {
   const [, navigate] = useLocation();

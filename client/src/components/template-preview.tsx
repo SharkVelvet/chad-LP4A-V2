@@ -574,8 +574,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Clean Header */}
         <div className="bg-white shadow-sm px-4 sm:px-6 py-4 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <div className="font-bold text-lg sm:text-2xl">
-              <span className="text-red-600">Plan</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-gray-900">right</span>
+            <div className="font-bold text-lg sm:text-xl">
+              <div className="flex flex-col items-center">
+                <div>
+                  <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-black">Insurance</span>
+                </div>
+                <div className="text-xs font-normal text-gray-600 mt-1 w-full text-center" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+              </div>
             </div>
             <nav className="hidden lg:flex space-x-8">
               <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-gray-700 hover:text-red-600 font-medium transition-colors">Home</a>
@@ -1150,7 +1155,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
           </div>
           <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-            © 2025 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
+            © 2025 Your Insurance Group. All rights reserved. | Privacy Policy | Terms of Service
           </div>
         </div>
 
@@ -1164,8 +1169,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Minimal Header with Blue Theme */}
         <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 sticky top-0 z-50 backdrop-blur-sm bg-white/90">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
-            <div className="font-bold text-lg sm:text-2xl text-gray-900">
-              <span className="text-red-600">Plan</span><span className="text-gray-300 font-thin mx-1">|</span><span className="text-gray-900">right</span>
+            <div className="font-bold text-lg sm:text-xl">
+              <div className="flex flex-col items-center">
+                <div>
+                  <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-black">Insurance</span>
+                </div>
+                <div className="text-xs font-normal text-gray-600 mt-1 w-full text-center" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+              </div>
             </div>
             <div className="flex items-center space-x-4 sm:space-x-8">
               <nav className="hidden md:flex space-x-8 text-sm">
@@ -1705,7 +1715,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
           </div>
           <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-            © 2025 Plan|right. All rights reserved. | Privacy Policy | Terms of Service
+            © 2025 Your Insurance Group. All rights reserved. | Privacy Policy | Terms of Service
           </div>
         </div>
 
@@ -1720,10 +1730,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Modern Dark Header */}
         <div className="bg-slate-900 text-white sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div className="text-2xl font-bold">
-              <span className="text-red-600">Plan</span>
-              <span className="text-gray-400 font-thin mx-1">|</span>
-              <span className="text-white">right</span>
+            <div className="font-bold text-lg sm:text-xl text-white">
+              <div className="flex flex-col items-center">
+                <div>
+                  <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-white">Insurance</span>
+                </div>
+                <div className="text-xs font-normal text-gray-300 mt-1 w-full text-center" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+              </div>
             </div>
             <div className="hidden md:flex space-x-8">
               <a href="#" className="hover:text-red-400 transition-colors">Home</a>
@@ -2161,7 +2174,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
             <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
-              © 2025 Plan|right. All rights reserved.
+              © 2025 Your Insurance Group. All rights reserved.
             </div>
           </div>
         </div>
@@ -2176,10 +2189,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Minimalist Header */}
         <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
           <div className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
-            <div className="text-2xl font-bold">
-              <span className="text-red-600">Plan</span>
-              <span className="text-gray-400 font-thin mx-1">|</span>
-              <span className="text-gray-900">right</span>
+            <div className="font-bold text-lg sm:text-xl">
+              <div className="flex flex-col items-center">
+                <div>
+                  <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-black">Insurance</span>
+                </div>
+                <div className="text-xs font-normal text-gray-600 mt-1 w-full text-center" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+              </div>
             </div>
             <div className="hidden md:flex space-x-12 text-sm font-medium tracking-wide">
               <a href="#" className="text-gray-600 hover:text-red-600 transition-colors">HOME</a>
@@ -2599,7 +2615,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
             <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
-              © 2025 Plan|right. All rights reserved.
+              © 2025 Your Insurance Group. All rights reserved.
             </div>
           </div>
         </div>
@@ -2615,10 +2631,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div className="bg-white shadow-lg sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div className="flex items-center">
-              <div className="text-3xl font-bold">
-                <span className="text-red-600">Plan</span>
-                <span className="text-gray-800 font-light mx-1">|</span>
-                <span className="text-gray-800">right</span>
+              <div className="font-bold text-lg sm:text-xl">
+                <div className="flex flex-col items-center">
+                  <div>
+                    <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-black">Insurance</span>
+                  </div>
+                  <div className="text-xs font-normal text-gray-600 mt-1 w-full text-center" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+                </div>
               </div>
             </div>
             <div className="hidden md:flex space-x-10 text-gray-700 font-medium">
@@ -3144,7 +3163,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
             <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
-              © 2025 Plan|right. All rights reserved.
+              © 2025 Your Insurance Group. All rights reserved.
             </div>
           </div>
         </div>

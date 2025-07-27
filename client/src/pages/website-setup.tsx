@@ -115,12 +115,9 @@ export default function WebsiteSetup() {
               <Button variant="ghost" size="sm" onClick={handleGoBack}>
                 <ArrowLeft className="h-4 w-4" />
               </Button>
-              <div className="flex items-center">
-                <img 
-                  src="/assets/logo.png" 
-                  alt="Landing Pages for Agents"
-                  className="h-10 w-auto"
-                />
+              <div className="flex items-center space-x-2">
+                <FileText className="h-5 w-5" style={{ color: '#6458AF' }} />
+                <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
               </div>
             </div>
           </div>

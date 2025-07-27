@@ -215,7 +215,11 @@ export default function WebsiteSetup() {
                           value={template.slug}
                           checked={formData.template === template.slug}
                           onChange={(e) => handleInputChange("template", e.target.value)}
-                          className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                          className="w-4 h-4 border-gray-300"
+                          style={{ 
+                            accentColor: '#6458AF',
+                            '--tw-ring-color': '#6458AF'
+                          }}
                         />
                         <Label htmlFor={template.slug} className="text-sm font-medium cursor-pointer">
                           Select this template
@@ -290,7 +294,7 @@ export default function WebsiteSetup() {
           </Card>
 
           <div className="text-center">
-            <Button type="submit" size="lg" className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white">
+            <Button type="submit" size="lg" className="px-8 py-3 text-white" style={{ backgroundColor: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}>
               Continue to Next Step
             </Button>
           </div>
@@ -299,7 +303,7 @@ export default function WebsiteSetup() {
         {/* Footer */}
         <div className="text-center mt-12 pt-8 border-t border-gray-200">
           <p className="text-sm text-gray-500">
-            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700 font-medium">FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
+            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
           </p>
         </div>
       </div>

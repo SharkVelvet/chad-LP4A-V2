@@ -103,7 +103,7 @@ export default function Step4Payment() {
                   <div className="border-t pt-2 mt-4">
                     <div className="flex justify-between items-center">
                       <span className="text-lg font-semibold">Total due today</span>
-                      <span className="text-lg font-bold text-blue-600">$38.00</span>
+                      <span className="text-lg font-bold" style={{ color: '#6458AF' }}>$38.00</span>
                     </div>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function Step4Payment() {
         {/* Footer */}
         <div className="text-center mt-12 pt-8 border-t border-gray-200">
           <p className="text-sm text-gray-500">
-            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700 font-medium">FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
+            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
           </p>
         </div>
       </div>

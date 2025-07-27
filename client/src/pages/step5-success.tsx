@@ -61,7 +61,7 @@ export default function Step5Success() {
               <h3 className="font-semibold text-gray-800 mb-3">What happens next:</h3>
               
               <div className="flex items-start space-x-3">
-                <Mail className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#6458AF' }} />
                 <div>
                   <p className="font-medium text-gray-800">Email Confirmation</p>
                   <p className="text-sm text-gray-600">You'll receive detailed order confirmation and receipt emails</p>
@@ -69,7 +69,7 @@ export default function Step5Success() {
               </div>
 
               <div className="flex items-start space-x-3">
-                <Calendar className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                <Calendar className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#6458AF' }} />
                 <div>
                   <p className="font-medium text-gray-800">Website Development</p>
                   <p className="text-sm text-gray-600">Our team will start building your website using your selected template and requirements</p>
@@ -77,7 +77,7 @@ export default function Step5Success() {
               </div>
 
               <div className="flex items-start space-x-3">
-                <Globe className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                <Globe className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#6458AF' }} />
                 <div>
                   <p className="font-medium text-gray-800">Website Delivery</p>
                   <p className="text-sm text-gray-600">Your website will be ready within 1-2 business days</p>
@@ -96,7 +96,7 @@ export default function Step5Success() {
               </div>
               <div className="flex justify-between">
                 <span>Website Development</span>
-                <span className="text-blue-600 font-medium">Starting Now</span>
+                <span className="font-medium" style={{ color: '#6458AF' }}>Starting Now</span>
               </div>
 
             </div>
@@ -112,7 +112,10 @@ export default function Step5Success() {
           <Button 
             onClick={() => navigate('/template-selection')}
             size="lg"
-            className="w-full sm:w-auto px-8"
+            className="w-full sm:w-auto px-8 text-white"
+            style={{ backgroundColor: '#6458AF' }} 
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
           >
             Start Another Website
           </Button>
@@ -122,7 +125,7 @@ export default function Step5Success() {
       {/* Footer */}
       <div className="text-center mt-12 pt-8 border-t border-gray-200">
         <p className="text-sm text-gray-500">
-          Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700 font-medium">FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
+          Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
         </p>
       </div>
       </div>

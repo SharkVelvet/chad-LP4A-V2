@@ -62,10 +62,10 @@ export default function Step3Pricing() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                <h3 className="text-xl font-bold text-blue-900 mb-2">First Month (Total charged today)</h3>
-                <div className="text-3xl font-bold text-blue-600 mb-2">$38</div>
-                <p className="text-sm text-blue-700">
+              <div className="bg-purple-50 p-6 rounded-lg border border-purple-200">
+                <h3 className="text-xl font-bold text-purple-900 mb-2">First Month (Total charged today)</h3>
+                <div className="text-3xl font-bold mb-2" style={{ color: '#6458AF' }}>$38</div>
+                <p className="text-sm text-purple-700">
                   Setup fee includes everything to get your website live and running
                 </p>
               </div>
@@ -103,7 +103,7 @@ export default function Step3Pricing() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                  <Settings className="h-4 w-4 mr-2 text-blue-600" />
+                  <Settings className="h-4 w-4 mr-2" style={{ color: '#6458AF' }} />
                   First Month Setup ($38)
                 </h4>
                 <ul className="space-y-2 text-sm text-gray-600">
@@ -210,7 +210,10 @@ export default function Step3Pricing() {
         <div className="text-center">
           <Button 
             size="lg" 
-            className="px-8 py-3"
+            className="px-8 py-3 text-white" 
+            style={{ backgroundColor: '#6458AF' }} 
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
             disabled={!agreed}
             onClick={handleContinue}
           >
@@ -224,7 +227,7 @@ export default function Step3Pricing() {
         {/* Footer */}
         <div className="text-center mt-12 pt-8 border-t border-gray-200">
           <p className="text-sm text-gray-500">
-            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700 font-medium">FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
+            Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
           </p>
         </div>
       </div>

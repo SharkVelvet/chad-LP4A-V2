@@ -95,7 +95,7 @@ export default function Step3Pricing() {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="flex items-center">
-              <Check className="h-5 w-5 mr-2 text-green-600" />
+              <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
               What's Included
             </CardTitle>
           </CardHeader>
@@ -108,49 +108,52 @@ export default function Step3Pricing() {
                 </h4>
                 <ul className="space-y-2 text-sm text-gray-600">
                   <li className="flex items-center">
-                    <Check className="h-3 w-3 mr-2 text-green-500" />
-                    Domain name purchase and setup
+                    <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
+                    Professional landing page templates
                   </li>
                   <li className="flex items-center">
-                    <Check className="h-3 w-3 mr-2 text-green-500" />
-                    Website hosting configuration
+                    <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
+                    Custom domain support
                   </li>
                   <li className="flex items-center">
-                    <Check className="h-3 w-3 mr-2 text-green-500" />
-                    Professional website setup
+                    <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
+                    Lead capture forms
                   </li>
                   <li className="flex items-center">
-                    <Check className="h-3 w-3 mr-2 text-green-500" />
-                    Content consultation and updates
+                    <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
+                    Mobile responsive design
                   </li>
-
                   <li className="flex items-center">
-                    <Check className="h-3 w-3 mr-2 text-green-500" />
-                    Complete website launch
+                    <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
+                    SEO optimization
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
+                    24/7 support
                   </li>
                 </ul>
               </div>
               
               <div>
                 <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                  <Globe className="h-4 w-4 mr-2 text-green-600" />
+                  <Globe className="h-4 w-4 mr-2" style={{ color: '#6458AF' }} />
                   Monthly Service ($18/month)
                 </h4>
                 <ul className="space-y-2 text-sm text-gray-600">
                   <li className="flex items-center">
-                    <Check className="h-3 w-3 mr-2 text-green-500" />
+                    <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
                     Domain name renewal and management
                   </li>
                   <li className="flex items-center">
-                    <Check className="h-3 w-3 mr-2 text-green-500" />
+                    <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
                     Website hosting and maintenance
                   </li>
                   <li className="flex items-center">
-                    <Check className="h-3 w-3 mr-2 text-green-500" />
+                    <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
                     24/7 website uptime monitoring
                   </li>
                   <li className="flex items-center">
-                    <Check className="h-3 w-3 mr-2 text-green-500" />
+                    <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
                     Security updates and backups
                   </li>
 

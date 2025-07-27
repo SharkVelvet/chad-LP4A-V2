@@ -116,7 +116,7 @@ export default function WebsiteSetup() {
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <div className="flex items-center space-x-2">
-                <FileText className="h-5 w-5" style={{ color: '#6458AF' }} />
+                <FileText className="h-7 w-7" style={{ color: '#6458AF' }} />
                 <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
               </div>
             </div>

@@ -23,7 +23,7 @@ export default function InternalOne() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+              <FileText className="h-10 w-10 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">
                 <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
                 <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
@@ -687,7 +687,7 @@ export default function InternalOne() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center mb-4">
-                <FileText className="h-6 w-6 mr-2 text-white" />
+                <FileText className="h-8 w-8 mr-2 text-white" />
                 <div className="text-left">
                   <div className="text-xl font-bold leading-none text-white">Landing Pages</div>
                   <div className="text-sm font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>for Agents</div>

@@ -36,6 +36,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ valid: isValid });
   });
 
+  // Facebook Pixel ID endpoint
+  app.get("/api/facebook-pixel-id", async (req, res) => {
+    const pixelId = process.env.FACEBOOK_PIXEL_ID || '';
+    res.json({ pixelId });
+  });
+
   // Location routes
   app.get("/api/locations", async (req, res) => {
     try {

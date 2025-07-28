@@ -1,19 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, CreditCard, Shield, Check, FileText } from "lucide-react";
 import SubscriptionForm from '@/components/subscription-form';
+import { trackPaymentInitiation, trackSuccessfulPurchase } from "@/lib/facebook-pixel";
 
 export default function Step4Payment() {
   const [, navigate] = useLocation();
   const [isProcessing, setIsProcessing] = useState(false);
+
+  // Track payment page view
+  useEffect(() => {
+    trackPaymentInitiation('monthly_subscription', 29.99);
+  }, []);
 
   const handleGoBack = () => {
     navigate("/step3");
   };
 
   const handlePaymentSuccess = () => {
+    // Track successful purchase
+    trackSuccessfulPurchase('monthly_subscription', 29.99);
     navigate("/step5-success");
   };
 

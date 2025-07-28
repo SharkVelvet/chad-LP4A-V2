@@ -3,6 +3,8 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import TemplateCard from "@/components/template-card";
 import { FileText } from "lucide-react";
+import { useEffect } from "react";
+import { trackViewContent } from "@/lib/facebook-pixel";
 
 type Template = {
   id: number;
@@ -20,6 +22,11 @@ export default function TemplateSelection() {
   const { data: templates, isLoading } = useQuery<Template[]>({
     queryKey: ["/api/templates"],
   });
+
+  // Track template selection page view
+  useEffect(() => {
+    trackViewContent('template_catalog');
+  }, []);
 
   if (isLoading) {
     return (

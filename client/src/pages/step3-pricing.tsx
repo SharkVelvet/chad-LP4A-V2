@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowLeft, Check, DollarSign, Calendar, Globe, Settings, Camera, CreditCard, FileText } from "lucide-react";
+import { trackPricingView } from "@/lib/facebook-pixel";
 
 export default function Step3Pricing() {
   const [, navigate] = useLocation();
   const [agreed, setAgreed] = useState(false);
+
+  // Track pricing page view
+  useEffect(() => {
+    trackPricingView();
+  }, []);
 
   const handleContinue = () => {
     if (agreed) {

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Eye } from "lucide-react";
 import { useLocation } from "wouter";
+import { trackTemplateView } from "@/lib/facebook-pixel";
 
 type Template = {
   id: number;
@@ -62,6 +63,8 @@ export default function TemplateCard({ template }: TemplateCardProps) {
               style={{ backgroundColor: '#6458AF', color: 'white' }}
               onClick={(e) => {
                 e.stopPropagation();
+                // Track template view when preview is clicked
+                trackTemplateView(template.name);
                 const siteType = localStorage.getItem('selectedSiteType') || 'single-page';
                 navigate(`/template-preview?template=${template.slug}&type=${siteType}`);
               }}

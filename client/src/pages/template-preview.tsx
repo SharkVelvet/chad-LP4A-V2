@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import TemplatePreview from "@/components/template-preview";
+import { useEffect } from "react";
+import { trackTemplateView, trackTemplateSelection } from "@/lib/facebook-pixel";
 
 type Template = {
   id: number;
@@ -26,6 +28,13 @@ export default function TemplatePreviewPage() {
 
   const template = templates?.find(t => t.slug === templateSlug);
 
+  // Track template preview view
+  useEffect(() => {
+    if (template) {
+      trackTemplateView(template.name);
+    }
+  }, [template]);
+
   if (!template) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -40,6 +49,10 @@ export default function TemplatePreviewPage() {
   }
 
   const handleChooseTemplate = () => {
+    // Track template selection
+    if (template) {
+      trackTemplateSelection(template.name);
+    }
     // Store template selection and navigate to website setup
     localStorage.setItem('selectedTemplate', template.slug);
     navigate('/website-setup');

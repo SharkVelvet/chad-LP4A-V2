@@ -164,7 +164,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         { property: 'og:description', content: post.summary },
         { property: 'og:type', content: 'article' },
         { property: 'og:url', content: `${window.location.origin}/blog/${post.slug}` },
-        { property: 'article:published_time', content: post.publishedAt },
+        { property: 'article:published_time', content: new Date(post.publishedAt).toISOString() },
         { property: 'article:tag', content: post.onScreenKeywords?.join(', ') || '' }
       ];
       

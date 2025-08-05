@@ -116,108 +116,110 @@ export default function InternalOne() {
       </header>
 
       {/* Mobile Slide-out Menu */}
-      {isMobileMenuOpen && (
-        <>
-          {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-          
-          {/* Slide-out Menu */}
-          <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 ease-in-out">
-            {/* Menu Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <div className="flex items-center">
-                <FileText className="h-8 w-8 mr-2" style={{ color: '#6458AF' }} />
-                <div className="text-left">
-                  <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                  <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
-                </div>
+      <>
+        {/* Backdrop */}
+        <div 
+          className={`fixed inset-0 bg-black z-40 md:hidden transition-opacity duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'
+          }`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+        
+        {/* Slide-out Menu */}
+        <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+          {/* Menu Header */}
+          <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <div className="flex items-center">
+              <FileText className="h-8 w-8 mr-2" style={{ color: '#6458AF' }} />
+              <div className="text-left">
+                <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                <X className="h-6 w-6" />
-              </button>
             </div>
-            
-            {/* Menu Items */}
-            <nav className="p-6 space-y-6">
-              <a 
-                href="#features"
-                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Features
-              </a>
-              <a 
-                href="#templates"
-                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Templates
-              </a>
-              <a 
-                href="#pricing"
-                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Pricing
-              </a>
-              <a 
-                href="#contact"
-                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Contact
-              </a>
-              <a 
-                href="/blog"
-                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  setLocation('/blog');
-                }}
-              >
-                Blog
-              </a>
-              
-              {/* CTA Button */}
-              <div className="pt-6 border-t border-gray-200">
-                <Button 
-                  className="w-full text-white py-3 hover:opacity-90"
-                  style={{ backgroundColor: '#6458AF' }}
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    handleStartProcess();
-                  }}
-                >
-                  Start the Process
-                </Button>
-              </div>
-            </nav>
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              <X className="h-6 w-6" />
+            </button>
           </div>
-        </>
-      )}
+          
+          {/* Menu Items */}
+          <nav className="p-6 space-y-6">
+            <a 
+              href="#features"
+              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Features
+            </a>
+            <a 
+              href="#templates"
+              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Templates
+            </a>
+            <a 
+              href="#pricing"
+              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Pricing
+            </a>
+            <a 
+              href="#contact"
+              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Contact
+            </a>
+            <a 
+              href="/blog"
+              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                setLocation('/blog');
+              }}
+            >
+              Blog
+            </a>
+            
+            {/* CTA Button */}
+            <div className="pt-6 border-t border-gray-200">
+              <Button 
+                className="w-full text-white py-3 hover:opacity-90"
+                style={{ backgroundColor: '#6458AF' }}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleStartProcess();
+                }}
+              >
+                Start the Process
+              </Button>
+            </div>
+          </nav>
+        </div>
+      </>
 
       {/* Hero Section */}
       <section className="py-20" style={{ background: 'linear-gradient(135deg, #f8f6ff 0%, #ffffff 100%)' }}>

@@ -296,9 +296,9 @@ export default function WebsiteSetup() {
             <div className="flex gap-4 justify-center">
               <Button 
                 type="button"
-                variant="outline" 
-                size="lg" 
-                className="px-8 py-3"
+                variant="ghost" 
+                size="sm" 
+                className="px-4 py-2 text-gray-400 hover:text-gray-600 text-sm"
                 onClick={() => navigate('/template-selection')}
               >
                 Go Back

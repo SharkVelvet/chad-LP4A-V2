@@ -225,9 +225,9 @@ export default function Step3Pricing() {
         <div className="text-center">
           <div className="flex gap-4 justify-center mb-2">
             <Button 
-              variant="outline"
-              size="lg" 
-              className="px-8 py-3"
+              variant="ghost"
+              size="sm" 
+              className="px-4 py-2 text-gray-400 hover:text-gray-600 text-sm"
               onClick={handleGoBack}
             >
               Go Back

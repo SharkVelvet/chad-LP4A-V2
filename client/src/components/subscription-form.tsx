@@ -74,16 +74,16 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName }: {
       <div className="flex gap-4 mt-6">
         <Button 
           type="button"
-          variant="outline" 
-          size="lg"
-          className="flex-1"
+          variant="ghost" 
+          size="sm"
+          className="px-4 py-2 text-gray-400 hover:text-gray-600 text-sm"
           onClick={() => window.history.back()}
         >
           Go Back
         </Button>
         <Button 
           type="submit" 
-          className="flex-1 text-white" 
+          className="w-full text-white ml-4" 
           size="lg"
           style={{ backgroundColor: '#6458AF' }} 
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
@@ -177,16 +177,16 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
             <div className="flex gap-4">
               <Button 
                 type="button"
-                variant="outline" 
-                size="lg"
-                className="flex-1"
+                variant="ghost" 
+                size="sm"
+                className="px-4 py-2 text-gray-400 hover:text-gray-600 text-sm"
                 onClick={() => window.history.back()}
               >
                 Go Back
               </Button>
               <Button 
                 type="submit" 
-                className="flex-1 text-white" 
+                className="w-full text-white ml-4" 
                 size="lg"
                 style={{ backgroundColor: '#6458AF' }} 
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 

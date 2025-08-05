@@ -143,9 +143,9 @@ export default function TemplateSelection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <div className="flex gap-4">
               <Button
-                variant="outline"
-                size="lg"
-                className="px-8 py-3"
+                variant="ghost"
+                size="sm"
+                className="px-4 py-2 text-gray-400 hover:text-gray-600 text-sm"
                 onClick={() => navigate('/start-the-process')}
               >
                 Go Back

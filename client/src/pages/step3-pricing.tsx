@@ -69,18 +69,18 @@ export default function Step3Pricing() {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-purple-50 p-6 rounded-lg border border-purple-200">
-                <h3 className="text-xl font-bold text-purple-900 mb-2">First Month (Total charged today)</h3>
-                <div className="text-3xl font-bold mb-2" style={{ color: '#6458AF' }}>$38</div>
+                <h3 className="text-xl font-bold text-purple-900 mb-2">Monthly Subscription</h3>
+                <div className="text-3xl font-bold mb-2" style={{ color: '#6458AF' }}>$18</div>
                 <p className="text-sm text-purple-700">
-                  Setup fee includes everything to get your website live and running
+                  Per month for professional website hosting and maintenance
                 </p>
               </div>
               
               <div className="bg-green-50 p-6 rounded-lg border border-green-200">
-                <h3 className="text-xl font-bold text-green-900 mb-2">Monthly Renewal</h3>
-                <div className="text-3xl font-bold text-green-600 mb-2">$18</div>
+                <h3 className="text-xl font-bold text-green-900 mb-2">First Month Setup</h3>
+                <div className="text-3xl font-bold text-green-600 mb-2">$38</div>
                 <p className="text-sm text-green-700">
-                  Per month for 11 additional months (domain & hosting)
+                  First month includes setup ($18 + $20 setup fee)
                 </p>
               </div>
             </div>
@@ -91,7 +91,7 @@ export default function Step3Pricing() {
                 <span className="font-semibold">12-Month Contract</span>
               </div>
               <p className="text-sm text-gray-600">
-                Total investment: $38 (first month) + $18 every month after
+                Total investment: $38 (first month includes setup) + $18 every month after
               </p>
             </div>
           </CardContent>
@@ -110,7 +110,7 @@ export default function Step3Pricing() {
               <div>
                 <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
                   <Settings className="h-4 w-4 mr-2" style={{ color: '#6458AF' }} />
-                  First Month Setup ($38)
+                  Setup & First Month ($38)
                 </h4>
                 <ul className="space-y-2 text-sm text-gray-600">
                   <li className="flex items-center">

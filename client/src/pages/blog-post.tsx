@@ -15,14 +15,39 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = params;
   const [isReading, setIsReading] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   const { data: post, isLoading } = useQuery<BlogPost>({
     queryKey: [`/api/blog-posts/${slug}`],
   });
 
-  // Clean up speech synthesis on component unmount
+  // Load available voices
   useEffect(() => {
+    const loadVoices = () => {
+      const voices = speechSynthesis.getVoices();
+      setAvailableVoices(voices);
+      
+      // Try to find a more natural voice (prefer female voices, Google voices, or premium voices)
+      const preferredVoice = voices.find(voice => 
+        voice.name.toLowerCase().includes('google') ||
+        voice.name.toLowerCase().includes('natural') ||
+        voice.name.toLowerCase().includes('premium') ||
+        (voice.name.toLowerCase().includes('female') && voice.lang.startsWith('en')) ||
+        voice.name.toLowerCase().includes('samantha') ||
+        voice.name.toLowerCase().includes('alex')
+      ) || voices.find(voice => voice.lang.startsWith('en')) || voices[0];
+      
+      setSelectedVoice(preferredVoice);
+    };
+
+    // Load voices immediately if available
+    loadVoices();
+    
+    // Also load when voices change (some browsers load voices asynchronously)
+    speechSynthesis.onvoiceschanged = loadVoices;
+    
     return () => {
       if (speechRef.current) {
         speechSynthesis.cancel();
@@ -46,7 +71,12 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       const textToRead = `${post.title}. ${post.summary}. ${post.content}`;
       const utterance = new SpeechSynthesisUtterance(textToRead);
       
-      utterance.rate = 0.9; // Slightly slower for better comprehension
+      // Use selected voice if available
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+      
+      utterance.rate = 0.85; // Slightly slower for better comprehension
       utterance.pitch = 1;
       utterance.volume = 1;
       
@@ -331,7 +361,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
             
             {/* Read Me This Button */}
-            <div className="flex gap-3">
+            <div className="flex gap-3 items-center">
               <Button 
                 variant="outline"
                 size="sm"
@@ -368,6 +398,14 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                   <VolumeX className="h-4 w-4" />
                   Stop
                 </Button>
+              )}
+              {selectedVoice && (
+                <span className="text-xs text-gray-500 ml-2">
+                  {selectedVoice.name.includes('Google') ? '🎵 Enhanced Voice' : 
+                   selectedVoice.name.includes('Natural') ? '🎵 Natural Voice' :
+                   selectedVoice.name.includes('Premium') ? '🎵 Premium Voice' :
+                   '🔊 System Voice'}
+                </span>
               )}
             </div>
           </div>

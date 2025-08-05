@@ -109,30 +109,6 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
     speechRef.current = null;
   };
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading blog post...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!post) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Blog Post Not Found</h1>
-          <Button onClick={() => setLocation('/blog')}>
-            Back to Blog
-          </Button>
-        </div>
-      </div>
-    );
-  }
-
   // Set page title and meta tags for SEO
   useEffect(() => {
     if (post) {
@@ -186,6 +162,30 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       document.title = 'Plan|right - Professional Landing Pages for Insurance Agents';
     };
   }, [post]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading blog post...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!post) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Blog Post Not Found</h1>
+          <Button onClick={() => setLocation('/blog')}>
+            Back to Blog
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   const formatContent = (content: string | undefined) => {
     if (!content || typeof content !== 'string') return null;

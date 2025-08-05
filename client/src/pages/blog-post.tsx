@@ -399,12 +399,11 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                   Stop
                 </Button>
               )}
-              {selectedVoice && (
+              {selectedVoice && (selectedVoice.name.includes('Google') || selectedVoice.name.includes('Natural') || selectedVoice.name.includes('Premium')) && (
                 <span className="text-xs text-gray-500 ml-2">
                   {selectedVoice.name.includes('Google') ? '🎵 Enhanced Voice' : 
                    selectedVoice.name.includes('Natural') ? '🎵 Natural Voice' :
-                   selectedVoice.name.includes('Premium') ? '🎵 Premium Voice' :
-                   '🔊 System Voice'}
+                   '🎵 Premium Voice'}
                 </span>
               )}
             </div>

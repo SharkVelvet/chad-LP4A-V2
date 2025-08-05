@@ -408,6 +408,18 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           <h1 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">
             {post.title}
           </h1>
+          
+          {/* Hero Image */}
+          {post.imageUrl && (
+            <div className="relative w-full h-64 md:h-80 overflow-hidden rounded-lg mb-6">
+              <img
+                src={post.imageUrl}
+                alt={post.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+          
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center text-sm text-gray-500">
               <Clock className="h-4 w-4 mr-1" />

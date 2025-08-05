@@ -19,7 +19,10 @@ export default function Step5Success() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
+              <div 
+                className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={() => navigate('/internal-one')}
+              >
                 <FileText className="h-7 w-7" style={{ color: '#6458AF' }} />
                 <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
               </div>

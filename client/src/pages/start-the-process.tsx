@@ -19,7 +19,7 @@ export default function StartTheProcess() {
             <div 
               className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
               onClick={() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setLocation('/internal-one');
               }}
             >
               <FileText className="h-10 w-10 mr-3" style={{ color: '#6458AF' }} />

@@ -35,8 +35,13 @@ export default function Step3Pricing() {
               <Button variant="ghost" size="sm" onClick={handleGoBack}>
                 <ArrowLeft className="h-4 w-4" />
               </Button>
-              <FileText className="h-7 w-7 mr-2" style={{ color: '#6458AF' }} />
-              <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
+              <div 
+                className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={() => navigate('/internal-one')}
+              >
+                <FileText className="h-7 w-7 mr-2" style={{ color: '#6458AF' }} />
+                <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
+              </div>
             </div>
           </div>
         </div>

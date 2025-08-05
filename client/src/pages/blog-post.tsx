@@ -18,7 +18,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   const { data: post, isLoading } = useQuery<BlogPost>({
-    queryKey: ['/api/blog-posts', slug],
+    queryKey: [`/api/blog-posts/${slug}`],
   });
 
   // Clean up speech synthesis on component unmount

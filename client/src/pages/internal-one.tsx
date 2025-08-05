@@ -572,10 +572,10 @@ export default function InternalOne() {
               <CardHeader className="text-center" style={{ backgroundColor: '#f8f6ff' }}>
                 <CardTitle className="text-2xl" style={{ color: '#6458AF' }}>Professional Plan</CardTitle>
                 <div className="text-4xl font-bold text-gray-900 mt-4">
-                  $38 <span className="text-lg font-normal text-gray-600">first month</span>
+                  $18 <span className="text-lg font-normal text-gray-600">/month</span>
                 </div>
                 <div className="text-lg text-gray-600">
-                  then $18/month
+                  $38 first month includes setup
                 </div>
               </CardHeader>
               <CardContent className="p-8">

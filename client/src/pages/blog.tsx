@@ -4,12 +4,17 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, FileText, ArrowRight, Menu, X } from "lucide-react";
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { BlogPost } from "@shared/schema";
 
 export default function Blog() {
   const [, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Set page title
+  useEffect(() => {
+    document.title = 'Insurance Marketing Blog | Professional Landing Pages for Insurance Agents';
+  }, []);
 
   const { data: blogPosts = [], isLoading } = useQuery<BlogPost[]>({
     queryKey: ['/api/blog-posts'],

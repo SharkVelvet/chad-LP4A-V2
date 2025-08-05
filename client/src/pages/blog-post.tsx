@@ -113,7 +113,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   // Set page title and meta tags for SEO
   useEffect(() => {
     if (post) {
-      document.title = `${post.title} | Plan|right Insurance Landing Pages`;
+      document.title = `${post.title} | Professional Landing Pages for Insurance Agents`;
       
       // Update or create meta description
       let metaDescription = document.querySelector('meta[name="description"]');
@@ -160,7 +160,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
     
     return () => {
       // Reset title when leaving page
-      document.title = 'Plan|right - Professional Landing Pages for Insurance Agents';
+      document.title = 'Professional Landing Pages for Insurance Agents';
     };
   }, [post]);
 

@@ -4,11 +4,16 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Star, Users, Globe, TrendingUp, Shield, Clock, Zap, FileText, Menu, X } from "lucide-react";
 import templatePreviewImage from "@assets/LD-Internal-1_1753558470989.png";
 import { useLocation } from "wouter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function InternalOne() {
   const [, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Set page title
+  useEffect(() => {
+    document.title = 'Professional Landing Pages for Insurance Agents';
+  }, []);
 
   const handleStartProcess = () => {
     setLocation("/start-the-process");

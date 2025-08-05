@@ -1,8 +1,8 @@
-# Plan|right Website Builder
+# Professional Landing Pages for Insurance Agents
 
 ## Overview
 
-Plan|right is a full-stack web application for creating and managing professional splash pages and websites. The system provides a streamlined onboarding process for customers to select templates, customize content, and set up subscription-based websites. Built with React, Express, and PostgreSQL, it integrates with Stripe for payment processing and includes email automation for customer communications.
+Professional Landing Pages for Insurance Agents is a full-stack web application for creating and managing professional splash pages and websites. The system provides a streamlined onboarding process for customers to select templates, customize content, and set up subscription-based websites. Built with React, Express, and PostgreSQL, it integrates with Stripe for payment processing and includes email automation for customer communications.
 
 ## System Architecture
 
@@ -117,6 +117,12 @@ Plan|right is a full-stack web application for creating and managing professiona
 Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
+
+- **August 5, 2025**: Updated browser tab titles across all pages
+  - Changed from "Plan|right" to "Professional Landing Pages for Insurance Agents"
+  - Added proper page titles for homepage, blog listing, and individual blog posts  
+  - Updated dashboard branding to match new title format
+  - Ensured consistent branding throughout the application
 
 - **August 5, 2025**: Completed comprehensive blog system with SEO optimization
   - Added 5 professional blog posts with ~1200 words each targeting insurance agents

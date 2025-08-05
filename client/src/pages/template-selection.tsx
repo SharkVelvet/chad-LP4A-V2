@@ -141,28 +141,30 @@ export default function TemplateSelection() {
             Once you've previewed the templates above, you can proceed to customize your chosen design with your business information.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <div className="flex gap-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="px-4 py-2 text-gray-400 hover:text-gray-600 text-sm"
-                onClick={() => navigate('/start-the-process')}
-              >
-                Go Back
-              </Button>
-              <Button
-                size="lg"
-                className="px-8 py-3 text-white font-semibold"
-                style={{ backgroundColor: '#6458AF' }}
-                onClick={() => navigate('/setup')}
-              >
-                Continue to Website Setup
-              </Button>
-            </div>
+            <Button
+              size="lg"
+              className="px-8 py-3 text-white font-semibold"
+              style={{ backgroundColor: '#6458AF' }}
+              onClick={() => navigate('/setup')}
+            >
+              Continue to Website Setup
+            </Button>
             <p className="text-sm text-gray-500">
               You'll select your template in the next step
             </p>
           </div>
+        </div>
+        
+        {/* Go Back Button - Bottom Left */}
+        <div className="fixed bottom-6 left-6">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="px-4 py-2 text-gray-400 hover:text-gray-200 text-sm"
+            onClick={() => navigate('/start-the-process')}
+          >
+            Go Back
+          </Button>
         </div>
         
         {/* Footer */}

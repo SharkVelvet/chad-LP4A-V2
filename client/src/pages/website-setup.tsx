@@ -293,22 +293,24 @@ export default function WebsiteSetup() {
           </Card>
 
           <div className="text-center">
-            <div className="flex gap-4 justify-center">
-              <Button 
-                type="button"
-                variant="ghost" 
-                size="sm" 
-                className="px-4 py-2 text-gray-400 hover:text-gray-600 text-sm"
-                onClick={() => navigate('/template-selection')}
-              >
-                Go Back
-              </Button>
-              <Button type="submit" size="lg" className="px-8 py-3 text-white" style={{ backgroundColor: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}>
-                Continue to Next Step
-              </Button>
-            </div>
+            <Button type="submit" size="lg" className="px-8 py-3 text-white" style={{ backgroundColor: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}>
+              Continue to Next Step
+            </Button>
           </div>
         </form>
+        
+        {/* Go Back Button - Bottom Left */}
+        <div className="fixed bottom-6 left-6">
+          <Button 
+            type="button"
+            variant="ghost" 
+            size="sm" 
+            className="px-4 py-2 text-gray-400 hover:text-gray-200 text-sm"
+            onClick={() => navigate('/template-selection')}
+          >
+            Go Back
+          </Button>
+        </div>
         
         {/* Footer */}
         <div className="text-center mt-12 pt-8 border-t border-gray-200">

@@ -3,7 +3,8 @@ import {
   locations, 
   templates, 
   websites, 
-  websiteContent, 
+  websiteContent,
+  blogPosts,
   type User, 
   type InsertUser,
   type Location,
@@ -13,6 +14,8 @@ import {
   type InsertWebsite,
   type WebsiteContent,
   type InsertWebsiteContent,
+  type BlogPost,
+  type InsertBlogPost,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, desc } from "drizzle-orm";
@@ -50,7 +53,12 @@ export interface IStorage {
   createWebsiteContent(content: InsertWebsiteContent): Promise<WebsiteContent>;
   updateWebsiteContent(websiteId: number, content: Partial<InsertWebsiteContent>): Promise<WebsiteContent>;
 
-
+  // Blog management
+  getAllBlogPosts(): Promise<BlogPost[]>;
+  getBlogPost(id: number): Promise<BlogPost | undefined>;
+  getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
+  createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
+  updateBlogPost(id: number, post: Partial<InsertBlogPost>): Promise<BlogPost>;
 
   sessionStore: any;
 }
@@ -203,7 +211,38 @@ export class DatabaseStorage implements IStorage {
     return updatedContent;
   }
 
+  // Blog management
+  async getAllBlogPosts(): Promise<BlogPost[]> {
+    return await db.select().from(blogPosts).where(eq(blogPosts.isPublished, true)).orderBy(desc(blogPosts.publishedAt));
+  }
 
+  async getBlogPost(id: number): Promise<BlogPost | undefined> {
+    const [post] = await db.select().from(blogPosts).where(and(eq(blogPosts.id, id), eq(blogPosts.isPublished, true)));
+    return post || undefined;
+  }
+
+  async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+    const [post] = await db.select().from(blogPosts).where(and(eq(blogPosts.slug, slug), eq(blogPosts.isPublished, true)));
+    return post || undefined;
+  }
+
+  async createBlogPost(post: InsertBlogPost): Promise<BlogPost> {
+    const [newPost] = await db
+      .insert(blogPosts)
+      .values(post)
+      .returning();
+    return newPost;
+  }
+
+  async updateBlogPost(id: number, post: Partial<InsertBlogPost>): Promise<BlogPost> {
+    const updateData = { ...post, updatedAt: new Date() };
+    const [updatedPost] = await db
+      .update(blogPosts)
+      .set(updateData)
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return updatedPost;
+  }
 }
 
 export const storage = new DatabaseStorage();

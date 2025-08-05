@@ -68,6 +68,19 @@ export const formSubmissions = pgTable("form_submissions", {
   submittedAt: timestamp("submitted_at").notNull().defaultNow(),
 });
 
+export const blogPosts = pgTable("blog_posts", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  summary: text("summary").notNull(),
+  content: text("content").notNull(),
+  onScreenKeywords: jsonb("on_screen_keywords").$type<string[]>(),
+  offScreenKeywords: jsonb("off_screen_keywords").$type<string[]>(),
+  isPublished: boolean("is_published").notNull().default(true),
+  publishedAt: timestamp("published_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
 // Relations
 export const locationsRelations = relations(locations, ({ many }) => ({
   users: many(users),
@@ -138,6 +151,12 @@ export const insertFormSubmissionSchema = createInsertSchema(formSubmissions).om
   submittedAt: true,
 });
 
+export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
+  id: true,
+  publishedAt: true,
+  updatedAt: true,
+});
+
 // Types
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -150,3 +169,5 @@ export type WebsiteContent = typeof websiteContent.$inferSelect;
 export type InsertWebsiteContent = z.infer<typeof insertWebsiteContentSchema>;
 export type FormSubmission = typeof formSubmissions.$inferSelect;
 export type InsertFormSubmission = z.infer<typeof insertFormSubmissionSchema>;
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;

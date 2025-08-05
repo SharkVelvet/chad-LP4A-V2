@@ -6,7 +6,8 @@ import { setupAuth } from "./auth";
 import Stripe from "stripe";
 import { 
   insertWebsiteSchema, 
-  insertWebsiteContentSchema
+  insertWebsiteContentSchema,
+  insertBlogPostSchema
 } from "@shared/schema";
 import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection } from "./email";
 import { validatePassword } from "./passwords";
@@ -326,6 +327,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Error updating subscription payment method:', error);
       res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Blog routes
+  app.get("/api/blog-posts", async (req, res) => {
+    try {
+      const posts = await storage.getAllBlogPosts();
+      res.json(posts);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.get("/api/blog-posts/:slug", async (req, res) => {
+    try {
+      const post = await storage.getBlogPostBySlug(req.params.slug);
+      if (!post) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      res.json(post);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
     }
   });
 

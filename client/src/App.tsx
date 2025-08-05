@@ -19,6 +19,8 @@ import Ideas from "@/pages/ideas";
 import InternalOne from "@/pages/internal-one";
 import PlanrightHome from "@/pages/planright-home";
 import StartTheProcess from "@/pages/start-the-process";
+import Blog from "@/pages/blog";
+import BlogPost from "@/pages/blog-post";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -36,6 +38,8 @@ function Router() {
       <Route path="/internal-one" component={InternalOne} />
       <Route path="/planright-home" component={PlanrightHome} />
       <Route path="/start-the-process" component={StartTheProcess} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/old-home" component={HomePage} />
       <Route path="/" component={InternalOne} />
       <Route component={NotFound} />

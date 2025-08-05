@@ -78,6 +78,18 @@ export default function InternalOne() {
               >
                 Contact
               </a>
+              <a 
+                href="/blog" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setLocation('/blog');
+                }}
+              >
+                Blog
+              </a>
             </nav>
             <Button 
               style={{ backgroundColor: '#6458AF' }} 

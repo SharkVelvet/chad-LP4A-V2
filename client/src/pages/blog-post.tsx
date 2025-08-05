@@ -324,54 +324,57 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           <h1 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">
             {post.title}
           </h1>
-          <div className="flex items-center text-sm text-gray-500 mb-6">
-            <Clock className="h-4 w-4 mr-1" />
-            ~6 min read
-          </div>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            {post.summary}
-          </p>
-          
-          {/* Read Me This Button */}
-          <div className="flex gap-4 mt-6">
-            <Button 
-              variant="outline"
-              size="sm"
-              className="flex items-center gap-2"
-              onClick={handleReadAloud}
-              disabled={!post}
-            >
-              {isReading ? (
-                isPaused ? (
-                  <>
-                    <Play className="h-4 w-4" />
-                    Resume Reading
-                  </>
-                ) : (
-                  <>
-                    <Pause className="h-4 w-4" />
-                    Pause Reading
-                  </>
-                )
-              ) : (
-                <>
-                  <Volume2 className="h-4 w-4" />
-                  Read Me This
-                </>
-              )}
-            </Button>
-            {isReading && (
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center text-sm text-gray-500">
+              <Clock className="h-4 w-4 mr-1" />
+              ~6 min read
+            </div>
+            
+            {/* Read Me This Button */}
+            <div className="flex gap-3">
               <Button 
                 variant="outline"
                 size="sm"
                 className="flex items-center gap-2"
-                onClick={handleStopReading}
+                onClick={handleReadAloud}
+                disabled={!post}
               >
-                <VolumeX className="h-4 w-4" />
-                Stop Reading
+                {isReading ? (
+                  isPaused ? (
+                    <>
+                      <Play className="h-4 w-4" />
+                      Resume
+                    </>
+                  ) : (
+                    <>
+                      <Pause className="h-4 w-4" />
+                      Pause
+                    </>
+                  )
+                ) : (
+                  <>
+                    <Volume2 className="h-4 w-4" />
+                    Read Me This
+                  </>
+                )}
               </Button>
-            )}
+              {isReading && (
+                <Button 
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-2"
+                  onClick={handleStopReading}
+                >
+                  <VolumeX className="h-4 w-4" />
+                  Stop
+                </Button>
+              )}
+            </div>
           </div>
+          
+          <p className="text-xl text-gray-600 leading-relaxed mb-8">
+            {post.summary}
+          </p>
         </header>
 
         {/* Article Body */}

@@ -651,16 +651,60 @@ export default function InternalOne() {
             <div>
               <h4 className="font-semibold mb-4">Product</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">Templates</a></li>
-                <li><a href="#" className="hover:text-white">Features</a></li>
-                <li><a href="#" className="hover:text-white">Pricing</a></li>
+                <li>
+                  <a 
+                    href="#templates" 
+                    className="hover:text-white cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    Templates
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#features" 
+                    className="hover:text-white cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#pricing" 
+                    className="hover:text-white cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    Pricing
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-gray-400">
                 <li><a href="#" className="hover:text-white">Help Center</a></li>
-                <li><a href="#" className="hover:text-white">Contact</a></li>
+                <li>
+                  <a 
+                    href="#contact" 
+                    className="hover:text-white cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    Contact
+                  </a>
+                </li>
                 <li><a href="#" className="hover:text-white">Status</a></li>
               </ul>
             </div>

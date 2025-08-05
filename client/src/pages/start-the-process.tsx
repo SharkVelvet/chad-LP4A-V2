@@ -108,9 +108,8 @@ export default function StartTheProcess() {
                   <div className="text-center">
                     <Button 
                       onClick={handleGetStarted}
-                      className="px-8 py-3 bg-white hover:bg-gray-100 font-semibold rounded-lg w-full" 
+                      className="w-full bg-white hover:bg-gray-100" 
                       style={{ color: '#6458AF' }}
-                      size="lg"
                     >
                       Get Started Now
                     </Button>

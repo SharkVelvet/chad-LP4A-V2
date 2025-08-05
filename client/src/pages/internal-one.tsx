@@ -105,9 +105,8 @@ export default function InternalOne() {
             </p>
             <div className="flex justify-center">
               <Button 
-                size="lg" 
-                className="px-8 py-4 text-lg hover:opacity-90" 
-                style={{ backgroundColor: '#6458AF' }}
+                style={{ backgroundColor: '#6458AF' }} 
+                className="hover:opacity-90"
                 onClick={handleStartProcess}
               >
                 Start the Process
@@ -605,7 +604,7 @@ export default function InternalOne() {
                     <span>24/7 support</span>
                   </div>
                 </div>
-                <Button className="w-full text-lg py-3 hover:opacity-90" style={{ backgroundColor: '#6458AF' }} onClick={handleStartProcess}>
+                <Button style={{ backgroundColor: '#6458AF' }} className="w-full hover:opacity-90" onClick={handleStartProcess}>
                   Start the Process
                 </Button>
               </CardContent>
@@ -624,9 +623,8 @@ export default function InternalOne() {
             Join hundreds of insurance agents who trust Landing Pages for Agents to establish their professional online presence.
           </p>
           <Button 
-            size="lg" 
-            className="px-8 py-4 text-lg hover:opacity-90" 
-            style={{ backgroundColor: '#6458AF', color: 'white' }}
+            style={{ backgroundColor: '#6458AF' }} 
+            className="hover:opacity-90"
             onClick={handleStartProcess}
           >
             Start the Process

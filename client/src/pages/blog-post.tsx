@@ -133,6 +133,60 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
     );
   }
 
+  // Set page title and meta tags for SEO
+  useEffect(() => {
+    if (post) {
+      document.title = `${post.title} | Plan|right Insurance Landing Pages`;
+      
+      // Update or create meta description
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.setAttribute('name', 'description');
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.setAttribute('content', post.summary);
+      
+      // Update or create meta keywords
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.setAttribute('name', 'keywords');
+        document.head.appendChild(metaKeywords);
+      }
+      if (post.onScreenKeywords && post.onScreenKeywords.length > 0) {
+        metaKeywords.setAttribute('content', post.onScreenKeywords.join(', '));
+      }
+      
+      // Add Open Graph tags for social sharing
+      const ogTags = [
+        { property: 'og:title', content: post.title },
+        { property: 'og:description', content: post.summary },
+        { property: 'og:type', content: 'article' },
+        { property: 'og:url', content: `${window.location.origin}/blog/${post.slug}` },
+        { property: 'article:published_time', content: post.publishedAt },
+        { property: 'article:tag', content: post.onScreenKeywords?.join(', ') || '' }
+      ];
+      
+      ogTags.forEach(({ property, content }) => {
+        if (content) {
+          let ogTag = document.querySelector(`meta[property="${property}"]`);
+          if (!ogTag) {
+            ogTag = document.createElement('meta');
+            ogTag.setAttribute('property', property);
+            document.head.appendChild(ogTag);
+          }
+          ogTag.setAttribute('content', content);
+        }
+      });
+    }
+    
+    return () => {
+      // Reset title when leaving page
+      document.title = 'Plan|right - Professional Landing Pages for Insurance Agents';
+    };
+  }, [post]);
+
   const formatContent = (content: string | undefined) => {
     if (!content || typeof content !== 'string') return null;
     return content

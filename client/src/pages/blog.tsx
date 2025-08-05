@@ -148,7 +148,11 @@ export default function Blog() {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post) => (
-                <Card key={post.id} className="cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                <Card 
+                  key={post.id} 
+                  className="cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                  onClick={() => setLocation(`/blog/${post.slug}`)}
+                >
                   {post.imageUrl && (
                     <div className="relative w-full h-48 overflow-hidden">
                       <img
@@ -187,7 +191,10 @@ export default function Blog() {
                         style={{ backgroundColor: '#6458AF' }}
                         onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
                         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
-                        onClick={() => setLocation(`/blog/${post.slug}`)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLocation(`/blog/${post.slug}`);
+                        }}
                       >
                         Read More
                         <ArrowRight className="h-4 w-4 ml-1" />

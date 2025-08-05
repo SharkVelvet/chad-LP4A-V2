@@ -71,17 +71,28 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName }: {
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
-      <Button 
-        type="submit" 
-        className="w-full mt-6 text-white" 
-        size="lg"
-        style={{ backgroundColor: '#6458AF' }} 
-        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
-        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
-        disabled={!stripe || isProcessing || isLoading}
-      >
-        {isProcessing ? "Processing..." : "Complete Setup & Start Subscription"}
-      </Button>
+      <div className="flex gap-4 mt-6">
+        <Button 
+          type="button"
+          variant="outline" 
+          size="lg"
+          className="flex-1"
+          onClick={() => window.history.back()}
+        >
+          Go Back
+        </Button>
+        <Button 
+          type="submit" 
+          className="flex-1 text-white" 
+          size="lg"
+          style={{ backgroundColor: '#6458AF' }} 
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
+          disabled={!stripe || isProcessing || isLoading}
+        >
+          {isProcessing ? "Processing..." : "Complete Setup & Start Subscription"}
+        </Button>
+      </div>
     </form>
   );
 }
@@ -163,17 +174,28 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
                 onChange={(e) => setCustomerName(e.target.value)}
               />
             </div>
-            <Button 
-              type="submit" 
-              className="w-full text-white" 
-              size="lg"
-              style={{ backgroundColor: '#6458AF' }} 
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
-              disabled={createSubscriptionMutation.isPending}
-            >
-              {createSubscriptionMutation.isPending ? "Setting up..." : "Continue to Payment"}
-            </Button>
+            <div className="flex gap-4">
+              <Button 
+                type="button"
+                variant="outline" 
+                size="lg"
+                className="flex-1"
+                onClick={() => window.history.back()}
+              >
+                Go Back
+              </Button>
+              <Button 
+                type="submit" 
+                className="flex-1 text-white" 
+                size="lg"
+                style={{ backgroundColor: '#6458AF' }} 
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
+                disabled={createSubscriptionMutation.isPending}
+              >
+                {createSubscriptionMutation.isPending ? "Setting up..." : "Continue to Payment"}
+              </Button>
+            </div>
           </form>
         </CardContent>
       </Card>

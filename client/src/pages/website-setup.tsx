@@ -217,8 +217,7 @@ export default function WebsiteSetup() {
                           onChange={(e) => handleInputChange("template", e.target.value)}
                           className="w-4 h-4 border-gray-300"
                           style={{ 
-                            accentColor: '#6458AF',
-                            '--tw-ring-color': '#6458AF'
+                            accentColor: '#6458AF'
                           }}
                         />
                         <Label htmlFor={template.slug} className="text-sm font-medium cursor-pointer">
@@ -294,9 +293,20 @@ export default function WebsiteSetup() {
           </Card>
 
           <div className="text-center">
-            <Button type="submit" size="lg" className="px-8 py-3 text-white" style={{ backgroundColor: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}>
-              Continue to Next Step
-            </Button>
+            <div className="flex gap-4 justify-center">
+              <Button 
+                type="button"
+                variant="outline" 
+                size="lg" 
+                className="px-8 py-3"
+                onClick={() => navigate('/template-selection')}
+              >
+                Go Back
+              </Button>
+              <Button type="submit" size="lg" className="px-8 py-3 text-white" style={{ backgroundColor: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}>
+                Continue to Next Step
+              </Button>
+            </div>
           </div>
         </form>
         

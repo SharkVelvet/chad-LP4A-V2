@@ -223,17 +223,27 @@ export default function Step3Pricing() {
 
         {/* Continue Button */}
         <div className="text-center">
-          <Button 
-            size="lg" 
-            className="px-8 py-3 text-white" 
-            style={{ backgroundColor: '#6458AF' }} 
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
-            disabled={!agreed}
-            onClick={handleContinue}
-          >
-            Continue to Payment
-          </Button>
+          <div className="flex gap-4 justify-center mb-2">
+            <Button 
+              variant="outline"
+              size="lg" 
+              className="px-8 py-3"
+              onClick={handleGoBack}
+            >
+              Go Back
+            </Button>
+            <Button 
+              size="lg" 
+              className="px-8 py-3 text-white" 
+              style={{ backgroundColor: '#6458AF' }} 
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
+              disabled={!agreed}
+              onClick={handleContinue}
+            >
+              Continue to Payment
+            </Button>
+          </div>
           <p className="text-xs text-gray-500 mt-2">
             Next: Enter payment information to complete your website setup
           </p>

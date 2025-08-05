@@ -327,7 +327,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         <Button 
           variant="ghost" 
           onClick={() => setLocation('/blog')}
-          className="text-purple-600 hover:text-purple-700 mb-8"
+          className="text-gray-500 hover:text-gray-600 mb-8 hover:bg-gray-100"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Blog

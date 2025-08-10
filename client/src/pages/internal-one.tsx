@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Star, Users, Globe, TrendingUp, Shield, Clock, Zap, FileText, Menu, X } from "lucide-react";
+import { CheckCircle, Star, Users, Globe, TrendingUp, Shield, Clock, Zap, FileText, Menu, X, MessageCircle } from "lucide-react";
 import templatePreviewImage from "@assets/LD-Internal-1_1753558470989.png";
 import { useLocation } from "wouter";
 import { useState, useEffect } from "react";
@@ -33,7 +33,10 @@ export default function InternalOne() {
               <FileText className="h-10 w-10 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">
                 <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>
+                  <span className="hidden sm:inline">for Agents</span>
+                  <span className="sm:hidden">for Insurance<br />Agents</span>
+                </div>
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
@@ -107,6 +110,40 @@ export default function InternalOne() {
                 Start the Process
               </Button>
               
+              {/* Mobile Text Share Button */}
+              <button
+                className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+                onClick={() => {
+                  const currentUrl = window.location.href;
+                  const message = `Hey, here's the website I mentioned where you can quickly get an agent page live. Just tell them the domain name you want, pick a template, and they'll have it live in about 48 hours. ${currentUrl}`;
+                  
+                  if (navigator.share) {
+                    navigator.share({
+                      title: 'Professional Landing Pages for Insurance Agents',
+                      text: message,
+                    });
+                  } else {
+                    // Fallback: copy to clipboard
+                    navigator.clipboard.writeText(message).then(() => {
+                      alert('Message copied to clipboard!');
+                    }).catch(() => {
+                      // Fallback for older browsers
+                      const textArea = document.createElement('textarea');
+                      textArea.value = message;
+                      document.body.appendChild(textArea);
+                      textArea.select();
+                      document.execCommand('copy');
+                      document.body.removeChild(textArea);
+                      alert('Message copied to clipboard!');
+                    });
+                  }
+                }}
+                aria-label="Share website"
+                title="Share this website"
+              >
+                <MessageCircle className="h-6 w-6" />
+              </button>
+              
               {/* Mobile Menu Button */}
               <button
                 className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
@@ -140,7 +177,7 @@ export default function InternalOne() {
               <FileText className="h-8 w-8 mr-2" style={{ color: '#6458AF' }} />
               <div className="text-left">
                 <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Insurance<br />Agents</div>
               </div>
             </div>
             <button

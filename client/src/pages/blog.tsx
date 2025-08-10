@@ -132,7 +132,8 @@ export default function Blog() {
               
               {/* Mobile Text Share Button */}
               <button
-                className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+                className="md:hidden p-2 rounded-lg text-white hover:opacity-90 transition-opacity"
+                style={{ backgroundColor: '#6458AF' }}
                 onClick={() => {
                   const currentUrl = window.location.href;
                   const message = `Hey, here's the website I mentioned where you can quickly get an agent page live. Just tell them the domain name you want, pick a template, and they'll have it live in about 48 hours. ${currentUrl}`;

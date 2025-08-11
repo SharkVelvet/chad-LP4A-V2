@@ -357,17 +357,17 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-gray-800 p-6 rounded-lg">
+              <div className="border-2 border-white p-6 rounded-lg">
                 <div className="text-3xl font-bold mb-2">1000+</div>
-                <div className="text-gray-300">Happy Clients</div>
+                <div className="text-red-100">Happy Clients</div>
               </div>
-              <div className="bg-gray-800 p-6 rounded-lg">
+              <div className="border-2 border-white p-6 rounded-lg">
                 <div className="text-3xl font-bold mb-2">15+</div>
-                <div className="text-gray-300">Years Experience</div>
+                <div className="text-red-100">Years Experience</div>
               </div>
-              <div className="bg-gray-800 p-6 rounded-lg">
+              <div className="border-2 border-white p-6 rounded-lg">
                 <div className="text-3xl font-bold mb-2">99%</div>
-                <div className="text-gray-300">Satisfaction Rate</div>
+                <div className="text-red-100">Satisfaction Rate</div>
               </div>
             </div>
             

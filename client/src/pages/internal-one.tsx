@@ -33,10 +33,7 @@ export default function InternalOne() {
               <FileText className="h-10 w-10 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">
                 <div className="text-xl sm:text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-xs sm:text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>
-                  <span className="hidden sm:inline">for Agents</span>
-                  <span className="sm:hidden">for Insurance<br />Agents</span>
-                </div>
+                <div className="text-xs sm:text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
@@ -178,7 +175,7 @@ export default function InternalOne() {
               <FileText className="h-8 w-8 mr-2" style={{ color: '#6458AF' }} />
               <div className="text-left">
                 <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Insurance<br />Agents</div>
+                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
             <button

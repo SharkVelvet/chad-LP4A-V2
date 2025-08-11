@@ -3333,12 +3333,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <Shield className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Life Insurance</h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-gray-600 text-sm">
                   Protect your family's financial future with term, whole, and universal life insurance options.
                 </p>
-                <button className="text-sm font-semibold hover:opacity-80 transition-colors" style={{ color: '#6458AF' }}>
-                  Learn More →
-                </button>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
@@ -3346,12 +3343,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <Home className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Home Insurance</h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-gray-600 text-sm">
                   Comprehensive home protection covering property, belongings, and liability coverage.
                 </p>
-                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
-                  Learn More →
-                </button>
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
@@ -3359,12 +3353,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <Car className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Auto Insurance</h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-gray-600 text-sm">
                   Complete auto coverage with competitive rates and excellent customer service.
                 </p>
-                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
-                  Learn More →
-                </button>
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
@@ -3372,12 +3363,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <TrendingUp className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Investment Planning</h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-gray-600 text-sm">
                   Strategic investment solutions to help grow your wealth over time.
                 </p>
-                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
-                  Learn More →
-                </button>
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
@@ -3385,12 +3373,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <Heart className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Health Insurance</h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-gray-600 text-sm">
                   Quality health coverage options for individuals, families, and businesses.
                 </p>
-                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
-                  Learn More →
-                </button>
               </div>
 
               <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
@@ -3398,12 +3383,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <Briefcase className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Business Insurance</h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-gray-600 text-sm">
                   Protect your business with comprehensive commercial insurance solutions.
                 </p>
-                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
-                  Learn More →
-                </button>
               </div>
             </div>
           </div>

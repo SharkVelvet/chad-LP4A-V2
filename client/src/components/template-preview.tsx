@@ -3265,7 +3265,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Why Choose Us Section */}
-        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
+        <div id="about" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">

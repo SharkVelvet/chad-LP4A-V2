@@ -30,13 +30,15 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
   if (templateSlug === "Template-8") {
     return (
       <div className={`bg-white ${className}`}>
-        {/* Hero Section with Mountain Background */}
-        <div className="relative min-h-screen bg-gradient-to-b from-gray-200 to-gray-300 flex items-center justify-center text-center px-4">
-          {/* Mountain backdrop effect */}
-          <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
+        {/* Hero Section with Corporate Building Background */}
+        <div className="relative min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-center px-4" style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(/attached_assets/landing-page-10-10_1754877990321.jpg)`
+        }}>
+          {/* Overlay for text readability */}
+          <div className="absolute inset-0 bg-black/30"></div>
           
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-light text-gray-700 mb-8 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-light text-white mb-8 leading-tight">
               There is no other<br />
               platforms for you as like
             </h1>

@@ -46,7 +46,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             {/* CTA Button */}
             <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded font-medium transition-colors">
-              Get Started Today
+              Learn More
             </button>
           </div>
         </div>

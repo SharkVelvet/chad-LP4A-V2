@@ -3525,14 +3525,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 mb-8">
               <div>
                 <h4 className="font-semibold mb-4 text-red-600">Your Agency Here</h4>
-                <p className="text-gray-400 text-sm mb-4">
+                <p className="text-gray-400 text-sm">
                   Your trusted partner for comprehensive insurance protection and planning solutions.
                 </p>
-                <div className="flex space-x-4 text-gray-400">
-                  <span className="cursor-pointer hover:opacity-80">Facebook</span>
-                  <span className="cursor-pointer hover:opacity-80">LinkedIn</span>
-                  <span className="cursor-pointer hover:opacity-80">Twitter</span>
-                </div>
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Services</h4>

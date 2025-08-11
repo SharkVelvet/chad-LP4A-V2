@@ -370,10 +370,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <div className="text-red-100">Satisfaction Rate</div>
               </div>
             </div>
-            
-            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded font-medium transition-colors mt-8">
-              Get Started Now
-            </button>
           </div>
         </div>
 

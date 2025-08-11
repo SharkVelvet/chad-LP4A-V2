@@ -264,19 +264,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Final Features Section */}
-        <div className="py-16 bg-gray-50 px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12">Some awesome features</h2>
-            
-            {/* Device Mockup */}
-            <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
-              <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
-                <div className="text-gray-500 text-lg">Insurance Dashboard Preview</div>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
         {/* Testimonials Section */}
         <div id="testimonials" className="py-16 px-4">

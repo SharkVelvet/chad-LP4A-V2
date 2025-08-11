@@ -44,7 +44,7 @@ export default function Blog() {
               <FileText className="h-10 w-10 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">
                 <div className="text-xl sm:text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-xs sm:text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                <div className="text-xs sm:text-sm font-medium text-gray-600 mt-0.5 sm:mt-0" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">

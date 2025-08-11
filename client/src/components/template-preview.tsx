@@ -3198,7 +3198,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
   if (templateSlug === "Template-7") {
     return (
-      <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
+      <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth', userSelect: 'text' }}>
         {/* Header */}
         <div className="bg-white border-b px-4 sm:px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
           <div className="font-bold text-lg sm:text-xl text-red-600">

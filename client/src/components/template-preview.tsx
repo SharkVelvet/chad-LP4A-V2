@@ -3202,7 +3202,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Header */}
         <div className="bg-white border-b px-4 sm:px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
           <div className="font-bold text-lg sm:text-xl text-red-600">
-            FinancialPro
+            Your Agency Here
           </div>
           <div className="flex items-center space-x-2 sm:space-x-6">
             <div className="hidden md:flex space-x-6 text-sm text-gray-700">
@@ -3248,12 +3248,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <User className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Sarah Johnson</h3>
-                    <p className="text-sm text-gray-600">Licensed Financial Advisor</p>
+                    <h3 className="font-semibold text-gray-900">Your Name Here</h3>
+                    <p className="text-sm text-gray-600">Licensed Insurance Agent</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
-                  "I help families achieve financial security through personalized insurance and investment strategies."
+                  "I help families achieve financial security through personalized insurance solutions and expert guidance."
                 </p>
                 <div className="flex items-center text-sm text-gray-500">
                   <Phone className="w-4 h-4 mr-2" />
@@ -3502,11 +3502,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   </div>
                   <div className="flex items-center">
                     <Mail className="w-5 h-5 text-red-600 mr-3" />
-                    <span>info@financialpro.com</span>
+                    <span>info@youragency.com</span>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="w-5 h-5 text-red-600 mr-3" />
-                    <span>123 Financial Blvd, Suite 100<br />Your City, ST 12345</span>
+                    <span>123 Main Street, Suite 100<br />Your City, ST 12345</span>
                   </div>
                 </div>
                 <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
@@ -3569,9 +3569,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 mb-8">
               <div>
-                <h4 className="font-semibold mb-4 text-red-600">FinancialPro</h4>
+                <h4 className="font-semibold mb-4 text-red-600">Your Agency Here</h4>
                 <p className="text-gray-400 text-sm mb-4">
-                  Your trusted partner for comprehensive financial protection and planning solutions.
+                  Your trusted partner for comprehensive insurance protection and planning solutions.
                 </p>
                 <div className="flex space-x-4 text-gray-400">
                   <span className="cursor-pointer hover:opacity-80">Facebook</span>
@@ -3611,7 +3611,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
             <div className="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
-              © 2025 FinancialPro. All rights reserved. | Privacy Policy | Terms of Service
+              © 2025 Your Agency Here. All rights reserved. | Privacy Policy | Terms of Service
             </div>
           </div>
         </div>

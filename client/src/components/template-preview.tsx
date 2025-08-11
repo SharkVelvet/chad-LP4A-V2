@@ -88,8 +88,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-12 h-12 text-red-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Comprehensive Protection</h3>
                 <p className="text-gray-600">
@@ -98,8 +98,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-12 h-12 text-gray-700" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Quick Claims Processing</h3>
                 <p className="text-gray-600">
@@ -108,8 +108,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-12 h-12 text-black" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Expert Agents</h3>
                 <p className="text-gray-600">

@@ -89,32 +89,32 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Some awesome features</h3>
+                <h3 className="text-xl font-semibold mb-3">Comprehensive Protection</h3>
                 <p className="text-gray-600">
-                  Comprehensive protection plans that cover all aspects of your life and business needs.
+                  Complete protection plans that cover all aspects of your life and business needs.
                 </p>
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 bg-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Clock className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Some awesome features</h3>
+                <h3 className="text-xl font-semibold mb-3">Quick Claims Processing</h3>
                 <p className="text-gray-600">
-                  Quick and efficient claim processing with 24/7 customer support when you need it most.
+                  Efficient claim processing with 24/7 customer support when you need it most.
                 </p>
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Some awesome features</h3>
+                <h3 className="text-xl font-semibold mb-3">Expert Agents</h3>
                 <p className="text-gray-600">
-                  Expert agents with years of experience helping families and businesses protect their future.
+                  Experienced agents helping families and businesses protect their future.
                 </p>
               </div>
             </div>
@@ -209,25 +209,25 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Statistics Section */}
-        <div className="py-16 bg-blue-900 text-white px-4">
+        <div className="py-16 bg-gray-900 text-white px-4">
           <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">Over 1000 designers are using ...</h2>
-            <p className="text-blue-200 mb-12 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4">Over 1000 clients trust our services</h2>
+            <p className="text-gray-300 mb-12 max-w-2xl mx-auto">
               Join thousands of satisfied customers who trust us with their insurance needs.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-blue-800 p-6 rounded-lg">
+              <div className="bg-gray-800 p-6 rounded-lg">
                 <div className="text-3xl font-bold mb-2">1000+</div>
-                <div className="text-blue-200">Happy Clients</div>
+                <div className="text-gray-300">Happy Clients</div>
               </div>
-              <div className="bg-blue-800 p-6 rounded-lg">
+              <div className="bg-gray-800 p-6 rounded-lg">
                 <div className="text-3xl font-bold mb-2">15+</div>
-                <div className="text-blue-200">Years Experience</div>
+                <div className="text-gray-300">Years Experience</div>
               </div>
-              <div className="bg-blue-800 p-6 rounded-lg">
+              <div className="bg-gray-800 p-6 rounded-lg">
                 <div className="text-3xl font-bold mb-2">99%</div>
-                <div className="text-blue-200">Satisfaction Rate</div>
+                <div className="text-gray-300">Satisfaction Rate</div>
               </div>
             </div>
             

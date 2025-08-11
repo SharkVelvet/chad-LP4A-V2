@@ -270,8 +270,10 @@ export default function InternalOne() {
           <div className="text-center">
             <Badge className="mb-4" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Professional Landing Pages for<br />
-              <span style={{ color: '#6458AF' }}>Insurance Agents</span>
+              <span className="hidden sm:inline">Professional Landing Pages for<br />
+              <span style={{ color: '#6458AF' }}>Insurance Agents</span></span>
+              <span className="sm:hidden">Professional Landing Pages<br />
+              for <span style={{ color: '#6458AF' }}>Insurance Agents</span></span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Create stunning, conversion-focused landing pages that establish trust and generate leads. 

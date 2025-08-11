@@ -3486,79 +3486,34 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Contact Section */}
         <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-              <div>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-                  Get Your Free <span className="text-red-600">Quote Today</span>
-                </h2>
-                <p className="text-gray-600 mb-6">
-                  Ready to protect what matters most? Contact us for a personalized quote and consultation.
-                </p>
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-center">
-                    <Phone className="w-5 h-5 text-red-600 mr-3" />
-                    <span>(555) 123-4567</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Mail className="w-5 h-5 text-red-600 mr-3" />
-                    <span>info@youragency.com</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="w-5 h-5 text-red-600 mr-3" />
-                    <span>123 Main Street, Suite 100<br />Your City, ST 12345</span>
-                  </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+              Contact <span className="text-red-600">Us</span>
+            </h2>
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+              Ready to protect what matters most? Contact us for a personalized quote and consultation.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mb-3">
+                  <Phone className="w-6 h-6 text-white" />
                 </div>
-                <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
-                  Schedule Consultation
-                </button>
+                <h3 className="font-semibold mb-1">Phone</h3>
+                <p className="text-gray-600">(555) 123-4567</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-4">Quick Quote Request</h3>
-                <form className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input 
-                      type="text" 
-                      placeholder="First Name" 
-                      className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
-                    />
-                    <input 
-                      type="text" 
-                      placeholder="Last Name" 
-                      className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
-                    />
-                  </div>
-                  <input 
-                    type="email" 
-                    placeholder="Email Address" 
-                    className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  />
-                  <input 
-                    type="tel" 
-                    placeholder="Phone Number" 
-                    className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  />
-                  <select className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
-                    <option>Select Service</option>
-                    <option>Life Insurance</option>
-                    <option>Home Insurance</option>
-                    <option>Auto Insurance</option>
-                    <option>Health Insurance</option>
-                    <option>Business Insurance</option>
-                    <option>Investment Planning</option>
-                  </select>
-                  <textarea 
-                    placeholder="Message (optional)" 
-                    rows={3}
-                    className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  ></textarea>
-                  <button 
-                    type="submit"
-                    className="w-full bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
-                  >
-                    Request Quote
-                  </button>
-                </form>
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mb-3">
+                  <Mail className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="font-semibold mb-1">Email</h3>
+                <p className="text-gray-600">info@youragency.com</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mb-3">
+                  <MapPin className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="font-semibold mb-1">Address</h3>
+                <p className="text-gray-600">123 Main Street, Suite 100<br />Your City, ST 12345</p>
               </div>
             </div>
           </div>

@@ -3331,7 +3331,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-red-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="font-semibold mb-2 text-gray-900">User-Friendly Interface</h3>
@@ -3341,7 +3341,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
                 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-red-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <TrendingUp className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="font-semibold mb-2 text-gray-900">Financial Analytics</h3>
@@ -3351,7 +3351,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
                 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-red-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Heart className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="font-semibold mb-2 text-gray-900">Customer Support</h3>
@@ -3361,7 +3361,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
                 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-red-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Shield className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="font-semibold mb-2 text-gray-900">Security Features</h3>

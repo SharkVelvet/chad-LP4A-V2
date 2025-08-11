@@ -3316,6 +3316,70 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
+        {/* Life Insurance Section */}
+        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-red-50">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+                  Why Choose <span className="text-red-600">Life Insurance</span>
+                </h2>
+                <p className="text-gray-600 mb-6 text-sm sm:text-base leading-relaxed">
+                  Experience the future of financial protection with our secure, efficient, and user-friendly life insurance services. Our cutting-edge platform ensures your family's financial security is safe, streamlined, and easy to manage, empowering you to take control of your financial journey with confidence and convenience.
+                </p>
+                <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                  </svg>
+                  Watch the Video
+                </button>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-green-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2 text-gray-900">User-Friendly Interface</h3>
+                  <p className="text-gray-600 text-sm">
+                    Easy navigation with responsive design for various devices.
+                  </p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <TrendingUp className="w-8 h-8 text-green-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2 text-gray-900">Financial Analytics</h3>
+                  <p className="text-gray-600 text-sm">
+                    Budget tracking, expense categorization, and personalized insights.
+                  </p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Heart className="w-8 h-8 text-green-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2 text-gray-900">Customer Support</h3>
+                  <p className="text-gray-600 text-sm">
+                    24/7 service via chat, email, phone, and a detailed help center.
+                  </p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-green-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2 text-gray-900">Security Features</h3>
+                  <p className="text-gray-600 text-sm">
+                    Data encryption, fraud detection, and prevention mechanisms.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Services Section */}
         <div id="services" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">

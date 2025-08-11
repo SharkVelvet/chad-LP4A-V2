@@ -182,15 +182,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
             
-            {/* Brand Logos */}
-            <div className="mt-12 pt-8 border-t border-gray-700">
-              <div className="flex justify-center space-x-8 opacity-50">
-                <div className="text-2xl font-bold">Allstate</div>
-                <div className="text-2xl font-bold">State Farm</div>
-                <div className="text-2xl font-bold">GEICO</div>
-                <div className="text-2xl font-bold">Progressive</div>
-              </div>
-            </div>
+
           </div>
         </div>
 

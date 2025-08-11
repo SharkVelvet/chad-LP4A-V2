@@ -128,7 +128,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <img 
                     src="/attached_assets/landing-pages-8_1754879037993.jpg" 
                     alt="Insurance Professional" 
-                    className="w-full h-64 object-cover"
+                    className="w-full h-64 object-cover object-top"
                   />
                 </div>
                 

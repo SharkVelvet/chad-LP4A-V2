@@ -31,16 +31,17 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     return (
       <div className={`bg-white ${className}`}>
         {/* Hero Section with Corporate Building Background */}
-        <div className="relative min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-center px-4" style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(/attached_assets/landing-page-10-10_1754877990321.jpg)`
+        <div className="relative bg-cover bg-center bg-no-repeat flex items-center justify-center text-center px-4" style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(/attached_assets/landing-page-10-10_1754877990321.jpg)`,
+          height: '80vh'
         }}>
           {/* Overlay for text readability */}
           <div className="absolute inset-0 bg-black/30"></div>
           
           <div className="relative z-10 max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-light text-white mb-8 leading-tight">
-              There is no other<br />
-              platforms for you as like
+              Comprehensive Insurance<br />
+              Solutions for Every Need
             </h1>
             
             {/* CTA Button */}
@@ -55,14 +56,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                There is no other platforms<br />
-                for you as like
+                Protecting What Matters<br />
+                Most to You
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Our comprehensive insurance platform provides unmatched coverage options and personalized service. We understand that every client has unique needs, and our expert team is dedicated to finding the perfect solution for your specific situation.
+                From life insurance to auto coverage, our comprehensive insurance solutions protect you and your family's future. We specialize in multiple insurance types including life, auto, home, health, and business insurance to meet all your protection needs.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                With years of experience in the insurance industry, we've built relationships with top carriers to ensure you get the best rates and coverage available.
+                Our experienced agents work with top-rated carriers to find you the best coverage at competitive rates, whether you need term life insurance, comprehensive auto protection, or specialized business coverage.
               </p>
             </div>
             
@@ -70,9 +71,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="relative">
               <div className="absolute top-0 right-0 w-32 h-32 bg-red-600 transform rotate-45"></div>
               <div className="bg-white p-8 border border-gray-200 rounded-lg shadow-sm">
-                <div className="text-6xl mb-4">🎯</div>
-                <h3 className="text-xl font-semibold mb-2">Targeted Solutions</h3>
-                <p className="text-gray-600">Customized insurance plans designed specifically for your needs and budget.</p>
+                <div className="text-6xl mb-4">🏠</div>
+                <h3 className="text-xl font-semibold mb-2">Multi-Policy Savings</h3>
+                <p className="text-gray-600">Bundle your auto, home, and life insurance policies for maximum savings and simplified management.</p>
               </div>
             </div>
           </div>
@@ -81,39 +82,39 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Features Section */}
         <div className="py-16 bg-gray-50 px-4">
           <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Some awesome features</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Insurance Types We Offer</h2>
             <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
-              Discover the advantages that set our insurance services apart from the competition.
+              Comprehensive coverage options to protect every aspect of your life and financial future.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-12 h-12 text-red-600" />
+                  <Heart className="w-12 h-12 text-red-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Comprehensive Protection</h3>
+                <h3 className="text-xl font-semibold mb-3">Life Insurance</h3>
                 <p className="text-gray-600">
-                  Complete protection plans that cover all aspects of your life and business needs.
+                  Term life, whole life, and universal life policies to secure your family's financial future.
                 </p>
               </div>
               
               <div className="text-center">
                 <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-12 h-12 text-gray-700" />
+                  <Car className="w-12 h-12 text-red-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Quick Claims Processing</h3>
+                <h3 className="text-xl font-semibold mb-3">Auto Insurance</h3>
                 <p className="text-gray-600">
-                  Efficient claim processing with 24/7 customer support when you need it most.
+                  Comprehensive auto coverage including liability, collision, and comprehensive protection.
                 </p>
               </div>
               
               <div className="text-center">
                 <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-12 h-12 text-black" />
+                  <Home className="w-12 h-12 text-red-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Expert Agents</h3>
+                <h3 className="text-xl font-semibold mb-3">Home Insurance</h3>
                 <p className="text-gray-600">
-                  Experienced agents helping families and businesses protect their future.
+                  Protect your home and belongings with comprehensive homeowners and renters insurance.
                 </p>
               </div>
             </div>

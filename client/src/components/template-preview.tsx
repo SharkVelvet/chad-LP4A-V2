@@ -3201,7 +3201,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
       <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Header */}
         <div className="bg-white border-b px-4 sm:px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
-          <div className="font-bold text-lg sm:text-xl text-red-600">
+          <div 
+            className="font-bold text-lg sm:text-xl text-red-600 cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          >
             Your Agency Here
           </div>
           <div className="flex items-center space-x-2 sm:space-x-6">

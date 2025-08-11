@@ -3200,26 +3200,28 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     return (
       <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Header */}
-        <div className="bg-white/95 border-b px-4 sm:px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-md">
-          <div 
-            className="font-bold text-lg sm:text-xl text-red-600 cursor-pointer hover:opacity-80 transition-opacity"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          >
-            Your Agency Here
-          </div>
-          <div className="flex items-center space-x-2 sm:space-x-6">
-            <div className="hidden md:flex space-x-6 text-sm text-gray-700">
-              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
-              <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
-              <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
-              <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="hover:text-red-600 cursor-pointer transition-colors">Testimonials</a>
-            </div>
-            <button 
-              onClick={(e) => handleSmoothScroll(e, 'contact')} 
-              className="bg-red-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded font-semibold hover:bg-red-700 transition-colors text-xs sm:text-sm"
+        <div className="bg-white/95 border-b shadow-sm sticky top-0 z-50 backdrop-blur-md">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between" style={{ maxWidth: '1200px' }}>
+            <div 
+              className="font-bold text-lg sm:text-xl text-red-600 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             >
-              Contact Us
-            </button>
+              Your Agency Here
+            </div>
+            <div className="flex items-center space-x-2 sm:space-x-6">
+              <div className="hidden md:flex space-x-6 text-sm text-gray-700">
+                <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
+                <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
+                <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
+                <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="hover:text-red-600 cursor-pointer transition-colors">Testimonials</a>
+              </div>
+              <button 
+                onClick={(e) => handleSmoothScroll(e, 'contact')} 
+                className="bg-red-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded font-semibold hover:bg-red-700 transition-colors text-xs sm:text-sm"
+              >
+                Contact Us
+              </button>
+            </div>
           </div>
         </div>
 

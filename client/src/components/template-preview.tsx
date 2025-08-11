@@ -41,9 +41,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               platforms for you as like
             </h1>
             
-            {/* Red accent dot */}
-            <div className="w-3 h-3 bg-red-600 rounded-full mx-auto mb-8"></div>
-            
             {/* CTA Button */}
             <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded font-medium transition-colors">
               Learn More

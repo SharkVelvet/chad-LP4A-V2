@@ -201,7 +201,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-red-600 transform -rotate-45"></div>
               <div className="relative z-10">
                 <img 
-                  src={cameronSnapshotImage} 
+                  src="/attached_assets/landing-pages-8_1754878927424.jpg" 
                   alt="Insurance Professional" 
                   className="w-full h-96 object-cover rounded-lg shadow-lg"
                 />

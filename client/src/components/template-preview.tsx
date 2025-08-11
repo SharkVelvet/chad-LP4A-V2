@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car } from "lucide-react";
 import temp1Image from "@assets/temp1-pr.jpg";
 import temp2Image from "@assets/temp2-pr.jpg";
 import temp3Image from "@assets/temp3-pr.jpg";
@@ -3189,6 +3189,429 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
             <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
               © 2025 Your Insurance Group. All rights reserved.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (templateSlug === "Template-7") {
+    return (
+      <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
+        {/* Header */}
+        <div className="bg-white border-b px-4 sm:px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
+          <div className="font-bold text-lg sm:text-xl text-red-600">
+            FinancialPro
+          </div>
+          <div className="flex items-center space-x-2 sm:space-x-6">
+            <div className="hidden md:flex space-x-6 text-sm text-gray-700">
+              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
+              <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
+              <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
+              <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="hover:text-red-600 cursor-pointer transition-colors">Testimonials</a>
+            </div>
+            <button 
+              onClick={(e) => handleSmoothScroll(e, 'contact')} 
+              className="bg-red-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded font-semibold hover:bg-red-700 transition-colors text-xs sm:text-sm"
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
+
+        {/* Hero Section */}
+        <div id="hero" className="relative bg-gradient-to-r from-purple-50 to-blue-50 px-4 sm:px-6 py-16 sm:py-20">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+                Secure, Reliable, and 
+                <span className="block text-red-600">Client-Friendly</span>
+                <span className="block text-gray-700">Financial Solutions</span>
+              </h1>
+              <p className="text-lg text-gray-600 mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0">
+                Providing comprehensive financial services and solutions designed to protect what matters most to you and your family.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                  Get Started Today
+                </button>
+                <button className="border-2 border-red-600 text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors">
+                  Learn More
+                </button>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="bg-white p-6 rounded-lg shadow-lg border max-w-md mx-auto lg:ml-auto">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mr-4">
+                    <User className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Sarah Johnson</h3>
+                    <p className="text-sm text-gray-600">Licensed Financial Advisor</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">
+                  "I help families achieve financial security through personalized insurance and investment strategies."
+                </p>
+                <div className="flex items-center text-sm text-gray-500">
+                  <Phone className="w-4 h-4 mr-2" />
+                  (555) 123-4567
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Why Choose Us Section */}
+        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                Why Choose <span className="text-red-600">Us</span>
+              </h2>
+              <p className="text-gray-600 max-w-3xl mx-auto text-sm sm:text-base">
+                We're committed to providing exceptional service and tailored financial solutions that meet your unique needs.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+              <div className="text-center p-6">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-red-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Trusted Protection</h3>
+                <p className="text-gray-600 text-sm">
+                  Comprehensive coverage options to protect you and your loved ones from life's uncertainties.
+                </p>
+              </div>
+              <div className="text-center p-6">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-red-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Personal Service</h3>
+                <p className="text-gray-600 text-sm">
+                  One-on-one guidance from experienced professionals who understand your financial goals.
+                </p>
+              </div>
+              <div className="text-center p-6">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="w-8 h-8 text-red-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Proven Results</h3>
+                <p className="text-gray-600 text-sm">
+                  Track record of helping clients achieve their financial objectives and build lasting wealth.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Services Section */}
+        <div id="services" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                Our <span className="text-red-600">Services</span>
+              </h2>
+              <p className="text-gray-600 max-w-3xl mx-auto text-sm sm:text-base">
+                Comprehensive financial services designed to meet all your insurance and investment needs.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Life Insurance</h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Protect your family's financial future with term, whole, and universal life insurance options.
+                </p>
+                <button className="text-sm font-semibold hover:opacity-80 transition-colors" style={{ color: '#6458AF' }}>
+                  Learn More →
+                </button>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Home className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Home Insurance</h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Comprehensive home protection covering property, belongings, and liability coverage.
+                </p>
+                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                  Learn More →
+                </button>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Car className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Auto Insurance</h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Complete auto coverage with competitive rates and excellent customer service.
+                </p>
+                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                  Learn More →
+                </button>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <TrendingUp className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Investment Planning</h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Strategic investment solutions to help grow your wealth over time.
+                </p>
+                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                  Learn More →
+                </button>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Heart className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Health Insurance</h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Quality health coverage options for individuals, families, and businesses.
+                </p>
+                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                  Learn More →
+                </button>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Briefcase className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Business Insurance</h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Protect your business with comprehensive commercial insurance solutions.
+                </p>
+                <button className="text-red-600 text-sm font-semibold hover:text-red-700">
+                  Learn More →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonials Section */}
+        <div id="testimonials" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                Client <span className="text-red-600">Testimonials</span>
+              </h2>
+              <p className="text-gray-600 max-w-3xl mx-auto text-sm sm:text-base">
+                Hear what our satisfied clients have to say about our services.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <div className="flex items-center mb-4">
+                  <div className="flex text-yellow-400 text-sm">
+                    ★★★★★
+                  </div>
+                </div>
+                <p className="text-gray-600 text-sm mb-4 italic">
+                  "Sarah made the entire process so easy. She explained everything clearly and found me the perfect life insurance policy for my family's needs."
+                </p>
+                <div className="text-sm">
+                  <div className="font-semibold">Michael Chen</div>
+                  <div className="text-gray-500">Family Protection Plan</div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <div className="flex items-center mb-4">
+                  <div className="flex text-yellow-400 text-sm">
+                    ★★★★★
+                  </div>
+                </div>
+                <p className="text-gray-600 text-sm mb-4 italic">
+                  "Outstanding service! They helped me bundle my home and auto insurance, saving me hundreds of dollars while increasing my coverage."
+                </p>
+                <div className="text-sm">
+                  <div className="font-semibold">Jennifer Lopez</div>
+                  <div className="text-gray-500">Home & Auto Bundle</div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <div className="flex items-center mb-4">
+                  <div className="flex text-yellow-400 text-sm">
+                    ★★★★★
+                  </div>
+                </div>
+                <p className="text-gray-600 text-sm mb-4 italic">
+                  "Professional, knowledgeable, and always available when I need them. I recommend them to all my friends and family."
+                </p>
+                <div className="text-sm">
+                  <div className="font-semibold">David Wilson</div>
+                  <div className="text-gray-500">Business Insurance</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Statistics Section */}
+        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-red-600">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 text-center text-white">
+              <div>
+                <div className="text-3xl sm:text-4xl font-bold mb-2">2500+</div>
+                <div className="text-sm opacity-90">Happy Clients</div>
+              </div>
+              <div>
+                <div className="text-3xl sm:text-4xl font-bold mb-2">15+</div>
+                <div className="text-sm opacity-90">Years Experience</div>
+              </div>
+              <div>
+                <div className="text-3xl sm:text-4xl font-bold mb-2">50M+</div>
+                <div className="text-sm opacity-90">Coverage Provided</div>
+              </div>
+              <div>
+                <div className="text-3xl sm:text-4xl font-bold mb-2">98%</div>
+                <div className="text-sm opacity-90">Client Satisfaction</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                  Get Your Free <span className="text-red-600">Quote Today</span>
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  Ready to protect what matters most? Contact us for a personalized quote and consultation.
+                </p>
+                <div className="space-y-4 mb-6">
+                  <div className="flex items-center">
+                    <Phone className="w-5 h-5 text-red-600 mr-3" />
+                    <span>(555) 123-4567</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Mail className="w-5 h-5 text-red-600 mr-3" />
+                    <span>info@financialpro.com</span>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="w-5 h-5 text-red-600 mr-3" />
+                    <span>123 Financial Blvd, Suite 100<br />Your City, ST 12345</span>
+                  </div>
+                </div>
+                <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                  Schedule Consultation
+                </button>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h3 className="text-xl font-semibold mb-4">Quick Quote Request</h3>
+                <form className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input 
+                      type="text" 
+                      placeholder="First Name" 
+                      className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    />
+                    <input 
+                      type="text" 
+                      placeholder="Last Name" 
+                      className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    />
+                  </div>
+                  <input 
+                    type="email" 
+                    placeholder="Email Address" 
+                    className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  />
+                  <input 
+                    type="tel" 
+                    placeholder="Phone Number" 
+                    className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  />
+                  <select className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <option>Select Service</option>
+                    <option>Life Insurance</option>
+                    <option>Home Insurance</option>
+                    <option>Auto Insurance</option>
+                    <option>Health Insurance</option>
+                    <option>Business Insurance</option>
+                    <option>Investment Planning</option>
+                  </select>
+                  <textarea 
+                    placeholder="Message (optional)" 
+                    rows={3}
+                    className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  ></textarea>
+                  <button 
+                    type="submit"
+                    className="w-full bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                  >
+                    Request Quote
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="bg-gray-900 text-white px-4 sm:px-6 py-8 sm:py-12">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 mb-8">
+              <div>
+                <h4 className="font-semibold mb-4 text-red-600">FinancialPro</h4>
+                <p className="text-gray-400 text-sm mb-4">
+                  Your trusted partner for comprehensive financial protection and planning solutions.
+                </p>
+                <div className="flex space-x-4 text-gray-400">
+                  <span className="cursor-pointer hover:opacity-80">Facebook</span>
+                  <span className="cursor-pointer hover:opacity-80">LinkedIn</span>
+                  <span className="cursor-pointer hover:opacity-80">Twitter</span>
+                </div>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4">Services</h4>
+                <ul className="space-y-2 text-gray-400 text-sm">
+                  <li>Life Insurance</li>
+                  <li>Home Insurance</li>
+                  <li>Auto Insurance</li>
+                  <li>Health Insurance</li>
+                  <li>Business Insurance</li>
+                  <li>Investment Planning</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4">Company</h4>
+                <ul className="space-y-2 text-gray-400 text-sm">
+                  <li>About Us</li>
+                  <li>Our Team</li>
+                  <li>Contact</li>
+                  <li>Blog</li>
+                  <li>Careers</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4">Support</h4>
+                <ul className="space-y-2 text-gray-400 text-sm">
+                  <li>Help Center</li>
+                  <li>Claims</li>
+                  <li>Policy Portal</li>
+                  <li>Contact Support</li>
+                </ul>
+              </div>
+            </div>
+            <div className="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+              © 2025 FinancialPro. All rights reserved. | Privacy Policy | Terms of Service
             </div>
           </div>
         </div>

@@ -3540,7 +3540,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             {/* Tagline */}
             <div className="mb-8">
-              <p className="text-gray-400 max-w-2xl mx-auto">
+              <p className="text-gray-400 text-sm max-w-2xl mx-auto">
                 Professional insurance services with a personal touch. Your family's protection is our priority.
               </p>
             </div>

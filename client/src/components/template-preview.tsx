@@ -193,33 +193,34 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Responsive Design Section */}
-        <div className="py-16 px-4">
+        {/* Insurance Professional Section */}
+        <div className="py-24 px-4">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Red geometric accent */}
+            {/* Professional Image with Red geometric accent */}
             <div className="relative order-2 lg:order-1">
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-red-600 transform -rotate-45"></div>
-              <div className="bg-gray-100 p-8 rounded-lg">
-                <div className="bg-white rounded p-4 shadow-sm">
-                  <div className="h-32 bg-gradient-to-r from-gray-200 to-gray-300 rounded mb-4"></div>
-                  <div className="space-y-2">
-                    <div className="h-2 bg-gray-200 rounded w-3/4"></div>
-                    <div className="h-2 bg-gray-200 rounded w-1/2"></div>
-                  </div>
-                </div>
+              <div className="relative z-10">
+                <img 
+                  src={cameronSnapshotImage} 
+                  alt="Insurance Professional" 
+                  className="w-full h-96 object-cover rounded-lg shadow-lg"
+                />
               </div>
             </div>
             
             <div className="order-1 lg:order-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Responsive design, just<br />
-                need your tap
+                Professional Insurance<br />
+                Guidance You Can Trust
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Our digital platform is designed with you in mind. Access your policies, file claims, and get support from any device, anywhere, anytime.
+                With decades of combined experience in the insurance industry, our team understands the complexities of protecting what matters most to you and your family. We work with leading carriers to provide comprehensive coverage options.
+              </p>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                From life insurance policies that secure your family's future to health coverage that protects your financial well-being, we're here to guide you through every decision with expertise and care.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Simple, intuitive design that puts the power of insurance management at your fingertips.
+                Our personalized approach ensures that your insurance portfolio is tailored to your unique needs, budget, and long-term goals.
               </p>
             </div>
           </div>
@@ -406,11 +407,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
             
-            <div className="text-center mt-12">
-              <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded font-medium transition-colors">
-                Schedule Consultation
-              </button>
-            </div>
+
           </div>
         </div>
 
@@ -431,7 +428,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             {/* Agency Name */}
             <div className="text-center mb-4">
-              <h3 className="text-xl font-semibold text-red-400">Your Agency Here</h3>
+              <h3 className="text-xl font-semibold text-red-600">Your Agency Here</h3>
               <p className="text-gray-400 text-sm mt-2">info@youragency.com</p>
             </div>
             

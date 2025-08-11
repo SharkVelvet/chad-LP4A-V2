@@ -118,9 +118,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
             
-            {/* Red geometric accent */}
+            {/* Red geometric accent with professional image */}
             <div className="relative">
               <div className="absolute top-0 right-0 w-16 h-16 bg-red-600 transform rotate-45"></div>
+              
+              {/* Professional headshot above the content box */}
+              <div className="mb-6">
+                <img 
+                  src="/attached_assets/landing-pages-8_1754879037993.jpg" 
+                  alt="Insurance Professional" 
+                  className="w-32 h-32 rounded-full object-cover shadow-lg mx-auto border-4 border-white"
+                />
+              </div>
+              
               <div className="bg-white p-8 border border-gray-200 rounded-lg shadow-sm">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">

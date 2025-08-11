@@ -3255,12 +3255,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="relative">
               <div className="bg-white p-6 rounded-lg shadow-lg border max-w-md mx-auto lg:ml-auto">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 rounded-full mr-4 overflow-hidden bg-gray-300 flex items-center justify-center">
-                    <svg width="48" height="48" viewBox="0 0 48 48" className="w-full h-full">
-                      <circle cx="24" cy="24" r="24" fill="#9ca3af"/>
-                      <circle cx="24" cy="18" r="7" fill="#ffffff"/>
-                      <path d="M8 40 C8 32, 15 26, 24 26 C33 26, 40 32, 40 40 L40 48 L8 48 Z" fill="#ffffff"/>
-                    </svg>
+                  <div className="w-12 h-12 rounded-full mr-4 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-xl">
+                    JD
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900">Your Name Here</h3>

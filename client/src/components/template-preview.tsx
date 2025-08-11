@@ -230,7 +230,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div>
-                <div className="w-12 h-12 bg-gray-700 rounded mx-auto mb-4"></div>
+                <div className="w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-red-600" />
+                </div>
                 <h3 className="text-lg font-semibold mb-3">Insurance Plus</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Comprehensive coverage with additional benefits and priority customer service for complete peace of mind.
@@ -238,7 +240,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
               
               <div>
-                <div className="w-12 h-12 bg-gray-700 rounded mx-auto mb-4"></div>
+                <div className="w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                  <Briefcase className="w-8 h-8 text-red-600" />
+                </div>
                 <h3 className="text-lg font-semibold mb-3">Business Plus</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Specialized business insurance solutions designed to protect your company's assets and future growth.
@@ -246,7 +250,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
               
               <div>
-                <div className="w-12 h-12 bg-gray-700 rounded mx-auto mb-4"></div>
+                <div className="w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-8 h-8 text-red-600" />
+                </div>
                 <h3 className="text-lg font-semibold mb-3">Premium Plus</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Our highest tier of service with exclusive benefits and personalized insurance consultation.

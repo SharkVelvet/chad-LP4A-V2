@@ -27,6 +27,268 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     }
   };
 
+  if (templateSlug === "Template-8") {
+    return (
+      <div className={`bg-white ${className}`}>
+        {/* Hero Section with Mountain Background */}
+        <div className="relative min-h-screen bg-gradient-to-b from-gray-200 to-gray-300 flex items-center justify-center text-center px-4">
+          {/* Mountain backdrop effect */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
+          
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-light text-gray-700 mb-8 leading-tight">
+              There is no other<br />
+              platforms for you as like
+            </h1>
+            
+            {/* Red accent dot */}
+            <div className="w-3 h-3 bg-red-600 rounded-full mx-auto mb-8"></div>
+            
+            {/* CTA Button */}
+            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded font-medium transition-colors">
+              Get Started Today
+            </button>
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="py-16 px-4">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                There is no other platforms<br />
+                for you as like
+              </h2>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Our comprehensive insurance platform provides unmatched coverage options and personalized service. We understand that every client has unique needs, and our expert team is dedicated to finding the perfect solution for your specific situation.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                With years of experience in the insurance industry, we've built relationships with top carriers to ensure you get the best rates and coverage available.
+              </p>
+            </div>
+            
+            {/* Red geometric accent */}
+            <div className="relative">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-red-600 transform rotate-45"></div>
+              <div className="bg-white p-8 border border-gray-200 rounded-lg shadow-sm">
+                <div className="text-6xl mb-4">🎯</div>
+                <h3 className="text-xl font-semibold mb-2">Targeted Solutions</h3>
+                <p className="text-gray-600">Customized insurance plans designed specifically for your needs and budget.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="py-16 bg-gray-50 px-4">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Some awesome features</h2>
+            <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+              Discover the advantages that set our insurance services apart from the competition.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Some awesome features</h3>
+                <p className="text-gray-600">
+                  Comprehensive protection plans that cover all aspects of your life and business needs.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Some awesome features</h3>
+                <p className="text-gray-600">
+                  Quick and efficient claim processing with 24/7 customer support when you need it most.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Some awesome features</h3>
+                <p className="text-gray-600">
+                  Expert agents with years of experience helping families and businesses protect their future.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Responsive Design Section */}
+        <div className="py-16 px-4">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Red geometric accent */}
+            <div className="relative order-2 lg:order-1">
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-red-600 transform -rotate-45"></div>
+              <div className="bg-gray-100 p-8 rounded-lg">
+                <div className="bg-white rounded p-4 shadow-sm">
+                  <div className="h-32 bg-gradient-to-r from-gray-200 to-gray-300 rounded mb-4"></div>
+                  <div className="space-y-2">
+                    <div className="h-2 bg-gray-200 rounded w-3/4"></div>
+                    <div className="h-2 bg-gray-200 rounded w-1/2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="order-1 lg:order-2">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Responsive design, just<br />
+                need your tap
+              </h2>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Our digital platform is designed with you in mind. Access your policies, file claims, and get support from any device, anywhere, anytime.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Simple, intuitive design that puts the power of insurance management at your fingertips.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Dark Services Section */}
+        <div className="py-16 bg-gray-900 text-white px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="w-12 h-12 bg-gray-700 rounded mx-auto mb-4"></div>
+                <h3 className="text-lg font-semibold mb-3">Insurance Plus</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Comprehensive coverage with additional benefits and priority customer service for complete peace of mind.
+                </p>
+              </div>
+              
+              <div>
+                <div className="w-12 h-12 bg-gray-700 rounded mx-auto mb-4"></div>
+                <h3 className="text-lg font-semibold mb-3">Business Plus</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Specialized business insurance solutions designed to protect your company's assets and future growth.
+                </p>
+              </div>
+              
+              <div>
+                <div className="w-12 h-12 bg-gray-700 rounded mx-auto mb-4"></div>
+                <h3 className="text-lg font-semibold mb-3">Premium Plus</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Our highest tier of service with exclusive benefits and personalized insurance consultation.
+                </p>
+              </div>
+            </div>
+            
+            {/* Brand Logos */}
+            <div className="mt-12 pt-8 border-t border-gray-700">
+              <div className="flex justify-center space-x-8 opacity-50">
+                <div className="text-2xl font-bold">Allstate</div>
+                <div className="text-2xl font-bold">State Farm</div>
+                <div className="text-2xl font-bold">GEICO</div>
+                <div className="text-2xl font-bold">Progressive</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Final Features Section */}
+        <div className="py-16 bg-gray-50 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-12">Some awesome features</h2>
+            
+            {/* Device Mockup */}
+            <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+              <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
+                <div className="text-gray-500 text-lg">Insurance Dashboard Preview</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Statistics Section */}
+        <div className="py-16 bg-blue-900 text-white px-4">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">Over 1000 designers are using ...</h2>
+            <p className="text-blue-200 mb-12 max-w-2xl mx-auto">
+              Join thousands of satisfied customers who trust us with their insurance needs.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-blue-800 p-6 rounded-lg">
+                <div className="text-3xl font-bold mb-2">1000+</div>
+                <div className="text-blue-200">Happy Clients</div>
+              </div>
+              <div className="bg-blue-800 p-6 rounded-lg">
+                <div className="text-3xl font-bold mb-2">15+</div>
+                <div className="text-blue-200">Years Experience</div>
+              </div>
+              <div className="bg-blue-800 p-6 rounded-lg">
+                <div className="text-3xl font-bold mb-2">99%</div>
+                <div className="text-blue-200">Satisfaction Rate</div>
+              </div>
+            </div>
+            
+            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded font-medium transition-colors mt-8">
+              Get Started Now
+            </button>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="bg-red-600 text-white px-4 py-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div>
+                <h3 className="font-semibold mb-3">Company</h3>
+                <ul className="space-y-2 text-red-100 text-sm">
+                  <li><a href="#" className="hover:text-white">About Us</a></li>
+                  <li><a href="#" className="hover:text-white">Our Team</a></li>
+                  <li><a href="#" className="hover:text-white">Careers</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-3">Support</h3>
+                <ul className="space-y-2 text-red-100 text-sm">
+                  <li><a href="#" className="hover:text-white">Help Center</a></li>
+                  <li><a href="#" className="hover:text-white">Contact</a></li>
+                  <li><a href="#" className="hover:text-white">Claims</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-3">Services</h3>
+                <ul className="space-y-2 text-red-100 text-sm">
+                  <li><a href="#" className="hover:text-white">Auto Insurance</a></li>
+                  <li><a href="#" className="hover:text-white">Home Insurance</a></li>
+                  <li><a href="#" className="hover:text-white">Life Insurance</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-3">Get Newsletter</h3>
+                <div className="flex">
+                  <input 
+                    type="email" 
+                    placeholder="Your email" 
+                    className="flex-1 px-3 py-2 rounded-l text-gray-900 text-sm"
+                  />
+                  <button className="bg-red-700 hover:bg-red-800 px-4 py-2 rounded-r transition-colors">
+                    Subscribe
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <div className="border-t border-red-500 mt-8 pt-8 text-center text-red-100 text-sm">
+              <p>© 2025 Your Agency Here. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (templateSlug === "Template-1") {
     return (
       <div className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
@@ -3614,6 +3876,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
       </div>
     );
   }
+
+
 
   // Default fallback for other templates
   return (

@@ -127,7 +127,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <Trophy className="w-10 h-10 text-red-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">CFP Certified Financial Planner</h3>
+                    <h3 className="text-xl font-semibold mb-2">CFP Certified Life Insurance Agent</h3>
                     <p className="text-gray-600">Award-winning service with professional certifications and extensive industry recognition.</p>
                   </div>
                 </div>

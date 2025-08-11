@@ -3225,7 +3225,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Hero Section */}
         <div id="hero" className="relative bg-gradient-to-r from-purple-50 to-blue-50 px-4 sm:px-6 py-16 sm:py-20">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center" style={{ maxWidth: '1280px' }}>
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center" style={{ maxWidth: '1080px' }}>
             <div className="text-center lg:text-left">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
                 Secure, Reliable, and 
@@ -3279,7 +3279,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Why Choose Us Section */}
         <div id="about" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
-          <div className="max-w-7xl mx-auto" style={{ maxWidth: '1280px' }}>
+          <div className="max-w-7xl mx-auto" style={{ maxWidth: '1080px' }}>
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Why Choose <span className="text-red-600">Us</span>
@@ -3322,7 +3322,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Life Insurance Section */}
         <div className="px-4 sm:px-6 py-12 sm:py-16 bg-red-50">
-          <div className="max-w-7xl mx-auto" style={{ maxWidth: '1280px' }}>
+          <div className="max-w-7xl mx-auto" style={{ maxWidth: '1080px' }}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
                 <h2 className="text-2xl sm:text-3xl font-bold mb-6">
@@ -3380,7 +3380,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Services Section */}
         <div id="services" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto" style={{ maxWidth: '1280px' }}>
+          <div className="max-w-7xl mx-auto" style={{ maxWidth: '1080px' }}>
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Our <span className="text-red-600">Services</span>
@@ -3455,7 +3455,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Testimonials Section */}
         <div id="testimonials" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
-          <div className="max-w-7xl mx-auto" style={{ maxWidth: '1280px' }}>
+          <div className="max-w-7xl mx-auto" style={{ maxWidth: '1080px' }}>
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Client <span className="text-red-600">Testimonials</span>
@@ -3539,7 +3539,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Contact Section */}
         <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto text-center" style={{ maxWidth: '1280px' }}>
+          <div className="max-w-4xl mx-auto text-center" style={{ maxWidth: '1080px' }}>
             <h2 className="text-2xl sm:text-3xl font-bold mb-4">
               Contact <span className="text-red-600">Us</span>
             </h2>
@@ -3574,7 +3574,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Footer */}
         <div className="bg-gray-900 text-white px-4 sm:px-6 py-12">
-          <div className="max-w-4xl mx-auto text-center" style={{ maxWidth: '1280px' }}>
+          <div className="max-w-4xl mx-auto text-center" style={{ maxWidth: '1080px' }}>
             {/* Navigation Links */}
             <div className="flex flex-wrap justify-center space-x-6 mb-8 text-sm text-gray-400">
               <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-white transition-colors">Home</a>

@@ -3520,48 +3520,39 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-900 text-white px-4 sm:px-6 py-8 sm:py-12">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 mb-8">
-              <div>
-                <h4 className="font-semibold mb-4 text-red-600">Your Agency Here</h4>
-                <p className="text-gray-400 text-sm">
-                  Your trusted partner for comprehensive insurance protection and planning solutions.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Services</h4>
-                <ul className="space-y-2 text-gray-400 text-sm">
-                  <li>Life Insurance</li>
-                  <li>Home Insurance</li>
-                  <li>Auto Insurance</li>
-                  <li>Health Insurance</li>
-                  <li>Business Insurance</li>
-                  <li>Investment Planning</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Company</h4>
-                <ul className="space-y-2 text-gray-400 text-sm">
-                  <li>About Us</li>
-                  <li>Our Team</li>
-                  <li>Contact</li>
-                  <li>Blog</li>
-                  <li>Careers</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Support</h4>
-                <ul className="space-y-2 text-gray-400 text-sm">
-                  <li>Help Center</li>
-                  <li>Claims</li>
-                  <li>Policy Portal</li>
-                  <li>Contact Support</li>
-                </ul>
-              </div>
+        <div className="bg-gray-900 text-white px-4 sm:px-6 py-12">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Navigation Links */}
+            <div className="flex flex-wrap justify-center space-x-6 mb-8 text-sm text-gray-400">
+              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-white transition-colors">Home</a>
+              <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-white transition-colors">About</a>
+              <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-white transition-colors">Services</a>
+              <a href="#" className="hover:text-white transition-colors">Why We Serve</a>
+              <a href="#testimonials" onClick={(e) => handleSmoothScroll(e, 'testimonials')} className="hover:text-white transition-colors">Testimonials</a>
+              <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="hover:text-white transition-colors">Contact</a>
             </div>
-            <div className="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
-              © 2025 Your Agency Here. All rights reserved. | Privacy Policy | Terms of Service
+            
+            {/* Company Name */}
+            <div className="mb-4">
+              <h2 className="text-2xl font-bold text-red-600 mb-2">Your Agency Here</h2>
+              <p className="text-gray-400 text-sm">info@youragency.com</p>
+            </div>
+            
+            {/* Tagline */}
+            <div className="mb-8">
+              <p className="text-gray-400 max-w-2xl mx-auto">
+                Professional insurance services with a personal touch. Your family's protection is our priority.
+              </p>
+            </div>
+            
+            {/* Copyright */}
+            <div className="border-t border-gray-700 pt-6">
+              <p className="text-gray-400 text-sm">
+                © 2025 Your Agency Here. All rights reserved. | Privacy Policy | Terms of Service
+              </p>
+              <p className="text-gray-500 text-xs mt-2">
+                Built by landingpagesforagents.com
+              </p>
             </div>
           </div>
         </div>

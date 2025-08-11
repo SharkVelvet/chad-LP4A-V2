@@ -3255,11 +3255,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="relative">
               <div className="bg-white p-6 rounded-lg shadow-lg border max-w-md mx-auto lg:ml-auto">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 rounded-full mr-4 overflow-hidden bg-gray-200">
-                    <svg viewBox="0 0 100 100" className="w-full h-full">
-                      <circle cx="50" cy="50" r="50" fill="#e5e7eb"/>
-                      <circle cx="50" cy="35" r="12" fill="#6b7280"/>
-                      <path d="M25 75 C25 65, 35 55, 50 55 C65 55, 75 65, 75 75 L75 100 L25 100 Z" fill="#6b7280"/>
+                  <div className="w-12 h-12 rounded-full mr-4 overflow-hidden bg-gray-300 flex items-center justify-center">
+                    <svg width="48" height="48" viewBox="0 0 48 48" className="w-full h-full">
+                      <circle cx="24" cy="24" r="24" fill="#9ca3af"/>
+                      <circle cx="24" cy="18" r="7" fill="#ffffff"/>
+                      <path d="M8 40 C8 32, 15 26, 24 26 C33 26, 40 32, 40 40 L40 48 L8 48 Z" fill="#ffffff"/>
                     </svg>
                   </div>
                   <div>

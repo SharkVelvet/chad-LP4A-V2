@@ -3236,10 +3236,16 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 Providing comprehensive financial services and solutions designed to protect what matters most to you and your family.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                <button 
+                  onClick={(e) => handleSmoothScroll(e, 'contact')}
+                  className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors cursor-pointer"
+                >
                   Get Started Today
                 </button>
-                <button className="border-2 border-red-600 text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors">
+                <button 
+                  onClick={(e) => handleSmoothScroll(e, 'services')}
+                  className="border-2 border-red-600 text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors cursor-pointer"
+                >
                   Learn More
                 </button>
               </div>

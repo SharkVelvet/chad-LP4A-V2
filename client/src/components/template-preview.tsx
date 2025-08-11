@@ -120,13 +120,17 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             {/* Red geometric accent */}
             <div className="relative">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-red-600 transform rotate-45"></div>
+              <div className="absolute top-0 right-0 w-16 h-16 bg-red-600 transform rotate-45"></div>
               <div className="bg-white p-8 border border-gray-200 rounded-lg shadow-sm">
-                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Trophy className="w-12 h-12 text-red-600" />
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                    <Trophy className="w-10 h-10 text-red-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">CFP Certified Financial Planner</h3>
+                    <p className="text-gray-600">Award-winning service with professional certifications and extensive industry recognition.</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">CFP Certified Financial Planner</h3>
-                <p className="text-gray-600">Award-winning service with professional certifications and extensive industry recognition.</p>
               </div>
             </div>
           </div>

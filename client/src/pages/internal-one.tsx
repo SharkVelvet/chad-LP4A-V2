@@ -262,7 +262,12 @@ export default function InternalOne() {
       </>
 
       {/* Hero Section */}
-      <section className="py-20" style={{ background: 'linear-gradient(135deg, #f8f6ff 0%, #ffffff 100%)' }}>
+      <section 
+        className="py-20 relative bg-cover bg-center bg-no-repeat" 
+        style={{ 
+          backgroundImage: `linear-gradient(rgba(248, 246, 255, 0.95), rgba(255, 255, 255, 0.95)), url('/attached_assets/landingpage-33_1755041273153.png')`
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="mb-4" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>

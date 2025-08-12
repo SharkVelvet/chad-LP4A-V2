@@ -263,13 +263,20 @@ export default function InternalOne() {
 
       {/* Hero Section */}
       <section 
-        className="py-20 relative bg-cover bg-center bg-no-repeat" 
+        className="py-20 relative"
         style={{ 
-          background: 'linear-gradient(135deg, #f8f6ff 0%, #ffffff 100%)',
-          backgroundImage: `url('/attached_assets/landingpage-4_1755041417041.png')`,
-          backgroundBlendMode: 'overlay'
+          background: 'linear-gradient(135deg, #f8f6ff 0%, #ffffff 100%)'
         }}
       >
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url('/attached_assets/landingpage-4_1755041417041.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        ></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="mb-4" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>

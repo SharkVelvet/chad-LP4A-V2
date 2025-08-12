@@ -268,15 +268,7 @@ export default function InternalOne() {
           background: 'linear-gradient(135deg, #f8f6ff 0%, #ffffff 100%)'
         }}
       >
-        <div 
-          className="absolute inset-0 opacity-70"
-          style={{
-            backgroundImage: `url('/attached_assets/landingpage-hero8_1755042107231.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        ></div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <Badge className="mb-4" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>

@@ -271,7 +271,7 @@ export default function InternalOne() {
         <div 
           className="absolute inset-0 opacity-70"
           style={{
-            backgroundImage: `url('/attached_assets/landingpage-4_1755041417041.png')`,
+            backgroundImage: `url('/attached_assets/landingpage-555_1755041908155.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'

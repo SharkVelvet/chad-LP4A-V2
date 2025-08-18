@@ -100,92 +100,64 @@ export default function InternalOne() {
         {/* Static Template Gallery */}
         <div className="max-w-6xl mx-auto px-4">
           {/* First Row */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-            <div className="w-full h-32 rounded-xl shadow-lg overflow-hidden">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
               <img 
                 src="/attached_assets/lpfa-pic1_1754365592923.jpg" 
                 alt="Insurance Agent Template 1"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-full h-32 rounded-xl shadow-lg overflow-hidden">
+            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
               <img 
                 src="/attached_assets/lpfa-pic2_1754365592925.jpg" 
                 alt="Insurance Agent Template 2"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-full h-32 rounded-xl shadow-lg overflow-hidden">
+            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
               <img 
                 src="/attached_assets/lpfa-pic3_1754365592924.jpg" 
                 alt="Insurance Agent Template 3"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-full h-32 rounded-xl shadow-lg overflow-hidden">
+            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
               <img 
                 src="/attached_assets/lpfa-pic4_1754365592924.jpg" 
                 alt="Insurance Agent Template 4"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-full h-32 rounded-xl shadow-lg overflow-hidden">
+          </div>
+          
+          {/* Second Row */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
               <img 
                 src="/attached_assets/lpfa-pic5_1754365592924.jpg" 
                 alt="Insurance Agent Template 5"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-full h-32 rounded-xl shadow-lg overflow-hidden">
+            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
               <img 
                 src="/attached_assets/tempalte1-hero.jpg" 
                 alt="Insurance Agent Template 6"
                 className="w-full h-full object-cover"
               />
             </div>
-          </div>
-          
-          {/* Second Row */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
+            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
               <img 
-                src="/attached_assets/landing-pages-8_1754878927424.jpg" 
+                src="/attached_assets/temp1-pr.jpg" 
                 alt="Insurance Agent Template 7"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
-              <img 
-                src="/attached_assets/landing-pages-8_1754879037993.jpg" 
-                alt="Insurance Agent Template 8"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
-              <img 
-                src="/attached_assets/temp1-pr.jpg" 
-                alt="Insurance Agent Template 9"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
+            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
               <img 
                 src="/attached_assets/temp2-pr.jpg" 
-                alt="Insurance Agent Template 10"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
-              <img 
-                src="/attached_assets/temp3-pr.jpg" 
-                alt="Insurance Agent Template 11"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
-              <img 
-                src="/attached_assets/temp4-pr.jpg" 
-                alt="Insurance Agent Template 12"
+                alt="Insurance Agent Template 8"
                 className="w-full h-full object-cover"
               />
             </div>

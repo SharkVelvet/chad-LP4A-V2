@@ -243,16 +243,16 @@ export default function InternalOne() {
             <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
               Are you looking to grow your clients or grow your team?
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link 
                 href="/get-clients" 
-                className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 bg-white hover:bg-gray-100 text-gray-900"
+                className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 bg-white hover:bg-gray-100 text-gray-900"
               >
                 I Want More Clients
               </Link>
               <Link 
                 href="/recruit-agents" 
-                className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg border-2 border-white transition-all duration-200 transform hover:scale-105 bg-transparent hover:bg-white text-white hover:text-gray-900"
+                className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg border-2 border-white transition-all duration-200 bg-transparent hover:bg-white text-white hover:text-gray-900"
               >
                 I Want to Recruit Agents
               </Link>

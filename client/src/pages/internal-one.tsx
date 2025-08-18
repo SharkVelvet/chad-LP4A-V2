@@ -13,7 +13,7 @@ export default function InternalOne() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#F3F1FF' }}>
       {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,7 +40,7 @@ export default function InternalOne() {
       <section 
         className="py-32 relative"
         style={{ 
-          background: 'linear-gradient(135deg, #f8f6ff 0%, #ffffff 100%)'
+          backgroundColor: '#F3F1FF'
         }}
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -93,7 +93,7 @@ export default function InternalOne() {
 
 
       {/* Animated Template Showcase */}
-      <section className="py-16 bg-gray-50 overflow-hidden">
+      <section className="py-16 overflow-hidden" style={{ backgroundColor: '#F3F1FF' }}>
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Professional Templates Ready to Launch</h2>
           <p className="text-xl text-gray-600">Choose from dozens of proven designs</p>

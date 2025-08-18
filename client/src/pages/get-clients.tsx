@@ -378,48 +378,53 @@ export default function GetClients() {
             </h2>
           </div>
 
-          <Card className="max-w-lg mx-auto">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl mb-6">Professional Plan</CardTitle>
-              <div className="space-y-2">
-                <div>
-                  <span className="text-5xl font-bold" style={{ color: '#6458AF' }}>$38</span>
-                  <span className="text-lg text-gray-600 ml-3">first month (setup included)</span>
+          <Card className="max-w-lg mx-auto shadow-lg border-0" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f8f6ff 100%)' }}>
+            <CardHeader className="text-center pb-8">
+              <CardTitle className="text-3xl font-bold text-gray-900 mb-8">Professional Plan</CardTitle>
+              <div className="space-y-4">
+                <div className="flex items-center justify-center space-x-3">
+                  <span className="text-6xl font-bold" style={{ color: '#6458AF' }}>$38</span>
+                  <div className="text-left">
+                    <div className="text-lg font-semibold text-gray-700">first month</div>
+                    <div className="text-sm text-gray-500">(setup included)</div>
+                  </div>
                 </div>
-                <div className="text-lg text-gray-600">then $18/month</div>
+                <div className="text-xl text-gray-600 font-medium">then $18/month</div>
               </div>
             </CardHeader>
-            <CardContent>
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 mt-0.5 mr-3" style={{ color: '#6458AF' }} />
-                  <span>Domain support</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 mt-0.5 mr-3" style={{ color: '#6458AF' }} />
-                  <span>Professional templates</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 mt-0.5 mr-3" style={{ color: '#6458AF' }} />
-                  <span>SEO optimization</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 mt-0.5 mr-3" style={{ color: '#6458AF' }} />
-                  <span>Lead capture forms</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 mt-0.5 mr-3" style={{ color: '#6458AF' }} />
-                  <span>24/7 support</span>
-                </li>
-              </ul>
+            <CardContent className="pt-0">
+              <div className="bg-white rounded-lg p-6 mb-8">
+                <ul className="space-y-5">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{ color: '#6458AF' }} />
+                    <span className="text-lg font-medium text-gray-700">Custom domain support</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{ color: '#6458AF' }} />
+                    <span className="text-lg font-medium text-gray-700">Professional templates</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{ color: '#6458AF' }} />
+                    <span className="text-lg font-medium text-gray-700">SEO optimization</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{ color: '#6458AF' }} />
+                    <span className="text-lg font-medium text-gray-700">Lead capture forms</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{ color: '#6458AF' }} />
+                    <span className="text-lg font-medium text-gray-700">24/7 support & hosting</span>
+                  </li>
+                </ul>
+              </div>
               
               <Button 
                 size="lg"
-                className="w-full mt-8 text-white hover:opacity-90"
+                className="w-full text-white hover:opacity-90 py-4 text-lg font-semibold shadow-lg"
                 style={{ backgroundColor: '#6458AF' }}
                 onClick={handleStartProcess}
               >
-                Launch My Client Page
+                🚀 Launch My Client Page
               </Button>
             </CardContent>
           </Card>

@@ -90,25 +90,7 @@ export default function InternalOne() {
         </div>
       </section>
 
-      {/* Simple Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold mb-2" style={{ color: '#6458AF' }}>500+</div>
-              <div className="text-gray-600">Agents Already Online</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2" style={{ color: '#6458AF' }}>98%</div>
-              <div className="text-gray-600">Client Satisfaction</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2" style={{ color: '#6458AF' }}>24/7</div>
-              <div className="text-gray-600">Support Available</div>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Animated Template Showcase */}
       <section className="py-16 bg-gray-50 overflow-hidden">

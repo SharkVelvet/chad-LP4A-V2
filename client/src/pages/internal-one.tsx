@@ -107,35 +107,35 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-left">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.35.56 PM_1755481166789.png" 
+                  src="/attached_assets/lpfa-pic1_1754365592923.jpg" 
                   alt="Insurance Agent Website Template - Hero Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.07 PM_1755481166789.png" 
+                  src="/attached_assets/lpfa-pic2_1754365592925.jpg" 
                   alt="Insurance Agent Website Template - Services Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.16 PM_1755481166789.png" 
+                  src="/attached_assets/lpfa-pic3_1754365592924.jpg" 
                   alt="Insurance Agent Website Template - Testimonials"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.26 PM_1755481166788.png" 
+                  src="/attached_assets/lpfa-pic4_1754365592924.jpg" 
                   alt="Insurance Agent Website Template - Contact Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.42 PM_1755481166788.png" 
+                  src="/attached_assets/lpfa-pic5_1754365592924.jpg" 
                   alt="Insurance Agent Website Template - About Section"
                   className="w-full h-full object-cover"
                 />
@@ -143,21 +143,21 @@ export default function InternalOne() {
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.35.56 PM_1755481166789.png" 
+                  src="/attached_assets/lpfa-pic1_1754365592923.jpg" 
                   alt="Insurance Agent Website Template - Hero Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.07 PM_1755481166789.png" 
+                  src="/attached_assets/lpfa-pic2_1754365592925.jpg" 
                   alt="Insurance Agent Website Template - Services Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.16 PM_1755481166789.png" 
+                  src="/attached_assets/lpfa-pic3_1754365592924.jpg" 
                   alt="Insurance Agent Website Template - Testimonials"
                   className="w-full h-full object-cover"
                 />
@@ -170,58 +170,58 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-right">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.51 PM_1755481166788.png" 
-                  alt="Insurance Agent Website Template - Preview Loading"
+                  src="/attached_assets/Corporate-Landing-Page_1754877486249.jpg" 
+                  alt="Insurance Agent Website Template - Corporate Landing"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.38.04 PM_1755481166787.png" 
-                  alt="Insurance Agent Website Template - Why Choose Life Insurance"
+                  src="/attached_assets/landing-page-10-10_1754877990321.jpg" 
+                  alt="Insurance Agent Website Template - Professional Landing"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.38.12 PM_1755481166787.png" 
-                  alt="Insurance Agent Website Template - Our Services"
+                  src="/attached_assets/lpages-business_1754875856664.jpg" 
+                  alt="Insurance Agent Website Template - Business Pages"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.38.22 PM_1755481166786.png" 
-                  alt="Insurance Agent Website Template - Contact Us"
+                  src="/attached_assets/landing-temp7_1754876114698.jpg" 
+                  alt="Insurance Agent Website Template - Landing Template"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.35.56 PM_1755481166789.png" 
-                  alt="Insurance Agent Website Template - Hero Section"
+                  src="/attached_assets/temp1-pr.jpg" 
+                  alt="Insurance Agent Website Template - Professional Template"
                   className="w-full h-full object-cover"
                 />
               </div>
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.51 PM_1755481166788.png" 
-                  alt="Insurance Agent Website Template - Preview Loading"
+                  src="/attached_assets/Corporate-Landing-Page_1754877486249.jpg" 
+                  alt="Insurance Agent Website Template - Corporate Landing"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.38.04 PM_1755481166787.png" 
-                  alt="Insurance Agent Website Template - Why Choose Life Insurance"
+                  src="/attached_assets/landing-page-10-10_1754877990321.jpg" 
+                  alt="Insurance Agent Website Template - Professional Landing"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.38.12 PM_1755481166787.png" 
-                  alt="Insurance Agent Website Template - Our Services"
+                  src="/attached_assets/lpages-business_1754875856664.jpg" 
+                  alt="Insurance Agent Website Template - Business Pages"
                   className="w-full h-full object-cover"
                 />
               </div>

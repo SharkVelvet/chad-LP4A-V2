@@ -149,42 +149,42 @@ export default function InternalOne() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
               <img 
-                src="/attached_assets/template4-preview.png" 
+                src="/attached_assets/landing-pages-8_1754878927424.jpg" 
                 alt="Insurance Agent Template 7"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
               <img 
-                src="/attached_assets/template5-preview.png" 
+                src="/attached_assets/landing-pages-8_1754879037993.jpg" 
                 alt="Insurance Agent Template 8"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
               <img 
-                src="/attached_assets/template6-preview.png" 
+                src="/attached_assets/temp1-pr.jpg" 
                 alt="Insurance Agent Template 9"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
               <img 
-                src="/attached_assets/landing-temp7_1754876114698.jpg" 
+                src="/attached_assets/temp2-pr.jpg" 
                 alt="Insurance Agent Template 10"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
               <img 
-                src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
+                src="/attached_assets/temp3-pr.jpg" 
                 alt="Insurance Agent Template 11"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
               <img 
-                src="/attached_assets/planright-jenny-snapshot_1751852549427.jpg" 
+                src="/attached_assets/temp4-pr.jpg" 
                 alt="Insurance Agent Template 12"
                 className="w-full h-full object-cover"
               />

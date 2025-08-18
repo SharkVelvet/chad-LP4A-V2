@@ -128,21 +128,21 @@ export default function InternalOne() {
                 </div>
                 <div className="w-64 h-40 rounded-lg shadow-lg overflow-hidden flex-shrink-0">
                   <img 
-                    src="/attached_assets/landingpage-33_1755041273153.png" 
+                    src="/attached_assets/Corporate-Landing-Page_1754877486249.jpg" 
                     alt="Insurance Agent Template 4"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="w-64 h-40 rounded-lg shadow-lg overflow-hidden flex-shrink-0">
                   <img 
-                    src="/attached_assets/landingpage-4_1755041417041.png" 
+                    src="/attached_assets/landing-page-10-10_1754877990321.jpg" 
                     alt="Insurance Agent Template 5"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="w-64 h-40 rounded-lg shadow-lg overflow-hidden flex-shrink-0">
                   <img 
-                    src="/attached_assets/landingpage-555_1755041908155.png" 
+                    src="/attached_assets/lpages-business_1754875856664.jpg" 
                     alt="Insurance Agent Template 6"
                     className="w-full h-full object-cover"
                   />
@@ -181,21 +181,21 @@ export default function InternalOne() {
                 </div>
                 <div className="w-64 h-40 rounded-lg shadow-lg overflow-hidden flex-shrink-0">
                   <img 
-                    src="/attached_assets/landingpage-hero7_1755041991785.png" 
+                    src="/attached_assets/landing-temp7_1754876114698.jpg" 
                     alt="Insurance Agent Template 10"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="w-64 h-40 rounded-lg shadow-lg overflow-hidden flex-shrink-0">
                   <img 
-                    src="/attached_assets/landingpage-hero8_1755042107231.png" 
+                    src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
                     alt="Insurance Agent Template 11"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="w-64 h-40 rounded-lg shadow-lg overflow-hidden flex-shrink-0">
                   <img 
-                    src="/attached_assets/landing-122222_1754880004417.jpg" 
+                    src="/attached_assets/planright-jenny-snapshot_1751852549427.jpg" 
                     alt="Insurance Agent Template 12"
                     className="w-full h-full object-cover"
                   />

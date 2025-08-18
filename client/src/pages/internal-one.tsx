@@ -15,37 +15,26 @@ export default function InternalOne() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#f9f7fe' }}>
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div 
-              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={() => setLocation('/internal-one')}
-            >
-              <FileText className="h-8 w-8 sm:h-10 sm:w-10 mr-3" style={{ color: '#6458AF' }} />
-              <div className="text-left">
-                <div className="text-xl sm:text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-xs sm:text-sm font-medium text-gray-600 -mt-1" style={{ letterSpacing: '0.15em' }}>for Agents</div>
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-      </header>
-
-
-
       {/* Hero Section */}
       <section 
-        className="py-32 relative"
+        className="py-16 relative"
         style={{ 
           backgroundColor: '#f9f7fe'
         }}
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
+            {/* Centered Logo at Top */}
+            <div 
+              className="flex items-center justify-center mb-12 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => setLocation('/internal-one')}
+            >
+              <FileText className="h-12 w-12 sm:h-14 sm:w-14 mr-4" style={{ color: '#6458AF' }} />
+              <div className="text-left">
+                <div className="text-3xl sm:text-4xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                <div className="text-sm sm:text-base font-medium text-gray-600 mt-1" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+              </div>
+            </div>
             <Badge className="mb-6" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
               Professional Landing Pages for<br />

@@ -434,6 +434,82 @@ export default function RecruitAgents() {
         </div>
       </section>
 
+      {/* Comparison Table */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Why spend hours building a generic site when you can launch in 24 hours for less than the cost of lunch?
+            </h2>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full bg-white rounded-lg shadow-lg overflow-hidden">
+              <thead>
+                <tr style={{ backgroundColor: '#6458AF' }}>
+                  <th className="px-6 py-4 text-left text-white font-semibold">Feature/Cost</th>
+                  <th className="px-6 py-4 text-center text-white font-semibold bg-opacity-20 bg-white">Landing Pages for Agents</th>
+                  <th className="px-6 py-4 text-center text-white font-semibold">Wix / Squarespace</th>
+                  <th className="px-6 py-4 text-center text-white font-semibold">Custom Designer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200">
+                  <td className="px-6 py-4 font-medium text-gray-900">Setup Time</td>
+                  <td className="px-6 py-4 text-center font-semibold" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>Done in 24 hours (we do it)</td>
+                  <td className="px-6 py-4 text-center text-gray-600">10–20+ hours DIY</td>
+                  <td className="px-6 py-4 text-center text-gray-600">4–6 weeks</td>
+                </tr>
+                <tr className="border-b border-gray-200 bg-gray-50">
+                  <td className="px-6 py-4 font-medium text-gray-900">Industry-Specific</td>
+                  <td className="px-6 py-4 text-center font-semibold" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>Yes, built for insurance</td>
+                  <td className="px-6 py-4 text-center text-gray-600">No, generic</td>
+                  <td className="px-6 py-4 text-center text-gray-600">Custom, but $$$</td>
+                </tr>
+                <tr className="border-b border-gray-200">
+                  <td className="px-6 py-4 font-medium text-gray-900">Lead Capture Forms</td>
+                  <td className="px-6 py-4 text-center font-semibold" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>Included</td>
+                  <td className="px-6 py-4 text-center text-gray-600">Extra setup</td>
+                  <td className="px-6 py-4 text-center text-gray-600">Included</td>
+                </tr>
+                <tr className="border-b border-gray-200 bg-gray-50">
+                  <td className="px-6 py-4 font-medium text-gray-900">SEO Optimization</td>
+                  <td className="px-6 py-4 text-center font-semibold" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>Built-in for agents</td>
+                  <td className="px-6 py-4 text-center text-gray-600">Limited templates</td>
+                  <td className="px-6 py-4 text-center text-gray-600">Extra $$$</td>
+                </tr>
+                <tr className="border-b border-gray-200">
+                  <td className="px-6 py-4 font-medium text-gray-900">Monthly Cost</td>
+                  <td className="px-6 py-4 text-center font-semibold" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>$18/month ($38 setup)</td>
+                  <td className="px-6 py-4 text-center text-gray-600">$25–$40/month</td>
+                  <td className="px-6 py-4 text-center text-gray-600">$2000+ upfront + hosting</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 font-medium text-gray-900">Ongoing Support</td>
+                  <td className="px-6 py-4 text-center font-semibold" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>24/7 included</td>
+                  <td className="px-6 py-4 text-center text-gray-600">DIY support docs</td>
+                  <td className="px-6 py-4 text-center text-gray-600">Expensive hourly</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="text-center mt-12">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              Start attracting clients and recruits today — without wasting time or money.
+            </h3>
+            <Button 
+              size="lg"
+              style={{ backgroundColor: '#6458AF' }} 
+              className="hover:opacity-90 px-8 py-4 text-lg font-semibold"
+              onClick={handleStartProcess}
+            >
+              👉 Start My Recruiting Page Now
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing */}
       <section id="pricing" className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

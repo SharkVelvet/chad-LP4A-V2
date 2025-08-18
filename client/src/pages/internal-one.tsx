@@ -107,58 +107,58 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-left">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/lpfa-pic1_1754365592923.jpg" 
-                  alt="Insurance Agent Website Template - Hero Section"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.35.56 PM_1755481166789.png" 
+                  alt="Insurance Agent Website - Hero Section with Agent Profile"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/lpfa-pic2_1754365592925.jpg" 
-                  alt="Insurance Agent Website Template - Services Section"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.07 PM_1755481166789.png" 
+                  alt="Insurance Agent Website - Financial Services & Products"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/lpfa-pic3_1754365592924.jpg" 
-                  alt="Insurance Agent Website Template - Testimonials"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.16 PM_1755481166789.png" 
+                  alt="Insurance Agent Website - Client Testimonials"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/lpfa-pic4_1754365592924.jpg" 
-                  alt="Insurance Agent Website Template - Contact Section"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.26 PM_1755481166788.png" 
+                  alt="Insurance Agent Website - Contact Information"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/lpfa-pic5_1754365592924.jpg" 
-                  alt="Insurance Agent Website Template - About Section"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.42 PM_1755481166788.png" 
+                  alt="Insurance Agent Website - About Cameron Smith"
                   className="w-full h-full object-cover"
                 />
               </div>
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/lpfa-pic1_1754365592923.jpg" 
-                  alt="Insurance Agent Website Template - Hero Section"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.35.56 PM_1755481166789.png" 
+                  alt="Insurance Agent Website - Hero Section with Agent Profile"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/lpfa-pic2_1754365592925.jpg" 
-                  alt="Insurance Agent Website Template - Services Section"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.07 PM_1755481166789.png" 
+                  alt="Insurance Agent Website - Financial Services & Products"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/lpfa-pic3_1754365592924.jpg" 
-                  alt="Insurance Agent Website Template - Testimonials"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.16 PM_1755481166789.png" 
+                  alt="Insurance Agent Website - Client Testimonials"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -170,58 +170,58 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-right">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Corporate-Landing-Page_1754877486249.jpg" 
-                  alt="Insurance Agent Website Template - Corporate Landing"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.51 PM_1755481166788.png" 
+                  alt="Insurance Agent Website - Preview Loading State"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/landing-page-10-10_1754877990321.jpg" 
-                  alt="Insurance Agent Website Template - Professional Landing"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.38.04 PM_1755481166787.png" 
+                  alt="Insurance Agent Website - Life Insurance Benefits"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/lpages-business_1754875856664.jpg" 
-                  alt="Insurance Agent Website Template - Business Pages"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.38.12 PM_1755481166787.png" 
+                  alt="Insurance Agent Website - Our Services"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/landing-temp7_1754876114698.jpg" 
-                  alt="Insurance Agent Website Template - Landing Template"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.38.22 PM_1755481166786.png" 
+                  alt="Insurance Agent Website - Contact with Statistics"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/temp1-pr.jpg" 
-                  alt="Insurance Agent Website Template - Professional Template"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.35.56 PM_1755481166789.png" 
+                  alt="Insurance Agent Website - Hero Section with Agent Profile"
                   className="w-full h-full object-cover"
                 />
               </div>
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Corporate-Landing-Page_1754877486249.jpg" 
-                  alt="Insurance Agent Website Template - Corporate Landing"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.51 PM_1755481166788.png" 
+                  alt="Insurance Agent Website - Preview Loading State"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/landing-page-10-10_1754877990321.jpg" 
-                  alt="Insurance Agent Website Template - Professional Landing"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.38.04 PM_1755481166787.png" 
+                  alt="Insurance Agent Website - Life Insurance Benefits"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/lpages-business_1754875856664.jpg" 
-                  alt="Insurance Agent Website Template - Business Pages"
+                  src="/attached_assets/Screenshot 2025-08-17 at 9.38.12 PM_1755481166787.png" 
+                  alt="Insurance Agent Website - Our Services"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -233,58 +233,58 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-left">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.07 PM_1755481166789.png" 
-                  alt="Insurance Agent Website Template - Financial Services"
+                  src="/attached_assets/temp2-pr.jpg" 
+                  alt="Insurance Agent Website Template - Professional Template"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.16 PM_1755481166789.png" 
-                  alt="Insurance Agent Website Template - Client Testimonials"
+                  src="/attached_assets/temp3-pr.jpg" 
+                  alt="Insurance Agent Website Template - Modern Design"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.26 PM_1755481166788.png" 
-                  alt="Insurance Agent Website Template - Contact Information"
+                  src="/attached_assets/temp4-pr.jpg" 
+                  alt="Insurance Agent Website Template - Clean Layout"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.42 PM_1755481166788.png" 
-                  alt="Insurance Agent Website Template - About Agent"
+                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
+                  alt="Insurance Agent Website Template - Agent Profile"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.38.04 PM_1755481166787.png" 
-                  alt="Insurance Agent Website Template - Life Insurance Benefits"
+                  src="/attached_assets/planright-jenny-snapshot_1751852549427.jpg" 
+                  alt="Insurance Agent Website Template - Professional Agent"
                   className="w-full h-full object-cover"
                 />
               </div>
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.07 PM_1755481166789.png" 
-                  alt="Insurance Agent Website Template - Financial Services"
+                  src="/attached_assets/temp2-pr.jpg" 
+                  alt="Insurance Agent Website Template - Professional Template"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.16 PM_1755481166789.png" 
-                  alt="Insurance Agent Website Template - Client Testimonials"
+                  src="/attached_assets/temp3-pr.jpg" 
+                  alt="Insurance Agent Website Template - Modern Design"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot 2025-08-17 at 9.36.26 PM_1755481166788.png" 
-                  alt="Insurance Agent Website Template - Contact Information"
+                  src="/attached_assets/temp4-pr.jpg" 
+                  alt="Insurance Agent Website Template - Clean Layout"
                   className="w-full h-full object-cover"
                 />
               </div>

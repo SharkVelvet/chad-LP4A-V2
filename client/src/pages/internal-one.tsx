@@ -100,11 +100,11 @@ export default function InternalOne() {
       >
 
         
-        {/* Full-Width Staggered Template Showcase */}
-        <div className="w-full px-4">
-          {/* First Row - Overflow Left */}
-          <div className="flex mb-6 -ml-20">
-            <div className="flex space-x-4">
+        {/* Animated Template Showcase */}
+        <div className="w-full">
+          {/* First Row - Animate Left to Right */}
+          <div className="mb-6 overflow-hidden">
+            <div className="flex space-x-4 animate-scroll-left">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/lpfa-pic1_1754365592923.jpg" 
@@ -140,12 +140,34 @@ export default function InternalOne() {
                   className="w-full h-full object-cover"
                 />
               </div>
+              {/* Repeat for seamless loop */}
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/lpfa-pic1_1754365592923.jpg" 
+                  alt="Insurance Agent Template 1"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/lpfa-pic2_1754365592925.jpg" 
+                  alt="Insurance Agent Template 2"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/lpfa-pic3_1754365592924.jpg" 
+                  alt="Insurance Agent Template 3"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
           
-          {/* Second Row - Offset Right */}
-          <div className="flex mb-6 justify-center">
-            <div className="flex space-x-4 ml-32">
+          {/* Second Row - Animate Right to Left */}
+          <div className="mb-6 overflow-hidden">
+            <div className="flex space-x-4 animate-scroll-right">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/Corporate-Landing-Page_1754877486249.jpg" 
@@ -181,12 +203,34 @@ export default function InternalOne() {
                   className="w-full h-full object-cover"
                 />
               </div>
+              {/* Repeat for seamless loop */}
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/Corporate-Landing-Page_1754877486249.jpg" 
+                  alt="Insurance Agent Template 6"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/landing-page-10-10_1754877990321.jpg" 
+                  alt="Insurance Agent Template 7"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/lpages-business_1754875856664.jpg" 
+                  alt="Insurance Agent Template 8"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
           
-          {/* Third Row - Overflow Right */}
-          <div className="flex -mr-20">
-            <div className="flex space-x-4 justify-end w-full">
+          {/* Third Row - Animate Left to Right */}
+          <div className="overflow-hidden">
+            <div className="flex space-x-4 animate-scroll-left">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/temp2-pr.jpg" 
@@ -219,6 +263,28 @@ export default function InternalOne() {
                 <img 
                   src="/attached_assets/planright-jenny-snapshot_1751852549427.jpg" 
                   alt="Insurance Agent Template 15"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Repeat for seamless loop */}
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/temp2-pr.jpg" 
+                  alt="Insurance Agent Template 11"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/temp3-pr.jpg" 
+                  alt="Insurance Agent Template 12"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/temp4-pr.jpg" 
+                  alt="Insurance Agent Template 13"
                   className="w-full h-full object-cover"
                 />
               </div>

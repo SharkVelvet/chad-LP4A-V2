@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
+import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { FileText } from "lucide-react";
 import { useLocation } from "wouter";

@@ -129,6 +129,13 @@ export default function InternalOne() {
                   className="w-full h-full object-cover"
                 />
               </div>
+              <div className="w-80 h-52 template-card flex-shrink-0">
+                <img 
+                  src="/attached_assets/jake-smith-modern-hero.png" 
+                  alt="Jake Smith Modern Hero Design with Profile Circle"
+                  className="w-full h-full object-cover"
+                />
+              </div>
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
@@ -189,6 +196,13 @@ export default function InternalOne() {
                 <img 
                   src="/attached_assets/contact-us.png" 
                   alt="Contact Us Page with Address & Phone"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 template-card flex-shrink-0">
+                <img 
+                  src="/attached_assets/elegant-financial-solutions.png" 
+                  alt="Elegant Financial Solutions with Profile Card"
                   className="w-full h-full object-cover"
                 />
               </div>

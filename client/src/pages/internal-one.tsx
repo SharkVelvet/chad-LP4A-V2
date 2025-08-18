@@ -17,7 +17,7 @@ export default function InternalOne() {
     <div className="min-h-screen" style={{ backgroundColor: '#f9f7fe' }}>
       {/* Hero Section */}
       <section 
-        className="py-16 relative"
+        className="pt-8 pb-16 relative"
         style={{ 
           backgroundColor: '#f9f7fe'
         }}
@@ -26,7 +26,7 @@ export default function InternalOne() {
           <div className="text-center">
             {/* Centered Logo at Top */}
             <div 
-              className="flex items-center justify-center mb-12 cursor-pointer hover:opacity-80 transition-opacity"
+              className="flex items-center justify-center mb-20 cursor-pointer hover:opacity-80 transition-opacity"
               onClick={() => setLocation('/internal-one')}
             >
               <FileText className="h-6 w-6 sm:h-7 sm:w-7 mr-2" style={{ color: '#6458AF' }} />

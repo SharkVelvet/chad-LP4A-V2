@@ -196,52 +196,190 @@ export default function RecruitAgents() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="text-left h-full">
               <CardHeader>
-                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                  <Eye className="h-8 w-8" style={{ color: '#6458AF' }} />
+                <div className="w-full h-48 rounded-lg mb-4 overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
+                  <svg width="200" height="150" viewBox="0 0 200 150" className="w-full h-full object-cover">
+                    <defs>
+                      <linearGradient id="standOutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#6458AF" stopOpacity="0.1"/>
+                        <stop offset="100%" stopColor="#6458AF" stopOpacity="0.3"/>
+                      </linearGradient>
+                    </defs>
+                    {/* Professional office scene */}
+                    <rect width="200" height="150" fill="url(#standOutGrad)"/>
+                    <rect x="10" y="120" width="180" height="30" fill="#f8f9fa" rx="2"/>
+                    <rect x="20" y="40" width="160" height="80" fill="#ffffff" rx="8" stroke="#6458AF" strokeWidth="2"/>
+                    <circle cx="60" cy="65" r="15" fill="#6458AF"/>
+                    <rect x="80" y="55" width="60" height="8" fill="#e9ecef" rx="4"/>
+                    <rect x="80" y="68" width="80" height="6" fill="#dee2e6" rx="3"/>
+                    <rect x="80" y="78" width="40" height="6" fill="#dee2e6" rx="3"/>
+                    <rect x="25" y="95" width="15" height="15" fill="#28a745" rx="2"/>
+                    <rect x="45" y="95" width="15" height="15" fill="#28a745" rx="2"/>
+                    <rect x="65" y="95" width="15" height="15" fill="#28a745" rx="2"/>
+                    <rect x="85" y="95" width="15" height="15" fill="#ffc107" rx="2"/>
+                    <rect x="105" y="95" width="15" height="15" fill="#ffc107" rx="2"/>
+                    <polygon points="155,45 165,55 155,65" fill="#6458AF"/>
+                    <text x="100" y="25" textAnchor="middle" fontSize="12" fill="#6458AF" fontWeight="bold">Top Performer Spotlight</text>
+                  </svg>
                 </div>
-                <CardTitle className="text-lg">Stand Out to Talent</CardTitle>
+                <CardTitle className="text-xl mb-3">Stand Out to Elite Talent</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Showcase culture, success, and opportunities.</p>
+              <CardContent className="space-y-4">
+                <p className="text-gray-700 font-medium">Why settle for average when you can attract top 10% performers?</p>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li>• Showcase your agency's success stories and growth trajectory</li>
+                  <li>• Highlight unique company culture and professional development opportunities</li>
+                  <li>• Display commission structures, bonuses, and career advancement paths</li>
+                  <li>• Feature testimonials from your current high-performing agents</li>
+                  <li>• Demonstrate your agency's market leadership and reputation</li>
+                </ul>
+                <div className="bg-purple-50 p-3 rounded-lg border-l-4 border-purple-400">
+                  <p className="text-sm text-purple-800 font-medium">Elite agents research extensively before making career moves. Give them compelling reasons to choose your agency.</p>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="text-center">
+            <Card className="text-left h-full">
               <CardHeader>
-                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                  <Shield className="h-8 w-8" style={{ color: '#6458AF' }} />
+                <div className="w-full h-48 rounded-lg mb-4 overflow-hidden bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
+                  <svg width="200" height="150" viewBox="0 0 200 150" className="w-full h-full object-cover">
+                    <defs>
+                      <linearGradient id="trustGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#28a745" stopOpacity="0.1"/>
+                        <stop offset="100%" stopColor="#6458AF" stopOpacity="0.2"/>
+                      </linearGradient>
+                    </defs>
+                    <rect width="200" height="150" fill="url(#trustGrad)"/>
+                    {/* Professional building/office */}
+                    <rect x="40" y="30" width="120" height="90" fill="#ffffff" stroke="#6458AF" strokeWidth="2" rx="4"/>
+                    <rect x="50" y="40" width="20" height="25" fill="#e9ecef" stroke="#dee2e6"/>
+                    <rect x="80" y="40" width="20" height="25" fill="#e9ecef" stroke="#dee2e6"/>
+                    <rect x="110" y="40" width="20" height="25" fill="#e9ecef" stroke="#dee2e6"/>
+                    <rect x="140" y="40" width="20" height="25" fill="#e9ecef" stroke="#dee2e6"/>
+                    <rect x="50" y="75" width="20" height="25" fill="#e9ecef" stroke="#dee2e6"/>
+                    <rect x="80" y="75" width="20" height="25" fill="#e9ecef" stroke="#dee2e6"/>
+                    <rect x="110" y="75" width="20" height="25" fill="#e9ecef" stroke="#dee2e6"/>
+                    <rect x="140" y="75" width="20" height="25" fill="#e9ecef" stroke="#dee2e6"/>
+                    <rect x="85" y="105" width="30" height="15" fill="#6458AF" rx="2"/>
+                    {/* Stars for rating */}
+                    <polygon points="25,20 27,14 29,20 35,20 30,24 32,30 27,26 22,30 24,24 19,20" fill="#ffc107"/>
+                    <polygon points="35,25 37,19 39,25 45,25 40,29 42,35 37,31 32,35 34,29 29,25" fill="#ffc107"/>
+                    <polygon points="45,15 47,9 49,15 55,15 50,19 52,25 47,21 42,25 44,19 39,15" fill="#ffc107"/>
+                    <text x="100" y="135" textAnchor="middle" fontSize="10" fill="#6458AF" fontWeight="bold">Licensed & Established</text>
+                  </svg>
                 </div>
-                <CardTitle className="text-lg">Credibility & Trust</CardTitle>
+                <CardTitle className="text-xl mb-3">Instant Credibility & Trust</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Build confidence with recruits instantly.</p>
+              <CardContent className="space-y-4">
+                <p className="text-gray-700 font-medium">Professional presentation builds immediate confidence with potential recruits.</p>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li>• Display licensing, certifications, and industry affiliations prominently</li>
+                  <li>• Showcase awards, recognition, and years in business</li>
+                  <li>• Include professional headshots of leadership team</li>
+                  <li>• Feature partnerships with major insurance carriers</li>
+                  <li>• Display client testimonials and agent success metrics</li>
+                </ul>
+                <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-400">
+                  <p className="text-sm text-green-800 font-medium">First impressions matter. A professional website immediately separates you from agencies that rely only on social media or job board listings.</p>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="text-center">
+            <Card className="text-left h-full">
               <CardHeader>
-                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                  <Building className="h-8 w-8" style={{ color: '#6458AF' }} />
+                <div className="w-full h-48 rounded-lg mb-4 overflow-hidden bg-gradient-to-br from-orange-50 to-red-50 flex items-center justify-center">
+                  <svg width="200" height="150" viewBox="0 0 200 150" className="w-full h-full object-cover">
+                    <defs>
+                      <linearGradient id="complianceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#fd7e14" stopOpacity="0.1"/>
+                        <stop offset="100%" stopColor="#dc3545" stopOpacity="0.2"/>
+                      </linearGradient>
+                    </defs>
+                    <rect width="200" height="150" fill="url(#complianceGrad)"/>
+                    {/* Job board requirements illustration */}
+                    <rect x="20" y="20" width="160" height="110" fill="#ffffff" stroke="#dc3545" strokeWidth="2" rx="8"/>
+                    <rect x="30" y="30" width="140" height="20" fill="#dc3545" rx="4"/>
+                    <text x="100" y="43" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold">JOB BOARD REQUIREMENTS</text>
+                    <rect x="30" y="60" width="20" height="15" fill="#28a745" rx="2"/>
+                    <text x="55" y="70" fontSize="9" fill="#333">✓ Business Website</text>
+                    <rect x="30" y="80" width="20" height="15" fill="#28a745" rx="2"/>
+                    <text x="55" y="90" fontSize="9" fill="#333">✓ Professional Email</text>
+                    <rect x="30" y="100" width="20" height="15" fill="#ffc107" rx="2"/>
+                    <text x="55" y="110" fontSize="9" fill="#333">⚠ Social Media Only</text>
+                    <rect x="130" y="60" width="40" height="25" fill="#e9ecef" stroke="#6458AF" rx="4"/>
+                    <text x="150" y="75" textAnchor="middle" fontSize="8" fill="#6458AF">APPROVED</text>
+                    <circle cx="170" cy="40" r="8" fill="#28a745"/>
+                    <text x="170" y="45" textAnchor="middle" fontSize="10" fill="white">✓</text>
+                  </svg>
                 </div>
-                <CardTitle className="text-lg">Hiring Site Compliance</CardTitle>
+                <CardTitle className="text-xl mb-3">Job Board Compliance</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Many job boards require a business site + email.</p>
+              <CardContent className="space-y-4">
+                <p className="text-gray-700 font-medium">Most premium job boards require a professional business website and email address.</p>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li>• Indeed, LinkedIn, and ZipRecruiter verify business legitimacy</li>
+                  <li>• Professional email domains (not Gmail/Yahoo) required for posting</li>
+                  <li>• Business website validates your agency's credibility</li>
+                  <li>• Compliance unlocks access to higher-quality candidate pools</li>
+                  <li>• Avoid having job posts rejected or flagged as spam</li>
+                </ul>
+                <div className="bg-orange-50 p-3 rounded-lg border-l-4 border-orange-400">
+                  <p className="text-sm text-orange-800 font-medium">Without a professional website, you're limited to lower-tier job boards that attract less qualified candidates.</p>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="text-center">
+            <Card className="text-left h-full">
               <CardHeader>
-                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                  <Trophy className="h-8 w-8" style={{ color: '#6458AF' }} />
+                <div className="w-full h-48 rounded-lg mb-4 overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center">
+                  <svg width="200" height="150" viewBox="0 0 200 150" className="w-full h-full object-cover">
+                    <defs>
+                      <linearGradient id="attractGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#6f42c1" stopOpacity="0.1"/>
+                        <stop offset="100%" stopColor="#e83e8c" stopOpacity="0.2"/>
+                      </linearGradient>
+                    </defs>
+                    <rect width="200" height="150" fill="url(#attractGrad)"/>
+                    {/* Professional vs unprofessional comparison */}
+                    <rect x="15" y="20" width="70" height="110" fill="#ffffff" stroke="#6458AF" strokeWidth="2" rx="6"/>
+                    <rect x="115" y="20" width="70" height="110" fill="#f8f9fa" stroke="#dee2e6" strokeWidth="1" rx="6"/>
+                    <text x="50" y="35" textAnchor="middle" fontSize="8" fill="#6458AF" fontWeight="bold">PROFESSIONAL</text>
+                    <text x="150" y="35" textAnchor="middle" fontSize="8" fill="#6c757d">BASIC LISTING</text>
+                    {/* Professional side features */}
+                    <circle cx="30" cy="50" r="8" fill="#6458AF"/>
+                    <rect x="42" y="45" width="35" height="4" fill="#6458AF" rx="2"/>
+                    <rect x="42" y="52" width="25" height="3" fill="#dee2e6" rx="1"/>
+                    <rect x="20" y="65" width="55" height="20" fill="#f0eeff" rx="3"/>
+                    <rect x="20" y="90" width="55" height="15" fill="#e8f5e8" rx="3"/>
+                    <rect x="20" y="110" width="55" height="15" fill="#fff3cd" rx="3"/>
+                    {/* Basic side */}
+                    <rect x="125" y="45" width="50" height="8" fill="#dee2e6" rx="2"/>
+                    <rect x="125" y="58" width="35" height="4" fill="#dee2e6" rx="1"/>
+                    <rect x="125" y="68" width="40" height="4" fill="#dee2e6" rx="1"/>
+                    <rect x="125" y="80" width="25" height="4" fill="#dee2e6" rx="1"/>
+                    {/* Arrows showing preference */}
+                    <polygon points="95,60 105,65 95,70" fill="#28a745"/>
+                    <polygon points="95,80 105,85 95,90" fill="#28a745"/>
+                    <polygon points="95,100 105,105 95,110" fill="#28a745"/>
+                    <text x="100" y="140" textAnchor="middle" fontSize="8" fill="#28a745" fontWeight="bold">CANDIDATE PREFERENCE</text>
+                  </svg>
                 </div>
-                <CardTitle className="text-lg">Attract Better Candidates</CardTitle>
+                <CardTitle className="text-xl mb-3">Attract Premium Candidates</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Professionals want to work with professionals.</p>
+              <CardContent className="space-y-4">
+                <p className="text-gray-700 font-medium">High-performing agents expect to work with agencies that invest in professional presentation.</p>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li>• Top agents avoid agencies that appear unprofessional or low-budget</li>
+                  <li>• Demonstrate that you invest in tools and technology</li>
+                  <li>• Show commitment to growth and professional development</li>
+                  <li>• Attract agents who take their career seriously</li>
+                  <li>• Differentiate from agencies using only basic job postings</li>
+                </ul>
+                <div className="bg-purple-50 p-3 rounded-lg border-l-4 border-purple-400">
+                  <p className="text-sm text-purple-800 font-medium">Quality attracts quality. Successful agents want to join agencies that demonstrate professionalism and success.</p>
+                </div>
               </CardContent>
             </Card>
           </div>

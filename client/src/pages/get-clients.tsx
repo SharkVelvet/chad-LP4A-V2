@@ -115,7 +115,7 @@ export default function GetClients() {
             
             <div className="flex items-center gap-4">
               <Button 
-                className="hidden md:block hover:opacity-90"
+                className="hidden md:block hover:opacity-90 w-52"
                 style={{ backgroundColor: '#6458AF' }} 
                 onClick={handleStartProcess}
               >

@@ -447,7 +447,7 @@ export default function GetClients() {
 
           <div className="text-center mt-12">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Start attracting clients and recruits today — without wasting time or money.
+              Start attracting clients today — without wasting time or money.
             </h3>
             <Button 
               size="lg"

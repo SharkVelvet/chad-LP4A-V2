@@ -229,11 +229,11 @@ export default function RecruitAgents() {
               <CardContent className="space-y-4">
                 <p className="text-gray-700 font-medium">Why settle for average when you can attract top 10% performers?</p>
                 <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Showcase your agency's success stories and growth trajectory</li>
-                  <li>• Highlight unique company culture and professional development opportunities</li>
-                  <li>• Display commission structures, bonuses, and career advancement paths</li>
-                  <li>• Feature testimonials from your current high-performing agents</li>
-                  <li>• Demonstrate your agency's market leadership and reputation</li>
+                  <li style={{ fontSize: '15px' }}>• Showcase your agency's success stories and growth trajectory</li>
+                  <li style={{ fontSize: '15px' }}>• Highlight unique company culture and professional development opportunities</li>
+                  <li style={{ fontSize: '15px' }}>• Display commission structures, bonuses, and career advancement paths</li>
+                  <li style={{ fontSize: '15px' }}>• Feature testimonials from your current high-performing agents</li>
+                  <li style={{ fontSize: '15px' }}>• Demonstrate your agency's market leadership and reputation</li>
                 </ul>
                 <div className="bg-purple-50 p-3 rounded-lg border-l-4 border-purple-400">
                   <p className="text-sm text-purple-800 font-medium">Elite agents research extensively before making career moves. Give them compelling reasons to choose your agency.</p>
@@ -275,11 +275,11 @@ export default function RecruitAgents() {
               <CardContent className="space-y-4">
                 <p className="text-gray-700 font-medium">Professional presentation builds immediate confidence with potential recruits.</p>
                 <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Display licensing, certifications, and industry affiliations prominently</li>
-                  <li>• Showcase awards, recognition, and years in business</li>
-                  <li>• Include professional headshots of leadership team</li>
-                  <li>• Feature partnerships with major insurance carriers</li>
-                  <li>• Display client testimonials and agent success metrics</li>
+                  <li style={{ fontSize: '15px' }}>• Display licensing, certifications, and industry affiliations prominently</li>
+                  <li style={{ fontSize: '15px' }}>• Showcase awards, recognition, and years in business</li>
+                  <li style={{ fontSize: '15px' }}>• Include professional headshots of leadership team</li>
+                  <li style={{ fontSize: '15px' }}>• Feature partnerships with major insurance carriers</li>
+                  <li style={{ fontSize: '15px' }}>• Display client testimonials and agent success metrics</li>
                 </ul>
                 <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-400">
                   <p className="text-sm text-green-800 font-medium">First impressions matter. A professional website immediately separates you from agencies that rely only on social media or job board listings.</p>
@@ -319,11 +319,11 @@ export default function RecruitAgents() {
               <CardContent className="space-y-4">
                 <p className="text-gray-700 font-medium">Most premium job boards require a professional business website and email address.</p>
                 <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Indeed, LinkedIn, and ZipRecruiter verify business legitimacy</li>
-                  <li>• Professional email domains (not Gmail/Yahoo) required for posting</li>
-                  <li>• Business website validates your agency's credibility</li>
-                  <li>• Compliance unlocks access to higher-quality candidate pools</li>
-                  <li>• Avoid having job posts rejected or flagged as spam</li>
+                  <li style={{ fontSize: '15px' }}>• Indeed, LinkedIn, and ZipRecruiter verify business legitimacy</li>
+                  <li style={{ fontSize: '15px' }}>• Professional email domains (not Gmail/Yahoo) required for posting</li>
+                  <li style={{ fontSize: '15px' }}>• Business website validates your agency's credibility</li>
+                  <li style={{ fontSize: '15px' }}>• Compliance unlocks access to higher-quality candidate pools</li>
+                  <li style={{ fontSize: '15px' }}>• Avoid having job posts rejected or flagged as spam</li>
                 </ul>
                 <div className="bg-orange-50 p-3 rounded-lg border-l-4 border-orange-400">
                   <p className="text-sm text-orange-800 font-medium">Without a professional website, you're limited to lower-tier job boards that attract less qualified candidates.</p>
@@ -371,11 +371,11 @@ export default function RecruitAgents() {
               <CardContent className="space-y-4">
                 <p className="text-gray-700 font-medium">High-performing agents expect to work with agencies that invest in professional presentation.</p>
                 <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Top agents avoid agencies that appear unprofessional or low-budget</li>
-                  <li>• Demonstrate that you invest in tools and technology</li>
-                  <li>• Show commitment to growth and professional development</li>
-                  <li>• Attract agents who take their career seriously</li>
-                  <li>• Differentiate from agencies using only basic job postings</li>
+                  <li style={{ fontSize: '15px' }}>• Top agents avoid agencies that appear unprofessional or low-budget</li>
+                  <li style={{ fontSize: '15px' }}>• Demonstrate that you invest in tools and technology</li>
+                  <li style={{ fontSize: '15px' }}>• Show commitment to growth and professional development</li>
+                  <li style={{ fontSize: '15px' }}>• Attract agents who take their career seriously</li>
+                  <li style={{ fontSize: '15px' }}>• Differentiate from agencies using only basic job postings</li>
                 </ul>
                 <div className="bg-purple-50 p-3 rounded-lg border-l-4 border-purple-400">
                   <p className="text-sm text-purple-800 font-medium">Quality attracts quality. Successful agents want to join agencies that demonstrate professionalism and success.</p>

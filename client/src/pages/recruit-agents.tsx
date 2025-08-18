@@ -119,7 +119,7 @@ export default function RecruitAgents() {
                 style={{ backgroundColor: '#6458AF' }} 
                 onClick={handleStartProcess}
               >
-                Launch My Recruiting Page
+                Start My Recruiting Page
               </Button>
               
               {/* Mobile Menu Button */}
@@ -157,7 +157,7 @@ export default function RecruitAgents() {
                 className="hover:opacity-90 px-8 py-3 text-lg font-semibold"
                 onClick={handleStartProcess}
               >
-                👉 Launch My Recruiting Page
+                👉 Start My Recruiting Page
               </Button>
             </div>
           </div>
@@ -290,7 +290,7 @@ export default function RecruitAgents() {
               className="hover:opacity-90 px-8 py-3 text-lg font-semibold"
               onClick={handleStartProcess}
             >
-              👉 Get My Recruiting Page Now
+              👉 Start My Recruiting Page Now
             </Button>
           </div>
         </div>
@@ -351,7 +351,7 @@ export default function RecruitAgents() {
                 style={{ backgroundColor: '#6458AF' }}
                 onClick={handleStartProcess}
               >
-                🚀 Launch My Recruiting Page
+                🚀 Start My Recruiting Page
               </Button>
             </CardContent>
           </Card>
@@ -373,7 +373,7 @@ export default function RecruitAgents() {
             className="hover:opacity-90 px-8 py-3 text-lg font-semibold"
             onClick={handleStartProcess}
           >
-            👉 Launch My Recruiting Page
+            👉 Start My Recruiting Page
           </Button>
         </div>
       </section>

@@ -119,7 +119,7 @@ export default function GetClients() {
                 style={{ backgroundColor: '#6458AF' }} 
                 onClick={handleStartProcess}
               >
-                Launch My Client Page
+                Start My Client Page
               </Button>
               
               {/* Mobile Menu Button */}
@@ -218,7 +218,7 @@ export default function GetClients() {
                     handleStartProcess();
                   }}
                 >
-                  Launch My Client Page
+                  Start My Client Page
                 </Button>
               </div>
             </nav>
@@ -245,7 +245,7 @@ export default function GetClients() {
                 className="hover:opacity-90 px-8 py-3 text-lg font-semibold"
                 onClick={handleStartProcess}
               >
-                👉 Launch My Client Page
+                👉 Start My Client Page
               </Button>
             </div>
           </div>
@@ -439,7 +439,7 @@ export default function GetClients() {
                 style={{ backgroundColor: '#6458AF' }}
                 onClick={handleStartProcess}
               >
-                🚀 Launch My Client Page
+                🚀 Start My Client Page
               </Button>
             </CardContent>
           </Card>
@@ -461,7 +461,7 @@ export default function GetClients() {
             className="hover:opacity-90 px-8 py-3 text-lg font-semibold"
             onClick={handleStartProcess}
           >
-            👉 Launch My Client Page
+            👉 Start My Client Page
           </Button>
         </div>
       </section>

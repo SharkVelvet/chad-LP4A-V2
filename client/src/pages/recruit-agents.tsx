@@ -136,7 +136,95 @@ export default function RecruitAgents() {
         </div>
       </header>
 
-
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden">
+          <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50">
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <div className="flex items-center">
+                <FileText className="h-8 w-8 mr-2" style={{ color: '#6458AF' }} />
+                <div className="text-left">
+                  <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                  <div className="text-sm font-medium text-gray-600 -mt-1" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                </div>
+              </div>
+              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-600">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <nav className="p-6 space-y-6">
+              <a 
+                href="/get-clients"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/get-clients');
+                }}
+              >
+                Get Clients
+              </a>
+              <a 
+                href="/recruit-agents"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/recruit-agents');
+                }}
+              >
+                Recruit Agents
+              </a>
+              <a 
+                href="#features"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Features
+              </a>
+              <a 
+                href="#pricing"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Pricing
+              </a>
+              <a 
+                href="/blog"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/blog');
+                }}
+              >
+                Blog
+              </a>
+              
+              <div className="pt-6 border-t border-gray-200">
+                <Button 
+                  className="w-full text-white py-3 hover:opacity-90"
+                  style={{ backgroundColor: '#6458AF' }}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    handleStartProcess();
+                  }}
+                >
+                  Start My Recruiting Page
+                </Button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="py-20" style={{ background: 'linear-gradient(135deg, #f8f6ff 0%, #ffffff 100%)' }}>

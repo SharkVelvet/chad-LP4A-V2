@@ -230,7 +230,7 @@ export default function InternalOne() {
       </section>
 
       {/* Footer */}
-      <div className="text-center py-8 border-t border-gray-200" style={{ backgroundColor: '#F3F1FF' }}>
+      <div className="text-center py-8 border-t border-gray-200 bg-white">
         <p className="text-sm text-gray-500">
           Copyright © 2025 Landing Pages for Agents
         </p>

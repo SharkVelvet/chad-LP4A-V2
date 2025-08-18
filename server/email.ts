@@ -36,8 +36,8 @@ export async function sendCustomerReceipt(customerData: CustomerData) {
 
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2 style="color: #dc2626; border-bottom: 2px solid #dc2626; padding-bottom: 10px;">
-        Payment Confirmation - Welcome to Planright!
+      <h2 style="color: #6458AF; border-bottom: 2px solid #6458AF; padding-bottom: 10px;">
+        Payment Confirmation - Welcome to Landing Pages for Agents!
       </h2>
       
       <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -67,7 +67,7 @@ export async function sendCustomerReceipt(customerData: CustomerData) {
 
       <div style="text-align: center; padding: 20px; color: #6b7280; font-size: 14px;">
         <p>Questions? Reply to this email or contact our support team.</p>
-        <p>Thank you for choosing Planright!</p>
+        <p>Thank you for choosing Landing Pages for Agents!</p>
       </div>
     </div>
   `;

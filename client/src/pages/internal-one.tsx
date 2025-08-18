@@ -29,10 +29,10 @@ export default function InternalOne() {
               className="flex items-center justify-center mb-12 cursor-pointer hover:opacity-80 transition-opacity"
               onClick={() => setLocation('/internal-one')}
             >
-              <FileText className="h-12 w-12 sm:h-14 sm:w-14 mr-4" style={{ color: '#6458AF' }} />
+              <FileText className="h-6 w-6 sm:h-7 sm:w-7 mr-2" style={{ color: '#6458AF' }} />
               <div className="text-left">
-                <div className="text-3xl sm:text-4xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-sm sm:text-base font-medium text-gray-600 mt-1" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                <div className="text-lg sm:text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                <div className="text-xs sm:text-sm font-medium text-gray-600 mt-0.5" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
             <Badge className="mb-6" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>

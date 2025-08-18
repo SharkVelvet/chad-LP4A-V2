@@ -130,7 +130,7 @@ export default function Step5Success() {
       {/* Footer */}
       <div className="text-center py-8 border-t border-gray-200 bg-white">
         <p className="text-sm text-gray-500">
-          Built by <a href="https://fotype.com" target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: '#6458AF' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5347A3'} onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}>FOTYPE</a> | Copyright © 2025 Landing Pages for Agents
+          Copyright © 2025 Landing Pages for Agents
         </p>
       </div>
     </div>

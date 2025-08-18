@@ -40,7 +40,7 @@ export default function InternalOne() {
               Professional Landing Pages for<br />
               <span style={{ color: '#6458AF' }}>Insurance Agents</span>
             </h1>
-            <p className="text-2xl text-gray-600 mb-16 max-w-2xl mx-auto">
+            <p className="text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Are you looking to grow your clients or grow your team?
             </p>
             

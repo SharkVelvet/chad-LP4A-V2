@@ -36,66 +36,81 @@ export default function RecruitAgents() {
             </div>
             
             <nav className="hidden md:flex space-x-8">
-              <a 
-                href="/get-clients" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setLocation('/get-clients');
-                }}
-              >
-                Get Clients
-              </a>
-              <a 
-                href="/recruit-agents" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setLocation('/recruit-agents');
-                }}
-              >
-                Recruit Agents
-              </a>
-              <a 
-                href="#features" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Features
-              </a>
-              <a 
-                href="#pricing" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Pricing
-              </a>
-              <a 
-                href="/blog" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setLocation('/blog');
-                }}
-              >
-                Blog
-              </a>
+              <div className="relative">
+                <a 
+                  href="/get-clients" 
+                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation('/get-clients');
+                  }}
+                >
+                  Get Clients
+                </a>
+              </div>
+              <div className="relative">
+                <a 
+                  href="/recruit-agents" 
+                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
+                  style={{ color: '#6458AF' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation('/recruit-agents');
+                  }}
+                >
+                  Recruit Agents
+                </a>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-0.5 transition-all duration-200"
+                  style={{ backgroundColor: '#6458AF' }}
+                />
+              </div>
+              <div className="relative">
+                <a 
+                  href="#features" 
+                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  Features
+                </a>
+              </div>
+              <div className="relative">
+                <a 
+                  href="#pricing" 
+                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  Pricing
+                </a>
+              </div>
+              <div className="relative">
+                <a 
+                  href="/blog" 
+                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation('/blog');
+                  }}
+                >
+                  Blog
+                </a>
+              </div>
             </nav>
             
             <div className="flex items-center gap-4">

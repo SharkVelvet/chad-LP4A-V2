@@ -107,35 +107,35 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-left">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
@@ -143,21 +143,21 @@ export default function InternalOne() {
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
@@ -170,35 +170,35 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-right">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
@@ -206,21 +206,21 @@ export default function InternalOne() {
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
@@ -233,35 +233,35 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-left">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
@@ -269,21 +269,21 @@ export default function InternalOne() {
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />

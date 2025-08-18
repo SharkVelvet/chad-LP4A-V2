@@ -128,7 +128,7 @@ export default function Step3Pricing() {
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
-                    Lead capture forms
+                    Professional contact information
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />

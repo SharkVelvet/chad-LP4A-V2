@@ -290,10 +290,10 @@ export default function GetClients() {
                 <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
                   <Target className="h-8 w-8" style={{ color: '#6458AF' }} />
                 </div>
-                <CardTitle className="text-lg">Lead Capture Forms</CardTitle>
+                <CardTitle className="text-lg">Professional Design</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">Convert visitors into leads automatically.</p>
+                <p className="text-gray-600">Clean, modern layouts that build trust with potential clients.</p>
               </CardContent>
             </Card>
 

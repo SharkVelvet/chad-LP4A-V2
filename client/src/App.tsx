@@ -17,6 +17,8 @@ import Step5Success from "@/pages/step5-success";
 import Dashboard from "@/pages/dashboard";
 import Ideas from "@/pages/ideas";
 import InternalOne from "@/pages/internal-one";
+import GetClients from "@/pages/get-clients";
+import RecruitAgents from "@/pages/recruit-agents";
 import PlanrightHome from "@/pages/planright-home";
 import StartTheProcess from "@/pages/start-the-process";
 import Blog from "@/pages/blog";
@@ -36,6 +38,8 @@ function Router() {
       <ProtectedRoute path="/dashboard" component={Dashboard} />
       <Route path="/ideas" component={Ideas} />
       <Route path="/internal-one" component={InternalOne} />
+      <Route path="/get-clients" component={GetClients} />
+      <Route path="/recruit-agents" component={RecruitAgents} />
       <Route path="/planright-home" component={PlanrightHome} />
       <Route path="/start-the-process" component={StartTheProcess} />
       <Route path="/blog" component={Blog} />

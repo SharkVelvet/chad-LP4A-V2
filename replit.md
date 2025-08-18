@@ -118,6 +118,15 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+- **August 18, 2025**: Restructured entire site architecture from single-purpose to dual-purpose application
+  - Converted homepage to simple "fork in the road" choice interface between two focused paths
+  - Created new "Get Clients" page (/get-clients) focused 100% on client acquisition
+  - Created new "Recruit Agents" page (/recruit-agents) focused 100% on agent recruitment
+  - Updated header navigation to include "Get Clients" and "Recruit Agents" menu items
+  - Maintained consistent purple branding (#6458AF) across main application interface
+  - Applied focused messaging and benefits for each distinct user journey
+  - Updated all page titles and SEO for new dual-purpose structure
+
 - **August 5, 2025**: Updated browser tab titles across all pages
   - Changed from "Plan|right" to "Professional Landing Pages for Insurance Agents"
   - Added proper page titles for homepage, blog listing, and individual blog posts  

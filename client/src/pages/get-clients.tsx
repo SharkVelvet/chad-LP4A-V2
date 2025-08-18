@@ -379,12 +379,14 @@ export default function GetClients() {
 
           <Card className="max-w-lg mx-auto">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl">Professional Plan</CardTitle>
-              <div className="mt-4">
-                <span className="text-5xl font-bold" style={{ color: '#6458AF' }}>$38</span>
-                <span className="text-gray-600 ml-2">first month (setup included)</span>
+              <CardTitle className="text-2xl mb-6">Professional Plan</CardTitle>
+              <div className="space-y-2">
+                <div>
+                  <span className="text-5xl font-bold" style={{ color: '#6458AF' }}>$38</span>
+                  <span className="text-lg text-gray-600 ml-3">first month (setup included)</span>
+                </div>
+                <div className="text-lg text-gray-600">then $18/month</div>
               </div>
-              <div className="text-gray-600">then $18/month</div>
             </CardHeader>
             <CardContent>
               <ul className="space-y-4">

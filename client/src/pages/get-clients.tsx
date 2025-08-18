@@ -475,13 +475,12 @@ export default function GetClients() {
               <CardTitle className="text-3xl font-bold text-gray-900 mb-8">Professional Plan</CardTitle>
               <div className="space-y-4">
                 <div className="flex items-center justify-center space-x-3">
-                  <span className="text-6xl font-bold" style={{ color: '#6458AF' }}>$38</span>
+                  <span className="text-6xl font-bold" style={{ color: '#6458AF' }}>$18</span>
                   <div className="text-left">
-                    <div className="text-lg font-semibold text-gray-700">first month</div>
-                    <div className="text-sm text-gray-500">(setup included)</div>
+                    <div className="text-lg font-semibold text-gray-700">per month</div>
                   </div>
                 </div>
-                <div className="text-xl text-gray-600 font-medium">then $18/month</div>
+                <div className="text-sm text-gray-500 font-medium">$38 first month (setup included)</div>
               </div>
             </CardHeader>
             <CardContent className="pt-0">
@@ -501,7 +500,7 @@ export default function GetClients() {
                   </li>
                   <li className="flex items-center">
                     <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{ color: '#6458AF' }} />
-                    <span className="text-lg font-medium text-gray-700">Lead capture forms</span>
+                    <span className="text-lg font-medium text-gray-700">Mobile responsive design</span>
                   </li>
                   <li className="flex items-center">
                     <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{ color: '#6458AF' }} />

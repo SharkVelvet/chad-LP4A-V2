@@ -236,19 +236,27 @@ export default function InternalOne() {
           <div className="rounded-3xl px-12 py-16 text-center" style={{ 
             backgroundColor: '#2D1B69'
           }}>
+            <p className="text-lg text-gray-300 mb-4">For Insurance Agents Nationwide</p>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Professional Landing Pages<br />
-              Built for Insurance Success
+              Professional Landing Pages for <span style={{ color: '#8B7BD8' }}>Insurance Agents</span>
             </h2>
             <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Get a high-converting website that attracts clients and grows your insurance business
+              Are you looking to grow your clients or grow your team?
             </p>
-            <Link 
-              href="/pricing" 
-              className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 bg-white hover:bg-gray-100 text-gray-900"
-            >
-              Start Your Website Today →
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/get-clients" 
+                className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 bg-white hover:bg-gray-100 text-gray-900"
+              >
+                I Want More Clients
+              </Link>
+              <Link 
+                href="/recruit-agents" 
+                className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg border-2 border-white transition-all duration-200 transform hover:scale-105 bg-transparent hover:bg-white text-white hover:text-gray-900"
+              >
+                I Want to Recruit Agents
+              </Link>
+            </div>
           </div>
         </div>
       </section>

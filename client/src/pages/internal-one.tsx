@@ -103,21 +103,21 @@ export default function InternalOne() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
             <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
               <img 
-                src="/attached_assets/template1-preview.png" 
+                src="/attached_assets/planright-w2_1751850806336.jpg" 
                 alt="Insurance Agent Template 1"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
               <img 
-                src="/attached_assets/template2-preview.png" 
+                src="/attached_assets/planright-w4_1751851299514.jpg" 
                 alt="Insurance Agent Template 2"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="w-full h-32 rounded-lg shadow-lg overflow-hidden">
               <img 
-                src="/attached_assets/template3-preview.png" 
+                src="/attached_assets/planright-template5-snapshot_1751853110220.png" 
                 alt="Insurance Agent Template 3"
                 className="w-full h-full object-cover"
               />

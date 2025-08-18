@@ -234,8 +234,7 @@ export default function InternalOne() {
       <section className="py-16 px-8 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="rounded-3xl px-12 py-16 text-center" style={{ 
-            background: 'linear-gradient(135deg, #2D1B69 0%, #1E1B4B 100%)',
-            backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%)'
+            backgroundColor: '#2D1B69'
           }}>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Professional Landing Pages<br />
@@ -246,12 +245,9 @@ export default function InternalOne() {
             </p>
             <Link 
               href="/pricing" 
-              className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-105"
-              style={{ backgroundColor: '#6458AF' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5A4FA3'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
+              className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 bg-white hover:bg-gray-100 text-gray-900"
             >
-              <span className="text-white">Start Your Website Today →</span>
+              Start Your Website Today →
             </Link>
           </div>
         </div>

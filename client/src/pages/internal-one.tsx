@@ -107,58 +107,58 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-left">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -170,58 +170,58 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-right">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -233,58 +233,58 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-left">
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
-                  src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
-                  alt="Cameron Smith Insurance Agent Website Template"
+                  src="/attached_assets/Screenshot%202025-08-17%20at%209.36.42%20PM_1755482299241.png" 
+                  alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>

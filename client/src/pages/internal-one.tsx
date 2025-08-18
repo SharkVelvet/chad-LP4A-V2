@@ -229,6 +229,25 @@ export default function InternalOne() {
         </div>
       </section>
 
+      {/* Call to Action Section - Reiterated Hero */}
+      <section className="py-16 px-8" style={{ backgroundColor: '#2D1B69' }}>
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Professional Landing Pages<br />
+            Built for Insurance Success
+          </h2>
+          <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+            Get a high-converting website that attracts clients and grows your insurance business
+          </p>
+          <Link 
+            href="/pricing" 
+            className="inline-flex items-center px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold rounded-lg transition-colors duration-200"
+          >
+            Start Your Website Today →
+          </Link>
+        </div>
+      </section>
+
       {/* Footer */}
       <div className="text-center py-8 bg-white">
         <p className="text-sm text-gray-500">

@@ -233,20 +233,9 @@ export default function InternalOne() {
       {/* Call to Action Section - Reiterated Hero */}
       <section className="py-16 px-8 bg-white">
         <div className="max-w-5xl mx-auto">
-          <div className="rounded-3xl px-12 py-16 text-center relative overflow-hidden" style={{ 
+          <div className="rounded-3xl px-12 py-16 text-center" style={{ 
             backgroundColor: '#2D1B69'
           }}>
-            {/* Decorative background elements */}
-            <div className="absolute inset-0 pointer-events-none">
-              <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,100 Q200,50 400,100 T800,100" stroke="rgba(255,255,255,0.1)" strokeWidth="2" fill="none"/>
-                <path d="M0,200 Q150,150 300,200 T600,200" stroke="rgba(255,255,255,0.08)" strokeWidth="1.5" fill="none"/>
-                <path d="M200,0 Q400,80 600,40 T800,60" stroke="rgba(255,255,255,0.06)" strokeWidth="1" fill="none"/>
-                <circle cx="100" cy="80" r="40" fill="rgba(255,255,255,0.04)"/>
-                <circle cx="650" cy="300" r="60" fill="rgba(255,255,255,0.03)"/>
-                <circle cx="750" cy="100" r="25" fill="rgba(255,255,255,0.05)"/>
-              </svg>
-            </div>
             <p className="text-lg text-gray-300 mb-4">For Insurance Agents Nationwide</p>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Professional Landing Pages for <span style={{ color: '#8B7BD8' }}>Insurance Agents</span>

@@ -35,12 +35,12 @@ export default function InternalOne() {
                 <div className="text-xs sm:text-sm font-medium text-gray-600 mt-0.5" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
-            <Badge className="mb-6" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
+            <Badge className="mb-8" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
+            <h1 className="text-5xl font-bold text-gray-900 mb-8">
               Professional Landing Pages for<br />
               <span style={{ color: '#6458AF' }}>Insurance Agents</span>
             </h1>
-            <p className="text-2xl text-gray-600 mb-12 max-w-2xl mx-auto">
+            <p className="text-2xl text-gray-600 mb-16 max-w-2xl mx-auto">
               Are you looking to grow your clients or grow your team?
             </p>
             

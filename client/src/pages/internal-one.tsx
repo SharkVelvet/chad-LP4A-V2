@@ -246,7 +246,7 @@ export default function InternalOne() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto">
               <Button 
                 size="lg"
-                className="w-full sm:w-auto px-8 py-4 text-base font-semibold bg-white hover:bg-gray-100 text-gray-900"
+                className="w-full sm:w-auto px-8 py-4 text-sm font-semibold bg-white hover:bg-gray-100 text-gray-900"
                 onClick={() => setLocation('/get-clients')}
               >
                 I Want More Clients
@@ -254,7 +254,7 @@ export default function InternalOne() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto px-8 py-4 text-base font-semibold border-2 border-white bg-transparent hover:bg-white text-white hover:text-gray-900"
+                className="w-full sm:w-auto px-8 py-4 text-sm font-semibold border-2 border-white bg-transparent hover:bg-white text-white hover:text-gray-900"
                 onClick={() => setLocation('/recruit-agents')}
               >
                 I Want to Recruit Agents

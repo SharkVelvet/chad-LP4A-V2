@@ -35,6 +35,69 @@ export default function GetClients() {
               </div>
             </div>
             
+            <nav className="hidden md:flex space-x-8">
+              <a 
+                href="/get-clients" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setLocation('/get-clients');
+                }}
+              >
+                Get Clients
+              </a>
+              <a 
+                href="/recruit-agents" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setLocation('/recruit-agents');
+                }}
+              >
+                Recruit Agents
+              </a>
+              <a 
+                href="#features" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Features
+              </a>
+              <a 
+                href="#pricing" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Pricing
+              </a>
+              <a 
+                href="/blog" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setLocation('/blog');
+                }}
+              >
+                Blog
+              </a>
+            </nav>
+            
             <div className="flex items-center gap-4">
               <Button 
                 className="hidden md:block hover:opacity-90"
@@ -73,18 +136,76 @@ export default function GetClients() {
                 <X className="h-6 w-6" />
               </button>
             </div>
-            <div className="p-6">
-              <Button 
-                className="w-full text-white py-3 hover:opacity-90"
-                style={{ backgroundColor: '#6458AF' }}
-                onClick={() => {
+            <nav className="p-6 space-y-6">
+              <a 
+                href="/get-clients"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
                   setIsMobileMenuOpen(false);
-                  handleStartProcess();
+                  setLocation('/get-clients');
                 }}
               >
-                Launch My Client Page
-              </Button>
-            </div>
+                Get Clients
+              </a>
+              <a 
+                href="/recruit-agents"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/recruit-agents');
+                }}
+              >
+                Recruit Agents
+              </a>
+              <a 
+                href="#features"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Features
+              </a>
+              <a 
+                href="#pricing"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Pricing
+              </a>
+              <a 
+                href="/blog"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/blog');
+                }}
+              >
+                Blog
+              </a>
+              
+              <div className="pt-6 border-t border-gray-200">
+                <Button 
+                  className="w-full text-white py-3 hover:opacity-90"
+                  style={{ backgroundColor: '#6458AF' }}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    handleStartProcess();
+                  }}
+                >
+                  Launch My Client Page
+                </Button>
+              </div>
+            </nav>
           </div>
         </div>
       )}
@@ -136,7 +257,7 @@ export default function GetClients() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-gray-50">
+      <section id="features" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -248,7 +369,7 @@ export default function GetClients() {
       </section>
 
       {/* Pricing */}
-      <section className="py-20 bg-gray-50">
+      <section id="pricing" className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">

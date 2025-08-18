@@ -61,6 +61,30 @@ export default function RecruitAgents() {
                 Recruit Agents
               </a>
               <a 
+                href="#features" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Features
+              </a>
+              <a 
+                href="#pricing" 
+                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
+                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Pricing
+              </a>
+              <a 
                 href="/blog" 
                 className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
                 onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
@@ -134,6 +158,28 @@ export default function RecruitAgents() {
                 }}
               >
                 Recruit Agents
+              </a>
+              <a 
+                href="#features"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Features
+              </a>
+              <a 
+                href="#pricing"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Pricing
               </a>
               <a 
                 href="/blog"
@@ -211,7 +257,7 @@ export default function RecruitAgents() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-gray-50">
+      <section id="features" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -323,7 +369,7 @@ export default function RecruitAgents() {
       </section>
 
       {/* Pricing */}
-      <section className="py-20 bg-gray-50">
+      <section id="pricing" className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">

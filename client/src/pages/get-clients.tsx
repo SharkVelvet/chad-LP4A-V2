@@ -31,7 +31,7 @@ export default function GetClients() {
               <FileText className="h-8 w-8 sm:h-10 sm:w-10 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">
                 <div className="text-xl sm:text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-xs sm:text-sm font-medium text-gray-600 mt-0.5 sm:mt-0" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                <div className="text-xs sm:text-sm font-medium text-gray-600 -mt-1" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
             
@@ -129,7 +129,7 @@ export default function GetClients() {
                 <FileText className="h-8 w-8 mr-2" style={{ color: '#6458AF' }} />
                 <div className="text-left">
                   <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                  <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                  <div className="text-sm font-medium text-gray-600 -mt-1" style={{ letterSpacing: '0.15em' }}>for Agents</div>
                 </div>
               </div>
               <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-600">

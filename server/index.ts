@@ -6,6 +6,17 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Serve attached assets statically FIRST, before other middleware
+app.use('/attached_assets', express.static('attached_assets', {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.png')) {
+      res.set('Content-Type', 'image/png');
+    } else if (path.endsWith('.jpg') || path.endsWith('.jpeg')) {
+      res.set('Content-Type', 'image/jpeg');
+    }
+  }
+}));
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -35,9 +46,6 @@ app.use((req, res, next) => {
 
   next();
 });
-
-// Serve attached assets statically
-app.use('/attached_assets', express.static('attached_assets'));
 
 (async () => {
   try {

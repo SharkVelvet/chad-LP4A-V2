@@ -231,21 +231,29 @@ export default function InternalOne() {
       </section>
 
       {/* Call to Action Section - Reiterated Hero */}
-      <section className="py-16 px-8" style={{ backgroundColor: '#2D1B69' }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Professional Landing Pages<br />
-            Built for Insurance Success
-          </h2>
-          <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-            Get a high-converting website that attracts clients and grows your insurance business
-          </p>
-          <Link 
-            href="/pricing" 
-            className="inline-flex items-center px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold rounded-lg transition-colors duration-200"
-          >
-            Start Your Website Today →
-          </Link>
+      <section className="py-16 px-8 bg-gray-50">
+        <div className="max-w-5xl mx-auto">
+          <div className="rounded-3xl px-12 py-16 text-center" style={{ 
+            background: 'linear-gradient(135deg, #2D1B69 0%, #1E1B4B 100%)',
+            backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%)'
+          }}>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Professional Landing Pages<br />
+              Built for Insurance Success
+            </h2>
+            <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Get a high-converting website that attracts clients and grows your insurance business
+            </p>
+            <Link 
+              href="/pricing" 
+              className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-105"
+              style={{ backgroundColor: '#6458AF' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5A4FA3'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
+            >
+              <span className="text-white">Start Your Website Today →</span>
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -93,7 +93,7 @@ export default function InternalOne() {
 
       {/* Animated Template Showcase */}
       <section 
-        className="py-8 overflow-hidden" 
+        className="pt-4 pb-8 overflow-hidden" 
         style={{ 
           background: 'linear-gradient(to bottom, #F3F1FF 0%, #ffffff 100%)'
         }}
@@ -236,7 +236,7 @@ export default function InternalOne() {
           <div className="rounded-3xl px-12 py-16 text-center" style={{ 
             backgroundColor: '#2D1B69'
           }}>
-            <p className="text-sm text-gray-300 mb-4">For Insurance Agents Nationwide</p>
+
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Professional Landing Pages for <span style={{ color: '#8B7BD8' }}>Insurance Agents</span>
             </h2>

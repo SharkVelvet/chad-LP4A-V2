@@ -37,7 +37,7 @@ export default function InternalOne() {
             </div>
             <Badge className="mb-8 mt-8" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
             <h1 className="text-5xl font-bold text-gray-900 mb-8">
-              Professional Landing Pages for<br />
+              Professional Landing Pages<br className="hidden sm:block" /> for<br />
               <span style={{ color: '#6458AF' }}>Insurance Agents</span>
             </h1>
             <p className="text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -48,7 +48,7 @@ export default function InternalOne() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto mb-8">
               <Button 
                 size="lg"
-                className="w-full sm:w-auto px-8 py-4 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
+                className="w-auto px-8 py-4 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
                 style={{ backgroundColor: '#6458AF' }}
                 onClick={() => setLocation('/get-clients')}
               >
@@ -57,7 +57,7 @@ export default function InternalOne() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto px-8 py-4 text-sm font-semibold hover:opacity-90 transition-opacity"
+                className="w-auto px-8 py-4 text-sm font-semibold hover:opacity-90 transition-opacity"
                 style={{ 
                   borderColor: '#6458AF', 
                   color: '#6458AF',

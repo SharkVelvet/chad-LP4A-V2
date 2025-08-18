@@ -97,69 +97,86 @@ export default function InternalOne() {
           <p className="text-xl text-gray-600">Choose from dozens of proven designs</p>
         </div>
         
-        {/* Static Template Gallery */}
-        <div className="max-w-6xl mx-auto px-4">
-          {/* First Row */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
-            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
-              <img 
-                src="/attached_assets/lpfa-pic1_1754365592923.jpg" 
-                alt="Insurance Agent Template 1"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
-              <img 
-                src="/attached_assets/lpfa-pic2_1754365592925.jpg" 
-                alt="Insurance Agent Template 2"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
-              <img 
-                src="/attached_assets/lpfa-pic3_1754365592924.jpg" 
-                alt="Insurance Agent Template 3"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
-              <img 
-                src="/attached_assets/lpfa-pic4_1754365592924.jpg" 
-                alt="Insurance Agent Template 4"
-                className="w-full h-full object-cover"
-              />
+        {/* Staggered Template Showcase */}
+        <div className="max-w-7xl mx-auto px-4">
+          {/* First Row - Left Aligned */}
+          <div className="flex justify-start mb-8">
+            <div className="flex space-x-6 overflow-x-auto">
+              <div className="w-80 h-60 rounded-2xl shadow-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/landing-sample_1755479377470.png" 
+                  alt="Insurance Agent Template 1"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-60 rounded-2xl shadow-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/landing-sample_1755479377470.png" 
+                  alt="Insurance Agent Template 2"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-60 rounded-2xl shadow-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/landing-sample_1755479377470.png" 
+                  alt="Insurance Agent Template 3"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
           
-          {/* Second Row */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
-              <img 
-                src="/attached_assets/lpfa-pic5_1754365592924.jpg" 
-                alt="Insurance Agent Template 5"
-                className="w-full h-full object-cover"
-              />
+          {/* Second Row - Center Aligned with Offset */}
+          <div className="flex justify-center mb-8">
+            <div className="flex space-x-6 overflow-x-auto ml-20">
+              <div className="w-80 h-60 rounded-2xl shadow-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/landing-sample_1755479377470.png" 
+                  alt="Insurance Agent Template 4"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-60 rounded-2xl shadow-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/landing-sample_1755479377470.png" 
+                  alt="Insurance Agent Template 5"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-60 rounded-2xl shadow-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/landing-sample_1755479377470.png" 
+                  alt="Insurance Agent Template 6"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
-            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
-              <img 
-                src="/attached_assets/tempalte1-hero.jpg" 
-                alt="Insurance Agent Template 6"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
-              <img 
-                src="/attached_assets/temp1-pr.jpg" 
-                alt="Insurance Agent Template 7"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full h-40 rounded-2xl shadow-xl overflow-hidden">
-              <img 
-                src="/attached_assets/temp2-pr.jpg" 
-                alt="Insurance Agent Template 8"
-                className="w-full h-full object-cover"
-              />
+          </div>
+          
+          {/* Third Row - Right Aligned */}
+          <div className="flex justify-end">
+            <div className="flex space-x-6 overflow-x-auto">
+              <div className="w-80 h-60 rounded-2xl shadow-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/landing-sample_1755479377470.png" 
+                  alt="Insurance Agent Template 7"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-60 rounded-2xl shadow-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/landing-sample_1755479377470.png" 
+                  alt="Insurance Agent Template 8"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-60 rounded-2xl shadow-xl overflow-hidden flex-shrink-0">
+                <img 
+                  src="/attached_assets/landing-sample_1755479377470.png" 
+                  alt="Insurance Agent Template 9"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -416,12 +416,7 @@ export default function GetClients() {
                   <td className="px-6 py-4 text-center text-gray-600">No, generic</td>
                   <td className="px-6 py-4 text-center text-gray-600">Custom, but $$$</td>
                 </tr>
-                <tr className="border-b border-gray-200">
-                  <td className="px-6 py-4 font-medium text-gray-900">Lead Capture Forms</td>
-                  <td className="px-6 py-4 text-center font-semibold" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>Included</td>
-                  <td className="px-6 py-4 text-center text-gray-600">Extra setup</td>
-                  <td className="px-6 py-4 text-center text-gray-600">Included</td>
-                </tr>
+
                 <tr className="border-b border-gray-200 bg-gray-50">
                   <td className="px-6 py-4 font-medium text-gray-900">SEO Optimization</td>
                   <td className="px-6 py-4 text-center font-semibold" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>Built-in for agents</td>

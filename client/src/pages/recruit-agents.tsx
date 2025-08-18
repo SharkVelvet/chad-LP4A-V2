@@ -137,9 +137,19 @@ export default function RecruitAgents() {
       </header>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden">
-          <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50">
+      <>
+        {/* Backdrop */}
+        <div 
+          className={`fixed inset-0 bg-black z-40 md:hidden transition-opacity duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'
+          }`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+        
+        {/* Slide-out Menu */}
+        <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <div className="flex items-center">
                 <FileText className="h-8 w-8 mr-2" style={{ color: '#6458AF' }} />
@@ -222,9 +232,8 @@ export default function RecruitAgents() {
                 </Button>
               </div>
             </nav>
-          </div>
         </div>
-      )}
+      </>
 
       {/* Hero Section */}
       <section className="py-20" style={{ background: 'linear-gradient(135deg, #f8f6ff 0%, #ffffff 100%)' }}>

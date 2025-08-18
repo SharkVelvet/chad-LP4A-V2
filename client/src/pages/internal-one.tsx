@@ -107,8 +107,22 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-left">
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
+                  src="/attached_assets/agency-hero-homepage.png" 
+                  alt="Insurance Agency Hero Homepage - Client-Friendly Financial Solutions"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 template-card flex-shrink-0">
+                <img 
                   src="/attached_assets/jake-smith-hero.png" 
                   alt="Jake Smith Insurance Agent - Hero Section with Profile"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 template-card flex-shrink-0">
+                <img 
+                  src="/attached_assets/our-services-grid.png" 
+                  alt="Insurance Services Grid - Life, Home, Auto, Health, Business"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -121,28 +135,21 @@ export default function InternalOne() {
               </div>
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
-                  src="/attached_assets/client-testimonials.png" 
-                  alt="Client Testimonials Section"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="w-80 h-52 template-card flex-shrink-0">
-                <img 
-                  src="/attached_assets/contact-us.png" 
-                  alt="Contact Us Page with Address & Phone"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="w-80 h-52 template-card flex-shrink-0">
-                <img 
-                  src="/attached_assets/cameron-smith-about.png" 
-                  alt="Cameron Smith About Section - Professional Profile"
+                  src="/attached_assets/client-testimonials-stats.png" 
+                  alt="Client Testimonials with Statistics - 2500+ Happy Clients"
                   className="w-full h-full object-cover"
                 />
               </div>
               {/* Repeat for seamless loop */}
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
+                  src="/attached_assets/agency-hero-homepage.png" 
+                  alt="Insurance Agency Hero Homepage - Client-Friendly Financial Solutions"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 template-card flex-shrink-0">
+                <img 
                   src="/attached_assets/jake-smith-hero.png" 
                   alt="Jake Smith Insurance Agent - Hero Section with Profile"
                   className="w-full h-full object-cover"
@@ -150,15 +157,8 @@ export default function InternalOne() {
               </div>
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
-                  src="/attached_assets/financial-services-products.png" 
-                  alt="Financial Services & Products Page"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="w-80 h-52 template-card flex-shrink-0">
-                <img 
-                  src="/attached_assets/client-testimonials.png" 
-                  alt="Client Testimonials Section"
+                  src="/attached_assets/our-services-grid.png" 
+                  alt="Insurance Services Grid - Life, Home, Auto, Health, Business"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -170,8 +170,15 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-right">
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
-                  src="/attached_assets/contact-us.png" 
-                  alt="Contact Us Page with Address & Phone"
+                  src="/attached_assets/client-testimonials.png" 
+                  alt="Client Testimonials Section"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 template-card flex-shrink-0">
+                <img 
+                  src="/attached_assets/contact-footer.png" 
+                  alt="Contact Footer with Phone, Email & Address"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -184,18 +191,19 @@ export default function InternalOne() {
               </div>
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
-                  src="/attached_assets/jake-smith-hero.png" 
-                  alt="Jake Smith Insurance Agent - Hero Section with Profile"
+                  src="/attached_assets/agency-hero-homepage.png" 
+                  alt="Insurance Agency Hero Homepage - Client-Friendly Financial Solutions"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
-                  src="/attached_assets/financial-services-products.png" 
-                  alt="Financial Services & Products Page"
+                  src="/attached_assets/contact-us.png" 
+                  alt="Contact Us Page with Address & Phone"
                   className="w-full h-full object-cover"
                 />
               </div>
+              {/* Repeat for seamless loop */}
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/client-testimonials.png" 
@@ -203,11 +211,10 @@ export default function InternalOne() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Repeat for seamless loop */}
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
-                  src="/attached_assets/contact-us.png" 
-                  alt="Contact Us Page with Address & Phone"
+                  src="/attached_assets/contact-footer.png" 
+                  alt="Contact Footer with Phone, Email & Address"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -215,13 +222,6 @@ export default function InternalOne() {
                 <img 
                   src="/attached_assets/cameron-smith-about.png" 
                   alt="Cameron Smith About Section - Professional Profile"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="w-80 h-52 template-card flex-shrink-0">
-                <img 
-                  src="/attached_assets/jake-smith-hero.png" 
-                  alt="Jake Smith Insurance Agent - Hero Section with Profile"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -233,29 +233,8 @@ export default function InternalOne() {
             <div className="flex space-x-4 animate-scroll-left">
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
-                  src="/attached_assets/financial-services-products.png" 
-                  alt="Financial Services & Products Page"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="w-80 h-52 template-card flex-shrink-0">
-                <img 
-                  src="/attached_assets/client-testimonials.png" 
-                  alt="Client Testimonials Section"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="w-80 h-52 template-card flex-shrink-0">
-                <img 
-                  src="/attached_assets/contact-us.png" 
-                  alt="Contact Us Page with Address & Phone"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="w-80 h-52 template-card flex-shrink-0">
-                <img 
-                  src="/attached_assets/cameron-smith-about.png" 
-                  alt="Cameron Smith About Section - Professional Profile"
+                  src="/attached_assets/our-services-grid.png" 
+                  alt="Insurance Services Grid - Life, Home, Auto, Health, Business"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -266,18 +245,10 @@ export default function InternalOne() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Repeat for seamless loop */}
               <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
-                  src="/attached_assets/financial-services-products.png" 
-                  alt="Financial Services & Products Page"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="w-80 h-52 template-card flex-shrink-0">
-                <img 
-                  src="/attached_assets/client-testimonials.png" 
-                  alt="Client Testimonials Section"
+                  src="/attached_assets/client-testimonials-stats.png" 
+                  alt="Client Testimonials with Statistics - 2500+ Happy Clients"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -285,6 +256,35 @@ export default function InternalOne() {
                 <img 
                   src="/attached_assets/contact-us.png" 
                   alt="Contact Us Page with Address & Phone"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 template-card flex-shrink-0">
+                <img 
+                  src="/attached_assets/financial-services-products.png" 
+                  alt="Financial Services & Products Page"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Repeat for seamless loop */}
+              <div className="w-80 h-52 template-card flex-shrink-0">
+                <img 
+                  src="/attached_assets/our-services-grid.png" 
+                  alt="Insurance Services Grid - Life, Home, Auto, Health, Business"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 template-card flex-shrink-0">
+                <img 
+                  src="/attached_assets/jake-smith-hero.png" 
+                  alt="Jake Smith Insurance Agent - Hero Section with Profile"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-80 h-52 template-card flex-shrink-0">
+                <img 
+                  src="/attached_assets/client-testimonials-stats.png" 
+                  alt="Client Testimonials with Statistics - 2500+ Happy Clients"
                   className="w-full h-full object-cover"
                 />
               </div>

@@ -231,7 +231,7 @@ export default function InternalOne() {
       </section>
 
       {/* Call to Action Section - Reiterated Hero */}
-      <section className="py-16 px-8 bg-gray-50">
+      <section className="py-16 px-8" style={{ backgroundColor: '#2D1B69' }}>
         <div className="max-w-5xl mx-auto">
           <div className="rounded-3xl px-12 py-16 text-center" style={{ 
             background: 'linear-gradient(135deg, #2D1B69 0%, #1E1B4B 100%)',

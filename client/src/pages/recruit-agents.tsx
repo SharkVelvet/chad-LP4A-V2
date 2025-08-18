@@ -479,6 +479,12 @@ export default function RecruitAgents() {
                   <td className="px-6 py-4 text-center text-gray-600">$25–$40/month</td>
                   <td className="px-6 py-4 text-center text-gray-600">$2000+ upfront + hosting</td>
                 </tr>
+                <tr className="border-b border-gray-200 bg-gray-50">
+                  <td className="px-6 py-4 font-medium text-gray-900">Domain + Hosting</td>
+                  <td className="px-6 py-4 text-center font-semibold" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>Included in price</td>
+                  <td className="px-6 py-4 text-center text-gray-600">$15–30/month extra</td>
+                  <td className="px-6 py-4 text-center text-gray-600">$10–50/month extra</td>
+                </tr>
                 <tr>
                   <td className="px-6 py-4 font-medium text-gray-900">Ongoing Support</td>
                   <td className="px-6 py-4 text-center font-semibold" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>24/7 included</td>

@@ -102,35 +102,35 @@ export default function InternalOne() {
           {/* First Row - Overflow Left */}
           <div className="flex mb-6 -ml-20">
             <div className="flex space-x-4">
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/lpfa-pic1_1754365592923.jpg" 
                   alt="Insurance Agent Template 1"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/lpfa-pic2_1754365592925.jpg" 
                   alt="Insurance Agent Template 2"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/lpfa-pic3_1754365592924.jpg" 
                   alt="Insurance Agent Template 3"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/lpfa-pic4_1754365592924.jpg" 
                   alt="Insurance Agent Template 4"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/lpfa-pic5_1754365592924.jpg" 
                   alt="Insurance Agent Template 5"
@@ -143,35 +143,35 @@ export default function InternalOne() {
           {/* Second Row - Offset Right */}
           <div className="flex mb-6 justify-center">
             <div className="flex space-x-4 ml-32">
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/Corporate-Landing-Page_1754877486249.jpg" 
                   alt="Insurance Agent Template 6"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/landing-page-10-10_1754877990321.jpg" 
                   alt="Insurance Agent Template 7"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/lpages-business_1754875856664.jpg" 
                   alt="Insurance Agent Template 8"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/landing-temp7_1754876114698.jpg" 
                   alt="Insurance Agent Template 9"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/temp1-pr.jpg" 
                   alt="Insurance Agent Template 10"
@@ -184,35 +184,35 @@ export default function InternalOne() {
           {/* Third Row - Overflow Right */}
           <div className="flex -mr-20">
             <div className="flex space-x-4 justify-end w-full">
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/temp2-pr.jpg" 
                   alt="Insurance Agent Template 11"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/temp3-pr.jpg" 
                   alt="Insurance Agent Template 12"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/temp4-pr.jpg" 
                   alt="Insurance Agent Template 13"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/planright-cameron-snapshot_1751852578360.jpg" 
                   alt="Insurance Agent Template 14"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-72 h-44 rounded-xl shadow-lg overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
                 <img 
                   src="/attached_assets/planright-jenny-snapshot_1751852549427.jpg" 
                   alt="Insurance Agent Template 15"

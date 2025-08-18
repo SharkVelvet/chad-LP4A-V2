@@ -105,35 +105,35 @@ export default function InternalOne() {
           {/* First Row - Animate Left to Right */}
           <div className="mb-6 overflow-hidden">
             <div className="flex space-x-4 animate-scroll-left">
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
@@ -141,21 +141,21 @@ export default function InternalOne() {
                 />
               </div>
               {/* Repeat for seamless loop */}
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
@@ -168,35 +168,35 @@ export default function InternalOne() {
           {/* Second Row - Animate Right to Left */}
           <div className="mb-6 overflow-hidden">
             <div className="flex space-x-4 animate-scroll-right">
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
@@ -204,21 +204,21 @@ export default function InternalOne() {
                 />
               </div>
               {/* Repeat for seamless loop */}
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
@@ -231,35 +231,35 @@ export default function InternalOne() {
           {/* Third Row - Animate Left to Right */}
           <div className="overflow-hidden">
             <div className="flex space-x-4 animate-scroll-left">
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
@@ -267,21 +267,21 @@ export default function InternalOne() {
                 />
               </div>
               {/* Repeat for seamless loop */}
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-80 h-52 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="w-80 h-52 template-card flex-shrink-0">
                 <img 
                   src="/attached_assets/cameron-smith-about-section.png" 
                   alt="Cameron Smith Insurance Agent - About Section"

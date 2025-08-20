@@ -39,7 +39,7 @@ export default function Blog() {
           <div className="flex justify-between items-center py-4">
             <div 
               className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={() => setLocation('/internal-one')}
+              onClick={() => setLocation('/')}
             >
               <FileText className="h-9 w-9 sm:h-10 sm:w-10 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">
@@ -386,7 +386,7 @@ export default function Blog() {
           <div className="text-center">
             <div 
               className="flex items-center justify-center mb-6 cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={() => setLocation('/internal-one')}
+              onClick={() => setLocation('/')}
             >
               <FileText className="h-8 w-8 mr-2" style={{ color: '#6458AF' }} />
               <div className="text-left">

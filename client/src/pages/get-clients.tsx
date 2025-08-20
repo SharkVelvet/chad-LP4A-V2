@@ -26,7 +26,7 @@ export default function GetClients() {
           <div className="flex justify-between items-center py-4">
             <div 
               className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={() => setLocation('/internal-one')}
+              onClick={() => setLocation('/')}
             >
               <FileText className="h-9 w-9 sm:h-10 sm:w-10 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">

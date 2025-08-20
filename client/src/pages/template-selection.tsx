@@ -38,7 +38,7 @@ export default function TemplateSelection() {
               <div className="flex items-center space-x-4">
                 <div 
                   className="flex items-center space-x-2 font-bold text-xl cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => navigate('/internal-one')}
+                  onClick={() => navigate('/')}
                 >
                   <FileText className="h-6 w-6" style={{ color: '#6458AF' }} />
                   <div className="text-left">
@@ -71,7 +71,7 @@ export default function TemplateSelection() {
             <div className="flex items-center space-x-4">
               <div 
                 className="flex items-center space-x-2 font-bold text-xl cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => navigate('/internal-one')}
+                onClick={() => navigate('/')}
               >
                 <FileText className="h-8 w-8" style={{ color: '#6458AF' }} />
                 <div className="text-left">

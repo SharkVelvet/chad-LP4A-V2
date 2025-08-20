@@ -242,7 +242,7 @@ export default function InternalOne() {
             {/* Centered Logo at Top */}
             <div 
               className="flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={() => setLocation('/internal-one')}
+              onClick={() => setLocation('/')}
             >
               <FileText className="h-6 w-6 sm:h-7 sm:w-7 mr-2" style={{ color: '#6458AF' }} />
               <div className="text-left">

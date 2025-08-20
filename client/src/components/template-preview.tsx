@@ -61,7 +61,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Hero Section with Corporate Building Background */}
         <div className="relative bg-cover bg-center bg-no-repeat flex items-center justify-center text-center px-4" style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(/attached_assets/landing-122222_1754880004417.jpg)`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(/attached_assets/landingpages-background8_1755688587564.jpg)`,
           height: '60vh'
         }}>
           {/* Overlay for text readability */}

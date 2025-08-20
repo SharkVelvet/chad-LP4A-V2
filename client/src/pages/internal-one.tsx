@@ -14,7 +14,7 @@ export default function InternalOne() {
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#f9f7fe' }}>
+    <div className="min-h-screen relative overflow-hidden flex flex-col" style={{ backgroundColor: '#f9f7fe' }}>
       {/* Animated Background Layer - Very Light Opacity */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         {/* First Row - Animate Left to Right */}
@@ -186,13 +186,13 @@ export default function InternalOne() {
         </div>
       </div>
 
-      {/* Main Content Layer */}
-      <div className="relative z-10 min-h-screen flex items-start justify-center pt-16">
+      {/* Logo at Top */}
+      <div className="relative z-10 pt-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Centered Logo at Top */}
             <div 
-              className="flex items-center justify-center mb-12 cursor-pointer hover:opacity-80 transition-opacity"
+              className="flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
               onClick={() => setLocation('/internal-one')}
             >
               <FileText className="h-6 w-6 sm:h-7 sm:w-7 mr-2" style={{ color: '#6458AF' }} />
@@ -201,7 +201,15 @@ export default function InternalOne() {
                 <div className="text-xs sm:text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em', marginTop: '-3px' }}>for Agents</div>
               </div>
             </div>
-            <Badge className="mb-8 mt-8" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content Centered */}
+      <div className="relative z-10 flex-1 flex items-center justify-center">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <Badge className="mb-8" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
             <h1 className="text-5xl font-bold text-gray-900 mb-8">
               Professional Landing Pages&nbsp;for<br />
               <span style={{ color: '#6458AF' }}>Insurance Agents</span>

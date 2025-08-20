@@ -18,44 +18,44 @@ export default function InternalOne() {
       {/* Animated Background Layer - Very Light Opacity */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         {/* First Row - Animate Left to Right */}
-        <div className="mb-6 overflow-hidden">
+        <div className="mb-2 overflow-hidden">
           <div className="flex space-x-4 animate-scroll-left">
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/agency-hero-homepage.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/jake-smith-hero.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/our-services-grid.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/financial-services-products.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/client-testimonials-stats.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/jake-smith-modern-hero.png" 
                 alt="Template showcase"
@@ -63,21 +63,21 @@ export default function InternalOne() {
               />
             </div>
             {/* Repeat for seamless loop */}
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/agency-hero-homepage.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/jake-smith-hero.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/our-services-grid.png" 
                 alt="Template showcase"
@@ -88,37 +88,37 @@ export default function InternalOne() {
         </div>
         
         {/* Second Row - Animate Right to Left */}
-        <div className="mb-6 overflow-hidden">
+        <div className="mb-2 overflow-hidden">
           <div className="flex space-x-4 animate-scroll-right">
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/client-testimonials.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/contact-footer.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/cameron-smith-about.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/contact-us.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/elegant-financial-solutions.png" 
                 alt="Template showcase"
@@ -126,14 +126,14 @@ export default function InternalOne() {
               />
             </div>
             {/* Repeat for seamless loop */}
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/client-testimonials.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/contact-footer.png" 
                 alt="Template showcase"
@@ -144,30 +144,30 @@ export default function InternalOne() {
         </div>
         
         {/* Third Row - Animate Left to Right */}
-        <div className="overflow-hidden">
+        <div className="mb-2 overflow-hidden">
           <div className="flex space-x-4 animate-scroll-left">
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/our-services-grid.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/jake-smith-hero.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/financial-services-products.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/contact-us.png" 
                 alt="Template showcase"
@@ -175,9 +175,58 @@ export default function InternalOne() {
               />
             </div>
             {/* Repeat for seamless loop */}
-            <div className="w-80 h-52 template-card flex-shrink-0">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
               <img 
                 src="/attached_assets/our-services-grid.png" 
+                alt="Template showcase"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+        
+        {/* Fourth Row - Animate Right to Left */}
+        <div className="overflow-hidden">
+          <div className="flex space-x-4 animate-scroll-right">
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
+              <img 
+                src="/attached_assets/agency-hero-homepage.png" 
+                alt="Template showcase"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
+              <img 
+                src="/attached_assets/cameron-smith-about.png" 
+                alt="Template showcase"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
+              <img 
+                src="/attached_assets/elegant-financial-solutions.png" 
+                alt="Template showcase"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
+              <img 
+                src="/attached_assets/jake-smith-modern-hero.png" 
+                alt="Template showcase"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Repeat for seamless loop */}
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
+              <img 
+                src="/attached_assets/agency-hero-homepage.png" 
+                alt="Template showcase"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="template-card flex-shrink-0" style={{ width: '20vw', height: '22vh' }}>
+              <img 
+                src="/attached_assets/cameron-smith-about.png" 
                 alt="Template showcase"
                 className="w-full h-full object-cover"
               />

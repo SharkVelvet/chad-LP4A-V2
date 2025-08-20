@@ -187,7 +187,7 @@ export default function InternalOne() {
       </div>
 
       {/* Main Content Layer */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center">
+      <div className="relative z-10 min-h-screen flex items-start justify-center pt-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Centered Logo at Top */}

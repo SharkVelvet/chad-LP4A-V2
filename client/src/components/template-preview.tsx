@@ -4820,26 +4820,26 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
             <div className="text-white text-xl font-bold">Life Insurance Pro</div>
             <nav className="hidden md:flex space-x-8 text-white text-sm">
-              <a href="#" className="hover:text-red-300 transition-colors">About</a>
-              <a href="#" className="hover:text-red-300 transition-colors">Services</a>
-              <a href="#" className="hover:text-red-300 transition-colors">Blog</a>
-              <a href="#" className="hover:text-red-300 transition-colors">Contact</a>
+              <a href="#" className="hover:opacity-80 transition-colors" style={{color: '#f9fafb'}}>About</a>
+              <a href="#" className="hover:opacity-80 transition-colors" style={{color: '#f9fafb'}}>Services</a>
+              <a href="#" className="hover:opacity-80 transition-colors" style={{color: '#f9fafb'}}>Blog</a>
+              <a href="#" className="hover:opacity-80 transition-colors" style={{color: '#f9fafb'}}>Contact</a>
             </nav>
-            <button className="bg-white text-red-900 px-6 py-2 text-sm hover:bg-red-50 transition-all">
+            <button className="bg-white px-6 py-2 text-sm hover:opacity-80 transition-all" style={{color: '#f9fafb'}}>
               GET STARTED
             </button>
           </div>
         </header>
 
         {/* Hero Section */}
-        <div className="relative h-96 md:h-[500px] bg-gradient-to-r from-red-900 to-red-700 overflow-hidden">
+        <div className="relative h-96 md:h-[500px] overflow-hidden" style={{background: `linear-gradient(to right, #f9fafb, #f9fafb)`}}>
           <div className="absolute inset-0">
             <img 
               src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
               alt="Happy family enjoying time together" 
               className="w-full h-full object-cover opacity-70"
             />
-            <div className="absolute inset-0 bg-red-900 bg-opacity-50"></div>
+            <div className="absolute inset-0" style={{backgroundColor: '#f9fafb', opacity: 0.5}}></div>
           </div>
           
           <div className="relative z-10 max-w-4xl mx-auto px-8 h-full flex flex-col justify-center pt-20">
@@ -4867,19 +4867,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center">
-                    <span className="text-red-900 mr-3">✓</span>
+                    <span className="mr-3" style={{color: '#f9fafb'}}>✓</span>
                     <span className="text-gray-700">Licensed Insurance Professional</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="text-red-900 mr-3">✓</span>
+                    <span className="mr-3" style={{color: '#f9fafb'}}>✓</span>
                     <span className="text-gray-700">Certified Financial Planner (CFP®)</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="text-red-900 mr-3">✓</span>
+                    <span className="mr-3" style={{color: '#f9fafb'}}>✓</span>
                     <span className="text-gray-700">15+ Years Industry Experience</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="text-red-900 mr-3">✓</span>
+                    <span className="mr-3" style={{color: '#f9fafb'}}>✓</span>
                     <span className="text-gray-700">Specializes in Family Protection Plans</span>
                   </div>
                 </div>
@@ -4891,7 +4891,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     alt="Luke Smith - Life Insurance Professional" 
                     className="w-full max-w-md mx-auto rounded-lg shadow-lg"
                   />
-                  <div className="absolute -bottom-6 -right-6 bg-red-900 text-white p-4 rounded-lg shadow-lg">
+                  <div className="absolute -bottom-6 -right-6 text-white p-4 rounded-lg shadow-lg" style={{backgroundColor: '#f9fafb'}}>
                     <div className="text-center">
                       <div className="text-2xl font-bold">2,500+</div>
                       <div className="text-sm">Families Protected</div>
@@ -4910,7 +4910,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
               We offer comprehensive life insurance solutions for families at every stage of life. As your trusted insurance partners, we help you find the right coverage through term life, whole life, and universal life policies. Let us help you connect with the perfect policy that meets your family's needs and fits your budget.
             </p>
-            <button className="bg-red-900 text-white px-8 py-3 hover:bg-red-800 transition-all">
+            <button className="text-white px-8 py-3 hover:opacity-80 transition-all" style={{backgroundColor: '#f9fafb'}}>
               Contact Us
             </button>
           </div>
@@ -4965,7 +4965,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Our Services Section */}
-        <div className="py-20 bg-red-900">
+        <div className="py-20" style={{backgroundColor: '#f9fafb'}}>
           <div className="max-w-4xl mx-auto px-8 text-center">
             <h2 className="text-4xl font-bold text-white mb-16">Our services</h2>
             
@@ -5007,7 +5007,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
             
-            <button className="bg-white text-red-900 px-8 py-3 hover:bg-red-50 transition-all">
+            <button className="bg-white px-8 py-3 hover:opacity-80 transition-all" style={{color: '#f9fafb'}}>
               Contact Us
             </button>
           </div>

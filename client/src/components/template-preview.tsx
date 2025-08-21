@@ -5368,7 +5368,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <img 
               src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
               alt="Happy Family Enjoying Life Together" 
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-center"
             />
           </div>
 

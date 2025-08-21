@@ -5218,10 +5218,46 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
             <div className="text-center">
               <div className="hidden md:flex space-x-12 text-base">
-                <a href="#about" className="hover:text-red-200 transition-colors font-medium text-white">About</a>
-                <a href="#health-insurance" className="hover:text-red-200 transition-colors font-medium text-white">Health Insurance</a>
-                <a href="#life-insurance" className="hover:text-red-200 transition-colors font-medium text-white">Life Insurance</a>
-                <a href="#annuities" className="hover:text-red-200 transition-colors font-medium text-white">Annuities</a>
+                <a 
+                  href="#about" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-red-200 transition-colors font-medium text-white cursor-pointer"
+                >
+                  About
+                </a>
+                <a 
+                  href="#health-insurance" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('health-insurance')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-red-200 transition-colors font-medium text-white cursor-pointer"
+                >
+                  Health Insurance
+                </a>
+                <a 
+                  href="#life-insurance" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('life-insurance')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-red-200 transition-colors font-medium text-white cursor-pointer"
+                >
+                  Life Insurance
+                </a>
+                <a 
+                  href="#annuities" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('annuities')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-red-200 transition-colors font-medium text-white cursor-pointer"
+                >
+                  Annuities
+                </a>
               </div>
             </div>
             <div className="flex justify-end">
@@ -5496,10 +5532,46 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             {/* Navigation */}
             <div className="flex justify-center mb-8">
               <nav className="flex space-x-8 text-gray-300">
-                <a href="#about" className="hover:text-white transition-colors">About</a>
-                <a href="#health-insurance" className="hover:text-white transition-colors">Health Insurance</a>
-                <a href="#life-insurance" className="hover:text-white transition-colors">Life Insurance</a>
-                <a href="#annuities" className="hover:text-white transition-colors">Annuities</a>
+                <a 
+                  href="#about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
+                  About
+                </a>
+                <a 
+                  href="#health-insurance"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('health-insurance')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
+                  Health Insurance
+                </a>
+                <a 
+                  href="#life-insurance"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('life-insurance')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
+                  Life Insurance
+                </a>
+                <a 
+                  href="#annuities"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('annuities')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
+                  Annuities
+                </a>
               </nav>
             </div>
             

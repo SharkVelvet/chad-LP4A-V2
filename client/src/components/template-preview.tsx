@@ -4818,7 +4818,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Header */}
         <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
-            <div className="text-white text-xl font-light">Life Insurance Pro</div>
+            <div className="text-white text-xl font-bold">Life Insurance Pro</div>
             <nav className="hidden md:flex space-x-8 text-white text-sm">
               <a href="#" className="hover:text-red-300 transition-colors">About</a>
               <a href="#" className="hover:text-red-300 transition-colors">Services</a>
@@ -4843,7 +4843,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
           
           <div className="relative z-10 max-w-4xl mx-auto px-8 h-full flex flex-col justify-center pt-20">
-            <h1 className="text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
+            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Protecting your family's<br/>
               financial future.
             </h1>
@@ -4856,7 +4856,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Our Approach Section */}
         <div className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-8 text-center">
-            <h2 className="text-4xl font-light text-gray-900 mb-8">Our approach</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-8">Our approach</h2>
             <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
               We offer comprehensive life insurance solutions for families at every stage of life. As your trusted insurance partners, we help you find the right coverage through term life, whole life, and universal life policies. Let us help you connect with the perfect policy that meets your family's needs and fits your budget.
             </p>
@@ -4878,7 +4878,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 />
               </div>
               <div>
-                <h2 className="text-4xl font-light text-gray-900 mb-6">
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">
                   Providing you with<br/>
                   peace of mind
                 </h2>
@@ -4895,7 +4895,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-4xl font-light text-gray-900 mb-6">
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">
                   In-person and<br/>
                   virtual consultations
                 </h2>
@@ -4917,7 +4917,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Our Services Section */}
         <div className="py-20 bg-red-900">
           <div className="max-w-4xl mx-auto px-8 text-center">
-            <h2 className="text-4xl font-light text-white mb-16">Our services</h2>
+            <h2 className="text-4xl font-bold text-white mb-16">Our services</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
               <div className="text-center">
@@ -4926,7 +4926,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
                   </svg>
                 </div>
-                <h3 className="text-white text-lg mb-2">Term Life</h3>
+                <h3 className="text-white text-xl font-bold mb-2">Term Life</h3>
               </div>
               
               <div className="text-center">
@@ -4935,7 +4935,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <path d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zm2.5-9H18V1h-2v1H8V1H6v1H4.5C3.67 2 3 2.67 3 3.5V5h18V3.5C21 2.67 20.33 2 19.5 2z"/>
                   </svg>
                 </div>
-                <h3 className="text-white text-lg mb-2">Whole Life</h3>
+                <h3 className="text-white text-xl font-bold mb-2">Whole Life</h3>
               </div>
               
               <div className="text-center">
@@ -4944,7 +4944,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                   </svg>
                 </div>
-                <h3 className="text-white text-lg mb-2">Universal Life</h3>
+                <h3 className="text-white text-xl font-bold mb-2">Universal Life</h3>
               </div>
               
               <div className="text-center">
@@ -4953,7 +4953,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H9v-2h2v2zm0-4H9V7h2v6z"/>
                   </svg>
                 </div>
-                <h3 className="text-white text-lg mb-2">Final Expense</h3>
+                <h3 className="text-white text-xl font-bold mb-2">Final Expense</h3>
               </div>
             </div>
             

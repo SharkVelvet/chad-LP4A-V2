@@ -5401,9 +5401,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div id="life-insurance" className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left Side - Family Photo */}
           <div 
-            className="relative h-64 lg:h-80 bg-cover bg-center bg-no-repeat"
+            className="relative h-64 lg:h-80"
             style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"
+              backgroundImage: "url('https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              minHeight: '100%'
             }}
           >
           </div>
@@ -5417,7 +5421,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <p className="text-gray-700 mb-4 leading-relaxed font-medium">
                 Secure your family's future with comprehensive life insurance coverage. From term to whole life policies, we help you find the right protection to ensure your loved ones are financially secure.
               </p>
-              <button className="bg-red-600 text-white px-8 py-3 font-medium tracking-wide hover:bg-red-700 transition-all">
+              <button 
+                onClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="bg-red-600 text-white px-8 py-3 font-medium tracking-wide hover:bg-red-700 transition-all cursor-pointer"
+              >
                 Contact Us
               </button>
             </div>
@@ -5435,7 +5444,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <p className="text-gray-700 mb-4 leading-relaxed font-medium">
                 Access quality healthcare without the financial burden. Our health insurance plans provide comprehensive medical coverage, prescription benefits, and preventive care to keep you and your family healthy.
               </p>
-              <button className="bg-red-600 text-white px-8 py-3 font-medium tracking-wide hover:bg-red-700 transition-all">
+              <button 
+                onClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="bg-red-600 text-white px-8 py-3 font-medium tracking-wide hover:bg-red-700 transition-all cursor-pointer"
+              >
                 Contact Us
               </button>
             </div>
@@ -5443,9 +5457,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
           {/* Right Side - Healthcare Photo */}
           <div 
-            className="relative h-64 lg:h-80 bg-cover bg-center bg-no-repeat"
+            className="relative h-64 lg:h-80"
             style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"
+              backgroundImage: "url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              minHeight: '100%'
             }}
           >
           </div>
@@ -5455,9 +5473,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div id="annuities" className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left Side - Retirement Photo */}
           <div 
-            className="relative h-64 lg:h-80 bg-cover bg-center bg-no-repeat"
+            className="relative h-64 lg:h-80"
             style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"
+              backgroundImage: "url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              minHeight: '100%'
             }}
           >
           </div>
@@ -5471,7 +5493,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <p className="text-gray-700 mb-4 leading-relaxed font-medium">
                 Build a secure retirement with guaranteed income streams. Our annuity products offer tax-deferred growth and reliable payments to ensure your golden years are truly golden.
               </p>
-              <button className="bg-red-600 text-white px-8 py-3 font-medium tracking-wide hover:bg-red-700 transition-all">
+              <button 
+                onClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="bg-red-600 text-white px-8 py-3 font-medium tracking-wide hover:bg-red-700 transition-all cursor-pointer"
+              >
                 Contact Us
               </button>
             </div>
@@ -5493,7 +5520,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
 
         {/* Contact Section */}
-        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
+        <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12">Protect Your Family Today</h2>
             <p className="text-lg text-gray-600 mb-12">Ready to secure your family's future? Let's find the perfect protection plan.</p>

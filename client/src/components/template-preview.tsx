@@ -4431,133 +4431,153 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
-  // Template 11: Corporate Professional Hero (Based on Template 4)
+  // Template 11: Corporate Professional Hero (Based on Template 4) - Inspired by Wellness Design
   if (templateSlug === "Template-11") {
     return (
       <div className={`bg-white ${className}`}>
-        {/* Modern Dark Header */}
-        <div className="bg-slate-900 text-white sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div className="font-bold text-lg sm:text-xl text-white">
-              <div className="flex flex-col items-center">
-                <div>
-                  <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-white">Insurance</span>
-                </div>
-                <div className="text-xs font-normal text-gray-300 mt-1 w-full text-center" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+        {/* Minimalist Header */}
+        <div className="bg-red-900 text-white sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
+            <div className="flex items-center space-x-8">
+              <div className="text-sm">@</div>
+              <div className="text-sm">f</div>
+              <div className="text-sm">in</div>
+            </div>
+            <div className="text-center">
+              <div className="text-xs font-light tracking-[0.3em] mb-1">STRATEGIC BY ADVISOR</div>
+              <div className="hidden md:flex space-x-12 text-sm">
+                <a href="#" className="hover:text-red-300 transition-colors font-light">About</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light">Services</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light">Coaching</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light">Insights</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light">Contact</a>
               </div>
             </div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#" className="hover:text-red-400 transition-colors">Home</a>
-              <a href="#" className="hover:text-red-400 transition-colors">About</a>
-              <a href="#" className="hover:text-red-400 transition-colors">Services</a>
-              <a href="#" className="hover:text-red-400 transition-colors">Contact</a>
-            </div>
-            <button className="bg-red-600 px-6 py-2 rounded-full hover:bg-red-700 transition-all">
-              Contact
-            </button>
-          </div>
-        </div>
-
-        {/* Corporate Hero Section - Sky and Buildings */}
-        <div className="relative text-white py-32" style={{
-          backgroundImage: `linear-gradient(135deg, #1e293b 0%, #475569 50%, #64748b 100%)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}>
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-800/40"></div>
-          <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="text-center lg:text-left">
-              <div className="inline-block bg-red-600/20 text-red-400 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-red-400/30">
-                Corporate Financial Solutions
-              </div>
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
-                <span className="text-white">Strategic</span>
-                <span className="block text-red-400">Business</span>
-                <span className="block text-white">Growth</span>
-              </h1>
-              <p className="text-xl lg:text-2xl mb-4 text-slate-200">Enterprise Financial Services</p>
-              <p className="text-lg text-slate-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                Comprehensive financial planning, risk management, and strategic consulting for businesses and high-net-worth individuals seeking exceptional growth and protection.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transition-all shadow-lg">
-                  Schedule Consultation
-                </button>
-                <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-slate-900 transition-all">
-                  View Services
-                </button>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <div className="relative z-20">
-                <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white/30 backdrop-blur-sm">
-                  <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                    alt="Professional Financial Advisor" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute -top-4 -left-4 bg-red-600 text-white px-6 py-3 rounded-xl shadow-lg transform rotate-12">
-                  <div className="text-center">
-                    <div className="text-lg font-bold">Enterprise</div>
-                    <div className="text-sm">Solutions</div>
-                  </div>
-                </div>
-                <div className="absolute -bottom-4 -right-4 bg-white text-slate-900 px-6 py-3 rounded-xl shadow-lg transform -rotate-12">
-                  <div className="text-center">
-                    <div className="text-lg font-bold text-red-600">$500M+</div>
-                    <div className="text-sm">Assets Managed</div>
-                  </div>
-                </div>
-              </div>
+            <div className="flex items-center space-x-4">
+              <span className="text-sm font-light">Login</span>
+              <button className="bg-white text-red-900 px-4 py-1 text-sm hover:bg-red-50 transition-all">
+                Work with me
+              </button>
             </div>
           </div>
         </div>
 
-        {/* About Section */}
-        <div className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6">
+        {/* Hero Section */}
+        <div className="bg-red-900 text-white py-32">
+          <div className="max-w-4xl mx-auto px-8 text-center">
+            <div className="text-xs font-light tracking-[0.3em] mb-8 text-red-300">YOUR CERTIFIED GUIDE TO</div>
+            <h1 className="text-6xl lg:text-7xl font-extralight mb-4 leading-tight">
+              STRATEGIC FINANCIAL
+            </h1>
+            <h1 className="text-6xl lg:text-7xl font-extralight mb-16 leading-tight">
+              AS A WAY OF LIFE
+            </h1>
+          </div>
+        </div>
+
+        {/* Professional Image Section */}
+        <div className="bg-red-900">
+          <div className="max-w-6xl mx-auto">
+            <div className="relative h-96 lg:h-[500px] overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                alt="Professional Financial Advisor at work" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Services Section - Wellness Style */}
+        <div className="bg-red-900 text-white py-20">
+          <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-slate-900 mb-4">Corporate Excellence</h2>
-              <p className="text-xl text-gray-600">Trusted by leading enterprises nationwide</p>
+              <h2 className="text-4xl lg:text-5xl font-extralight mb-4 tracking-wide">WORK WITH ADVISOR</h2>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  Our comprehensive approach combines strategic financial planning with innovative business solutions to deliver exceptional results for corporations and high-net-worth individuals.
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              {/* 1:1 Coaching */}
+              <div className="text-center">
+                <h3 className="text-xl font-light mb-6 tracking-wide">1:1 COACHING</h3>
+                <p className="text-red-200 mb-8 leading-relaxed font-light">
+                  The ideal choice if you want a personalized plan that is tailored to your financial goals and lifestyle.
                 </p>
-                
-                <div className="grid grid-cols-2 gap-6 mb-8">
-                  <div className="bg-white p-6 rounded-xl shadow-sm">
-                    <div className="flex items-center mb-3">
-                      <Clock className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">20+ Years</span>
-                    </div>
-                    <p className="text-sm text-gray-600">Corporate Experience</p>
-                  </div>
-                  <div className="bg-white p-6 rounded-xl shadow-sm">
-                    <div className="flex items-center mb-3">
-                      <Users className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">Fortune 500</span>
-                    </div>
-                    <p className="text-sm text-gray-600">Client Base</p>
-                  </div>
+                <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
+                  Learn more
+                </a>
+              </div>
+
+              {/* Online Planning */}
+              <div className="text-center">
+                <h3 className="text-xl font-light mb-6 tracking-wide">ONLINE PLANNING</h3>
+                <p className="text-red-200 mb-8 leading-relaxed font-light">
+                  Explore financial principles on your own schedule through a variety of online planning sessions.
+                </p>
+                <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
+                  Learn more
+                </a>
+              </div>
+
+              {/* Live Seminars */}
+              <div className="text-center">
+                <h3 className="text-xl font-light mb-6 tracking-wide">LIVE SEMINARS</h3>
+                <p className="text-red-200 mb-8 leading-relaxed font-light">
+                  Begin your financial journey with full access to our beginner-friendly live seminars and events.
+                </p>
+                <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
+                  Learn more
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Fourth Section - Improving Your Relationship with Finance */}
+        <div className="bg-red-900 text-white py-20">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Left Side - Image */}
+              <div className="relative">
+                <div className="absolute top-0 left-0 text-xs font-light tracking-[0.3em] text-red-300 mb-4">
+                  FINANCIAL<br/>GUIDANCE
+                </div>
+                <div className="mt-16">
+                  <img 
+                    src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    alt="Financial advisor consulting with client" 
+                    className="w-full h-80 object-cover rounded-sm"
+                  />
                 </div>
               </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                  alt="Corporate consultation" 
-                  className="w-full h-64 object-cover rounded-xl shadow-lg"
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                  alt="Business planning" 
-                  className="w-full h-64 object-cover rounded-xl shadow-lg mt-8"
-                />
+
+              {/* Right Side - Content */}
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-extralight mb-8 leading-tight">
+                  IMPROVING YOUR RELATIONSHIP WITH<br/>
+                  FINANCE
+                </h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-sm font-light tracking-wide mb-4 text-red-300">TRY SOMETHING NEW</h4>
+                    <p className="text-red-200 font-light leading-relaxed mb-6">
+                      Begin exploring your relationship with money by trying any of my free resources and meal plans. Healthy finance should feel like activism.
+                    </p>
+                    <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
+                      Explore seasonal recipes
+                    </a>
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-light tracking-wide mb-4 text-red-300">TARGET SPECIFIC ISSUES</h4>
+                    <p className="text-red-200 font-light leading-relaxed mb-6">
+                      If allergies, illness, or other aversions have complicated your relationship with money, a personalized plan might be right for you.
+                    </p>
+                    <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
+                      Schedule a consultation
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

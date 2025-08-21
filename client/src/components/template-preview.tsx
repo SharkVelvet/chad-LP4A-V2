@@ -5237,7 +5237,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           {/* Full-Width Professional Portrait Background */}
           <div className="absolute inset-0">
             <img 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
               alt="Doug Welms - Professional Insurance Agent" 
               className="w-full h-full object-cover object-center"
             />

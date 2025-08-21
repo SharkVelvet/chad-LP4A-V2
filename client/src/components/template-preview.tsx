@@ -5253,7 +5253,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <h1 className="text-8xl lg:text-9xl font-bold tracking-wider text-white -mt-4 drop-shadow-lg">
               Welms
             </h1>
-            <div className="mt-4 text-base text-white tracking-[0.3em] font-extralight drop-shadow-md">
+            <div className="mt-4 text-base text-gray-50 tracking-[0.3em] font-extralight drop-shadow-lg">
               COMPREHENSIVE INSURANCE SOLUTIONS
             </div>
             <div className="mt-2 text-sm text-gray-200 font-extralight drop-shadow-md">

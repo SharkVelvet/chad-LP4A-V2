@@ -5278,7 +5278,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-gray-600">
               {/* Health Insurance */}
-              <div className="pt-8 md:pt-0 md:pr-6">
+              <div className="pt-8 md:pt-0 md:pr-6 md:border-l md:border-gray-600 md:pl-6">
                 <h3 className="text-2xl font-bold mb-8 text-white tracking-wide">Health Insurance</h3>
                 <ul className="space-y-4 text-white">
                   <li className="flex items-center">

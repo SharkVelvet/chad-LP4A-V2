@@ -5272,53 +5272,88 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Services Section */}
         <div className="bg-slate-800 text-white py-20">
           <div className="max-w-6xl mx-auto px-8">
-            <h2 className="text-4xl lg:text-5xl font-light mb-16 text-center">
-              Comprehensive protection, personalized <span className="italic">solutions</span>
+            <h2 className="text-4xl lg:text-5xl font-normal mb-16 text-center text-white">
+              Comprehensive protection, <span className="font-normal text-white">personalized solutions</span>
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-              {/* Primary Services */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              {/* Health Insurance */}
               <div>
-                <h3 className="text-xl font-light mb-8 text-red-300 tracking-wide">Primary Services</h3>
-                <ul className="space-y-4 text-gray-300">
+                <h3 className="text-2xl font-bold mb-8 text-white tracking-wide">Health Insurance</h3>
+                <ul className="space-y-4 text-white">
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Auto & Home Insurance</span>
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Individual Health Plans</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Business & Commercial Coverage</span>
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Family Coverage Options</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Disability & Income Protection</span>
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Medicare Supplements</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Umbrella & Liability Insurance</span>
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Short-Term Medical</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Critical Illness Coverage</span>
                   </li>
                 </ul>
               </div>
 
-              {/* Specialized Services */}
+              {/* Life Insurance */}
               <div>
-                <h3 className="text-xl font-light mb-8 text-red-300 tracking-wide">Specialized Services</h3>
-                <ul className="space-y-4 text-gray-300">
+                <h3 className="text-2xl font-bold mb-8 text-white tracking-wide">Life Insurance</h3>
+                <ul className="space-y-4 text-white">
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Estate & Legacy Planning</span>
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Term Life Insurance</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Travel & International Coverage</span>
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Whole Life Insurance</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Professional Liability</span>
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Universal Life</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Risk Assessment & Consultation</span>
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Variable Life Options</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Final Expense Plans</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Annuities */}
+              <div>
+                <h3 className="text-2xl font-bold mb-8 text-white tracking-wide">Annuities</h3>
+                <ul className="space-y-4 text-white">
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Fixed Annuities</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Variable Annuities</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Index Annuities</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Immediate Annuities</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">→</span>
+                    <span className="font-normal">Retirement Income Plans</span>
                   </li>
                 </ul>
               </div>

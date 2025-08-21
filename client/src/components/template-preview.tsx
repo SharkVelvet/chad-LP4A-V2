@@ -4832,7 +4832,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </header>
 
         {/* Hero Section */}
-        <div className="relative h-screen bg-gradient-to-r from-red-900 to-red-700 overflow-hidden">
+        <div className="relative h-96 md:h-[500px] bg-gradient-to-r from-red-900 to-red-700 overflow-hidden">
           <div className="absolute inset-0">
             <img 
               src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
@@ -4842,7 +4842,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="absolute inset-0 bg-red-900 bg-opacity-50"></div>
           </div>
           
-          <div className="relative z-10 max-w-4xl mx-auto px-8 h-full flex flex-col justify-center">
+          <div className="relative z-10 max-w-4xl mx-auto px-8 h-full flex flex-col justify-center pt-20">
             <h1 className="text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
               Protecting your family's<br/>
               financial future.

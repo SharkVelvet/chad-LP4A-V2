@@ -4839,7 +4839,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               alt="Family portrait with parents and children" 
               className="w-full h-full object-cover opacity-70"
             />
-            <div className="absolute inset-0" style={{backgroundColor: '#f9fafb', opacity: 0.5}}></div>
+            <div className="absolute inset-0 bg-black bg-opacity-60"></div>
           </div>
           
           <div className="relative z-10 max-w-4xl mx-auto px-8 h-full flex flex-col justify-center pt-20">

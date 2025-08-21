@@ -4452,7 +4452,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <a href="#" className="hover:text-red-300 transition-colors font-normal text-red-200">Contact</a>
               </div>
             </div>
-            <div className="w-24"></div> {/* Spacer to maintain balance */}
+            <div className="flex justify-end w-24">
+              <button className="bg-white text-red-900 px-4 py-2 text-sm font-normal tracking-wide hover:bg-red-50 transition-all">
+                CONTACT ME
+              </button>
+            </div>
           </div>
         </div>
 
@@ -4656,8 +4660,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
                 <div className="mt-16">
                   <img 
-                    src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                    alt="Healthcare and medical coverage" 
+                    src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    alt="Doctor in hospital providing healthcare" 
                     className="w-full h-80 object-cover rounded-sm"
                   />
                 </div>

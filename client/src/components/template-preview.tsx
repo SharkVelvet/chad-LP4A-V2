@@ -4852,7 +4852,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="absolute inset-0 bg-black bg-opacity-60"></div>
           </div>
           
-          <div className="relative z-10 max-w-4xl mx-auto px-8 h-full flex flex-col justify-center pt-20">
+          <div className="relative z-10 max-w-6xl mx-auto px-8 h-full flex flex-col justify-center items-center text-center pt-20">
             <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Protecting your family's<br/>
               financial future.

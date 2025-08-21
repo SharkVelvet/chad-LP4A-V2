@@ -5459,7 +5459,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div 
             className="relative h-64 lg:h-80"
             style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')",
+              backgroundImage: "url('https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')",
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',

@@ -4885,13 +4885,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
               </div>
               <div className="lg:order-first">
-                <div className="relative">
+                <div className="text-center">
                   <img 
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                     alt="Luke Smith - Life Insurance Professional" 
-                    className="w-full max-w-md mx-auto rounded-lg shadow-lg"
+                    className="w-full max-w-md mx-auto rounded-lg shadow-lg mb-6"
                   />
-                  <div className="absolute -bottom-6 -right-6 text-white p-4 rounded-lg shadow-lg" style={{backgroundColor: '#f9fafb'}}>
+                  <div className="bg-red-600 text-white p-4 rounded-lg shadow-lg inline-block">
                     <div className="text-center">
                       <div className="text-2xl font-bold">2,500+</div>
                       <div className="text-sm">Families Protected</div>

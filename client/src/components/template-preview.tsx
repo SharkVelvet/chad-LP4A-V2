@@ -4449,11 +4449,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <a href="#" className="hover:text-red-300 transition-colors font-normal text-red-200">Coverage</a>
                 <a href="#" className="hover:text-red-300 transition-colors font-normal text-red-200">Planning</a>
                 <a href="#" className="hover:text-red-300 transition-colors font-normal text-red-200">Resources</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-normal text-red-200">Contact</a>
               </div>
             </div>
-            <div className="flex justify-end w-24">
-              <button className="bg-white text-red-900 px-4 py-2 text-sm font-normal tracking-wide hover:bg-red-50 transition-all">
+            <div className="flex justify-end">
+              <button className="bg-white text-red-900 px-6 py-2 text-xs font-normal tracking-wide hover:bg-red-50 transition-all whitespace-nowrap">
                 CONTACT ME
               </button>
             </div>

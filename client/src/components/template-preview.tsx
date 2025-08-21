@@ -5213,22 +5213,20 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Header */}
         <div className="bg-red-900 text-white relative">
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
-            <div className="flex items-center space-x-8">
-              <div className="text-sm opacity-70">•</div>
-              <div className="text-sm opacity-70">•</div>
-              <div className="text-sm opacity-70">•</div>
+            <div className="flex items-center">
+              {/* Empty space for left alignment */}
             </div>
             <div className="text-center">
               <div className="hidden md:flex space-x-12 text-sm">
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-red-200">About</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-red-200">Services</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-red-200">Experience</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-red-200">Contact</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">About</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Services</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Experience</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Contact</a>
               </div>
             </div>
             <div className="flex justify-end">
               <button className="bg-white text-red-900 px-6 py-2 text-xs font-normal tracking-wide hover:bg-red-50 transition-all whitespace-nowrap">
-                Make an Appointment
+                Contact Us
               </button>
             </div>
           </div>
@@ -5350,7 +5348,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 clients reach their financial protection goals with confidence.
               </p>
               <button className="bg-red-600 text-white px-8 py-3 text-sm tracking-wide hover:bg-red-700 transition-all">
-                Make an Appointment
+                Contact Us
               </button>
             </div>
           </div>

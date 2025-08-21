@@ -5366,8 +5366,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           {/* Left Side - Agent Photo */}
           <div className="relative h-64 lg:h-80">
             <img 
-              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-              alt="Professional Insurance Agent at Work" 
+              src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              alt="Happy Family Enjoying Life Together" 
               className="w-full h-full object-cover object-top"
             />
           </div>

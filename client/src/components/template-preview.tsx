@@ -4515,12 +4515,170 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Rest of Template 4 content continues below... */}
+        {/* About Section */}
         <div className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-slate-900 mb-4">Corporate Excellence</h2>
               <p className="text-xl text-gray-600">Trusted by leading enterprises nationwide</p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                  Our comprehensive approach combines strategic financial planning with innovative business solutions to deliver exceptional results for corporations and high-net-worth individuals.
+                </p>
+                
+                <div className="grid grid-cols-2 gap-6 mb-8">
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="flex items-center mb-3">
+                      <Clock className="w-6 h-6 text-red-600 mr-3" />
+                      <span className="font-semibold text-gray-900">20+ Years</span>
+                    </div>
+                    <p className="text-sm text-gray-600">Corporate Experience</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="flex items-center mb-3">
+                      <Users className="w-6 h-6 text-red-600 mr-3" />
+                      <span className="font-semibold text-gray-900">Fortune 500</span>
+                    </div>
+                    <p className="text-sm text-gray-600">Client Base</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Corporate consultation" 
+                  className="w-full h-64 object-cover rounded-xl shadow-lg"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Business planning" 
+                  className="w-full h-64 object-cover rounded-xl shadow-lg mt-8"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Services */}
+        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Enterprise Services</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="bg-gray-50 p-4 sm:p-8 rounded-lg">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <Shield className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Strategic Planning</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Comprehensive strategic planning services for enterprise growth and market expansion.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Market Analysis
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Growth Strategy
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Risk Assessment
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-gray-50 p-4 sm:p-8 rounded-lg">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <TrendingUp className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Financial Management</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Advanced financial management solutions for complex corporate structures.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Corporate Finance
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Investment Strategy
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Capital Planning
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-gray-50 p-4 sm:p-8 rounded-lg">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <FileText className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Consulting Services</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Expert consulting for business optimization and operational excellence.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Process Optimization
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Change Management
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Technology Integration
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12">Contact Our Enterprise Team</h2>
+            <p className="text-lg text-gray-600 mb-12">Ready to transform your business? Let's discuss your strategic objectives.</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <MapPin className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Corporate Office</h4>
+                <p className="text-gray-600">500 Business Plaza<br/>Executive Tower, Suite 2000<br/>New York, NY 10005</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Phone className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Enterprise Line</h4>
+                <p className="text-gray-600">(555) CORP-BIZ<br/>Mon - Fri: 8:00 AM - 8:00 PM</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Mail className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Executive Email</h4>
+                <p className="text-gray-600">enterprise@strategic.com<br/>solutions@strategic.com</p>
+              </div>
             </div>
           </div>
         </div>
@@ -4612,12 +4770,170 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Rest of Template 4 content continues below... */}
+        {/* Family Protection Section */}
         <div className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-slate-900 mb-4">Why Families Choose Us</h2>
               <p className="text-xl text-gray-600">Trusted protection for what matters most</p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                  We understand that protecting your family is your top priority. Our comprehensive insurance solutions provide peace of mind for life's unexpected moments.
+                </p>
+                
+                <div className="grid grid-cols-2 gap-6 mb-8">
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="flex items-center mb-3">
+                      <Heart className="w-6 h-6 text-red-600 mr-3" />
+                      <span className="font-semibold text-gray-900">1000+</span>
+                    </div>
+                    <p className="text-sm text-gray-600">Families Protected</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="flex items-center mb-3">
+                      <Shield className="w-6 h-6 text-red-600 mr-3" />
+                      <span className="font-semibold text-gray-900">A+ Rated</span>
+                    </div>
+                    <p className="text-sm text-gray-600">Insurance Companies</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Happy family" 
+                  className="w-full h-64 object-cover rounded-xl shadow-lg"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Family protection" 
+                  className="w-full h-64 object-cover rounded-xl shadow-lg mt-8"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Insurance Services */}
+        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Family Protection Services</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="bg-red-50 p-4 sm:p-8 rounded-lg">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <Heart className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Life Insurance</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Comprehensive life insurance coverage to protect your family's financial future.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Term Life Insurance
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Whole Life Insurance
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Universal Life
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-red-50 p-4 sm:p-8 rounded-lg">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <Shield className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Health Insurance</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Quality health coverage options for individuals and families.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Individual Plans
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Family Coverage
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Short-Term Plans
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-red-50 p-4 sm:p-8 rounded-lg">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <Users className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold">Medicare Planning</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Expert guidance through Medicare options and enrollment.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Medicare Supplements
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Medicare Advantage
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Part D Prescription
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12">Protect Your Family Today</h2>
+            <p className="text-lg text-gray-600 mb-12">Ready to secure your family's future? Let's find the perfect protection plan.</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <MapPin className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Family Office</h4>
+                <p className="text-gray-600">123 Family Way<br/>Community Center, Suite 100<br/>Your City, ST 12345</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Phone className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Family Hotline</h4>
+                <p className="text-gray-600">(555) FAMILY-1<br/>Mon - Sat: 8:00 AM - 7:00 PM</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Mail className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Family Email</h4>
+                <p className="text-gray-600">families@protection.com<br/>care@protection.com</p>
+              </div>
             </div>
           </div>
         </div>
@@ -4709,12 +5025,170 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Rest of Template 4 content continues below... */}
+        {/* About Section */}
         <div className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-light text-slate-900 mb-4">Distinguished Service</h2>
               <p className="text-xl text-gray-600">Where expertise meets elegance</p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                  Our distinguished approach to financial planning combines decades of experience with sophisticated strategies, tailored for clients who appreciate precision and personalized attention.
+                </p>
+                
+                <div className="grid grid-cols-2 gap-6 mb-8">
+                  <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <div className="flex items-center mb-3">
+                      <Award className="w-6 h-6 text-red-600 mr-3" />
+                      <span className="font-medium text-gray-900">25+ Years</span>
+                    </div>
+                    <p className="text-sm text-gray-600">Excellence in Service</p>
+                  </div>
+                  <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <div className="flex items-center mb-3">
+                      <Users className="w-6 h-6 text-red-600 mr-3" />
+                      <span className="font-medium text-gray-900">Elite</span>
+                    </div>
+                    <p className="text-sm text-gray-600">Client Portfolio</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Elegant consultation" 
+                  className="w-full h-64 object-cover rounded-xl shadow-sm"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Sophisticated planning" 
+                  className="w-full h-64 object-cover rounded-xl shadow-sm mt-8"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Services */}
+        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-light mb-8 sm:mb-12 text-center text-slate-900">Refined Financial Solutions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="bg-white p-4 sm:p-8 rounded-lg border border-gray-200 shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mr-4 border border-red-100">
+                    <Shield className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-medium text-slate-900">Wealth Management</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Sophisticated wealth preservation and growth strategies for discerning clients.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Private Banking
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Estate Planning
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Tax Optimization
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-white p-4 sm:p-8 rounded-lg border border-gray-200 shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mr-4 border border-red-100">
+                    <TrendingUp className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-medium text-slate-900">Investment Advisory</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Personalized investment strategies with institutional-quality research and execution.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Portfolio Management
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Alternative Investments
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Risk Management
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-white p-4 sm:p-8 rounded-lg border border-gray-200 shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mr-4 border border-red-100">
+                    <FileText className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-medium text-slate-900">Legacy Planning</h3>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  Comprehensive strategies to preserve and transfer wealth across generations.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-700 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Trust Services
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Succession Planning
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-600 mr-2">✓</span>
+                    Philanthropic Strategies
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl font-light mb-8 sm:mb-12 text-slate-900">Begin Your Journey</h2>
+            <p className="text-lg text-gray-600 mb-12">Experience the difference of sophisticated financial planning tailored to your aspirations.</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <MapPin className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-medium text-gray-900 mb-2">Private Office</h4>
+                <p className="text-gray-600">One Financial Plaza<br/>Penthouse Suite<br/>Manhattan, NY 10004</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Phone className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-medium text-gray-900 mb-2">Private Line</h4>
+                <p className="text-gray-600">(555) ELITE-FP<br/>By Appointment Only</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <Mail className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="font-medium text-gray-900 mb-2">Private Email</h4>
+                <p className="text-gray-600">advisor@eliteplanning.com<br/>concierge@eliteplanning.com</p>
+              </div>
             </div>
           </div>
         </div>

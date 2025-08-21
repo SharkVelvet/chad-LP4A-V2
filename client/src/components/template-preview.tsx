@@ -5362,9 +5362,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Split Content Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[250px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[150px]">
           {/* Left Side - Agent Photo */}
-          <div className="relative min-h-[250px] lg:min-h-full">
+          <div className="relative min-h-[150px] lg:min-h-full">
             <img 
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
               alt="Professional Insurance Agent at Work" 
@@ -5373,16 +5373,16 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
 
           {/* Right Side - Protection Message */}
-          <div className="bg-gray-100 flex items-center justify-center p-6 lg:p-12 min-h-[250px]">
+          <div className="bg-gray-100 flex items-center justify-center p-4 lg:p-8 min-h-[150px]">
             <div className="max-w-md">
-              <h2 className="text-4xl lg:text-5xl font-light mb-8 text-gray-900 leading-tight">
+              <h2 className="text-2xl lg:text-3xl font-light mb-4 text-gray-900 leading-tight">
                 Protection built on <span className="italic">trust</span>
               </h2>
-              <p className="text-gray-600 mb-8 leading-relaxed font-light">
+              <p className="text-gray-600 mb-4 leading-relaxed font-light text-sm">
                 Doug specializes in comprehensive insurance solutions and helps 
                 clients secure their assets, family, and future with tailored coverage plans.
               </p>
-              <button className="bg-red-600 text-white px-8 py-3 text-sm tracking-wide hover:bg-red-700 transition-all">
+              <button className="bg-red-600 text-white px-6 py-2 text-xs tracking-wide hover:bg-red-700 transition-all">
                 Contact Us
               </button>
             </div>

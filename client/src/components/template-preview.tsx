@@ -4436,7 +4436,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     return (
       <div className={`bg-white ${className}`}>
         {/* Minimalist Header */}
-        <div className="bg-red-900 text-white sticky top-0 z-50">
+        <div className="bg-red-900 text-white relative">
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="text-sm">@</div>

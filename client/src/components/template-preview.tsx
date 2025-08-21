@@ -5373,7 +5373,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
 
           {/* Right Side - Protection Message */}
-          <div className="bg-gray-100 flex items-center justify-center py-20 px-20 lg:py-28 lg:px-32">
+          <div className="bg-gray-100 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
             <div className="max-w-md">
               <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight">
                 Protection built on <span className="italic">trust</span>

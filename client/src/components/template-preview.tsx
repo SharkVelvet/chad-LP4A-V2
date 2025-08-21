@@ -4835,8 +4835,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div className="relative h-96 md:h-[500px] bg-gradient-to-r from-red-900 to-red-700 overflow-hidden">
           <div className="absolute inset-0">
             <img 
-              src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-              alt="Professional therapy consultation" 
+              src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+              alt="Happy family enjoying time together" 
               className="w-full h-full object-cover opacity-70"
             />
             <div className="absolute inset-0 bg-red-900 bg-opacity-50"></div>

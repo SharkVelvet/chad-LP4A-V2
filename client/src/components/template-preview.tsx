@@ -4444,12 +4444,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="text-sm">in</div>
             </div>
             <div className="text-center">
-              <div className="text-xs font-light tracking-[0.3em] mb-1">STRATEGIC BY ADVISOR</div>
+              <div className="text-xs font-light tracking-[0.3em] mb-1">PROTECTION BY ADVISOR</div>
               <div className="hidden md:flex space-x-12 text-sm">
                 <a href="#" className="hover:text-red-300 transition-colors font-light">About</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light">Services</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light">Coaching</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light">Insights</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light">Coverage</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light">Planning</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light">Resources</a>
                 <a href="#" className="hover:text-red-300 transition-colors font-light">Contact</a>
               </div>
             </div>
@@ -4467,7 +4467,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-4xl mx-auto px-8 text-center">
             <div className="text-xs font-light tracking-[0.3em] mb-8 text-red-300">YOUR CERTIFIED GUIDE TO</div>
             <h1 className="text-6xl lg:text-7xl font-extralight mb-4 leading-tight">
-              STRATEGIC FINANCIAL
+              LIFE INSURANCE
             </h1>
             <h1 className="text-6xl lg:text-7xl font-extralight mb-16 leading-tight">
               AS A WAY OF LIFE
@@ -4475,20 +4475,20 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Professional Image Section */}
+        {/* Professional Office Image Section */}
         <div className="bg-red-900">
           <div className="max-w-6xl mx-auto">
             <div className="relative h-96 lg:h-[500px] overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                alt="Professional Financial Advisor at work" 
+                src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                alt="Professional insurance office environment" 
                 className="w-full h-full object-cover"
               />
             </div>
           </div>
         </div>
 
-        {/* Services Section - Wellness Style */}
+        {/* Life Insurance Services Section */}
         <div className="bg-red-900 text-white py-20">
           <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
@@ -4496,33 +4496,33 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              {/* 1:1 Coaching */}
+              {/* Term Life Insurance */}
               <div className="text-center">
-                <h3 className="text-xl font-light mb-6 tracking-wide">1:1 COACHING</h3>
+                <h3 className="text-xl font-light mb-6 tracking-wide">TERM LIFE INSURANCE</h3>
                 <p className="text-red-200 mb-8 leading-relaxed font-light">
-                  The ideal choice if you want a personalized plan that is tailored to your financial goals and lifestyle.
+                  The ideal choice if you want affordable coverage that is tailored to your family's protection needs and budget.
                 </p>
                 <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
                   Learn more
                 </a>
               </div>
 
-              {/* Online Planning */}
+              {/* Whole Life Insurance */}
               <div className="text-center">
-                <h3 className="text-xl font-light mb-6 tracking-wide">ONLINE PLANNING</h3>
+                <h3 className="text-xl font-light mb-6 tracking-wide">WHOLE LIFE INSURANCE</h3>
                 <p className="text-red-200 mb-8 leading-relaxed font-light">
-                  Explore financial principles on your own schedule through a variety of online planning sessions.
+                  Build cash value while protecting your family through permanent coverage with guaranteed premiums and benefits.
                 </p>
                 <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
                   Learn more
                 </a>
               </div>
 
-              {/* Live Seminars */}
+              {/* Universal Life */}
               <div className="text-center">
-                <h3 className="text-xl font-light mb-6 tracking-wide">LIVE SEMINARS</h3>
+                <h3 className="text-xl font-light mb-6 tracking-wide">UNIVERSAL LIFE</h3>
                 <p className="text-red-200 mb-8 leading-relaxed font-light">
-                  Begin your financial journey with full access to our beginner-friendly live seminars and events.
+                  Begin your legacy planning with flexible premiums and the potential for cash value growth through investment options.
                 </p>
                 <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
                   Learn more
@@ -4532,19 +4532,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Fourth Section - Improving Your Relationship with Finance */}
+        {/* Fourth Section - Protecting Your Family's Future */}
         <div className="bg-red-900 text-white py-20">
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Left Side - Image */}
               <div className="relative">
                 <div className="absolute top-0 left-0 text-xs font-light tracking-[0.3em] text-red-300 mb-4">
-                  FINANCIAL<br/>GUIDANCE
+                  LIFE<br/>INSURANCE
                 </div>
                 <div className="mt-16">
                   <img 
-                    src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                    alt="Financial advisor consulting with client" 
+                    src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    alt="Happy family protected by life insurance" 
                     className="w-full h-80 object-cover rounded-sm"
                   />
                 </div>
@@ -4553,28 +4553,28 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               {/* Right Side - Content */}
               <div>
                 <h2 className="text-4xl lg:text-5xl font-extralight mb-8 leading-tight">
-                  IMPROVING YOUR RELATIONSHIP WITH<br/>
-                  FINANCE
+                  PROTECTING YOUR FAMILY'S<br/>
+                  FUTURE
                 </h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h4 className="text-sm font-light tracking-wide mb-4 text-red-300">TRY SOMETHING NEW</h4>
+                    <h4 className="text-sm font-light tracking-wide mb-4 text-red-300">START YOUR PROTECTION</h4>
                     <p className="text-red-200 font-light leading-relaxed mb-6">
-                      Begin exploring your relationship with money by trying any of my free resources and meal plans. Healthy finance should feel like activism.
+                      Begin securing your family's future by exploring any of my free resources and protection strategies. Life insurance should feel like peace of mind.
                     </p>
                     <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
-                      Explore seasonal recipes
+                      Get free quote
                     </a>
                   </div>
 
                   <div>
-                    <h4 className="text-sm font-light tracking-wide mb-4 text-red-300">TARGET SPECIFIC ISSUES</h4>
+                    <h4 className="text-sm font-light tracking-wide mb-4 text-red-300">ADDRESS SPECIFIC NEEDS</h4>
                     <p className="text-red-200 font-light leading-relaxed mb-6">
-                      If allergies, illness, or other aversions have complicated your relationship with money, a personalized plan might be right for you.
+                      If health concerns, age, or other factors have complicated your insurance options, a personalized assessment might be right for you.
                     </p>
                     <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
-                      Schedule a consultation
+                      Schedule consultation
                     </a>
                   </div>
                 </div>

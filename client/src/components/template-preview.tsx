@@ -4853,6 +4853,56 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
+        {/* Meet Your Agent Section */}
+        <div className="py-20 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-4xl font-bold text-gray-900 mb-8">Meet Luke Smith</h2>
+                <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                  With over 15 years of experience in the life insurance industry, Luke has helped thousands of families secure their financial future. As a licensed insurance professional and certified financial planner, he specializes in creating customized protection strategies that fit your unique needs and budget.
+                </p>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  Luke believes in building lasting relationships with his clients, providing ongoing support and guidance as your family's needs evolve. His expertise spans term life, whole life, universal life, and final expense insurance products.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center">
+                    <span className="text-red-900 mr-3">✓</span>
+                    <span className="text-gray-700">Licensed Insurance Professional</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-red-900 mr-3">✓</span>
+                    <span className="text-gray-700">Certified Financial Planner (CFP®)</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-red-900 mr-3">✓</span>
+                    <span className="text-gray-700">15+ Years Industry Experience</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-red-900 mr-3">✓</span>
+                    <span className="text-gray-700">Specializes in Family Protection Plans</span>
+                  </div>
+                </div>
+              </div>
+              <div className="lg:order-first">
+                <div className="relative">
+                  <img 
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                    alt="Luke Smith - Life Insurance Professional" 
+                    className="w-full max-w-md mx-auto rounded-lg shadow-lg"
+                  />
+                  <div className="absolute -bottom-6 -right-6 bg-red-900 text-white p-4 rounded-lg shadow-lg">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold">2,500+</div>
+                      <div className="text-sm">Families Protected</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Our Approach Section */}
         <div className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-8 text-center">

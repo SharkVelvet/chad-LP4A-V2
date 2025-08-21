@@ -19,6 +19,9 @@ interface TemplatePreviewProps {
 
 export default function TemplatePreview({ templateSlug, className = "" }: TemplatePreviewProps) {
   
+  // Debug: Log the template slug
+  console.log('Template slug received:', templateSlug);
+  
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
@@ -4452,6 +4455,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
   return (
     <div className={`bg-gray-100 rounded-lg p-8 ${className}`}>
       <div className="text-center text-gray-500">Template Preview</div>
+      <div className="text-center text-red-500 mt-2 text-sm">Debug: Template slug = "{templateSlug}"</div>
+      <div className="text-center text-blue-500 mt-1 text-sm">Expected: "template-9"</div>
     </div>
   );
 }

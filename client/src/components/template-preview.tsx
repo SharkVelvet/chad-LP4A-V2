@@ -5327,7 +5327,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Split Content Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+        <div className="grid grid-cols-1 lg:grid-cols-2 h-[70vh]">
           {/* Left Side - Agent Photo */}
           <div className="relative">
             <img 

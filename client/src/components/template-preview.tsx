@@ -4811,11 +4811,159 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
-  // Template 12: Modern Clean (Based on Template 3)
+  // Template 12: Mental Health Collective 
   if (templateSlug === "Template-12") {
     return (
       <div className={`bg-white ${className}`}>
-        {/* Services */}
+        {/* Header */}
+        <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
+          <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
+            <div className="text-white text-xl font-light">Clove Therapy</div>
+            <nav className="hidden md:flex space-x-8 text-white text-sm">
+              <a href="#" className="hover:text-orange-300 transition-colors">About</a>
+              <a href="#" className="hover:text-orange-300 transition-colors">Services</a>
+              <a href="#" className="hover:text-orange-300 transition-colors">Blog</a>
+              <a href="#" className="hover:text-orange-300 transition-colors">Contact</a>
+            </nav>
+            <button className="bg-orange-400 text-white px-6 py-2 text-sm hover:bg-orange-500 transition-all">
+              GET STARTED
+            </button>
+          </div>
+        </header>
+
+        {/* Hero Section */}
+        <div className="relative h-screen bg-gradient-to-r from-teal-800 to-teal-600 overflow-hidden">
+          <div className="absolute inset-0">
+            <img 
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+              alt="Mental health therapy session" 
+              className="w-full h-full object-cover opacity-70"
+            />
+            <div className="absolute inset-0 bg-teal-800 bg-opacity-50"></div>
+          </div>
+          
+          <div className="relative z-10 max-w-4xl mx-auto px-8 h-full flex flex-col justify-center">
+            <h1 className="text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
+              Introducing Clove, a<br/>
+              mental health collective.
+            </h1>
+            <p className="text-xl text-white opacity-90 mb-8 max-w-2xl">
+              Get accessible and personalized mental health care tailored specifically for you from the comfort of your home.
+            </p>
+          </div>
+        </div>
+
+        {/* Our Approach Section */}
+        <div className="py-20 bg-white">
+          <div className="max-w-4xl mx-auto px-8 text-center">
+            <h2 className="text-4xl font-light text-gray-900 mb-8">Our approach</h2>
+            <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
+              We offer support and treatment for a wide range of mental health conditions. As mental health collective, we assist members by providing therapy, medication management, coaching, and more. Let us help you connect with one of our doctors who meets your needs and is available to see you, online or in-person.
+            </p>
+            <button className="bg-orange-400 text-white px-8 py-3 hover:bg-orange-500 transition-all">
+              Find out
+            </button>
+          </div>
+        </div>
+
+        {/* Safe Space Section */}
+        <div className="py-20 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1586253634026-795ffc4b2eda?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                  alt="Comfortable therapy office space" 
+                  className="w-full h-96 object-cover rounded-lg"
+                />
+              </div>
+              <div>
+                <h2 className="text-4xl font-light text-gray-900 mb-6">
+                  Providing you with a<br/>
+                  safe space to relax
+                </h2>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  All your appointments will take place in our soothing office environment with fully personalized, complimentary tea and water, and individualized care.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* In-Person and Remote Options */}
+        <div className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-4xl font-light text-gray-900 mb-6">
+                  In-person and<br/>
+                  remote options
+                </h2>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  Choose from flexible in-person or remote sessions. Can't make it into the office? No worries - we've got you covered with technology.
+                </p>
+              </div>
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                  alt="Location and remote therapy options" 
+                  className="w-full h-96 object-cover rounded-lg opacity-70"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Our Services Section */}
+        <div className="py-20 bg-teal-700">
+          <div className="max-w-4xl mx-auto px-8 text-center">
+            <h2 className="text-4xl font-light text-white mb-16">Our services</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-4">
+                  <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H9v5h10V8h2V7z"/>
+                  </svg>
+                </div>
+                <h3 className="text-white text-lg mb-2">Therapy</h3>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-4">
+                  <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H9v-2h2v2zm0-4H9V7h2v6z"/>
+                  </svg>
+                </div>
+                <h3 className="text-white text-lg mb-2">Psychiatry</h3>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-4">
+                  <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <h3 className="text-white text-lg mb-2">Coaching</h3>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-4">
+                  <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <h3 className="text-white text-lg mb-2">Acupuncture</h3>
+              </div>
+            </div>
+            
+            <button className="bg-orange-400 text-white px-8 py-3 hover:bg-orange-500 transition-all">
+              Learn More
+            </button>
+          </div>
+        </div>
+
+        {/* Existing Services Section */}
         <div className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Enterprise Services</h2>

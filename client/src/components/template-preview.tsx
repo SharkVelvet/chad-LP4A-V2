@@ -4469,13 +4469,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Professional Office Image Section */}
+        {/* Fun Office Environment Section */}
         <div className="bg-red-900">
           <div className="max-w-6xl mx-auto">
             <div className="relative h-96 lg:h-[500px] overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                alt="Professional insurance office environment" 
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                alt="Fun collaborative office environment with people" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -4557,6 +4557,161 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonials Section */}
+        <div className="bg-red-900 text-white py-20">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-extralight mb-4 tracking-wide text-white">CLIENT STORIES</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              {/* Testimonial 1 */}
+              <div className="text-center">
+                <div className="mb-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                    alt="Sarah Johnson" 
+                    className="w-16 h-16 rounded-full mx-auto object-cover"
+                  />
+                </div>
+                <blockquote className="text-red-200 font-normal leading-relaxed mb-6">
+                  "Working with this advisor gave me the peace of mind I needed. The term life policy fits perfectly within our budget while providing excellent coverage for my family."
+                </blockquote>
+                <div className="text-white font-normal">Sarah Johnson</div>
+                <div className="text-red-300 text-sm">Mother of Two</div>
+              </div>
+
+              {/* Testimonial 2 */}
+              <div className="text-center">
+                <div className="mb-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                    alt="Michael Chen" 
+                    className="w-16 h-16 rounded-full mx-auto object-cover"
+                  />
+                </div>
+                <blockquote className="text-red-200 font-normal leading-relaxed mb-6">
+                  "The whole life insurance plan not only protects my family but also serves as a smart financial investment. The cash value growth has exceeded my expectations."
+                </blockquote>
+                <div className="text-white font-normal">Michael Chen</div>
+                <div className="text-red-300 text-sm">Business Owner</div>
+              </div>
+
+              {/* Testimonial 3 */}
+              <div className="text-center">
+                <div className="mb-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1494790108755-2616b332e234?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                    alt="Emily Rodriguez" 
+                    className="w-16 h-16 rounded-full mx-auto object-cover"
+                  />
+                </div>
+                <blockquote className="text-red-200 font-normal leading-relaxed mb-6">
+                  "Universal life insurance gave me the flexibility I needed as my income varies. Being able to adjust premiums while maintaining coverage is incredible."
+                </blockquote>
+                <div className="text-white font-normal">Emily Rodriguez</div>
+                <div className="text-red-300 text-sm">Freelancer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className="bg-red-900 text-white py-20">
+          <div className="max-w-4xl mx-auto px-8 text-center">
+            <h2 className="text-4xl lg:text-5xl font-extralight mb-8 leading-tight text-white">
+              READY TO PROTECT<br/>
+              YOUR FAMILY?
+            </h2>
+            <p className="text-red-200 font-normal leading-relaxed mb-12 text-lg">
+              Schedule a complimentary consultation to discuss your life insurance needs and find the perfect coverage for your family's future.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center">
+                <Phone className="w-8 h-8 text-white mx-auto mb-4" />
+                <h4 className="text-white font-normal mb-2">CALL</h4>
+                <p className="text-red-200">(555) 123-4567</p>
+              </div>
+              
+              <div className="text-center">
+                <Mail className="w-8 h-8 text-white mx-auto mb-4" />
+                <h4 className="text-white font-normal mb-2">EMAIL</h4>
+                <p className="text-red-200">advisor@protection.com</p>
+              </div>
+              
+              <div className="text-center">
+                <MapPin className="w-8 h-8 text-white mx-auto mb-4" />
+                <h4 className="text-white font-normal mb-2">VISIT</h4>
+                <p className="text-red-200">123 Insurance Ave<br/>Your City, ST 12345</p>
+              </div>
+            </div>
+            
+            <button className="bg-white text-red-900 px-12 py-4 text-lg font-normal hover:bg-red-50 transition-all tracking-wide">
+              SCHEDULE CONSULTATION
+            </button>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="bg-red-800 text-white py-12">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              {/* Company Info */}
+              <div>
+                <h4 className="text-white font-normal mb-4 tracking-wide">PROTECTION ADVISOR</h4>
+                <p className="text-red-200 font-normal leading-relaxed text-sm">
+                  Dedicated to providing comprehensive life insurance solutions that protect what matters most - your family's future.
+                </p>
+              </div>
+              
+              {/* Services */}
+              <div>
+                <h4 className="text-white font-normal mb-4 tracking-wide">SERVICES</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="#" className="text-red-200 hover:text-white transition-colors">Term Life Insurance</a></li>
+                  <li><a href="#" className="text-red-200 hover:text-white transition-colors">Whole Life Insurance</a></li>
+                  <li><a href="#" className="text-red-200 hover:text-white transition-colors">Universal Life</a></li>
+                  <li><a href="#" className="text-red-200 hover:text-white transition-colors">Policy Review</a></li>
+                </ul>
+              </div>
+              
+              {/* Resources */}
+              <div>
+                <h4 className="text-white font-normal mb-4 tracking-wide">RESOURCES</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="#" className="text-red-200 hover:text-white transition-colors">Coverage Calculator</a></li>
+                  <li><a href="#" className="text-red-200 hover:text-white transition-colors">Planning Guide</a></li>
+                  <li><a href="#" className="text-red-200 hover:text-white transition-colors">FAQ</a></li>
+                  <li><a href="#" className="text-red-200 hover:text-white transition-colors">Blog</a></li>
+                </ul>
+              </div>
+              
+              {/* Contact */}
+              <div>
+                <h4 className="text-white font-normal mb-4 tracking-wide">CONTACT</h4>
+                <div className="space-y-2 text-sm">
+                  <p className="text-red-200">(555) 123-4567</p>
+                  <p className="text-red-200">advisor@protection.com</p>
+                  <p className="text-red-200">123 Insurance Ave<br/>Your City, ST 12345</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Footer Bottom */}
+            <div className="border-t border-red-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+              <div className="text-red-200 text-sm mb-4 md:mb-0">
+                © 2025 Protection Advisor. All rights reserved.
+              </div>
+              <div className="flex space-x-6 text-sm">
+                <a href="#" className="text-red-200 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" className="text-red-200 hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" className="text-red-200 hover:text-white transition-colors">Disclaimer</a>
               </div>
             </div>
           </div>

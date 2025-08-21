@@ -5233,7 +5233,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Hero Section with Agent Name and Full-Width Portrait */}
-        <div className="relative min-h-screen text-white overflow-hidden">
+        <div className="relative h-[80vh] text-white overflow-hidden">
           {/* Full-Width Professional Portrait Background */}
           <div className="absolute inset-0">
             <img 

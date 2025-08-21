@@ -5361,9 +5361,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Split Content Section */}
+        {/* Life Insurance Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Left Side - Agent Photo */}
+          {/* Left Side - Family Photo */}
           <div className="relative h-64 lg:h-80">
             <img 
               src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
@@ -5372,15 +5372,68 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             />
           </div>
 
-          {/* Right Side - Protection Message */}
+          {/* Right Side - Life Insurance Content */}
           <div className="bg-gray-100 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
             <div className="max-w-md">
               <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight">
-                Protection built on <span className="italic">trust</span>
+                Life Insurance <span className="italic">protection</span>
               </h2>
               <p className="text-gray-700 mb-4 leading-relaxed font-medium">
-                Doug specializes in comprehensive insurance solutions and helps 
-                clients secure their assets, family, and future with tailored coverage plans.
+                Secure your family's future with comprehensive life insurance coverage. From term to whole life policies, we help you find the right protection to ensure your loved ones are financially secure.
+              </p>
+              <button className="bg-red-600 text-white px-8 py-3 font-medium tracking-wide hover:bg-red-700 transition-all">
+                Contact Us
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Health Insurance Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Left Side - Health Insurance Content */}
+          <div className="bg-blue-50 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
+            <div className="max-w-md">
+              <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight">
+                Health Insurance <span className="italic">coverage</span>
+              </h2>
+              <p className="text-gray-700 mb-4 leading-relaxed font-medium">
+                Access quality healthcare without the financial burden. Our health insurance plans provide comprehensive medical coverage, prescription benefits, and preventive care to keep you and your family healthy.
+              </p>
+              <button className="bg-red-600 text-white px-8 py-3 font-medium tracking-wide hover:bg-red-700 transition-all">
+                Contact Us
+              </button>
+            </div>
+          </div>
+
+          {/* Right Side - Healthcare Photo */}
+          <div className="relative h-64 lg:h-80">
+            <img 
+              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              alt="Healthcare and Medical Protection" 
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+        </div>
+
+        {/* Annuities Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Left Side - Retirement Photo */}
+          <div className="relative h-64 lg:h-80">
+            <img 
+              src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              alt="Retirement Planning and Financial Security" 
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+
+          {/* Right Side - Annuities Content */}
+          <div className="bg-green-50 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
+            <div className="max-w-md">
+              <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight">
+                Annuities for <span className="italic">retirement</span>
+              </h2>
+              <p className="text-gray-700 mb-4 leading-relaxed font-medium">
+                Build a secure retirement with guaranteed income streams. Our annuity products offer tax-deferred growth and reliable payments to ensure your golden years are truly golden.
               </p>
               <button className="bg-red-600 text-white px-8 py-3 font-medium tracking-wide hover:bg-red-700 transition-all">
                 Contact Us

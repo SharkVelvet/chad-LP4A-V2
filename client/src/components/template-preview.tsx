@@ -2176,7 +2176,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     return (
       <div className={`bg-white ${className}`}>
         {/* Modern Dark Header */}
-        <div className="bg-slate-900 text-white sticky top-0 z-50">
+        <div className="bg-slate-900 text-white relative">
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div className="font-bold text-lg sm:text-xl text-white">
               <div className="flex flex-col items-center">

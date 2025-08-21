@@ -4444,13 +4444,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="text-sm">in</div>
             </div>
             <div className="text-center">
-              <div className="text-xs font-light tracking-[0.3em] mb-1">PROTECTION BY ADVISOR</div>
+              <div className="text-xs font-light tracking-[0.3em] mb-1 text-white">PROTECTION BY ADVISOR</div>
               <div className="hidden md:flex space-x-12 text-sm">
-                <a href="#" className="hover:text-red-300 transition-colors font-light">About</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light">Coverage</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light">Planning</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light">Resources</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light">Contact</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">About</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Coverage</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Planning</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Resources</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Contact</a>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -4463,13 +4463,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Hero Section */}
-        <div className="bg-red-900 text-white py-32">
+        <div className="bg-red-900 text-white py-20">
           <div className="max-w-4xl mx-auto px-8 text-center">
-            <div className="text-xs font-light tracking-[0.3em] mb-8 text-red-300">YOUR CERTIFIED GUIDE TO</div>
-            <h1 className="text-6xl lg:text-7xl font-extralight mb-4 leading-tight">
+            <div className="text-xs font-light tracking-[0.3em] mb-8 text-white">YOUR CERTIFIED GUIDE TO</div>
+            <h1 className="text-6xl lg:text-7xl font-extralight mb-4 leading-tight text-white">
               LIFE INSURANCE
             </h1>
-            <h1 className="text-6xl lg:text-7xl font-extralight mb-16 leading-tight">
+            <h1 className="text-6xl lg:text-7xl font-extralight mb-8 leading-tight text-white">
               AS A WAY OF LIFE
             </h1>
           </div>
@@ -4492,41 +4492,32 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div className="bg-red-900 text-white py-20">
           <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-extralight mb-4 tracking-wide">WORK WITH ADVISOR</h2>
+              <h2 className="text-4xl lg:text-5xl font-extralight mb-4 tracking-wide text-white">WORK WITH ADVISOR</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {/* Term Life Insurance */}
               <div className="text-center">
-                <h3 className="text-xl font-light mb-6 tracking-wide">TERM LIFE INSURANCE</h3>
-                <p className="text-red-200 mb-8 leading-relaxed font-light">
+                <h3 className="text-xl font-light mb-6 tracking-wide text-white">TERM LIFE INSURANCE</h3>
+                <p className="text-white mb-8 leading-relaxed font-light">
                   The ideal choice if you want affordable coverage that is tailored to your family's protection needs and budget.
                 </p>
-                <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
-                  Learn more
-                </a>
               </div>
 
               {/* Whole Life Insurance */}
               <div className="text-center">
-                <h3 className="text-xl font-light mb-6 tracking-wide">WHOLE LIFE INSURANCE</h3>
-                <p className="text-red-200 mb-8 leading-relaxed font-light">
+                <h3 className="text-xl font-light mb-6 tracking-wide text-white">WHOLE LIFE INSURANCE</h3>
+                <p className="text-white mb-8 leading-relaxed font-light">
                   Build cash value while protecting your family through permanent coverage with guaranteed premiums and benefits.
                 </p>
-                <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
-                  Learn more
-                </a>
               </div>
 
               {/* Universal Life */}
               <div className="text-center">
-                <h3 className="text-xl font-light mb-6 tracking-wide">UNIVERSAL LIFE</h3>
-                <p className="text-red-200 mb-8 leading-relaxed font-light">
+                <h3 className="text-xl font-light mb-6 tracking-wide text-white">UNIVERSAL LIFE</h3>
+                <p className="text-white mb-8 leading-relaxed font-light">
                   Begin your legacy planning with flexible premiums and the potential for cash value growth through investment options.
                 </p>
-                <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
-                  Learn more
-                </a>
               </div>
             </div>
           </div>
@@ -4538,7 +4529,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Left Side - Image */}
               <div className="relative">
-                <div className="absolute top-0 left-0 text-xs font-light tracking-[0.3em] text-red-300 mb-4">
+                <div className="absolute top-0 left-0 text-xs font-light tracking-[0.3em] text-white mb-4">
                   LIFE<br/>INSURANCE
                 </div>
                 <div className="mt-16">
@@ -4552,30 +4543,24 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
               {/* Right Side - Content */}
               <div>
-                <h2 className="text-4xl lg:text-5xl font-extralight mb-8 leading-tight">
+                <h2 className="text-4xl lg:text-5xl font-extralight mb-8 leading-tight text-white">
                   PROTECTING YOUR FAMILY'S<br/>
                   FUTURE
                 </h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h4 className="text-sm font-light tracking-wide mb-4 text-red-300">START YOUR PROTECTION</h4>
-                    <p className="text-red-200 font-light leading-relaxed mb-6">
+                    <h4 className="text-sm font-light tracking-wide mb-4 text-white">START YOUR PROTECTION</h4>
+                    <p className="text-white font-light leading-relaxed mb-6">
                       Begin securing your family's future by exploring any of my free resources and protection strategies. Life insurance should feel like peace of mind.
                     </p>
-                    <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
-                      Get free quote
-                    </a>
                   </div>
 
                   <div>
-                    <h4 className="text-sm font-light tracking-wide mb-4 text-red-300">ADDRESS SPECIFIC NEEDS</h4>
-                    <p className="text-red-200 font-light leading-relaxed mb-6">
+                    <h4 className="text-sm font-light tracking-wide mb-4 text-white">ADDRESS SPECIFIC NEEDS</h4>
+                    <p className="text-white font-light leading-relaxed mb-6">
                       If health concerns, age, or other factors have complicated your insurance options, a personalized assessment might be right for you.
                     </p>
-                    <a href="#" className="text-red-300 hover:text-white transition-colors font-light underline">
-                      Schedule consultation
-                    </a>
                   </div>
                 </div>
               </div>

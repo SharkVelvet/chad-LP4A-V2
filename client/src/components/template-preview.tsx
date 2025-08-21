@@ -4660,8 +4660,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
                 <div className="mt-16">
                   <img 
-                    src="https://images.unsplash.com/photo-1559059922-5fd87e5c6c12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                    alt="Healthcare professional providing medical services" 
+                    src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    alt="Medical professional in healthcare setting" 
                     className="w-full h-80 object-cover rounded-sm"
                   />
                 </div>

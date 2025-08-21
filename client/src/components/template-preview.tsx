@@ -4835,8 +4835,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div className="relative h-96 md:h-[500px] overflow-hidden" style={{background: `linear-gradient(to right, #f9fafb, #f9fafb)`}}>
           <div className="absolute inset-0">
             <img 
-              src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-              alt="Happy family enjoying time together" 
+              src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+              alt="Family portrait with parents and children" 
               className="w-full h-full object-cover opacity-70"
             />
             <div className="absolute inset-0" style={{backgroundColor: '#f9fafb', opacity: 0.5}}></div>

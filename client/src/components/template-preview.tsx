@@ -5282,23 +5282,23 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <h3 className="text-2xl font-bold mb-8 text-white tracking-wide">Health Insurance</h3>
                 <ul className="space-y-4 text-white">
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Individual Health Plans</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Family Coverage Options</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Medicare Supplements</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Short-Term Medical</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Critical Illness Coverage</span>
                   </li>
                 </ul>
@@ -5309,23 +5309,23 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <h3 className="text-2xl font-bold mb-8 text-white tracking-wide">Life Insurance</h3>
                 <ul className="space-y-4 text-white">
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Term Life Insurance</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Whole Life Insurance</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Universal Life</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Variable Life Options</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Final Expense Plans</span>
                   </li>
                 </ul>
@@ -5336,23 +5336,23 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <h3 className="text-2xl font-bold mb-8 text-white tracking-wide">Annuities</h3>
                 <ul className="space-y-4 text-white">
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Fixed Annuities</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Variable Annuities</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Index Annuities</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Immediate Annuities</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-red-400 mr-3">→</span>
+                    <span className="text-red-400 mr-3">✓</span>
                     <span className="font-normal">Retirement Income Plans</span>
                   </li>
                 </ul>
@@ -5538,7 +5538,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             {/* Agent Name and Website */}
             <div className="text-center mb-6">
-              <h3 className="text-3xl font-bold text-red-400 mb-2">Doug Welms</h3>
+              <h3 className="text-3xl font-bold text-red-600 mb-2">Doug Welms</h3>
               <p className="text-gray-300 mb-4">dougwelmsinsurance.com</p>
               <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed">
                 Professional insurance services with a personal touch. Your family's protection is our priority.

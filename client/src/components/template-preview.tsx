@@ -4318,6 +4318,72 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
+        {/* Testimonials Section */}
+        <div className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
+              <p className="text-lg text-gray-600">Real stories from families we've helped protect</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Testimonial 1 */}
+              <div className="bg-gray-50 rounded-xl p-8 text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="flex text-yellow-400">
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-6 italic">
+                  "Sarah helped us find the perfect life insurance policy that fits our budget. The process was smooth and she explained everything clearly. Highly recommend!"
+                </p>
+                <div className="font-semibold text-gray-900">Jennifer & Mark Thompson</div>
+                <div className="text-sm text-gray-600">Term Life Insurance</div>
+              </div>
+
+              {/* Testimonial 2 */}
+              <div className="bg-gray-50 rounded-xl p-8 text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="flex text-yellow-400">
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-6 italic">
+                  "Outstanding service! Got my health insurance sorted quickly with no medical exam. Sarah's expertise saved us time and money."
+                </p>
+                <div className="font-semibold text-gray-900">Robert Chen</div>
+                <div className="text-sm text-gray-600">Health Insurance</div>
+              </div>
+
+              {/* Testimonial 3 */}
+              <div className="bg-gray-50 rounded-xl p-8 text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="flex text-yellow-400">
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                    <Star className="w-5 h-5 fill-current" />
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-6 italic">
+                  "Professional, knowledgeable, and caring. Sarah took the time to understand our family's needs and found us comprehensive coverage at a great rate."
+                </p>
+                <div className="font-semibold text-gray-900">Maria Rodriguez</div>
+                <div className="text-sm text-gray-600">Family Health Plan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Contact Section */}
         <div id="contact" className="py-16 bg-gray-900 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -4330,15 +4396,15 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="space-y-6">
                 <div className="flex items-center justify-center space-x-3">
                   <Phone className="w-6 h-6 text-red-400" />
-                  <span className="text-lg">(555) 123-4567</span>
+                  <span>(555) 123-4567</span>
                 </div>
                 <div className="flex items-center justify-center space-x-3">
                   <Mail className="w-6 h-6 text-red-400" />
-                  <span className="text-lg">quotes@insurancepro.com</span>
+                  <span>quotes@insurancepro.com</span>
                 </div>
                 <div className="flex items-center justify-center space-x-3">
                   <MapPin className="w-6 h-6 text-red-400" />
-                  <span className="text-lg">123 Insurance Way, Your City, ST 12345</span>
+                  <span>123 Insurance Way, Your City, ST 12345</span>
                 </div>
               </div>
             </div>

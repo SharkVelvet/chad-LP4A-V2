@@ -4431,8 +4431,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
-  // Template 11: Corporate Professional Hero (Based on Template 4) - Inspired by Wellness Design
-  if (templateSlug === "Template-11") {
+  // Template 10: Corporate Professional Hero (Based on Template 4) - Inspired by Wellness Design
+  if (templateSlug === "Template-10") {
     return (
       <div className={`bg-white ${className}`}>
         {/* Minimalist Header */}
@@ -4811,8 +4811,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
-  // Template 12: Mental Health Collective 
-  if (templateSlug === "Template-12") {
+  // Template 11: Mental Health Collective 
+  if (templateSlug === "Template-11") {
     return (
       <div className={`bg-white ${className}`}>
         {/* Header */}
@@ -5373,7 +5373,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
-  // Template 13: Trust & Elegance Hero (Based on Template 4)
+  // Template 13: Trust & Elegance Hero (Based on Template 4)  
   if (templateSlug === "Template-13") {
     return (
       <div className={`bg-white ${className}`}>

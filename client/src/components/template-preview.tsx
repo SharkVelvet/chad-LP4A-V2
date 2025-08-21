@@ -4517,6 +4517,65 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
+        {/* Testimonials Section */}
+        <div className="bg-white py-20">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-extralight mb-4 tracking-wide text-gray-900">CLIENT STORIES</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              {/* Testimonial 1 */}
+              <div className="text-center">
+                <div className="mb-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                    alt="Sarah Johnson" 
+                    className="w-16 h-16 rounded-full mx-auto object-cover"
+                  />
+                </div>
+                <blockquote className="text-gray-600 font-normal leading-relaxed mb-6">
+                  "Working with this advisor gave me the peace of mind I needed. The term life policy fits perfectly within our budget while providing excellent coverage for my family."
+                </blockquote>
+                <div className="text-gray-900 font-normal">Sarah Johnson</div>
+                <div className="text-gray-500 text-sm">Mother of Two</div>
+              </div>
+
+              {/* Testimonial 2 */}
+              <div className="text-center">
+                <div className="mb-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                    alt="Michael Chen" 
+                    className="w-16 h-16 rounded-full mx-auto object-cover"
+                  />
+                </div>
+                <blockquote className="text-gray-600 font-normal leading-relaxed mb-6">
+                  "The whole life insurance plan not only protects my family but also serves as a smart financial investment. The cash value growth has exceeded my expectations."
+                </blockquote>
+                <div className="text-gray-900 font-normal">Michael Chen</div>
+                <div className="text-gray-500 text-sm">Business Owner</div>
+              </div>
+
+              {/* Testimonial 3 */}
+              <div className="text-center">
+                <div className="mb-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1494790108755-2616b332e234?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                    alt="Emily Rodriguez" 
+                    className="w-16 h-16 rounded-full mx-auto object-cover"
+                  />
+                </div>
+                <blockquote className="text-gray-600 font-normal leading-relaxed mb-6">
+                  "Universal life insurance gave me the flexibility I needed as my income varies. Being able to adjust premiums while maintaining coverage is incredible."
+                </blockquote>
+                <div className="text-gray-900 font-normal">Emily Rodriguez</div>
+                <div className="text-gray-500 text-sm">Freelancer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Fourth Section - Protecting Your Family's Future */}
         <div className="bg-red-900 text-white py-20">
           <div className="max-w-6xl mx-auto px-8">
@@ -4562,64 +4621,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Testimonials Section */}
-        <div className="bg-red-900 text-white py-20">
-          <div className="max-w-6xl mx-auto px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-extralight mb-4 tracking-wide text-white">CLIENT STORIES</h2>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              {/* Testimonial 1 */}
-              <div className="text-center">
-                <div className="mb-6">
-                  <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                    alt="Sarah Johnson" 
-                    className="w-16 h-16 rounded-full mx-auto object-cover"
-                  />
-                </div>
-                <blockquote className="text-red-200 font-normal leading-relaxed mb-6">
-                  "Working with this advisor gave me the peace of mind I needed. The term life policy fits perfectly within our budget while providing excellent coverage for my family."
-                </blockquote>
-                <div className="text-white font-normal">Sarah Johnson</div>
-                <div className="text-red-300 text-sm">Mother of Two</div>
-              </div>
 
-              {/* Testimonial 2 */}
-              <div className="text-center">
-                <div className="mb-6">
-                  <img 
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                    alt="Michael Chen" 
-                    className="w-16 h-16 rounded-full mx-auto object-cover"
-                  />
-                </div>
-                <blockquote className="text-red-200 font-normal leading-relaxed mb-6">
-                  "The whole life insurance plan not only protects my family but also serves as a smart financial investment. The cash value growth has exceeded my expectations."
-                </blockquote>
-                <div className="text-white font-normal">Michael Chen</div>
-                <div className="text-red-300 text-sm">Business Owner</div>
-              </div>
-
-              {/* Testimonial 3 */}
-              <div className="text-center">
-                <div className="mb-6">
-                  <img 
-                    src="https://images.unsplash.com/photo-1494790108755-2616b332e234?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                    alt="Emily Rodriguez" 
-                    className="w-16 h-16 rounded-full mx-auto object-cover"
-                  />
-                </div>
-                <blockquote className="text-red-200 font-normal leading-relaxed mb-6">
-                  "Universal life insurance gave me the flexibility I needed as my income varies. Being able to adjust premiums while maintaining coverage is incredible."
-                </blockquote>
-                <div className="text-white font-normal">Emily Rodriguez</div>
-                <div className="text-red-300 text-sm">Freelancer</div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Contact Section */}
         <div className="bg-red-900 text-white py-20">
@@ -4716,7 +4718,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
           </div>
         </div>
+      </div>
+    );
+  }
 
+  // Template 12: Modern Clean (Based on Template 3)
+  if (templateSlug === "Template-12") {
+    return (
+      <div className={`bg-white ${className}`}>
         {/* Services */}
         <div className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">

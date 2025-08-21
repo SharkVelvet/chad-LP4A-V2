@@ -4864,19 +4864,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center">
-                    <span className="mr-3" style={{color: '#f9fafb'}}>✓</span>
+                    <span className="text-red-600 mr-3">✓</span>
                     <span className="text-gray-700">Licensed Insurance Professional</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="mr-3" style={{color: '#f9fafb'}}>✓</span>
+                    <span className="text-red-600 mr-3">✓</span>
                     <span className="text-gray-700">Certified Financial Planner (CFP®)</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="mr-3" style={{color: '#f9fafb'}}>✓</span>
+                    <span className="text-red-600 mr-3">✓</span>
                     <span className="text-gray-700">15+ Years Industry Experience</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="mr-3" style={{color: '#f9fafb'}}>✓</span>
+                    <span className="text-red-600 mr-3">✓</span>
                     <span className="text-gray-700">Specializes in Family Protection Plans</span>
                   </div>
                 </div>

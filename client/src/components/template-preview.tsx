@@ -4431,6 +4431,297 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
+  // Template 11: Corporate Professional Hero (Based on Template 4)
+  if (templateSlug === "Template-11") {
+    return (
+      <div className={`bg-white ${className}`}>
+        {/* Modern Dark Header */}
+        <div className="bg-slate-900 text-white sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div className="font-bold text-lg sm:text-xl text-white">
+              <div className="flex flex-col items-center">
+                <div>
+                  <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-white">Insurance</span>
+                </div>
+                <div className="text-xs font-normal text-gray-300 mt-1 w-full text-center" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+              </div>
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <a href="#" className="hover:text-red-400 transition-colors">Home</a>
+              <a href="#" className="hover:text-red-400 transition-colors">About</a>
+              <a href="#" className="hover:text-red-400 transition-colors">Services</a>
+              <a href="#" className="hover:text-red-400 transition-colors">Contact</a>
+            </div>
+            <button className="bg-red-600 px-6 py-2 rounded-full hover:bg-red-700 transition-all">
+              Contact
+            </button>
+          </div>
+        </div>
+
+        {/* Corporate Hero Section - Sky and Buildings */}
+        <div className="relative text-white py-32" style={{
+          backgroundImage: `linear-gradient(135deg, #1e293b 0%, #475569 50%, #64748b 100%)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-800/40"></div>
+          <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="text-center lg:text-left">
+              <div className="inline-block bg-red-600/20 text-red-400 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-red-400/30">
+                Corporate Financial Solutions
+              </div>
+              <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+                <span className="text-white">Strategic</span>
+                <span className="block text-red-400">Business</span>
+                <span className="block text-white">Growth</span>
+              </h1>
+              <p className="text-xl lg:text-2xl mb-4 text-slate-200">Enterprise Financial Services</p>
+              <p className="text-lg text-slate-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                Comprehensive financial planning, risk management, and strategic consulting for businesses and high-net-worth individuals seeking exceptional growth and protection.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transition-all shadow-lg">
+                  Schedule Consultation
+                </button>
+                <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-slate-900 transition-all">
+                  View Services
+                </button>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="relative z-20">
+                <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white/30 backdrop-blur-sm">
+                  <img 
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                    alt="Professional Financial Advisor" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -top-4 -left-4 bg-red-600 text-white px-6 py-3 rounded-xl shadow-lg transform rotate-12">
+                  <div className="text-center">
+                    <div className="text-lg font-bold">Enterprise</div>
+                    <div className="text-sm">Solutions</div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 -right-4 bg-white text-slate-900 px-6 py-3 rounded-xl shadow-lg transform -rotate-12">
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-red-600">$500M+</div>
+                    <div className="text-sm">Assets Managed</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Rest of Template 4 content continues below... */}
+        <div className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-slate-900 mb-4">Corporate Excellence</h2>
+              <p className="text-xl text-gray-600">Trusted by leading enterprises nationwide</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Template 12: Family-Focused Hero (Based on Template 4)
+  if (templateSlug === "Template-12") {
+    return (
+      <div className={`bg-white ${className}`}>
+        {/* Modern Dark Header */}
+        <div className="bg-slate-900 text-white sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div className="font-bold text-lg sm:text-xl text-white">
+              <div className="flex flex-col items-center">
+                <div>
+                  <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-white">Insurance</span>
+                </div>
+                <div className="text-xs font-normal text-gray-300 mt-1 w-full text-center" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+              </div>
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <a href="#" className="hover:text-red-400 transition-colors">Home</a>
+              <a href="#" className="hover:text-red-400 transition-colors">About</a>
+              <a href="#" className="hover:text-red-400 transition-colors">Services</a>
+              <a href="#" className="hover:text-red-400 transition-colors">Contact</a>
+            </div>
+            <button className="bg-red-600 px-6 py-2 rounded-full hover:bg-red-700 transition-all">
+              Contact
+            </button>
+          </div>
+        </div>
+
+        {/* Family-Focused Hero Section */}
+        <div className="relative text-white py-24" style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}>
+          <div className="absolute inset-0 bg-gradient-to-r from-red-900/70 to-orange-800/50"></div>
+          <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="text-center lg:text-left">
+              <div className="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/30">
+                Family Protection Specialists
+              </div>
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                <span className="text-white">Protecting</span>
+                <span className="block text-yellow-200">Your Family's</span>
+                <span className="block text-white">Future</span>
+              </h1>
+              <p className="text-xl lg:text-2xl mb-4 text-orange-100">Life & Health Insurance Experts</p>
+              <p className="text-lg text-white mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                Comprehensive family protection through life insurance, health coverage, and financial planning designed to secure your loved ones' tomorrow.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button className="bg-white text-red-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-all shadow-lg">
+                  Protect My Family
+                </button>
+                <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-red-600 transition-all">
+                  Get Free Quote
+                </button>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="relative z-20">
+                <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                  <img 
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                    alt="Family Insurance Specialist" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -top-4 -left-4 bg-yellow-400 text-red-600 px-4 py-2 rounded-xl shadow-lg transform rotate-12">
+                  <div className="text-center">
+                    <div className="text-sm font-bold">Family</div>
+                    <div className="text-xs">First</div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 -right-4 bg-white text-red-600 px-4 py-2 rounded-xl shadow-lg transform -rotate-12">
+                  <div className="text-center">
+                    <div className="text-sm font-bold">1000+</div>
+                    <div className="text-xs">Families Protected</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Rest of Template 4 content continues below... */}
+        <div className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-slate-900 mb-4">Why Families Choose Us</h2>
+              <p className="text-xl text-gray-600">Trusted protection for what matters most</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Template 13: Trust & Elegance Hero (Based on Template 4)
+  if (templateSlug === "Template-13") {
+    return (
+      <div className={`bg-white ${className}`}>
+        {/* Modern Dark Header */}
+        <div className="bg-slate-900 text-white sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div className="font-bold text-lg sm:text-xl text-white">
+              <div className="flex flex-col items-center">
+                <div>
+                  <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-white">Insurance</span>
+                </div>
+                <div className="text-xs font-normal text-gray-300 mt-1 w-full text-center" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+              </div>
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <a href="#" className="hover:text-red-400 transition-colors">Home</a>
+              <a href="#" className="hover:text-red-400 transition-colors">About</a>
+              <a href="#" className="hover:text-red-400 transition-colors">Services</a>
+              <a href="#" className="hover:text-red-400 transition-colors">Contact</a>
+            </div>
+            <button className="bg-red-600 px-6 py-2 rounded-full hover:bg-red-700 transition-all">
+              Contact
+            </button>
+          </div>
+        </div>
+
+        {/* Trust & Elegance Hero Section */}
+        <div className="relative text-slate-900 py-24" style={{
+          backgroundImage: `linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}>
+          <div className="absolute inset-0 bg-gradient-to-br from-white/80 to-gray-100/60"></div>
+          <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="text-center lg:text-left">
+              <div className="inline-block bg-red-50 text-red-600 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-red-200">
+                Trusted Financial Planning
+              </div>
+              <h1 className="text-5xl lg:text-6xl font-light mb-6 leading-tight text-slate-900">
+                <span className="font-light">Building</span>
+                <span className="block font-bold text-red-600">Trust Through</span>
+                <span className="block font-light">Excellence</span>
+              </h1>
+              <p className="text-xl lg:text-2xl mb-4 text-slate-600 font-light">Sophisticated Financial Solutions</p>
+              <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                Refined financial planning and investment strategies built on decades of experience, designed for discerning clients who value precision and personal attention.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-red-700 transition-all shadow-lg">
+                  Discover Our Approach
+                </button>
+                <button className="border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-full text-lg font-medium hover:border-red-600 hover:text-red-600 transition-all">
+                  View Portfolio
+                </button>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="relative z-20">
+                <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                  <img 
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                    alt="Elegant Financial Advisor" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -top-4 -left-4 bg-white text-red-600 px-6 py-3 rounded-xl shadow-lg transform rotate-12 border border-red-100">
+                  <div className="text-center">
+                    <div className="text-lg font-light">Refined</div>
+                    <div className="text-sm font-medium">Expertise</div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 -right-4 bg-red-600 text-white px-6 py-3 rounded-xl shadow-lg transform -rotate-12">
+                  <div className="text-center">
+                    <div className="text-lg font-medium">25+ Years</div>
+                    <div className="text-sm">Excellence</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Rest of Template 4 content continues below... */}
+        <div className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-light text-slate-900 mb-4">Distinguished Service</h2>
+              <p className="text-xl text-gray-600">Where expertise meets elegance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Default fallback for other templates
   return (
     <div className={`bg-gray-100 rounded-lg p-8 ${className}`}>

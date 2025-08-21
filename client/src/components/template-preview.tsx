@@ -4818,7 +4818,14 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Header */}
         <header className="relative bg-gray-50">
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
-            <div className="text-gray-900 text-xl font-bold">Life Insurance Pro</div>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L2 7v10c0 5.55 3.84 9.739 9 11 5.16-1.261 9-5.45 9-11V7l-10-5z"/>
+                </svg>
+              </div>
+              <div className="text-gray-900 text-xl font-bold">Life Insurance Pro</div>
+            </div>
             <nav className="hidden md:flex space-x-8 text-gray-700 text-sm">
               <a href="#about" className="hover:text-red-600 transition-colors cursor-pointer" onClick={(e) => { e.preventDefault(); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }}>About Luke</a>
               <a href="#life-insurance" className="hover:text-red-600 transition-colors cursor-pointer" onClick={(e) => { e.preventDefault(); document.getElementById('life-insurance')?.scrollIntoView({ behavior: 'smooth' }); }}>Life Insurance</a>

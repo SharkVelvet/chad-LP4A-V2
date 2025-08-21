@@ -5045,36 +5045,75 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Contact Section */}
         <div className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12">Contact Our Enterprise Team</h2>
-            <p className="text-lg text-gray-600 mb-12">Ready to transform your business? Let's discuss your strategic objectives.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12">Contact Luke Today</h2>
+            <p className="text-lg text-gray-600 mb-12">Ready to secure your family's future? Let's discuss your life insurance options.</p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="flex flex-col items-center">
                 <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
                   <MapPin className="w-8 h-8 text-white" />
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">Corporate Office</h4>
-                <p className="text-gray-600">500 Business Plaza<br/>Executive Tower, Suite 2000<br/>New York, NY 10005</p>
+                <h4 className="font-bold text-gray-900 mb-2">Office Location</h4>
+                <p className="text-gray-600">123 Insurance Way<br/>Suite 200<br/>Your City, ST 12345</p>
               </div>
               
               <div className="flex flex-col items-center">
                 <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
                   <Phone className="w-8 h-8 text-white" />
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">Enterprise Line</h4>
-                <p className="text-gray-600">(555) CORP-BIZ<br/>Mon - Fri: 8:00 AM - 8:00 PM</p>
+                <h4 className="font-bold text-gray-900 mb-2">Phone</h4>
+                <p className="text-gray-600">(555) 123-4567<br/>Mon - Fri: 9:00 AM - 6:00 PM</p>
               </div>
               
               <div className="flex flex-col items-center">
                 <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
                   <Mail className="w-8 h-8 text-white" />
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">Executive Email</h4>
-                <p className="text-gray-600">enterprise@strategic.com<br/>solutions@strategic.com</p>
+                <h4 className="font-bold text-gray-900 mb-2">Email</h4>
+                <p className="text-gray-600">luke@lifeinsurancepro.com<br/>quotes@lifeinsurancepro.com</p>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Footer */}
+        <footer className="bg-slate-800 text-white py-16">
+          <div className="max-w-6xl mx-auto px-8 text-center">
+            {/* Navigation Links */}
+            <div className="flex justify-center space-x-8 mb-8">
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">Home</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">About</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">Services</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">Why We Serve</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">Testimonials</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">Contact</a>
+            </div>
+
+            {/* Company Branding */}
+            <div className="mb-8">
+              <h3 className="text-3xl font-bold text-red-500 mb-2">MIMJ</h3>
+              <p className="text-gray-400 mb-4">myinsurancemanjordan.com</p>
+              <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Professional insurance services with a personal touch. Your family's protection is our priority.
+              </p>
+            </div>
+
+            {/* Divider Line */}
+            <div className="border-t border-gray-600 pt-8">
+              <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+                <div className="mb-4 md:mb-0">
+                  <span>© 2025 MIMJ. All rights reserved. | </span>
+                  <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                  <span> | </span>
+                  <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+                <div>
+                  <span>Built by landingpagesforagents.com</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }

@@ -5364,12 +5364,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Life Insurance Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left Side - Family Photo */}
-          <div className="relative h-64 lg:h-80 overflow-hidden bg-gray-300">
-            <img 
-              src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-              alt="Happy Family Enjoying Life Together" 
-              className="absolute inset-0 w-full h-full object-cover object-center min-w-full min-h-full"
-            />
+          <div 
+            className="relative h-64 lg:h-80 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"
+            }}
+          >
           </div>
 
           {/* Right Side - Life Insurance Content */}
@@ -5406,24 +5406,24 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
 
           {/* Right Side - Healthcare Photo */}
-          <div className="relative h-64 lg:h-80 overflow-hidden bg-gray-300">
-            <img 
-              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-              alt="Healthcare and Medical Protection" 
-              className="absolute inset-0 w-full h-full object-cover object-center min-w-full min-h-full"
-            />
+          <div 
+            className="relative h-64 lg:h-80 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"
+            }}
+          >
           </div>
         </div>
 
         {/* Annuities Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left Side - Retirement Photo */}
-          <div className="relative h-64 lg:h-80 overflow-hidden bg-gray-300">
-            <img 
-              src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-              alt="Retirement Planning and Financial Security" 
-              className="absolute inset-0 w-full h-full object-cover object-center min-w-full min-h-full"
-            />
+          <div 
+            className="relative h-64 lg:h-80 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"
+            }}
+          >
           </div>
 
           {/* Right Side - Annuities Content */}

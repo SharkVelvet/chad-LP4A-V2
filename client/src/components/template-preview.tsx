@@ -5234,37 +5234,38 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Hero Section with Agent Name and Portrait */}
-        <div className="relative min-h-screen bg-gradient-to-br from-red-900 via-red-800 to-red-900 text-white overflow-hidden">
+        {/* Hero Section with Agent Name and Full-Width Portrait */}
+        <div className="relative min-h-screen text-white overflow-hidden">
+          {/* Full-Width Professional Portrait Background */}
+          <div className="absolute inset-0">
+            <img 
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+              alt="Doug Welms - Professional Insurance Agent" 
+              className="w-full h-full object-cover object-center"
+            />
+            {/* Dark overlay for text readability */}
+            <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          </div>
+
           {/* Agent Name Typography */}
           <div className="absolute top-20 left-8 z-10">
-            <h1 className="text-8xl lg:text-9xl font-light tracking-wider text-white opacity-90">
+            <h1 className="text-8xl lg:text-9xl font-light tracking-wider text-white drop-shadow-lg">
               Doug
             </h1>
-            <h1 className="text-8xl lg:text-9xl font-bold tracking-wider text-white -mt-4">
+            <h1 className="text-8xl lg:text-9xl font-bold tracking-wider text-white -mt-4 drop-shadow-lg">
               Welms
             </h1>
-            <div className="mt-4 text-sm text-red-200 tracking-[0.3em] font-light">
+            <div className="mt-4 text-sm text-red-200 tracking-[0.3em] font-light drop-shadow-md">
               LICENSED INSURANCE AGENT
             </div>
-            <div className="mt-2 text-xs text-red-300">
+            <div className="mt-2 text-xs text-red-300 drop-shadow-md">
               New York, NY 10001
             </div>
           </div>
 
-          {/* Professional Portrait */}
-          <div className="absolute top-0 right-0 w-1/2 h-full">
-            <img 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-              alt="Doug Welms - Professional Insurance Agent" 
-              className="w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-red-900/30"></div>
-          </div>
-
           {/* Tagline */}
           <div className="absolute bottom-20 left-8 right-8 z-10">
-            <p className="text-lg font-light text-red-100 max-w-md leading-relaxed">
+            <p className="text-lg font-light text-white max-w-md leading-relaxed drop-shadow-lg">
               A better <span className="italic">protection plan</span>.
             </p>
           </div>

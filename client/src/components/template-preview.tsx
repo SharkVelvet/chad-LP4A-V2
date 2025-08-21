@@ -4859,11 +4859,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-8">Meet Luke Smith</h2>
-                <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                  With over 15 years of experience in the life insurance industry, Luke has helped thousands of families secure their financial future. As a licensed insurance professional and certified financial planner, he specializes in creating customized protection strategies that fit your unique needs and budget.
-                </p>
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  Luke believes in building lasting relationships with his clients, providing ongoing support and guidance as your family's needs evolve. His expertise spans term life, whole life, universal life, and final expense insurance products.
+                  With over 15 years of experience in the life insurance industry, Luke has helped thousands of families secure their financial future. As a licensed insurance professional and certified financial planner, he specializes in creating customized protection strategies that fit your unique needs and budget.
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center">

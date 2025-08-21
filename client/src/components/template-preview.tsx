@@ -4486,7 +4486,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div className="bg-red-900 text-white py-20">
           <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-extralight mb-4 tracking-wide text-white">WORK WITH ADVISOR</h2>
+              <h2 className="text-3xl lg:text-4xl font-extralight mb-4 tracking-wide text-white">WORK WITH CAROLINE SMITH</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -4621,42 +4621,128 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
+        {/* Health Insurance Section - Image Right */}
+        <div className="bg-red-900 text-white py-20">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Left Side - Content */}
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-extralight mb-8 leading-tight text-white">
+                  COMPREHENSIVE<br/>
+                  HEALTH INSURANCE
+                </h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-sm font-normal tracking-wide mb-4 text-red-200">MEDICAL COVERAGE</h4>
+                    <p className="text-red-200 font-normal leading-relaxed mb-6">
+                      Comprehensive health insurance plans that provide access to quality healthcare when you need it most.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-normal tracking-wide mb-4 text-red-200">PREVENTIVE CARE</h4>
+                    <p className="text-red-200 font-normal leading-relaxed mb-6">
+                      Focus on preventive care with coverage for regular checkups, screenings, and wellness programs.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side - Image */}
+              <div className="relative">
+                <div className="absolute top-0 left-0 text-xs font-normal tracking-[0.3em] text-red-200 mb-4">
+                  HEALTH<br/>INSURANCE
+                </div>
+                <div className="mt-16">
+                  <img 
+                    src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    alt="Healthcare and medical coverage" 
+                    className="w-full h-80 object-cover rounded-sm"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Annuities Section - Image Left */}
+        <div className="bg-red-900 text-white py-20">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Left Side - Image */}
+              <div className="relative">
+                <div className="absolute top-0 left-0 text-xs font-normal tracking-[0.3em] text-red-200 mb-4">
+                  RETIREMENT<br/>PLANNING
+                </div>
+                <div className="mt-16">
+                  <img 
+                    src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    alt="Retirement planning and annuities" 
+                    className="w-full h-80 object-cover rounded-sm"
+                  />
+                </div>
+              </div>
+
+              {/* Right Side - Content */}
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-extralight mb-8 leading-tight text-white">
+                  SECURE YOUR<br/>
+                  RETIREMENT WITH ANNUITIES
+                </h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-sm font-normal tracking-wide mb-4 text-red-200">GUARANTEED INCOME</h4>
+                    <p className="text-red-200 font-normal leading-relaxed mb-6">
+                      Annuities provide guaranteed income streams for retirement, ensuring financial security in your golden years.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-normal tracking-wide mb-4 text-red-200">TAX ADVANTAGES</h4>
+                    <p className="text-red-200 font-normal leading-relaxed mb-6">
+                      Take advantage of tax-deferred growth and strategic withdrawal options to maximize your retirement savings.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
 
         {/* Contact Section */}
-        <div className="bg-red-900 text-white py-20">
+        <div className="bg-white py-20">
           <div className="max-w-4xl mx-auto px-8 text-center">
-            <h2 className="text-4xl lg:text-5xl font-extralight mb-8 leading-tight text-white">
+            <h2 className="text-4xl lg:text-5xl font-extralight mb-8 leading-tight text-gray-900">
               READY TO PROTECT<br/>
               YOUR FAMILY?
             </h2>
-            <p className="text-red-200 font-normal leading-relaxed mb-12 text-lg">
-              Schedule a complimentary consultation to discuss your life insurance needs and find the perfect coverage for your family's future.
+            <p className="text-gray-600 font-normal leading-relaxed mb-12 text-lg">
+              Connect with Caroline Smith to discuss your insurance needs and find the perfect coverage for your family's future.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
-                <Phone className="w-8 h-8 text-white mx-auto mb-4" />
-                <h4 className="text-white font-normal mb-2">CALL</h4>
-                <p className="text-red-200">(555) 123-4567</p>
+                <Phone className="w-8 h-8 text-gray-900 mx-auto mb-4" />
+                <h4 className="text-gray-900 font-normal mb-2">CALL</h4>
+                <p className="text-gray-600">(555) 123-4567</p>
               </div>
               
               <div className="text-center">
-                <Mail className="w-8 h-8 text-white mx-auto mb-4" />
-                <h4 className="text-white font-normal mb-2">EMAIL</h4>
-                <p className="text-red-200">advisor@protection.com</p>
+                <Mail className="w-8 h-8 text-gray-900 mx-auto mb-4" />
+                <h4 className="text-gray-900 font-normal mb-2">EMAIL</h4>
+                <p className="text-gray-600">caroline@protection.com</p>
               </div>
               
               <div className="text-center">
-                <MapPin className="w-8 h-8 text-white mx-auto mb-4" />
-                <h4 className="text-white font-normal mb-2">VISIT</h4>
-                <p className="text-red-200">123 Insurance Ave<br/>Your City, ST 12345</p>
+                <MapPin className="w-8 h-8 text-gray-900 mx-auto mb-4" />
+                <h4 className="text-gray-900 font-normal mb-2">VISIT</h4>
+                <p className="text-gray-600">123 Insurance Ave<br/>Your City, ST 12345</p>
               </div>
             </div>
-            
-            <button className="bg-white text-red-900 px-12 py-4 text-lg font-normal hover:bg-red-50 transition-all tracking-wide">
-              SCHEDULE CONSULTATION
-            </button>
           </div>
         </div>
 

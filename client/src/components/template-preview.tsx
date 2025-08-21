@@ -5327,9 +5327,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Split Content Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 h-[70vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
           {/* Left Side - Agent Photo */}
-          <div className="relative">
+          <div className="relative min-h-[500px] lg:min-h-full">
             <img 
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
               alt="Professional Insurance Agent at Work" 
@@ -5338,7 +5338,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
 
           {/* Right Side - Protection Message */}
-          <div className="bg-gray-100 flex items-center justify-center p-12 lg:p-20">
+          <div className="bg-gray-100 flex items-center justify-center p-12 lg:p-20 min-h-[500px]">
             <div className="max-w-md">
               <h2 className="text-4xl lg:text-5xl font-light mb-8 text-gray-900 leading-tight">
                 Protection built on <span className="italic">trust</span>

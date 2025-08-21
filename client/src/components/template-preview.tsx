@@ -4911,7 +4911,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               We offer comprehensive life insurance solutions for families at every stage of life. As your trusted insurance partners, we help you find the right coverage through term life, whole life, and universal life policies. Let us help you connect with the perfect policy that meets your family's needs and fits your budget.
             </p>
             <button className="bg-red-900 text-white px-8 py-3 hover:bg-red-800 transition-all">
-              Get Quote
+              Contact Us
             </button>
           </div>
         </div>
@@ -5008,7 +5008,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
             
             <button className="bg-white text-red-900 px-8 py-3 hover:bg-red-50 transition-all">
-              Get Started
+              Contact Us
             </button>
           </div>
         </div>

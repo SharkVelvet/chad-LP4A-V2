@@ -5091,8 +5091,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
             {/* Company Branding */}
             <div className="mb-8">
-              <h3 className="text-3xl font-bold text-red-500 mb-2">MIMJ</h3>
-              <p className="text-gray-400 mb-4">myinsurancemanjordan.com</p>
+              <h3 className="text-3xl font-bold text-red-500 mb-2">Luke Smith</h3>
+              <p className="text-gray-400 mb-4">lifeinsurancepro.com</p>
               <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
                 Professional insurance services with a personal touch. Your family's protection is our priority.
               </p>

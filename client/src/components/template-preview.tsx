@@ -4063,20 +4063,20 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           >
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-amber-500 rounded-lg"></div>
+              <div className="w-8 h-8 bg-red-600 rounded-lg"></div>
               <span className="text-gray-900">Insurance Pro</span>
             </div>
           </div>
           <div className="flex items-center space-x-2 sm:space-x-6">
             <div className="hidden md:flex space-x-6 text-sm text-gray-700">
-              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-amber-600 cursor-pointer transition-colors">Home</a>
-              <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-amber-600 cursor-pointer transition-colors">About</a>
-              <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-amber-600 cursor-pointer transition-colors">Services</a>
-              <a href="#stats" onClick={(e) => handleSmoothScroll(e, 'stats')} className="hover:text-amber-600 cursor-pointer transition-colors">Results</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-red-600 cursor-pointer transition-colors">Home</a>
+              <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-red-600 cursor-pointer transition-colors">About</a>
+              <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="hover:text-red-600 cursor-pointer transition-colors">Services</a>
+              <a href="#stats" onClick={(e) => handleSmoothScroll(e, 'stats')} className="hover:text-red-600 cursor-pointer transition-colors">Results</a>
             </div>
             <button 
               onClick={(e) => handleSmoothScroll(e, 'contact')} 
-              className="bg-amber-500 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-amber-600 transition-colors text-xs sm:text-sm"
+              className="bg-red-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors text-xs sm:text-sm"
             >
               Get Quote
             </button>
@@ -4088,12 +4088,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="text-center lg:text-left">
-                <div className="inline-block bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-block bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
                   Digital Insurance Solutions
                 </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   Get Real Estate Income, 
-                  <span className="text-amber-500"> without owning a house</span>
+                  <span className="text-red-600"> without owning a house</span>
                 </h1>
                 <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed">
                   Our digital platform makes insurance simple, accessible, and affordable. 
@@ -4102,13 +4102,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
                   <button 
                     onClick={(e) => handleSmoothScroll(e, 'contact')} 
-                    className="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors text-lg"
+                    className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors text-lg"
                   >
                     Start Your Quote
                   </button>
                   <button 
                     onClick={(e) => handleSmoothScroll(e, 'about')} 
-                    className="border-2 border-amber-500 text-amber-600 px-8 py-4 rounded-lg font-semibold hover:bg-amber-50 transition-colors text-lg"
+                    className="border-2 border-red-600 text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-red-50 transition-colors text-lg"
                   >
                     Learn More
                   </button>
@@ -4117,7 +4117,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 {/* Trust Indicators */}
                 <div className="flex items-center justify-center lg:justify-start space-x-6 text-sm text-gray-500">
                   <div className="flex items-center space-x-1">
-                    <Star className="w-4 h-4 text-amber-400 fill-current" />
+                    <Star className="w-4 h-4 text-red-400 fill-current" />
                     <span>4.9/5 Rating</span>
                   </div>
                   <div className="flex items-center space-x-1">
@@ -4137,7 +4137,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <div className="w-72 h-96 bg-gray-900 rounded-3xl p-3 shadow-2xl">
                     <div className="w-full h-full bg-white rounded-2xl overflow-hidden">
                       {/* App Header */}
-                      <div className="bg-amber-500 p-4 text-white">
+                      <div className="bg-red-600 p-4 text-white">
                         <div className="flex items-center justify-between">
                           <h3 className="font-bold">Insurance Pro</h3>
                           <div className="w-8 h-8 bg-white/20 rounded-full"></div>
@@ -4149,8 +4149,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                       <div className="p-4 space-y-4">
                         <div className="bg-gray-50 rounded-lg p-3">
                           <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
-                              <Shield className="w-5 h-5 text-amber-600" />
+                            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                              <Shield className="w-5 h-5 text-red-600" />
                             </div>
                             <div>
                               <div className="font-medium text-sm">Auto Insurance</div>
@@ -4183,7 +4183,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                           </div>
                         </div>
                         
-                        <button className="w-full bg-amber-500 text-white py-3 rounded-lg text-sm font-medium">
+                        <button className="w-full bg-red-600 text-white py-3 rounded-lg text-sm font-medium">
                           Get Quote Now
                         </button>
                       </div>
@@ -4197,7 +4197,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   </div>
                   
                   <div className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-lg p-3 text-center">
-                    <div className="text-2xl font-bold text-amber-600">5.0</div>
+                    <div className="text-2xl font-bold text-red-600">5.0</div>
                     <div className="text-xs text-gray-500">★ Rating</div>
                   </div>
                 </div>
@@ -4220,19 +4220,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-amber-500 mb-2">11.7k</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">11.7k</div>
                 <div className="text-gray-600">Active Policies</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-amber-500 mb-2">178k</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">178k</div>
                 <div className="text-gray-600">Claims Processed</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-amber-500 mb-2">0.45%</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">0.45%</div>
                 <div className="text-gray-600">Denial Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-amber-500 mb-2">1,360.00</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">1,360.00</div>
                 <div className="text-gray-600">Avg. Savings</div>
               </div>
             </div>
@@ -4253,8 +4253,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
-                  <Shield className="w-6 h-6 text-amber-600" />
+                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                  <Shield className="w-6 h-6 text-red-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Comprehensive Coverage</h3>
                 <p className="text-gray-600">Full protection for auto, home, life, and health insurance needs with customizable options.</p>
@@ -4296,19 +4296,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
                       <CheckCircle className="w-4 h-4 text-white" />
                     </div>
                     <span className="text-gray-700">Personalized coverage recommendations</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
                       <CheckCircle className="w-4 h-4 text-white" />
                     </div>
                     <span className="text-gray-700">Real-time policy management</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
                       <CheckCircle className="w-4 h-4 text-white" />
                     </div>
                     <span className="text-gray-700">Instant claims processing</span>
@@ -4317,7 +4317,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
               
               <div className="relative">
-                <div className="bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl p-8 text-white">
+                <div className="bg-gradient-to-br from-red-500 to-red-700 rounded-2xl p-8 text-white">
                   <h3 className="text-2xl font-bold mb-4">Why Choose Us?</h3>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
@@ -4340,7 +4340,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* CTA Section */}
-        <div className="py-16 bg-amber-50">
+        <div className="py-16 bg-red-50">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
               Ready to protect what matters most?
@@ -4350,7 +4350,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </p>
             <button 
               onClick={(e) => handleSmoothScroll(e, 'contact')} 
-              className="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors text-lg"
+              className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors text-lg"
             >
               Get Your Free Quote
             </button>
@@ -4369,15 +4369,15 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
-                    <Phone className="w-6 h-6 text-amber-400" />
+                    <Phone className="w-6 h-6 text-red-400" />
                     <span>(555) 123-4567</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Mail className="w-6 h-6 text-amber-400" />
+                    <Mail className="w-6 h-6 text-red-400" />
                     <span>quotes@insurancepro.com</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <MapPin className="w-6 h-6 text-amber-400" />
+                    <MapPin className="w-6 h-6 text-red-400" />
                     <span>123 Insurance Way, Your City, ST 12345</span>
                   </div>
                 </div>
@@ -4390,25 +4390,25 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <input 
                       type="text" 
                       placeholder="Full Name" 
-                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-amber-400 focus:outline-none"
+                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-red-400 focus:outline-none"
                     />
                   </div>
                   <div>
                     <input 
                       type="email" 
                       placeholder="Email Address" 
-                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-amber-400 focus:outline-none"
+                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-red-400 focus:outline-none"
                     />
                   </div>
                   <div>
                     <input 
                       type="tel" 
                       placeholder="Phone Number" 
-                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-amber-400 focus:outline-none"
+                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-red-400 focus:outline-none"
                     />
                   </div>
                   <div>
-                    <select className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-amber-400 focus:outline-none">
+                    <select className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-red-400 focus:outline-none">
                       <option>Insurance Type</option>
                       <option>Auto Insurance</option>
                       <option>Home Insurance</option>
@@ -4418,7 +4418,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   </div>
                   <button 
                     type="submit" 
-                    className="w-full bg-amber-500 text-white py-3 rounded-lg font-semibold hover:bg-amber-600 transition-colors"
+                    className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
                   >
                     Get My Quote
                   </button>
@@ -4433,7 +4433,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="flex items-center space-x-2 mb-4 md:mb-0">
-                <div className="w-8 h-8 bg-amber-500 rounded-lg"></div>
+                <div className="w-8 h-8 bg-red-600 rounded-lg"></div>
                 <span className="text-white font-bold text-lg">Insurance Pro</span>
               </div>
               

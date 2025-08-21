@@ -5218,10 +5218,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             </div>
             <div className="text-center">
               <div className="hidden md:flex space-x-12 text-base">
-                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">About</a>
-                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Health Insurance</a>
-                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Life Insurance</a>
-                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Annuities</a>
+                <a href="#about" className="hover:text-red-200 transition-colors font-medium text-white">About</a>
+                <a href="#health-insurance" className="hover:text-red-200 transition-colors font-medium text-white">Health Insurance</a>
+                <a href="#life-insurance" className="hover:text-red-200 transition-colors font-medium text-white">Life Insurance</a>
+                <a href="#annuities" className="hover:text-red-200 transition-colors font-medium text-white">Annuities</a>
               </div>
             </div>
             <div className="flex justify-end">
@@ -5270,7 +5270,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Services Section */}
-        <div className="bg-slate-800 text-white py-20">
+        <div id="about" className="bg-slate-800 text-white py-20">
           <div className="max-w-6xl mx-auto px-8">
             <h2 className="text-4xl lg:text-5xl mb-16 text-center text-white">
               <span className="font-light">Comprehensive protection,</span> <span className="font-semibold italic">personalized solutions</span>
@@ -5362,7 +5362,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Life Insurance Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div id="life-insurance" className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left Side - Family Photo */}
           <div 
             className="relative h-64 lg:h-80 bg-cover bg-center bg-no-repeat"
@@ -5389,7 +5389,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Health Insurance Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div id="health-insurance" className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left Side - Health Insurance Content */}
           <div className="bg-gray-100 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
             <div className="max-w-md">
@@ -5416,7 +5416,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Annuities Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div id="annuities" className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left Side - Retirement Photo */}
           <div 
             className="relative h-64 lg:h-80 bg-cover bg-center bg-no-repeat"

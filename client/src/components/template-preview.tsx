@@ -5209,7 +5209,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
   // Template 12: Fletcher-Inspired Professional Agent Design
   if (templateSlug === "Template-12") {
     return (
-      <div className={`bg-white ${className}`}>
+      <div className={`bg-white ${className}`} style={{ scrollBehavior: 'smooth' }}>
         {/* Header */}
         <div className="bg-red-600 text-white relative">
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
@@ -5496,12 +5496,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             {/* Navigation */}
             <div className="flex justify-center mb-8">
               <nav className="flex space-x-8 text-gray-300">
-                <a href="#" className="hover:text-white transition-colors">Home</a>
-                <a href="#" className="hover:text-white transition-colors">About</a>
-                <a href="#" className="hover:text-white transition-colors">Services</a>
-                <a href="#" className="hover:text-white transition-colors">Why We Serve</a>
-                <a href="#" className="hover:text-white transition-colors">Testimonials</a>
-                <a href="#" className="hover:text-white transition-colors">Contact</a>
+                <a href="#about" className="hover:text-white transition-colors">About</a>
+                <a href="#health-insurance" className="hover:text-white transition-colors">Health Insurance</a>
+                <a href="#life-insurance" className="hover:text-white transition-colors">Life Insurance</a>
+                <a href="#annuities" className="hover:text-white transition-colors">Annuities</a>
               </nav>
             </div>
             

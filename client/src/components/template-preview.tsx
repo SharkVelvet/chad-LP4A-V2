@@ -5272,8 +5272,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Services Section */}
         <div className="bg-slate-800 text-white py-20">
           <div className="max-w-6xl mx-auto px-8">
-            <h2 className="text-4xl lg:text-5xl font-normal mb-16 text-center text-white">
-              Comprehensive protection, <span className="font-normal text-white">personalized solutions</span>
+            <h2 className="text-4xl lg:text-5xl mb-16 text-center text-white">
+              <span className="font-light">Comprehensive protection,</span> <span className="font-semibold italic">personalized solutions</span>
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">

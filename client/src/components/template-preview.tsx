@@ -5362,31 +5362,29 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Split Content Section */}
-        <div className="bg-gray-100 py-12">
-          <div className="max-w-6xl mx-auto px-8 flex items-center justify-center">
-            <div className="flex items-center space-x-8">
-              {/* Small Agent Photo */}
-              <div className="flex-shrink-0">
-                <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                  alt="Professional Insurance Agent at Work" 
-                  className="w-24 h-24 rounded-full object-cover object-top"
-                />
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 h-[200px]">
+          {/* Left Side - Agent Photo */}
+          <div className="relative h-full">
+            <img 
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              alt="Professional Insurance Agent at Work" 
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
 
-              {/* Protection Message */}
-              <div>
-                <h2 className="text-3xl font-light mb-4 text-gray-900 leading-tight">
-                  Protection built on <span className="italic">trust</span>
-                </h2>
-                <p className="text-gray-600 mb-4 leading-relaxed font-light max-w-2xl">
-                  Doug specializes in comprehensive insurance solutions and helps 
-                  clients secure their assets, family, and future with tailored coverage plans.
-                </p>
-                <button className="bg-red-600 text-white px-8 py-3 text-sm tracking-wide hover:bg-red-700 transition-all">
-                  Contact Us
-                </button>
-              </div>
+          {/* Right Side - Protection Message */}
+          <div className="bg-gray-100 flex items-center justify-center p-6 lg:p-8 h-full">
+            <div className="max-w-md">
+              <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight">
+                Protection built on <span className="italic">trust</span>
+              </h2>
+              <p className="text-gray-700 mb-4 leading-relaxed font-medium">
+                Doug specializes in comprehensive insurance solutions and helps 
+                clients secure their assets, family, and future with tailored coverage plans.
+              </p>
+              <button className="bg-red-600 text-white px-8 py-3 font-medium tracking-wide hover:bg-red-700 transition-all">
+                Contact Us
+              </button>
             </div>
           </div>
         </div>

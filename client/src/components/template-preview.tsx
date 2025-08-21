@@ -5391,7 +5391,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Health Insurance Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left Side - Health Insurance Content */}
-          <div className="bg-blue-50 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
+          <div className="bg-gray-100 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
             <div className="max-w-md">
               <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight">
                 Health Insurance <span className="italic">coverage</span>
@@ -5427,7 +5427,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
 
           {/* Right Side - Annuities Content */}
-          <div className="bg-green-50 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
+          <div className="bg-gray-100 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
             <div className="max-w-md">
               <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight">
                 Annuities for <span className="italic">retirement</span>

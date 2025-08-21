@@ -5219,9 +5219,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="text-center">
               <div className="hidden md:flex space-x-12 text-base">
                 <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">About</a>
-                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Services</a>
-                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Experience</a>
-                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Contact</a>
+                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Health Insurance</a>
+                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Life Insurance</a>
+                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Annuities</a>
               </div>
             </div>
             <div className="flex justify-end">

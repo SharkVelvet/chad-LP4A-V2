@@ -4908,53 +4908,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Insurance Benefits Section */}
-        <div className="py-20 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <img 
-                  src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                  alt="Family financial security" 
-                  className="w-full h-96 object-cover rounded-lg"
-                />
-              </div>
-              <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  Complete financial<br/>
-                  protection coverage
-                </h2>
-                <p className="text-gray-600 leading-relaxed mb-8">
-                  Our comprehensive approach combines life insurance for family protection, health insurance for medical coverage, and annuities for retirement security. We ensure you have the right mix of coverage to protect your family today and secure your financial future tomorrow.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Insurance Planning Process */}
-        <div className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  Complete insurance<br/>
-                  needs analysis
-                </h2>
-                <p className="text-gray-600 leading-relaxed mb-8">
-                  We conduct a thorough review of your life insurance needs, health insurance coverage gaps, and retirement annuity options. Whether meeting in-person or virtually, we'll analyze your family's protection needs and recommend the right combination of life, health, and annuity products.
-                </p>
-              </div>
-              <div>
-                <img 
-                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                  alt="Insurance planning consultation" 
-                  className="w-full h-96 object-cover rounded-lg opacity-70"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
 
 
         {/* Life Insurance Section */}

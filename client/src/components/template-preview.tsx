@@ -4132,66 +4132,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
               </div>
               
-              {/* Mobile App Mockup */}
+              {/* Professional Agent Photo */}
               <div className="relative flex justify-center">
                 <div className="relative">
-                  <div className="w-72 h-96 bg-gray-900 rounded-3xl p-3 shadow-2xl">
-                    <div className="w-full h-full bg-white rounded-2xl overflow-hidden">
-                      {/* App Header */}
-                      <div className="bg-red-600 p-4 text-white">
-                        <div className="flex items-center justify-between">
-                          <h3 className="font-bold">Insurance Pro</h3>
-                          <div className="w-8 h-8 bg-white/20 rounded-full"></div>
-                        </div>
-                        <p className="text-sm mt-1 opacity-90">Your Digital Agent</p>
-                      </div>
-                      
-                      {/* App Content */}
-                      <div className="p-4 space-y-4">
-                        <div className="bg-gray-50 rounded-lg p-3">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                              <Heart className="w-5 h-5 text-red-600" />
-                            </div>
-                            <div>
-                              <div className="font-medium text-sm">Term Life Insurance</div>
-                              <div className="text-xs text-gray-500">$45/month</div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="bg-gray-50 rounded-lg p-3">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                              <Shield className="w-5 h-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <div className="font-medium text-sm">Health Insurance</div>
-                              <div className="text-xs text-gray-500">$320/month</div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="bg-gray-50 rounded-lg p-3">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                              <Users className="w-5 h-5 text-green-600" />
-                            </div>
-                            <div>
-                              <div className="font-medium text-sm">Family Coverage</div>
-                              <div className="text-xs text-gray-500">$580/month</div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <button className="w-full bg-red-600 text-white py-3 rounded-lg text-sm font-medium">
-                          Get Quote Now
-                        </button>
-                      </div>
-                    </div>
+                  {/* Main Agent Photo */}
+                  <div className="w-80 h-80 rounded-full overflow-hidden shadow-2xl border-8 border-white">
+                    <img 
+                      src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80" 
+                      alt="Professional Insurance Agent" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   
-                  {/* Floating Elements */}
+                  {/* Floating Statistics */}
                   <div className="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-3 text-center">
                     <div className="text-2xl font-bold text-green-600">98%</div>
                     <div className="text-xs text-gray-500">Satisfaction</div>
@@ -4200,6 +4153,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <div className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-lg p-3 text-center">
                     <div className="text-2xl font-bold text-red-600">5.0</div>
                     <div className="text-xs text-gray-500">★ Rating</div>
+                  </div>
+                  
+                  {/* Agent Info Card */}
+                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-4 text-center min-w-max">
+                    <h3 className="font-semibold text-gray-900">Sarah Johnson</h3>
+                    <p className="text-sm text-gray-600">Licensed Life & Health Agent</p>
+                    <p className="text-xs text-red-600 mt-1">15+ Years Experience</p>
                   </div>
                 </div>
               </div>

@@ -5211,7 +5211,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     return (
       <div className={`bg-white ${className}`}>
         {/* Header */}
-        <div className="bg-red-900 text-white relative">
+        <div className="bg-red-600 text-white relative">
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
             <div className="flex items-center">
               {/* Empty space for left alignment */}

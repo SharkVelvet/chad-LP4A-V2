@@ -4320,70 +4320,26 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
         {/* Contact Section */}
         <div id="contact" className="py-16 bg-gray-900 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div>
-                <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
-                <p className="text-gray-300 mb-8 text-lg">
-                  Ready to get started? Contact our team of insurance experts today.
-                </p>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <Phone className="w-6 h-6 text-red-400" />
-                    <span>(555) 123-4567</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <Mail className="w-6 h-6 text-red-400" />
-                    <span>quotes@insurancepro.com</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <MapPin className="w-6 h-6 text-red-400" />
-                    <span>123 Insurance Way, Your City, ST 12345</span>
-                  </div>
-                </div>
-              </div>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
+              <p className="text-gray-300 mb-8 text-lg">
+                Ready to get started? Contact our team of insurance experts today.
+              </p>
               
-              <div className="bg-gray-800 rounded-xl p-8">
-                <h3 className="text-xl font-semibold mb-6">Contact Form</h3>
-                <form className="space-y-4">
-                  <div>
-                    <input 
-                      type="text" 
-                      placeholder="Full Name" 
-                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-red-400 focus:outline-none"
-                    />
-                  </div>
-                  <div>
-                    <input 
-                      type="email" 
-                      placeholder="Email Address" 
-                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-red-400 focus:outline-none"
-                    />
-                  </div>
-                  <div>
-                    <input 
-                      type="tel" 
-                      placeholder="Phone Number" 
-                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-red-400 focus:outline-none"
-                    />
-                  </div>
-                  <div>
-                    <select className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-red-400 focus:outline-none">
-                      <option>Insurance Type</option>
-                      <option>Auto Insurance</option>
-                      <option>Home Insurance</option>
-                      <option>Life Insurance</option>
-                      <option>Health Insurance</option>
-                    </select>
-                  </div>
-                  <button 
-                    type="submit" 
-                    className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
-                  >
-                    Contact Us
-                  </button>
-                </form>
+              <div className="space-y-6">
+                <div className="flex items-center justify-center space-x-3">
+                  <Phone className="w-6 h-6 text-red-400" />
+                  <span className="text-lg">(555) 123-4567</span>
+                </div>
+                <div className="flex items-center justify-center space-x-3">
+                  <Mail className="w-6 h-6 text-red-400" />
+                  <span className="text-lg">quotes@insurancepro.com</span>
+                </div>
+                <div className="flex items-center justify-center space-x-3">
+                  <MapPin className="w-6 h-6 text-red-400" />
+                  <span className="text-lg">123 Insurance Way, Your City, ST 12345</span>
+                </div>
               </div>
             </div>
           </div>

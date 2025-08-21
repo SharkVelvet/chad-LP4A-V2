@@ -4818,7 +4818,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Header */}
         <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
-            <div className="text-white text-xl font-light">Clove Therapy</div>
+            <div className="text-white text-xl font-light">Life Insurance Pro</div>
             <nav className="hidden md:flex space-x-8 text-white text-sm">
               <a href="#" className="hover:text-red-300 transition-colors">About</a>
               <a href="#" className="hover:text-red-300 transition-colors">Services</a>
@@ -4844,11 +4844,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           
           <div className="relative z-10 max-w-4xl mx-auto px-8 h-full flex flex-col justify-center">
             <h1 className="text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
-              Introducing Clove, a<br/>
-              mental health collective.
+              Protecting your family's<br/>
+              financial future.
             </h1>
             <p className="text-xl text-white opacity-90 mb-8 max-w-2xl">
-              Get accessible and personalized mental health care tailored specifically for you from the comfort of your home.
+              Get comprehensive and personalized life insurance coverage tailored specifically for your family's needs and budget.
             </p>
           </div>
         </div>
@@ -4858,10 +4858,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-4xl mx-auto px-8 text-center">
             <h2 className="text-4xl font-light text-gray-900 mb-8">Our approach</h2>
             <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
-              We offer support and treatment for a wide range of mental health conditions. As mental health collective, we assist members by providing therapy, medication management, coaching, and more. Let us help you connect with one of our doctors who meets your needs and is available to see you, online or in-person.
+              We offer comprehensive life insurance solutions for families at every stage of life. As your trusted insurance partners, we help you find the right coverage through term life, whole life, and universal life policies. Let us help you connect with the perfect policy that meets your family's needs and fits your budget.
             </p>
             <button className="bg-red-900 text-white px-8 py-3 hover:bg-red-800 transition-all">
-              Find out
+              Get Quote
             </button>
           </div>
         </div>
@@ -4879,11 +4879,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
               <div>
                 <h2 className="text-4xl font-light text-gray-900 mb-6">
-                  Providing you with a<br/>
-                  safe space to relax
+                  Providing you with<br/>
+                  peace of mind
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-8">
-                  All your appointments will take place in our soothing office environment with fully personalized, complimentary tea and water, and individualized care.
+                  All consultations take place in our comfortable office environment with personalized service and expert guidance to help you make the right coverage decisions for your family.
                 </p>
               </div>
             </div>
@@ -4897,10 +4897,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div>
                 <h2 className="text-4xl font-light text-gray-900 mb-6">
                   In-person and<br/>
-                  remote options
+                  virtual consultations
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-8">
-                  Choose from flexible in-person or remote sessions. Can't make it into the office? No worries - we've got you covered with technology.
+                  Choose from flexible in-person meetings or virtual consultations. Can't make it into the office? No worries - we can review your options and complete applications online.
                 </p>
               </div>
               <div>
@@ -4923,19 +4923,19 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4">
                   <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H9v5h10V8h2V7z"/>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
                   </svg>
                 </div>
-                <h3 className="text-white text-lg mb-2">Therapy</h3>
+                <h3 className="text-white text-lg mb-2">Term Life</h3>
               </div>
               
               <div className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4">
                   <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H9v-2h2v2zm0-4H9V7h2v6z"/>
+                    <path d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zm2.5-9H18V1h-2v1H8V1H6v1H4.5C3.67 2 3 2.67 3 3.5V5h18V3.5C21 2.67 20.33 2 19.5 2z"/>
                   </svg>
                 </div>
-                <h3 className="text-white text-lg mb-2">Psychiatry</h3>
+                <h3 className="text-white text-lg mb-2">Whole Life</h3>
               </div>
               
               <div className="text-center">
@@ -4944,21 +4944,21 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                   </svg>
                 </div>
-                <h3 className="text-white text-lg mb-2">Coaching</h3>
+                <h3 className="text-white text-lg mb-2">Universal Life</h3>
               </div>
               
               <div className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4">
                   <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H9v-2h2v2zm0-4H9V7h2v6z"/>
                   </svg>
                 </div>
-                <h3 className="text-white text-lg mb-2">Acupuncture</h3>
+                <h3 className="text-white text-lg mb-2">Final Expense</h3>
               </div>
             </div>
             
             <button className="bg-white text-red-900 px-8 py-3 hover:bg-red-50 transition-all">
-              Learn More
+              Get Started
             </button>
           </div>
         </div>

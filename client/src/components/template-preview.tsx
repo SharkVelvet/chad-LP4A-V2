@@ -4835,8 +4835,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div className="relative h-screen bg-gradient-to-r from-red-900 to-red-700 overflow-hidden">
           <div className="absolute inset-0">
             <img 
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-              alt="Mental health therapy session" 
+              src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+              alt="Professional therapy consultation" 
               className="w-full h-full object-cover opacity-70"
             />
             <div className="absolute inset-0 bg-red-900 bg-opacity-50"></div>
@@ -4872,8 +4872,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <img 
-                  src="https://images.unsplash.com/photo-1586253634026-795ffc4b2eda?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                  alt="Comfortable therapy office space" 
+                  src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                  alt="Comfortable office environment" 
                   className="w-full h-96 object-cover rounded-lg"
                 />
               </div>
@@ -4905,8 +4905,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
               <div>
                 <img 
-                  src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                  alt="Location and remote therapy options" 
+                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                  alt="Remote consultation technology" 
                   className="w-full h-96 object-cover rounded-lg opacity-70"
                 />
               </div>

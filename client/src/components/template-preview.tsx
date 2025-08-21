@@ -19,8 +19,6 @@ interface TemplatePreviewProps {
 
 export default function TemplatePreview({ templateSlug, className = "" }: TemplatePreviewProps) {
   
-  // Debug: Log the template slug
-  console.log('Template slug received:', templateSlug);
   
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
@@ -4092,15 +4090,15 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="text-center lg:text-left">
                 <div className="inline-block bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                  Digital Insurance Solutions
+                  Life & Health Insurance Expert
                 </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Get Real Estate Income, 
-                  <span className="text-red-600"> without owning a house</span>
+                  Protect Your Family's 
+                  <span className="text-red-600"> Financial Future</span>
                 </h1>
                 <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed">
-                  Our digital platform makes insurance simple, accessible, and affordable. 
-                  Protect what matters most with personalized coverage solutions.
+                  Comprehensive life insurance and health coverage solutions tailored to your family's needs. 
+                  Secure your legacy and protect against unexpected medical costs.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
                   <button 
@@ -4153,11 +4151,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                         <div className="bg-gray-50 rounded-lg p-3">
                           <div className="flex items-center space-x-3">
                             <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                              <Shield className="w-5 h-5 text-red-600" />
+                              <Heart className="w-5 h-5 text-red-600" />
                             </div>
                             <div>
-                              <div className="font-medium text-sm">Auto Insurance</div>
-                              <div className="text-xs text-gray-500">$89/month</div>
+                              <div className="font-medium text-sm">Term Life Insurance</div>
+                              <div className="text-xs text-gray-500">$45/month</div>
                             </div>
                           </div>
                         </div>
@@ -4165,11 +4163,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                         <div className="bg-gray-50 rounded-lg p-3">
                           <div className="flex items-center space-x-3">
                             <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                              <Home className="w-5 h-5 text-blue-600" />
+                              <Shield className="w-5 h-5 text-blue-600" />
                             </div>
                             <div>
-                              <div className="font-medium text-sm">Home Insurance</div>
-                              <div className="text-xs text-gray-500">$156/month</div>
+                              <div className="font-medium text-sm">Health Insurance</div>
+                              <div className="text-xs text-gray-500">$320/month</div>
                             </div>
                           </div>
                         </div>
@@ -4177,11 +4175,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                         <div className="bg-gray-50 rounded-lg p-3">
                           <div className="flex items-center space-x-3">
                             <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                              <Heart className="w-5 h-5 text-green-600" />
+                              <Users className="w-5 h-5 text-green-600" />
                             </div>
                             <div>
-                              <div className="font-medium text-sm">Life Insurance</div>
-                              <div className="text-xs text-gray-500">$45/month</div>
+                              <div className="font-medium text-sm">Family Coverage</div>
+                              <div className="text-xs text-gray-500">$580/month</div>
                             </div>
                           </div>
                         </div>
@@ -4214,29 +4212,29 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                Trusted by thousands of customers
+                Protecting families across America
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Our proven track record speaks for itself. Join thousands of satisfied clients who trust us with their protection.
+                Our proven track record in life and health insurance speaks for itself. Join thousands of families who trust us with their financial security.
               </p>
             </div>
             
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">11.7k</div>
-                <div className="text-gray-600">Active Policies</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">15.2k</div>
+                <div className="text-gray-600">Life Policies Issued</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">178k</div>
-                <div className="text-gray-600">Claims Processed</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">$2.8B</div>
+                <div className="text-gray-600">Coverage in Force</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">0.45%</div>
-                <div className="text-gray-600">Denial Rate</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">24hrs</div>
+                <div className="text-gray-600">Avg. Claim Processing</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">1,360.00</div>
-                <div className="text-gray-600">Avg. Savings</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">98.7%</div>
+                <div className="text-gray-600">Claims Approved</div>
               </div>
             </div>
           </div>
@@ -4247,36 +4245,36 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                More accessible and secure than going solo
+                Life & Health Insurance Services
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Our platform provides comprehensive insurance solutions with modern technology and personal service.
+                Comprehensive life and health insurance solutions designed to protect your family's financial future and well-being.
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                  <Shield className="w-6 h-6 text-red-600" />
+                  <Heart className="w-6 h-6 text-red-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Comprehensive Coverage</h3>
-                <p className="text-gray-600">Full protection for auto, home, life, and health insurance needs with customizable options.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Life Insurance</h3>
+                <p className="text-gray-600">Term and whole life insurance policies to secure your family's financial future and legacy.</p>
               </div>
               
               <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <TrendingUp className="w-6 h-6 text-blue-600" />
+                  <Shield className="w-6 h-6 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Smart Pricing</h3>
-                <p className="text-gray-600">AI-driven pricing that finds you the best rates while maintaining excellent coverage.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Health Insurance</h3>
+                <p className="text-gray-600">Individual and family health plans with comprehensive medical coverage and prescription benefits.</p>
               </div>
               
               <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                   <Users className="w-6 h-6 text-green-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Expert Support</h3>
-                <p className="text-gray-600">24/7 support from licensed agents who understand your unique insurance needs.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Family Protection</h3>
+                <p className="text-gray-600">Customized coverage plans that protect your entire family's health and financial security.</p>
               </div>
             </div>
           </div>
@@ -4288,13 +4286,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-                  Best real estate is the cornerstone to build generational wealth
+                  Life insurance is the cornerstone of financial security
                 </h2>
                 <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                  Just like smart real estate investments build wealth over time, smart insurance decisions protect and preserve your assets for future generations.
+                  Just as you invest in your family's future, life and health insurance protect that investment. Our comprehensive coverage ensures your loved ones are financially secure, no matter what life brings.
                 </p>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  Our modern approach to insurance combines traditional protection with innovative digital tools, giving you the foundation for long-term financial security.
+                  With decades of experience and a commitment to personalized service, we help families across America build the protection they need for true peace of mind.
                 </p>
                 
                 <div className="space-y-4">
@@ -4302,38 +4300,38 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
                       <CheckCircle className="w-4 h-4 text-white" />
                     </div>
-                    <span className="text-gray-700">Personalized coverage recommendations</span>
+                    <span className="text-gray-700">Term and whole life insurance options</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
                       <CheckCircle className="w-4 h-4 text-white" />
                     </div>
-                    <span className="text-gray-700">Real-time policy management</span>
+                    <span className="text-gray-700">Individual and family health plans</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
                       <CheckCircle className="w-4 h-4 text-white" />
                     </div>
-                    <span className="text-gray-700">Instant claims processing</span>
+                    <span className="text-gray-700">No medical exam policies available</span>
                   </div>
                 </div>
               </div>
               
               <div className="relative">
                 <div className="bg-gradient-to-br from-red-500 to-red-700 rounded-2xl p-8 text-white">
-                  <h3 className="text-2xl font-bold mb-4">Why Choose Us?</h3>
+                  <h3 className="text-2xl font-bold mb-4">Why Choose Our Agency?</h3>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
                       <Award className="w-6 h-6" />
-                      <span>A+ Rated Insurance Company</span>
+                      <span>A+ Rated Life & Health Specialist</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Clock className="w-6 h-6" />
-                      <span>Average 2-minute quote process</span>
+                      <span>Quick quotes in under 5 minutes</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Shield className="w-6 h-6" />
-                      <span>$2M+ in claims paid annually</span>
+                      <span>$2.8B+ in life coverage in force</span>
                     </div>
                   </div>
                 </div>
@@ -4455,8 +4453,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
   return (
     <div className={`bg-gray-100 rounded-lg p-8 ${className}`}>
       <div className="text-center text-gray-500">Template Preview</div>
-      <div className="text-center text-red-500 mt-2 text-sm">Debug: Template slug = "{templateSlug}"</div>
-      <div className="text-center text-blue-500 mt-1 text-sm">Expected: "template-9"</div>
     </div>
   );
 }

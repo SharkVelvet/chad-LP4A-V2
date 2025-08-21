@@ -5217,11 +5217,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               {/* Empty space for left alignment */}
             </div>
             <div className="text-center">
-              <div className="hidden md:flex space-x-12 text-sm">
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">About</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Services</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Experience</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Contact</a>
+              <div className="hidden md:flex space-x-12 text-base">
+                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">About</a>
+                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Services</a>
+                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Experience</a>
+                <a href="#" className="hover:text-red-200 transition-colors font-medium text-white">Contact</a>
               </div>
             </div>
             <div className="flex justify-end">
@@ -5253,18 +5253,18 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <h1 className="text-8xl lg:text-9xl font-bold tracking-wider text-white -mt-4 drop-shadow-lg">
               Welms
             </h1>
-            <div className="mt-4 text-sm text-red-200 tracking-[0.3em] font-light drop-shadow-md">
+            <div className="mt-4 text-base text-white tracking-[0.3em] font-extralight drop-shadow-md">
               COMPREHENSIVE INSURANCE SOLUTIONS
             </div>
-            <div className="mt-2 text-xs text-red-300 drop-shadow-md">
+            <div className="mt-2 text-sm text-gray-200 font-extralight drop-shadow-md">
               New York, NY 10001
             </div>
           </div>
 
           {/* Tagline */}
           <div className="absolute bottom-20 left-8 right-8 z-10">
-            <p className="text-lg font-light text-white max-w-md leading-relaxed drop-shadow-lg">
-              A better <span className="italic">protection plan</span>.
+            <p className="text-lg font-light text-gray-100 max-w-md leading-relaxed drop-shadow-lg">
+              A better <span className="italic">life insurance plan</span>.
             </p>
           </div>
         </div>
@@ -5362,9 +5362,9 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Split Content Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[350px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[250px]">
           {/* Left Side - Agent Photo */}
-          <div className="relative min-h-[350px] lg:min-h-full">
+          <div className="relative min-h-[250px] lg:min-h-full">
             <img 
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
               alt="Professional Insurance Agent at Work" 
@@ -5373,7 +5373,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
 
           {/* Right Side - Protection Message */}
-          <div className="bg-gray-100 flex items-center justify-center p-8 lg:p-16 min-h-[350px]">
+          <div className="bg-gray-100 flex items-center justify-center p-6 lg:p-12 min-h-[250px]">
             <div className="max-w-md">
               <h2 className="text-4xl lg:text-5xl font-light mb-8 text-gray-900 leading-tight">
                 Protection built on <span className="italic">trust</span>
@@ -5516,6 +5516,45 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-2">Family Email</h4>
                 <p className="text-gray-600">families@protection.com<br/>care@protection.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="bg-slate-800 text-white py-16">
+          <div className="max-w-6xl mx-auto px-8">
+            {/* Navigation */}
+            <div className="flex justify-center mb-8">
+              <nav className="flex space-x-8 text-gray-300">
+                <a href="#" className="hover:text-white transition-colors">Home</a>
+                <a href="#" className="hover:text-white transition-colors">About</a>
+                <a href="#" className="hover:text-white transition-colors">Services</a>
+                <a href="#" className="hover:text-white transition-colors">Why We Serve</a>
+                <a href="#" className="hover:text-white transition-colors">Testimonials</a>
+                <a href="#" className="hover:text-white transition-colors">Contact</a>
+              </nav>
+            </div>
+            
+            {/* Agent Name and Website */}
+            <div className="text-center mb-6">
+              <h3 className="text-3xl font-bold text-red-400 mb-2">Doug Welms</h3>
+              <p className="text-gray-300 mb-4">dougwelmsinsurance.com</p>
+              <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Professional insurance services with a personal touch. Your family's protection is our priority.
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-gray-600 my-8"></div>
+
+            {/* Bottom Footer */}
+            <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+              <div className="mb-4 md:mb-0">
+                © 2025 Doug Welms. All rights reserved. | Privacy Policy | Terms of Service
+              </div>
+              <div>
+                Built by landingpagesforagents.com
               </div>
             </div>
           </div>

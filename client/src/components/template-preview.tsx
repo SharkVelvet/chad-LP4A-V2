@@ -5406,11 +5406,11 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
 
           {/* Right Side - Healthcare Photo */}
-          <div className="relative h-64 lg:h-80">
+          <div className="relative h-64 lg:h-80 overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
               alt="Healthcare and Medical Protection" 
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-center scale-110"
             />
           </div>
         </div>

@@ -5364,7 +5364,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Split Content Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left Side - Agent Photo */}
-          <div className="relative">
+          <div className="relative h-64 lg:h-80">
             <img 
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
               alt="Professional Insurance Agent at Work" 

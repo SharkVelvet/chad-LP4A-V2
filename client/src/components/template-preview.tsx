@@ -4816,16 +4816,16 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     return (
       <div className={`bg-white ${className}`}>
         {/* Header */}
-        <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
+        <header className="relative bg-gray-50">
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
-            <div className="text-white text-xl font-bold">Life Insurance Pro</div>
-            <nav className="hidden md:flex space-x-8 text-white text-sm">
-              <a href="#" className="hover:opacity-80 transition-colors" style={{color: '#f9fafb'}}>About</a>
-              <a href="#" className="hover:opacity-80 transition-colors" style={{color: '#f9fafb'}}>Services</a>
-              <a href="#" className="hover:opacity-80 transition-colors" style={{color: '#f9fafb'}}>Blog</a>
-              <a href="#" className="hover:opacity-80 transition-colors" style={{color: '#f9fafb'}}>Contact</a>
+            <div className="text-gray-900 text-xl font-bold">Life Insurance Pro</div>
+            <nav className="hidden md:flex space-x-8 text-gray-700 text-sm">
+              <a href="#" className="hover:text-red-600 transition-colors">About</a>
+              <a href="#" className="hover:text-red-600 transition-colors">Services</a>
+              <a href="#" className="hover:text-red-600 transition-colors">Blog</a>
+              <a href="#" className="hover:text-red-600 transition-colors">Contact</a>
             </nav>
-            <button className="bg-white px-6 py-2 text-sm hover:opacity-80 transition-all" style={{color: '#f9fafb'}}>
+            <button className="bg-red-600 text-white px-6 py-2 text-sm hover:bg-red-700 transition-all">
               GET STARTED
             </button>
           </div>

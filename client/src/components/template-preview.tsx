@@ -4564,7 +4564,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="text-center">
                 <div className="mb-6">
                   <img 
-                    src="https://images.unsplash.com/photo-1494790108755-2616b332e234?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
                     alt="Emily Rodriguez" 
                     className="w-16 h-16 rounded-full mx-auto object-cover"
                   />

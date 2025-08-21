@@ -4901,7 +4901,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
               We offer comprehensive life insurance solutions for families at every stage of life. As your trusted insurance partners, we help you find the right coverage through term life, whole life, and universal life policies. Let us help you connect with the perfect policy that meets your family's needs and fits your budget.
             </p>
-            <button className="text-white px-8 py-3 hover:opacity-80 transition-all" style={{backgroundColor: '#f9fafb'}}>
+            <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all">
               Contact Us
             </button>
           </div>
@@ -4998,7 +4998,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
             
-            <button className="bg-white px-8 py-3 hover:opacity-80 transition-all" style={{color: '#f9fafb'}}>
+            <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all">
               Contact Us
             </button>
           </div>

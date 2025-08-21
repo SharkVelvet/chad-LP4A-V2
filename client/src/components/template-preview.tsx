@@ -5254,7 +5254,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               Welms
             </h1>
             <div className="mt-4 text-sm text-red-200 tracking-[0.3em] font-light drop-shadow-md">
-              LICENSED INSURANCE AGENT
+              COMPREHENSIVE INSURANCE SOLUTIONS
             </div>
             <div className="mt-2 text-xs text-red-300 drop-shadow-md">
               New York, NY 10001
@@ -5273,52 +5273,52 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div className="bg-slate-800 text-white py-20">
           <div className="max-w-6xl mx-auto px-8">
             <h2 className="text-4xl lg:text-5xl font-light mb-16 text-center">
-              Classic coverage, modern <span className="italic">approach</span>
+              Comprehensive protection, personalized <span className="italic">solutions</span>
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-              {/* Our Services */}
+              {/* Primary Services */}
               <div>
-                <h3 className="text-xl font-light mb-8 text-red-300 tracking-wide">Our Services</h3>
+                <h3 className="text-xl font-light mb-8 text-red-300 tracking-wide">Primary Services</h3>
                 <ul className="space-y-4 text-gray-300">
                   <li className="flex items-center">
                     <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Medicare, Coding & Billing</span>
+                    <span className="font-light">Auto & Home Insurance</span>
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Long-term Care Planning</span>
+                    <span className="font-light">Business & Commercial Coverage</span>
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Training & Certification</span>
+                    <span className="font-light">Disability & Income Protection</span>
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Senior Citizens Programs</span>
+                    <span className="font-light">Umbrella & Liability Insurance</span>
                   </li>
                 </ul>
               </div>
 
-              {/* Top Services */}
+              {/* Specialized Services */}
               <div>
-                <h3 className="text-xl font-light mb-8 text-red-300 tracking-wide">Top Services</h3>
+                <h3 className="text-xl font-light mb-8 text-red-300 tracking-wide">Specialized Services</h3>
                 <ul className="space-y-4 text-gray-300">
                   <li className="flex items-center">
                     <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Life Insurance & Investments</span>
+                    <span className="font-light">Estate & Legacy Planning</span>
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Final Expense Planning</span>
+                    <span className="font-light">Travel & International Coverage</span>
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Educational Workshops</span>
+                    <span className="font-light">Professional Liability</span>
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-400 mr-3">•</span>
-                    <span className="font-light">Community & Networking</span>
+                    <span className="font-light">Risk Assessment & Consultation</span>
                   </li>
                 </ul>
               </div>
@@ -5337,15 +5337,15 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             />
           </div>
 
-          {/* Right Side - Community Message */}
+          {/* Right Side - Protection Message */}
           <div className="bg-gray-100 flex items-center justify-center p-12 lg:p-20">
             <div className="max-w-md">
               <h2 className="text-4xl lg:text-5xl font-light mb-8 text-gray-900 leading-tight">
-                A new kind of <span className="italic">community</span>
+                Protection built on <span className="italic">trust</span>
               </h2>
               <p className="text-gray-600 mb-8 leading-relaxed font-light">
-                Doug specializes in delivering personalized insurance services and helps 
-                clients reach their financial protection goals with confidence.
+                Doug specializes in comprehensive insurance solutions and helps 
+                clients secure their assets, family, and future with tailored coverage plans.
               </p>
               <button className="bg-red-600 text-white px-8 py-3 text-sm tracking-wide hover:bg-red-700 transition-all">
                 Contact Us

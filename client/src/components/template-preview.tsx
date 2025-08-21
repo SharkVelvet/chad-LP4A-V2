@@ -4820,14 +4820,16 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
             <div className="text-gray-900 text-xl font-bold">Life Insurance Pro</div>
             <nav className="hidden md:flex space-x-8 text-gray-700 text-sm">
-              <a href="#" className="hover:text-red-600 transition-colors">About Luke</a>
-              <a href="#" className="hover:text-red-600 transition-colors">Life Insurance</a>
-              <a href="#" className="hover:text-red-600 transition-colors">Health Insurance</a>
-              <a href="#" className="hover:text-red-600 transition-colors">Annuities</a>
-              <a href="#" className="hover:text-red-600 transition-colors">Contact</a>
+              <a href="#about" className="hover:text-red-600 transition-colors cursor-pointer" onClick={(e) => { e.preventDefault(); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }}>About Luke</a>
+              <a href="#life-insurance" className="hover:text-red-600 transition-colors cursor-pointer" onClick={(e) => { e.preventDefault(); document.getElementById('life-insurance')?.scrollIntoView({ behavior: 'smooth' }); }}>Life Insurance</a>
+              <a href="#health-insurance" className="hover:text-red-600 transition-colors cursor-pointer" onClick={(e) => { e.preventDefault(); document.getElementById('health-insurance')?.scrollIntoView({ behavior: 'smooth' }); }}>Health Insurance</a>
+              <a href="#annuities" className="hover:text-red-600 transition-colors cursor-pointer" onClick={(e) => { e.preventDefault(); document.getElementById('annuities')?.scrollIntoView({ behavior: 'smooth' }); }}>Annuities</a>
             </nav>
-            <button className="bg-red-600 text-white px-6 py-2 text-sm hover:bg-red-700 transition-all">
-              GET STARTED
+            <button 
+              className="bg-red-600 text-white px-6 py-2 text-sm hover:bg-red-700 transition-all cursor-pointer"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Contact Us
             </button>
           </div>
         </header>
@@ -4855,7 +4857,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Meet Your Agent Section */}
-        <div className="py-20 bg-gray-50">
+        <div id="about" className="py-20 bg-gray-50">
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
@@ -4912,7 +4914,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
 
 
         {/* Life Insurance Section */}
-        <div className="py-20 bg-white">
+        <div id="life-insurance" className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
@@ -4938,7 +4940,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   </div>
                 </div>
                 <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all">
-                  Get Life Insurance Quote
+                  Contact Us
                 </button>
               </div>
               <div>
@@ -4953,12 +4955,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Health Insurance Section */}
-        <div className="py-20 bg-gray-50">
+        <div id="health-insurance" className="py-20 bg-gray-50">
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <img 
-                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                  src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                   alt="Health insurance medical coverage" 
                   className="w-full h-96 object-cover rounded-lg"
                 />
@@ -4986,7 +4988,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   </div>
                 </div>
                 <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all">
-                  Get Health Insurance Quote
+                  Contact Us
                 </button>
               </div>
             </div>
@@ -4994,7 +4996,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Annuities Section */}
-        <div className="py-20 bg-white">
+        <div id="annuities" className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
@@ -5020,7 +5022,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   </div>
                 </div>
                 <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all">
-                  Get Annuity Quote
+                  Contact Us
                 </button>
               </div>
               <div>
@@ -5121,7 +5123,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Contact Section */}
-        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
+        <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12">Contact Luke Today</h2>
             <p className="text-lg text-gray-600 mb-12">Ready to secure your family's future? Let's discuss your life insurance options.</p>

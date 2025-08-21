@@ -4444,13 +4444,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="text-sm">in</div>
             </div>
             <div className="text-center">
-              <div className="text-xs font-light tracking-[0.3em] mb-1 text-white">PROTECTION BY ADVISOR</div>
+              <div className="text-xs font-normal tracking-[0.3em] mb-1 text-white">PROTECTION BY ADVISOR</div>
               <div className="hidden md:flex space-x-12 text-sm">
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">About</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Coverage</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Planning</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Resources</a>
-                <a href="#" className="hover:text-red-300 transition-colors font-light text-white">Contact</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-normal text-white">About</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-normal text-white">Coverage</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-normal text-white">Planning</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-normal text-white">Resources</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-normal text-white">Contact</a>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -4465,7 +4465,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Hero Section */}
         <div className="bg-red-900 text-white py-20">
           <div className="max-w-4xl mx-auto px-8 text-center">
-            <div className="text-xs font-light tracking-[0.3em] mb-8 text-white">YOUR CERTIFIED GUIDE TO</div>
+            <div className="text-xs font-normal tracking-[0.3em] mb-8 text-white">YOUR CERTIFIED GUIDE TO</div>
             <h1 className="text-6xl lg:text-7xl font-extralight mb-4 leading-tight text-white">
               LIFE INSURANCE
             </h1>
@@ -4498,24 +4498,24 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {/* Term Life Insurance */}
               <div className="text-center">
-                <h3 className="text-xl font-light mb-6 tracking-wide text-white">TERM LIFE INSURANCE</h3>
-                <p className="text-white mb-8 leading-relaxed font-light">
+                <h3 className="text-xl font-normal mb-6 tracking-wide text-white">TERM LIFE INSURANCE</h3>
+                <p className="text-white mb-8 leading-relaxed font-normal">
                   The ideal choice if you want affordable coverage that is tailored to your family's protection needs and budget.
                 </p>
               </div>
 
               {/* Whole Life Insurance */}
               <div className="text-center">
-                <h3 className="text-xl font-light mb-6 tracking-wide text-white">WHOLE LIFE INSURANCE</h3>
-                <p className="text-white mb-8 leading-relaxed font-light">
+                <h3 className="text-xl font-normal mb-6 tracking-wide text-white">WHOLE LIFE INSURANCE</h3>
+                <p className="text-white mb-8 leading-relaxed font-normal">
                   Build cash value while protecting your family through permanent coverage with guaranteed premiums and benefits.
                 </p>
               </div>
 
               {/* Universal Life */}
               <div className="text-center">
-                <h3 className="text-xl font-light mb-6 tracking-wide text-white">UNIVERSAL LIFE</h3>
-                <p className="text-white mb-8 leading-relaxed font-light">
+                <h3 className="text-xl font-normal mb-6 tracking-wide text-white">UNIVERSAL LIFE</h3>
+                <p className="text-white mb-8 leading-relaxed font-normal">
                   Begin your legacy planning with flexible premiums and the potential for cash value growth through investment options.
                 </p>
               </div>
@@ -4529,7 +4529,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Left Side - Image */}
               <div className="relative">
-                <div className="absolute top-0 left-0 text-xs font-light tracking-[0.3em] text-white mb-4">
+                <div className="absolute top-0 left-0 text-xs font-normal tracking-[0.3em] text-white mb-4">
                   LIFE<br/>INSURANCE
                 </div>
                 <div className="mt-16">
@@ -4550,15 +4550,15 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h4 className="text-sm font-light tracking-wide mb-4 text-white">START YOUR PROTECTION</h4>
-                    <p className="text-white font-light leading-relaxed mb-6">
+                    <h4 className="text-sm font-normal tracking-wide mb-4 text-white">START YOUR PROTECTION</h4>
+                    <p className="text-white font-normal leading-relaxed mb-6">
                       Begin securing your family's future by exploring any of my free resources and protection strategies. Life insurance should feel like peace of mind.
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="text-sm font-light tracking-wide mb-4 text-white">ADDRESS SPECIFIC NEEDS</h4>
-                    <p className="text-white font-light leading-relaxed mb-6">
+                    <h4 className="text-sm font-normal tracking-wide mb-4 text-white">ADDRESS SPECIFIC NEEDS</h4>
+                    <p className="text-white font-normal leading-relaxed mb-6">
                       If health concerns, age, or other factors have complicated your insurance options, a personalized assessment might be right for you.
                     </p>
                   </div>

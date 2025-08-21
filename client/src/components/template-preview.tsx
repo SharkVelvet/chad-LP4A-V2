@@ -2174,7 +2174,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
   // Template 4: Modern Business
   if (templateSlug === "Template-4") {
     return (
-      <div className={`bg-white ${className}`}>
+      <div className="bg-white w-full min-h-screen overflow-auto">
         {/* Modern Dark Header */}
         <div className="bg-slate-900 text-white relative">
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">

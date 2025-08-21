@@ -63,9 +63,9 @@ export default function TemplatePreviewPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="bg-gray-50">
       {/* Sticky Banner */}
-      <div className="sticky top-0 z-50 bg-white border-b shadow-sm">
+      <div className="relative bg-white border-b shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-center space-x-4">
             <Button

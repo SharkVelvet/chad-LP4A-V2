@@ -5102,7 +5102,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div className="border-t border-gray-600 pt-8">
               <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
                 <div className="mb-4 md:mb-0">
-                  <span>© 2025 MIMJ. All rights reserved. | </span>
+                  <span>© 2025 Luke Smith. All rights reserved. | </span>
                   <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
                   <span> | </span>
                   <a href="#" className="hover:text-white transition-colors">Terms of Service</a>

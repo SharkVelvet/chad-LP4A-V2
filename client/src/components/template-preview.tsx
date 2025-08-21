@@ -4820,26 +4820,26 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
             <div className="text-white text-xl font-light">Clove Therapy</div>
             <nav className="hidden md:flex space-x-8 text-white text-sm">
-              <a href="#" className="hover:text-orange-300 transition-colors">About</a>
-              <a href="#" className="hover:text-orange-300 transition-colors">Services</a>
-              <a href="#" className="hover:text-orange-300 transition-colors">Blog</a>
-              <a href="#" className="hover:text-orange-300 transition-colors">Contact</a>
+              <a href="#" className="hover:text-red-300 transition-colors">About</a>
+              <a href="#" className="hover:text-red-300 transition-colors">Services</a>
+              <a href="#" className="hover:text-red-300 transition-colors">Blog</a>
+              <a href="#" className="hover:text-red-300 transition-colors">Contact</a>
             </nav>
-            <button className="bg-orange-400 text-white px-6 py-2 text-sm hover:bg-orange-500 transition-all">
+            <button className="bg-white text-red-900 px-6 py-2 text-sm hover:bg-red-50 transition-all">
               GET STARTED
             </button>
           </div>
         </header>
 
         {/* Hero Section */}
-        <div className="relative h-screen bg-gradient-to-r from-teal-800 to-teal-600 overflow-hidden">
+        <div className="relative h-screen bg-gradient-to-r from-red-900 to-red-700 overflow-hidden">
           <div className="absolute inset-0">
             <img 
               src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
               alt="Mental health therapy session" 
               className="w-full h-full object-cover opacity-70"
             />
-            <div className="absolute inset-0 bg-teal-800 bg-opacity-50"></div>
+            <div className="absolute inset-0 bg-red-900 bg-opacity-50"></div>
           </div>
           
           <div className="relative z-10 max-w-4xl mx-auto px-8 h-full flex flex-col justify-center">
@@ -4860,7 +4860,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
               We offer support and treatment for a wide range of mental health conditions. As mental health collective, we assist members by providing therapy, medication management, coaching, and more. Let us help you connect with one of our doctors who meets your needs and is available to see you, online or in-person.
             </p>
-            <button className="bg-orange-400 text-white px-8 py-3 hover:bg-orange-500 transition-all">
+            <button className="bg-red-900 text-white px-8 py-3 hover:bg-red-800 transition-all">
               Find out
             </button>
           </div>
@@ -4915,7 +4915,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
         {/* Our Services Section */}
-        <div className="py-20 bg-teal-700">
+        <div className="py-20 bg-red-900">
           <div className="max-w-4xl mx-auto px-8 text-center">
             <h2 className="text-4xl font-light text-white mb-16">Our services</h2>
             
@@ -4957,7 +4957,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
             </div>
             
-            <button className="bg-orange-400 text-white px-8 py-3 hover:bg-orange-500 transition-all">
+            <button className="bg-white text-red-900 px-8 py-3 hover:bg-red-50 transition-all">
               Learn More
             </button>
           </div>

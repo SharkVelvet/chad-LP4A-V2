@@ -4955,54 +4955,6 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Our Services Section */}
-        <div className="py-20" style={{backgroundColor: '#f9fafb'}}>
-          <div className="max-w-4xl mx-auto px-8 text-center">
-            <h2 className="text-4xl font-bold text-white mb-16">Our services</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4">
-                  <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                  </svg>
-                </div>
-                <h3 className="text-white text-xl font-bold mb-2">Term Life</h3>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4">
-                  <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zm2.5-9H18V1h-2v1H8V1H6v1H4.5C3.67 2 3 2.67 3 3.5V5h18V3.5C21 2.67 20.33 2 19.5 2z"/>
-                  </svg>
-                </div>
-                <h3 className="text-white text-xl font-bold mb-2">Whole Life</h3>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4">
-                  <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                  </svg>
-                </div>
-                <h3 className="text-white text-xl font-bold mb-2">Universal Life</h3>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4">
-                  <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H9v-2h2v2zm0-4H9V7h2v6z"/>
-                  </svg>
-                </div>
-                <h3 className="text-white text-xl font-bold mb-2">Final Expense</h3>
-              </div>
-            </div>
-            
-            <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all">
-              Contact Us
-            </button>
-          </div>
-        </div>
 
         {/* Existing Services Section */}
         <div className="px-4 sm:px-6 py-12 sm:py-16 bg-white">

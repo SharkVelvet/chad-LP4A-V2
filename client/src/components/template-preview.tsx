@@ -4898,57 +4898,57 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         {/* Our Approach Section */}
         <div className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-8 text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-8">Our approach</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-8">Our comprehensive approach</h2>
             <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
-              We offer comprehensive life insurance solutions for families at every stage of life. As your trusted insurance partners, we help you find the right coverage through term life, whole life, and universal life policies. Let us help you connect with the perfect policy that meets your family's needs and fits your budget.
+              We provide a complete insurance portfolio including life insurance (term, whole, and universal life), health insurance plans for individuals and families, and annuities for retirement planning. Our holistic approach ensures you have comprehensive protection today and guaranteed income for tomorrow, all tailored to your family's specific needs and budget.
             </p>
             <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all">
-              Contact Us
+              Get Your Insurance Quote
             </button>
           </div>
         </div>
 
-        {/* Safe Space Section */}
+        {/* Insurance Benefits Section */}
         <div className="py-20 bg-gray-50">
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <img 
                   src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                  alt="Comfortable office environment" 
+                  alt="Family financial security" 
                   className="w-full h-96 object-cover rounded-lg"
                 />
               </div>
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  Providing you with<br/>
-                  peace of mind
+                  Complete financial<br/>
+                  protection coverage
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-8">
-                  All consultations take place in our comfortable office environment with personalized service and expert guidance to help you make the right coverage decisions for your family.
+                  Our comprehensive approach combines life insurance for family protection, health insurance for medical coverage, and annuities for retirement security. We ensure you have the right mix of coverage to protect your family today and secure your financial future tomorrow.
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* In-Person and Remote Options */}
+        {/* Insurance Planning Process */}
         <div className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  In-person and<br/>
-                  virtual consultations
+                  Complete insurance<br/>
+                  needs analysis
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-8">
-                  Choose from flexible in-person meetings or virtual consultations. Can't make it into the office? No worries - we can review your options and complete applications online.
+                  We conduct a thorough review of your life insurance needs, health insurance coverage gaps, and retirement annuity options. Whether meeting in-person or virtually, we'll analyze your family's protection needs and recommend the right combination of life, health, and annuity products.
                 </p>
               </div>
               <div>
                 <img 
                   src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                  alt="Remote consultation technology" 
+                  alt="Insurance planning consultation" 
                   className="w-full h-96 object-cover rounded-lg opacity-70"
                 />
               </div>
@@ -4957,10 +4957,133 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
 
+        {/* Life Insurance Section */}
+        <div className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                  Life Insurance<br/>
+                  Protection
+                </h2>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  Comprehensive life insurance coverage to protect your family's financial future. Choose from term life for affordable temporary coverage, whole life for permanent protection with cash value, or universal life for flexible premiums and death benefits.
+                </p>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center">
+                    <span className="text-red-600 mr-3">✓</span>
+                    <span className="text-gray-700">Term Life Insurance - Affordable temporary coverage</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-red-600 mr-3">✓</span>
+                    <span className="text-gray-700">Whole Life Insurance - Permanent coverage with cash value</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-red-600 mr-3">✓</span>
+                    <span className="text-gray-700">Universal Life Insurance - Flexible premiums and benefits</span>
+                  </div>
+                </div>
+                <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all">
+                  Get Life Insurance Quote
+                </button>
+              </div>
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                  alt="Family life insurance protection" 
+                  className="w-full h-96 object-cover rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Health Insurance Section */}
+        <div className="py-20 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                  alt="Health insurance medical coverage" 
+                  className="w-full h-96 object-cover rounded-lg"
+                />
+              </div>
+              <div>
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                  Health Insurance<br/>
+                  Coverage
+                </h2>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  Quality health insurance plans to keep you and your family covered with comprehensive medical benefits. From individual plans to family coverage and Medicare supplements, we'll find the right health insurance solution for your needs.
+                </p>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center">
+                    <span className="text-red-600 mr-3">✓</span>
+                    <span className="text-gray-700">Individual Health Plans - Personalized coverage options</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-red-600 mr-3">✓</span>
+                    <span className="text-gray-700">Family Coverage - Comprehensive family health plans</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-red-600 mr-3">✓</span>
+                    <span className="text-gray-700">Medicare Supplements - Enhanced Medicare coverage</span>
+                  </div>
+                </div>
+                <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all">
+                  Get Health Insurance Quote
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Annuities Section */}
+        <div className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                  Retirement<br/>
+                  Annuities
+                </h2>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  Secure your retirement with annuity products that provide guaranteed income and financial stability. Choose from fixed annuities for guaranteed returns, variable annuities for growth potential, or indexed annuities for protected growth tied to market performance.
+                </p>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center">
+                    <span className="text-red-600 mr-3">✓</span>
+                    <span className="text-gray-700">Fixed Annuities - Guaranteed returns and income</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-red-600 mr-3">✓</span>
+                    <span className="text-gray-700">Variable Annuities - Growth potential with investment options</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-red-600 mr-3">✓</span>
+                    <span className="text-gray-700">Indexed Annuities - Protected growth tied to market performance</span>
+                  </div>
+                </div>
+                <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all">
+                  Get Annuity Quote
+                </button>
+              </div>
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                  alt="Retirement annuity planning" 
+                  className="w-full h-96 object-cover rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Insurance Services Section */}
-        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
+        <div className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Our Insurance Solutions</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Our Complete Insurance Solutions</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               <div className="bg-gray-50 p-4 sm:p-8 rounded-lg">
                 <div className="flex items-center mb-4">

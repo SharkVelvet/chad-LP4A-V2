@@ -4820,9 +4820,10 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
             <div className="text-gray-900 text-xl font-bold">Life Insurance Pro</div>
             <nav className="hidden md:flex space-x-8 text-gray-700 text-sm">
-              <a href="#" className="hover:text-red-600 transition-colors">About</a>
-              <a href="#" className="hover:text-red-600 transition-colors">Services</a>
-              <a href="#" className="hover:text-red-600 transition-colors">Blog</a>
+              <a href="#" className="hover:text-red-600 transition-colors">About Luke</a>
+              <a href="#" className="hover:text-red-600 transition-colors">Life Insurance</a>
+              <a href="#" className="hover:text-red-600 transition-colors">Health Insurance</a>
+              <a href="#" className="hover:text-red-600 transition-colors">Annuities</a>
               <a href="#" className="hover:text-red-600 transition-colors">Contact</a>
             </nav>
             <button className="bg-red-600 text-white px-6 py-2 text-sm hover:bg-red-700 transition-all">
@@ -4860,24 +4861,24 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-8">Meet Luke Smith</h2>
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  With over 15 years of experience in the life insurance industry, Luke has helped thousands of families secure their financial future. As a licensed insurance professional and certified financial planner, he specializes in creating customized protection strategies that fit your unique needs and budget.
+                  With over 15 years of experience in life insurance, health insurance, and annuities, Luke has helped thousands of families secure their financial future. As a licensed insurance professional, he specializes in creating customized protection strategies and retirement solutions that fit your unique needs and budget.
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center">
                     <span className="text-red-600 mr-3">✓</span>
-                    <span className="text-gray-700">Licensed Insurance Professional</span>
+                    <span className="text-gray-700">Licensed Life & Health Insurance Agent</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-red-600 mr-3">✓</span>
-                    <span className="text-gray-700">Certified Financial Planner (CFP®)</span>
+                    <span className="text-gray-700">Certified Annuity Specialist</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-red-600 mr-3">✓</span>
-                    <span className="text-gray-700">15+ Years Industry Experience</span>
+                    <span className="text-gray-700">15+ Years Insurance Experience</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-red-600 mr-3">✓</span>
-                    <span className="text-gray-700">Specializes in Family Protection Plans</span>
+                    <span className="text-gray-700">Specializes in Family Protection & Retirement Planning</span>
                   </div>
                 </div>
               </div>
@@ -4956,33 +4957,33 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         </div>
 
 
-        {/* Existing Services Section */}
+        {/* Insurance Services Section */}
         <div className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Enterprise Services</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Our Insurance Solutions</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               <div className="bg-gray-50 p-4 sm:p-8 rounded-lg">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <Shield className="w-6 h-6 text-red-600" />
                   </div>
-                  <h3 className="text-xl font-bold">Strategic Planning</h3>
+                  <h3 className="text-xl font-bold">Life Insurance</h3>
                 </div>
                 <p className="text-gray-600 text-sm mb-4">
-                  Comprehensive strategic planning services for enterprise growth and market expansion.
+                  Comprehensive life insurance coverage to protect your family's financial future and provide peace of mind.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center">
                     <span className="text-red-600 mr-2">✓</span>
-                    Market Analysis
+                    Term Life Insurance
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-600 mr-2">✓</span>
-                    Growth Strategy
+                    Whole Life Insurance
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-600 mr-2">✓</span>
-                    Risk Assessment
+                    Universal Life Insurance
                   </li>
                 </ul>
               </div>
@@ -4992,23 +4993,23 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <TrendingUp className="w-6 h-6 text-red-600" />
                   </div>
-                  <h3 className="text-xl font-bold">Financial Management</h3>
+                  <h3 className="text-xl font-bold">Health Insurance</h3>
                 </div>
                 <p className="text-gray-600 text-sm mb-4">
-                  Advanced financial management solutions for complex corporate structures.
+                  Quality health insurance plans to keep you and your family covered with comprehensive medical benefits.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center">
                     <span className="text-red-600 mr-2">✓</span>
-                    Corporate Finance
+                    Individual Plans
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-600 mr-2">✓</span>
-                    Investment Strategy
+                    Family Coverage
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-600 mr-2">✓</span>
-                    Capital Planning
+                    Medicare Supplements
                   </li>
                 </ul>
               </div>
@@ -5018,23 +5019,23 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <FileText className="w-6 h-6 text-red-600" />
                   </div>
-                  <h3 className="text-xl font-bold">Consulting Services</h3>
+                  <h3 className="text-xl font-bold">Annuities</h3>
                 </div>
                 <p className="text-gray-600 text-sm mb-4">
-                  Expert consulting for business optimization and operational excellence.
+                  Secure your retirement with annuity products that provide guaranteed income and financial stability.
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center">
                     <span className="text-red-600 mr-2">✓</span>
-                    Process Optimization
+                    Fixed Annuities
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-600 mr-2">✓</span>
-                    Change Management
+                    Variable Annuities
                   </li>
                   <li className="flex items-center">
                     <span className="text-red-600 mr-2">✓</span>
-                    Technology Integration
+                    Indexed Annuities
                   </li>
                 </ul>
               </div>

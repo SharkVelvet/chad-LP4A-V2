@@ -82,8 +82,8 @@ export default function TemplatePreviewPage() {
       </div>
 
       {/* Template Preview */}
-      <div className="w-full overflow-auto">
-        {["Template-1", "Template-2", "Template-3", "Template-4", "Template-5", "Template-6", "Template-7", "Template-8", "template-9", "Template-11", "Template-12", "Template-13"].includes(template.slug) ? (
+      <div className="w-full">
+        {["Template-1", "Template-2", "Template-3", "Template-4", "Template-5", "Template-6", "Template-7", "Template-8", "template-9", "Template-10", "Template-11", "Template-12", "Template-13"].includes(template.slug) ? (
           <TemplatePreview templateSlug={template.slug} className="w-full" />
         ) : (
           <div className="w-full min-h-screen bg-white">

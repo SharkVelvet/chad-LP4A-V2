@@ -4434,7 +4434,8 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
   // Template 10: Corporate Professional Hero (Based on Template 4) - Inspired by Wellness Design
   if (templateSlug === "Template-10") {
     return (
-      <div className={`bg-white ${className}`}>
+      <div className="bg-white w-full overflow-auto"
+           style={{ height: 'auto', minHeight: '100vh' }}>
         {/* Minimalist Header */}
         <div className="bg-red-900 text-white relative">
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">

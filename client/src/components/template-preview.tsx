@@ -4079,7 +4079,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               onClick={(e) => handleSmoothScroll(e, 'contact')} 
               className="bg-red-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors text-xs sm:text-sm"
             >
-              Get Quote
+              Contact Us
             </button>
           </div>
         </div>
@@ -4105,7 +4105,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     onClick={(e) => handleSmoothScroll(e, 'contact')} 
                     className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors text-lg"
                   >
-                    Start Your Quote
+                    Contact Us
                   </button>
                   <button 
                     onClick={(e) => handleSmoothScroll(e, 'about')} 
@@ -4136,7 +4136,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               <div className="relative flex justify-center">
                 <div className="relative">
                   {/* Main Agent Photo */}
-                  <div className="w-80 h-80 rounded-full overflow-hidden shadow-2xl border-8 border-white">
+                  <div className="w-96 h-96 rounded-full overflow-hidden shadow-2xl border-8 border-white">
                     <img 
                       src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80" 
                       alt="Professional Insurance Agent" 
@@ -4287,7 +4287,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     </div>
                     <div className="flex items-center space-x-3">
                       <Clock className="w-6 h-6" />
-                      <span>Quick quotes in under 5 minutes</span>
+                      <span>Quick response in under 5 minutes</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Shield className="w-6 h-6" />
@@ -4307,13 +4307,13 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               Ready to protect what matters most?
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              Get a personalized insurance quote in minutes. No obligation, no hassle.
+              Contact our team of insurance experts today. No obligation, personalized service.
             </p>
             <button 
               onClick={(e) => handleSmoothScroll(e, 'contact')} 
               className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors text-lg"
             >
-              Get Your Free Quote
+              Contact Us
             </button>
           </div>
         </div>
@@ -4345,7 +4345,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               </div>
               
               <div className="bg-gray-800 rounded-xl p-8">
-                <h3 className="text-xl font-semibold mb-6">Quick Quote Form</h3>
+                <h3 className="text-xl font-semibold mb-6">Contact Form</h3>
                 <form className="space-y-4">
                   <div>
                     <input 
@@ -4381,7 +4381,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                     type="submit" 
                     className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
                   >
-                    Get My Quote
+                    Contact Us
                   </button>
                 </form>
               </div>

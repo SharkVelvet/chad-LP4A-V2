@@ -5206,135 +5206,164 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
     );
   }
 
-  // Template 12: Family-Focused Hero (Based on Template 4)
+  // Template 12: Fletcher-Inspired Professional Agent Design
   if (templateSlug === "Template-12") {
     return (
       <div className={`bg-white ${className}`}>
-        {/* Modern Dark Header */}
-        <div className="bg-slate-900 text-white sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div className="font-bold text-lg sm:text-xl text-white">
-              <div className="flex flex-col items-center">
-                <div>
-                  <span className="text-red-600">Your</span><span className="text-gray-400 font-thin mx-1">|</span><span className="text-white">Insurance</span>
-                </div>
-                <div className="text-xs font-normal text-gray-300 mt-1 w-full text-center" style={{ letterSpacing: '0.3em' }}>GROUP</div>
+        {/* Header */}
+        <div className="bg-red-900 text-white relative">
+          <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
+            <div className="flex items-center space-x-8">
+              <div className="text-sm opacity-70">•</div>
+              <div className="text-sm opacity-70">•</div>
+              <div className="text-sm opacity-70">•</div>
+            </div>
+            <div className="text-center">
+              <div className="hidden md:flex space-x-12 text-sm">
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-red-200">About</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-red-200">Services</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-red-200">Experience</a>
+                <a href="#" className="hover:text-red-300 transition-colors font-light text-red-200">Contact</a>
               </div>
             </div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#" className="hover:text-red-400 transition-colors">Home</a>
-              <a href="#" className="hover:text-red-400 transition-colors">About</a>
-              <a href="#" className="hover:text-red-400 transition-colors">Services</a>
-              <a href="#" className="hover:text-red-400 transition-colors">Contact</a>
-            </div>
-            <button className="bg-red-600 px-6 py-2 rounded-full hover:bg-red-700 transition-all">
-              Contact
-            </button>
-          </div>
-        </div>
-
-        {/* Family-Focused Hero Section */}
-        <div className="relative text-white py-24" style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}>
-          <div className="absolute inset-0 bg-gradient-to-r from-red-900/70 to-orange-800/50"></div>
-          <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="text-center lg:text-left">
-              <div className="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/30">
-                Family Protection Specialists
-              </div>
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-white">Protecting</span>
-                <span className="block text-yellow-200">Your Family's</span>
-                <span className="block text-white">Future</span>
-              </h1>
-              <p className="text-xl lg:text-2xl mb-4 text-orange-100">Life & Health Insurance Experts</p>
-              <p className="text-lg text-white mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                Comprehensive family protection through life insurance, health coverage, and financial planning designed to secure your loved ones' tomorrow.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-white text-red-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-all shadow-lg">
-                  Protect My Family
-                </button>
-                <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-red-600 transition-all">
-                  Get Free Quote
-                </button>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <div className="relative z-20">
-                <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
-                  <img 
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                    alt="Family Insurance Specialist" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute -top-4 -left-4 bg-yellow-400 text-red-600 px-4 py-2 rounded-xl shadow-lg transform rotate-12">
-                  <div className="text-center">
-                    <div className="text-sm font-bold">Family</div>
-                    <div className="text-xs">First</div>
-                  </div>
-                </div>
-                <div className="absolute -bottom-4 -right-4 bg-white text-red-600 px-4 py-2 rounded-xl shadow-lg transform -rotate-12">
-                  <div className="text-center">
-                    <div className="text-sm font-bold">1000+</div>
-                    <div className="text-xs">Families Protected</div>
-                  </div>
-                </div>
-              </div>
+            <div className="flex justify-end">
+              <button className="bg-white text-red-900 px-6 py-2 text-xs font-normal tracking-wide hover:bg-red-50 transition-all whitespace-nowrap">
+                Make an Appointment
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Family Protection Section */}
-        <div className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-slate-900 mb-4">Why Families Choose Us</h2>
-              <p className="text-xl text-gray-600">Trusted protection for what matters most</p>
+        {/* Hero Section with Agent Name and Portrait */}
+        <div className="relative min-h-screen bg-gradient-to-br from-red-900 via-red-800 to-red-900 text-white overflow-hidden">
+          {/* Agent Name Typography */}
+          <div className="absolute top-20 left-8 z-10">
+            <h1 className="text-8xl lg:text-9xl font-light tracking-wider text-white opacity-90">
+              Doug
+            </h1>
+            <h1 className="text-8xl lg:text-9xl font-bold tracking-wider text-white -mt-4">
+              Welms
+            </h1>
+            <div className="mt-4 text-sm text-red-200 tracking-[0.3em] font-light">
+              LICENSED INSURANCE AGENT
             </div>
+            <div className="mt-2 text-xs text-red-300">
+              New York, NY 10001
+            </div>
+          </div>
+
+          {/* Professional Portrait */}
+          <div className="absolute top-0 right-0 w-1/2 h-full">
+            <img 
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              alt="Doug Welms - Professional Insurance Agent" 
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-red-900/30"></div>
+          </div>
+
+          {/* Tagline */}
+          <div className="absolute bottom-20 left-8 right-8 z-10">
+            <p className="text-lg font-light text-red-100 max-w-md leading-relaxed">
+              A better <span className="italic">protection plan</span>.
+            </p>
+          </div>
+        </div>
+
+        {/* Services Section */}
+        <div className="bg-slate-800 text-white py-20">
+          <div className="max-w-6xl mx-auto px-8">
+            <h2 className="text-4xl lg:text-5xl font-light mb-16 text-center">
+              Classic coverage, modern <span className="italic">approach</span>
+            </h2>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              {/* Our Services */}
               <div>
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  We understand that protecting your family is your top priority. Our comprehensive insurance solutions provide peace of mind for life's unexpected moments.
-                </p>
-                
-                <div className="grid grid-cols-2 gap-6 mb-8">
-                  <div className="bg-white p-6 rounded-xl shadow-sm">
-                    <div className="flex items-center mb-3">
-                      <Heart className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">1000+</span>
-                    </div>
-                    <p className="text-sm text-gray-600">Families Protected</p>
-                  </div>
-                  <div className="bg-white p-6 rounded-xl shadow-sm">
-                    <div className="flex items-center mb-3">
-                      <Shield className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">A+ Rated</span>
-                    </div>
-                    <p className="text-sm text-gray-600">Insurance Companies</p>
-                  </div>
-                </div>
+                <h3 className="text-xl font-light mb-8 text-red-300 tracking-wide">Our Services</h3>
+                <ul className="space-y-4 text-gray-300">
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">•</span>
+                    <span className="font-light">Medicare, Coding & Billing</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">•</span>
+                    <span className="font-light">Long-term Care Planning</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">•</span>
+                    <span className="font-light">Training & Certification</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">•</span>
+                    <span className="font-light">Senior Citizens Programs</span>
+                  </li>
+                </ul>
               </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                  alt="Happy family" 
-                  className="w-full h-64 object-cover rounded-xl shadow-lg"
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                  alt="Family protection" 
-                  className="w-full h-64 object-cover rounded-xl shadow-lg mt-8"
-                />
+
+              {/* Top Services */}
+              <div>
+                <h3 className="text-xl font-light mb-8 text-red-300 tracking-wide">Top Services</h3>
+                <ul className="space-y-4 text-gray-300">
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">•</span>
+                    <span className="font-light">Life Insurance & Investments</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">•</span>
+                    <span className="font-light">Final Expense Planning</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">•</span>
+                    <span className="font-light">Educational Workshops</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-400 mr-3">•</span>
+                    <span className="font-light">Community & Networking</span>
+                  </li>
+                </ul>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Split Content Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Left Side - Agent Photo */}
+          <div className="relative">
+            <img 
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              alt="Professional Insurance Agent at Work" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Right Side - Community Message */}
+          <div className="bg-gray-100 flex items-center justify-center p-12 lg:p-20">
+            <div className="max-w-md">
+              <h2 className="text-4xl lg:text-5xl font-light mb-8 text-gray-900 leading-tight">
+                A new kind of <span className="italic">community</span>
+              </h2>
+              <p className="text-gray-600 mb-8 leading-relaxed font-light">
+                Doug specializes in delivering personalized insurance services and helps 
+                clients reach their financial protection goals with confidence.
+              </p>
+              <button className="bg-red-600 text-white px-8 py-3 text-sm tracking-wide hover:bg-red-700 transition-all">
+                Make an Appointment
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Quote Section */}
+        <div className="bg-slate-800 text-white py-20">
+          <div className="max-w-4xl mx-auto px-8 text-center">
+            <blockquote className="text-2xl lg:text-3xl font-light leading-relaxed mb-8 italic">
+              "Where the legacy of the past meets the inclusive innovation of the present."
+            </blockquote>
+            <cite className="text-red-300 text-sm tracking-wide font-light">
+              — Doug Welms, Founder
+            </cite>
           </div>
         </div>
 

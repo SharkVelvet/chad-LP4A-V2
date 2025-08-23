@@ -7,9 +7,10 @@ import Stripe from "stripe";
 import { 
   insertWebsiteSchema, 
   insertWebsiteContentSchema,
-  insertBlogPostSchema
+  insertBlogPostSchema,
+  insertCustomSolutionInquirySchema
 } from "@shared/schema";
-import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection } from "./email";
+import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sendCustomSolutionInquiry } from "./email";
 import { validatePassword } from "./passwords";
 
 // Initialize Stripe only if the secret key is available
@@ -349,6 +350,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(post);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Custom solution inquiries
+  app.post("/api/custom-solution-inquiries", async (req, res) => {
+    try {
+      const inquiryData = insertCustomSolutionInquirySchema.parse(req.body);
+      
+      // Store inquiry in database
+      const inquiry = await storage.createCustomSolutionInquiry(inquiryData);
+      
+      // Send email notification
+      try {
+        await sendCustomSolutionInquiry({
+          name: inquiry.name,
+          email: inquiry.email,
+          phone: inquiry.phone,
+          company: inquiry.company,
+          budgetRange: inquiry.budgetRange,
+          exampleSites: inquiry.exampleSites || [],
+          projectDetails: inquiry.projectDetails,
+        });
+        console.log('Custom solution inquiry email sent successfully');
+      } catch (emailError) {
+        console.error('Failed to send custom solution inquiry email:', emailError);
+        // Don't fail the request if email fails
+      }
+      
+      res.status(201).json({ success: true, inquiry });
+    } catch (error: any) {
+      console.error('Error creating custom solution inquiry:', error);
+      res.status(400).json({ message: error.message });
     }
   });
 

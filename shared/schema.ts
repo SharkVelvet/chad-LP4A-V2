@@ -82,6 +82,19 @@ export const blogPosts = pgTable("blog_posts", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
+export const customSolutionInquiries = pgTable("custom_solution_inquiries", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  company: text("company"),
+  budgetRange: text("budget_range").notNull(),
+  exampleSites: jsonb("example_sites").$type<string[]>(),
+  projectDetails: text("project_details").notNull(),
+  status: text("status").notNull().default("new"),
+  submittedAt: timestamp("submitted_at").notNull().defaultNow(),
+});
+
 // Relations
 export const locationsRelations = relations(locations, ({ many }) => ({
   users: many(users),
@@ -158,6 +171,11 @@ export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
   updatedAt: true,
 });
 
+export const insertCustomSolutionInquirySchema = createInsertSchema(customSolutionInquiries).omit({
+  id: true,
+  submittedAt: true,
+});
+
 // Types
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -172,3 +190,5 @@ export type FormSubmission = typeof formSubmissions.$inferSelect;
 export type InsertFormSubmission = z.infer<typeof insertFormSubmissionSchema>;
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
+export type CustomSolutionInquiry = typeof customSolutionInquiries.$inferSelect;
+export type InsertCustomSolutionInquiry = z.infer<typeof insertCustomSolutionInquirySchema>;

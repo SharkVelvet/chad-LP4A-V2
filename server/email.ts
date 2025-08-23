@@ -218,6 +218,106 @@ Next Steps: Set up their website with the selected template and contact them abo
 }
 
 // Test email function
+export async function sendCustomSolutionInquiry(inquiryData: {
+  name: string;
+  email: string;
+  phone?: string | null;
+  company?: string | null;
+  budgetRange: string;
+  exampleSites?: string[];
+  projectDetails: string;
+}) {
+  if (!process.env.NOTIFICATION_EMAIL) {
+    console.error('NOTIFICATION_EMAIL not configured');
+    return false;
+  }
+
+  const {
+    name,
+    email,
+    phone,
+    company,
+    budgetRange,
+    exampleSites,
+    projectDetails
+  } = inquiryData;
+
+  const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #6458AF; border-bottom: 2px solid #6458AF; padding-bottom: 10px;">
+        New Custom Solution Inquiry
+      </h2>
+      
+      <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #374151; margin-top: 0;">Contact Information</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 8px 0; font-weight: bold; color: #374151;">Name:</td>
+            <td style="padding: 8px 0;">${name}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; font-weight: bold; color: #374151;">Email:</td>
+            <td style="padding: 8px 0;">${email}</td>
+          </tr>
+          ${phone ? `
+          <tr>
+            <td style="padding: 8px 0; font-weight: bold; color: #374151;">Phone:</td>
+            <td style="padding: 8px 0;">${phone}</td>
+          </tr>
+          ` : ''}
+          ${company ? `
+          <tr>
+            <td style="padding: 8px 0; font-weight: bold; color: #374151;">Company:</td>
+            <td style="padding: 8px 0;">${company}</td>
+          </tr>
+          ` : ''}
+        </table>
+      </div>
+
+      <div style="background-color: #fef7ed; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #374151; margin-top: 0;">Project Information</h3>
+        <p style="margin: 0; padding: 8px 0; font-weight: bold; color: #374151;">Budget Range:</p>
+        <p style="margin: 0; color: #059669; font-weight: bold; font-size: 18px;">$${budgetRange.replace('-', ' - ')}</p>
+      </div>
+
+      ${exampleSites && exampleSites.length > 0 ? `
+      <div style="background-color: #f0fdf4; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #374151; margin-top: 0;">Example Sites</h3>
+        <ul style="margin: 0; padding-left: 20px;">
+          ${exampleSites.map(site => `<li style="margin: 5px 0; color: #2563eb;"><a href="${site}" target="_blank">${site}</a></li>`).join('')}
+        </ul>
+      </div>
+      ` : ''}
+
+      <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #374151; margin-top: 0;">Project Details</h3>
+        <p style="color: #374151; white-space: pre-wrap; line-height: 1.6;">${projectDetails}</p>
+      </div>
+
+      <div style="text-align: center; padding: 20px; color: #6b7280; font-size: 14px;">
+        <p>Reply to this email to respond to ${name} directly at ${email}</p>
+        <p>Custom Solution Inquiry submitted via Landing Pages for Agents</p>
+      </div>
+    </div>
+  `;
+
+  try {
+    await transporter.sendMail({
+      from: process.env.SMTP_USER,
+      to: process.env.NOTIFICATION_EMAIL,
+      replyTo: email,
+      subject: `Custom Solution Inquiry - ${name} (Budget: $${budgetRange})`,
+      html: htmlContent,
+    });
+
+    console.log('Custom solution inquiry notification sent successfully');
+    return true;
+  } catch (error) {
+    console.error('Error sending custom solution inquiry:', error);
+    return false;
+  }
+}
+
 export async function testEmailConnection() {
   try {
     await transporter.verify();

@@ -24,6 +24,7 @@ import PlanrightHome from "@/pages/planright-home";
 import StartTheProcess from "@/pages/start-the-process";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
+import CustomSolutions from "@/pages/custom-solutions";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -57,6 +58,7 @@ function Router() {
         <Route path="/start-the-process" component={StartTheProcess} />
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:slug" component={BlogPost} />
+        <Route path="/custom-solutions" component={CustomSolutions} />
         <Route path="/old-home" component={HomePage} />
         <Route path="/" component={InternalOne} />
         <Route component={NotFound} />

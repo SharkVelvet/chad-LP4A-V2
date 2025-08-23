@@ -5,6 +5,7 @@ import {
   websites, 
   websiteContent,
   blogPosts,
+  customSolutionInquiries,
   type User, 
   type InsertUser,
   type Location,
@@ -16,6 +17,8 @@ import {
   type InsertWebsiteContent,
   type BlogPost,
   type InsertBlogPost,
+  type CustomSolutionInquiry,
+  type InsertCustomSolutionInquiry,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, desc } from "drizzle-orm";
@@ -59,6 +62,11 @@ export interface IStorage {
   getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
   createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
   updateBlogPost(id: number, post: Partial<InsertBlogPost>): Promise<BlogPost>;
+
+  // Custom solution inquiries
+  createCustomSolutionInquiry(inquiry: InsertCustomSolutionInquiry): Promise<CustomSolutionInquiry>;
+  getAllCustomSolutionInquiries(): Promise<CustomSolutionInquiry[]>;
+  updateCustomSolutionInquiryStatus(id: number, status: string): Promise<CustomSolutionInquiry>;
 
   sessionStore: any;
 }
@@ -242,6 +250,28 @@ export class DatabaseStorage implements IStorage {
       .where(eq(blogPosts.id, id))
       .returning();
     return updatedPost;
+  }
+
+  // Custom solution inquiries
+  async createCustomSolutionInquiry(inquiry: InsertCustomSolutionInquiry): Promise<CustomSolutionInquiry> {
+    const [newInquiry] = await db
+      .insert(customSolutionInquiries)
+      .values(inquiry)
+      .returning();
+    return newInquiry;
+  }
+
+  async getAllCustomSolutionInquiries(): Promise<CustomSolutionInquiry[]> {
+    return await db.select().from(customSolutionInquiries).orderBy(desc(customSolutionInquiries.submittedAt));
+  }
+
+  async updateCustomSolutionInquiryStatus(id: number, status: string): Promise<CustomSolutionInquiry> {
+    const [updatedInquiry] = await db
+      .update(customSolutionInquiries)
+      .set({ status })
+      .where(eq(customSolutionInquiries.id, id))
+      .returning();
+    return updatedInquiry;
   }
 }
 

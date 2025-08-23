@@ -22,12 +22,12 @@ const formSchema = insertCustomSolutionInquirySchema.extend({
 type FormData = z.infer<typeof formSchema>;
 
 const budgetRanges = [
+  { value: "under-1000", label: "Under $1,000" },
+  { value: "1000-2500", label: "$1,000 - $2,500" },
+  { value: "2500-5000", label: "$2,500 - $5,000" },
   { value: "5000-10000", label: "$5,000 - $10,000" },
   { value: "10000-25000", label: "$10,000 - $25,000" },
   { value: "25000-50000", label: "$25,000 - $50,000" },
-  { value: "50000-100000", label: "$50,000 - $100,000" },
-  { value: "100000-250000", label: "$100,000 - $250,000" },
-  { value: "250000+", label: "$250,000+" },
 ];
 
 export default function CustomSolutions() {

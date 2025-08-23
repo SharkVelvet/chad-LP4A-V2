@@ -149,54 +149,106 @@ export default function CustomSolutions() {
               <FileText className="h-9 w-9 sm:h-10 sm:w-10 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">
                 <div className="text-2xl sm:text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-sm sm:text-sm font-medium text-gray-600 mt-0.5 sm:mt-0" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                <div className="text-sm sm:text-sm font-medium text-gray-600 mt-0.5 sm:-mt-1" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
             
             <nav className="hidden md:flex space-x-8">
-              <a 
-                href="/get-clients" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setLocation('/get-clients');
-                }}
-              >
-                Get Clients
-              </a>
-              <a 
-                href="/recruit-agents" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setLocation('/recruit-agents');
-                }}
-              >
-                Recruit Agents
-              </a>
-              <a 
-                href="/blog" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setLocation('/blog');
-                }}
-              >
-                Blog
-              </a>
-              <a 
-                href="/custom-solutions" 
-                className="text-gray-700 font-medium" 
-                style={{ color: '#6458AF' }}
-              >
-                Custom Solutions
-              </a>
+              <div className="relative">
+                <a 
+                  href="/get-clients" 
+                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation('/get-clients');
+                  }}
+                >
+                  Get Clients
+                </a>
+              </div>
+              <div className="relative">
+                <a 
+                  href="/recruit-agents" 
+                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation('/recruit-agents');
+                  }}
+                >
+                  Recruit Agents
+                </a>
+              </div>
+              <div className="relative">
+                <a 
+                  href="#features" 
+                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation('/internal-one');
+                    setTimeout(() => {
+                      document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                  }}
+                >
+                  Features
+                </a>
+              </div>
+              <div className="relative">
+                <a 
+                  href="#pricing" 
+                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation('/internal-one');
+                    setTimeout(() => {
+                      document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                  }}
+                >
+                  Pricing
+                </a>
+              </div>
+              <div className="relative">
+                <a 
+                  href="/blog" 
+                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation('/blog');
+                  }}
+                >
+                  Blog
+                </a>
+              </div>
+              <div className="relative">
+                <a 
+                  href="/custom-solutions" 
+                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
+                  style={{ color: '#6458AF' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation('/custom-solutions');
+                  }}
+                >
+                  Custom Solutions
+                </a>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-0.5 transition-all duration-200"
+                  style={{ backgroundColor: '#6458AF' }}
+                />
+              </div>
             </nav>
           </div>
         </div>

@@ -235,25 +235,6 @@ export default function CustomSolutions() {
                   Blog
                 </a>
               </div>
-              <div className="relative">
-                <a 
-                  href="/custom-solutions" 
-                  className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer pb-2 block" 
-                  style={{ color: '#6458AF' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#6458AF'}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation('/custom-solutions');
-                  }}
-                >
-                  Custom Solutions
-                </a>
-                <div 
-                  className="absolute bottom-0 left-0 w-full h-0.5 transition-all duration-200"
-                  style={{ backgroundColor: '#6458AF' }}
-                />
-              </div>
             </nav>
             
             <div className="flex items-center gap-4">

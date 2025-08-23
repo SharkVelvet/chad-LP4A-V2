@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocation } from "wouter";
-import { FileText, Send, CheckCircle } from "lucide-react";
+import { FileText, Send, CheckCircle, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -33,7 +33,12 @@ const budgetRanges = [
 export default function CustomSolutions() {
   const [, setLocation] = useLocation();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { toast } = useToast();
+
+  const scrollToForm = () => {
+    document.getElementById('custom-form')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -250,9 +255,104 @@ export default function CustomSolutions() {
                 />
               </div>
             </nav>
+            
+            <div className="flex items-center gap-4">
+              <Button 
+                className="hidden md:block hover:opacity-90 w-52"
+                style={{ backgroundColor: '#6458AF' }} 
+                onClick={scrollToForm}
+              >
+                Get Custom Quote
+              </Button>
+              
+              {/* Mobile Menu Button */}
+              <button
+                className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
+
           </div>
         </div>
       </header>
+
+      {/* Mobile Menu */}
+      <>
+        {/* Backdrop */}
+        <div 
+          className={`fixed inset-0 bg-black z-40 md:hidden transition-opacity duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'
+          }`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+        
+        {/* Slide-out Menu */}
+        <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <div className="flex items-center">
+                <FileText className="h-8 w-8 mr-2" style={{ color: '#6458AF' }} />
+                <div className="text-left">
+                  <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                  <div className="text-sm font-medium text-gray-600 mt-0.5" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                </div>
+              </div>
+              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-600">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <nav className="p-6 space-y-6">
+              <a 
+                href="/get-clients"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/get-clients');
+                }}
+              >
+                Get Clients
+              </a>
+              <a 
+                href="/recruit-agents"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/recruit-agents');
+                }}
+              >
+                Recruit Agents
+              </a>
+              <a 
+                href="/blog"
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/blog');
+                }}
+              >
+                Blog
+              </a>
+              <Button 
+                className="w-full mt-4"
+                style={{ backgroundColor: '#6458AF' }}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  scrollToForm();
+                }}
+              >
+                Get Custom Quote
+              </Button>
+            </nav>
+        </div>
+      </>
+      
 
       <div className="max-w-4xl mx-auto py-12 px-4">
         <div className="text-center mb-12">
@@ -298,7 +398,7 @@ export default function CustomSolutions() {
           </Card>
         </div>
 
-        <Card className="max-w-2xl mx-auto">
+        <Card className="max-w-2xl mx-auto" id="custom-form">
           <CardHeader>
             <CardTitle className="text-2xl text-center" style={{ color: '#6458AF' }}>
               Tell Us About Your Project

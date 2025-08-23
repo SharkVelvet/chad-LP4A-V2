@@ -22,7 +22,6 @@ const formSchema = insertCustomSolutionInquirySchema.extend({
 type FormData = z.infer<typeof formSchema>;
 
 const budgetRanges = [
-  { value: "under-1000", label: "Under $1,000" },
   { value: "1000-2500", label: "$1,000 - $2,500" },
   { value: "2500-5000", label: "$2,500 - $5,000" },
   { value: "5000-10000", label: "$5,000 - $10,000" },

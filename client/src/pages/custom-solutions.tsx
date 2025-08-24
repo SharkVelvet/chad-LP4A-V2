@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocation } from "wouter";
@@ -32,7 +32,6 @@ const budgetRanges = [
 
 export default function CustomSolutions() {
   const [, setLocation] = useLocation();
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { toast } = useToast();
 
@@ -82,11 +81,18 @@ export default function CustomSolutions() {
       return response.json();
     },
     onSuccess: () => {
-      setIsSubmitted(true);
+      // Reset form
+      form.reset();
+      
       toast({
-        title: "Inquiry Submitted Successfully",
-        description: "We'll review your requirements and get back to you within 24 hours.",
+        title: "Inquiry Submitted Successfully!",
+        description: "Thank you for your submission! We'll review your requirements and get back to you within 24 hours. Redirecting to homepage...",
       });
+      
+      // Redirect to homepage after 3 seconds
+      setTimeout(() => {
+        setLocation('/');
+      }, 3000);
     },
     onError: (error) => {
       toast({
@@ -101,47 +107,6 @@ export default function CustomSolutions() {
     submitInquiry.mutate(data);
   };
 
-  if (isSubmitted) {
-    return (
-      <div className="min-h-screen bg-background">
-        <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center py-4">
-              <div 
-                className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => setLocation('/')}
-              >
-                <FileText className="h-9 w-9 sm:h-10 sm:w-10 mr-3" style={{ color: '#6458AF' }} />
-                <div className="text-left">
-                  <div className="text-2xl sm:text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                  <div className="text-sm sm:text-sm font-medium text-gray-600 mt-0.5 sm:mt-0" style={{ letterSpacing: '0.15em' }}>for Agents</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <div className="max-w-3xl mx-auto py-12 px-4">
-          <div className="text-center">
-            <CheckCircle className="h-16 w-16 mx-auto mb-6" style={{ color: '#6458AF' }} />
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Thank You for Your Inquiry!</h1>
-            <p className="text-lg text-gray-600 mb-8">
-              We've received your custom solution request and will review your requirements carefully. 
-              Our team will get back to you within 24 hours with next steps.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button onClick={() => setLocation('/')} variant="outline">
-                Back to Home
-              </Button>
-              <Button onClick={() => setLocation('/get-clients')} style={{ backgroundColor: '#6458AF' }}>
-                Explore Our Services
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-background">

@@ -311,7 +311,7 @@ export default function InternalOne() {
               <p className="text-sm text-gray-500">
                 Would prefer to have a Custom Solution / Website, No worries{" "}
                 <button 
-                  onClick={() => setLocation('/custom-solutions')}
+                  onClick={() => setLocation('/custom-websites')}
                   className="underline hover:opacity-80 transition-opacity"
                   style={{ color: '#6458AF' }}
                 >

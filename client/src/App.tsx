@@ -58,7 +58,7 @@ function Router() {
         <Route path="/start-the-process" component={StartTheProcess} />
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:slug" component={BlogPost} />
-        <Route path="/custom-solutions" component={CustomSolutions} />
+        <Route path="/custom-websites" component={CustomSolutions} />
         <Route path="/old-home" component={HomePage} />
         <Route path="/" component={InternalOne} />
         <Route component={NotFound} />

@@ -313,8 +313,8 @@ export default function CustomSolutions() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           <Card>
-            <CardHeader>
-              <div className="flex items-center gap-3 mb-2">
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-3">
                 <Globe className="h-6 w-6" style={{ color: '#6458AF' }} />
                 <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Custom Websites</CardTitle>
               </div>
@@ -327,8 +327,8 @@ export default function CustomSolutions() {
           </Card>
           
           <Card>
-            <CardHeader>
-              <div className="flex items-center gap-3 mb-2">
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-3">
                 <Zap className="h-6 w-6" style={{ color: '#6458AF' }} />
                 <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Advanced Integrations</CardTitle>
               </div>
@@ -341,8 +341,8 @@ export default function CustomSolutions() {
           </Card>
           
           <Card>
-            <CardHeader>
-              <div className="flex items-center gap-3 mb-2">
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-3">
                 <Building className="h-6 w-6" style={{ color: '#6458AF' }} />
                 <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Enterprise Solutions</CardTitle>
               </div>

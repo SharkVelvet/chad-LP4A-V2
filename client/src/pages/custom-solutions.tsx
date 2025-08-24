@@ -9,6 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { insertCustomSolutionInquirySchema } from "@shared/schema";
 import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -47,6 +48,7 @@ export default function CustomSolutions() {
       phone: "",
       company: "",
       budgetRange: "",
+      monthlyRetainer: false,
       exampleSitesText: "",
       projectDetails: "",
       status: "new"
@@ -471,6 +473,29 @@ export default function CustomSolutions() {
                         </SelectContent>
                       </Select>
                       <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="monthlyRetainer"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel>
+                          I would like this amount to be made into a monthly retainer for 12 months
+                        </FormLabel>
+                        <p className="text-sm text-gray-500">
+                          Retainers are only considered for project sizes that are greater than $500 a month
+                        </p>
+                      </div>
                     </FormItem>
                   )}
                 />

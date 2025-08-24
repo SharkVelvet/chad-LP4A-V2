@@ -89,6 +89,7 @@ export const customSolutionInquiries = pgTable("custom_solution_inquiries", {
   phone: text("phone"),
   company: text("company"),
   budgetRange: text("budget_range").notNull(),
+  monthlyRetainer: boolean("monthly_retainer").default(false),
   exampleSites: jsonb("example_sites").$type<string[]>(),
   projectDetails: text("project_details").notNull(),
   status: text("status").notNull().default("new"),

@@ -302,7 +302,7 @@ export default function CustomSolutions() {
       </>
       
 
-      <div className="max-w-4xl mx-auto py-12 px-4">
+      <div className="max-w-6xl mx-auto py-12 px-4">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Custom Solutions</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -355,7 +355,7 @@ export default function CustomSolutions() {
           </Card>
         </div>
 
-        <Card className="max-w-2xl mx-auto" id="custom-form">
+        <Card className="max-w-4xl mx-auto" id="custom-form">
           <CardHeader>
             <CardTitle className="text-2xl text-center" style={{ color: '#6458AF' }}>
               Tell Us About Your Project

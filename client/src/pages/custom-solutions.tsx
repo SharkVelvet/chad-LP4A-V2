@@ -5,6 +5,7 @@ import { useLocation } from "wouter";
 import { FileText, Send, CheckCircle, Menu, X, Globe, Zap, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -33,6 +34,7 @@ const budgetRanges = [
 export default function CustomSolutions() {
   const [, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const { toast } = useToast();
 
   const scrollToForm = () => {
@@ -84,15 +86,14 @@ export default function CustomSolutions() {
       // Reset form
       form.reset();
       
-      toast({
-        title: "Inquiry Submitted Successfully!",
-        description: "Thank you for your submission! We'll review your requirements and get back to you within 24 hours. Redirecting to homepage...",
-      });
+      // Show success modal
+      setShowSuccessModal(true);
       
-      // Redirect to homepage after 3 seconds
+      // Redirect to homepage after 4 seconds
       setTimeout(() => {
+        setShowSuccessModal(false);
         setLocation('/');
-      }, 3000);
+      }, 4000);
     },
     onError: (error) => {
       toast({
@@ -531,6 +532,33 @@ export default function CustomSolutions() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Success Modal */}
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+        <DialogContent className="max-w-md mx-auto">
+          <DialogHeader className="text-center">
+            <div className="flex justify-center mb-4">
+              <CheckCircle className="h-16 w-16" style={{ color: '#6458AF' }} />
+            </div>
+            <DialogTitle className="text-2xl font-bold text-gray-900 mb-2">
+              Thank You!
+            </DialogTitle>
+          </DialogHeader>
+          <div className="text-center space-y-4">
+            <p className="text-lg text-gray-600">
+              Your custom solution inquiry has been submitted successfully!
+            </p>
+            <p className="text-sm text-gray-500">
+              We'll review your requirements and get back to you within 24 hours.
+            </p>
+            <div className="flex justify-center pt-4">
+              <div className="text-sm text-gray-400">
+                Redirecting to homepage in a few seconds...
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

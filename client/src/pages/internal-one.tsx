@@ -299,6 +299,20 @@ export default function InternalOne() {
                 I Want to Recruit Agents
               </Button>
             </div>
+            
+            {/* Custom Solution Link */}
+            <div className="mt-8 text-center">
+              <p className="text-lg text-gray-600">
+                Would prefer to have a Custom Solution / Website, No worries{" "}
+                <button 
+                  onClick={() => setLocation('/custom-solutions')}
+                  className="underline hover:opacity-80 transition-opacity"
+                  style={{ color: '#6458AF' }}
+                >
+                  Click Here
+                </button>
+              </p>
+            </div>
           </div>
         </div>
       </div>

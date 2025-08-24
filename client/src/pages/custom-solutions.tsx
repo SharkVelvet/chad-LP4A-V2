@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocation } from "wouter";
-import { FileText, Send, CheckCircle, Menu, X } from "lucide-react";
+import { FileText, Send, CheckCircle, Menu, X, Globe, Zap, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -348,7 +348,10 @@ export default function CustomSolutions() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Custom Websites</CardTitle>
+              <div className="flex items-center gap-3 mb-2">
+                <Globe className="h-6 w-6" style={{ color: '#6458AF' }} />
+                <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Custom Websites</CardTitle>
+              </div>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
@@ -359,7 +362,10 @@ export default function CustomSolutions() {
           
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Advanced Integrations</CardTitle>
+              <div className="flex items-center gap-3 mb-2">
+                <Zap className="h-6 w-6" style={{ color: '#6458AF' }} />
+                <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Advanced Integrations</CardTitle>
+              </div>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
@@ -370,7 +376,10 @@ export default function CustomSolutions() {
           
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Enterprise Solutions</CardTitle>
+              <div className="flex items-center gap-3 mb-2">
+                <Building className="h-6 w-6" style={{ color: '#6458AF' }} />
+                <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Enterprise Solutions</CardTitle>
+              </div>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
@@ -490,10 +499,10 @@ export default function CustomSolutions() {
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel>
-                          I would like this amount to be made into a monthly retainer for 12 months
+                          I would like my budget to be made into a monthly retainer for 12 months
                         </FormLabel>
                         <p className="text-sm text-gray-500">
-                          Retainers are only considered for project sizes that are greater than $500 a month
+                          Retainers are only considered for project sizes that are greater than $500 a month, Aka $6000.
                         </p>
                       </div>
                     </FormItem>

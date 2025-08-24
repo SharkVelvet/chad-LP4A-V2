@@ -96,6 +96,47 @@ export const customSolutionInquiries = pgTable("custom_solution_inquiries", {
   submittedAt: timestamp("submitted_at").notNull().defaultNow(),
 });
 
+// Analytics tracking table
+export const analyticsEvents = pgTable("analytics_events", {
+  id: serial("id").primaryKey(),
+  sessionId: text("session_id").notNull(),
+  userId: text("user_id"),
+  eventType: text("event_type").notNull(), // page_view, click, form_submission, etc.
+  eventData: jsonb("event_data").$type<Record<string, any>>(),
+  url: text("url").notNull(),
+  referrer: text("referrer"),
+  userAgent: text("user_agent"),
+  ipAddress: text("ip_address"),
+  country: text("country"),
+  timestamp: timestamp("timestamp").notNull().defaultNow(),
+});
+
+// SEO data tracking table
+export const seoData = pgTable("seo_data", {
+  id: serial("id").primaryKey(),
+  url: text("url").notNull(),
+  pageTitle: text("page_title"),
+  metaDescription: text("meta_description"),
+  keywords: jsonb("keywords").$type<string[]>(),
+  searchQuery: text("search_query"),
+  referrer: text("referrer"),
+  organicTraffic: boolean("organic_traffic").default(false),
+  rank: integer("rank"),
+  timestamp: timestamp("timestamp").notNull().defaultNow(),
+});
+
+// Dashboard admin users table
+export const adminUsers = pgTable("admin_users", {
+  id: serial("id").primaryKey(),
+  username: text("username").notNull().unique(),
+  email: text("email").notNull().unique(),
+  password: text("password").notNull(),
+  role: text("role").notNull().default("admin"),
+  isActive: boolean("is_active").notNull().default(true),
+  lastLogin: timestamp("last_login"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
 // Relations
 export const locationsRelations = relations(locations, ({ many }) => ({
   users: many(users),
@@ -177,6 +218,22 @@ export const insertCustomSolutionInquirySchema = createInsertSchema(customSoluti
   submittedAt: true,
 });
 
+export const insertAnalyticsEventSchema = createInsertSchema(analyticsEvents).omit({
+  id: true,
+  timestamp: true,
+});
+
+export const insertSeoDataSchema = createInsertSchema(seoData).omit({
+  id: true,
+  timestamp: true,
+});
+
+export const insertAdminUserSchema = createInsertSchema(adminUsers).omit({
+  id: true,
+  lastLogin: true,
+  createdAt: true,
+});
+
 // Types
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -193,3 +250,9 @@ export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
 export type CustomSolutionInquiry = typeof customSolutionInquiries.$inferSelect;
 export type InsertCustomSolutionInquiry = z.infer<typeof insertCustomSolutionInquirySchema>;
+export type AnalyticsEvent = typeof analyticsEvents.$inferSelect;
+export type InsertAnalyticsEvent = z.infer<typeof insertAnalyticsEventSchema>;
+export type SeoData = typeof seoData.$inferSelect;
+export type InsertSeoData = z.infer<typeof insertSeoDataSchema>;
+export type AdminUser = typeof adminUsers.$inferSelect;
+export type InsertAdminUser = z.infer<typeof insertAdminUserSchema>;

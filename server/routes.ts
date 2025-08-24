@@ -3,12 +3,15 @@ import { createServer, type Server } from "http";
 import express from "express";
 import { storage } from "./storage";
 import { setupAuth } from "./auth";
+import { setupAdminAuth, isAdminAuthenticated } from "./adminAuth";
 import Stripe from "stripe";
 import { 
   insertWebsiteSchema, 
   insertWebsiteContentSchema,
   insertBlogPostSchema,
-  insertCustomSolutionInquirySchema
+  insertCustomSolutionInquirySchema,
+  insertAnalyticsEventSchema,
+  insertSeoDataSchema
 } from "@shared/schema";
 import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sendCustomSolutionInquiry } from "./email";
 import { validatePassword } from "./passwords";
@@ -25,6 +28,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Setup authentication routes
   setupAuth(app);
+  setupAdminAuth(app);
 
   // Password validation endpoint
   app.post("/api/validate-password", async (req, res) => {
@@ -184,11 +188,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     
     // Store this data temporarily (you could use a simple in-memory store or database)
     // For now, we'll store it in a simple object
-    if (!global.onboardingData) {
-      global.onboardingData = new Map();
+    if (!(global as any).onboardingData) {
+      (global as any).onboardingData = new Map();
     }
     
-    global.onboardingData.set(email, {
+    (global as any).onboardingData.set(email, {
       templateSelected,
       domainPreferences,
       customerInfo,
@@ -264,7 +268,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Get stored onboarding data and send customer notification email
       try {
-        const onboardingData = global.onboardingData?.get(email) || {};
+        const onboardingData = (global as any).onboardingData?.get(email) || {};
         console.log('Retrieved onboarding data for email:', email, onboardingData);
         
         const customerData = {
@@ -284,8 +288,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         await sendCustomerReceipt(customerData);
         
         // Clean up stored data after sending notification
-        if (global.onboardingData) {
-          global.onboardingData.delete(email);
+        if ((global as any).onboardingData) {
+          (global as any).onboardingData.delete(email);
         }
       } catch (emailError) {
         console.error('Failed to send notification email:', emailError);
@@ -320,7 +324,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Update the subscription with the payment method
       await stripe.subscriptions.update(subscriptionId, {
-        default_payment_method: paymentIntent.payment_method,
+        default_payment_method: paymentIntent.payment_method as string,
       });
 
       console.log(`Updated subscription ${subscriptionId} with payment method ${paymentIntent.payment_method}`);
@@ -353,15 +357,138 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Custom solution inquiries
+  // ========== SECURE ADMIN DASHBOARD ROUTES ==========
+  
+  // Analytics routes
+  app.get("/api/admin/analytics", isAdminAuthenticated, async (req, res) => {
+    try {
+      const limit = parseInt(req.query.limit as string) || 100;
+      const events = await storage.getAnalyticsEvents(limit);
+      res.json(events);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.get("/api/admin/analytics/by-type/:eventType", isAdminAuthenticated, async (req, res) => {
+    try {
+      const events = await storage.getAnalyticsEventsByType(req.params.eventType);
+      res.json(events);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/analytics/track", async (req, res) => {
+    try {
+      const eventData = insertAnalyticsEventSchema.parse(req.body);
+      const event = await storage.createAnalyticsEvent({
+        ...eventData,
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent') || null,
+      });
+      res.status(201).json(event);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  // SEO data routes
+  app.get("/api/admin/seo", isAdminAuthenticated, async (req, res) => {
+    try {
+      const limit = parseInt(req.query.limit as string) || 100;
+      const seoData = await storage.getSeoData(limit);
+      res.json(seoData);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.get("/api/admin/seo/by-url", isAdminAuthenticated, async (req, res) => {
+    try {
+      const url = req.query.url as string;
+      if (!url) {
+        return res.status(400).json({ message: "URL parameter is required" });
+      }
+      const seoData = await storage.getSeoDataByUrl(url);
+      res.json(seoData);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/seo/track", async (req, res) => {
+    try {
+      const seoData = insertSeoDataSchema.parse(req.body);
+      const data = await storage.createSeoData(seoData);
+      res.status(201).json(data);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Form submissions routes (secure dashboard access)
+  app.get("/api/admin/form-submissions", isAdminAuthenticated, async (req, res) => {
+    try {
+      const submissions = await storage.getAllCustomSolutionInquiries();
+      res.json(submissions);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.put("/api/admin/form-submissions/:id/status", isAdminAuthenticated, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { status } = req.body;
+      if (!status) {
+        return res.status(400).json({ message: "Status is required" });
+      }
+      const submission = await storage.updateCustomSolutionInquiryStatus(id, status);
+      res.json(submission);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Dashboard analytics summary
+  app.get("/api/admin/dashboard-summary", isAdminAuthenticated, async (req, res) => {
+    try {
+      const [recentEvents, recentSeo, recentSubmissions] = await Promise.all([
+        storage.getAnalyticsEvents(50),
+        storage.getSeoData(50),
+        storage.getAllCustomSolutionInquiries()
+      ]);
+
+      // Calculate basic analytics
+      const pageViews = recentEvents.filter(e => e.eventType === 'page_view').length;
+      const uniqueVisitors = new Set(recentEvents.map(e => e.sessionId)).size;
+      const organicTraffic = recentSeo.filter(s => s.organicTraffic).length;
+      const pendingSubmissions = recentSubmissions.filter(s => s.status === 'new').length;
+
+      res.json({
+        pageViews,
+        uniqueVisitors,
+        organicTraffic,
+        pendingSubmissions,
+        totalSubmissions: recentSubmissions.length,
+        recentEvents: recentEvents.slice(0, 10),
+        recentSubmissions: recentSubmissions.slice(0, 5)
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Custom solution inquiries - UPDATED to email chad@fotype.com
   app.post("/api/custom-solution-inquiries", async (req, res) => {
     try {
       const inquiryData = insertCustomSolutionInquirySchema.parse(req.body);
       
-      // Store inquiry in database
+      // Store inquiry in secure database
       const inquiry = await storage.createCustomSolutionInquiry(inquiryData);
       
-      // Send email notification
+      // Send email notification to chad@fotype.com
       try {
         await sendCustomSolutionInquiry({
           name: inquiry.name,
@@ -372,10 +499,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
           exampleSites: inquiry.exampleSites || [],
           projectDetails: inquiry.projectDetails,
         });
-        console.log('Custom solution inquiry email sent successfully');
+        console.log('Custom solution inquiry email sent to chad@fotype.com');
       } catch (emailError) {
         console.error('Failed to send custom solution inquiry email:', emailError);
-        // Don't fail the request if email fails
+        // Don't fail the request if email fails - data is still securely stored
       }
       
       res.status(201).json({ success: true, inquiry });
@@ -418,7 +545,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         try {
           // Find the first month payment intent for this customer
           const paymentIntents = await stripe.paymentIntents.list({
-            customer: subscription.customer,
+            customer: subscription.customer as string,
             limit: 20,
           });
 
@@ -429,27 +556,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
           );
 
           if (!firstMonthPayment || !firstMonthPayment.payment_method) {
-            results.errors.push(`No valid payment method found for customer ${subscription.customer}`);
+            results.errors.push(`No valid payment method found for customer ${typeof subscription.customer === 'string' ? subscription.customer : subscription.customer?.id}`);
             results.failed++;
             continue;
           }
 
           // Update the subscription with the payment method
           await stripe.subscriptions.update(subscription.id, {
-            default_payment_method: firstMonthPayment.payment_method,
+            default_payment_method: firstMonthPayment.payment_method as string,
           });
 
           // Try to pay any failed invoices
           const invoices = await stripe.invoices.list({
-            customer: subscription.customer,
+            customer: subscription.customer as string,
             status: 'open',
             limit: 5,
           });
 
           for (const invoice of invoices.data) {
-            if (invoice.subscription === subscription.id) {
+            if ((invoice as any).subscription === subscription.id) {
               try {
-                await stripe.invoices.pay(invoice.id);
+                await stripe.invoices.pay(invoice.id!);
                 console.log(`Paid invoice ${invoice.id} for subscription ${subscription.id}`);
               } catch (payError: any) {
                 console.log(`Failed to pay invoice ${invoice.id}: ${payError.message}`);
@@ -458,7 +585,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
 
           results.fixed++;
-          console.log(`Fixed subscription ${subscription.id} for customer ${subscription.customer}`);
+          console.log(`Fixed subscription ${subscription.id} for customer ${typeof subscription.customer === 'string' ? subscription.customer : subscription.customer?.id}`);
 
         } catch (error: any) {
           results.errors.push(`Error fixing subscription ${subscription.id}: ${error.message}`);

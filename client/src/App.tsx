@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "./lib/protected-route";
 import { PasswordProtectedRoute } from "./lib/password-protected-route";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { useEffect } from "react";
 import AuthPage from "@/pages/auth-page";
 import HomePage from "@/pages/home-page";
@@ -25,6 +26,9 @@ import StartTheProcess from "@/pages/start-the-process";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
 import CustomSolutions from "@/pages/custom-solutions";
+import AdminSetup from "@/pages/admin-setup";
+import AdminLogin from "@/pages/admin-login";
+import AdminDashboard from "@/pages/admin-dashboard";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -38,6 +42,9 @@ function ScrollToTop() {
 }
 
 function Router() {
+  // Enable analytics tracking for all pages
+  useAnalytics();
+
   return (
     <>
       <ScrollToTop />
@@ -59,6 +66,9 @@ function Router() {
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:slug" component={BlogPost} />
         <Route path="/custom-websites" component={CustomSolutions} />
+        <Route path="/admin/setup" component={AdminSetup} />
+        <Route path="/admin/login" component={AdminLogin} />
+        <Route path="/admin/dashboard" component={AdminDashboard} />
         <Route path="/old-home" component={HomePage} />
         <Route path="/" component={InternalOne} />
         <Route component={NotFound} />

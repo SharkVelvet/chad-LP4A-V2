@@ -6,6 +6,9 @@ import {
   websiteContent,
   blogPosts,
   customSolutionInquiries,
+  analyticsEvents,
+  seoData,
+  adminUsers,
   type User, 
   type InsertUser,
   type Location,
@@ -19,6 +22,12 @@ import {
   type InsertBlogPost,
   type CustomSolutionInquiry,
   type InsertCustomSolutionInquiry,
+  type AnalyticsEvent,
+  type InsertAnalyticsEvent,
+  type SeoData,
+  type InsertSeoData,
+  type AdminUser,
+  type InsertAdminUser,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, desc } from "drizzle-orm";
@@ -67,6 +76,26 @@ export interface IStorage {
   createCustomSolutionInquiry(inquiry: InsertCustomSolutionInquiry): Promise<CustomSolutionInquiry>;
   getAllCustomSolutionInquiries(): Promise<CustomSolutionInquiry[]>;
   updateCustomSolutionInquiryStatus(id: number, status: string): Promise<CustomSolutionInquiry>;
+
+  // Analytics management
+  createAnalyticsEvent(event: InsertAnalyticsEvent): Promise<AnalyticsEvent>;
+  getAnalyticsEvents(limit?: number): Promise<AnalyticsEvent[]>;
+  getAnalyticsEventsByDateRange(startDate: Date, endDate: Date): Promise<AnalyticsEvent[]>;
+  getAnalyticsEventsByType(eventType: string): Promise<AnalyticsEvent[]>;
+
+  // SEO data management
+  createSeoData(seoData: InsertSeoData): Promise<SeoData>;
+  getSeoData(limit?: number): Promise<SeoData[]>;
+  getSeoDataByUrl(url: string): Promise<SeoData[]>;
+  getSeoDataByDateRange(startDate: Date, endDate: Date): Promise<SeoData[]>;
+
+  // Admin user management
+  getAdminUser(id: number): Promise<AdminUser | undefined>;
+  getAdminUserByUsername(username: string): Promise<AdminUser | undefined>;
+  getAdminUserByEmail(email: string): Promise<AdminUser | undefined>;
+  createAdminUser(user: InsertAdminUser): Promise<AdminUser>;
+  updateAdminUserLastLogin(id: number): Promise<AdminUser>;
+  getAllAdminUsers(): Promise<AdminUser[]>;
 
   sessionStore: any;
 }
@@ -272,6 +301,99 @@ export class DatabaseStorage implements IStorage {
       .where(eq(customSolutionInquiries.id, id))
       .returning();
     return updatedInquiry;
+  }
+
+  // Analytics management
+  async createAnalyticsEvent(event: InsertAnalyticsEvent): Promise<AnalyticsEvent> {
+    const [newEvent] = await db
+      .insert(analyticsEvents)
+      .values(event)
+      .returning();
+    return newEvent;
+  }
+
+  async getAnalyticsEvents(limit: number = 1000): Promise<AnalyticsEvent[]> {
+    return await db.select().from(analyticsEvents).orderBy(desc(analyticsEvents.timestamp)).limit(limit);
+  }
+
+  async getAnalyticsEventsByDateRange(startDate: Date, endDate: Date): Promise<AnalyticsEvent[]> {
+    return await db.select().from(analyticsEvents)
+      .where(and(
+        eq(analyticsEvents.timestamp, startDate),
+        eq(analyticsEvents.timestamp, endDate)
+      ))
+      .orderBy(desc(analyticsEvents.timestamp));
+  }
+
+  async getAnalyticsEventsByType(eventType: string): Promise<AnalyticsEvent[]> {
+    return await db.select().from(analyticsEvents)
+      .where(eq(analyticsEvents.eventType, eventType))
+      .orderBy(desc(analyticsEvents.timestamp));
+  }
+
+  // SEO data management
+  async createSeoData(seoDataInput: InsertSeoData): Promise<SeoData> {
+    const [newSeoData] = await db
+      .insert(seoData)
+      .values(seoDataInput)
+      .returning();
+    return newSeoData;
+  }
+
+  async getSeoData(limit: number = 1000): Promise<SeoData[]> {
+    return await db.select().from(seoData).orderBy(desc(seoData.timestamp)).limit(limit);
+  }
+
+  async getSeoDataByUrl(url: string): Promise<SeoData[]> {
+    return await db.select().from(seoData)
+      .where(eq(seoData.url, url))
+      .orderBy(desc(seoData.timestamp));
+  }
+
+  async getSeoDataByDateRange(startDate: Date, endDate: Date): Promise<SeoData[]> {
+    return await db.select().from(seoData)
+      .where(and(
+        eq(seoData.timestamp, startDate),
+        eq(seoData.timestamp, endDate)
+      ))
+      .orderBy(desc(seoData.timestamp));
+  }
+
+  // Admin user management
+  async getAdminUser(id: number): Promise<AdminUser | undefined> {
+    const [user] = await db.select().from(adminUsers).where(eq(adminUsers.id, id));
+    return user || undefined;
+  }
+
+  async getAdminUserByUsername(username: string): Promise<AdminUser | undefined> {
+    const [user] = await db.select().from(adminUsers).where(eq(adminUsers.username, username));
+    return user || undefined;
+  }
+
+  async getAdminUserByEmail(email: string): Promise<AdminUser | undefined> {
+    const [user] = await db.select().from(adminUsers).where(eq(adminUsers.email, email));
+    return user || undefined;
+  }
+
+  async createAdminUser(insertUser: InsertAdminUser): Promise<AdminUser> {
+    const [user] = await db
+      .insert(adminUsers)
+      .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  async updateAdminUserLastLogin(id: number): Promise<AdminUser> {
+    const [user] = await db
+      .update(adminUsers)
+      .set({ lastLogin: new Date() })
+      .where(eq(adminUsers.id, id))
+      .returning();
+    return user;
+  }
+
+  async getAllAdminUsers(): Promise<AdminUser[]> {
+    return await db.select().from(adminUsers).where(eq(adminUsers.isActive, true));
   }
 }
 

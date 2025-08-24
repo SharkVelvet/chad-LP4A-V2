@@ -14,6 +14,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { insertCustomSolutionInquirySchema } from "@shared/schema";
 import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { z } from "zod";
 
 // Extend the schema with an additional field for multiple example sites
@@ -36,6 +37,7 @@ export default function CustomSolutions() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const { toast } = useToast();
+  const { trackFormSubmission, trackButtonClick } = useAnalytics();
 
   const scrollToForm = () => {
     document.getElementById('custom-form')?.scrollIntoView({ behavior: 'smooth' });
@@ -82,7 +84,15 @@ export default function CustomSolutions() {
 
       return response.json();
     },
-    onSuccess: () => {
+    onSuccess: (result) => {
+      // Track successful form submission
+      trackFormSubmission('custom_solution_inquiry', {
+        budgetRange: form.getValues('budgetRange'),
+        hasExampleSites: Boolean(form.getValues('exampleSitesText')),
+        hasRetainer: form.getValues('monthlyRetainer'),
+        company: Boolean(form.getValues('company')),
+      });
+      
       // Reset form
       form.reset();
       

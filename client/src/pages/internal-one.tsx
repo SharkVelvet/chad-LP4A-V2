@@ -255,54 +255,60 @@ export default function InternalOne() {
       </div>
 
       {/* Main Content Centered */}
-      <div className="relative z-10 flex-1 flex items-center justify-center">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <Badge className="mb-8" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
-            <h1 className="text-5xl font-bold text-gray-900 mb-8">
-              Professional Landing Pages&nbsp;for<br />
-              <span style={{ color: '#6458AF' }}>Insurance Agents</span>
-            </h1>
-            <p className="text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Are you looking to grow your clients or grow your team?
-            </p>
-            
-            {/* Two Choice Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto mb-8">
-              <Button 
-                size="lg"
-                className="w-auto px-8 py-4 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: '#6458AF' }}
-                onClick={() => setLocation('/get-clients')}
-              >
-                I Want More Clients
-              </Button>
-              <Button 
-                size="lg"
-                variant="outline"
-                className="w-auto px-8 py-4 text-sm font-semibold hover:opacity-90 transition-opacity"
-                style={{ 
-                  borderColor: '#6458AF', 
-                  color: '#6458AF',
-                  backgroundColor: 'white'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#6458AF';
-                  e.currentTarget.style.color = 'white';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'white';
-                  e.currentTarget.style.color = '#6458AF';
-                }}
-                onClick={() => setLocation('/recruit-agents')}
-              >
-                I Want to Recruit Agents
-              </Button>
+      <div className="relative z-10 flex-1 flex flex-col">
+        <div className="flex-1 flex items-center justify-center">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <Badge className="mb-8" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
+              <h1 className="text-5xl font-bold text-gray-900 mb-8">
+                Professional Landing Pages&nbsp;for<br />
+                <span style={{ color: '#6458AF' }}>Insurance Agents</span>
+              </h1>
+              <p className="text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                Are you looking to grow your clients or grow your team?
+              </p>
+              
+              {/* Two Choice Buttons */}
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto">
+                <Button 
+                  size="lg"
+                  className="w-auto px-8 py-4 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: '#6458AF' }}
+                  onClick={() => setLocation('/get-clients')}
+                >
+                  I Want More Clients
+                </Button>
+                <Button 
+                  size="lg"
+                  variant="outline"
+                  className="w-auto px-8 py-4 text-sm font-semibold hover:opacity-90 transition-opacity"
+                  style={{ 
+                    borderColor: '#6458AF', 
+                    color: '#6458AF',
+                    backgroundColor: 'white'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#6458AF';
+                    e.currentTarget.style.color = 'white';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'white';
+                    e.currentTarget.style.color = '#6458AF';
+                  }}
+                  onClick={() => setLocation('/recruit-agents')}
+                >
+                  I Want to Recruit Agents
+                </Button>
+              </div>
             </div>
-            
-            {/* Custom Solution Link */}
-            <div className="mt-8 text-center">
-              <p className="text-lg text-gray-600">
+          </div>
+        </div>
+        
+        {/* Custom Solution Link - Bottom of page */}
+        <div className="relative z-10 pb-8">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <p className="text-sm text-gray-500">
                 Would prefer to have a Custom Solution / Website, No worries{" "}
                 <button 
                   onClick={() => setLocation('/custom-solutions')}

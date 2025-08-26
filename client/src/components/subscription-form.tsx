@@ -126,7 +126,18 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode,
       </div>
 
       <form onSubmit={handleSubmit}>
-        <PaymentElement />
+        <PaymentElement 
+          options={{
+            fields: {
+              billingDetails: {
+                name: 'never',
+                email: 'never',
+                phone: 'never',
+                address: 'never'
+              }
+            }
+          }}
+        />
         
         {/* Discount Information Display */}
         {discountInfo && (

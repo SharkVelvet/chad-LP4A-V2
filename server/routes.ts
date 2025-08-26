@@ -364,6 +364,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         description: 'Planright first month - Website setup and hosting',
         receipt_email: email,
         setup_future_usage: 'off_session',
+        payment_method_types: ['card'], // Only allow credit cards
         metadata: {
           type: 'first_month_payment',
           customer_email: email,

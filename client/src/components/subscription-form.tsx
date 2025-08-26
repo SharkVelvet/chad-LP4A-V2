@@ -198,7 +198,7 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode,
                 name: 'auto',
                 email: 'auto',
                 phone: 'auto',
-                address: 'never'
+                address: 'auto'
               }
             }
           }}

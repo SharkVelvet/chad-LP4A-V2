@@ -1,0 +1,41 @@
+index-BSG8TWGa.js:48  GET https://landingpagesforagents.com/api/user 401 (Unauthorized)
+(anonymous) @ index-BSG8TWGa.js:48
+a @ index-BSG8TWGa.js:48
+N @ index-BSG8TWGa.js:48
+start @ index-BSG8TWGa.js:48
+fetch @ index-BSG8TWGa.js:48
+Tl @ index-BSG8TWGa.js:48
+onSubscribe @ index-BSG8TWGa.js:48
+subscribe @ index-BSG8TWGa.js:48
+(anonymous) @ index-BSG8TWGa.js:48
+nw @ index-BSG8TWGa.js:38
+eu @ index-BSG8TWGa.js:40
+ya @ index-BSG8TWGa.js:40
+mg @ index-BSG8TWGa.js:40
+Xn @ index-BSG8TWGa.js:38
+T8 @ index-BSG8TWGa.js:40
+di @ index-BSG8TWGa.js:40
+Ow @ index-BSG8TWGa.js:40
+w @ index-BSG8TWGa.js:25
+R @ index-BSG8TWGa.js:25Understand this error
+8[Violation] Added non-passive event listener to a scroll-blocking <some> event. Consider marking event handler as 'passive' to make the page more responsive. See <URL>
+[Violation] Forced reflow while executing JavaScript took 68ms
+index-BSG8TWGa.js:424 Stripe confirmation error: IntegrationError: You specified "never" for fields.billing_details.address when creating the payment Element, but did not pass confirmParams.payment_method_data.billing_details.address.country when calling stripe.confirmSetup(). If you opt out of collecting data via the payment Element using the fields option, the data must be passed in when calling stripe.confirmSetup().
+    at $f (stripe.js:1:544366)
+    at e._handleMessage (stripe.js:1:555041)
+    at e._handleMessage (stripe.js:1:79224)
+    at stripe.js:1:552234
+m @ index-BSG8TWGa.js:424
+await in m
+Gk @ index-BSG8TWGa.js:37
+Yk @ index-BSG8TWGa.js:37
+Kk @ index-BSG8TWGa.js:37
+Op @ index-BSG8TWGa.js:37
+$N @ index-BSG8TWGa.js:37
+(anonymous) @ index-BSG8TWGa.js:37
+Yx @ index-BSG8TWGa.js:40
+mN @ index-BSG8TWGa.js:37
+Yu @ index-BSG8TWGa.js:37
+wx @ index-BSG8TWGa.js:37
+m5 @ index-BSG8TWGa.js:37Understand this error
+stripe.js:1 Uncaught (in promise) IntegrationError: You specified "never" for fields.billing_details.address when creating the payment Element, but did not pass confirmParams.payment_method_data.billing_details.address.country when calling stripe.confirmSetup(). If you opt out of collecting data via the payment Element using the fields option, the data must be passed in when calling stripe.confirmSetup().

@@ -70,31 +70,89 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode,
     }
   };
 
+  // Calculate pricing with discount
+  const originalFirstMonth = 38.00;
+  const originalMonthly = 18.00;
+  let firstMonthPrice = originalFirstMonth;
+  let monthlyPrice = originalMonthly;
+
+  if (discountInfo) {
+    if (discountInfo.percent_off) {
+      firstMonthPrice = originalFirstMonth * (1 - discountInfo.percent_off / 100);
+      monthlyPrice = originalMonthly * (1 - discountInfo.percent_off / 100);
+    } else if (discountInfo.amount_off) {
+      const discount = discountInfo.amount_off / 100; // Convert cents to dollars
+      firstMonthPrice = Math.max(0, originalFirstMonth - discount);
+      monthlyPrice = Math.max(0, originalMonthly - discount);
+    }
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
-      <PaymentElement />
-      
-      {/* Discount Information Display */}
-      {discountInfo && (
-        <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
-          <div className="flex items-center">
-            <svg className="h-4 w-4 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <div className="text-sm">
-              <p className="text-green-800 font-medium">
-                Discount Applied: {discountCode}
-              </p>
-              <p className="text-green-600">
-                {discountInfo.percent_off 
-                  ? `${discountInfo.percent_off}% off` 
-                  : `$${(discountInfo.amount_off / 100).toFixed(2)} off`
-                }
-              </p>
+    <div>
+      {/* Order Summary */}
+      <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+        <h3 className="font-semibold text-lg mb-3">Order Summary</h3>
+        <div className="space-y-2 text-sm">
+          <div className="flex justify-between">
+            <span>First month setup & hosting</span>
+            <div className="text-right">
+              {discountInfo && (
+                <div className="text-gray-500 line-through">${originalFirstMonth.toFixed(2)}</div>
+              )}
+              <div className="font-medium">${firstMonthPrice.toFixed(2)}</div>
             </div>
           </div>
+          <div className="flex justify-between text-gray-600">
+            <span>Monthly hosting (starts next month)</span>
+            <div className="text-right">
+              {discountInfo && (
+                <div className="text-gray-500 line-through">${originalMonthly.toFixed(2)}</div>
+              )}
+              <div>${monthlyPrice.toFixed(2)}/month</div>
+            </div>
+          </div>
+          {discountInfo && (
+            <div className="flex justify-between text-green-600 font-medium pt-2 border-t">
+              <span>Discount: {discountCode}</span>
+              <span>
+                -{discountInfo.percent_off 
+                  ? `${discountInfo.percent_off}%` 
+                  : `$${(discountInfo.amount_off / 100).toFixed(2)}`
+                }
+              </span>
+            </div>
+          )}
+          <div className="flex justify-between font-bold text-lg pt-2 border-t">
+            <span>Total Today</span>
+            <span>${firstMonthPrice.toFixed(2)}</span>
+          </div>
         </div>
-      )}
+      </div>
+
+      <form onSubmit={handleSubmit}>
+        <PaymentElement />
+        
+        {/* Discount Information Display */}
+        {discountInfo && (
+          <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
+            <div className="flex items-center">
+              <svg className="h-4 w-4 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <div className="text-sm">
+                <p className="text-green-800 font-medium">
+                  Discount Applied: {discountCode}
+                </p>
+                <p className="text-green-600">
+                  {discountInfo.percent_off 
+                    ? `${discountInfo.percent_off}% off` 
+                    : `$${(discountInfo.amount_off / 100).toFixed(2)} off`
+                  }
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       
       <Button 
         type="submit" 
@@ -109,18 +167,19 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode,
       </Button>
       
       {/* Go Back Button - Bottom Left */}
-      <div className="fixed bottom-6 left-6">
-        <Button 
-          type="button"
-          variant="ghost" 
-          size="sm"
-          className="px-4 py-2 text-gray-400 hover:text-gray-200 text-sm"
-          onClick={() => window.history.back()}
-        >
-          Go Back
-        </Button>
-      </div>
-    </form>
+        <div className="fixed bottom-6 left-6">
+          <Button 
+            type="button"
+            variant="ghost" 
+            size="sm"
+            className="px-4 py-2 text-gray-400 hover:text-gray-200 text-sm"
+            onClick={() => window.history.back()}
+          >
+            Go Back
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }
 

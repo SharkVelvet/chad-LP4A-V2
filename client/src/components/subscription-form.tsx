@@ -22,11 +22,13 @@ interface SubscriptionFormProps {
   isLoading: boolean;
 }
 
-function CheckoutForm({ onSuccess, isLoading, email, customerName }: { 
+function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode, discountInfo }: { 
   onSuccess: () => void; 
   isLoading: boolean;
   email: string;
   customerName: string;
+  discountCode?: string;
+  discountInfo?: any;
 }) {
   const stripe = useStripe();
   const elements = useElements();
@@ -71,6 +73,29 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName }: {
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
+      
+      {/* Discount Information Display */}
+      {discountInfo && (
+        <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
+          <div className="flex items-center">
+            <svg className="h-4 w-4 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <div className="text-sm">
+              <p className="text-green-800 font-medium">
+                Discount Applied: {discountCode}
+              </p>
+              <p className="text-green-600">
+                {discountInfo.percent_off 
+                  ? `${discountInfo.percent_off}% off` 
+                  : `$${(discountInfo.amount_off / 100).toFixed(2)} off`
+                }
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+      
       <Button 
         type="submit" 
         className="w-full text-white mt-6" 
@@ -104,14 +129,40 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
   const [email, setEmail] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [showPayment, setShowPayment] = useState(false);
+  const [discountCode, setDiscountCode] = useState("");
+  const [discountInfo, setDiscountInfo] = useState<any>(null);
+  const [validatingCoupon, setValidatingCoupon] = useState(false);
   const { toast } = useToast();
+
+  const validateCouponMutation = useMutation({
+    mutationFn: async (code: string) => {
+      const res = await apiRequest("POST", "/api/validate-coupon", { couponCode: code });
+      return res.json();
+    },
+    onSuccess: (data) => {
+      setDiscountInfo(data.coupon);
+      toast({
+        title: "Discount Applied!",
+        description: `${data.coupon.percent_off ? `${data.coupon.percent_off}% off` : `$${(data.coupon.amount_off / 100).toFixed(2)} off`}`,
+      });
+    },
+    onError: (error: any) => {
+      setDiscountInfo(null);
+      toast({
+        title: "Invalid Coupon",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
 
   const createSubscriptionMutation = useMutation({
     mutationFn: async () => {
       const res = await apiRequest("POST", "/api/create-subscription", { 
         plan, 
         email,
-        customerName 
+        customerName,
+        couponCode: discountCode || undefined
       });
       return res.json();
     },
@@ -175,6 +226,35 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
               />
+            </div>
+            <div>
+              <Label htmlFor="discount">Discount Code (Optional)</Label>
+              <div className="flex gap-2">
+                <Input
+                  id="discount"
+                  type="text"
+                  placeholder="Enter discount code"
+                  value={discountCode}
+                  onChange={(e) => setDiscountCode(e.target.value.toUpperCase())}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    if (discountCode.trim()) {
+                      validateCouponMutation.mutate(discountCode.trim());
+                    }
+                  }}
+                  disabled={!discountCode.trim() || validateCouponMutation.isPending}
+                >
+                  {validateCouponMutation.isPending ? "Checking..." : "Apply"}
+                </Button>
+              </div>
+              {discountInfo && (
+                <p className="text-sm text-green-600 mt-1">
+                  ✓ {discountInfo.percent_off ? `${discountInfo.percent_off}% off` : `$${(discountInfo.amount_off / 100).toFixed(2)} off`} applied
+                </p>
+              )}
             </div>
             <Button 
               type="submit" 
@@ -241,6 +321,8 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
             isLoading={isLoading}
             email={email}
             customerName={customerName}
+            discountCode={discountCode}
+            discountInfo={discountInfo}
           />
         </Elements>
       </CardContent>

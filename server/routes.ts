@@ -202,9 +202,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ success: true });
   });
 
+  // Validate Stripe coupon code
+  app.post('/api/validate-coupon', async (req, res) => {
+    const { couponCode } = req.body;
+    
+    if (!couponCode) {
+      return res.status(400).json({ error: 'Coupon code is required' });
+    }
+
+    if (!stripe) {
+      return res.status(500).json({ error: 'Payment processing not configured' });
+    }
+
+    try {
+      const coupon = await stripe.coupons.retrieve(couponCode);
+      
+      if (!coupon.valid) {
+        return res.status(400).json({ error: 'Invalid or expired coupon' });
+      }
+
+      res.json({
+        valid: true,
+        coupon: {
+          id: coupon.id,
+          name: coupon.name,
+          percent_off: coupon.percent_off,
+          amount_off: coupon.amount_off,
+          currency: coupon.currency,
+        }
+      });
+    } catch (error: any) {
+      if (error.code === 'resource_missing') {
+        return res.status(400).json({ error: 'Invalid coupon code' });
+      }
+      console.error('Coupon validation error:', error);
+      res.status(400).json({ error: 'Unable to validate coupon' });
+    }
+  });
+
   // Stripe subscription route for guest checkout
   app.post('/api/create-subscription', async (req, res) => {
-    const { email, customerName } = req.body;
+    const { email, customerName, couponCode } = req.body;
     
     if (!email) {
       return res.status(400).json({ error: { message: 'Email is required for receipts' } });
@@ -222,17 +260,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
         name: customerName || 'Website Customer',
       });
 
-      // Create payment intent for first month ($38) with setup for future payments
+      // Apply coupon discount if provided
+      let discountInfo = null;
+      if (couponCode) {
+        try {
+          const coupon = await stripe.coupons.retrieve(couponCode);
+          if (coupon.valid) {
+            discountInfo = coupon;
+          }
+        } catch (error) {
+          console.warn('Invalid coupon code provided:', couponCode);
+        }
+      }
+
+      // Calculate discounted amount for first month
+      let firstMonthAmount = 3800; // $38 default
+      if (discountInfo) {
+        if (discountInfo.percent_off) {
+          firstMonthAmount = Math.round(firstMonthAmount * (1 - discountInfo.percent_off / 100));
+        } else if (discountInfo.amount_off) {
+          firstMonthAmount = Math.max(0, firstMonthAmount - discountInfo.amount_off);
+        }
+      }
+
+      // Create payment intent for first month with discount applied
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: 3800, // $38 for first month
+        amount: firstMonthAmount,
         currency: 'usd',
         customer: customer.id,
         description: 'Planright first month - Website setup and hosting',
         receipt_email: email,
-        setup_future_usage: 'off_session', // This saves the payment method for future use
+        setup_future_usage: 'off_session',
         metadata: {
           type: 'first_month_payment',
           customer_email: email,
+          original_amount: '3800',
+          discount_applied: discountInfo ? couponCode : 'none',
         },
       });
 
@@ -253,7 +316,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Create the ongoing subscription starting next month ($18/month)
       // The subscription will be created in incomplete state until payment method is attached
-      const subscription = await stripe.subscriptions.create({
+      const subscriptionOptions: any = {
         customer: customer.id,
         items: [{
           price: price.id,
@@ -264,7 +327,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         metadata: {
           first_payment_intent: paymentIntent.id,
         },
-      });
+      };
+
+      // Apply coupon to recurring subscription if provided and valid
+      if (discountInfo) {
+        subscriptionOptions.coupon = couponCode;
+      }
+
+      const subscription = await stripe.subscriptions.create(subscriptionOptions);
       
       // Get stored onboarding data and send customer notification email
       try {
@@ -556,7 +626,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           );
 
           if (!firstMonthPayment || !firstMonthPayment.payment_method) {
-            results.errors.push(`No valid payment method found for customer ${typeof subscription.customer === 'string' ? subscription.customer : subscription.customer?.id}`);
+            results.errors.push(`No valid payment method found for customer ${subscription.customer}`);
             results.failed++;
             continue;
           }
@@ -585,7 +655,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
 
           results.fixed++;
-          console.log(`Fixed subscription ${subscription.id} for customer ${typeof subscription.customer === 'string' ? subscription.customer : subscription.customer?.id}`);
+          console.log(`Fixed subscription ${subscription.id} for customer ${subscription.customer}`);
 
         } catch (error: any) {
           results.errors.push(`Error fixing subscription ${subscription.id}: ${error.message}`);

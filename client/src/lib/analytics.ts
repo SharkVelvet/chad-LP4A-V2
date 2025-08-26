@@ -16,13 +16,13 @@ function getUserId(): string | null {
   return localStorage.getItem('user_id') || null;
 }
 
-// Get geographic information (basic)
-async function getGeoInfo(): Promise<{ country?: string }> {
+// Get basic browser information instead of external geolocation
+function getBrowserInfo(): { timezone?: string; language?: string } {
   try {
-    // Simple IP-based geolocation (you could use a service like ipapi.co)
-    const response = await fetch('https://ipapi.co/json/');
-    const data = await response.json();
-    return { country: data.country_name };
+    return {
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      language: navigator.language
+    };
   } catch (error) {
     return {};
   }
@@ -62,11 +62,11 @@ export class Analytics {
     if (!this.isEnabled) return;
 
     const currentUrl = url || window.location.pathname + window.location.search;
-    const geoInfo = await getGeoInfo();
+    const browserInfo = getBrowserInfo();
 
     const event: AnalyticsEvent = {
       sessionId: this.sessionId,
-      userId: this.userId,
+      userId: this.userId || undefined,
       eventType: 'page_view',
       url: currentUrl,
       referrer: document.referrer || undefined,
@@ -82,7 +82,7 @@ export class Analytics {
           ...event,
           eventData: {
             userAgent: navigator.userAgent,
-            ...geoInfo,
+            ...browserInfo,
           },
         }),
       });
@@ -106,7 +106,7 @@ export class Analytics {
 
     const event: AnalyticsEvent = {
       sessionId: this.sessionId,
-      userId: this.userId,
+      userId: this.userId || undefined,
       eventType,
       url: currentUrl,
       referrer: document.referrer || undefined,

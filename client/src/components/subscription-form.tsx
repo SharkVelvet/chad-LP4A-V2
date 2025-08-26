@@ -23,13 +23,14 @@ interface SubscriptionFormProps {
   onDiscountChange?: (discount: any, code: string) => void;
 }
 
-function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode, discountInfo }: { 
+function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode, discountInfo, clientSecret }: { 
   onSuccess: () => void; 
   isLoading: boolean;
   email: string;
   customerName: string;
   discountCode?: string;
   discountInfo?: any;
+  clientSecret: string;
 }) {
   const stripe = useStripe();
   const elements = useElements();
@@ -46,50 +47,82 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode,
     setIsProcessing(true);
 
     try {
-      const { error, paymentIntent } = await stripe.confirmPayment({
-        elements,
-        confirmParams: {
-          return_url: `${window.location.origin}/step5-success`,
-          payment_method_data: {
-            billing_details: {
-              name: customerName || 'Customer',
-              email: email,
+      // Determine if this is a Setup Intent (zero-dollar payment) or Payment Intent
+      // Setup Intent client secrets start with 'seti_', Payment Intent with 'pi_'
+      const isSetupIntent = clientSecret && clientSecret.includes('seti_');
+      
+      let result;
+      if (isSetupIntent) {
+        // Handle zero-dollar payments with Setup Intent
+        console.log('Confirming setup intent for zero-dollar payment');
+        result = await stripe.confirmSetup({
+          elements,
+          confirmParams: {
+            return_url: `${window.location.origin}/step5-success`,
+            payment_method_data: {
+              billing_details: {
+                name: customerName || 'Customer',
+                email: email,
+              }
             }
-          }
-        },
-        redirect: "if_required",
-      });
+          },
+          redirect: "if_required",
+        });
+      } else {
+        // Handle regular payments with Payment Intent
+        console.log('Confirming payment intent for regular payment');
+        result = await stripe.confirmPayment({
+          elements,
+          confirmParams: {
+            return_url: `${window.location.origin}/step5-success`,
+            payment_method_data: {
+              billing_details: {
+                name: customerName || 'Customer',
+                email: email,
+              }
+            }
+          },
+          redirect: "if_required",
+        });
+      }
 
       setIsProcessing(false);
 
-      console.log('Payment confirmation result:', { error, paymentIntent });
+      console.log('Payment/Setup confirmation result:', result);
 
-      if (error) {
-        console.error('Payment error:', error);
+      if (result.error) {
+        console.error('Payment/Setup error:', result.error);
         toast({
           title: "Payment Failed",
-          description: error.message,
+          description: result.error.message,
           variant: "destructive",
         });
-      } else if (paymentIntent) {
-        console.log('Payment intent status:', paymentIntent.status);
+      } else if (result.paymentIntent || result.setupIntent) {
+        const intentStatus = result.paymentIntent?.status || result.setupIntent?.status;
+        console.log('Intent status:', intentStatus);
         
-        if (paymentIntent.status === "succeeded" || paymentIntent.status === "requires_action") {
-          // Track successful purchase
-          trackSuccessfulPurchase('monthly_subscription', 0); // Use actual amount
+        if (intentStatus === "succeeded" || intentStatus === "requires_action") {
+          // Track successful purchase - determine amount based on discount
+          const purchaseAmount = discountInfo && discountInfo.amount_off ? 0 : 38;
+          trackSuccessfulPurchase('monthly_subscription', purchaseAmount);
+          
+          const successMessage = purchaseAmount === 0 ? 
+            "Your free setup has been completed!" : 
+            "Your subscription has been activated!";
+            
           toast({
-            title: "Payment Successful",
-            description: "Your subscription has been activated!",
+            title: "Setup Complete",
+            description: successMessage,
           });
           // Add a small delay to ensure the toast is shown
           setTimeout(() => {
             onSuccess();
           }, 500);
         } else {
-          console.log('Unexpected payment status:', paymentIntent.status);
+          console.log('Unexpected intent status:', intentStatus);
           toast({
-            title: "Payment Processing",
-            description: "Your payment is being processed. Please wait...",
+            title: "Processing",
+            description: "Your setup is being processed. Please wait...",
           });
         }
       } else {
@@ -439,6 +472,7 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading, onDiscoun
             customerName={customerName}
             discountCode={discountCode}
             discountInfo={discountInfo}
+            clientSecret={clientSecret}
           />
         </Elements>
       </CardContent>

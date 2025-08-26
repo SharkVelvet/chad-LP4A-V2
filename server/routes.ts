@@ -335,43 +335,99 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Apply coupon discount if provided
       let discountInfo = null;
+      console.log('Checking coupon code:', couponCode);
       if (couponCode) {
         try {
-          const coupon = await stripe.coupons.retrieve(couponCode);
-          if (coupon.valid) {
-            discountInfo = coupon;
+          // Try to find as a promotion code first (most common case)
+          console.log('Looking up promotion code:', couponCode);
+          const promotionCodes = await stripe.promotionCodes.list({
+            code: couponCode,
+            active: true,
+            limit: 1,
+          });
+
+          if (promotionCodes.data.length > 0) {
+            const promotionCode = promotionCodes.data[0];
+            console.log('Found promotion code. Coupon details:', promotionCode.coupon);
+            
+            // The coupon property contains the full coupon object
+            if (promotionCode.coupon && promotionCode.coupon.valid) {
+              discountInfo = promotionCode.coupon;
+              console.log('Using coupon from promotion code. Amount off:', discountInfo.amount_off, 'Percent off:', discountInfo.percent_off);
+            }
+          } else {
+            console.log('No promotion code found with name:', couponCode);
+            // Try direct coupon lookup as fallback
+            try {
+              const coupon = await stripe.coupons.retrieve(couponCode);
+              console.log('Retrieved coupon directly from Stripe:', coupon);
+              if (coupon.valid) {
+                discountInfo = coupon;
+              }
+            } catch (directError) {
+              console.log('Direct coupon lookup also failed:', directError.message);
+            }
           }
         } catch (error) {
-          console.warn('Invalid coupon code provided:', couponCode);
+          console.error('Error during coupon lookup:', couponCode, error.message);
         }
       }
 
       // Calculate discounted amount for first month
       let firstMonthAmount = 3800; // $38 default
+      console.log('Original amount (cents):', firstMonthAmount);
+      
       if (discountInfo) {
+        console.log('Applying discount:', discountInfo);
         if (discountInfo.percent_off) {
           firstMonthAmount = Math.round(firstMonthAmount * (1 - discountInfo.percent_off / 100));
+          console.log('Applied percent discount, new amount:', firstMonthAmount);
         } else if (discountInfo.amount_off) {
           firstMonthAmount = Math.max(0, firstMonthAmount - discountInfo.amount_off);
+          console.log('Applied amount discount, new amount:', firstMonthAmount);
         }
+      } else {
+        console.log('No discount applied');
       }
+      
+      console.log('Final payment intent amount (cents):', firstMonthAmount);
 
-      // Create payment intent for first month with discount applied
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: firstMonthAmount,
-        currency: 'usd',
-        customer: customer.id,
-        description: 'Planright first month - Website setup and hosting',
-        receipt_email: email,
-        setup_future_usage: 'off_session',
-        payment_method_types: ['card'], // Only allow credit cards
-        metadata: {
-          type: 'first_month_payment',
-          customer_email: email,
-          original_amount: '3800',
-          discount_applied: discountInfo ? couponCode : 'none',
-        },
-      });
+      let paymentIntent;
+      if (firstMonthAmount === 0) {
+        // For $0 amounts, create a setup intent instead of payment intent
+        console.log('Creating setup intent for $0 charge');
+        paymentIntent = await stripe.setupIntents.create({
+          customer: customer.id,
+          payment_method_types: ['card'],
+          usage: 'off_session',
+          metadata: {
+            type: 'zero_dollar_setup',
+            customer_email: email,
+            original_amount: '3800',
+            discount_applied: discountInfo ? couponCode : 'none',
+          },
+        });
+        
+        // For zero-dollar payments, we'll manually send receipt since Stripe won't
+        console.log('Zero-dollar payment - will send manual receipt');
+      } else {
+        // Create payment intent for non-zero amounts
+        paymentIntent = await stripe.paymentIntents.create({
+          amount: firstMonthAmount,
+          currency: 'usd',
+          customer: customer.id,
+          description: 'Planright first month - Website setup and hosting',
+          receipt_email: email,
+          setup_future_usage: 'off_session',
+          payment_method_types: ['card'], // Only allow credit cards
+          metadata: {
+            type: 'first_month_payment',
+            customer_email: email,
+            original_amount: '3800',
+            discount_applied: discountInfo ? couponCode : 'none',
+          },
+        });
+      }
 
       // First create a product
       const product = await stripe.products.create({
@@ -404,8 +460,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       };
 
       // Apply coupon to recurring subscription if provided and valid
+      // Note: For subscriptions, discounts only apply to ongoing billing, not the first payment
+      // The first payment discount is already handled in the payment intent above
       if (discountInfo) {
-        subscriptionOptions.coupon = couponCode;
+        subscriptionOptions.discounts = [{
+          coupon: discountInfo.id
+        }];
       }
 
       const subscription = await stripe.subscriptions.create(subscriptionOptions);

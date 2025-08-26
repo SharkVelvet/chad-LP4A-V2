@@ -34,16 +34,16 @@ export default function Step4Payment() {
   const originalFirstMonth = 38.00;
   const originalMonthly = 18.00;
   let firstMonthPrice = originalFirstMonth;
-  let monthlyPrice = originalMonthly;
+  let monthlyPrice = originalMonthly; // Monthly price stays the same - discount only applies to first month
 
   if (discountInfo) {
     if (discountInfo.percent_off) {
       firstMonthPrice = originalFirstMonth * (1 - discountInfo.percent_off / 100);
-      monthlyPrice = originalMonthly * (1 - discountInfo.percent_off / 100);
+      // Don't apply discount to monthly price - it's a first month only discount
     } else if (discountInfo.amount_off) {
       const discount = discountInfo.amount_off / 100;
       firstMonthPrice = Math.max(0, originalFirstMonth - discount);
-      monthlyPrice = Math.max(0, originalMonthly - discount);
+      // Don't apply discount to monthly price - it's a first month only discount
     }
   }
 
@@ -138,12 +138,7 @@ export default function Step4Payment() {
                   </div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-gray-600">Monthly renewal (after 30 days)</span>
-                    <div className="text-right">
-                      {discountInfo && (
-                        <div className="text-gray-500 line-through text-sm">${originalMonthly.toFixed(2)}</div>
-                      )}
-                      <span className="font-semibold">${monthlyPrice.toFixed(2)}</span>
-                    </div>
+                    <span className="font-semibold">${monthlyPrice.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-gray-600">Contract term</span>

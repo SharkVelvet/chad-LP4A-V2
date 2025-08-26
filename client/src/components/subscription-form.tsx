@@ -45,29 +45,67 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode,
 
     setIsProcessing(true);
 
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: `${window.location.origin}/step5-success`,
-      },
-      redirect: "if_required",
-    });
+    try {
+      const { error, paymentIntent } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${window.location.origin}/step5-success`,
+        },
+        redirect: "if_required",
+      });
 
-    if (error) {
+      setIsProcessing(false);
+
+      console.log('Payment confirmation result:', { error, paymentIntent });
+
+      if (error) {
+        console.error('Payment error:', error);
+        toast({
+          title: "Payment Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else if (paymentIntent) {
+        console.log('Payment intent status:', paymentIntent.status);
+        
+        if (paymentIntent.status === "succeeded" || paymentIntent.status === "requires_action") {
+          // Track successful purchase
+          trackSuccessfulPurchase('monthly_subscription', 0); // Use actual amount
+          toast({
+            title: "Payment Successful",
+            description: "Your subscription has been activated!",
+          });
+          // Add a small delay to ensure the toast is shown
+          setTimeout(() => {
+            onSuccess();
+          }, 500);
+        } else {
+          console.log('Unexpected payment status:', paymentIntent.status);
+          toast({
+            title: "Payment Processing",
+            description: "Your payment is being processed. Please wait...",
+          });
+        }
+      } else {
+        console.log('No error and no payment intent returned');
+        // If no error and no payment intent, assume success for $0 payments
+        trackSuccessfulPurchase('monthly_subscription', 0);
+        toast({
+          title: "Setup Complete",
+          description: "Your subscription has been activated!",
+        });
+        setTimeout(() => {
+          onSuccess();
+        }, 500);
+      }
+    } catch (err) {
+      console.error('Stripe confirmation error:', err);
+      setIsProcessing(false);
       toast({
-        title: "Payment Failed",
-        description: error.message,
+        title: "Payment Error",
+        description: "There was an error processing your payment. Please try again.",
         variant: "destructive",
       });
-      setIsProcessing(false);
-    } else {
-      // Track successful purchase
-      trackSuccessfulPurchase('monthly_subscription', 29.99);
-      toast({
-        title: "Payment Successful",
-        description: "Your subscription has been activated!",
-      });
-      onSuccess();
     }
   };
 

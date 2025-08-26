@@ -51,7 +51,7 @@ export async function sendCustomerReceipt(customerData: CustomerData) {
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Template Selected:</strong> ${templateSelected || 'N/A'}</p>
         <p><strong>Domain Preferences:</strong> ${domainPreferences?.join(', ') || 'N/A'}</p>
-        <p><strong>Amount Paid:</strong> $${paymentAmount}</p>
+        <p><strong>Amount Paid:</strong> $${typeof paymentAmount === 'number' ? paymentAmount.toFixed(2) : paymentAmount}</p>
         ${subscriptionId ? `<p><strong>Subscription ID:</strong> ${subscriptionId}</p>` : ''}
       </div>
 

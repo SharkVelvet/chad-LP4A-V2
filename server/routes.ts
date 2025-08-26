@@ -425,6 +425,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
           customerInfo: onboardingData.customerInfo,
         };
 
+        console.log('Email data being sent:', {
+          originalAmount: 3800,
+          discountedAmount: firstMonthAmount,
+          dollarAmount: firstMonthAmount / 100,
+          couponCode: couponCode,
+          discountInfo: discountInfo
+        });
+
         // Send notification to business owner
         await sendCustomerNotification(customerData);
         

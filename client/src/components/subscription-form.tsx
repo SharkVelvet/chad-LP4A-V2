@@ -50,6 +50,12 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode,
         elements,
         confirmParams: {
           return_url: `${window.location.origin}/step5-success`,
+          payment_method_data: {
+            billing_details: {
+              name: customerName || 'Customer',
+              email: email,
+            }
+          }
         },
         redirect: "if_required",
       });

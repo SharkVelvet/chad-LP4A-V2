@@ -197,7 +197,7 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode,
               billingDetails: {
                 name: 'auto',
                 email: 'auto',
-                phone: 'never',
+                phone: 'auto',
                 address: 'never'
               }
             }

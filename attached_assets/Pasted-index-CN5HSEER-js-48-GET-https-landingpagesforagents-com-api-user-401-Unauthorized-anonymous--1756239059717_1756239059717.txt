@@ -1,0 +1,84 @@
+index-CN5HSEER.js:48  GET https://landingpagesforagents.com/api/user 401 (Unauthorized)
+(anonymous) @ index-CN5HSEER.js:48
+a @ index-CN5HSEER.js:48
+N @ index-CN5HSEER.js:48
+start @ index-CN5HSEER.js:48
+fetch @ index-CN5HSEER.js:48
+Tl @ index-CN5HSEER.js:48
+onSubscribe @ index-CN5HSEER.js:48
+subscribe @ index-CN5HSEER.js:48
+(anonymous) @ index-CN5HSEER.js:48
+nw @ index-CN5HSEER.js:38
+eu @ index-CN5HSEER.js:40
+ya @ index-CN5HSEER.js:40
+mg @ index-CN5HSEER.js:40
+Xn @ index-CN5HSEER.js:38
+T8 @ index-CN5HSEER.js:40
+di @ index-CN5HSEER.js:40
+Ow @ index-CN5HSEER.js:40
+w @ index-CN5HSEER.js:25
+R @ index-CN5HSEER.js:25Understand this error
+8[Violation] Added non-passive event listener to a scroll-blocking <some> event. Consider marking event handler as 'passive' to make the page more responsive. See <URL>
+shared-4be57e87a161e4d07a761614b1a573eb.js:1 Uncaught (in promise) FetchError: Error fetching https://r.stripe.com/b: Failed to fetch
+    at shared-4be57e87a161e4d07a761614b1a573eb.js:1:220596
+(anonymous) @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+Promise.catch
+(anonymous) @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+e @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+c @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+(anonymous) @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+Promise.finally
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+(anonymous) @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+log @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+log @ controller-with-preconnect-3d39dca46534a2450cdaff1d2cd27ceb.js:1
+value @ controller-with-preconnect-3d39dca46534a2450cdaff1d2cd27ceb.js:1
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+(anonymous) @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+setTimeout
+value @ shared-4be57e87a161e4d07a761614b1a573eb.js:1
+RECORD_ELEMENTS_PERFORMANCE_TIMELINE @ controller-with-preconnect-3d39dca46534a2450cdaff1d2cd27ceb.js:1
+(anonymous) @ controller-with-preconnect-3d39dca46534a2450cdaff1d2cd27ceb.js:1
+value @ controller-with-preconnect-3d39dca46534a2450cdaff1d2cd27ceb.js:1
+value @ controller-with-preconnect-3d39dca46534a2450cdaff1d2cd27ceb.js:1
+value @ controller-with-preconnect-3d39dca46534a2450cdaff1d2cd27ceb.js:1
+(anonymous) @ controller-with-preconnect-3d39dca46534a2450cdaff1d2cd27ceb.js:1
+postMessage
+l @ shared-4be57e87a161e…761614b1a573eb.js:1
+c._sendControllerMessage @ shared-4be57e87a161e…761614b1a573eb.js:1
+(anonymous) @ shared-4be57e87a161e…761614b1a573eb.js:1
+c.innerAction @ shared-4be57e87a161e…761614b1a573eb.js:1
+reporter @ shared-4be57e87a161e…761614b1a573eb.js:1
+(anonymous) @ shared-4be57e87a161e…761614b1a573eb.js:1
+setTimeout
+(anonymous) @ shared-4be57e87a161e…761614b1a573eb.js:1
+(anonymous) @ shared-4be57e87a161e…761614b1a573eb.js:1Understand this error
+index-CN5HSEER.js:424 Stripe confirmation error: IntegrationError: You specified "never" for fields.billing_details.phone when creating the payment Element, but did not pass confirmParams.payment_method_data.billing_details.phone when calling stripe.confirmSetup(). If you opt out of collecting data via the payment Element using the fields option, the data must be passed in when calling stripe.confirmSetup().
+    at $f (stripe.js:1:544366)
+    at e._handleMessage (stripe.js:1:555041)
+    at e._handleMessage (stripe.js:1:79224)
+    at stripe.js:1:552234
+m @ index-CN5HSEER.js:424
+await in m
+Gk @ index-CN5HSEER.js:37
+Yk @ index-CN5HSEER.js:37
+Kk @ index-CN5HSEER.js:37
+Op @ index-CN5HSEER.js:37
+$N @ index-CN5HSEER.js:37
+(anonymous) @ index-CN5HSEER.js:37
+Yx @ index-CN5HSEER.js:40
+mN @ index-CN5HSEER.js:37
+Yu @ index-CN5HSEER.js:37
+wx @ index-CN5HSEER.js:37
+m5 @ index-CN5HSEER.js:37Understand this error
+stripe.js:1 Uncaught (in promise) IntegrationError: You specified "never" for fields.billing_details.phone when creating the payment Element, but did not pass confirmParams.payment_method_data.billing_details.phone when calling stripe.confirmSetup(). If you opt out of collecting data via the payment Element using the fields option, the data must be passed in when calling stripe.confirmSetup().

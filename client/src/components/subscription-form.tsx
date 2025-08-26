@@ -75,16 +75,16 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode,
   const originalFirstMonth = 38.00;
   const originalMonthly = 18.00;
   let firstMonthPrice = originalFirstMonth;
-  let monthlyPrice = originalMonthly;
+  let monthlyPrice = originalMonthly; // Monthly price stays the same - discount only applies to first month
 
   if (discountInfo) {
     if (discountInfo.percent_off) {
       firstMonthPrice = originalFirstMonth * (1 - discountInfo.percent_off / 100);
-      monthlyPrice = originalMonthly * (1 - discountInfo.percent_off / 100);
+      // Don't apply discount to monthly price - it's a first month only discount
     } else if (discountInfo.amount_off) {
       const discount = discountInfo.amount_off / 100; // Convert cents to dollars
       firstMonthPrice = Math.max(0, originalFirstMonth - discount);
-      monthlyPrice = Math.max(0, originalMonthly - discount);
+      // Don't apply discount to monthly price - it's a first month only discount
     }
   }
 
@@ -105,12 +105,7 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode,
           </div>
           <div className="flex justify-between text-gray-600">
             <span>Monthly hosting (starts next month)</span>
-            <div className="text-right">
-              {discountInfo && (
-                <div className="text-gray-500 line-through">${originalMonthly.toFixed(2)}</div>
-              )}
-              <div>${monthlyPrice.toFixed(2)}/month</div>
-            </div>
+            <div>${monthlyPrice.toFixed(2)}/month</div>
           </div>
           {discountInfo && (
             <div className="flex justify-between text-green-600 font-medium pt-2 border-t">

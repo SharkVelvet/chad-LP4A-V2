@@ -20,6 +20,7 @@ interface SubscriptionFormProps {
   plan: string;
   onSuccess: () => void;
   isLoading: boolean;
+  onDiscountChange?: (discount: any, code: string) => void;
 }
 
 function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode, discountInfo }: { 
@@ -183,7 +184,7 @@ function CheckoutForm({ onSuccess, isLoading, email, customerName, discountCode,
   );
 }
 
-export default function SubscriptionForm({ plan, onSuccess, isLoading }: SubscriptionFormProps) {
+export default function SubscriptionForm({ plan, onSuccess, isLoading, onDiscountChange }: SubscriptionFormProps) {
   const [clientSecret, setClientSecret] = useState("");
   const [email, setEmail] = useState("");
   const [customerName, setCustomerName] = useState("");
@@ -200,6 +201,9 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
     },
     onSuccess: (data) => {
       setDiscountInfo(data.coupon);
+      if (onDiscountChange) {
+        onDiscountChange(data.coupon, discountCode);
+      }
       toast({
         title: "Discount Applied!",
         description: `${data.coupon.percent_off ? `${data.coupon.percent_off}% off` : `$${(data.coupon.amount_off / 100).toFixed(2)} off`}`,
@@ -207,6 +211,9 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
     },
     onError: (error: any) => {
       setDiscountInfo(null);
+      if (onDiscountChange) {
+        onDiscountChange(null, '');
+      }
       toast({
         title: "Invalid Coupon",
         description: error.message,

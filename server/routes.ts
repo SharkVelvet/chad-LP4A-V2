@@ -419,7 +419,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           customerName: customerName,
           templateSelected: onboardingData.templateSelected || 'Not specified',
           domainPreferences: onboardingData.domainPreferences || [],
-          paymentAmount: 38, // $38 first month
+          paymentAmount: firstMonthAmount / 100, // Convert from cents to dollars for display
           subscriptionId: subscription.id,
           customerInfo: onboardingData.customerInfo,
         };

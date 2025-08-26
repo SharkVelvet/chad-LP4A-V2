@@ -9,6 +9,8 @@ import { trackPaymentInitiation, trackSuccessfulPurchase } from "@/lib/facebook-
 export default function Step4Payment() {
   const [, navigate] = useLocation();
   const [isProcessing, setIsProcessing] = useState(false);
+  const [discountInfo, setDiscountInfo] = useState<any>(null);
+  const [discountCode, setDiscountCode] = useState('');
 
   // Track payment page view
   useEffect(() => {
@@ -20,10 +22,30 @@ export default function Step4Payment() {
   };
 
   const handlePaymentSuccess = () => {
-    // Track successful purchase
-    trackSuccessfulPurchase('monthly_subscription', 29.99);
+    // Track successful purchase with actual amount paid
+    const actualAmount = discountInfo ? 
+      (discountInfo.amount_off ? Math.max(0, 38 - (discountInfo.amount_off / 100)) : 
+       discountInfo.percent_off ? 38 * (1 - discountInfo.percent_off / 100) : 38) : 38;
+    trackSuccessfulPurchase('monthly_subscription', actualAmount);
     navigate("/step5-success");
   };
+
+  // Calculate pricing with discount
+  const originalFirstMonth = 38.00;
+  const originalMonthly = 18.00;
+  let firstMonthPrice = originalFirstMonth;
+  let monthlyPrice = originalMonthly;
+
+  if (discountInfo) {
+    if (discountInfo.percent_off) {
+      firstMonthPrice = originalFirstMonth * (1 - discountInfo.percent_off / 100);
+      monthlyPrice = originalMonthly * (1 - discountInfo.percent_off / 100);
+    } else if (discountInfo.amount_off) {
+      const discount = discountInfo.amount_off / 100;
+      firstMonthPrice = Math.max(0, originalFirstMonth - discount);
+      monthlyPrice = Math.max(0, originalMonthly - discount);
+    }
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -74,6 +96,10 @@ export default function Step4Payment() {
               plan="planright-website"
               onSuccess={handlePaymentSuccess}
               isLoading={isProcessing}
+              onDiscountChange={(discount, code) => {
+                setDiscountInfo(discount);
+                setDiscountCode(code);
+              }}
             />
           </div>
 
@@ -103,20 +129,41 @@ export default function Step4Payment() {
                 <div className="border-t pt-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-gray-600">First month (setup + hosting)</span>
-                    <span className="font-semibold">$38.00</span>
+                    <div className="text-right">
+                      {discountInfo && (
+                        <div className="text-gray-500 line-through text-sm">${originalFirstMonth.toFixed(2)}</div>
+                      )}
+                      <span className="font-semibold">${firstMonthPrice.toFixed(2)}</span>
+                    </div>
                   </div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-gray-600">Monthly renewal (after 30 days)</span>
-                    <span className="font-semibold">$18.00</span>
+                    <div className="text-right">
+                      {discountInfo && (
+                        <div className="text-gray-500 line-through text-sm">${originalMonthly.toFixed(2)}</div>
+                      )}
+                      <span className="font-semibold">${monthlyPrice.toFixed(2)}</span>
+                    </div>
                   </div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-gray-600">Contract term</span>
                     <span className="font-semibold">12 months</span>
                   </div>
+                  {discountInfo && (
+                    <div className="flex justify-between items-center mb-2 text-green-600">
+                      <span className="text-sm font-medium">Discount: {discountCode}</span>
+                      <span className="text-sm font-medium">
+                        -{discountInfo.percent_off 
+                          ? `${discountInfo.percent_off}%` 
+                          : `$${(discountInfo.amount_off / 100).toFixed(2)}`
+                        }
+                      </span>
+                    </div>
+                  )}
                   <div className="border-t pt-2 mt-4">
                     <div className="flex justify-between items-center">
                       <span className="text-lg font-semibold">Total due today</span>
-                      <span className="text-lg font-bold" style={{ color: '#6458AF' }}>$38.00</span>
+                      <span className="text-lg font-bold" style={{ color: '#6458AF' }}>${firstMonthPrice.toFixed(2)}</span>
                     </div>
                   </div>
                 </div>

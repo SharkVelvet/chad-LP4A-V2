@@ -292,9 +292,9 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading }: Subscri
                 <Input
                   id="discount"
                   type="text"
-                  placeholder="Enter discount code"
+                  placeholder="Enter discount code (case sensitive)"
                   value={discountCode}
-                  onChange={(e) => setDiscountCode(e.target.value.toUpperCase())}
+                  onChange={(e) => setDiscountCode(e.target.value)}
                 />
                 <Button
                   type="button"

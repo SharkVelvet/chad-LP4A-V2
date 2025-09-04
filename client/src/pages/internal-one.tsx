@@ -307,11 +307,76 @@ export default function InternalOne() {
         {/* Custom Solutions Section */}
         <div className="relative z-10 pb-12">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
+            <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">Custom Solutions</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Need something beyond our templates? We create custom websites, advanced integrations, and specialized solutions.
               </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Custom Websites */}
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="mb-3">
+                  <Globe className="w-6 h-6" style={{ color: '#6458AF' }} />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2" style={{ color: '#6458AF' }}>
+                  Custom Websites
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Fully custom designs built from scratch with your exact specifications and branding requirements.
+                </p>
+                <Button 
+                  size="sm"
+                  className="text-xs font-medium text-white hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: '#6458AF' }}
+                  onClick={() => setLocation('/services')}
+                >
+                  Learn More
+                </Button>
+              </div>
+              
+              {/* Logo Design */}
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="mb-3">
+                  <Zap className="w-6 h-6" style={{ color: '#6458AF' }} />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2" style={{ color: '#6458AF' }}>
+                  Logo Design
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Professional logo design services to create a memorable brand identity that represents your business.
+                </p>
+                <Button 
+                  size="sm"
+                  className="text-xs font-medium text-white hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: '#6458AF' }}
+                  onClick={() => setLocation('/services')}
+                >
+                  Learn More
+                </Button>
+              </div>
+              
+              {/* Print Design */}
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="mb-3">
+                  <Building2 className="w-6 h-6" style={{ color: '#6458AF' }} />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2" style={{ color: '#6458AF' }}>
+                  Print Design
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Business cards, brochures, flyers, and other marketing materials designed to promote your services.
+                </p>
+                <Button 
+                  size="sm"
+                  className="text-xs font-medium text-white hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: '#6458AF' }}
+                  onClick={() => setLocation('/services')}
+                >
+                  Learn More
+                </Button>
+              </div>
             </div>
           </div>
         </div>

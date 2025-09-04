@@ -312,60 +312,8 @@ export default function CustomSolutions() {
       </>
       
 
-      <div className="max-w-6xl mx-auto py-12 px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Custom Solutions</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Need something beyond our templates? We create custom websites, advanced integrations, 
-            and specialized solutions tailored to your unique requirements.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          <Card>
-            <CardHeader className="pb-3">
-              <div className="flex items-center gap-3">
-                <Globe className="h-6 w-6" style={{ color: '#6458AF' }} />
-                <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Custom Websites</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Fully custom designs built from scratch with your exact specifications and branding requirements.
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="pb-3">
-              <div className="flex items-center gap-3">
-                <Zap className="h-6 w-6" style={{ color: '#6458AF' }} />
-                <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Advanced Integrations</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                CRM connections, lead management systems, payment processing, and third-party API integrations.
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="pb-3">
-              <div className="flex items-center gap-3">
-                <Building className="h-6 w-6" style={{ color: '#6458AF' }} />
-                <CardTitle className="text-lg" style={{ color: '#6458AF' }}>Enterprise Solutions</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Multi-location sites, agent management systems, custom dashboards, and scalable platforms.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        <Card className="max-w-4xl mx-auto" id="custom-form">
+      <div className="max-w-4xl mx-auto py-12 px-4">
+        <Card id="custom-form">
           <CardHeader>
             <CardTitle className="text-2xl text-center" style={{ color: '#6458AF' }}>
               Tell Us About Your Project

@@ -65,7 +65,7 @@ function Router() {
         <Route path="/start-the-process" component={StartTheProcess} />
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:slug" component={BlogPost} />
-        <Route path="/custom-websites" component={CustomSolutions} />
+        <Route path="/services" component={CustomSolutions} />
         <Route path="/admin/setup" component={AdminSetup} />
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin/dashboard" component={AdminDashboard} />

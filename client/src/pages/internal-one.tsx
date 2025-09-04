@@ -303,6 +303,18 @@ export default function InternalOne() {
             </div>
           </div>
         </div>
+        
+        {/* Custom Solutions Section */}
+        <div className="relative z-10 pb-12">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">Custom Solutions</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Need something beyond our templates? We create custom websites, advanced integrations, and specialized solutions.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

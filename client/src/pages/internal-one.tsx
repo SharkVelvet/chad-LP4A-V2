@@ -336,16 +336,16 @@ export default function InternalOne() {
                 </Button>
               </div>
               
-              {/* Advanced Integrations */}
+              {/* Logo Design */}
               <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="mb-3">
                   <Zap className="w-6 h-6" style={{ color: '#6458AF' }} />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2" style={{ color: '#6458AF' }}>
-                  Advanced Integrations
+                  Logo Design
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  CRM connections, lead management systems, payment processing, and third-party API integrations.
+                  Professional logo design services to create a memorable brand identity that represents your business.
                 </p>
                 <Button 
                   size="sm"
@@ -357,16 +357,16 @@ export default function InternalOne() {
                 </Button>
               </div>
               
-              {/* Enterprise Solutions */}
+              {/* Print Design */}
               <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="mb-3">
                   <Building2 className="w-6 h-6" style={{ color: '#6458AF' }} />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2" style={{ color: '#6458AF' }}>
-                  Enterprise Solutions
+                  Print Design
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  Multi-location sites, agent management systems, custom dashboards, and scalable platforms.
+                  Business cards, brochures, flyers, and other marketing materials designed to promote your services.
                 </p>
                 <Button 
                   size="sm"

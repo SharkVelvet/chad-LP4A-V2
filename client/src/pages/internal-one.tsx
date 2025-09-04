@@ -269,7 +269,7 @@ export default function InternalOne() {
               </p>
               
               {/* Two Choice Buttons */}
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto mb-24">
                 <Button 
                   size="lg"
                   className="w-auto px-8 py-4 text-sm font-semibold text-white hover:opacity-90 transition-opacity"

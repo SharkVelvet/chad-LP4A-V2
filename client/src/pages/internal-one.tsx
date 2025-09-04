@@ -309,7 +309,7 @@ export default function InternalOne() {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <p className="text-sm text-gray-500">
-                Would prefer to have a Custom Solution / Website, No worries{" "}
+                Looking for a Custom Solution / Website, No worries{" "}
                 <button 
                   onClick={() => setLocation('/custom-websites')}
                   className="underline hover:opacity-80 transition-opacity"

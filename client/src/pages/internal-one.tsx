@@ -403,24 +403,23 @@ export default function InternalOne() {
           >
             <X className="h-4 w-4" />
           </Button>
-          <div className="w-full h-full flex items-center justify-center">
-            <video
-              className="max-w-full max-h-full"
-              controls
-              autoPlay
-              width="100%"
-              height="100%"
-            >
-              <source
-                src="https://dl.dropboxusercontent.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8"
-                type="video/mp4"
-              />
-              <source
-                src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8&dl=1"
-                type="video/quicktime"
-              />
-              Your browser does not support the video tag.
-            </video>
+          <div className="w-full h-full flex items-center justify-center bg-gray-100">
+            <div className="text-center p-8">
+              <h3 className="text-lg font-semibold mb-4">Professional Landing Pages Demo Video</h3>
+              <p className="text-gray-600 mb-4">
+                Click the link below to watch our demo video showcasing professional landing page templates and services for insurance agents.
+              </p>
+              <Button
+                onClick={() => window.open('https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8&dl=0', '_blank')}
+                className="text-white"
+                style={{ backgroundColor: '#6458AF' }}
+              >
+                Watch Demo Video
+              </Button>
+              <p className="text-sm text-gray-500 mt-2">
+                Opens in a new tab
+              </p>
+            </div>
           </div>
         </DialogContent>
       </Dialog>

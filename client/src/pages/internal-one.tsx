@@ -315,7 +315,7 @@ export default function InternalOne() {
               
               {/* Demo Video */}
               <div className="my-12 max-w-5xl mx-auto">
-                <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2 relative" style={{ aspectRatio: '16/9', borderColor: '#6458AF' }}>
+                <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2 relative w-full" style={{ aspectRatio: '16/9', borderColor: '#6458AF', minHeight: '400px', height: 'auto' }}>
                   <video
                     ref={videoRef}
                     className="w-full h-full"

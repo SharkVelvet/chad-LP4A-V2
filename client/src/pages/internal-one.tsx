@@ -314,7 +314,7 @@ export default function InternalOne() {
               </p>
               
               {/* Demo Video */}
-              <div className="my-12 max-w-5xl mx-auto">
+              <div className="my-12 max-w-6xl mx-auto">
                 <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                   <div className="absolute inset-0 bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2" style={{ borderColor: '#6458AF' }}>
                     <video

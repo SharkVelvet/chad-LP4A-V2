@@ -4,16 +4,59 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { FileText, Globe, Zap, Building2, X } from "lucide-react";
 import { useLocation } from "wouter";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import playAgainImage from "@assets/LPFA-PLAY-AGAIN_1757278384329.png";
+import playNowImage from "@assets/LPFA-PLAY-now_1757278621958.png";
 
 export default function InternalOne() {
   const [, setLocation] = useLocation();
   const [showVideoModal, setShowVideoModal] = useState(false);
+  const [showReplayOverlay, setShowReplayOverlay] = useState(false);
+  const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Set page title
   useEffect(() => {
     document.title = 'Professional Landing Pages for Insurance Agents';
   }, []);
+
+  // Handle video ended event
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      const handleVideoEnded = () => {
+        setShowReplayOverlay(true);
+      };
+      
+      const handleVideoPlay = () => {
+        setShowReplayOverlay(false);
+        setHasStartedPlaying(true);
+      };
+
+      video.addEventListener('ended', handleVideoEnded);
+      video.addEventListener('play', handleVideoPlay);
+
+      return () => {
+        video.removeEventListener('ended', handleVideoEnded);
+        video.removeEventListener('play', handleVideoPlay);
+      };
+    }
+  }, []);
+
+  const handleReplayClick = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
+      setShowReplayOverlay(false);
+    }
+  };
+
+  const handlePlayNowClick = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setHasStartedPlaying(true);
+    }
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden flex flex-col" style={{ backgroundColor: '#f9f7fe' }}>
@@ -269,6 +312,69 @@ export default function InternalOne() {
               <p className="text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 Are you looking to grow your clients or grow your team?
               </p>
+              
+              {/* Demo Video */}
+              <div className="my-12 max-w-5xl mx-auto">
+                <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2 relative" style={{ aspectRatio: '16/9', borderColor: '#6458AF' }}>
+                  <video
+                    ref={videoRef}
+                    className="w-full h-full"
+                    controls
+                    playsInline
+                    preload="auto"
+                    style={{ backgroundColor: '#000000' }}
+                  >
+                    <source
+                      src="https://www.dropbox.com/scl/fi/gv717hc1z93klycijpazs/landing-pages-homev2.mp4?rlkey=2lyeynk2h9wbc54rgrl80xl23&st=zq9i1u2t&dl=1"
+                      type="video/mp4"
+                    />
+                    <source
+                      src="https://dl.dropboxusercontent.com/scl/fi/gv717hc1z93klycijpazs/landing-pages-homev2.mp4?rlkey=2lyeynk2h9wbc54rgrl80xl23&st=zq9i1u2t"
+                      type="video/mp4"
+                    />
+                    <div className="flex items-center justify-center h-full bg-gray-50 text-gray-600">
+                      <div className="text-center p-8">
+                        <div className="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
+                          <svg className="w-8 h-8" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <p className="text-lg font-medium">Demo Video</p>
+                        <p className="text-sm text-gray-500 mt-2">See how professional recruiting pages work</p>
+                        <p className="text-xs text-gray-400 mt-2">If you can hear audio but no video, your browser may not support MOV format.</p>
+                      </div>
+                    </div>
+                  </video>
+                  
+                  {/* Play Now Overlay (initial) */}
+                  {!hasStartedPlaying && (
+                    <div 
+                      className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
+                      onClick={handlePlayNowClick}
+                    >
+                      <img 
+                        src={playNowImage} 
+                        alt="Click to play video"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+
+                  {/* Replay Overlay (after video ends) */}
+                  {hasStartedPlaying && showReplayOverlay && (
+                    <div 
+                      className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
+                      onClick={handleReplayClick}
+                    >
+                      <img 
+                        src={playAgainImage} 
+                        alt="Click to play again"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
               
               {/* Two Choice Buttons */}
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto mb-24">

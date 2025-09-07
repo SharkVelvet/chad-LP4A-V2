@@ -245,21 +245,38 @@ export default function RecruitAgents() {
               <span style={{ color: '#6458AF' }}>Agency Website</span>
             </h1>
             
-            {/* Demo Video Button */}
-            <div className="mb-8">
-              <Button 
-                variant="outline"
-                size="lg"
-                className="mx-auto flex items-center gap-2 px-6 py-3 border-2 hover:bg-purple-50"
-                style={{ borderColor: '#6458AF', color: '#6458AF' }}
-                onClick={() => window.open('https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=4lx4bdi8&dl=0', '_blank')}
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                </svg>
-                Watch Demo Video
-              </Button>
-              <p className="text-sm text-gray-500 mt-2">See how professional recruiting pages work</p>
+            {/* Demo Video */}
+            <div className="mb-8 max-w-4xl mx-auto">
+              <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2" style={{ aspectRatio: '16/9', borderColor: '#6458AF' }}>
+                <video
+                  className="w-full h-full"
+                  controls
+                  playsInline
+                  preload="auto"
+                  style={{ backgroundColor: '#000000' }}
+                >
+                  <source
+                    src="https://dl.dropboxusercontent.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=4lx4bdi8&raw=1"
+                    type="video/quicktime"
+                  />
+                  <source
+                    src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=4lx4bdi8&dl=1"
+                    type="video/mp4"
+                  />
+                  <div className="flex items-center justify-center h-full bg-gray-50 text-gray-600">
+                    <div className="text-center p-8">
+                      <div className="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
+                        <svg className="w-8 h-8" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <p className="text-lg font-medium">Demo Video</p>
+                      <p className="text-sm text-gray-500 mt-2">See how professional recruiting pages work</p>
+                      <p className="text-xs text-gray-400 mt-2">If you can hear audio but no video, your browser may not support MOV format.</p>
+                    </div>
+                  </div>
+                </video>
+              </div>
             </div>
             
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">

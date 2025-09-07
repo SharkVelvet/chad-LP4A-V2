@@ -5,11 +5,13 @@ import { CheckCircle, Star, Users, Globe, TrendingUp, Shield, Clock, Zap, FileTe
 import { useLocation } from "wouter";
 import { useState, useEffect, useRef } from "react";
 import playAgainImage from "@assets/LPFA-PLAY-AGAIN_1757278384329.png";
+import playNowImage from "@assets/LPFA-PLAY-now_1757278621958.png";
 
 export default function RecruitAgents() {
   const [, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showReplayOverlay, setShowReplayOverlay] = useState(false);
+  const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Set page title
@@ -27,6 +29,7 @@ export default function RecruitAgents() {
       
       const handleVideoPlay = () => {
         setShowReplayOverlay(false);
+        setHasStartedPlaying(true);
       };
 
       video.addEventListener('ended', handleVideoEnded);
@@ -44,6 +47,13 @@ export default function RecruitAgents() {
       videoRef.current.currentTime = 0;
       videoRef.current.play();
       setShowReplayOverlay(false);
+    }
+  };
+
+  const handlePlayNowClick = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setHasStartedPlaying(true);
     }
   };
 
@@ -285,7 +295,6 @@ export default function RecruitAgents() {
                   ref={videoRef}
                   className="w-full h-full"
                   controls
-                  autoPlay
                   playsInline
                   preload="auto"
                   style={{ backgroundColor: '#000000' }}
@@ -312,8 +321,22 @@ export default function RecruitAgents() {
                   </div>
                 </video>
                 
-                {/* Replay Overlay */}
-                {showReplayOverlay && (
+                {/* Play Now Overlay (initial) */}
+                {!hasStartedPlaying && (
+                  <div 
+                    className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
+                    onClick={handlePlayNowClick}
+                  >
+                    <img 
+                      src={playNowImage} 
+                      alt="Click to play video"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+
+                {/* Replay Overlay (after video ends) */}
+                {hasStartedPlaying && showReplayOverlay && (
                   <div 
                     className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
                     onClick={handleReplayClick}

@@ -306,7 +306,12 @@ export default function InternalOne() {
             <div className="text-center">
               <Badge className="mb-8" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
               <h1 className="text-5xl font-bold text-gray-900 mb-8">
-                Professional Landing Pages&nbsp;for<br />
+                Professional Landing <span className="relative">
+                  <span className="absolute -top-6 -right-4 text-lg font-normal italic text-gray-500" style={{ fontFamily: 'cursive', fontSize: '1rem' }}>
+                    and more
+                  </span>
+                  Pages
+                </span>&nbsp;for<br />
                 <span style={{ color: '#6458AF' }}>Insurance Agents</span>
               </h1>
               <p className="text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">

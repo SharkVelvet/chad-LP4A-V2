@@ -400,7 +400,7 @@ export default function InternalOne() {
         <div className="relative z-10 pb-12">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#6458AF' }}>Additional Services</h3>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: '#6458AF' }}>Additional Services</h3>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Need something beyond our templates? We create Custom Websites, Custom Logos, Print Material, and specialized solutions for Agents.
               </p>

@@ -245,37 +245,21 @@ export default function RecruitAgents() {
               <span style={{ color: '#6458AF' }}>Agency Website</span>
             </h1>
             
-            {/* Demo Video */}
-            <div className="mb-8 max-w-4xl mx-auto">
-              <div className="bg-black rounded-lg overflow-hidden shadow-lg" style={{ aspectRatio: '16/9' }}>
-                <video
-                  className="w-full h-full object-contain"
-                  controls
-                  playsInline
-                  preload="metadata"
-                  poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgdmlld0JveD0iMCAwIDgwMCA0NTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDUwIiBmaWxsPSIjMTExODI3Ii8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjIyNSIgcj0iNDAiIGZpbGw9IiM2NDU4QUYiLz4KPHA+dGV4dCB4PSI0MDAiIHk9IjIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiIGZvbnQtc2l6ZT0iMTgiPkRlbW8gVmlkZW88L3RleHQ+Cjwvc3ZnPgo="
-                >
-                  <source
-                    src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=4lx4bdi8&dl=1"
-                    type="video/mp4"
-                  />
-                  <source
-                    src="https://dl.dropboxusercontent.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=4lx4bdi8"
-                    type="video/quicktime"
-                  />
-                  <div className="flex items-center justify-center h-full bg-gray-900 text-white">
-                    <div className="text-center">
-                      <div className="w-16 h-16 mx-auto mb-4 bg-purple-600 rounded-full flex items-center justify-center">
-                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="text-lg">Watch Our Demo Video</p>
-                      <p className="text-sm text-gray-400 mt-2">See how professional recruiting pages work</p>
-                    </div>
-                  </div>
-                </video>
-              </div>
+            {/* Demo Video Button */}
+            <div className="mb-8">
+              <Button 
+                variant="outline"
+                size="lg"
+                className="mx-auto flex items-center gap-2 px-6 py-3 border-2 hover:bg-purple-50"
+                style={{ borderColor: '#6458AF', color: '#6458AF' }}
+                onClick={() => window.open('https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=4lx4bdi8&dl=0', '_blank')}
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                </svg>
+                Watch Demo Video
+              </Button>
+              <p className="text-sm text-gray-500 mt-2">See how professional recruiting pages work</p>
             </div>
             
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">

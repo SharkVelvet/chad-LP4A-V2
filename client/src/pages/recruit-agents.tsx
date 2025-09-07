@@ -246,7 +246,7 @@ export default function RecruitAgents() {
             </h1>
             
             {/* Demo Video */}
-            <div className="mb-8 max-w-5xl mx-auto">
+            <div className="my-12 max-w-5xl mx-auto">
               <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2" style={{ aspectRatio: '16/9', borderColor: '#6458AF' }}>
                 <video
                   className="w-full h-full"

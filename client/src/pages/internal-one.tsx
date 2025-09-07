@@ -281,9 +281,9 @@ export default function InternalOne() {
       </div>
 
       {/* Logo at Top */}
-      <div className="relative z-10 pt-16">
+      <div className="relative z-10 pt-8">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div className="text-center mb-16">
             {/* Centered Logo at Top */}
             <div 
               className="flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"

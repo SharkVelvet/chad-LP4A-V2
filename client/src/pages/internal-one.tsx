@@ -390,7 +390,7 @@ export default function InternalOne() {
 
       {/* Video Modal */}
       <Dialog open={showVideoModal} onOpenChange={setShowVideoModal}>
-        <DialogContent className="max-w-none w-[65vw] h-[65vh] p-0 bg-black">
+        <DialogContent className="max-w-none w-[65vw] h-[65vh] p-4">
           <DialogHeader className="sr-only">
             <DialogTitle>Landing Pages Demo Video</DialogTitle>
             <DialogDescription>A demonstration video showing our professional landing page templates and services</DialogDescription>
@@ -399,26 +399,29 @@ export default function InternalOne() {
             variant="ghost"
             size="sm"
             onClick={() => setShowVideoModal(false)}
-            className="absolute top-2 right-2 z-10 text-white hover:bg-white/20 h-8 w-8 p-0"
+            className="absolute top-2 right-2 z-10 text-gray-600 hover:bg-gray-100 h-8 w-8 p-0"
           >
             <X className="h-4 w-4" />
           </Button>
-          <video
-            className="w-full h-full object-contain"
-            controls
-            autoPlay
-            style={{ maxHeight: '65vh', maxWidth: '65vw' }}
-          >
-            <source
-              src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8&raw=1"
-              type="video/quicktime"
-            />
-            <source
-              src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8&dl=1"
-              type="video/mp4"
-            />
-            Your browser does not support the video tag.
-          </video>
+          <div className="w-full h-full flex items-center justify-center">
+            <video
+              className="max-w-full max-h-full"
+              controls
+              autoPlay
+              width="100%"
+              height="100%"
+            >
+              <source
+                src="https://dl.dropboxusercontent.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8"
+                type="video/mp4"
+              />
+              <source
+                src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8&dl=1"
+                type="video/quicktime"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

@@ -382,14 +382,14 @@ export default function InternalOne() {
               
               {/* Get Started Section */}
               <div className="flex items-center justify-center gap-4 mb-24">
-                <p className="text-xl text-gray-700 font-medium">Ready to get Started?</p>
+                <p className="text-xl text-gray-700 font-medium">Let's build your agency and amazing website!</p>
                 <Button 
                   size="lg"
                   className="px-8 py-4 text-lg font-semibold text-white hover:opacity-90 transition-opacity"
                   style={{ backgroundColor: '#6458AF' }}
                   onClick={() => setLocation('/get-clients')}
                 >
-                  Get Started
+                  Click Here to Get Started
                 </Button>
               </div>
             </div>

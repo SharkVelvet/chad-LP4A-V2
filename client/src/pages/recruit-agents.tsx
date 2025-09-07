@@ -252,7 +252,6 @@ export default function RecruitAgents() {
                   className="w-full h-full"
                   controls
                   autoPlay
-                  muted
                   playsInline
                   preload="auto"
                   style={{ backgroundColor: '#000000' }}

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { FileText, Globe, Zap, Building2, X } from "lucide-react";
 import { useLocation } from "wouter";
 import { useEffect, useState } from "react";
@@ -391,23 +391,28 @@ export default function InternalOne() {
       {/* Video Modal */}
       <Dialog open={showVideoModal} onOpenChange={setShowVideoModal}>
         <DialogContent className="max-w-none w-[65vw] h-[65vh] p-0 bg-black">
-          <DialogHeader className="absolute top-2 right-2 z-10">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowVideoModal(false)}
-              className="text-white hover:bg-white/20 h-8 w-8 p-0"
-            >
-              <X className="h-4 w-4" />
-            </Button>
+          <DialogHeader className="sr-only">
+            <DialogTitle>Landing Pages Demo Video</DialogTitle>
+            <DialogDescription>A demonstration video showing our professional landing page templates and services</DialogDescription>
           </DialogHeader>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowVideoModal(false)}
+            className="absolute top-2 right-2 z-10 text-white hover:bg-white/20 h-8 w-8 p-0"
+          >
+            <X className="h-4 w-4" />
+          </Button>
           <video
             className="w-full h-full object-contain"
             controls
             autoPlay
-            muted
             style={{ maxHeight: '65vh', maxWidth: '65vw' }}
           >
+            <source
+              src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8&raw=1"
+              type="video/quicktime"
+            />
             <source
               src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8&dl=1"
               type="video/mp4"

@@ -290,7 +290,8 @@ export default function RecruitAgents() {
             
             {/* Demo Video */}
             <div className="my-12 max-w-5xl mx-auto">
-              <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2 relative w-full" style={{ aspectRatio: '16/9', borderColor: '#6458AF', minHeight: '400px', height: 'auto' }}>
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <div className="absolute inset-0 bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2" style={{ borderColor: '#6458AF' }}>
                 <video
                   ref={videoRef}
                   className="w-full h-full"
@@ -348,6 +349,7 @@ export default function RecruitAgents() {
                     />
                   </div>
                 )}
+                </div>
               </div>
             </div>
             

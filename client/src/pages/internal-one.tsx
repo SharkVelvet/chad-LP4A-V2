@@ -10,14 +10,9 @@ export default function InternalOne() {
   const [, setLocation] = useLocation();
   const [showVideoModal, setShowVideoModal] = useState(false);
 
-  // Set page title and show video modal on load
+  // Set page title
   useEffect(() => {
     document.title = 'Professional Landing Pages for Insurance Agents';
-    // Show video modal after a short delay
-    const timer = setTimeout(() => {
-      setShowVideoModal(true);
-    }, 1000);
-    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -388,46 +383,6 @@ export default function InternalOne() {
         </div>
       </div>
 
-      {/* Video Modal */}
-      <Dialog open={showVideoModal} onOpenChange={setShowVideoModal}>
-        <DialogContent className="max-w-none w-[65vw] h-[65vh] p-4">
-          <DialogHeader className="sr-only">
-            <DialogTitle>Landing Pages Demo Video</DialogTitle>
-            <DialogDescription>A demonstration video showing our professional landing page templates and services</DialogDescription>
-          </DialogHeader>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowVideoModal(false)}
-            className="absolute top-2 right-2 z-10 text-gray-600 hover:bg-gray-100 h-8 w-8 p-0"
-          >
-            <X className="h-4 w-4" />
-          </Button>
-          <div className="w-full h-full flex items-center justify-center">
-            <video
-              className="w-full h-full object-contain"
-              controls
-              autoPlay
-              playsInline
-              preload="metadata"
-            >
-              <source
-                src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8&dl=1"
-                type="video/mp4"
-              />
-              <source
-                src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8&dl=1"
-                type="video/quicktime"
-              />
-              <div className="text-center p-8">
-                <p className="text-gray-600">
-                  Video loading... If you can hear audio but no video, your browser may not support this format.
-                </p>
-              </div>
-            </video>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

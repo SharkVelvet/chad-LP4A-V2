@@ -256,11 +256,11 @@ export default function RecruitAgents() {
                   style={{ backgroundColor: '#000000' }}
                 >
                   <source
-                    src="https://dl.dropboxusercontent.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=4lx4bdi8&raw=1"
-                    type="video/quicktime"
+                    src="https://www.dropbox.com/scl/fi/gv717hc1z93klycijpazs/landing-pages-homev2.mp4?rlkey=2lyeynk2h9wbc54rgrl80xl23&st=zq9i1u2t&dl=1"
+                    type="video/mp4"
                   />
                   <source
-                    src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=4lx4bdi8&dl=1"
+                    src="https://dl.dropboxusercontent.com/scl/fi/gv717hc1z93klycijpazs/landing-pages-homev2.mp4?rlkey=2lyeynk2h9wbc54rgrl80xl23&st=zq9i1u2t"
                     type="video/mp4"
                   />
                   <div className="flex items-center justify-center h-full bg-gray-50 text-gray-600">

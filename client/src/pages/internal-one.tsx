@@ -315,7 +315,7 @@ export default function InternalOne() {
               
               {/* Demo Video */}
               <div className="my-12 flex justify-center">
-                <div className="w-[85vw]">
+                <div className="w-[92vw]">
                   <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                     <div className="absolute inset-0 bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2" style={{ borderColor: '#6458AF' }}>
                       <video

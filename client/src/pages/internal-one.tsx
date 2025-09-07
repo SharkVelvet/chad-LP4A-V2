@@ -1,16 +1,23 @@
 import { Button } from "@/components/ui/button"
 import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Globe, Zap, Building2 } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { FileText, Globe, Zap, Building2, X } from "lucide-react";
 import { useLocation } from "wouter";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function InternalOne() {
   const [, setLocation] = useLocation();
+  const [showVideoModal, setShowVideoModal] = useState(false);
 
-  // Set page title
+  // Set page title and show video modal on load
   useEffect(() => {
     document.title = 'Professional Landing Pages for Insurance Agents';
+    // Show video modal after a short delay
+    const timer = setTimeout(() => {
+      setShowVideoModal(true);
+    }, 1000);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -380,6 +387,35 @@ export default function InternalOne() {
           </div>
         </div>
       </div>
+
+      {/* Video Modal */}
+      <Dialog open={showVideoModal} onOpenChange={setShowVideoModal}>
+        <DialogContent className="max-w-none w-[65vw] h-[65vh] p-0 bg-black">
+          <DialogHeader className="absolute top-2 right-2 z-10">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowVideoModal(false)}
+              className="text-white hover:bg-white/20 h-8 w-8 p-0"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </DialogHeader>
+          <video
+            className="w-full h-full object-contain"
+            controls
+            autoPlay
+            muted
+            style={{ maxHeight: '65vh', maxWidth: '65vw' }}
+          >
+            <source
+              src="https://www.dropbox.com/scl/fi/94619w9ro7ts2xqpumd4h/Landing-pages-video.mov?rlkey=1skq95sks7ipe2u2fubxbd4ny&st=j2l0y9q8&dl=1"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

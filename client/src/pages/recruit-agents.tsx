@@ -289,7 +289,7 @@ export default function RecruitAgents() {
             </h1>
             
             {/* Demo Video */}
-            <div className="my-12 max-w-7xl mx-auto">
+            <div className="my-12 w-[85vw] max-w-none mx-auto">
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <div className="absolute inset-0 bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2" style={{ borderColor: '#6458AF' }}>
                 <video

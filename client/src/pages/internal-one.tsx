@@ -382,7 +382,7 @@ export default function InternalOne() {
               
               {/* Get Started Section */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-24 text-center">
-                <p className="text-xl text-gray-700 font-medium">Let's build your agency and amazing website!</p>
+                <p className="text-xl text-gray-700 font-medium">Let's build your agency an Amazing Website!</p>
                 <Button 
                   size="lg"
                   className="px-8 py-4 text-lg font-semibold text-white hover:opacity-90 transition-opacity whitespace-nowrap"

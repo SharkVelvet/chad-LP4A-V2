@@ -3,16 +3,49 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Star, Users, Globe, TrendingUp, Shield, Clock, Zap, FileText, Menu, X, MessageCircle, Eye, UserCheck, Building, Trophy } from "lucide-react";
 import { useLocation } from "wouter";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import playAgainImage from "@assets/LPFA-PLAY-AGAIN_1757278384329.png";
 
 export default function RecruitAgents() {
   const [, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showReplayOverlay, setShowReplayOverlay] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Set page title
   useEffect(() => {
     document.title = 'Recruit Top Agents - Professional Landing Pages for Insurance Agencies';
   }, []);
+
+  // Handle video ended event
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      const handleVideoEnded = () => {
+        setShowReplayOverlay(true);
+      };
+      
+      const handleVideoPlay = () => {
+        setShowReplayOverlay(false);
+      };
+
+      video.addEventListener('ended', handleVideoEnded);
+      video.addEventListener('play', handleVideoPlay);
+
+      return () => {
+        video.removeEventListener('ended', handleVideoEnded);
+        video.removeEventListener('play', handleVideoPlay);
+      };
+    }
+  }, []);
+
+  const handleReplayClick = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
+      setShowReplayOverlay(false);
+    }
+  };
 
   const handleStartProcess = () => {
     setLocation("/start-the-process");
@@ -247,8 +280,9 @@ export default function RecruitAgents() {
             
             {/* Demo Video */}
             <div className="my-12 max-w-5xl mx-auto">
-              <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2" style={{ aspectRatio: '16/9', borderColor: '#6458AF' }}>
+              <div className="bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2 relative" style={{ aspectRatio: '16/9', borderColor: '#6458AF' }}>
                 <video
+                  ref={videoRef}
                   className="w-full h-full"
                   controls
                   autoPlay
@@ -277,6 +311,20 @@ export default function RecruitAgents() {
                     </div>
                   </div>
                 </video>
+                
+                {/* Replay Overlay */}
+                {showReplayOverlay && (
+                  <div 
+                    className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
+                    onClick={handleReplayClick}
+                  >
+                    <img 
+                      src={playAgainImage} 
+                      alt="Click to play again"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
               </div>
             </div>
             

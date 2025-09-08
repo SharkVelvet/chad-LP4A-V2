@@ -485,7 +485,7 @@ export default function InternalOne() {
                     src={designersImage}
                     alt="Design team at work"
                     className="w-full object-cover"
-                    style={{ height: '819px' }}
+                    style={{ height: '778px' }}
                   />
                 </div>
                 {/* Decorative elements */}

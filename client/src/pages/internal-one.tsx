@@ -584,8 +584,8 @@ export default function InternalOne() {
             {/* Left side - Steps (flipped) */}
             <div>
               <div className="mb-12">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">Custom Website Design</h2>
-                <p className="text-lg text-gray-600">Don't like our templates? We create custom websites too!</p>
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">Logo and Brand Creation</h2>
+                <p className="text-lg text-gray-600">Build a powerful brand identity that clients remember!</p>
               </div>
 
               <div className="space-y-8">
@@ -599,9 +599,9 @@ export default function InternalOne() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">1. Share your vision</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">1. Discover your brand identity</h3>
                     <p className="text-gray-600 mb-3">
-                      Tell us exactly what you want. Share your brand colors, style preferences, and unique business requirements that templates can't capture.
+                      We explore your agency's personality, values, and target audience to create a brand foundation that truly represents who you are.
                     </p>
                     <div className="w-16 h-1 rounded-full" style={{ backgroundColor: '#6458AF' }}></div>
                   </div>
@@ -617,9 +617,9 @@ export default function InternalOne() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">2. We design from scratch</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">2. Design your perfect logo</h3>
                     <p className="text-gray-600 mb-3">
-                      Our designers create a completely custom website built specifically for your insurance agency, with unique layouts and features.
+                      Our designers create multiple logo concepts that capture your brand essence, giving you a professional mark that stands out in the marketplace.
                     </p>
                     <div className="w-16 h-1 rounded-full bg-orange-400"></div>
                   </div>
@@ -635,26 +635,26 @@ export default function InternalOne() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">3. Stand out completely</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">3. Launch your brand everywhere</h3>
                     <p className="text-gray-600 mb-3">
-                      Launch a one-of-a-kind website that perfectly represents your brand and sets you apart from every other insurance agent.
+                      Get your complete brand package including business cards, letterheads, and digital assets to present a consistent, professional image across all touchpoints.
                     </p>
                     <div className="w-16 h-1 rounded-full bg-pink-400"></div>
                   </div>
                 </div>
-              </div>
+                </div>
 
-              {/* Call to Action Button */}
-              <div className="mt-8 flex justify-center">
-                <Button 
-                  size="lg"
-                  className="px-8 py-4 text-lg font-semibold text-white hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: '#6458AF' }}
-                  onClick={() => setLocation('/services')}
-                >
-                  Get Custom Website Quote
-                </Button>
-              </div>
+                {/* Call to Action Button - Left Aligned */}
+                <div className="mt-8 flex justify-start">
+                  <Button 
+                    size="lg"
+                    className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
+                    style={{ backgroundColor: '#6458AF' }}
+                    onClick={() => setLocation('/services')}
+                  >
+                    Lets Chat about Your brand
+                  </Button>
+                </div>
             </div>
 
             {/* Right side - Image (flipped) */}

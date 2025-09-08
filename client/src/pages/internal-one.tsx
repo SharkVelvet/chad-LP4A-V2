@@ -498,7 +498,7 @@ export default function InternalOne() {
               <div>
                 <div className="mb-12">
                   <h2 className="text-4xl font-bold text-gray-900 mb-4">Custom Website Design</h2>
-                  <p className="text-lg text-gray-600">Don't like our templates? We create custom websites too!</p>
+                  <p className="text-lg text-gray-600">Don't see a tempalte that you like? Want something a little more? Our team is ahppy to help you  build a custom solution, here is how it works.</p>
                 </div>
 
                 <div className="space-y-8">

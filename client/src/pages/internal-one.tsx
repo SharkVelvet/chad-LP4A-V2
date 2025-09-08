@@ -758,7 +758,6 @@ export default function InternalOne() {
                     <div className="w-16 h-1 rounded-full bg-pink-400"></div>
                   </div>
                 </div>
-                </div>
 
                 {/* Call to Action Button */}
                 <div className="mt-8 flex justify-center">

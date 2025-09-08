@@ -476,7 +476,7 @@ export default function InternalOne() {
 
         {/* How It Works Section */}
         <div className="relative z-10 py-20 bg-gradient-to-b from-gray-50 to-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1000px' }}>
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left side - Image */}
               <div className="relative">

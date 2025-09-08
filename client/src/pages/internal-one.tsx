@@ -480,11 +480,11 @@ export default function InternalOne() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left side - Image */}
               <div className="relative">
-                <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
                   <img 
                     src={designersImage}
                     alt="Design team at work"
-                    className="w-full h-80 object-cover rounded-lg"
+                    className="w-full h-96 object-cover"
                   />
                 </div>
                 {/* Decorative elements */}

@@ -497,8 +497,8 @@ export default function InternalOne() {
               {/* Right side - Steps */}
               <div>
                 <div className="mb-12">
-                  <h2 className="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
-                  <p className="text-lg text-gray-600">3 Simple Steps</p>
+                  <h2 className="text-4xl font-bold text-gray-900 mb-4">Custom Website Design</h2>
+                  <p className="text-lg text-gray-600">Don't like our templates? We create custom websites too!</p>
                 </div>
 
                 <div className="space-y-8">
@@ -512,9 +512,9 @@ export default function InternalOne() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">1. Tell us your needs</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">1. Share your vision</h3>
                       <p className="text-gray-600 mb-3">
-                        Share your business goals, target audience, and vision. We'll understand your unique requirements and brand identity.
+                        Tell us exactly what you want. Share your brand colors, style preferences, and unique business requirements that templates can't capture.
                       </p>
                       <div className="w-16 h-1 rounded-full" style={{ backgroundColor: '#6458AF' }}></div>
                     </div>
@@ -530,9 +530,9 @@ export default function InternalOne() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">2. We create your website</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">2. We design from scratch</h3>
                       <p className="text-gray-600 mb-3">
-                        Our team designs and builds a professional website tailored to your insurance business and optimized for client conversion.
+                        Our designers create a completely custom website built specifically for your insurance agency, with unique layouts and features.
                       </p>
                       <div className="w-16 h-1 rounded-full bg-orange-400"></div>
                     </div>
@@ -548,9 +548,9 @@ export default function InternalOne() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">3. You get quality leads</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">3. Stand out completely</h3>
                       <p className="text-gray-600 mb-3">
-                        Launch your professional website and start attracting high-quality leads who are ready to engage with your insurance services.
+                        Launch a one-of-a-kind website that perfectly represents your brand and sets you apart from every other insurance agent.
                       </p>
                       <div className="w-16 h-1 rounded-full bg-pink-400"></div>
                     </div>

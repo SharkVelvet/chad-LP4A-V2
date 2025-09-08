@@ -7,6 +7,7 @@ import { useLocation } from "wouter";
 import { useEffect, useState, useRef } from "react";
 import playAgainImage from "@assets/LPFA-PLAY-AGAIN_1757278384329.png";
 import playNowImage from "@assets/LPFA-PLAY-now_1757278621958.png";
+import designersImage from "@assets/lpfa-designers_1757289648427.png";
 
 export default function InternalOne() {
   const [, setLocation] = useLocation();
@@ -481,8 +482,8 @@ export default function InternalOne() {
               <div className="relative">
                 <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
                   <img 
-                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Professional consultation"
+                    src={designersImage}
+                    alt="Design team at work"
                     className="w-full h-80 object-cover rounded-lg"
                   />
                 </div>

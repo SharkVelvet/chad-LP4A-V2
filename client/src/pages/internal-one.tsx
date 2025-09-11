@@ -399,6 +399,16 @@ export default function InternalOne() {
           </div>
         </div>
 
+        {/* Additional Services Section */}
+        <div className="bg-white py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Additional Services</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Need something beyond our templates? We create Custom Websites, Custom Logos, Print Material, and specialized solutions for Agents.
+            </p>
+          </div>
+        </div>
+
         {/* How It Works Section */}
         <div className="relative z-10 py-20 bg-gradient-to-b from-gray-50 to-white">
           <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1050px' }}>
@@ -423,7 +433,7 @@ export default function InternalOne() {
               <div>
                 <div className="mb-12">
                   <h2 className="text-4xl font-bold text-gray-900 mb-4">Custom Website Design</h2>
-                  <p className="text-lg text-gray-600">Don't see a tempalte that you like? Want something a little more? Our team is ahppy to help you  build a custom solution, here is how it works.</p>
+                  <p className="text-lg text-gray-600">Don't see a template that you like? Want something a little more? Our team is happy to help you build a custom solution, here is how it works.</p>
                 </div>
 
                 <div className="space-y-8">
@@ -496,16 +506,6 @@ export default function InternalOne() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Additional Services Section */}
-      <div className="bg-white py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Additional Services</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Need something beyond our templates? We create Custom Websites, Custom Logos, Print Material, and specialized solutions for Agents.
-          </p>
         </div>
       </div>
 
@@ -587,7 +587,7 @@ export default function InternalOne() {
                     style={{ backgroundColor: '#6458AF' }}
                     onClick={() => setLocation('/services')}
                   >
-                    Lets Chat about Your brand
+                    Let's Chat about Your Brand
                   </Button>
                 </div>
             </div>

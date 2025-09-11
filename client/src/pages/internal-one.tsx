@@ -384,15 +384,14 @@ export default function InternalOne() {
               </div>
               
               {/* Get Started Section */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-24 text-center">
-                <p className="text-xl text-gray-700 font-medium">Let's build your agency an Amazing Website!</p>
+              <div className="flex justify-center mb-24">
                 <Button 
                   size="lg"
                   className="px-8 py-4 text-lg font-semibold text-white hover:opacity-90 transition-opacity whitespace-nowrap"
                   style={{ backgroundColor: '#6458AF' }}
-                  onClick={() => setLocation('/get-clients')}
+                  onClick={() => window.open('https://landingpagesforagents.com/template-selection', '_blank')}
                 >
-                  Click Here to Get Started
+                  Click Here to get Started!
                 </Button>
               </div>
             </div>

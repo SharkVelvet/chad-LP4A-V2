@@ -313,6 +313,107 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Check promotion code unlimited status and create new unlimited coupon if needed
+  app.post('/api/make-coupon-unlimited', async (req, res) => {
+    const { promoCodeId } = req.body;
+    
+    if (!promoCodeId) {
+      return res.status(400).json({ error: 'Promotion code ID is required' });
+    }
+
+    if (!stripe) {
+      return res.status(500).json({ error: 'Payment processing not configured' });
+    }
+
+    try {
+      console.log('Checking promotion code:', promoCodeId);
+      
+      // Get the promotion code and underlying coupon
+      const promotionCode = await stripe.promotionCodes.retrieve(promoCodeId);
+      const originalCoupon = await stripe.coupons.retrieve(promotionCode.coupon.id);
+      
+      console.log('Original coupon details:', {
+        id: originalCoupon.id,
+        max_redemptions: originalCoupon.max_redemptions,
+        times_redeemed: originalCoupon.times_redeemed
+      });
+      
+      // Check if coupon is already unlimited
+      if (originalCoupon.max_redemptions === null) {
+        return res.json({
+          success: true,
+          message: 'Coupon is already unlimited',
+          status: 'already_unlimited',
+          coupon: {
+            id: originalCoupon.id,
+            name: originalCoupon.name,
+            max_redemptions: originalCoupon.max_redemptions,
+            times_redeemed: originalCoupon.times_redeemed,
+          }
+        });
+      }
+      
+      // Create a new unlimited coupon with same properties
+      const couponParams: any = {
+        duration: originalCoupon.duration,
+        // max_redemptions omitted = unlimited
+      };
+      
+      if (originalCoupon.name) {
+        couponParams.name = `${originalCoupon.name} (Unlimited)`;
+      }
+      if (originalCoupon.percent_off) {
+        couponParams.percent_off = originalCoupon.percent_off;
+      }
+      if (originalCoupon.amount_off) {
+        couponParams.amount_off = originalCoupon.amount_off;
+      }
+      if (originalCoupon.currency) {
+        couponParams.currency = originalCoupon.currency;
+      }
+      if (originalCoupon.duration_in_months) {
+        couponParams.duration_in_months = originalCoupon.duration_in_months;
+      }
+      
+      const newUnlimitedCoupon = await stripe.coupons.create(couponParams);
+      
+      // Create a new promotion code for the unlimited coupon
+      const newPromoCode = await stripe.promotionCodes.create({
+        coupon: newUnlimitedCoupon.id,
+        code: `${promotionCode.code}_UNLIMITED`,
+        active: true,
+        // max_redemptions omitted = unlimited
+      });
+      
+      console.log('Created new unlimited promotion code:', newPromoCode.code);
+      
+      res.json({
+        success: true,
+        message: 'Created new unlimited coupon and promotion code',
+        status: 'created_unlimited',
+        original: {
+          coupon_id: originalCoupon.id,
+          promo_code: promotionCode.code,
+          max_redemptions: originalCoupon.max_redemptions
+        },
+        new: {
+          coupon_id: newUnlimitedCoupon.id,
+          promo_code: newPromoCode.code,
+          promo_id: newPromoCode.id,
+          max_redemptions: null
+        }
+      });
+    } catch (error: any) {
+      console.error('Error handling unlimited coupon request:', error);
+      
+      if (error.code === 'resource_missing') {
+        return res.status(400).json({ error: 'Promotion code not found in your Stripe account' });
+      }
+      
+      res.status(500).json({ error: error.message || 'Unable to process coupon request' });
+    }
+  });
+
   // Stripe subscription route for guest checkout
   app.post('/api/create-subscription', async (req, res) => {
     const { email, customerName, couponCode } = req.body;
@@ -364,11 +465,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
               if (coupon.valid) {
                 discountInfo = coupon;
               }
-            } catch (directError) {
+            } catch (directError: any) {
               console.log('Direct coupon lookup also failed:', directError.message);
             }
           }
-        } catch (error) {
+        } catch (error: any) {
           console.error('Error during coupon lookup:', couponCode, error.message);
         }
       }
@@ -394,22 +495,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       let paymentIntent;
       if (firstMonthAmount === 0) {
-        // For $0 amounts, create a setup intent instead of payment intent
-        console.log('Creating setup intent for $0 charge');
+        // For $0 amounts, create a setup intent that REQUIRES payment method collection
+        console.log('Creating setup intent for $0 charge - REQUIRING payment method for future billing');
         paymentIntent = await stripe.setupIntents.create({
           customer: customer.id,
           payment_method_types: ['card'],
           usage: 'off_session',
+          confirm: false, // Require frontend confirmation with payment method
           metadata: {
-            type: 'zero_dollar_setup',
+            type: 'zero_dollar_setup_required',
             customer_email: email,
             original_amount: '3800',
             discount_applied: discountInfo ? couponCode : 'none',
+            requires_payment_method: 'true',
           },
         });
         
         // For zero-dollar payments, we'll manually send receipt since Stripe won't
-        console.log('Zero-dollar payment - will send manual receipt');
+        console.log('Zero-dollar payment - will send manual receipt after payment method collected');
       } else {
         // Create payment intent for non-zero amounts
         paymentIntent = await stripe.paymentIntents.create({
@@ -445,7 +548,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       // Create the ongoing subscription starting next month ($18/month)
-      // The subscription will be created in incomplete state until payment method is attached
+      // IMPORTANT: Force incomplete state to REQUIRE payment method collection even for $0 first payments
       const subscriptionOptions: any = {
         customer: customer.id,
         items: [{
@@ -453,9 +556,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }],
         trial_end: Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60), // Start billing in 30 days
         collection_method: 'charge_automatically',
-        payment_behavior: 'default_incomplete',
+        payment_behavior: 'default_incomplete', // Forces payment method requirement
+        expand: ['latest_invoice.payment_intent'],
         metadata: {
           first_payment_intent: paymentIntent.id,
+          first_payment_amount: firstMonthAmount.toString(),
+          requires_payment_method: 'true', // Track that this subscription MUST have payment method
         },
       };
 

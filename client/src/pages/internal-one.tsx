@@ -387,7 +387,7 @@ export default function InternalOne() {
               <div className="flex justify-center mb-24">
                 <Button 
                   size="lg"
-                  className="px-8 py-4 text-lg font-semibold text-white hover:opacity-90 transition-opacity whitespace-nowrap"
+                  className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity whitespace-nowrap"
                   style={{ backgroundColor: '#6458AF' }}
                   onClick={() => window.open('https://landingpagesforagents.com/template-selection', '_blank')}
                 >
@@ -399,7 +399,7 @@ export default function InternalOne() {
         </div>
 
         {/* Additional Services Section */}
-        <div className="bg-white py-20">
+        <div className="bg-gradient-to-b from-gray-50 to-white py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Additional Services</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -495,7 +495,7 @@ export default function InternalOne() {
                 <div className="mt-8 flex justify-start">
                   <Button 
                     size="lg"
-                    className="px-8 py-4 text-lg font-semibold text-white hover:opacity-90 transition-opacity"
+                    className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
                     style={{ backgroundColor: '#6458AF' }}
                     onClick={() => setLocation('/services')}
                   >
@@ -697,7 +697,7 @@ export default function InternalOne() {
                 <div className="mt-8 flex justify-start">
                   <Button 
                     size="lg"
-                    className="px-8 py-4 text-lg font-semibold text-white hover:opacity-90 transition-opacity"
+                    className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
                     style={{ backgroundColor: '#6458AF' }}
                     onClick={() => setLocation('/services')}
                   >

@@ -8,6 +8,8 @@ import { useEffect, useState, useRef } from "react";
 import playAgainImage from "@assets/LPFA-PLAY-AGAIN_1757278384329.png";
 import playNowImage from "@assets/LPFA-PLAY-now_1757278621958.png";
 import designersImage from "@assets/lpfa-designers_1757289648427.png";
+import logoDesignImage from "@assets/lp4a-logo-design_1757611811508.jpg";
+import printDesignImage from "@assets/lp4a-print-design_1757611869956.jpg";
 
 export default function InternalOne() {
   const [, setLocation] = useLocation();
@@ -557,8 +559,8 @@ export default function InternalOne() {
                   </div>
                 </div>
 
-                {/* Call to Action Button */}
-                <div className="mt-8 flex justify-center">
+                {/* Call to Action Button - Left Aligned */}
+                <div className="mt-8 flex justify-start">
                   <Button 
                     size="lg"
                     className="px-8 py-4 text-lg font-semibold text-white hover:opacity-90 transition-opacity"
@@ -661,8 +663,8 @@ export default function InternalOne() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src={designersImage}
-                  alt="Design team at work"
+                  src={logoDesignImage}
+                  alt="Logo design and branding materials"
                   className="w-full object-cover"
                   style={{ height: '739px' }}
                 />
@@ -686,8 +688,8 @@ export default function InternalOne() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src={designersImage}
-                  alt="Design team at work"
+                  src={printDesignImage}
+                  alt="Print design materials and branding"
                   className="w-full object-cover"
                   style={{ height: '739px' }}
                 />
@@ -759,8 +761,8 @@ export default function InternalOne() {
                   </div>
                 </div>
 
-                {/* Call to Action Button */}
-                <div className="mt-8 flex justify-center">
+                {/* Call to Action Button - Left Aligned */}
+                <div className="mt-8 flex justify-start">
                   <Button 
                     size="lg"
                     className="px-8 py-4 text-lg font-semibold text-white hover:opacity-90 transition-opacity"

@@ -398,18 +398,20 @@ export default function InternalOne() {
           </div>
         </div>
 
-        {/* Additional Services Section */}
-        <div className="bg-gradient-to-b from-gray-50 to-white py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Additional Services</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Need something beyond our templates? We create Custom Websites, Custom Logos, Print Material, and specialized solutions for Agents.
-            </p>
+        {/* Additional Services & How It Works Section */}
+        <div className="relative z-10 bg-gradient-to-b from-gray-50 to-white">
+          {/* Additional Services */}
+          <div className="py-20">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Additional Services</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Need something beyond our templates? We create Custom Websites, Custom Logos, Print Material, and specialized solutions for Agents.
+              </p>
+            </div>
           </div>
-        </div>
 
-        {/* How It Works Section */}
-        <div className="relative z-10 py-20 bg-gradient-to-b from-gray-50 to-white">
+          {/* How It Works Section */}
+          <div className="py-20">
           <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1050px' }}>
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left side - Image */}
@@ -706,6 +708,7 @@ export default function InternalOne() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

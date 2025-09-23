@@ -5887,91 +5887,93 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
   if (templateSlug === "template-13" || templateSlug === "Template-13") {
     return (
       <div className={`bg-white ${className}`} style={{ scrollBehavior: 'smooth' }}>
-        {/* Header */}
-        <div className="bg-white border-b px-4 sm:px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
+        {/* Header - Exact match to image */}
+        <div className="bg-white px-6 py-4 flex items-center justify-between">
           <div className="font-bold text-xl">
-            <div className="text-gray-900">Delta Life</div>
-            <div className="text-xs font-normal text-gray-600 mt-1">A Premier Houston Insurance Group</div>
+            <div className="text-gray-900 text-2xl">Delta Life</div>
+            <div className="text-xs font-normal text-gray-500 mt-1">A Premier Houston Insurance Group</div>
           </div>
-          <div className="flex items-center space-x-6">
-            <div className="hidden md:flex space-x-6 text-sm text-gray-700">
-              <a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className="hover:text-blue-600 cursor-pointer transition-colors">Solutions</a>
-              <a href="#training" onClick={(e) => handleSmoothScroll(e, 'training')} className="hover:text-blue-600 cursor-pointer transition-colors">Training</a>
-              <a href="#support" onClick={(e) => handleSmoothScroll(e, 'support')} className="hover:text-blue-600 cursor-pointer transition-colors">Support</a>
-              <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-blue-600 cursor-pointer transition-colors">About</a>
+          <div className="flex items-center space-x-8">
+            <div className="hidden md:flex space-x-8 text-sm text-gray-700">
+              <a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className="hover:text-gray-900 cursor-pointer">Solutions</a>
+              <a href="#training" onClick={(e) => handleSmoothScroll(e, 'training')} className="hover:text-gray-900 cursor-pointer">Training</a>
+              <a href="#support" onClick={(e) => handleSmoothScroll(e, 'support')} className="hover:text-gray-900 cursor-pointer">Support</a>
+              <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-gray-900 cursor-pointer">About</a>
             </div>
             <button 
               onClick={(e) => handleSmoothScroll(e, 'contact')} 
-              className="bg-red-600 text-white px-6 py-2 rounded font-semibold hover:bg-red-700 transition-colors text-sm"
+              className="bg-red-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-red-700 transition-colors"
             >
               Get Started
             </button>
           </div>
         </div>
 
-        {/* Hero Section */}
-        <div className="py-20 px-4">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left side - Content */}
+        {/* Hero Section - Exact match to image layout */}
+        <div className="px-6 py-20">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left side - Content exactly as in image */}
             <div>
               <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                The Career Path You Have Always Wanted is Right Here!
+                The Career Path You<br />
+                Have Always Wanted is<br />
+                Right Here!
               </h1>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              <p className="text-gray-600 mb-8 leading-relaxed text-lg">
                 Join Houston's premier insurance team and accelerate your career as an independent agent. At Delta Life, we provide the training, leads, support, and earning potential you need to thrive in the insurance industry—without the risk of going it alone.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex gap-4">
                 <button 
                   onClick={(e) => handleSmoothScroll(e, 'contact')} 
-                  className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded font-semibold transition-colors"
+                  className="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded text-sm font-medium transition-colors"
                 >
                   Join Our Team
                 </button>
                 <button 
                   onClick={(e) => handleSmoothScroll(e, 'about')} 
-                  className="border-2 border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3 rounded font-semibold transition-colors"
+                  className="border border-gray-300 text-gray-700 hover:bg-gray-50 px-5 py-2.5 rounded text-sm font-medium transition-colors"
                 >
                   Why Choose Us
                 </button>
               </div>
             </div>
             
-            {/* Right side - Image */}
+            {/* Right side - Image exactly as in layout */}
             <div className="relative">
               <img 
                 src="/attached_assets/plr-recruiting-1_1758659740352.jpg" 
                 alt="Father and child spending quality time together" 
-                className="w-full h-auto rounded-lg shadow-lg"
-                style={{ maxHeight: '500px', objectFit: 'cover' }}
+                className="w-full rounded-lg"
+                style={{ height: '400px', objectFit: 'cover' }}
               />
             </div>
           </div>
         </div>
 
-        {/* Statistics Section */}
-        <div className="py-16 bg-gray-50 px-4">
+        {/* Statistics Section - Exact match to image */}
+        <div className="px-6 py-16">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
               <div>
-                <div className="text-6xl font-bold text-red-600 mb-4">78%</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Agent Success Rate</h3>
+                <div className="text-8xl font-bold text-red-600 mb-3">78%</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Agent Success Rate</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Our proven mentorship and ongoing support programs ensure agents thrive and maintain long-lasting, profitable careers.
                 </p>
               </div>
               
               <div>
-                <div className="text-6xl font-bold text-red-600 mb-4">67%</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Revenue Growth in Year One</h3>
+                <div className="text-8xl font-bold text-red-600 mb-3">67%</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Revenue Growth in Year One</h3>
                 <p className="text-gray-600 leading-relaxed">
                   New agents experience substantial earnings increases through our advanced training programs and exclusive lead systems.
                 </p>
               </div>
               
               <div>
-                <div className="text-6xl font-bold text-red-600 mb-4">85%</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Market Penetration</h3>
+                <div className="text-8xl font-bold text-red-600 mb-3">85%</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Market Penetration</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Wide-reaching market presence spanning numerous states with diverse product offerings and industry-leading commission structures.
                 </p>
@@ -5980,152 +5982,47 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           </div>
         </div>
 
-        {/* Why Top Agents Choose Delta Life Section */}
-        <div id="about" className="py-20 px-4">
+        {/* Why Top Agents Choose Delta Life Section - Exact match to image */}
+        <div id="about" className="px-6 py-20">
           <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Top Agents Choose Delta Life</h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed">
+            <h2 className="text-5xl font-bold text-gray-900 mb-6">Why Top Agents Choose Delta Life</h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               We provide everything you need to accelerate your insurance career, from comprehensive training and warm leads to ongoing mentorship and cutting-edge technology support.
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              {/* Left side - Images */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <img 
-                    src="/attached_assets/plr-recruiting-1_1758659740352.jpg" 
-                    alt="Professional training environment" 
-                    className="w-full h-48 object-cover rounded-lg shadow-sm"
-                  />
-                  <img 
-                    src="/attached_assets/plr-recruiting-1_1758659740352.jpg" 
-                    alt="Insurance team collaboration" 
-                    className="w-full h-32 object-cover rounded-lg shadow-sm"
-                  />
-                </div>
-                <div className="mt-8">
-                  <img 
-                    src="/attached_assets/plr-recruiting-1_1758659740352.jpg" 
-                    alt="Success celebration" 
-                    className="w-full h-56 object-cover rounded-lg shadow-sm"
-                  />
-                </div>
-              </div>
-              
-              {/* Right side - Content */}
-              <div className="text-left">
-                <h3 className="text-2xl font-bold text-red-600 mb-6">Comprehensive Training Programs</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  Our industry-leading training programs are designed to accelerate your success in the insurance industry. From product knowledge to sales techniques, we provide the comprehensive education you need to excel.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  With ongoing mentorship, advanced lead systems, and cutting-edge technology support, you'll have everything you need to build a thriving insurance career with confidence.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
 
-        {/* Solutions Section */}
-        <div id="solutions" className="py-16 bg-gray-50 px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Solutions</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Comprehensive support systems designed to accelerate your insurance career success.
-              </p>
+        {/* Comprehensive Training Programs Section - Bottom of image */}
+        <div id="training" className="px-6 py-16">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            {/* Left side - Image grid exactly like in image */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <img 
+                  src="/attached_assets/plr-recruiting-1_1758659740352.jpg" 
+                  alt="Professional training environment" 
+                  className="w-full h-40 object-cover rounded-lg"
+                />
+                <img 
+                  src="/attached_assets/plr-recruiting-1_1758659740352.jpg" 
+                  alt="Insurance team collaboration" 
+                  className="w-full h-24 object-cover rounded-lg"
+                />
+              </div>
+              <div className="mt-8">
+                <img 
+                  src="/attached_assets/plr-recruiting-1_1758659740352.jpg" 
+                  alt="Success celebration" 
+                  className="w-full h-48 object-cover rounded-lg"
+                />
+              </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center bg-white p-6 rounded-lg shadow-sm">
-                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-red-600 rounded-full">
-                  <GraduationCap className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Advanced Training</h3>
-                <p className="text-gray-600">
-                  Comprehensive training programs covering product knowledge, sales techniques, and industry best practices.
-                </p>
-              </div>
-              
-              <div className="text-center bg-white p-6 rounded-lg shadow-sm">
-                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-red-600 rounded-full">
-                  <Users className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Warm Leads</h3>
-                <p className="text-gray-600">
-                  Exclusive lead generation systems providing you with qualified prospects ready to purchase insurance.
-                </p>
-              </div>
-              
-              <div className="text-center bg-white p-6 rounded-lg shadow-sm">
-                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-red-600 rounded-full">
-                  <Target className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Ongoing Support</h3>
-                <p className="text-gray-600">
-                  Dedicated mentorship and ongoing support to ensure your continued success and career growth.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Contact Section */}
-        <div id="contact" className="py-16 px-4">
-          <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Start Your Insurance Career?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-              Join Houston's premier insurance team and accelerate your career as an independent agent. Contact us today to learn more about our opportunities.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-red-600 rounded-full">
-                  <MapPin className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Houston Office</h3>
-                <p className="text-gray-600">
-                  123 Insurance Plaza<br />
-                  Houston, TX 77001
-                </p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-red-600 rounded-full">
-                  <Phone className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Call Us</h3>
-                <p className="text-gray-600">
-                  (713) 555-DELTA<br />
-                  Mon - Fri: 8:00 AM - 6:00 PM
-                </p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-red-600 rounded-full">
-                  <Mail className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Email</h3>
-                <p className="text-gray-600">
-                  careers@deltalife.com<br />
-                  info@deltalife.com
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="bg-gray-800 text-white px-4 py-12">
-          <div className="max-w-7xl mx-auto text-center">
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-red-600 mb-2">Delta Life</h3>
-              <p className="text-gray-400">A Premier Houston Insurance Group</p>
-            </div>
-            
-            <div className="border-t border-gray-700 pt-6">
-              <p className="text-gray-500 text-sm">
-                © 2025 Delta Life Insurance Group. All rights reserved. | Built by landingpagesforagents.com
+            {/* Right side - Content exactly as in image */}
+            <div className="text-left">
+              <h3 className="text-3xl font-bold text-red-600 mb-6">Comprehensive Training Programs</h3>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                Our industry-leading training programs are designed to accelerate your success in the insurance industry. From product knowledge to sales techniques, we provide the comprehensive education you need to excel.
               </p>
             </div>
           </div>

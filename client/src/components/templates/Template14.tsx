@@ -95,16 +95,16 @@ export default function Template14({ className = "" }: Template14Props) {
             {/* Left Content */}
             <div className="lg:pr-8">
               <div className="text-sm text-gray-600 mb-6 font-medium">
-                An incredible agency experience
+                78% agent success rate
               </div>
               
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Turn Your Dreams Into 
-                <span className="text-red-600"> Reality.</span>
+                The Career Path You Have Always Wanted is 
+                <span className="text-red-600"> Right Here!</span>
               </h1>
               
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Be part of something extraordinary at Delta Life Insurance. Our incredible agency doesn't just offer careers—we create life-changing opportunities where your biggest dreams become your greatest achievements.
+                Join Houston's premier insurance team and accelerate your career as an independent agent. At Delta Life, we provide the training, leads, support, and earning potential you need to thrive in the insurance industry—without the risk of going it alone.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
@@ -139,10 +139,10 @@ export default function Template14({ className = "" }: Template14Props) {
                   {/* Left side - Stats */}
                   <div className="bg-red-600 text-white p-6 rounded-2xl">
                     <h3 className="text-xl font-bold mb-4">
-                      Where dreams become reality for over 500 agents.
+                      Successfully launched hundreds of insurance careers with proven systems.
                     </h3>
                     <p className="text-red-100 text-sm mb-4">
-                      Our incredible agency transforms lives by turning ambitious goals into extraordinary achievements and lasting success.
+                      Our mentorship and support programs ensure agents thrive with 78% success rate and ongoing career development.
                     </p>
                   </div>
                   

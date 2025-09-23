@@ -65,6 +65,13 @@ export async function sendCustomerReceipt(customerData: CustomerData) {
         </ul>
       </div>
 
+      <div style="background-color: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 20px; margin: 20px 0;">
+        <h4 style="color: #92400e; margin-top: 0;">What do you need to do?</h4>
+        <p style="color: #374151; margin: 10px 0; line-height: 1.6;">
+          While we get started on your website, it would be great if you could send us a professional headshot of yourself for the site! Please email this headshot to <a href="mailto:josh@landingpagesforagents.com" style="color: #6458AF; text-decoration: none; font-weight: bold;">josh@landingpagesforagents.com</a>. Thank you!
+        </p>
+      </div>
+
       <div style="text-align: center; padding: 20px; color: #6b7280; font-size: 14px;">
         <p>Questions? Reply to this email or contact our support team.</p>
         <p>Thank you for choosing Landing Pages for Agents!</p>

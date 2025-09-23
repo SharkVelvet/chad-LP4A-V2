@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import TemplatePreview from "@/components/template-preview";
 import Template13 from "@/components/templates/Template13";
+import Template14 from "@/components/templates/Template14";
 import { useEffect } from "react";
 import { trackTemplateView, trackTemplateSelection } from "@/lib/facebook-pixel";
 
@@ -86,6 +87,8 @@ export default function TemplatePreviewPage() {
       <div className="w-full" style={{ scrollBehavior: 'smooth' }}>
         {template.slug === "template-13" || template.slug === "Template-13" ? (
           <Template13 className="w-full" />
+        ) : template.slug === "template-14" || template.slug === "Template-14" ? (
+          <Template14 className="w-full" />
         ) : ["Template-1", "Template-2", "Template-3", "Template-4", "Template-5", "Template-6", "Template-7", "Template-8", "template-9", "Template-10", "Template-11", "Template-12"].includes(template.slug) ? (
           <TemplatePreview templateSlug={template.slug} className="w-full" />
         ) : (

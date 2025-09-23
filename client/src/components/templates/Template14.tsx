@@ -84,10 +84,10 @@ export default function Template14({ className = "" }: Template14Props) {
       </header>
 
       {/* Big Announcement Section */}
-      <section className="h-[70vh] flex items-center overflow-hidden">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 h-full">
+      <section className="overflow-hidden">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
           {/* Left Content - Dark Background */}
-          <div className="bg-red-700 flex items-center justify-center h-full px-8 lg:px-16">
+          <div className="bg-red-700 grid place-content-center px-8 lg:px-16">
             <div className="max-w-lg text-center lg:text-left w-full">
               <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white mb-6">
                 Break Free From The 9-5 Trap<br />
@@ -108,11 +108,11 @@ export default function Template14({ className = "" }: Template14Props) {
           </div>
           
           {/* Right Image */}
-          <div className="relative bg-gray-100">
+          <div className="relative bg-gray-100 h-full">
             <img 
               src="/attached_assets/plr-hiring4_1758661521235.jpg" 
               alt="Mandy Johnson - Delta Life Insurance Professional" 
-              className="w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
         </div>

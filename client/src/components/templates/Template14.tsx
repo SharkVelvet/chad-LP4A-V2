@@ -96,16 +96,16 @@ export default function Template14({ className = "" }: Template14Props) {
             {/* Left Content */}
             <div className="lg:pr-8">
               <div className="text-sm text-gray-600 mb-6 font-medium">
-                78% agent success rate
+                Stop trading time for money
               </div>
               
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                The Career Path You Have Always Wanted is 
-                <span className="text-red-600"> Right Here!</span>
+                Your Dreams Are Waiting at 
+                <span className="text-red-600"> Delta Life Insurance!</span>
               </h1>
               
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Join Houston's premier insurance team and accelerate your career as an independent agent. At Delta Life, we provide the training, leads, support, and earning potential you need to thrive in the insurance industry—without the risk of going it alone.
+                Tired of the 9-5 grind? Ready to build unlimited income on your own terms? Join Mandy Johnson's elite insurance team and transform your financial future. We'll show you exactly how to escape the corporate trap and build the wealth you've always dreamed of.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
@@ -134,10 +134,10 @@ export default function Template14({ className = "" }: Template14Props) {
                   {/* Left side - Stats */}
                   <div className="bg-red-600 text-white p-6 rounded-2xl">
                     <h3 className="text-xl font-bold mb-4">
-                      Successfully launched hundreds of insurance careers with proven systems.
+                      Stop dreaming about financial freedom and start living it!
                     </h3>
                     <p className="text-red-100 text-sm mb-4">
-                      Our mentorship and support programs ensure agents thrive with 78% success rate and ongoing career development.
+                      Mandy's proven system has helped hundreds escape their 9-5 jobs to build six-figure incomes working just part-time in insurance.
                     </p>
                   </div>
                   
@@ -169,18 +169,18 @@ export default function Template14({ className = "" }: Template14Props) {
           {/* Main heading and description */}
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Platform designed to simplify<br />
-              and enhance the hiring process.
+              Break Free From The 9-5 Trap<br />
+              And Build Your Dream Income
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto mb-8">
-              With personalized solutions tailored to your business needs, we connect you with the best talent quickly and efficiently, helping you build stronger, more effective teams.
+              Stop settling for a paycheck that barely covers your bills. At Delta Life Insurance, we provide everything you need to escape the corporate grind and build the unlimited income you deserve.
             </p>
             
             <button 
               onClick={(e) => handleSmoothScroll(e, 'about')}
               className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full text-base font-medium transition-colors inline-flex items-center space-x-2"
             >
-              <span>About Delta Life</span>
+              <span>Start Your Journey</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -193,9 +193,9 @@ export default function Template14({ className = "" }: Template14Props) {
               <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Target className="h-6 w-6 text-red-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Tailored Solutions</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Escape The Rat Race</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Custom recruitment strategies designed for your unique business needs.
+                No more begging for time off or asking permission to live your life.
               </p>
             </div>
 
@@ -203,9 +203,9 @@ export default function Template14({ className = "" }: Template14Props) {
               <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Clock className="h-6 w-6 text-red-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Faster Hiring</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Work When You Want</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Streamlined processes that cut hiring time by 30%.
+                Create your own schedule and work from anywhere you choose.
               </p>
             </div>
 
@@ -213,9 +213,9 @@ export default function Template14({ className = "" }: Template14Props) {
               <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Users className="h-6 w-6 text-red-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Access to Top Talent</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Unlimited Income Potential</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Connect with highly qualified candidates across industries.
+                Your earnings are only limited by your ambition, not a salary cap.
               </p>
             </div>
 
@@ -223,9 +223,9 @@ export default function Template14({ className = "" }: Template14Props) {
               <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Zap className="h-6 w-6 text-red-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Effortless Integration</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Financial Freedom</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Seamlessly integrate our platform with your existing HR tools for a hiring experience.
+                Build wealth that lasts and secure your family's future forever.
               </p>
             </div>
           </div>
@@ -237,9 +237,9 @@ export default function Template14({ className = "" }: Template14Props) {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main heading and description */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Top Agents Choose Delta Life</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Dreamers Choose Delta Life</h2>
             <p className="text-gray-600 text-lg leading-relaxed max-w-4xl mx-auto">
-              We provide everything you need to accelerate your insurance career, from comprehensive training and warm leads to ongoing mentorship and cutting-edge technology support.
+              Stop watching other people live their dreams while you're stuck in a cubicle. Mandy Johnson's proven system will teach you how to break free and build the income and lifestyle you deserve.
             </p>
           </div>
 
@@ -256,30 +256,30 @@ export default function Template14({ className = "" }: Template14Props) {
             
             {/* Right side - Training Programs */}
             <div>
-              <h3 className="text-3xl font-bold text-red-600 mb-6">Comprehensive Training Programs</h3>
+              <h3 className="text-3xl font-bold text-red-600 mb-6">Escape The 9-5 Forever</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-3">
                   <Target className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Sales Training</h4>
-                    <p className="text-gray-600">Master proven sales techniques and objection handling strategies.</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">No More Bosses</h4>
+                    <p className="text-gray-600">Stop answering to someone else and start being your own boss with complete control over your schedule.</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start space-x-3">
                   <GraduationCap className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Product Knowledge</h4>
-                    <p className="text-gray-600">Deep understanding of insurance products and market positioning.</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Unlimited Vacation Time</h4>
+                    <p className="text-gray-600">Take time off whenever you want without asking permission or worrying about your paycheck.</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start space-x-3">
                   <Lightbulb className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Technology Training</h4>
-                    <p className="text-gray-600">Learn to leverage cutting-edge tools and CRM systems effectively.</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Work From Anywhere</h4>
+                    <p className="text-gray-600">Beach, mountain cabin, or your living room - work wherever makes you happy and productive.</p>
                   </div>
                 </div>
               </div>
@@ -290,30 +290,30 @@ export default function Template14({ className = "" }: Template14Props) {
           <div id="solutions" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Resources */}
             <div>
-              <h3 className="text-3xl font-bold text-red-600 mb-6">Advanced Resources & Career Support</h3>
+              <h3 className="text-3xl font-bold text-red-600 mb-6">Build Wealth While You Sleep</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-3">
                   <TrendingUp className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Warm Lead Pipeline</h4>
-                    <p className="text-gray-600">Pre-qualified leads delivered directly to you with automated follow-up support.</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Residual Income Streams</h4>
+                    <p className="text-gray-600">Build insurance portfolios that pay you month after month, year after year - true passive income.</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start space-x-3">
                   <MessageSquare className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Marketing Resources</h4>
-                    <p className="text-gray-600">Professional marketing materials and company-branded digital assets at your disposal.</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Six-Figure Potential</h4>
+                    <p className="text-gray-600">Mandy's top agents earn $100K+ in their first year. Your income ceiling is only limited by your ambition.</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start space-x-3">
                   <HeadphonesIcon className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Ongoing Mentorship</h4>
-                    <p className="text-gray-600">Regular coaching and mentorship from experienced industry professionals.</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Personal Mentorship</h4>
+                    <p className="text-gray-600">Direct access to Mandy's 15+ years of expertise - she'll personally guide your journey to financial freedom.</p>
                   </div>
                 </div>
               </div>
@@ -393,18 +393,18 @@ export default function Template14({ className = "" }: Template14Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* How it works label */}
           <div className="mb-8">
-            <span className="text-red-200 text-sm font-medium uppercase tracking-wide">How it works</span>
+            <span className="text-red-200 text-sm font-medium uppercase tracking-wide">Your path to freedom</span>
           </div>
 
           {/* Main heading and description */}
           <div className="mb-16">
             <h2 className="text-4xl font-bold mb-6 max-w-2xl">
-              Efficient process to connect<br />
-              businesses with the best talent.
+              Stop Trading Your Life<br />
+              For a Paycheck
             </h2>
             <p className="text-red-100 text-lg leading-relaxed max-w-2xl">
-              We work closely with you to understand your unique needs, culture, and hiring goals.<br />
-              Using this insight, we tailor a recruitment strategy that targets the right candidates.
+              Mandy Johnson escaped her corporate job 15 years ago and built a multi-million dollar insurance business.<br />
+              Now she's teaching others exactly how to do the same thing.
             </p>
           </div>
 
@@ -418,9 +418,9 @@ export default function Template14({ className = "" }: Template14Props) {
                 </div>
                 <div className="h-px bg-red-400 flex-1"></div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">Understand Your Needs</h3>
+              <h3 className="text-xl font-semibold mb-3">Break Free From Your Job</h3>
               <p className="text-red-100 text-sm leading-relaxed">
-                We begin by working closely with you to understand your business, culture, and specific hiring requirements.
+                Stop asking for permission to live your life. Take control of your schedule and income potential.
               </p>
             </div>
 
@@ -432,9 +432,9 @@ export default function Template14({ className = "" }: Template14Props) {
                 </div>
                 <div className="h-px bg-red-400 flex-1"></div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">Recruitment Strategy</h3>
+              <h3 className="text-xl font-semibold mb-3">Learn The System</h3>
               <p className="text-red-100 text-sm leading-relaxed">
-                Based on your unique needs, we craft a personalized recruitment strategy designed to attract the best talent.
+                Master Mandy's proven strategies for building residual income streams that pay you for years to come.
               </p>
             </div>
 
@@ -445,9 +445,9 @@ export default function Template14({ className = "" }: Template14Props) {
                   3
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">Seamless Hiring Process</h3>
+              <h3 className="text-xl font-semibold mb-3">Live Your Dreams</h3>
               <p className="text-red-100 text-sm leading-relaxed">
-                Using our platform's advanced tools, we match you with top candidates and integrate the process with your HR systems.
+                Build the income and lifestyle you've always wanted while helping families protect their future.
               </p>
             </div>
           </div>
@@ -463,14 +463,14 @@ export default function Template14({ className = "" }: Template14Props) {
             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
               <div className="text-center">
                 <h3 className="text-3xl font-bold text-white mb-4">
-                  Get started with Delta Life today and<br />
-                  discover a smarter, faster way to hire.
+                  Ready to escape the 9-5 and<br />
+                  start living your dreams?
                 </h3>
                 <button 
                   onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
                   className="bg-white text-red-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
                 >
-                  <span>Find your talent</span>
+                  <span>Start your journey</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -486,9 +486,9 @@ export default function Template14({ className = "" }: Template14Props) {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main heading and description */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">3 steps to maximize</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">3 Steps To Financial Freedom</h2>
             <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto">
-              Our proven three-step process helps agents build sustainable, profitable insurance businesses from day one.
+              Follow Mandy's proven roadmap that has helped hundreds of people escape the rat race and build the income they've always dreamed of.
             </p>
           </div>
 
@@ -499,9 +499,9 @@ export default function Template14({ className = "" }: Template14Props) {
               <div className="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-6">
                 1
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Complete Training Program</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Master The Mindset</h3>
               <p className="text-gray-600 leading-relaxed">
-                Start with our comprehensive 30-day training program covering sales techniques, product knowledge, and business development strategies.
+                Break free from the employee mindset and start thinking like a business owner. Mandy will show you how to shift your thinking for success.
               </p>
             </div>
 
@@ -510,9 +510,9 @@ export default function Template14({ className = "" }: Template14Props) {
               <div className="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-6">
                 2
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Launch with Lead Support</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Build Your Income Streams</h3>
               <p className="text-gray-600 leading-relaxed">
-                Begin selling immediately with our qualified lead system and ongoing mentorship from experienced agents in your area.
+                Learn how to create multiple streams of residual income that pay you month after month, even while you sleep.
               </p>
             </div>
 
@@ -521,9 +521,9 @@ export default function Template14({ className = "" }: Template14Props) {
               <div className="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-6">
                 3
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Scale and Build Team</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Live Your Dream Life</h3>
               <p className="text-gray-600 leading-relaxed">
-                Expand your business by building your own team of agents and creating multiple revenue streams with our proven systems.
+                Enjoy the freedom to work when you want, travel when you want, and spend time with the people who matter most.
               </p>
             </div>
           </div>
@@ -534,11 +534,11 @@ export default function Template14({ className = "" }: Template14Props) {
       <section className="py-20 bg-gray-800">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Join the team that puts your<br />
-            success first
+            Stop Dreaming And<br />
+            Start Living
           </h2>
           <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-            Take the first step toward building the insurance business you've always dreamed about. Our team is standing by to help you get started.
+            Your dreams are waiting for you at Delta Life Insurance. Join Mandy Johnson's team and start building the income and lifestyle you deserve today.
           </p>
           <button 
             onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
@@ -555,12 +555,11 @@ export default function Template14({ className = "" }: Template14Props) {
           {/* Left side - Contact info */}
           <div>
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Interested in the<br />
-              opportunity of a<br />
-              lifetime?
+              Ready To Escape<br />
+              The 9-5 Forever?
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-12">
-              Take the first step toward building your dream insurance business. Our team is ready to help you succeed.
+              Stop trading your life for a paycheck. Join Mandy Johnson's team and start building the unlimited income and freedom you deserve.
             </p>
 
             <div className="space-y-6">

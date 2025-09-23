@@ -97,7 +97,8 @@ export default function Template14({ className = "" }: Template14Props) {
         {/* Content */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl lg:text-5xl font-bold leading-tight">
-            "LET'S BUILD YOUR DREAM INCOME"
+            Break Free From The 9-5 Trap<br />
+            And Build Your Dream Income
           </h1>
         </div>
       </section>

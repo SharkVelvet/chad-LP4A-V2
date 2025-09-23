@@ -84,36 +84,43 @@ export default function Template14({ className = "" }: Template14Props) {
       </header>
 
       {/* Big Announcement Section */}
-      <section className="relative h-[70vh] flex items-center bg-white overflow-hidden">
-        {/* Background Image with Gradient */}
-        <div className="absolute inset-0">
-          <img 
-            src="/attached_assets/plr-hire-buildings_1758666511490.jpg" 
-            alt="Corporate buildings" 
-            className="w-full h-full object-cover"
-          />
-          {/* Left to right gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-white"></div>
-        </div>
-        
-        {/* Content */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-red-600 text-left">
-            "Break Free From The 9-5 Trap<br />
-            And Build Your Dream Income"
-          </h1>
+      <section className="h-[70vh] flex items-center overflow-hidden">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 h-full">
+          {/* Left Content - Dark Background */}
+          <div className="bg-red-700 flex items-center justify-center p-8 lg:p-16">
+            <div className="max-w-lg">
+              <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white mb-6">
+                Break Free From The 9-5 Trap<br />
+                And Build Your Dream Income
+              </h1>
+              <p className="text-white opacity-90 text-lg mb-8 leading-relaxed">
+                Start using Mandy's proven system today and connect with unlimited earning potential faster and more efficiently!
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-white text-red-700 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors">
+                  Free consultation
+                </button>
+                <button className="border border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-red-700 transition-colors">
+                  Explore our services
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          {/* Right Image */}
+          <div className="relative bg-gray-100">
+            <img 
+              src="/attached_assets/plr-hire-buildings_1758667381836.jpg" 
+              alt="Corporate buildings" 
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </section>
 
       {/* Hero Section - Matching screenshot layout */}
-      <section className="bg-gray-50 py-16 lg:py-24 relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute top-0 right-0 w-1/2 h-full">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gray-100 rounded-full opacity-30 transform translate-x-32 -translate-y-32"></div>
-          <div className="absolute bottom-0 right-0 w-64 h-64 bg-gray-200 rounded-full opacity-20 transform translate-x-16 translate-y-16"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section className="bg-gray-50 py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="lg:pr-8">
@@ -140,7 +147,7 @@ export default function Template14({ className = "" }: Template14Props) {
                 </button>
                 <button 
                   onClick={(e) => handleSmoothScroll(e, 'about')}
-                  className="border border-gray-300 text-gray-700 px-8 py-3 rounded-full font-medium hover:bg-white transition-colors flex items-center justify-center"
+                  className="border border-gray-300 text-gray-700 px-8 py-3 rounded-full font-medium hover:bg-gray-50 transition-colors flex items-center justify-center"
                 >
                   Why Choose Us
                   <ArrowRight className="ml-2 h-4 w-4" />

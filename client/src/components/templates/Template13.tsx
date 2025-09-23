@@ -5,8 +5,38 @@ interface Template13Props {
 }
 
 export default function Template13({ className = "" }: Template13Props) {
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className={`bg-white ${className}`}>
+      {/* Sticky Header */}
+      <div className="bg-white border-b px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-sm">
+        <div>
+          <div className="text-2xl font-bold text-gray-900">Delta Life</div>
+          <div className="text-sm text-gray-600">A Premier Houston Insurance Group</div>
+        </div>
+        <div className="flex items-center space-x-8">
+          <div className="hidden md:flex space-x-8 text-gray-700">
+            <a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className="hover:text-gray-900 cursor-pointer">Solutions</a>
+            <a href="#training" onClick={(e) => handleSmoothScroll(e, 'training')} className="hover:text-gray-900 cursor-pointer">Training</a>
+            <a href="#support" onClick={(e) => handleSmoothScroll(e, 'support')} className="hover:text-gray-900 cursor-pointer">Support</a>
+            <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-gray-900 cursor-pointer">About</a>
+          </div>
+          <button 
+            onClick={(e) => handleSmoothScroll(e, 'get-started-form')} 
+            className="bg-red-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-red-700 transition-colors"
+          >
+            Get Started
+          </button>
+        </div>
+      </div>
+
       {/* Section 1: Hero Section - Exact match to screenshot */}
       <div className="px-6 py-16">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -22,10 +52,16 @@ export default function Template13({ className = "" }: Template13Props) {
             </p>
             
             <div className="flex gap-4">
-              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded text-base font-medium transition-colors">
+              <button 
+                onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
+                className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded text-base font-medium transition-colors"
+              >
                 Join Our Team
               </button>
-              <button className="border border-gray-300 text-gray-700 hover:bg-gray-50 px-6 py-3 rounded text-base font-medium transition-colors">
+              <button 
+                onClick={(e) => handleSmoothScroll(e, 'about')}
+                className="border border-gray-300 text-gray-700 hover:bg-gray-50 px-6 py-3 rounded text-base font-medium transition-colors"
+              >
                 Why Choose Us
               </button>
             </div>
@@ -74,7 +110,7 @@ export default function Template13({ className = "" }: Template13Props) {
       </div>
 
       {/* Section 3: Why Top Agents Choose Delta Life */}
-      <div className="py-16 px-6">
+      <div id="about" className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Main heading and description */}
           <div className="text-center mb-16">
@@ -85,7 +121,7 @@ export default function Template13({ className = "" }: Template13Props) {
           </div>
 
           {/* Training Programs Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div id="training" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             {/* Left side - Image */}
             <div>
               <img 
@@ -128,7 +164,7 @@ export default function Template13({ className = "" }: Template13Props) {
           </div>
 
           {/* Advanced Resources Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div id="solutions" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Resources */}
             <div>
               <h3 className="text-3xl font-bold text-red-600 mb-6">Advanced Resources & Career Support</h3>
@@ -173,7 +209,7 @@ export default function Template13({ className = "" }: Template13Props) {
       </div>
 
       {/* Section 4: Meet Mandy */}
-      <div className="py-16 px-6 bg-gray-50">
+      <div id="support" className="py-16 px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           {/* Main heading and description */}
           <div className="text-center mb-16">
@@ -303,14 +339,17 @@ export default function Template13({ className = "" }: Template13Props) {
           <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
             Take the first step toward building the insurance business you've always dreamed about. Our team is standing by to help you get started.
           </p>
-          <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded text-base font-medium transition-colors">
+          <button 
+            onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
+            className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded text-base font-medium transition-colors"
+          >
             Join the Team
           </button>
         </div>
       </div>
 
       {/* Section 7: Contact Form */}
-      <div className="py-16 px-6 bg-gray-50">
+      <div id="get-started-form" className="py-16 px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left side - Contact info */}
           <div>

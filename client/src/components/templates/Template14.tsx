@@ -84,10 +84,21 @@ export default function Template14({ className = "" }: Template14Props) {
       </header>
 
       {/* Big Announcement Section */}
-      <section className="h-[70vh] flex items-center justify-center bg-white overflow-hidden">
+      <section className="relative h-[70vh] flex items-center bg-white overflow-hidden">
+        {/* Background Image with Gradient */}
+        <div className="absolute inset-0">
+          <img 
+            src="/attached_assets/plr-hire-buildings_1758666511490.jpg" 
+            alt="Corporate buildings" 
+            className="w-full h-full object-cover"
+          />
+          {/* Left to right gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-white"></div>
+        </div>
+        
         {/* Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-red-600">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-red-600 text-left">
             "Break Free From The 9-5 Trap<br />
             And Build Your Dream Income"
           </h1>

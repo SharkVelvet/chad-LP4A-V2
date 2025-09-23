@@ -227,13 +227,13 @@ export default function Template13({ className = "" }: Template13Props) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
             {/* Left side - Photo */}
             <div className="text-center">
               <img 
                 src="/attached_assets/plr-hiring4_1758661521235.jpg" 
                 alt="Mandy Johnson, Licensed Agent" 
-                className="w-80 h-auto mx-auto rounded-lg"
+                className="w-[90%] h-auto mx-auto rounded-lg"
               />
             </div>
             

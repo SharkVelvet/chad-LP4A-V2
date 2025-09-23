@@ -82,61 +82,96 @@ export default function Template14({ className = "" }: Template14Props) {
         )}
       </header>
 
-      {/* Hero Section - Matching mockup layout */}
-      <section className="bg-gradient-to-r from-red-50 to-white py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section - Matching screenshot layout */}
+      <section className="bg-gray-50 py-16 lg:py-24 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute top-0 right-0 w-1/2 h-full">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gray-100 rounded-full opacity-30 transform translate-x-32 -translate-y-32"></div>
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-gray-200 rounded-full opacity-20 transform translate-x-16 translate-y-16"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="lg:pr-8">
-              <div className="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium mb-6">
-                🚀 Now Hiring Professional Agents
+              <div className="text-sm text-gray-600 mb-6 font-medium">
+                500+ trusted partners
               </div>
+              
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                The Career Path You Have Always Wanted is 
-                <span className="text-red-600"> Right Here!</span>
+                Recruitment process with 
+                <span className="text-red-600"> smart solutions.</span>
               </h1>
+              
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Join Houston's premier insurance team and accelerate your career as an independent agent. At Delta Life, we provide the training, leads, support, and earning potential you need to thrive in the insurance industry—without the risk of going it alone.
+                Delta Life is your trusted partner in recruitment, offering personalized career solutions that connect top talent with the right opportunities.
               </p>
+              
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
                   onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
-                  className="bg-red-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors flex items-center justify-center"
+                  className="bg-red-600 text-white px-8 py-3 rounded-full font-medium hover:bg-red-700 transition-colors flex items-center justify-center"
                 >
-                  Start Your Career
+                  Free consultation
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </button>
                 <button 
                   onClick={(e) => handleSmoothScroll(e, 'about')}
-                  className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                  className="border border-gray-300 text-gray-700 px-8 py-3 rounded-full font-medium hover:bg-white transition-colors flex items-center justify-center"
                 >
-                  Learn More
+                  Explore our services
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </button>
               </div>
             </div>
 
-            {/* Right Image */}
+            {/* Right Professional Card */}
             <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="/attached_assets/plr-hiring1_1758661521233.jpg" 
-                  alt="Professional insurance agent with family" 
-                  className="w-full h-auto"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
-              {/* Floating stat card */}
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-lg p-6 border">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-red-100 rounded-full p-3">
-                    <TrendingUp className="h-6 w-6 text-red-600" />
+              <div className="bg-white rounded-3xl shadow-2xl p-8 relative">
+                {/* Top badge */}
+                <div className="absolute -top-4 left-8">
+                  <div className="bg-gray-800 text-white px-4 py-2 rounded-full text-sm font-medium">
+                    Top rated specialist
                   </div>
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900">78%</div>
-                    <div className="text-sm text-gray-600">Success Rate</div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                  {/* Left side - Stats */}
+                  <div className="bg-red-600 text-white p-6 rounded-2xl">
+                    <h3 className="text-xl font-bold mb-4">
+                      Successfully connected over 1,000 businesses with top talent.
+                    </h3>
+                    <p className="text-red-100 text-sm mb-4">
+                      Reducing hiring time by 50% and improving team efficiency across industries.
+                    </p>
+                  </div>
+                  
+                  {/* Right side - Profile */}
+                  <div className="text-center">
+                    <div className="relative inline-block mb-4">
+                      <img 
+                        src="/attached_assets/plr-hiring4_1758661521235.jpg" 
+                        alt="Mandy Johnson" 
+                        className="w-32 h-32 rounded-2xl object-cover mx-auto"
+                      />
+                    </div>
+                    <h4 className="font-bold text-gray-900 text-lg">Mandy Johnson</h4>
+                    <p className="text-gray-600 text-sm">Talent Acquisition Specialist</p>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          
+          {/* Partner logos */}
+          <div className="mt-16 pt-8 border-t border-gray-200">
+            <div className="flex flex-wrap items-center justify-center gap-8 opacity-40">
+              <div className="text-gray-400 font-medium text-sm">logoipsum</div>
+              <div className="text-gray-400 font-medium text-sm">Logoipsum</div>
+              <div className="text-gray-400 font-medium text-sm">Logoipsum</div>
+              <div className="text-gray-400 font-medium text-sm">Logoipsum</div>
+              <div className="text-gray-400 font-medium text-sm">Logoipsum</div>
+              <div className="text-gray-400 font-medium text-sm">logo ipsum</div>
             </div>
           </div>
         </div>

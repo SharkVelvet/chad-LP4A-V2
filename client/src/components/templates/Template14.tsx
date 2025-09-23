@@ -95,16 +95,16 @@ export default function Template14({ className = "" }: Template14Props) {
             {/* Left Content */}
             <div className="lg:pr-8">
               <div className="text-sm text-gray-600 mb-6 font-medium">
-                500+ trusted partners
+                An incredible agency experience
               </div>
               
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Recruitment process with 
-                <span className="text-red-600"> smart solutions.</span>
+                Turn Your Dreams Into 
+                <span className="text-red-600"> Reality.</span>
               </h1>
               
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Delta Life is your trusted partner in recruitment, offering personalized career solutions that connect top talent with the right opportunities.
+                Be part of something extraordinary at Delta Life Insurance. Our incredible agency doesn't just offer careers—we create life-changing opportunities where your biggest dreams become your greatest achievements.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
@@ -112,14 +112,14 @@ export default function Template14({ className = "" }: Template14Props) {
                   onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
                   className="bg-red-600 text-white px-8 py-3 rounded-full font-medium hover:bg-red-700 transition-colors flex items-center justify-center"
                 >
-                  Free consultation
+                  Join Our Team
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </button>
                 <button 
                   onClick={(e) => handleSmoothScroll(e, 'about')}
                   className="border border-gray-300 text-gray-700 px-8 py-3 rounded-full font-medium hover:bg-white transition-colors flex items-center justify-center"
                 >
-                  Explore our services
+                  Why Choose Us
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </button>
               </div>
@@ -139,10 +139,10 @@ export default function Template14({ className = "" }: Template14Props) {
                   {/* Left side - Stats */}
                   <div className="bg-red-600 text-white p-6 rounded-2xl">
                     <h3 className="text-xl font-bold mb-4">
-                      Successfully connected over 1,000 businesses with top talent.
+                      Where dreams become reality for over 500 agents.
                     </h3>
                     <p className="text-red-100 text-sm mb-4">
-                      Reducing hiring time by 50% and improving team efficiency across industries.
+                      Our incredible agency transforms lives by turning ambitious goals into extraordinary achievements and lasting success.
                     </p>
                   </div>
                   
@@ -156,7 +156,7 @@ export default function Template14({ className = "" }: Template14Props) {
                       />
                     </div>
                     <h4 className="font-bold text-gray-900 text-lg">Mandy Johnson</h4>
-                    <p className="text-gray-600 text-sm">Talent Acquisition Specialist</p>
+                    <p className="text-gray-600 text-sm">Licensed Agent 15+ years</p>
                   </div>
                 </div>
               </div>

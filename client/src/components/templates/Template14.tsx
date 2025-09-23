@@ -86,9 +86,8 @@ export default function Template14({ className = "" }: Template14Props) {
       {/* Big Announcement Section */}
       <section className="py-16 bg-red-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-            BREAK FREE FROM THE 9-5 TRAP<br />
-            AND BUILD YOUR DREAM INCOME
+          <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+            "LET'S BUILD YOUR DREAM INCOME"
           </h1>
         </div>
       </section>

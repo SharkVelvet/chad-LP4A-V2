@@ -95,12 +95,12 @@ export default function Template14({ className = "" }: Template14Props) {
               <p className="text-white opacity-90 text-lg mb-8 leading-relaxed">
                 Start using Mandy's proven system today and connect with unlimited earning potential faster and more efficiently!
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-white text-red-700 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors">
-                  Free consultation
-                </button>
-                <button className="border border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-red-700 transition-colors">
-                  Explore our services
+              <div className="flex justify-center lg:justify-start">
+                <button 
+                  onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
+                  className="bg-white text-red-700 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors"
+                >
+                  Join Our Team
                 </button>
               </div>
             </div>
@@ -113,6 +113,11 @@ export default function Template14({ className = "" }: Template14Props) {
               alt="Mandy Johnson - Delta Life Insurance Professional" 
               className="absolute inset-0 w-full h-full object-cover"
             />
+            {/* Badge */}
+            <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg px-4 py-3">
+              <h4 className="font-bold text-gray-900 text-sm">Mandy Johnson</h4>
+              <p className="text-gray-600 text-xs">Licensed Agent 15+ years</p>
+            </div>
           </div>
         </div>
       </section>

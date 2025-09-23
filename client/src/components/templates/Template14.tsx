@@ -92,8 +92,6 @@ export default function Template14({ className = "" }: Template14Props) {
             alt="Corporate buildings" 
             className="w-full h-full object-cover"
           />
-          {/* Red overlay for branding and text readability */}
-          <div className="absolute inset-0 bg-red-600 bg-opacity-70"></div>
         </div>
         
         {/* Content */}

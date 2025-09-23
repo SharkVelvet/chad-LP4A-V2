@@ -90,8 +90,7 @@ export default function Template14({ className = "" }: Template14Props) {
           <div className="bg-red-700 grid place-content-center px-8 lg:px-16">
             <div className="max-w-lg text-center lg:text-left w-full">
               <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white mb-6">
-                Break Free From The 9-5 Trap<br />
-                And Build Your Dream Income
+                Begin building the career of your dreams!
               </h1>
               <p className="text-white opacity-90 text-lg mb-8 leading-relaxed">
                 Start using Mandy's proven system today and connect with unlimited earning potential faster and more efficiently!

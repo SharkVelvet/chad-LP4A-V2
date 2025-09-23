@@ -1,3 +1,5 @@
+import { CheckCircle, Target, Users, GraduationCap, TrendingUp, Award, Users2, Lightbulb, MessageSquare, HeadphonesIcon } from "lucide-react";
+
 interface Template13Props {
   className?: string;
 }
@@ -98,19 +100,28 @@ export default function Template13({ className = "" }: Template13Props) {
               <h3 className="text-3xl font-bold text-red-600 mb-6">Comprehensive Training Programs</h3>
               
               <div className="space-y-6">
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Sales Training</h4>
-                  <p className="text-gray-600">Master proven sales techniques and objection handling strategies.</p>
+                <div className="flex items-start space-x-3">
+                  <Target className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Sales Training</h4>
+                    <p className="text-gray-600">Master proven sales techniques and objection handling strategies.</p>
+                  </div>
                 </div>
                 
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Product Knowledge</h4>
-                  <p className="text-gray-600">Deep understanding of insurance products and market positioning.</p>
+                <div className="flex items-start space-x-3">
+                  <GraduationCap className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Product Knowledge</h4>
+                    <p className="text-gray-600">Deep understanding of insurance products and market positioning.</p>
+                  </div>
                 </div>
                 
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Technology Training</h4>
-                  <p className="text-gray-600">Learn to leverage cutting-edge tools and CRM systems effectively.</p>
+                <div className="flex items-start space-x-3">
+                  <Lightbulb className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Technology Training</h4>
+                    <p className="text-gray-600">Learn to leverage cutting-edge tools and CRM systems effectively.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -123,19 +134,28 @@ export default function Template13({ className = "" }: Template13Props) {
               <h3 className="text-3xl font-bold text-red-600 mb-6">Advanced Resources & Career Support</h3>
               
               <div className="space-y-6">
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Warm Lead Pipeline</h4>
-                  <p className="text-gray-600">Pre-qualified leads delivered directly to you with automated follow-up support.</p>
+                <div className="flex items-start space-x-3">
+                  <TrendingUp className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Warm Lead Pipeline</h4>
+                    <p className="text-gray-600">Pre-qualified leads delivered directly to you with automated follow-up support.</p>
+                  </div>
                 </div>
                 
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Marketing Resources</h4>
-                  <p className="text-gray-600">Professional marketing materials and company-branded digital assets at your disposal.</p>
+                <div className="flex items-start space-x-3">
+                  <MessageSquare className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Marketing Resources</h4>
+                    <p className="text-gray-600">Professional marketing materials and company-branded digital assets at your disposal.</p>
+                  </div>
                 </div>
                 
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Ongoing Mentorship</h4>
-                  <p className="text-gray-600">Regular coaching and mentorship from experienced industry professionals.</p>
+                <div className="flex items-start space-x-3">
+                  <HeadphonesIcon className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Ongoing Mentorship</h4>
+                    <p className="text-gray-600">Regular coaching and mentorship from experienced industry professionals.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -186,24 +206,36 @@ export default function Template13({ className = "" }: Template13Props) {
                 <h4 className="text-xl font-semibold text-gray-900 mb-6">Awards & Accomplishments</h4>
                 
                 <div className="space-y-4">
-                  <div>
-                    <h5 className="font-semibold text-gray-900">Top Producer Award 2023</h5>
-                    <p className="text-gray-600 text-sm">Leading regional performance in agent development and team growth</p>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-red-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h5 className="font-semibold text-gray-900">Top Producer Award 2023</h5>
+                      <p className="text-gray-600 text-sm">Leading regional performance in agent development and team growth</p>
+                    </div>
                   </div>
                   
-                  <div>
-                    <h5 className="font-semibold text-gray-900">Mentor of the Year 2022</h5>
-                    <p className="text-gray-600 text-sm">Recognized for exceptional agent training and career development programs</p>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-red-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h5 className="font-semibold text-gray-900">Mentor of the Year 2022</h5>
+                      <p className="text-gray-600 text-sm">Recognized for exceptional agent training and career development programs</p>
+                    </div>
                   </div>
                   
-                  <div>
-                    <h5 className="font-semibold text-gray-900">Million Dollar Club</h5>
-                    <p className="text-gray-600 text-sm">Five consecutive years achieving million-dollar team production</p>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-red-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h5 className="font-semibold text-gray-900">Million Dollar Club</h5>
+                      <p className="text-gray-600 text-sm">Five consecutive years achieving million-dollar team production</p>
+                    </div>
                   </div>
                   
-                  <div>
-                    <h5 className="font-semibold text-gray-900">Leadership Excellence Award</h5>
-                    <p className="text-gray-600 text-sm">Honored for building the largest independent agent network in Texas</p>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-red-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h5 className="font-semibold text-gray-900">Leadership Excellence Award</h5>
+                      <p className="text-gray-600 text-sm">Honored for building the largest independent agent network in Texas</p>
+                    </div>
                   </div>
                 </div>
               </div>

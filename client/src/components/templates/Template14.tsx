@@ -87,7 +87,7 @@ export default function Template14({ className = "" }: Template14Props) {
       <section className="overflow-hidden">
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
           {/* Left Content - Dark Background */}
-          <div className="bg-red-700 grid place-content-center px-8 lg:px-16">
+          <div className="bg-red-700 grid place-content-center px-8 lg:px-16 py-8 lg:py-0">
             <div className="max-w-lg text-center lg:text-left w-full">
               <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white mb-6">
                 Begin building the career of your dreams!

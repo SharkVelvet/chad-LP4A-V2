@@ -433,7 +433,7 @@ export default function Template13({ className = "" }: Template13Props) {
       {/* Section 8: Footer */}
       <div className="py-12 px-6 bg-gray-900">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr] gap-12">
             {/* Left Column - Company Info */}
             <div>
               <h3 className="text-xl font-bold text-white mb-6">Delta Life</h3>

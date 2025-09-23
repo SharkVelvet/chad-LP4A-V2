@@ -575,7 +575,7 @@ export default function Template13({ className = "" }: Template13Props) {
           <div className="grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr] gap-12">
             {/* Left Column - Company Info */}
             <div>
-              <h3 className="text-xl font-bold text-white mb-2">Delta Life Insurance</h3>
+              <h3 className="text-xl font-bold text-white mb-0">Delta Life Insurance</h3>
               <p className="text-gray-400 text-sm mb-6">A Premier Agency</p>
               <p className="text-gray-300 text-sm leading-relaxed">
                 Delta Life is Houston's premier Independent Marketing Organization, dedicated to transforming ambitious professionals into thriving insurance entrepreneurs. We combine decades of industry expertise with cutting-edge technology, personalized mentorship, and comprehensive business development programs to ensure our partners not only succeed but build lasting, profitable enterprises that serve their communities with excellence.

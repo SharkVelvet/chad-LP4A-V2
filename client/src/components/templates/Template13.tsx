@@ -9,7 +9,12 @@ export default function Template13({ className = "" }: Template13Props) {
     e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerHeight = 80; // Account for sticky header height
+      const elementPosition = element.offsetTop - headerHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -17,7 +22,10 @@ export default function Template13({ className = "" }: Template13Props) {
     <div className={`bg-white ${className}`}>
       {/* Sticky Header */}
       <div className="bg-white border-b px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-sm">
-        <div>
+        <div 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="cursor-pointer"
+        >
           <div className="text-2xl font-bold text-gray-900">Delta Life</div>
           <div className="text-sm text-gray-600">A Premier Houston Insurance Group</div>
         </div>

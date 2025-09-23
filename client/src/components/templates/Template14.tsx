@@ -33,6 +33,7 @@ export default function Template14({ className = "" }: Template14Props) {
               className="cursor-pointer"
             >
               <div className="text-xl font-bold text-gray-900">Delta Life Insurance</div>
+              <div className="text-xs text-gray-600">A Premier Insurance Agency</div>
             </div>
 
             {/* Desktop Navigation */}
@@ -128,12 +129,6 @@ export default function Template14({ className = "" }: Template14Props) {
             {/* Right Professional Card */}
             <div className="relative">
               <div className="bg-white rounded-3xl shadow-2xl p-8 relative">
-                {/* Top badge */}
-                <div className="absolute -top-4 left-8">
-                  <div className="bg-gray-800 text-white px-4 py-2 rounded-full text-sm font-medium">
-                    Top rated specialist
-                  </div>
-                </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                   {/* Left side - Stats */}
@@ -146,13 +141,13 @@ export default function Template14({ className = "" }: Template14Props) {
                     </p>
                   </div>
                   
-                  {/* Right side - Profile */}
+                  {/* Right side - Profile with larger image */}
                   <div className="text-center">
                     <div className="relative inline-block mb-4">
                       <img 
                         src="/attached_assets/plr-hiring4_1758661521235.jpg" 
                         alt="Mandy Johnson" 
-                        className="w-32 h-32 rounded-2xl object-cover mx-auto"
+                        className="w-64 h-64 rounded-2xl object-cover mx-auto"
                       />
                     </div>
                     <h4 className="font-bold text-gray-900 text-lg">Mandy Johnson</h4>

@@ -93,7 +93,7 @@ export default function Template14({ className = "" }: Template14Props) {
                 Begin building the career of your dreams!
               </h1>
               <p className="text-white opacity-90 text-lg mb-8 leading-relaxed">
-                Start using Mandy's proven system today and connect with unlimited earning potential faster and more efficiently!
+                Join Mandy at Delta Life Insurance to maximize your earning potential faster and more efficiently!
               </p>
               <div className="flex justify-center lg:justify-start">
                 <button 

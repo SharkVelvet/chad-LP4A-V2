@@ -403,8 +403,7 @@ export default function Template14({ className = "" }: Template14Props) {
               For a Paycheck
             </h2>
             <p className="text-red-100 text-lg leading-relaxed max-w-2xl">
-              Mandy Johnson escaped her corporate job 15 years ago and built a multi-million dollar insurance business.<br />
-              Now she's teaching others exactly how to do the same thing.
+              Mandy Johnson escaped her corporate job 15 years ago and built a multi-million dollar insurance business. Now she's teaching others exactly how to do the same thing.
             </p>
           </div>
 

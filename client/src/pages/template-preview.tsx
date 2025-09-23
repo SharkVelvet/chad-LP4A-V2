@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import TemplatePreview from "@/components/template-preview";
+import Template13 from "@/components/templates/Template13";
 import { useEffect } from "react";
 import { trackTemplateView, trackTemplateSelection } from "@/lib/facebook-pixel";
 
@@ -83,7 +84,9 @@ export default function TemplatePreviewPage() {
 
       {/* Template Preview */}
       <div className="w-full" style={{ scrollBehavior: 'smooth' }}>
-        {["Template-1", "Template-2", "Template-3", "Template-4", "Template-5", "Template-6", "Template-7", "Template-8", "template-9", "Template-10", "Template-11", "Template-12", "Template-13", "template-13"].includes(template.slug) ? (
+        {template.slug === "template-13" || template.slug === "Template-13" ? (
+          <Template13 className="w-full" />
+        ) : ["Template-1", "Template-2", "Template-3", "Template-4", "Template-5", "Template-6", "Template-7", "Template-8", "template-9", "Template-10", "Template-11", "Template-12"].includes(template.slug) ? (
           <TemplatePreview templateSlug={template.slug} className="w-full" />
         ) : (
           <div className="w-full min-h-screen bg-white">

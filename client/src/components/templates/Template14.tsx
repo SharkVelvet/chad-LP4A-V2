@@ -87,8 +87,8 @@ export default function Template14({ className = "" }: Template14Props) {
       <section className="h-[70vh] flex items-center overflow-hidden">
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 h-full">
           {/* Left Content - Dark Background */}
-          <div className="bg-red-700 flex items-center justify-center p-8 lg:p-16">
-            <div className="max-w-lg">
+          <div className="bg-red-700 flex items-center justify-center h-full p-8 lg:p-16">
+            <div className="max-w-lg text-center lg:text-left">
               <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white mb-6">
                 Break Free From The 9-5 Trap<br />
                 And Build Your Dream Income
@@ -96,7 +96,7 @@ export default function Template14({ className = "" }: Template14Props) {
               <p className="text-white opacity-90 text-lg mb-8 leading-relaxed">
                 Start using Mandy's proven system today and connect with unlimited earning potential faster and more efficiently!
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button className="bg-white text-red-700 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors">
                   Free consultation
                 </button>

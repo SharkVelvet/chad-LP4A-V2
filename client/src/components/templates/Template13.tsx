@@ -34,7 +34,7 @@ export default function Template13({ className = "" }: Template13Props) {
           {/* Right side - Image exactly as in screenshot */}
           <div className="relative">
             <img 
-              src="/attached_assets/Screenshot 2025-09-23 at 4.49.31 PM_1758660646144.png" 
+              src="/attached_assets/plr-hiring1_1758661521233.jpg" 
               alt="Father and child spending quality time together" 
               className="w-full h-auto rounded-lg"
             />
@@ -89,7 +89,7 @@ export default function Template13({ className = "" }: Template13Props) {
             {/* Left side - Image */}
             <div>
               <img 
-                src="/attached_assets/Screenshot 2025-09-23 at 4.49.47 PM_1758660690654.png" 
+                src="/attached_assets/plr-hiring2_1758661521234.jpg" 
                 alt="Team meeting and collaboration" 
                 className="w-full h-auto rounded-lg"
               />
@@ -163,7 +163,7 @@ export default function Template13({ className = "" }: Template13Props) {
             {/* Right side - Image */}
             <div>
               <img 
-                src="/attached_assets/Screenshot 2025-09-23 at 4.49.47 PM_1758660690654.png" 
+                src="/attached_assets/plr-hiring3_1758661521235.jpg" 
                 alt="Overhead view of team collaboration" 
                 className="w-full h-auto rounded-lg"
               />
@@ -187,7 +187,7 @@ export default function Template13({ className = "" }: Template13Props) {
             {/* Left side - Photo */}
             <div className="text-center">
               <img 
-                src="/attached_assets/Screenshot 2025-09-23 at 4.49.53 PM_1758660712149.png" 
+                src="/attached_assets/plr-hiring4_1758661521235.jpg" 
                 alt="Mandy Johnson, Licensed Agent" 
                 className="w-80 h-auto mx-auto rounded-lg"
               />

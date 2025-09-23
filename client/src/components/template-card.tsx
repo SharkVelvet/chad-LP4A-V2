@@ -24,7 +24,8 @@ export default function TemplateCard({ template }: TemplateCardProps) {
   
   // Determine purpose based on template
   const getPurpose = () => {
-    if (template.slug === "template-13" || template.slug === "Template-13" || template.name.includes("13")) {
+    if (template.slug === "template-13" || template.slug === "Template-13" || template.name.includes("13") ||
+        template.slug === "template-14" || template.slug === "Template-14" || template.name.includes("14")) {
       return "Recruiting";
     }
     return "Attract Clients";

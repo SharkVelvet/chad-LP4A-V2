@@ -1,10 +1,13 @@
-import { CheckCircle, Target, Users, GraduationCap, TrendingUp, Award, Users2, Lightbulb, MessageSquare, HeadphonesIcon } from "lucide-react";
+import { CheckCircle, Target, Users, GraduationCap, TrendingUp, Award, Users2, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 interface Template13Props {
   className?: string;
 }
 
 export default function Template13({ className = "" }: Template13Props) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
@@ -38,12 +41,101 @@ export default function Template13({ className = "" }: Template13Props) {
           </div>
           <button 
             onClick={(e) => handleSmoothScroll(e, 'get-started-form')} 
-            className="bg-red-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-red-700 transition-colors"
+            className="hidden md:block bg-red-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-red-700 transition-colors"
           >
             Get Started
           </button>
+          
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      <>
+        {/* Backdrop */}
+        <div 
+          className={`fixed inset-0 bg-black z-40 md:hidden transition-opacity duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'
+          }`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+        
+        {/* Slide-out Menu */}
+        <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+          <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <div>
+              <div className="text-xl font-bold text-gray-900">Delta Life</div>
+              <div className="text-sm text-gray-600">A Premier Houston Insurance Group</div>
+            </div>
+            <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-600">
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+          <nav className="p-6 space-y-6">
+            <a 
+              href="#solutions"
+              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+              onClick={(e) => {
+                handleSmoothScroll(e, 'solutions');
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Solutions
+            </a>
+            <a 
+              href="#training"
+              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+              onClick={(e) => {
+                handleSmoothScroll(e, 'training');
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Training
+            </a>
+            <a 
+              href="#support"
+              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+              onClick={(e) => {
+                handleSmoothScroll(e, 'support');
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Support
+            </a>
+            <a 
+              href="#about"
+              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+              onClick={(e) => {
+                handleSmoothScroll(e, 'about');
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              About
+            </a>
+            
+            <div className="pt-4 border-t border-gray-200">
+              <button 
+                onClick={(e) => {
+                  handleSmoothScroll(e, 'get-started-form');
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full bg-red-600 text-white px-4 py-3 rounded text-base font-medium hover:bg-red-700 transition-colors"
+              >
+                Get Started
+              </button>
+            </div>
+          </nav>
+        </div>
+      </>
 
       {/* Section 1: Hero Section - Exact match to screenshot */}
       <div className="px-6 py-16">

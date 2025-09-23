@@ -126,8 +126,39 @@ export default function Template14({ className = "" }: Template14Props) {
       <section className="bg-gray-50 py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="lg:pr-8">
+            {/* Left Professional Card */}
+            <div className="relative">
+              <div className="bg-white rounded-3xl shadow-2xl p-8 relative">
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                  {/* Left side - Stats */}
+                  <div className="bg-red-600 text-white p-6 rounded-2xl">
+                    <h3 className="text-xl font-bold mb-4">
+                      Stop dreaming about financial freedom and start living it!
+                    </h3>
+                    <p className="text-red-100 text-sm mb-4">
+                      Mandy's proven system has helped hundreds escape their 9-5 jobs to build six-figure incomes working just part-time in insurance.
+                    </p>
+                  </div>
+                  
+                  {/* Right side - Profile with larger image */}
+                  <div className="text-center">
+                    <div className="relative inline-block mb-4">
+                      <img 
+                        src="/attached_assets/plr-hiring4_1758661521235.jpg" 
+                        alt="Mandy Johnson" 
+                        className="w-64 h-64 rounded-2xl object-cover mx-auto"
+                      />
+                    </div>
+                    <h4 className="font-bold text-gray-900 text-lg">Mandy Johnson</h4>
+                    <p className="text-gray-600 text-sm">Licensed Agent 15+ years</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Content */}
+            <div className="lg:pl-8">
               <div className="text-sm text-gray-600 mb-6 font-medium">
                 Stop trading time for money
               </div>
@@ -156,37 +187,6 @@ export default function Template14({ className = "" }: Template14Props) {
                   Why Choose Us
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </button>
-              </div>
-            </div>
-
-            {/* Right Professional Card */}
-            <div className="relative">
-              <div className="bg-white rounded-3xl shadow-2xl p-8 relative">
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                  {/* Left side - Stats */}
-                  <div className="bg-red-600 text-white p-6 rounded-2xl">
-                    <h3 className="text-xl font-bold mb-4">
-                      Stop dreaming about financial freedom and start living it!
-                    </h3>
-                    <p className="text-red-100 text-sm mb-4">
-                      Mandy's proven system has helped hundreds escape their 9-5 jobs to build six-figure incomes working just part-time in insurance.
-                    </p>
-                  </div>
-                  
-                  {/* Right side - Profile with larger image */}
-                  <div className="text-center">
-                    <div className="relative inline-block mb-4">
-                      <img 
-                        src="/attached_assets/plr-hiring4_1758661521235.jpg" 
-                        alt="Mandy Johnson" 
-                        className="w-64 h-64 rounded-2xl object-cover mx-auto"
-                      />
-                    </div>
-                    <h4 className="font-bold text-gray-900 text-lg">Mandy Johnson</h4>
-                    <p className="text-gray-600 text-sm">Licensed Agent 15+ years</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

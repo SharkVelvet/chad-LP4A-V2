@@ -472,8 +472,8 @@ export default function Template14({ className = "" }: Template14Props) {
           {/* Image Section with Overlay */}
           <div className="relative rounded-2xl overflow-hidden">
             <img 
-              src="/attached_assets/plr-hiring4_1758661521235.jpg" 
-              alt="Mandy Johnson, Licensed Agent" 
+              src="/attached_assets/plr-business-office_1758665354704.jpg" 
+              alt="Professional business team collaboration" 
               className="w-full h-96 object-cover"
             />
             {/* Overlay */}

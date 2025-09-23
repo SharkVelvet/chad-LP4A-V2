@@ -1,4 +1,4 @@
-import { CheckCircle, Target, Users, GraduationCap, TrendingUp, Award, Users2, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X, Star, ArrowRight } from "lucide-react";
+import { CheckCircle, Target, Users, GraduationCap, TrendingUp, Award, Users2, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X, Star, ArrowRight, Clock, Zap } from "lucide-react";
 import { useState } from "react";
 
 interface Template14Props {
@@ -177,108 +177,171 @@ export default function Template14({ className = "" }: Template14Props) {
         </div>
       </section>
 
-      {/* Stats Section - Matching mockup */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Platform designed to simplify and enhance the hiring process.</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">Our proven system helps agents build sustainable, profitable insurance businesses from day one.</p>
+      {/* Platform Section - Matching mockup with insurance content */}
+      <section className="py-16 bg-gray-50 relative overflow-hidden">
+        {/* Decorative background element */}
+        <div className="absolute left-0 top-0 w-1/3 h-full bg-gray-200 rounded-r-full opacity-50"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          {/* Main heading and description */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Platform designed to simplify<br />
+              and enhance the hiring process.
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto mb-8">
+              With personalized solutions tailored to your business needs, we connect you with the best talent quickly and efficiently, helping you build stronger, more effective teams.
+            </p>
+            
+            <button 
+              onClick={(e) => handleSmoothScroll(e, 'about')}
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full text-base font-medium transition-colors inline-flex items-center space-x-2"
+            >
+              <span>About Delta Life</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
           </div>
 
+          {/* Feature Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center p-6">
-              <div className="bg-red-50 rounded-lg p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Target className="h-8 w-8 text-red-600" />
+            <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+              <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Target className="h-6 w-6 text-red-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">78%</h3>
-              <p className="text-gray-600">Agent Success Rate</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Tailored Solutions</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Custom recruitment strategies designed for your unique business needs.
+              </p>
             </div>
-            
-            <div className="text-center p-6">
-              <div className="bg-red-50 rounded-lg p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <TrendingUp className="h-8 w-8 text-red-600" />
+
+            <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+              <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Clock className="h-6 w-6 text-red-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">67%</h3>
-              <p className="text-gray-600">Revenue Growth</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Faster Hiring</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Streamlined processes that cut hiring time by 30%.
+              </p>
             </div>
-            
-            <div className="text-center p-6">
-              <div className="bg-red-50 rounded-lg p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Users className="h-8 w-8 text-red-600" />
+
+            <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+              <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Users className="h-6 w-6 text-red-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">85%</h3>
-              <p className="text-gray-600">Market Penetration</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Access to Top Talent</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Connect with highly qualified candidates across industries.
+              </p>
             </div>
-            
-            <div className="text-center p-6">
-              <div className="bg-red-50 rounded-lg p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Award className="h-8 w-8 text-red-600" />
+
+            <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+              <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Zap className="h-6 w-6 text-red-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">15+</h3>
-              <p className="text-gray-600">Years Experience</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Effortless Integration</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Seamlessly integrate our platform with your existing HR tools for a hiring experience.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Training Programs Section - Matching mockup */}
-      <section id="training" className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
+      {/* About Section - Why Top Agents Choose Delta Life */}
+      <section id="about" className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Main heading and description */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Top Agents Choose Delta Life</h2>
+            <p className="text-gray-600 text-lg leading-relaxed max-w-4xl mx-auto">
+              We provide everything you need to accelerate your insurance career, from comprehensive training and warm leads to ongoing mentorship and cutting-edge technology support.
+            </p>
+          </div>
+
+          {/* Training Programs Section */}
+          <div id="training" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Left side - Image */}
             <div>
-              <div className="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium mb-6">
-                🎓 Training & Development
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Platform that matches businesses with top-tier talent.</h2>
-              <p className="text-lg text-gray-600 mb-8">We provide comprehensive training and ongoing support to ensure your success in the insurance industry.</p>
+              <img 
+                src="/attached_assets/plr-hiring2_1758661521234.jpg" 
+                alt="Team meeting and collaboration" 
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+            
+            {/* Right side - Training Programs */}
+            <div>
+              <h3 className="text-3xl font-bold text-red-600 mb-6">Comprehensive Training Programs</h3>
               
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-red-100 rounded-lg p-2 mt-1">
-                    <GraduationCap className="h-5 w-5 text-red-600" />
-                  </div>
+                <div className="flex items-start space-x-3">
+                  <Target className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Sales Training</h3>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Sales Training</h4>
                     <p className="text-gray-600">Master proven sales techniques and objection handling strategies.</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start space-x-4">
-                  <div className="bg-red-100 rounded-lg p-2 mt-1">
-                    <Lightbulb className="h-5 w-5 text-red-600" />
-                  </div>
+                <div className="flex items-start space-x-3">
+                  <GraduationCap className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Product Knowledge</h3>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Product Knowledge</h4>
                     <p className="text-gray-600">Deep understanding of insurance products and market positioning.</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start space-x-4">
-                  <div className="bg-red-100 rounded-lg p-2 mt-1">
-                    <Target className="h-5 w-5 text-red-600" />
-                  </div>
+                <div className="flex items-start space-x-3">
+                  <Lightbulb className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Technology Training</h3>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Technology Training</h4>
                     <p className="text-gray-600">Learn to leverage cutting-edge tools and CRM systems effectively.</p>
                   </div>
                 </div>
               </div>
-
-              <button 
-                onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
-                className="mt-8 bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors"
-              >
-                Learn More
-              </button>
             </div>
+          </div>
 
-            {/* Right Image */}
+          {/* Advanced Resources Section */}
+          <div id="solutions" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Resources */}
+            <div>
+              <h3 className="text-3xl font-bold text-red-600 mb-6">Advanced Resources & Career Support</h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-start space-x-3">
+                  <TrendingUp className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Warm Lead Pipeline</h4>
+                    <p className="text-gray-600">Pre-qualified leads delivered directly to you with automated follow-up support.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <MessageSquare className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Marketing Resources</h4>
+                    <p className="text-gray-600">Professional marketing materials and company-branded digital assets at your disposal.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <HeadphonesIcon className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Ongoing Mentorship</h4>
+                    <p className="text-gray-600">Regular coaching and mentorship from experienced industry professionals.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right side - Image */}
             <div>
               <img 
-                src="/attached_assets/plr-hiring2_1758661521234.jpg" 
-                alt="Team training session" 
-                className="w-full h-auto rounded-2xl shadow-lg"
+                src="/attached_assets/plr-hiring3_1758661521235.jpg" 
+                alt="Overhead view of team collaboration" 
+                className="w-full h-auto rounded-lg"
               />
             </div>
           </div>
@@ -342,230 +405,284 @@ export default function Template14({ className = "" }: Template14Props) {
         </div>
       </section>
 
-      {/* Meet Mandy Section - Professional layout matching mockup */}
+      {/* How It Works Section - Matching mockup with red background */}
       <section id="support" className="py-16 bg-red-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
+          {/* How it works label */}
+          <div className="mb-8">
+            <span className="text-red-200 text-sm font-medium uppercase tracking-wide">How it works</span>
+          </div>
+
+          {/* Main heading and description */}
+          <div className="mb-16">
+            <h2 className="text-4xl font-bold mb-6 max-w-2xl">
+              Efficient process to connect<br />
+              businesses with the best talent.
+            </h2>
+            <p className="text-red-100 text-lg leading-relaxed max-w-2xl">
+              We work closely with you to understand your unique needs, culture, and hiring goals.<br />
+              Using this insight, we tailor a recruitment strategy that targets the right candidates.
+            </p>
+          </div>
+
+          {/* 3 Steps Process */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            {/* Step 1 */}
             <div>
-              <h2 className="text-3xl font-bold mb-6">Efficient process to connect businesses with the best talent.</h2>
-              <p className="text-red-100 text-lg mb-8 leading-relaxed">
-                With over 15 years in the insurance industry, Mandy has built Delta Life into Houston's most successful independent marketing organization. Her proven systems have launched hundreds of successful insurance careers.
+              <div className="flex items-center mb-4">
+                <div className="w-8 h-8 bg-white text-red-600 rounded-full flex items-center justify-center text-sm font-bold mr-4">
+                  1
+                </div>
+                <div className="h-px bg-red-400 flex-1"></div>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Understand Your Needs</h3>
+              <p className="text-red-100 text-sm leading-relaxed">
+                We begin by working closely with you to understand your business, culture, and specific hiring requirements.
               </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div>
-                  <h3 className="font-semibold mb-2">Agent Development</h3>
-                  <p className="text-red-100 text-sm">Comprehensive training and mentorship programs designed for success.</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Proven Results</h3>
-                  <p className="text-red-100 text-sm">78% success rate with our comprehensive support system.</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Industry Leadership</h3>
-                  <p className="text-red-100 text-sm">15+ years of experience building successful insurance careers.</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Personal Mentorship</h3>
-                  <p className="text-red-100 text-sm">Direct access to Mandy's expertise and guidance.</p>
-                </div>
-              </div>
-
-              <button 
-                onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
-                className="bg-white text-red-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-              >
-                Meet Our Team
-              </button>
             </div>
 
-            {/* Right Image */}
-            <div className="relative">
-              <img 
-                src="/attached_assets/plr-hiring4_1758661521235.jpg" 
-                alt="Mandy Johnson, Licensed Agent" 
-                className="w-full h-auto rounded-2xl shadow-2xl"
-              />
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-lg p-6 text-gray-900">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-red-600">Mandy Johnson</div>
-                  <div className="text-sm text-gray-600">Licensed Agent 15+ years</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonial Section - Matching mockup */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">We help your business grow by connecting you with the right talent.</h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
+            {/* Step 2 */}
             <div>
-              <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <div className="flex items-center mb-6">
-                  <div className="flex space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
+              <div className="flex items-center mb-4">
+                <div className="w-8 h-8 bg-white text-red-600 rounded-full flex items-center justify-center text-sm font-bold mr-4">
+                  2
                 </div>
-                <blockquote className="text-lg text-gray-900 mb-6">
-                  "Joining Delta Life was the best career decision I ever made. The training, support, and mentorship provided by Mandy and her team transformed me from a struggling agent into a top producer."
-                </blockquote>
-                <div className="flex items-center">
-                  <div className="bg-gray-200 rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                    <span className="text-gray-600 font-medium">JD</span>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">John Davis</div>
-                    <div className="text-gray-600 text-sm">Senior Agent, Delta Life</div>
-                  </div>
-                </div>
+                <div className="h-px bg-red-400 flex-1"></div>
               </div>
+              <h3 className="text-xl font-semibold mb-3">Recruitment Strategy</h3>
+              <p className="text-red-100 text-sm leading-relaxed">
+                Based on your unique needs, we craft a personalized recruitment strategy designed to attract the best talent.
+              </p>
             </div>
 
-            {/* Right Stats */}
-            <div className="space-y-8">
-              <div className="bg-white rounded-xl p-6 shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-3xl font-bold text-gray-900">500+</div>
-                    <div className="text-gray-600">Successful Agents Trained</div>
-                  </div>
-                  <div className="bg-red-100 rounded-lg p-3">
-                    <Users className="h-8 w-8 text-red-600" />
-                  </div>
+            {/* Step 3 */}
+            <div>
+              <div className="flex items-center mb-4">
+                <div className="w-8 h-8 bg-white text-red-600 rounded-full flex items-center justify-center text-sm font-bold mr-4">
+                  3
                 </div>
               </div>
-              
-              <div className="bg-white rounded-xl p-6 shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-3xl font-bold text-gray-900">$50M+</div>
-                    <div className="text-gray-600">Annual Team Production</div>
-                  </div>
-                  <div className="bg-red-100 rounded-lg p-3">
-                    <TrendingUp className="h-8 w-8 text-red-600" />
-                  </div>
-                </div>
-              </div>
+              <h3 className="text-xl font-semibold mb-3">Seamless Hiring Process</h3>
+              <p className="text-red-100 text-sm leading-relaxed">
+                Using our platform's advanced tools, we match you with top candidates and integrate the process with your HR systems.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Final CTA Section - Matching mockup */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">You're in good company</h2>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Join hundreds of successful agents who have built thriving careers with Delta Life Insurance.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="text-center">
-              <div className="bg-gray-200 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <span className="text-gray-600 font-medium">SR</span>
-              </div>
-              <h3 className="font-semibold text-gray-900">Sarah Rodriguez</h3>
-              <p className="text-gray-600 text-sm">Top Producer 2023</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="bg-gray-200 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <span className="text-gray-600 font-medium">MJ</span>
-              </div>
-              <h3 className="font-semibold text-gray-900">Michael Johnson</h3>
-              <p className="text-gray-600 text-sm">Regional Manager</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="bg-gray-200 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <span className="text-gray-600 font-medium">LW</span>
-              </div>
-              <h3 className="font-semibold text-gray-900">Lisa Wang</h3>
-              <p className="text-gray-600 text-sm">Million Dollar Club</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Form Section */}
-      <section id="get-started-form" className="py-16 bg-gray-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Take the first step toward building your dream team.</h2>
-            <p className="text-gray-300 text-lg">Ready to start your insurance career? Get in touch with us today.</p>
-          </div>
-
-          <div className="bg-white rounded-2xl p-8 text-gray-900">
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                <input 
-                  type="text" 
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                  placeholder="Enter your first name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                <input 
-                  type="text" 
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                  placeholder="Enter your last name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                <input 
-                  type="email" 
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                  placeholder="Enter your email"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                <input 
-                  type="tel" 
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                  placeholder="Enter your phone number"
-                />
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Experience Level</label>
-                <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                  <option>Select your experience level</option>
-                  <option>No experience</option>
-                  <option>1-2 years</option>
-                  <option>3-5 years</option>
-                  <option>5+ years</option>
-                </select>
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                <textarea 
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                  placeholder="Tell us about your career goals..."
-                ></textarea>
-              </div>
-              <div className="md:col-span-2">
+          {/* Image Section with Overlay */}
+          <div className="relative rounded-2xl overflow-hidden">
+            <img 
+              src="/attached_assets/plr-hiring4_1758661521235.jpg" 
+              alt="Mandy Johnson, Licensed Agent" 
+              className="w-full h-96 object-cover"
+            />
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div className="text-center">
+                <h3 className="text-3xl font-bold text-white mb-4">
+                  Get started with Delta Life today and<br />
+                  discover a smarter, faster way to hire.
+                </h3>
                 <button 
-                  type="submit"
-                  className="w-full bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors"
+                  onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
+                  className="bg-white text-red-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
                 >
-                  Submit Application
+                  <span>Find your talent</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </button>
               </div>
-            </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3 Steps to Maximize Section - Matching Template 13 */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Main heading and description */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">3 steps to maximize</h2>
+            <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto">
+              Our proven three-step process helps agents build sustainable, profitable insurance businesses from day one.
+            </p>
+          </div>
+
+          {/* 3 Steps Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* Step 1 */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-6">
+                1
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Complete Training Program</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Start with our comprehensive 30-day training program covering sales techniques, product knowledge, and business development strategies.
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-6">
+                2
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Launch with Lead Support</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Begin selling immediately with our qualified lead system and ongoing mentorship from experienced agents in your area.
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-6">
+                3
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Scale and Build Team</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Expand your business by building your own team of agents and creating multiple revenue streams with our proven systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - Matching Template 13 */}
+      <section className="py-20 bg-gray-800">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Join the team that puts your<br />
+            success first
+          </h2>
+          <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+            Take the first step toward building the insurance business you've always dreamed about. Our team is standing by to help you get started.
+          </p>
+          <button 
+            onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
+            className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded text-base font-medium transition-colors"
+          >
+            Join the Team
+          </button>
+        </div>
+      </section>
+
+      {/* Contact Form Section - Matching Template 13 */}
+      <section id="get-started-form" className="py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Left side - Contact info */}
+          <div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Interested in the<br />
+              opportunity of a<br />
+              lifetime?
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed mb-12">
+              Take the first step toward building your dream insurance business. Our team is ready to help you succeed.
+            </p>
+
+            <div className="space-y-6">
+              <div className="flex items-start space-x-4">
+                <div className="w-6 h-6 text-red-600 mt-1">
+                  <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">Call Us</h3>
+                  <p className="text-gray-600">(555) 123-4567</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-6 h-6 text-red-600 mt-1">
+                  <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">Email</h3>
+                  <p className="text-gray-600">partners@deltalife.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-6 h-6 text-red-600 mt-1">
+                  <svg fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">Office</h3>
+                  <p className="text-gray-600">
+                    123 Business Center Dr<br />
+                    Your City, ST 12345
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right side - Form */}
+          <div>
+            <div className="bg-white p-8 rounded-lg shadow-sm">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Get Started Today</h3>
+              
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                    <input 
+                      type="text" 
+                      placeholder="Your first name"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                    <input 
+                      type="text" 
+                      placeholder="Your last name"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                  <input 
+                    type="email" 
+                    placeholder="your.email@example.com"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                  <input 
+                    type="tel" 
+                    placeholder="(555) 123-4567"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Tell us about your experience</label>
+                  <textarea 
+                    rows={4}
+                    placeholder="Tell us about your background in insurance or sales..."
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-none"
+                  ></textarea>
+                </div>
+
+                <button 
+                  type="submit"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg text-base font-medium transition-colors"
+                >
+                  Start My Journey
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>

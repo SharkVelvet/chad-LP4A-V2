@@ -157,18 +157,6 @@ export default function Template14({ className = "" }: Template14Props) {
               </div>
             </div>
           </div>
-          
-          {/* Partner logos */}
-          <div className="mt-16 pt-8 border-t border-gray-200">
-            <div className="flex flex-wrap items-center justify-center gap-8 opacity-40">
-              <div className="text-gray-400 font-medium text-sm">logoipsum</div>
-              <div className="text-gray-400 font-medium text-sm">Logoipsum</div>
-              <div className="text-gray-400 font-medium text-sm">Logoipsum</div>
-              <div className="text-gray-400 font-medium text-sm">Logoipsum</div>
-              <div className="text-gray-400 font-medium text-sm">Logoipsum</div>
-              <div className="text-gray-400 font-medium text-sm">logo ipsum</div>
-            </div>
-          </div>
         </div>
       </section>
 

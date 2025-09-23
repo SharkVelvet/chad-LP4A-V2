@@ -22,6 +22,14 @@ interface TemplateCardProps {
 export default function TemplateCard({ template }: TemplateCardProps) {
   const [, navigate] = useLocation();
   
+  // Determine purpose based on template
+  const getPurpose = () => {
+    if (template.slug === "template-13" || template.slug === "Template-13" || template.name.includes("13")) {
+      return "Recruiting";
+    }
+    return "Attract Clients";
+  };
+  
   return (
     <Card className="transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-border group"
     >
@@ -34,10 +42,10 @@ export default function TemplateCard({ template }: TemplateCardProps) {
           />
           <div className="absolute top-2 right-2">
             <Badge 
-              variant={template.isActive ? "default" : "secondary"}
-              className={template.isActive ? "" : "bg-yellow-100 text-yellow-800 border-yellow-200"}
+              variant="default"
+              className="bg-blue-100 text-blue-800 border-blue-200"
             >
-              {template.isActive ? "Available" : "Coming Soon"}
+              {getPurpose()}
             </Badge>
           </div>
         </div>

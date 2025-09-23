@@ -94,6 +94,9 @@ export async function sendCustomerNotification(customerData: CustomerData) {
     return false;
   }
 
+  // Support multiple notification emails - comma separated
+  const notificationEmails = process.env.NOTIFICATION_EMAIL.split(',').map(email => email.trim());
+
   const {
     email,
     customerName,
@@ -203,13 +206,14 @@ Next Steps: Set up their website with the selected template and contact them abo
   try {
     const info = await transporter.sendMail({
       from: `"Planright Notifications" <${process.env.SMTP_USER}>`,
-      to: process.env.NOTIFICATION_EMAIL,
+      to: notificationEmails.join(', '), // Send to all notification emails
       subject: `New Customer: ${customerName || email} - ${templateSelected || 'Template Selected'}`,
       text: textContent,
       html: htmlContent,
     });
 
-    console.log('Customer notification sent:', info.messageId);
+    console.log('Customer notification sent to:', notificationEmails.join(', '));
+    console.log('Message ID:', info.messageId);
     return true;
   } catch (error) {
     console.error('Failed to send customer notification:', error);
@@ -231,6 +235,9 @@ export async function sendCustomSolutionInquiry(inquiryData: {
     console.error('NOTIFICATION_EMAIL not configured');
     return false;
   }
+
+  // Support multiple notification emails - comma separated
+  const notificationEmails = process.env.NOTIFICATION_EMAIL.split(',').map(email => email.trim());
 
   const {
     name,
@@ -304,13 +311,13 @@ export async function sendCustomSolutionInquiry(inquiryData: {
   try {
     await transporter.sendMail({
       from: process.env.SMTP_USER,
-      to: process.env.NOTIFICATION_EMAIL,
+      to: notificationEmails.join(', '), // Send to all notification emails
       replyTo: email,
       subject: `Custom Solution Inquiry - ${name} (Budget: $${budgetRange})`,
       html: htmlContent,
     });
 
-    console.log('Custom solution inquiry notification sent successfully');
+    console.log('Custom solution inquiry notification sent to:', notificationEmails.join(', '));
     return true;
   } catch (error) {
     console.error('Error sending custom solution inquiry:', error);

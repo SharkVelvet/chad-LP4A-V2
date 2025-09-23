@@ -29,8 +29,8 @@ export default function Template13({ className = "" }: Template13Props) {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="cursor-pointer"
         >
-          <div className="text-2xl font-bold text-gray-900">Delta Life</div>
-          <div className="text-sm text-gray-600">A Premier Houston Insurance Group</div>
+          <div className="text-2xl font-bold text-gray-900">Delta Life Insurance</div>
+          <div className="text-sm text-gray-600">A Premier Agency</div>
         </div>
         <div className="flex items-center space-x-8">
           <div className="hidden md:flex space-x-8 text-gray-700">
@@ -73,8 +73,8 @@ export default function Template13({ className = "" }: Template13Props) {
         }`}>
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
             <div>
-              <div className="text-xl font-bold text-gray-900">Delta Life</div>
-              <div className="text-sm text-gray-600">A Premier Houston Insurance Group</div>
+              <div className="text-xl font-bold text-gray-900">Delta Life Insurance</div>
+              <div className="text-sm text-gray-600">A Premier Agency</div>
             </div>
             <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-600">
               <X className="h-6 w-6" />
@@ -575,7 +575,8 @@ export default function Template13({ className = "" }: Template13Props) {
           <div className="grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr] gap-12">
             {/* Left Column - Company Info */}
             <div>
-              <h3 className="text-xl font-bold text-white mb-6">Delta Life</h3>
+              <h3 className="text-xl font-bold text-white mb-2">Delta Life Insurance</h3>
+              <p className="text-gray-400 text-sm mb-6">A Premier Agency</p>
               <p className="text-gray-300 text-sm leading-relaxed">
                 Delta Life is Houston's premier Independent Marketing Organization, dedicated to transforming ambitious professionals into thriving insurance entrepreneurs. We combine decades of industry expertise with cutting-edge technology, personalized mentorship, and comprehensive business development programs to ensure our partners not only succeed but build lasting, profitable enterprises that serve their communities with excellence.
               </p>

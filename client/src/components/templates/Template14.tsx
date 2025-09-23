@@ -107,7 +107,7 @@ export default function Template14({ className = "" }: Template14Props) {
           </div>
           
           {/* Right Image */}
-          <div className="relative bg-gray-100 h-full">
+          <div className="relative bg-gray-100 h-full min-h-[105vh] lg:min-h-0">
             <img 
               src="/attached_assets/plr-hiring4_1758661521235.jpg" 
               alt="Mandy Johnson - Delta Life Insurance Professional" 

@@ -101,7 +101,7 @@ export default function TemplateSelection() {
 
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Preview Your Template</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Preview Templates Below</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
             Browse our professionally designed website templates created specifically for insurance agents.
           </p>

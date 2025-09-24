@@ -87,17 +87,16 @@ export default function Template15({ className = "" }: Template15Props) {
       <section className="relative text-white py-32 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          {/* Professional jacket background image */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
-            style={{
-              backgroundImage: 'url(/attached_assets/plr-jacket_1758677120512.jpg)'
-            }}
-          ></div>
-          {/* Main gradient background */}
+          {/* Base gradient background */}
           <div className="absolute inset-0 bg-gradient-to-br from-red-900 via-red-800 to-red-700"></div>
-          {/* Additional overlay for text readability */}
-          <div className="absolute inset-0 bg-red-900 bg-opacity-20"></div>
+          {/* Professional jacket background image */}
+          <img 
+            src="/attached_assets/plr-jacket_1758677120512.jpg"
+            alt="Professional background"
+            className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60"
+            onLoad={() => console.log('Background image loaded successfully')}
+            onError={() => console.log('Background image failed to load')}
+          />
         </div>
 
         {/* Content */}

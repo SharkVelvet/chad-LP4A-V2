@@ -153,6 +153,20 @@ export default function TemplateSelection() {
               You'll select your template in the next step
             </p>
           </div>
+          
+          {/* Custom Solution Link */}
+          <div className="mt-6 pt-4 border-t border-gray-200">
+            <p className="text-sm text-gray-600">
+              Don't see a template you like? We can build you a custom solution.{' '}
+              <button
+                onClick={() => navigate('/services')}
+                className="text-purple-600 hover:text-purple-800 underline font-medium"
+                style={{ color: '#6458AF' }}
+              >
+                Click here to tell us what you want
+              </button>
+            </p>
+          </div>
         </div>
         
         {/* Go Back Button - Bottom Left */}

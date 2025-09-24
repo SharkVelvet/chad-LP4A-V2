@@ -121,15 +121,16 @@ export default function Template15({ className = "" }: Template15Props) {
             
             {/* Right Image */}
             <div className="relative">
-              <div className="bg-red-600 rounded-lg p-8 transform rotate-3 shadow-xl">
-                <div className="bg-white rounded-lg p-6 transform -rotate-6">
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-red-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <DollarSign className="w-10 h-10 text-red-600" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Your Success Story</h3>
-                    <p className="text-gray-600">Starts here with Elite Insurance Group</p>
-                  </div>
+              <div className="relative overflow-hidden rounded-lg shadow-xl">
+                <img 
+                  src="/attached_assets/stock_images/professional_busines_5a30cf17.jpg" 
+                  alt="Professional Insurance Executive" 
+                  className="w-full h-96 lg:h-[500px] object-cover object-center"
+                />
+                {/* Badge */}
+                <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg px-4 py-3">
+                  <h4 className="font-bold text-gray-900 text-sm">Success Awaits</h4>
+                  <p className="text-gray-600 text-xs">Join Elite Insurance Group</p>
                 </div>
               </div>
             </div>

@@ -33,7 +33,7 @@ export default function Template15({ className = "" }: Template15Props) {
               className="cursor-pointer"
             >
               <div className="text-xl font-bold text-gray-900">Elite Insurance Group</div>
-              <div className="text-xs text-blue-600">Building Tomorrow's Leaders</div>
+              <div className="text-xs text-red-600">Building Tomorrow's Leaders</div>
             </div>
 
             {/* Desktop Navigation */}
@@ -48,7 +48,7 @@ export default function Template15({ className = "" }: Template15Props) {
             <div className="hidden md:block">
               <button 
                 onClick={(e) => handleSmoothScroll(e, 'apply-form')}
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                className="bg-red-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors"
               >
                 Apply Now
               </button>
@@ -74,7 +74,7 @@ export default function Template15({ className = "" }: Template15Props) {
               <a href="#success" onClick={(e) => { handleSmoothScroll(e, 'success'); setIsMobileMenuOpen(false); }} className="block text-gray-600 hover:text-gray-900 font-medium">Success Stories</a>
               <button 
                 onClick={(e) => { handleSmoothScroll(e, 'apply-form'); setIsMobileMenuOpen(false); }}
-                className="w-full bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors text-left"
+                className="w-full bg-red-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors text-left"
               >
                 Apply Now
               </button>
@@ -84,35 +84,35 @@ export default function Template15({ className = "" }: Template15Props) {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white py-20">
+      <section className="bg-gradient-to-br from-red-900 via-red-800 to-red-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div>
-              <div className="inline-flex items-center bg-blue-800 bg-opacity-50 px-3 py-1 rounded-full text-sm mb-6">
+              <div className="inline-flex items-center bg-red-800 bg-opacity-50 px-3 py-1 rounded-full text-sm mb-6">
                 <Star className="w-4 h-4 mr-2 text-yellow-400" />
                 <span>Join the Top 1% of Insurance Professionals</span>
               </div>
               
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
                 Turn Your Passion Into
-                <span className="text-blue-300"> Unlimited Income</span>
+                <span className="text-red-300"> Unlimited Income</span>
               </h1>
               
-              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+              <p className="text-xl text-red-100 mb-8 leading-relaxed">
                 Build a thriving insurance career with Elite Insurance Group. We provide world-class training, unlimited earning potential, and the support system you need to achieve financial freedom.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
                   onClick={(e) => handleSmoothScroll(e, 'apply-form')}
-                  className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-lg"
+                  className="bg-white text-red-900 px-8 py-4 rounded-lg font-semibold hover:bg-red-50 transition-colors text-lg"
                 >
                   Start Your Journey
                 </button>
                 <button 
                   onClick={(e) => handleSmoothScroll(e, 'opportunity')}
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors text-lg"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-red-900 transition-colors text-lg"
                 >
                   Learn More
                 </button>
@@ -121,11 +121,11 @@ export default function Template15({ className = "" }: Template15Props) {
             
             {/* Right Image */}
             <div className="relative">
-              <div className="bg-blue-600 rounded-lg p-8 transform rotate-3 shadow-xl">
+              <div className="bg-red-600 rounded-lg p-8 transform rotate-3 shadow-xl">
                 <div className="bg-white rounded-lg p-6 transform -rotate-6">
                   <div className="text-center">
-                    <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <DollarSign className="w-10 h-10 text-blue-600" />
+                    <div className="w-20 h-20 bg-red-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <DollarSign className="w-10 h-10 text-red-600" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Your Success Story</h3>
                     <p className="text-gray-600">Starts here with Elite Insurance Group</p>
@@ -138,23 +138,23 @@ export default function Template15({ className = "" }: Template15Props) {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-blue-50">
+      <section className="py-16 bg-red-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">500+</div>
+              <div className="text-4xl font-bold text-red-600 mb-2">500+</div>
               <div className="text-gray-600">Successful Agents</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">$2M+</div>
+              <div className="text-4xl font-bold text-red-600 mb-2">$2M+</div>
               <div className="text-gray-600">Average Annual Revenue</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">95%</div>
+              <div className="text-4xl font-bold text-red-600 mb-2">95%</div>
               <div className="text-gray-600">Agent Retention Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">15</div>
+              <div className="text-4xl font-bold text-red-600 mb-2">15</div>
               <div className="text-gray-600">Years of Excellence</div>
             </div>
           </div>
@@ -173,8 +173,8 @@ export default function Template15({ className = "" }: Template15Props) {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <TrendingUp className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                <TrendingUp className="w-6 h-6 text-red-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Unlimited Earning Potential</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -183,8 +183,8 @@ export default function Template15({ className = "" }: Template15Props) {
             </div>
 
             <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <Shield className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                <Shield className="w-6 h-6 text-red-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Recession-Proof Industry</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -193,8 +193,8 @@ export default function Template15({ className = "" }: Template15Props) {
             </div>
 
             <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <Award className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                <Award className="w-6 h-6 text-red-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Meaningful Work</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -214,7 +214,7 @@ export default function Template15({ className = "" }: Template15Props) {
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mt-1">
+                  <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center mt-1">
                     <CheckCircle className="w-4 h-4 text-white" />
                   </div>
                   <div>
@@ -224,7 +224,7 @@ export default function Template15({ className = "" }: Template15Props) {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mt-1">
+                  <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center mt-1">
                     <CheckCircle className="w-4 h-4 text-white" />
                   </div>
                   <div>
@@ -234,7 +234,7 @@ export default function Template15({ className = "" }: Template15Props) {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mt-1">
+                  <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center mt-1">
                     <CheckCircle className="w-4 h-4 text-white" />
                   </div>
                   <div>
@@ -244,7 +244,7 @@ export default function Template15({ className = "" }: Template15Props) {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mt-1">
+                  <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center mt-1">
                     <CheckCircle className="w-4 h-4 text-white" />
                   </div>
                   <div>
@@ -256,13 +256,13 @@ export default function Template15({ className = "" }: Template15Props) {
             </div>
 
             <div className="relative">
-              <div className="bg-blue-600 rounded-lg p-1">
+              <div className="bg-red-600 rounded-lg p-1">
                 <div className="bg-white rounded-lg p-8">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-600 mb-2">$150K+</div>
+                    <div className="text-3xl font-bold text-red-600 mb-2">$150K+</div>
                     <div className="text-gray-600 mb-4">Average First Year Income</div>
                     <div className="w-full bg-gray-200 rounded-full h-3 mb-6">
-                      <div className="bg-blue-600 h-3 rounded-full" style={{width: '75%'}}></div>
+                      <div className="bg-red-600 h-3 rounded-full" style={{width: '75%'}}></div>
                     </div>
                     <p className="text-sm text-gray-500">Based on our top performing new agents</p>
                   </div>
@@ -285,32 +285,32 @@ export default function Template15({ className = "" }: Template15Props) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-blue-600">1</span>
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-red-600">1</span>
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Industry Fundamentals</h3>
               <p className="text-gray-600 text-sm">Learn insurance basics, products, and market dynamics</p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-blue-600">2</span>
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-red-600">2</span>
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Sales Mastery</h3>
               <p className="text-gray-600 text-sm">Master consultative selling and relationship building</p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-blue-600">3</span>
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-red-600">3</span>
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Business Development</h3>
               <p className="text-gray-600 text-sm">Build your personal brand and referral network</p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-blue-600">4</span>
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-red-600">4</span>
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Advanced Strategies</h3>
               <p className="text-gray-600 text-sm">Learn advanced techniques for high-value clients</p>
@@ -320,7 +320,7 @@ export default function Template15({ className = "" }: Template15Props) {
       </section>
 
       {/* Success Stories */}
-      <section id="success" className="py-20 bg-blue-50">
+      <section id="success" className="py-20 bg-red-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Success Stories</h2>
@@ -330,8 +330,8 @@ export default function Template15({ className = "" }: Template15Props) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-lg shadow-lg">
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="font-bold text-blue-600">JS</span>
+                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                  <span className="font-bold text-red-600">JS</span>
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">Jessica Smith</div>
@@ -341,13 +341,13 @@ export default function Template15({ className = "" }: Template15Props) {
               <p className="text-gray-600 mb-4">
                 "I went from struggling financially to earning six figures in my first year. The training and support here is incredible."
               </p>
-              <div className="text-blue-600 font-semibold">$180K First Year</div>
+              <div className="text-red-600 font-semibold">$180K First Year</div>
             </div>
 
             <div className="bg-white p-8 rounded-lg shadow-lg">
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="font-bold text-blue-600">MR</span>
+                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                  <span className="font-bold text-red-600">MR</span>
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">Michael Rodriguez</div>
@@ -357,13 +357,13 @@ export default function Template15({ className = "" }: Template15Props) {
               <p className="text-gray-600 mb-4">
                 "Elite Insurance Group gave me the tools and confidence to build a thriving business. I'm finally financially free."
               </p>
-              <div className="text-blue-600 font-semibold">$250K Annual Income</div>
+              <div className="text-red-600 font-semibold">$250K Annual Income</div>
             </div>
 
             <div className="bg-white p-8 rounded-lg shadow-lg">
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="font-bold text-blue-600">AL</span>
+                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                  <span className="font-bold text-red-600">AL</span>
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">Amanda Lee</div>
@@ -373,22 +373,22 @@ export default function Template15({ className = "" }: Template15Props) {
               <p className="text-gray-600 mb-4">
                 "The lead system and training program here are unmatched. I've built an amazing career helping families."
               </p>
-              <div className="text-blue-600 font-semibold">Top Producer 2023</div>
+              <div className="text-red-600 font-semibold">Top Producer 2023</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600 text-white">
+      <section className="py-20 bg-red-600 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Life?</h2>
-          <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+          <p className="text-xl text-red-100 mb-8 leading-relaxed">
             Join Elite Insurance Group today and start building the career you've always dreamed of. Unlimited income potential, comprehensive training, and ongoing support await.
           </p>
           <button 
             onClick={(e) => handleSmoothScroll(e, 'apply-form')}
-            className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-colors"
+            className="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-red-50 transition-colors"
           >
             Apply Now - Limited Positions Available
           </button>
@@ -410,7 +410,7 @@ export default function Template15({ className = "" }: Template15Props) {
 
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
-                <div className="w-6 h-6 text-blue-600 mt-1">
+                <div className="w-6 h-6 text-red-600 mt-1">
                   <svg fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
@@ -422,7 +422,7 @@ export default function Template15({ className = "" }: Template15Props) {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="w-6 h-6 text-blue-600 mt-1">
+                <div className="w-6 h-6 text-red-600 mt-1">
                   <svg fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
@@ -435,7 +435,7 @@ export default function Template15({ className = "" }: Template15Props) {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="w-6 h-6 text-blue-600 mt-1">
+                <div className="w-6 h-6 text-red-600 mt-1">
                   <svg fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                   </svg>
@@ -463,7 +463,7 @@ export default function Template15({ className = "" }: Template15Props) {
                     <input 
                       type="text" 
                       placeholder="Your first name"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                     />
                   </div>
                   <div>
@@ -471,7 +471,7 @@ export default function Template15({ className = "" }: Template15Props) {
                     <input 
                       type="text" 
                       placeholder="Your last name"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                     />
                   </div>
                 </div>
@@ -481,7 +481,7 @@ export default function Template15({ className = "" }: Template15Props) {
                   <input 
                     type="email" 
                     placeholder="your.email@example.com"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                   />
                 </div>
 
@@ -490,13 +490,13 @@ export default function Template15({ className = "" }: Template15Props) {
                   <input 
                     type="tel" 
                     placeholder="(555) 123-4567"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Current Employment Status</label>
-                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500">
                     <option value="">Select your status</option>
                     <option value="employed">Currently Employed</option>
                     <option value="seeking">Seeking New Opportunity</option>
@@ -510,13 +510,13 @@ export default function Template15({ className = "" }: Template15Props) {
                   <textarea 
                     rows={4}
                     placeholder="Tell us what motivates you and why you're interested in this opportunity..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-none"
                   ></textarea>
                 </div>
 
                 <button 
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-base font-medium transition-colors"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg text-base font-medium transition-colors"
                 >
                   Submit Application
                 </button>

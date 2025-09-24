@@ -85,7 +85,7 @@ export default function Template15({ className = "" }: Template15Props) {
 
       {/* Hero Section */}
       <section className="relative text-white py-32 overflow-hidden">
-        {/* Background Video */}
+        {/* Background Video - with fallback */}
         <div className="absolute inset-0 z-0">
           <video 
             className="w-full h-full object-cover"
@@ -93,12 +93,19 @@ export default function Template15({ className = "" }: Template15Props) {
             muted
             loop
             playsInline
+            poster=""
+            onError={(e) => {
+              // If video fails to load, hide it and show gradient background
+              e.currentTarget.style.display = 'none';
+            }}
           >
             <source src="/attached_assets/awards-ceremony-background.mp4" type="video/mp4" />
             <source src="/attached_assets/awards-ceremony-background.webm" type="video/webm" />
           </video>
+          {/* Fallback gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-red-900 via-red-800 to-red-700"></div>
           {/* Video overlay for readability */}
-          <div className="absolute inset-0 bg-red-900 bg-opacity-85"></div>
+          <div className="absolute inset-0 bg-red-900 bg-opacity-30"></div>
         </div>
 
         {/* Content */}

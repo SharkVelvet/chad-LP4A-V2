@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import TemplateCard from "@/components/template-card";
-import { FileText } from "lucide-react";
+import { FileText, ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 import { trackViewContent } from "@/lib/facebook-pixel";
 
@@ -28,6 +28,10 @@ export default function TemplateSelection() {
     trackViewContent('template_catalog');
   }, []);
 
+  const handleGoBack = () => {
+    navigate("/start-the-process");
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
@@ -36,6 +40,9 @@ export default function TemplateSelection() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center space-x-4">
+                <Button variant="ghost" size="sm" onClick={handleGoBack}>
+                  <ArrowLeft className="h-4 w-4" />
+                </Button>
                 <div 
                   className="flex items-center space-x-2 font-bold text-xl cursor-pointer hover:opacity-80 transition-opacity"
                   onClick={() => navigate('/')}
@@ -69,6 +76,9 @@ export default function TemplateSelection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
+              <Button variant="ghost" size="sm" onClick={handleGoBack}>
+                <ArrowLeft className="h-4 w-4" />
+              </Button>
               <div 
                 className="flex items-center space-x-2 font-bold text-xl cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => navigate('/')}
@@ -169,17 +179,6 @@ export default function TemplateSelection() {
           </div>
         </div>
         
-        {/* Go Back Button - Bottom Left */}
-        <div className="fixed bottom-6 left-6">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="px-4 py-2 text-gray-400 hover:text-gray-200 text-sm"
-            onClick={() => navigate('/start-the-process')}
-          >
-            Go Back
-          </Button>
-        </div>
         
         {/* Footer */}
         <div className="text-center mt-12 pt-8 border-t border-gray-200">

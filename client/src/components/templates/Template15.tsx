@@ -84,69 +84,52 @@ export default function Template15({ className = "" }: Template15Props) {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-red-900 via-red-800 to-red-700 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div>
-              <div className="inline-flex items-center bg-red-800 bg-opacity-50 px-3 py-1 rounded-full text-sm mb-6">
-                <Star className="w-4 h-4 mr-2 text-yellow-400" />
-                <span>Join the Top 1% of Insurance Professionals</span>
-              </div>
-              
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
-                Turn Your Passion Into
-                <span className="text-red-300"> Unlimited Income</span>
-              </h1>
-              
-              <p className="text-xl text-red-100 mb-8 leading-relaxed">
-                Build a thriving insurance career with Elite Insurance Group. We provide world-class training, unlimited earning potential, and the support system you need to achieve financial freedom.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button 
-                  onClick={(e) => handleSmoothScroll(e, 'apply-form')}
-                  className="bg-white text-red-900 px-8 py-4 rounded-lg font-semibold hover:bg-red-50 transition-colors text-lg"
-                >
-                  Start Your Journey
-                </button>
-                <button 
-                  onClick={(e) => handleSmoothScroll(e, 'opportunity')}
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-red-900 transition-colors text-lg"
-                >
-                  Learn More
-                </button>
-              </div>
-            </div>
-            
-            {/* Right Video */}
-            <div className="relative flex justify-center">
-              <div className="relative">
-                <video 
-                  className="w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-full shadow-xl border-4 border-white"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  controls
-                >
-                  <source src="/attached_assets/celebration-awards-video.mp4" type="video/mp4" />
-                  <source src="/attached_assets/celebration-awards-video.webm" type="video/webm" />
-                  {/* Fallback image if video doesn't load */}
-                  <img 
-                    src="/attached_assets/stock_images/professional_busines_5a30cf17.jpg" 
-                    alt="Professional Insurance Executive" 
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                  Your browser does not support the video tag.
-                </video>
-                {/* Badge */}
-                <div className="absolute bottom-4 right-4 bg-white rounded-lg shadow-lg px-4 py-3">
-                  <h4 className="font-bold text-gray-900 text-sm">Success Stories</h4>
-                  <p className="text-gray-600 text-xs">See Our Winners</p>
-                </div>
-              </div>
-            </div>
+      <section className="relative text-white py-32 overflow-hidden">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video 
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/attached_assets/awards-ceremony-background.mp4" type="video/mp4" />
+            <source src="/attached_assets/awards-ceremony-background.webm" type="video/webm" />
+          </video>
+          {/* Video overlay for readability */}
+          <div className="absolute inset-0 bg-red-900 bg-opacity-85"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center bg-red-800 bg-opacity-70 px-4 py-2 rounded-full text-sm mb-8">
+            <Star className="w-4 h-4 mr-2 text-yellow-400" />
+            <span>Join the Top 1% of Insurance Professionals</span>
+          </div>
+          
+          <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-8">
+            Turn Your Passion Into
+            <span className="text-red-300"> Unlimited Income</span>
+          </h1>
+          
+          <p className="text-xl lg:text-2xl text-red-100 mb-12 leading-relaxed max-w-3xl mx-auto">
+            Build a thriving insurance career with Elite Insurance Group. We provide world-class training, unlimited earning potential, and the support system you need to achieve financial freedom.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <button 
+              onClick={(e) => handleSmoothScroll(e, 'apply-form')}
+              className="bg-white text-red-900 px-10 py-4 rounded-lg font-semibold hover:bg-red-50 transition-colors text-lg shadow-lg"
+            >
+              Start Your Journey
+            </button>
+            <button 
+              onClick={(e) => handleSmoothScroll(e, 'opportunity')}
+              className="border-2 border-white text-white px-10 py-4 rounded-lg font-semibold hover:bg-white hover:text-red-900 transition-colors text-lg"
+            >
+              Learn More
+            </button>
           </div>
         </div>
       </section>

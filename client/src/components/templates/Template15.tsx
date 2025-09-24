@@ -119,18 +119,31 @@ export default function Template15({ className = "" }: Template15Props) {
               </div>
             </div>
             
-            {/* Right Image */}
-            <div className="relative">
-              <div className="relative overflow-hidden rounded-lg shadow-xl">
-                <img 
-                  src="/attached_assets/stock_images/professional_busines_5a30cf17.jpg" 
-                  alt="Professional Insurance Executive" 
-                  className="w-full h-96 lg:h-[500px] object-cover object-center"
-                />
+            {/* Right Video */}
+            <div className="relative flex justify-center">
+              <div className="relative">
+                <video 
+                  className="w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-full shadow-xl border-4 border-white"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                >
+                  <source src="/attached_assets/celebration-awards-video.mp4" type="video/mp4" />
+                  <source src="/attached_assets/celebration-awards-video.webm" type="video/webm" />
+                  {/* Fallback image if video doesn't load */}
+                  <img 
+                    src="/attached_assets/stock_images/professional_busines_5a30cf17.jpg" 
+                    alt="Professional Insurance Executive" 
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                  Your browser does not support the video tag.
+                </video>
                 {/* Badge */}
-                <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg px-4 py-3">
-                  <h4 className="font-bold text-gray-900 text-sm">Success Awaits</h4>
-                  <p className="text-gray-600 text-xs">Join Elite Insurance Group</p>
+                <div className="absolute bottom-4 right-4 bg-white rounded-lg shadow-lg px-4 py-3">
+                  <h4 className="font-bold text-gray-900 text-sm">Success Stories</h4>
+                  <p className="text-gray-600 text-xs">See Our Winners</p>
                 </div>
               </div>
             </div>

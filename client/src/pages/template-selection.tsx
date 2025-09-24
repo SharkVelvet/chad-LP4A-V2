@@ -47,8 +47,8 @@ export default function TemplateSelection() {
                   className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
                   onClick={() => navigate('/')}
                 >
-                  <FileText className="h-8 w-8" style={{ color: '#6458AF' }} />
-                  <h1 className="text-2xl font-bold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
+                  <FileText className="h-7 w-7" style={{ color: '#6458AF' }} />
+                  <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
                 </div>
               </div>
             </div>
@@ -80,8 +80,8 @@ export default function TemplateSelection() {
                 className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => navigate('/')}
               >
-                <FileText className="h-8 w-8" style={{ color: '#6458AF' }} />
-                <h1 className="text-2xl font-bold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
+                <FileText className="h-7 w-7" style={{ color: '#6458AF' }} />
+                <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
               </div>
             </div>
           </div>

@@ -44,14 +44,11 @@ export default function TemplateSelection() {
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
                 <div 
-                  className="flex items-center space-x-2 font-bold text-xl cursor-pointer hover:opacity-80 transition-opacity"
+                  className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
                   onClick={() => navigate('/')}
                 >
-                  <FileText className="h-6 w-6" style={{ color: '#6458AF' }} />
-                  <div className="text-left">
-                    <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                    <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
-                  </div>
+                  <FileText className="h-8 w-8" style={{ color: '#6458AF' }} />
+                  <h1 className="text-2xl font-bold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
                 </div>
               </div>
             </div>
@@ -80,14 +77,11 @@ export default function TemplateSelection() {
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <div 
-                className="flex items-center space-x-2 font-bold text-xl cursor-pointer hover:opacity-80 transition-opacity"
+                className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => navigate('/')}
               >
                 <FileText className="h-8 w-8" style={{ color: '#6458AF' }} />
-                <div className="text-left">
-                  <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                  <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
-                </div>
+                <h1 className="text-2xl font-bold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
               </div>
             </div>
           </div>

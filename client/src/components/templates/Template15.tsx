@@ -93,10 +93,12 @@ export default function Template15({ className = "" }: Template15Props) {
           <img 
             src="/attached_assets/plr-jacket_1758677120512.jpg"
             alt="Professional background"
-            className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60"
+            className="absolute inset-0 w-full h-full object-cover opacity-20 md:opacity-30"
             onLoad={() => console.log('Background image loaded successfully')}
             onError={() => console.log('Background image failed to load')}
           />
+          {/* Strong red overlay for mobile readability */}
+          <div className="absolute inset-0 bg-red-900 bg-opacity-60 md:bg-opacity-40"></div>
         </div>
 
         {/* Content */}

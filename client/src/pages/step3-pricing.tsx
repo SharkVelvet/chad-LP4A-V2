@@ -9,6 +9,7 @@ import { trackPricingView } from "@/lib/facebook-pixel";
 export default function Step3Pricing() {
   const [, navigate] = useLocation();
   const [agreed, setAgreed] = useState(false);
+  const [disclaimerAgreed, setDisclaimerAgreed] = useState(false);
 
   // Track pricing page view
   useEffect(() => {
@@ -16,7 +17,7 @@ export default function Step3Pricing() {
   }, []);
 
   const handleContinue = () => {
-    if (agreed) {
+    if (agreed && disclaimerAgreed) {
       navigate("/step4-payment");
     }
   };
@@ -221,6 +222,34 @@ export default function Step3Pricing() {
           </CardContent>
         </Card>
 
+        {/* Disclaimer Checkbox */}
+        <Card className="mb-6">
+          <CardContent className="pt-6">
+            <div className="flex items-start space-x-3">
+              <Checkbox
+                id="disclaimer"
+                checked={disclaimerAgreed}
+                onCheckedChange={(checked) => setDisclaimerAgreed(checked as boolean)}
+                className="h-6 w-6 data-[state=checked]:bg-[#6458AF] data-[state=checked]:border-[#6458AF] border-2 mt-1"
+              />
+              <div className="space-y-1">
+                <label
+                  htmlFor="disclaimer"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                >
+                  I understand that I am purchasing a template from LandingPagesForAgents.com
+                </label>
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  The template will include placeholder content, which I am solely responsible for updating and customizing. 
+                  This includes items such as testimonials, state licensing, services offered, or any other legally required or restricted information. 
+                  LandingPagesForAgents.com and 1612 Media, LLC assume no responsibility for the accuracy, legality, or representation of any content. 
+                  Any template content left unchanged remains the full responsibility of the agent or agency.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Continue Button */}
         <div className="text-center">
           <Button 
@@ -229,7 +258,7 @@ export default function Step3Pricing() {
             style={{ backgroundColor: '#6458AF' }} 
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
-            disabled={!agreed}
+            disabled={!agreed || !disclaimerAgreed}
             onClick={handleContinue}
           >
             Continue to Payment

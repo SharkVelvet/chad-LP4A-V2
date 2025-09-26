@@ -295,11 +295,17 @@ export default function SubscriptionForm({ plan, onSuccess, isLoading, onDiscoun
 
   const createSubscriptionMutation = useMutation({
     mutationFn: async () => {
+      // Retrieve checkbox confirmations from localStorage
+      const contractAgreed = JSON.parse(localStorage.getItem('contractAgreed') || 'false');
+      const disclaimerAgreed = JSON.parse(localStorage.getItem('disclaimerAgreed') || 'false');
+      
       const res = await apiRequest("POST", "/api/create-subscription", { 
         plan, 
         email,
         customerName,
-        couponCode: discountCode || undefined
+        couponCode: discountCode || undefined,
+        contractAgreed,
+        disclaimerAgreed
       });
       return res.json();
     },

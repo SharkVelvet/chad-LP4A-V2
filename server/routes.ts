@@ -416,7 +416,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Stripe subscription route for guest checkout
   app.post('/api/create-subscription', async (req, res) => {
-    const { email, customerName, couponCode } = req.body;
+    const { email, customerName, couponCode, contractAgreed, disclaimerAgreed } = req.body;
     
     if (!email) {
       return res.status(400).json({ error: { message: 'Email is required for receipts' } });
@@ -589,6 +589,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           paymentAmount: firstMonthAmount / 100, // Convert from cents to dollars for display
           subscriptionId: subscription.id,
           customerInfo: onboardingData.customerInfo,
+          contractAgreed: contractAgreed,
+          disclaimerAgreed: disclaimerAgreed,
         };
 
         console.log('Email data being sent:', {

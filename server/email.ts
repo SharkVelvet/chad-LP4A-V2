@@ -22,6 +22,8 @@ interface CustomerData {
   paymentAmount: number;
   subscriptionId?: string;
   customerInfo?: any;
+  contractAgreed?: boolean;
+  disclaimerAgreed?: boolean;
 }
 
 export async function sendCustomerReceipt(customerData: CustomerData) {
@@ -111,7 +113,9 @@ export async function sendCustomerNotification(customerData: CustomerData) {
     domainPreferences,
     paymentAmount,
     subscriptionId,
-    customerInfo
+    customerInfo,
+    contractAgreed,
+    disclaimerAgreed
   } = customerData;
 
   const htmlContent = `
@@ -174,6 +178,30 @@ export async function sendCustomerNotification(customerData: CustomerData) {
         </table>
       </div>
 
+      <div style="background-color: #fef2f2; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #fca5a5;">
+        <h3 style="color: #991b1b; margin-top: 0;">Customer Agreement Confirmations</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 8px 0; font-weight: bold; color: #374151;">12-Month Contract Agreement:</td>
+            <td style="padding: 8px 0; color: ${contractAgreed ? '#059669' : '#dc2626'}; font-weight: bold;">
+              ${contractAgreed ? '✅ CONFIRMED' : '❌ NOT CONFIRMED'}
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; font-weight: bold; color: #374151;">Template Content Disclaimer:</td>
+            <td style="padding: 8px 0; color: ${disclaimerAgreed ? '#059669' : '#dc2626'}; font-weight: bold;">
+              ${disclaimerAgreed ? '✅ CONFIRMED' : '❌ NOT CONFIRMED'}
+            </td>
+          </tr>
+        </table>
+        <div style="margin-top: 15px; padding: 12px; background-color: #fffbeb; border: 1px solid #f59e0b; border-radius: 6px;">
+          <p style="margin: 0; color: #92400e; font-size: 12px; line-height: 1.4;">
+            <strong>Important:</strong> Customer acknowledged understanding that they are purchasing a template with placeholder content 
+            and are solely responsible for updating testimonials, licensing information, and other legally required content.
+          </p>
+        </div>
+      </div>
+
       <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #2563eb;">
         <p style="margin: 0; color: #6b7280; font-size: 14px;">
           <strong>Next Steps:</strong> Set up their website with the selected template and contact them about domain setup.
@@ -206,6 +234,12 @@ Payment Information:
 - Amount Paid: $${(paymentAmount / 100).toFixed(2)}
 ${subscriptionId ? `- Subscription ID: ${subscriptionId}` : ''}
 - Plan: $38 first month, then $18/month
+
+Customer Agreement Confirmations:
+- 12-Month Contract Agreement: ${contractAgreed ? 'CONFIRMED ✅' : 'NOT CONFIRMED ❌'}
+- Template Content Disclaimer: ${disclaimerAgreed ? 'CONFIRMED ✅' : 'NOT CONFIRMED ❌'}
+
+IMPORTANT: Customer acknowledged understanding that they are purchasing a template with placeholder content and are solely responsible for updating testimonials, licensing information, and other legally required content.
 
 Next Steps: Set up their website with the selected template and contact them about domain setup.
   `;

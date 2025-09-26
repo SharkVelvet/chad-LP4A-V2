@@ -18,6 +18,9 @@ export default function Step3Pricing() {
 
   const handleContinue = () => {
     if (agreed && disclaimerAgreed) {
+      // Store checkbox confirmations in localStorage
+      localStorage.setItem('contractAgreed', JSON.stringify(agreed));
+      localStorage.setItem('disclaimerAgreed', JSON.stringify(disclaimerAgreed));
       navigate("/step4-payment");
     }
   };

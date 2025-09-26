@@ -330,7 +330,11 @@ export default function InternalOne() {
                         style={{ backgroundColor: '#000000' }}
                       >
                         <source
-                          src="/attached_assets/awards-ceremony-background.mp4"
+                          src="https://www.dropbox.com/scl/fi/oqmtsyntyq3w1x5v30e2m/lp4a-sept26.mp4?rlkey=ur3nwss1sgf81myc46x5ghqbf&st=bfumo3c1&raw=1"
+                          type="video/mp4"
+                        />
+                        <source
+                          src="https://dl.dropboxusercontent.com/scl/fi/oqmtsyntyq3w1x5v30e2m/lp4a-sept26.mp4?rlkey=ur3nwss1sgf81myc46x5ghqbf&st=bfumo3c1"
                           type="video/mp4"
                         />
                         <div className="flex items-center justify-center h-full bg-gray-50 text-gray-600">

@@ -420,8 +420,7 @@ export default function InternalOne() {
                   <img 
                     src={designersImage}
                     alt="Design team at work"
-                    className="w-full object-cover"
-                    style={{ height: '739px' }}
+                    className="w-full h-auto object-cover"
                   />
                 </div>
                 {/* Decorative elements */}
@@ -517,8 +516,22 @@ export default function InternalOne() {
             className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
             style={{ maxWidth: '1050px', width: '100%' }}
           >
-            {/* Left side - Steps (flipped) */}
-            <div>
+            {/* Image first for mobile, then ordered second on desktop */}
+            <div className="relative lg:order-2">
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src={logoDesignImage}
+                  alt="Logo design and branding materials"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full" style={{ backgroundColor: '#6458AF' }}></div>
+              <div className="absolute -bottom-4 -right-4 w-12 h-12 rounded-full bg-orange-400"></div>
+            </div>
+
+            {/* Content ordered first on desktop */}
+            <div className="lg:order-1">
               <div className="mb-12">
                 <h2 className="text-4xl font-bold text-gray-900 mb-4">Logo and Brand Creation</h2>
                 <p className="text-lg text-gray-600">Build a powerful brand identity that clients remember!</p>
@@ -592,21 +605,6 @@ export default function InternalOne() {
                   </Button>
                 </div>
             </div>
-
-            {/* Right side - Image (flipped) */}
-            <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src={logoDesignImage}
-                  alt="Logo design and branding materials"
-                  className="w-full object-cover"
-                  style={{ height: '739px' }}
-                />
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full" style={{ backgroundColor: '#6458AF' }}></div>
-              <div className="absolute -bottom-4 -right-4 w-12 h-12 rounded-full bg-orange-400"></div>
-            </div>
           </div>
         </div>
       </div>
@@ -624,8 +622,7 @@ export default function InternalOne() {
                 <img 
                   src={printDesignImage}
                   alt="Print design materials and branding"
-                  className="w-full object-cover"
-                  style={{ height: '739px' }}
+                  className="w-full h-auto object-cover"
                 />
               </div>
               {/* Decorative elements */}

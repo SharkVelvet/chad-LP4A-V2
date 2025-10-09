@@ -401,7 +401,7 @@ export default function InternalOne() {
         {/* Additional Services & How It Works Section */}
         <div className="relative z-10 bg-gradient-to-b from-gray-50 to-white">
           {/* Additional Services */}
-          <div className="py-20">
+          <div className="pt-20 pb-8 lg:py-20">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Additional Services</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -411,7 +411,7 @@ export default function InternalOne() {
           </div>
 
           {/* How It Works Section */}
-          <div className="py-20">
+          <div className="py-8 lg:py-20">
           <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1050px' }}>
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left side - Image */}

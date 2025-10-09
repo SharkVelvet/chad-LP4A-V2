@@ -420,7 +420,7 @@ export default function InternalOne() {
                   <img 
                     src={designersImage}
                     alt="Design team at work"
-                    className="w-full object-cover max-h-[160px] lg:max-h-none lg:h-[739px]"
+                    className="w-full object-cover max-h-[220px] lg:max-h-none lg:h-[739px]"
                   />
                 </div>
                 {/* Decorative elements */}
@@ -522,7 +522,7 @@ export default function InternalOne() {
                 <img 
                   src={logoDesignImage}
                   alt="Logo design and branding materials"
-                  className="w-full h-auto object-cover max-h-[160px] lg:max-h-none"
+                  className="w-full h-auto object-cover max-h-[220px] lg:max-h-none"
                 />
               </div>
               {/* Decorative elements */}
@@ -622,7 +622,7 @@ export default function InternalOne() {
                 <img 
                   src={printDesignImage}
                   alt="Print design materials and branding"
-                  className="w-full h-auto object-cover max-h-[160px] lg:max-h-none"
+                  className="w-full h-auto object-cover max-h-[220px] lg:max-h-none"
                 />
               </div>
               {/* Decorative elements */}

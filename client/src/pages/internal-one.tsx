@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { FileText, Globe, Zap, Building2, X } from "lucide-react";
+import { FileText, Globe, Zap, Building2, X, Menu } from "lucide-react";
 import { useLocation } from "wouter";
 import { useEffect, useState, useRef } from "react";
 import playAgainImage from "@assets/LPFA-PLAY-AGAIN_1757278384329.png";
@@ -17,6 +17,7 @@ export default function InternalOne() {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showReplayOverlay, setShowReplayOverlay] = useState(false);
   const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Set page title
@@ -88,22 +89,125 @@ export default function InternalOne() {
               <a onClick={() => setLocation('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
             </nav>
 
-            {/* Get Started Button on Right */}
-            <Button 
-              className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
-              style={{ backgroundColor: '#6458AF' }}
-              onClick={() => setLocation('/template-selection')}
-            >
-              Get Started
-            </Button>
+            {/* Get Started Button on Desktop, Hamburger on Mobile */}
+            <div className="flex items-center gap-4">
+              <Button 
+                className="hidden md:block px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+                style={{ backgroundColor: '#6458AF' }}
+                onClick={() => setLocation('/template-selection')}
+              >
+                Get Started
+              </Button>
+              
+              {/* Mobile Menu Button */}
+              <button
+                className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
+      {/* Mobile Menu */}
+      <>
+        {/* Backdrop */}
+        <div 
+          className={`fixed inset-0 bg-black z-40 md:hidden transition-opacity duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'
+          }`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+        
+        {/* Slide-out Menu */}
+        <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <div className="flex items-center">
+                <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+                <div className="text-left">
+                  <div className="text-xl font-bold" style={{ color: '#6458AF' }}>Landing Pages</div>
+                  <div className="text-sm font-medium text-gray-600 mt-0.5" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                </div>
+              </div>
+              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-600">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <nav className="p-6 space-y-6">
+              <a 
+                href="/template-selection" 
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/template-selection');
+                }}
+              >
+                View Templates
+              </a>
+              <a 
+                href="/custom-websites" 
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/custom-websites');
+                }}
+              >
+                Custom Websites
+              </a>
+              <a 
+                href="/other-services" 
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/other-services');
+                }}
+              >
+                Other Services
+              </a>
+              <a 
+                href="/pricing" 
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setLocation('/pricing');
+                }}
+              >
+                Pricing
+              </a>
+              
+              <div className="pt-6 border-t border-gray-200">
+                <Button 
+                  className="w-full px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+                  style={{ backgroundColor: '#6458AF' }}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setLocation('/template-selection');
+                  }}
+                >
+                  Get Started
+                </Button>
+              </div>
+            </nav>
+        </div>
+      </>
+
       {/* Hero Section with Gradient Background - Purple edges to white center with subtle orange accent in top right */}
       <div className="relative overflow-hidden" style={{
-        background: 'radial-gradient(circle at top right, #ffe5d9 0%, transparent 25%), linear-gradient(90deg, #ede9fe 0%, #ffffff 50%, #ede9fe 100%)',
+        background: 'linear-gradient(90deg, #ede9fe 0%, #ffffff 50%, #ede9fe 100%)',
       }}>
+      {/* Orange accent - hidden on mobile, shown on desktop */}
+      <div className="hidden md:block absolute inset-0 pointer-events-none" style={{
+        background: 'radial-gradient(circle at top right, #ffe5d9 0%, transparent 25%)',
+      }}></div>
 
       {/* Main Content - Centered Hero */}
       <div className="relative z-10 flex-1 flex flex-col">

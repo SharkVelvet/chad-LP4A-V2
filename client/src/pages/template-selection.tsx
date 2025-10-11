@@ -194,10 +194,10 @@ export default function TemplateSelection() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center mb-4">
-                <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+                <FileText className="h-10 w-10 mr-3" style={{ color: '#6458AF' }} />
                 <div className="text-left">
-                  <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                  <div className="text-xs font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                  <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                  <div className="text-sm font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>for Agents</div>
                 </div>
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
@@ -216,19 +216,16 @@ export default function TemplateSelection() {
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a onClick={() => navigate('/blog')} className="hover:text-white transition-colors cursor-pointer">Blog</a></li>
                 <li><a onClick={() => navigate('/contact')} className="hover:text-white transition-colors cursor-pointer">Contact</a></li>
+                <li><a onClick={() => navigate('/blog')} className="hover:text-white transition-colors cursor-pointer">Our Blog</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">FAQ's</a></li>
                 <li><a onClick={() => navigate('/terms-of-service')} className="hover:text-white transition-colors cursor-pointer">Terms of Service</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-gray-400 text-sm">
-              © 2025 Landing Pages for Agents. All rights reserved.
-            </p>
-            <p className="text-gray-400 text-sm mt-2" style={{ opacity: 0.3 }}>
-              Landing Pages for Agents is Owned and Operated by 1612 Media, LLC
-            </p>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Landing Pages for Agents. All rights reserved.</p>
+            <p className="text-sm mt-2 opacity-30">Landing Pages for Agents is Owned and Operated by 1612 Media, LLC</p>
           </div>
         </div>
       </footer>

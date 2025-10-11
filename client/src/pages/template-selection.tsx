@@ -168,7 +168,7 @@ export default function TemplateSelection() {
               style={{ backgroundColor: '#6458AF' }}
               onClick={() => navigate('/setup')}
             >
-              Click Here to Pick your Preview and Build Your Website
+              START THE PROCESS
             </Button>
           </div>
           

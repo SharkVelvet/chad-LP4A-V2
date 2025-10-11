@@ -64,7 +64,7 @@ export default function InternalOne() {
   return (
     <div className="min-h-screen relative flex flex-col">
       {/* Header Menu */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             {/* Logo on Left */}
@@ -81,9 +81,9 @@ export default function InternalOne() {
 
             {/* Menu Items in Middle */}
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#templates" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">View Templates</a>
-              <a href="#pricing" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">Pricing</a>
-              <a href="#services" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">Other Services</a>
+              <a href="#templates" className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">View Templates</a>
+              <a href="#pricing" className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">Pricing</a>
+              <a href="#services" className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">Other Services</a>
             </nav>
 
             {/* Get Started Button on Right */}

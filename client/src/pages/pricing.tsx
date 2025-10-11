@@ -175,7 +175,7 @@ export default function Pricing() {
               </div>
               <Button 
                 className="w-full py-3 bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-200 rounded-full font-medium"
-                onClick={() => setLocation('/template-selection')}
+                onClick={() => setLocation('/services')}
               >
                 Get started
               </Button>

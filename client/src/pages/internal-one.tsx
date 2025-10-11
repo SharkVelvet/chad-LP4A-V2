@@ -63,9 +63,9 @@ export default function InternalOne() {
 
   return (
     <div className="min-h-screen relative overflow-hidden flex flex-col">
-      {/* Hero Section with Gradient Background */}
+      {/* Hero Section with Gradient Background - Purple sides, white center */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'linear-gradient(135deg, #f5f3ff 0%, #ede9fe 25%, #faf5ff 50%, #f3e8ff 75%, #fae8ff 100%)',
+        background: 'linear-gradient(90deg, #ede9fe 0%, #ffffff 35%, #ffffff 65%, #ede9fe 100%)',
       }}></div>
 
       {/* Logo at Top */}

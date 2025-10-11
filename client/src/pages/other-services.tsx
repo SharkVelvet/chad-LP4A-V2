@@ -43,7 +43,7 @@ export default function OtherServices() {
             {/* Get Started Button on Desktop, Hamburger on Mobile */}
             <div className="flex items-center gap-4">
               <Button 
-                className="hidden md:block px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+                className="hidden md:flex items-center px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                 style={{ backgroundColor: '#6458AF' }}
                 onClick={() => setLocation('/template-selection')}
               >

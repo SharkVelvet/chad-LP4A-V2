@@ -1,0 +1,273 @@
+import { Button } from "@/components/ui/button"
+import { FileText, Check } from "lucide-react";
+import { useLocation } from "wouter";
+import { useEffect, useState } from "react";
+
+export default function Pricing() {
+  const [, setLocation] = useLocation();
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'quarterly'>('monthly');
+
+  // Set page title
+  useEffect(() => {
+    document.title = 'Pricing - Professional Landing Pages for Insurance Agents';
+  }, []);
+
+  return (
+    <div className="min-h-screen relative flex flex-col bg-gray-50">
+      {/* Header Menu */}
+      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            {/* Logo on Left */}
+            <div 
+              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => setLocation('/')}
+            >
+              <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+              <div className="text-left">
+                <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                <div className="text-xs font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+              </div>
+            </div>
+
+            {/* Menu Items in Middle */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <a onClick={() => setLocation('/template-selection')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
+              <a onClick={() => setLocation('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
+              <a onClick={() => setLocation('/other-services')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Other Services</a>
+            </nav>
+
+            {/* Get Started Button on Right */}
+            <Button 
+              className="px-6 py-2 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+              style={{ backgroundColor: '#6458AF' }}
+              onClick={() => setLocation('/template-selection')}
+            >
+              Get Started
+            </Button>
+          </div>
+        </div>
+      </header>
+
+      {/* Pricing Hero Section */}
+      <div className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Title and Subtitle */}
+          <div className="text-center mb-12">
+            <h1 className="text-5xl font-bold text-gray-900 mb-4">Choose your right plan!</h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+              Select from best plans, ensuring a perfect match. Need more or less?<br />
+              Customize your subscription for a seamless fit!
+            </p>
+
+            {/* Billing Toggle */}
+            <div className="inline-flex rounded-full p-1 bg-white shadow-sm">
+              <button
+                onClick={() => setBillingCycle('monthly')}
+                className={`px-12 py-3 rounded-full text-sm font-medium transition-all ${
+                  billingCycle === 'monthly' 
+                    ? 'text-white shadow-md' 
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                style={{ backgroundColor: billingCycle === 'monthly' ? '#6458AF' : 'transparent' }}
+              >
+                Monthly
+              </button>
+              <button
+                onClick={() => setBillingCycle('quarterly')}
+                className={`px-12 py-3 rounded-full text-sm font-medium transition-all ${
+                  billingCycle === 'quarterly' 
+                    ? 'text-white shadow-md' 
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                style={{ backgroundColor: billingCycle === 'quarterly' ? '#6458AF' : 'transparent' }}
+              >
+                Quarterly (save 10%)
+              </button>
+            </div>
+          </div>
+
+          {/* Pricing Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {/* Pro Plan */}
+            <div className="bg-white rounded-3xl p-8 shadow-sm">
+              <div className="inline-block px-4 py-1 rounded-full text-sm font-medium text-white mb-6" style={{ backgroundColor: '#6458AF' }}>
+                Pro
+              </div>
+              <p className="text-gray-600 mb-8">
+                Ideal for those who've already got their website up and running and are seeking assistance to enhance and update it further.
+              </p>
+              <div className="mb-8">
+                <span className="text-5xl font-bold text-gray-900">$2500</span>
+                <span className="text-gray-600">/month</span>
+              </div>
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">3-5 day turnaround</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Native Development</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Task delivered one-by-one</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Dedicated dashboard</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Updates via Dashboard & Slack</span>
+                </div>
+              </div>
+              <Button 
+                className="w-full py-3 bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-200 rounded-full font-medium"
+                onClick={() => setLocation('/template-selection')}
+              >
+                Get started
+              </Button>
+            </div>
+
+            {/* Pro Plus Plan */}
+            <div className="bg-white rounded-3xl p-8 shadow-sm">
+              <div className="inline-block px-4 py-1 rounded-full text-sm font-medium text-white mb-6" style={{ backgroundColor: '#6458AF' }}>
+                Pro Plus
+              </div>
+              <p className="text-gray-600 mb-8">
+                Ideal if you want to build or scale your website fast, with the strategy calls included.
+              </p>
+              <div className="mb-8">
+                <span className="text-5xl font-bold text-gray-900">$3800</span>
+                <span className="text-gray-600">/month</span>
+              </div>
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">1-3 day turnaround</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Monthly strategy call</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Commercial license</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Native Development</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Tasks delivered one-by-one</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Dedicated dashboard</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Updates via Dashboard & Slack</span>
+                </div>
+              </div>
+              <Button 
+                className="w-full py-3 bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-200 rounded-full font-medium"
+                onClick={() => setLocation('/template-selection')}
+              >
+                Get started
+              </Button>
+            </div>
+
+            {/* Custom Plan */}
+            <div className="rounded-3xl p-8 shadow-sm" style={{ backgroundColor: '#E5E1F5' }}>
+              <div className="inline-block px-4 py-1 rounded-full text-sm font-medium text-white mb-6" style={{ backgroundColor: '#6458AF' }}>
+                Custom
+              </div>
+              <p className="text-gray-700 mb-8">
+                If these plans don't fit, let's create one that suits. Customize your subscription for a perfect fit, bigger or smaller!
+              </p>
+              <div className="mb-8">
+                <h2 className="text-5xl font-bold text-gray-900">Let's Talks!</h2>
+              </div>
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Everything in design & development</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Strategy workshop</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Priority support</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Multiple tasks at once</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Ongoing autonomous A/B testing</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Advanced custom development</span>
+                </div>
+              </div>
+              <Button 
+                className="w-full py-3 text-white hover:opacity-90 rounded-full font-medium"
+                style={{ backgroundColor: '#2D3748' }}
+                onClick={() => setLocation('/services')}
+              >
+                Book a Call
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 mt-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center mb-4">
+                <FileText className="h-10 w-10 mr-3" style={{ color: '#6458AF' }} />
+                <div className="text-left">
+                  <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                  <div className="text-sm font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                </div>
+              </div>
+              <p className="text-gray-400 mb-4 max-w-md">
+                Professional landing page templates designed specifically for insurance agents. Build trust, generate leads, and grow your business online.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Product</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
+                <li><a href="#templates" className="hover:text-white transition-colors">Templates</a></li>
+                <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Support</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Landing Pages for Agents. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

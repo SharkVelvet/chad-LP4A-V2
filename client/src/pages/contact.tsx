@@ -50,12 +50,10 @@ export default function Contact() {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     try {
-      const result = await apiRequest("/api/contact", {
-        method: "POST",
-        body: data,
-      });
+      const response = await apiRequest("POST", "/api/contact", data);
+      const result = await response.json();
 
-      if (result.success) {
+      if (response.ok && result.success) {
         toast({
           title: "Message sent!",
           description: result.message,
@@ -64,7 +62,7 @@ export default function Contact() {
       } else {
         toast({
           title: "Error",
-          description: result.message,
+          description: result.message || "Failed to send message. Please try again.",
           variant: "destructive",
         });
       }

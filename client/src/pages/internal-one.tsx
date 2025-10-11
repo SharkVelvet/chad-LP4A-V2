@@ -88,7 +88,7 @@ export default function InternalOne() {
 
             {/* Get Started Button on Right */}
             <Button 
-              className="px-6 py-2 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+              className="px-12 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
               style={{ backgroundColor: '#6458AF' }}
               onClick={() => setLocation('/template-selection')}
             >
@@ -120,8 +120,7 @@ export default function InternalOne() {
             {/* Get Started Button */}
             <div className="flex justify-center mb-12">
               <Button 
-                size="lg"
-                className="px-12 py-6 text-lg font-medium text-white hover:opacity-90 transition-opacity whitespace-nowrap rounded-full"
+                className="px-12 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity whitespace-nowrap rounded-full"
                 style={{ backgroundColor: '#6458AF' }}
                 onClick={() => setLocation('/template-selection')}
               >

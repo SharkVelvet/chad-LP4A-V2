@@ -7,7 +7,7 @@ import { useLocation } from "wouter";
 import { useEffect, useState, useRef } from "react";
 import playAgainImage from "@assets/LPFA-PLAY-AGAIN_1757278384329.png";
 import playNowImage from "@assets/LPFA-PLAY-now_1757278621958.png";
-import designersImage from "@assets/lpfa-designers_1757289648427.png";
+import handshakeImage from "@assets/landingpagesforagents-hand-shake_1760211806774.jpg";
 import logoDesignImage from "@assets/lp4a-logo-design_1757611811508.jpg";
 import printDesignImage from "@assets/lp4a-print-design_1757611869956.jpg";
 
@@ -216,8 +216,8 @@ export default function InternalOne() {
               <div className="relative">
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
                   <img 
-                    src={designersImage}
-                    alt="Design team at work"
+                    src={handshakeImage}
+                    alt="Professional handshake meeting"
                     className="w-full object-cover max-h-[220px] lg:max-h-none lg:h-[739px]"
                   />
                 </div>

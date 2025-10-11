@@ -120,31 +120,23 @@ export default function Pricing() {
               <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">1-3 day turnaround</span>
+                  <span className="text-gray-700">Completed from Design to Development</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Monthly strategy call</span>
+                  <span className="text-gray-700">Live within 4 - 6 Weeks</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Commercial license</span>
+                  <span className="text-gray-700">Complete Custom Design</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Native Development</span>
+                  <span className="text-gray-700">Complete CMS Integration</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Tasks delivered one-by-one</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Dedicated dashboard</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Updates via Dashboard & Slack</span>
+                  <span className="text-gray-700">Google Analytics Integration</span>
                 </div>
               </div>
               <Button 

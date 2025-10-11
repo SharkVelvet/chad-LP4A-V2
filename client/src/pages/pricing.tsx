@@ -137,7 +137,7 @@ export default function Pricing() {
                 Custom Site
               </div>
               <p className="text-gray-600 mb-8">
-                Ideal if you want to build or scale your website fast, with the strategy calls included.
+                Ideal for agents expanding their reach and reputation. If you're looking to attract top recruits or impress higher-value clients, a custom-built site helps you stand apart — giving your agency a professional edge that builds instant trust.
               </p>
               <div className="mb-8">
                 <span className="text-5xl font-bold text-gray-900">$2500</span>

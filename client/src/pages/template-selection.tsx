@@ -160,7 +160,7 @@ export default function TemplateSelection() {
         <div className="text-center bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-8 mb-8">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Build Your Website?</h3>
           <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
-            Once you've previewed the templates above, you can proceed to customize your chosen design with your business information.
+            Once you've previewed the templates above and know which template name you want to use, click the button below to Start the Process
           </p>
           <div className="flex justify-center">
             <Button

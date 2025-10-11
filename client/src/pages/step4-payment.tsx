@@ -66,7 +66,7 @@ export default function Step4Payment() {
               </div>
             </div>
             <div className="text-sm text-gray-500">
-              Step 4 of 5
+              Step 3 of 4
             </div>
           </div>
         </div>
@@ -77,9 +77,9 @@ export default function Step4Payment() {
         {/* Progress Indicator */}
         <div className="mb-8">
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-2">Step 4 of 5</p>
+            <p className="text-sm font-medium text-gray-500 mb-2">Step 3 of 4</p>
             <div className="w-full bg-gray-200 rounded-full h-2 mb-4 max-w-md mx-auto">
-              <div className="h-2 rounded-full" style={{ width: '80%', backgroundColor: '#6458AF' }}></div>
+              <div className="h-2 rounded-full" style={{ width: '75%', backgroundColor: '#6458AF' }}></div>
             </div>
           </div>
         </div>

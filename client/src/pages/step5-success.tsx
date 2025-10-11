@@ -28,7 +28,7 @@ export default function Step5Success() {
               </div>
             </div>
             <div className="text-sm text-gray-500">
-              Step 5 of 5 - Complete!
+              Step 4 of 4 - Complete!
             </div>
           </div>
         </div>

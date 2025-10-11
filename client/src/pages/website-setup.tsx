@@ -125,9 +125,9 @@ export default function WebsiteSetup() {
         {/* Step Indicator */}
         <div className="mb-6">
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-2">Step 2 of 5</p>
+            <p className="text-sm font-medium text-gray-500 mb-2">Step 1 of 4</p>
             <div className="w-full bg-gray-200 rounded-full h-2 mb-4 max-w-md mx-auto">
-              <div className="h-2 rounded-full" style={{ width: '40%', backgroundColor: '#6458AF' }}></div>
+              <div className="h-2 rounded-full" style={{ width: '25%', backgroundColor: '#6458AF' }}></div>
             </div>
           </div>
         </div>

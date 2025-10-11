@@ -105,7 +105,7 @@ export default function InternalOne() {
             <div className="flex justify-center mb-12">
               <Button 
                 size="lg"
-                className="px-12 py-4 text-lg font-light text-white hover:opacity-90 transition-opacity whitespace-nowrap rounded-full"
+                className="px-12 py-6 text-lg font-medium text-white hover:opacity-90 transition-opacity whitespace-nowrap rounded-full"
                 style={{ backgroundColor: '#6458AF' }}
                 onClick={() => window.open('https://landingpagesforagents.com/template-selection', '_blank')}
               >

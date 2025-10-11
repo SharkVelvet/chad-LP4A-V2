@@ -302,119 +302,116 @@ export default function InternalOne() {
         </div>
       </div>
 
-      {/* Main Content - 2 Column Hero */}
+      {/* Main Content - Centered Hero */}
       <div className="relative z-10 flex-1 flex flex-col">
-        <div className="flex-1 flex items-center justify-center py-12 lg:py-20">
-          <div className="mx-auto px-4 sm:px-6 lg:px-8 w-full" style={{ maxWidth: '90%' }}>
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              {/* Left Column - Video */}
-              <div className="order-2 lg:order-1">
-                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-                  <div className="absolute inset-0 bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2" style={{ borderColor: '#6458AF' }}>
-                    <video
-                      ref={videoRef}
-                      className="w-full h-full"
-                      controls
-                      playsInline
-                      preload="auto"
-                      style={{ backgroundColor: '#000000' }}
-                    >
-                      <source
-                        src="https://www.dropbox.com/scl/fi/oqmtsyntyq3w1x5v30e2m/lp4a-sept26.mp4?rlkey=ur3nwss1sgf81myc46x5ghqbf&st=bfumo3c1&raw=1"
-                        type="video/mp4"
-                      />
-                      <source
-                        src="https://dl.dropboxusercontent.com/scl/fi/oqmtsyntyq3w1x5v30e2m/lp4a-sept26.mp4?rlkey=ur3nwss1sgf81myc46x5ghqbf&st=bfumo3c1"
-                        type="video/mp4"
-                      />
-                      <div className="flex items-center justify-center h-full bg-gray-50 text-gray-600">
-                        <div className="text-center p-8">
-                          <div className="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
-                            <svg className="w-8 h-8" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                            </svg>
-                          </div>
-                          <p className="text-lg font-medium">Demo Video</p>
-                          <p className="text-sm text-gray-500 mt-2">See how professional recruiting pages work</p>
-                          <p className="text-xs text-gray-400 mt-2">If you can hear audio but no video, your browser may not support MOV format.</p>
-                        </div>
-                      </div>
-                    </video>
-                    
-                    {/* Play Now Overlay (initial) */}
-                    {!hasStartedPlaying && (
-                      <div 
-                        className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
-                        onClick={handlePlayNowClick}
-                      >
-                        <img 
-                          src={playNowImage} 
-                          alt="Click to play video"
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    )}
-
-                    {/* Replay Overlay (after video ends) */}
-                    {hasStartedPlaying && showReplayOverlay && (
-                      <div 
-                        className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
-                        onClick={handleReplayClick}
-                      >
-                        <img 
-                          src={playAgainImage} 
-                          alt="Click to play again"
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
+        <div className="flex-1 flex flex-col items-center justify-center py-12 lg:py-20">
+          <div className="mx-auto px-4 sm:px-6 lg:px-8 w-full text-center" style={{ maxWidth: '90%' }}>
+            {/* Hero Text Content */}
+            <Badge className="mb-6 inline-block" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 leading-tight max-w-5xl mx-auto">
+              Professional Landing Pages for <span style={{ color: '#6458AF' }}>Insurance Agents</span>
+            </h1>
+            
+            {/* Features List - Centered */}
+            <div className="mb-8 space-y-3 max-w-md mx-auto">
+              <div className="flex items-center justify-center gap-3">
+                <svg className="w-5 h-5 flex-shrink-0" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-lg lg:text-xl text-gray-700">Free Domain Name</span>
               </div>
+              <div className="flex items-center justify-center gap-3">
+                <svg className="w-5 h-5 flex-shrink-0" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-lg lg:text-xl text-gray-700">Free Business Email</span>
+              </div>
+              <div className="flex items-center justify-center gap-3">
+                <svg className="w-5 h-5 flex-shrink-0" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-lg lg:text-xl text-gray-700">Free Hosting</span>
+              </div>
+              <div className="flex items-center justify-center gap-3">
+                <svg className="w-5 h-5 flex-shrink-0" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-lg lg:text-xl text-gray-700">Free Support</span>
+              </div>
+            </div>
+            
+            {/* Get Started Button */}
+            <div className="flex justify-center mb-12">
+              <Button 
+                size="lg"
+                className="px-8 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity whitespace-nowrap"
+                style={{ backgroundColor: '#6458AF' }}
+                onClick={() => window.open('https://landingpagesforagents.com/template-selection', '_blank')}
+              >
+                Click Here to get Started!
+              </Button>
+            </div>
 
-              {/* Right Column - Text Content */}
-              <div className="order-1 lg:order-2 text-center lg:text-left">
-                <Badge className="mb-6 inline-block" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Professional Landing Pages for <span style={{ color: '#6458AF' }}>Insurance Agents</span>
-                </h1>
-                <div className="mb-8 space-y-3">
-                  <div className="flex items-center justify-center lg:justify-start gap-3">
-                    <svg className="w-5 h-5 flex-shrink-0" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-lg lg:text-xl text-gray-700">Free Domain Name</span>
-                  </div>
-                  <div className="flex items-center justify-center lg:justify-start gap-3">
-                    <svg className="w-5 h-5 flex-shrink-0" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-lg lg:text-xl text-gray-700">Free Business Email</span>
-                  </div>
-                  <div className="flex items-center justify-center lg:justify-start gap-3">
-                    <svg className="w-5 h-5 flex-shrink-0" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-lg lg:text-xl text-gray-700">Free Hosting</span>
-                  </div>
-                  <div className="flex items-center justify-center lg:justify-start gap-3">
-                    <svg className="w-5 h-5 flex-shrink-0" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-lg lg:text-xl text-gray-700">Free Support</span>
-                  </div>
-                </div>
-                
-                {/* Get Started Button */}
-                <div className="flex justify-center lg:justify-start">
-                  <Button 
-                    size="lg"
-                    className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity whitespace-nowrap"
-                    style={{ backgroundColor: '#6458AF' }}
-                    onClick={() => window.open('https://landingpagesforagents.com/template-selection', '_blank')}
+            {/* Video Below - Like Dashboard in Example */}
+            <div className="mt-8">
+              <div className="relative w-full max-w-6xl mx-auto" style={{ paddingBottom: '56.25%' }}>
+                <div className="absolute inset-0 bg-gray-100 rounded-xl overflow-hidden shadow-2xl border-2" style={{ borderColor: '#6458AF' }}>
+                  <video
+                    ref={videoRef}
+                    className="w-full h-full"
+                    controls
+                    playsInline
+                    preload="auto"
+                    style={{ backgroundColor: '#000000' }}
                   >
-                    Click Here to get Started!
-                  </Button>
+                    <source
+                      src="https://www.dropbox.com/scl/fi/oqmtsyntyq3w1x5v30e2m/lp4a-sept26.mp4?rlkey=ur3nwss1sgf81myc46x5ghqbf&st=bfumo3c1&raw=1"
+                      type="video/mp4"
+                    />
+                    <source
+                      src="https://dl.dropboxusercontent.com/scl/fi/oqmtsyntyq3w1x5v30e2m/lp4a-sept26.mp4?rlkey=ur3nwss1sgf81myc46x5ghqbf&st=bfumo3c1"
+                      type="video/mp4"
+                    />
+                    <div className="flex items-center justify-center h-full bg-gray-50 text-gray-600">
+                      <div className="text-center p-8">
+                        <div className="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
+                          <svg className="w-8 h-8" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <p className="text-lg font-medium">Demo Video</p>
+                        <p className="text-sm text-gray-500 mt-2">See how professional recruiting pages work</p>
+                      </div>
+                    </div>
+                  </video>
+                  
+                  {/* Play Now Overlay (initial) */}
+                  {!hasStartedPlaying && (
+                    <div 
+                      className="absolute inset-0 cursor-pointer rounded-xl overflow-hidden"
+                      onClick={handlePlayNowClick}
+                    >
+                      <img 
+                        src={playNowImage} 
+                        alt="Click to play video"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+
+                  {/* Replay Overlay (after video ends) */}
+                  {hasStartedPlaying && showReplayOverlay && (
+                    <div 
+                      className="absolute inset-0 cursor-pointer rounded-xl overflow-hidden"
+                      onClick={handleReplayClick}
+                    >
+                      <img 
+                        src={playAgainImage} 
+                        alt="Click to play again"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

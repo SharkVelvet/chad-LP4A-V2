@@ -227,67 +227,19 @@ export default function InternalOne() {
                 <div className="absolute top-1/2 -left-8 w-4 h-4 rounded-full bg-pink-400"></div>
               </div>
 
-              {/* Right side - Steps */}
+              {/* Right side - Content */}
               <div>
-                <div className="mb-12">
-                  <h2 className="text-4xl font-bold text-gray-900 mb-4">Custom Website Design</h2>
-                  <p className="text-lg text-gray-600">Don't see a template that you like? Want something a little more? Our team is happy to help you build a custom solution, here is how it works.</p>
-                </div>
-
-                <div className="space-y-8">
-                  {/* Step 1 */}
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                        <svg className="w-6 h-6" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">1. Share your vision</h3>
-                      <p className="text-gray-600 mb-3">
-                        Tell us exactly what you want. Share your brand colors, style preferences, and unique business requirements that templates can't capture.
-                      </p>
-                      <div className="w-16 h-1 rounded-full" style={{ backgroundColor: '#6458AF' }}></div>
-                    </div>
-                  </div>
-
-                  {/* Step 2 */}
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                        <svg className="w-6 h-6" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">2. We design from scratch</h3>
-                      <p className="text-gray-600 mb-3">
-                        Our designers create a completely custom website built specifically for your insurance agency, with unique layouts and features.
-                      </p>
-                      <div className="w-16 h-1 rounded-full bg-orange-400"></div>
-                    </div>
-                  </div>
-
-                  {/* Step 3 */}
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                        <svg className="w-6 h-6" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">3. Stand out completely</h3>
-                      <p className="text-gray-600 mb-3">
-                        Launch a one-of-a-kind website that perfectly represents your brand and sets you apart from every other insurance agent.
-                      </p>
-                      <div className="w-16 h-1 rounded-full bg-pink-400"></div>
-                    </div>
-                  </div>
+                <div className="mb-8">
+                  <h2 className="text-4xl font-bold text-gray-900 mb-4">Build Credibility. Earn Trust. Get Found.</h2>
+                  <p className="text-lg text-gray-600 mb-6">
+                    Your online presence is often your first impression. When clients search your name or scan your business card, they should see a professional, trustworthy landing page that makes them feel confident contacting you.
+                  </p>
+                  <p className="text-lg text-gray-600 mb-6">
+                    LandingPagesForAgents.com gives you a modern, mobile-friendly page that showcases who you are, what you do, and how to reach you — all in one place.
+                  </p>
+                  <p className="text-lg text-gray-600">
+                    From social media links to testimonials, your page builds the trust that helps turn introductions into appointments, and appointments into long-term clients.
+                  </p>
                 </div>
 
                 {/* Call to Action Button - Left Aligned */}
@@ -296,9 +248,9 @@ export default function InternalOne() {
                     size="lg"
                     className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
                     style={{ backgroundColor: '#6458AF' }}
-                    onClick={() => setLocation('/services')}
+                    onClick={() => setLocation('/template-selection')}
                   >
-                    Get Custom Website Quote
+                    Get Started
                   </Button>
                 </div>
               </div>
@@ -330,78 +282,30 @@ export default function InternalOne() {
 
             {/* Content ordered first on desktop */}
             <div className="lg:order-1">
-              <div className="mb-12">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">Logo and Brand Creation</h2>
-                <p className="text-lg text-gray-600">Build a powerful brand identity that clients remember!</p>
+              <div className="mb-8">
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">Lead by Example. Attract Talent That Lasts.</h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Top producers don't just recruit — they inspire. When every agent on your team has a professional landing page, it sends a message that your agency values excellence, consistency, and success.
+                </p>
+                <p className="text-lg text-gray-600 mb-6">
+                  LandingPagesForAgents.com helps you create branded pages for every team member, all aligned with your look, feel, and professionalism.
+                </p>
+                <p className="text-lg text-gray-600">
+                  It's the easiest way to strengthen your recruiting image, retain your best people, and help new agents launch with instant credibility under your brand.
+                </p>
               </div>
 
-              <div className="space-y-8">
-                {/* Step 1 */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                      <svg className="w-6 h-6" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">1. Discover your brand identity</h3>
-                    <p className="text-gray-600 mb-3">
-                      We explore your agency's personality, values, and target audience to create a brand foundation that truly represents who you are.
-                    </p>
-                    <div className="w-16 h-1 rounded-full" style={{ backgroundColor: '#6458AF' }}></div>
-                  </div>
-                </div>
-
-                {/* Step 2 */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                      <svg className="w-6 h-6" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">2. Design your perfect logo</h3>
-                    <p className="text-gray-600 mb-3">
-                      Our designers create multiple logo concepts that capture your brand essence, giving you a professional mark that stands out in the marketplace.
-                    </p>
-                    <div className="w-16 h-1 rounded-full bg-orange-400"></div>
-                  </div>
-                </div>
-
-                {/* Step 3 */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                      <svg className="w-6 h-6" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">3. Launch your brand everywhere</h3>
-                    <p className="text-gray-600 mb-3">
-                      Get your complete brand package including business cards, letterheads, and digital assets to present a consistent, professional image across all touchpoints.
-                    </p>
-                    <div className="w-16 h-1 rounded-full bg-pink-400"></div>
-                  </div>
-                </div>
-                </div>
-
-                {/* Call to Action Button - Left Aligned */}
-                <div className="mt-8 flex justify-start">
-                  <Button 
-                    size="lg"
-                    className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
-                    style={{ backgroundColor: '#6458AF' }}
-                    onClick={() => setLocation('/services')}
-                  >
-                    Let's Chat about Your Brand
-                  </Button>
-                </div>
+              {/* Call to Action Button - Left Aligned */}
+              <div className="mt-8 flex justify-start">
+                <Button 
+                  size="lg"
+                  className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: '#6458AF' }}
+                  onClick={() => setLocation('/template-selection')}
+                >
+                  Get Started
+                </Button>
+              </div>
             </div>
           </div>
         </div>

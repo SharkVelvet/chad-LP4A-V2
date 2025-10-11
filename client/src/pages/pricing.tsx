@@ -156,7 +156,7 @@ export default function Pricing() {
                 We've spent more than 15 years helping clients stand out—online and off. From digital strategy to print, branding, and creative campaigns, we provide everything you need under one roof to keep your marketing simple and effective.
               </p>
               <div className="mb-8">
-                <h2 className="text-5xl font-bold text-gray-900">Yes, we can...</h2>
+                <h2 className="text-5xl font-bold text-gray-900">We Do it All!</h2>
               </div>
               <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-3">

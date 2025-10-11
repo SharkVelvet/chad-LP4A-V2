@@ -302,97 +302,98 @@ export default function InternalOne() {
         </div>
       </div>
 
-      {/* Main Content Centered */}
+      {/* Main Content - 2 Column Hero */}
       <div className="relative z-10 flex-1 flex flex-col">
-        <div className="flex-1 flex items-center justify-center">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <Badge className="mb-8" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
-              <h1 className="text-5xl font-bold text-gray-900 mb-8">
-                Professional Landing Pages&nbsp;for<br />
-                <span style={{ color: '#6458AF' }}>Insurance Agents</span>
-              </h1>
-              <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Are you looking to grow your clients or grow your team? Either way we got you covered!
-              </p>
-              
-              {/* Demo Video */}
-              <div className="my-12 flex justify-center">
-                <div className="w-[92vw]">
-                  <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-                    <div className="absolute inset-0 bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2" style={{ borderColor: '#6458AF' }}>
-                      <video
-                        ref={videoRef}
-                        className="w-full h-full"
-                        controls
-                        playsInline
-                        preload="auto"
-                        style={{ backgroundColor: '#000000' }}
-                      >
-                        <source
-                          src="https://www.dropbox.com/scl/fi/oqmtsyntyq3w1x5v30e2m/lp4a-sept26.mp4?rlkey=ur3nwss1sgf81myc46x5ghqbf&st=bfumo3c1&raw=1"
-                          type="video/mp4"
-                        />
-                        <source
-                          src="https://dl.dropboxusercontent.com/scl/fi/oqmtsyntyq3w1x5v30e2m/lp4a-sept26.mp4?rlkey=ur3nwss1sgf81myc46x5ghqbf&st=bfumo3c1"
-                          type="video/mp4"
-                        />
-                        <div className="flex items-center justify-center h-full bg-gray-50 text-gray-600">
-                          <div className="text-center p-8">
-                            <div className="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
-                              <svg className="w-8 h-8" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                              </svg>
-                            </div>
-                            <p className="text-lg font-medium">Demo Video</p>
-                            <p className="text-sm text-gray-500 mt-2">See how professional recruiting pages work</p>
-                            <p className="text-xs text-gray-400 mt-2">If you can hear audio but no video, your browser may not support MOV format.</p>
+        <div className="flex-1 flex items-center justify-center py-12 lg:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              {/* Left Column - Video */}
+              <div className="order-2 lg:order-1">
+                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                  <div className="absolute inset-0 bg-gray-100 rounded-lg overflow-hidden shadow-lg border-2" style={{ borderColor: '#6458AF' }}>
+                    <video
+                      ref={videoRef}
+                      className="w-full h-full"
+                      controls
+                      playsInline
+                      preload="auto"
+                      style={{ backgroundColor: '#000000' }}
+                    >
+                      <source
+                        src="https://www.dropbox.com/scl/fi/oqmtsyntyq3w1x5v30e2m/lp4a-sept26.mp4?rlkey=ur3nwss1sgf81myc46x5ghqbf&st=bfumo3c1&raw=1"
+                        type="video/mp4"
+                      />
+                      <source
+                        src="https://dl.dropboxusercontent.com/scl/fi/oqmtsyntyq3w1x5v30e2m/lp4a-sept26.mp4?rlkey=ur3nwss1sgf81myc46x5ghqbf&st=bfumo3c1"
+                        type="video/mp4"
+                      />
+                      <div className="flex items-center justify-center h-full bg-gray-50 text-gray-600">
+                        <div className="text-center p-8">
+                          <div className="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
+                            <svg className="w-8 h-8" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                            </svg>
                           </div>
+                          <p className="text-lg font-medium">Demo Video</p>
+                          <p className="text-sm text-gray-500 mt-2">See how professional recruiting pages work</p>
+                          <p className="text-xs text-gray-400 mt-2">If you can hear audio but no video, your browser may not support MOV format.</p>
                         </div>
-                      </video>
-                      
-                      {/* Play Now Overlay (initial) */}
-                      {!hasStartedPlaying && (
-                        <div 
-                          className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
-                          onClick={handlePlayNowClick}
-                        >
-                          <img 
-                            src={playNowImage} 
-                            alt="Click to play video"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      )}
+                      </div>
+                    </video>
+                    
+                    {/* Play Now Overlay (initial) */}
+                    {!hasStartedPlaying && (
+                      <div 
+                        className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
+                        onClick={handlePlayNowClick}
+                      >
+                        <img 
+                          src={playNowImage} 
+                          alt="Click to play video"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
 
-                      {/* Replay Overlay (after video ends) */}
-                      {hasStartedPlaying && showReplayOverlay && (
-                        <div 
-                          className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
-                          onClick={handleReplayClick}
-                        >
-                          <img 
-                            src={playAgainImage} 
-                            alt="Click to play again"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      )}
-                    </div>
+                    {/* Replay Overlay (after video ends) */}
+                    {hasStartedPlaying && showReplayOverlay && (
+                      <div 
+                        className="absolute inset-0 cursor-pointer rounded-lg overflow-hidden"
+                        onClick={handleReplayClick}
+                      >
+                        <img 
+                          src={playAgainImage} 
+                          alt="Click to play again"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
-              
-              {/* Get Started Section */}
-              <div className="flex justify-center mb-24">
-                <Button 
-                  size="lg"
-                  className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity whitespace-nowrap"
-                  style={{ backgroundColor: '#6458AF' }}
-                  onClick={() => window.open('https://landingpagesforagents.com/template-selection', '_blank')}
-                >
-                  Click Here to get Started!
-                </Button>
+
+              {/* Right Column - Text Content */}
+              <div className="order-1 lg:order-2 text-center lg:text-left">
+                <Badge className="mb-6 inline-block" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
+                <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                  Professional Landing Pages for<br />
+                  <span style={{ color: '#6458AF' }}>Insurance Agents</span>
+                </h1>
+                <p className="text-lg lg:text-xl text-gray-600 mb-8">
+                  Are you looking to grow your clients or grow your team? Either way we got you covered!
+                </p>
+                
+                {/* Get Started Button */}
+                <div className="flex justify-center lg:justify-start">
+                  <Button 
+                    size="lg"
+                    className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity whitespace-nowrap"
+                    style={{ backgroundColor: '#6458AF' }}
+                    onClick={() => window.open('https://landingpagesforagents.com/template-selection', '_blank')}
+                  >
+                    Click Here to get Started!
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

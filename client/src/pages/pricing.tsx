@@ -50,7 +50,7 @@ export default function Pricing() {
       </header>
 
       {/* Pricing Hero Section */}
-      <div className="py-20">
+      <div className="py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Title and Subtitle */}
           <div className="text-center mb-12">

@@ -53,7 +53,7 @@ export default function CustomWebsites() {
       {/* Custom Website Design Section */}
       <div className="relative z-10 bg-gradient-to-b from-gray-50 to-white">
         {/* Page Title */}
-        <div className="pt-20 pb-8 lg:py-20">
+        <div className="pt-10 pb-8 lg:py-10">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-5xl font-bold text-gray-900 mb-4">Custom Website Design</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -63,7 +63,7 @@ export default function CustomWebsites() {
         </div>
 
         {/* How It Works Section */}
-        <div className="py-8 lg:py-20">
+        <div className="py-8 lg:py-10">
         <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1050px' }}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Image */}

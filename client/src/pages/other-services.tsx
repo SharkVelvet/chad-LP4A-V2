@@ -53,7 +53,7 @@ export default function OtherServices() {
 
       {/* Additional Services Section */}
       <div className="relative z-10 bg-gradient-to-b from-gray-50 to-white">
-        <div className="pt-20 pb-12 lg:py-20">
+        <div className="pt-10 pb-12 lg:py-10">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-5xl font-bold text-gray-900 mb-4">Other Services</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">

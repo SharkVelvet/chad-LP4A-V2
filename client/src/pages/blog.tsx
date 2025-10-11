@@ -69,7 +69,7 @@ export default function Blog() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-white">
+      <section className="py-10 bg-gradient-to-br from-purple-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl font-bold mb-6" style={{ color: '#6458AF' }}>
             Insurance Marketing Blog

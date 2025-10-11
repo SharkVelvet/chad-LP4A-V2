@@ -116,7 +116,7 @@ export default function Contact() {
       </header>
 
       {/* Contact Form Section */}
-      <div className="py-20">
+      <div className="py-10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Title */}
           <div className="text-center mb-12">

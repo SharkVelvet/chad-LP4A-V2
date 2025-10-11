@@ -230,7 +230,11 @@ export default function InternalOne() {
               {/* Right side - Content */}
               <div>
                 <div className="mb-8">
-                  <h2 className="text-4xl font-bold text-gray-900 mb-4">Build Credibility. Earn Trust. Get Found.</h2>
+                  <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                    Build Credibility.<br />
+                    Earn Trust.<br />
+                    Get Found.
+                  </h2>
                   <p className="text-lg text-gray-600 mb-6">
                     Your online presence is often your first impression. When clients search your name or scan your business card, they should see a professional, trustworthy landing page that makes them feel confident contacting you.
                   </p>

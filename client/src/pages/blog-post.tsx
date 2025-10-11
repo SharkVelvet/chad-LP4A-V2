@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, FileText, ArrowLeft, Volume2, VolumeX, Pause, Play, Menu, X, MessageCircle } from "lucide-react";
+import { Calendar, Clock, FileText, ArrowLeft, Volume2, VolumeX, Pause, Play } from "lucide-react";
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useRef, useEffect } from "react";
@@ -18,7 +18,6 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const { data: post, isLoading } = useQuery<BlogPost>({
     queryKey: [`/api/blog-posts/${slug}`],
@@ -276,270 +275,41 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      {/* Header Menu */}
+      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
+            {/* Logo on Left */}
             <div 
               className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
               onClick={() => setLocation('/')}
             >
-              <FileText className="h-8 w-8 sm:h-10 sm:w-10 mr-3" style={{ color: '#6458AF' }} />
+              <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
               <div className="text-left">
-                <div className="text-xl sm:text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-xs sm:text-sm font-medium text-gray-600 mt-0.5 sm:mt-0" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                <div className="text-xs font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
-            <nav className="hidden md:flex space-x-8">
-              <a 
-                href="/internal-one#features" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setLocation('/internal-one');
-                  setTimeout(() => {
-                    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
-                  }, 100);
-                }}
-              >
-                Features
-              </a>
-              <a 
-                href="/internal-one#templates" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setLocation('/internal-one');
-                  setTimeout(() => {
-                    document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' });
-                  }, 100);
-                }}
-              >
-                Templates
-              </a>
-              <a 
-                href="/internal-one#pricing" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setLocation('/internal-one');
-                  setTimeout(() => {
-                    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
-                  }, 100);
-                }}
-              >
-                Pricing
-              </a>
-              <a 
-                href="/internal-one#contact" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setLocation('/internal-one');
-                  setTimeout(() => {
-                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                  }, 100);
-                }}
-              >
-                Contact
-              </a>
-              <a 
-                href="/blog" 
-                className="text-gray-700 hover:opacity-80 transition-colors cursor-pointer" 
-                onMouseEnter={(e) => e.currentTarget.style.color = '#6458AF'} 
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setLocation('/blog');
-                }}
-              >
-                Blog
-              </a>
+
+            {/* Menu Items in Middle */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <a onClick={() => setLocation('/template-selection')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
+              <a onClick={() => setLocation('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Websites</a>
+              <a onClick={() => setLocation('/other-services')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Other Services</a>
+              <a onClick={() => setLocation('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
             </nav>
-            <div className="flex items-center gap-4">
-              <Button 
-                className="hidden md:block text-white px-6 py-2" 
-                style={{ backgroundColor: '#6458AF' }} 
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
-                onClick={() => setLocation("/start-the-process")}
-              >
-                Start the Process
-              </Button>
-              
-              {/* Mobile Text Share Button */}
-              <button
-                className="md:hidden p-2 rounded-lg text-white hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: '#6458AF' }}
-                onClick={() => {
-                  const currentUrl = window.location.href;
-                  const message = `Hey, here's the website I mentioned where you can quickly get an agent page live. Just tell them the domain name you want, pick a template, and they'll have it live in about 48 hours. ${currentUrl}`;
-                  
-                  if (navigator.share) {
-                    navigator.share({
-                      title: 'Professional Landing Pages for Insurance Agents',
-                      text: message,
-                    });
-                  } else {
-                    // Fallback: copy to clipboard
-                    navigator.clipboard.writeText(message).then(() => {
-                      alert('Message copied to clipboard!');
-                    }).catch(() => {
-                      // Fallback for older browsers
-                      const textArea = document.createElement('textarea');
-                      textArea.value = message;
-                      document.body.appendChild(textArea);
-                      textArea.select();
-                      document.execCommand('copy');
-                      document.body.removeChild(textArea);
-                      alert('Message copied to clipboard!');
-                    });
-                  }
-                }}
-                aria-label="Share website"
-                title="Share this website"
-              >
-                <MessageCircle className="h-6 w-6" />
-              </button>
-              
-              {/* Mobile Menu Button */}
-              <button
-                className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
+
+            {/* Get Started Button on Right */}
+            <Button 
+              className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+              style={{ backgroundColor: '#6458AF' }}
+              onClick={() => setLocation('/template-selection')}
+            >
+              Get Started
+            </Button>
           </div>
         </div>
       </header>
-
-      {/* Mobile Slide-out Menu */}
-      <>
-        {/* Backdrop */}
-        <div 
-          className={`fixed inset-0 bg-black z-40 md:hidden transition-opacity duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'
-          }`}
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-        
-        {/* Slide-out Menu */}
-        <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}>
-          {/* Menu Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <div className="flex items-center">
-              <FileText className="h-8 w-8 mr-2" style={{ color: '#6458AF' }} />
-              <div className="text-left">
-                <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-sm font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
-              </div>
-            </div>
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-          
-          {/* Menu Items */}
-          <nav className="p-6 space-y-6">
-            <a 
-              href="/internal-one#features"
-              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
-              onClick={(e) => {
-                e.preventDefault();
-                setIsMobileMenuOpen(false);
-                setLocation('/internal-one');
-                setTimeout(() => {
-                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              }}
-            >
-              Features
-            </a>
-            <a 
-              href="/internal-one#templates"
-              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
-              onClick={(e) => {
-                e.preventDefault();
-                setIsMobileMenuOpen(false);
-                setLocation('/internal-one');
-                setTimeout(() => {
-                  document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              }}
-            >
-              Templates
-            </a>
-            <a 
-              href="/internal-one#pricing"
-              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
-              onClick={(e) => {
-                e.preventDefault();
-                setIsMobileMenuOpen(false);
-                setLocation('/internal-one');
-                setTimeout(() => {
-                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              }}
-            >
-              Pricing
-            </a>
-            <a 
-              href="/internal-one#contact"
-              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2" 
-              onClick={(e) => {
-                e.preventDefault();
-                setIsMobileMenuOpen(false);
-                setLocation('/internal-one');
-                setTimeout(() => {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              }}
-            >
-              Contact
-            </a>
-            <a 
-              href="/blog"
-              className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
-              onClick={(e) => {
-                e.preventDefault();
-                setIsMobileMenuOpen(false);
-                setLocation('/blog');
-              }}
-            >
-              Blog
-            </a>
-            
-            {/* CTA Button */}
-            <div className="pt-6 border-t border-gray-200">
-              <Button 
-                className="w-full text-white py-3"
-                style={{ backgroundColor: '#6458AF' }}
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  setLocation("/start-the-process");
-                }}
-              >
-                Start the Process
-              </Button>
-            </div>
-          </nav>
-        </div>
-      </>
 
       {/* Back to Blog Button */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
@@ -736,7 +506,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+                <li><a onClick={() => setLocation('/contact')} className="hover:text-white transition-colors cursor-pointer">Contact</a></li>
                 <li><a onClick={() => setLocation('/blog')} className="hover:text-white transition-colors cursor-pointer">Our Blog</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">FAQ's</a></li>
                 <li><a onClick={() => setLocation('/terms-of-service')} className="hover:text-white transition-colors cursor-pointer">Terms of Service</a></li>

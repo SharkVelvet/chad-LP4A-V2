@@ -124,11 +124,11 @@ export default function OtherServices() {
 
           {/* Right side - Image */}
           <div className="relative">
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden max-w-md mx-auto">
               <img 
                 src={logoDesignImage}
                 alt="Logo design examples"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover max-h-80"
               />
             </div>
           </div>
@@ -142,11 +142,11 @@ export default function OtherServices() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Image */}
           <div className="relative order-2 lg:order-1">
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden max-w-md mx-auto">
               <img 
                 src={printDesignImage}
                 alt="Print design examples"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover max-h-80"
               />
             </div>
           </div>

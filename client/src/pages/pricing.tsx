@@ -193,7 +193,7 @@ export default function Pricing() {
                 style={{ backgroundColor: '#2D3748' }}
                 onClick={() => setLocation('/services')}
               >
-                Book a Call
+                Let's Chat
               </Button>
             </div>
           </div>

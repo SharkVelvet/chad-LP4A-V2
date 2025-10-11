@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import TemplateCard from "@/components/template-card";
-import { FileText } from "lucide-react";
-import { useEffect } from "react";
+import { FileText, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { trackViewContent } from "@/lib/facebook-pixel";
 
 type Template = {
@@ -18,6 +18,7 @@ type Template = {
 
 export default function TemplateSelection() {
   const [, navigate] = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const { data: templates, isLoading } = useQuery<Template[]>({
     queryKey: ["/api/templates"],
@@ -104,17 +105,116 @@ export default function TemplateSelection() {
               <a onClick={() => navigate('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
             </nav>
 
-            {/* Get Started Button on Right */}
-            <Button 
-              className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
-              style={{ backgroundColor: '#6458AF' }}
-              onClick={() => navigate('/template-selection')}
-            >
-              Get Started
-            </Button>
+            {/* Get Started Button on Desktop, Hamburger on Mobile */}
+            <div className="flex items-center gap-4">
+              <Button 
+                className="hidden md:block px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+                style={{ backgroundColor: '#6458AF' }}
+                onClick={() => navigate('/template-selection')}
+              >
+                Get Started
+              </Button>
+              
+              {/* Mobile Menu Button */}
+              <button
+                className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
         </div>
       </header>
+
+      {/* Mobile Menu */}
+      <>
+        {/* Backdrop */}
+        <div 
+          className={`fixed inset-0 bg-black z-40 md:hidden transition-opacity duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'
+          }`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+        
+        {/* Slide-out Menu */}
+        <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <div className="flex items-center">
+                <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+                <div className="text-left">
+                  <div className="text-xl font-bold" style={{ color: '#6458AF' }}>Landing Pages</div>
+                  <div className="text-sm font-medium text-gray-600 mt-0.5" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                </div>
+              </div>
+              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-600">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <nav className="p-6 space-y-6">
+              <a 
+                href="/template-selection" 
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  navigate('/template-selection');
+                }}
+              >
+                View Templates
+              </a>
+              <a 
+                href="/custom-websites" 
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  navigate('/custom-websites');
+                }}
+              >
+                Custom Websites
+              </a>
+              <a 
+                href="/other-services" 
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  navigate('/other-services');
+                }}
+              >
+                Other Services
+              </a>
+              <a 
+                href="/pricing" 
+                className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  navigate('/pricing');
+                }}
+              >
+                Pricing
+              </a>
+              
+              <div className="pt-6 border-t border-gray-200">
+                <Button 
+                  className="w-full px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+                  style={{ backgroundColor: '#6458AF' }}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    navigate('/template-selection');
+                  }}
+                >
+                  Get Started
+                </Button>
+              </div>
+            </nav>
+        </div>
+      </>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}

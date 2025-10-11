@@ -161,7 +161,7 @@ export default function Pricing() {
                 Other Services
               </div>
               <p className="text-gray-700 mb-8">
-                If these plans don't fit, let's create one that suits. Customize your subscription for a perfect fit, bigger or smaller!
+                We've spent more than 15 years helping clients stand out—online and off. From digital strategy to print, branding, and creative campaigns, we provide everything you need under one roof to keep your marketing simple and effective.
               </p>
               <div className="mb-8">
                 <h2 className="text-5xl font-bold text-gray-900">We Do That!</h2>

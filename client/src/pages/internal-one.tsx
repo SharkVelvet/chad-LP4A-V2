@@ -81,7 +81,7 @@ export default function InternalOne() {
 
             {/* Menu Items in Middle */}
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#templates" className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">View Templates</a>
+              <a onClick={() => setLocation('/template-selection')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
               <a href="#pricing" className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">Pricing</a>
               <a href="#services" className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors">Other Services</a>
             </nav>
@@ -90,7 +90,7 @@ export default function InternalOne() {
             <Button 
               className="px-6 py-2 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
               style={{ backgroundColor: '#6458AF' }}
-              onClick={() => window.open('https://landingpagesforagents.com/template-selection', '_blank')}
+              onClick={() => setLocation('/template-selection')}
             >
               Get Started
             </Button>
@@ -123,7 +123,7 @@ export default function InternalOne() {
                 size="lg"
                 className="px-12 py-6 text-lg font-medium text-white hover:opacity-90 transition-opacity whitespace-nowrap rounded-full"
                 style={{ backgroundColor: '#6458AF' }}
-                onClick={() => window.open('https://landingpagesforagents.com/template-selection', '_blank')}
+                onClick={() => setLocation('/template-selection')}
               >
                 Click Here to get Started!
               </Button>

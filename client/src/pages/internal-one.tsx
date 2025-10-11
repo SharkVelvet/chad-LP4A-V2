@@ -121,7 +121,7 @@ export default function InternalOne() {
             {/* Get Started Button */}
             <div className="flex justify-center mb-12">
               <Button 
-                className="px-12 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity whitespace-nowrap rounded-full"
+                className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity whitespace-nowrap rounded-full"
                 style={{ backgroundColor: '#6458AF' }}
                 onClick={() => setLocation('/template-selection')}
               >
@@ -249,8 +249,7 @@ export default function InternalOne() {
                 {/* Call to Action Button - Left Aligned */}
                 <div className="mt-8 flex justify-start">
                   <Button 
-                    size="lg"
-                    className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
+                    className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                     style={{ backgroundColor: '#6458AF' }}
                     onClick={() => setLocation('/template-selection')}
                   >
@@ -305,8 +304,7 @@ export default function InternalOne() {
               {/* Call to Action Button - Left Aligned */}
               <div className="mt-8 flex justify-start">
                 <Button 
-                  size="lg"
-                  className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
+                  className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                   style={{ backgroundColor: '#6458AF' }}
                   onClick={() => setLocation('/template-selection')}
                 >

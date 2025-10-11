@@ -169,27 +169,31 @@ export default function Pricing() {
               <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Everything in design & development</span>
+                  <span className="text-gray-700">Print Design</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Strategy workshop</span>
+                  <span className="text-gray-700">Print Advertising</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Priority support</span>
+                  <span className="text-gray-700">Paid Digital Advertising</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Multiple tasks at once</span>
+                  <span className="text-gray-700">Apparel Design</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Ongoing autonomous A/B testing</span>
+                  <span className="text-gray-700">Email Campaigns</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Advanced custom development</span>
+                  <span className="text-gray-700">Marketing Strategy</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Branding</span>
                 </div>
               </div>
               <Button 

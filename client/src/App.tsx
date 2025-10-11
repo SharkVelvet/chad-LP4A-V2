@@ -26,6 +26,7 @@ import StartTheProcess from "@/pages/start-the-process";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
 import CustomSolutions from "@/pages/custom-solutions";
+import CustomWebsites from "@/pages/custom-websites";
 import OtherServices from "@/pages/other-services";
 import Pricing from "@/pages/pricing";
 import AdminSetup from "@/pages/admin-setup";
@@ -68,6 +69,7 @@ function Router() {
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:slug" component={BlogPost} />
         <Route path="/services" component={CustomSolutions} />
+        <Route path="/custom-websites" component={CustomWebsites} />
         <Route path="/other-services" component={OtherServices} />
         <Route path="/pricing" component={Pricing} />
         <Route path="/admin/setup" component={AdminSetup} />

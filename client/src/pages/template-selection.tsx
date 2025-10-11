@@ -125,7 +125,7 @@ export default function TemplateSelection() {
           </p>
           <div className="flex justify-center">
             <div className="bg-purple-50 px-6 py-4 rounded-lg border border-purple-200">
-              <p className="text-lg font-semibold" style={{ color: '#6458AF' }}>
+              <p className="text-sm font-semibold" style={{ color: '#6458AF' }}>
                 💡 Tip: Click "Preview" to see each template in full detail before making your choice
               </p>
             </div>

@@ -161,6 +161,148 @@ export default function OtherServices() {
       </div>
     </div>
 
+    {/* Logo Design Section */}
+    <div className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left side - Content */}
+          <div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Logo Design</h2>
+            <p className="text-lg text-gray-600 mb-8">
+              Your logo is the face of your insurance agency. We create professional, memorable logos that establish trust and make a lasting impression on potential clients.
+            </p>
+            
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#6458AF' }}>
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Custom & Professional</h3>
+                  <p className="text-gray-600">Unique designs tailored to your agency's personality and values</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#6458AF' }}>
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Multiple Formats</h3>
+                  <p className="text-gray-600">Receive files ready for web, print, and social media use</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#6458AF' }}>
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Revision Rounds</h3>
+                  <p className="text-gray-600">Work with us until your logo is exactly right</p>
+                </div>
+              </div>
+            </div>
+
+            <Button 
+              size="lg"
+              className="mt-8 px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
+              style={{ backgroundColor: '#6458AF' }}
+              onClick={() => setLocation('/services')}
+            >
+              Request Logo Design
+            </Button>
+          </div>
+
+          {/* Right side - Visual placeholder */}
+          <div className="relative">
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-12 flex items-center justify-center min-h-[400px]">
+              <svg className="w-48 h-48" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Print Material Section */}
+    <div className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left side - Visual placeholder */}
+          <div className="relative order-2 lg:order-1">
+            <div className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-12 flex items-center justify-center min-h-[400px]">
+              <svg className="w-48 h-48 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Right side - Content */}
+          <div className="order-1 lg:order-2">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Print Materials</h2>
+            <p className="text-lg text-gray-600 mb-8">
+              Professional print materials help you make a strong impression at meetings, events, and networking opportunities. From business cards to brochures, we've got you covered.
+            </p>
+            
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Business Cards</h3>
+                  <p className="text-gray-600">Stand out with professionally designed cards that clients remember</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Brochures & Flyers</h3>
+                  <p className="text-gray-600">Informative materials to explain your services and build trust</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Print-Ready Files</h3>
+                  <p className="text-gray-600">High-resolution files ready to send to any printer</p>
+                </div>
+              </div>
+            </div>
+
+            <Button 
+              size="lg"
+              className="mt-8 px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
+              style={{ backgroundColor: '#6458AF' }}
+              onClick={() => setLocation('/services')}
+            >
+              Order Print Materials
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     {/* Footer */}
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

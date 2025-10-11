@@ -243,7 +243,7 @@ export default function OtherServices() {
           <div>
             <h4 className="font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+              <li><a onClick={() => setLocation('/contact')} className="hover:text-white transition-colors cursor-pointer">Contact</a></li>
               <li><a onClick={() => setLocation('/blog')} className="hover:text-white transition-colors cursor-pointer">Our Blog</a></li>
               <li><a href="#" className="hover:text-white transition-colors">FAQ's</a></li>
               <li><a onClick={() => setLocation('/terms-of-service')} className="hover:text-white transition-colors cursor-pointer">Terms of Service</a></li>
@@ -252,6 +252,7 @@ export default function OtherServices() {
         </div>
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
           <p>&copy; 2025 Landing Pages for Agents. All rights reserved.</p>
+          <p className="text-sm mt-2 opacity-30">Landing Pages for Agents is Owned and Operated by 1612 Media, LLC</p>
         </div>
       </div>
     </footer>

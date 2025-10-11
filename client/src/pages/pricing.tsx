@@ -237,6 +237,7 @@ export default function Pricing() {
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
             <p>&copy; 2025 Landing Pages for Agents. All rights reserved.</p>
+            <p className="text-sm mt-2 opacity-30">Landing Pages for Agents is Owned and Operated by 1612 Media, LLC</p>
           </div>
         </div>
       </footer>

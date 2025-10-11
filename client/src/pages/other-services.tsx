@@ -128,7 +128,7 @@ export default function OtherServices() {
               <img 
                 src={logoDesignImage}
                 alt="Logo design examples"
-                className="w-full h-auto object-cover max-h-80"
+                className="w-full h-auto object-cover"
               />
             </div>
           </div>
@@ -146,7 +146,7 @@ export default function OtherServices() {
               <img 
                 src={printDesignImage}
                 alt="Print design examples"
-                className="w-full h-auto object-cover max-h-80"
+                className="w-full h-auto object-cover"
               />
             </div>
           </div>

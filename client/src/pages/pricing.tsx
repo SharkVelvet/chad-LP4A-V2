@@ -98,7 +98,7 @@ export default function Pricing() {
                 Ideal for those who've already got their website up and running and are seeking assistance to enhance and update it further.
               </p>
               <div className="mb-8">
-                <span className="text-5xl font-bold text-gray-900">$2500</span>
+                <span className="text-5xl font-bold text-gray-900">$18</span>
                 <span className="text-gray-600">/month</span>
               </div>
               <div className="space-y-4 mb-8">
@@ -140,8 +140,8 @@ export default function Pricing() {
                 Ideal if you want to build or scale your website fast, with the strategy calls included.
               </p>
               <div className="mb-8">
-                <span className="text-5xl font-bold text-gray-900">$3800</span>
-                <span className="text-gray-600">/month</span>
+                <span className="text-5xl font-bold text-gray-900">$2500</span>
+                <span className="text-gray-600"> starting at</span>
               </div>
               <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-3">

@@ -115,7 +115,7 @@ export default function GetClients() {
             
             <div className="flex items-center gap-4">
               <Button 
-                className="hidden md:block hover:opacity-90 w-52"
+                className="hidden md:block px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                 style={{ backgroundColor: '#6458AF' }} 
                 onClick={handleStartProcess}
               >
@@ -221,7 +221,7 @@ export default function GetClients() {
               
               <div className="pt-6 border-t border-gray-200">
                 <Button 
-                  className="w-full text-white py-3 hover:opacity-90"
+                  className="w-full px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                   style={{ backgroundColor: '#6458AF' }}
                   onClick={() => {
                     setIsMobileMenuOpen(false);
@@ -249,9 +249,8 @@ export default function GetClients() {
             </p>
             <div className="flex justify-center">
               <Button 
-                size="lg"
+                className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                 style={{ backgroundColor: '#6458AF' }} 
-                className="hover:opacity-90 px-8 py-3 text-lg font-semibold"
                 onClick={handleStartProcess}
               >
                 👉 Start My Client Page
@@ -382,9 +381,8 @@ export default function GetClients() {
 
           <div className="text-center mt-12">
             <Button 
-              size="lg"
+              className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
               style={{ backgroundColor: '#6458AF' }} 
-              className="hover:opacity-90 px-8 py-3 text-lg font-semibold"
               onClick={handleStartProcess}
             >
               👉 Get My Client Page Now
@@ -459,9 +457,8 @@ export default function GetClients() {
               Start attracting clients today — without wasting time or money.
             </h3>
             <Button 
-              size="lg"
+              className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
               style={{ backgroundColor: '#6458AF' }} 
-              className="hover:opacity-90 px-8 py-4 text-lg font-semibold"
               onClick={handleStartProcess}
             >
               👉 Start My Client Page Now
@@ -519,8 +516,7 @@ export default function GetClients() {
               </div>
               
               <Button 
-                size="lg"
-                className="w-full text-white hover:opacity-90 py-4 text-lg font-semibold shadow-lg"
+                className="w-full px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full shadow-lg"
                 style={{ backgroundColor: '#6458AF' }}
                 onClick={handleStartProcess}
               >
@@ -541,9 +537,8 @@ export default function GetClients() {
             Get online now and start converting visitors into clients.
           </p>
           <Button 
-            size="lg"
+            className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
             style={{ backgroundColor: '#6458AF' }} 
-            className="hover:opacity-90 px-8 py-3 text-lg font-semibold"
             onClick={handleStartProcess}
           >
             👉 Start My Client Page

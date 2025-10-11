@@ -96,7 +96,7 @@ export default function Blog() {
               {blogPosts.map((post) => (
                 <Card 
                   key={post.id} 
-                  className="cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                  className="cursor-pointer hover:shadow-lg transition-shadow duration-300 rounded-3xl"
                   onClick={() => setLocation(`/blog/${post.slug}`)}
                 >
                   {post.imageUrl && (
@@ -132,11 +132,8 @@ export default function Blog() {
                         ~6 min read
                       </div>
                       <Button 
-                        size="sm"
-                        className="text-white px-4 py-2"
+                        className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                         style={{ backgroundColor: '#6458AF' }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
                         onClick={(e) => {
                           e.stopPropagation();
                           setLocation(`/blog/${post.slug}`);

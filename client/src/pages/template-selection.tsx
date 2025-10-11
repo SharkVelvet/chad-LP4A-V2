@@ -35,6 +35,7 @@ export default function TemplateSelection() {
         <header className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
+              {/* Logo on Left */}
               <div 
                 className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => navigate('/')}
@@ -45,6 +46,23 @@ export default function TemplateSelection() {
                   <div className="text-xs font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
                 </div>
               </div>
+
+              {/* Menu Items in Middle */}
+              <nav className="hidden md:flex items-center space-x-8">
+                <a onClick={() => navigate('/template-selection')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
+                <a onClick={() => navigate('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Websites</a>
+                <a onClick={() => navigate('/other-services')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Other Services</a>
+                <a onClick={() => navigate('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
+              </nav>
+
+              {/* Get Started Button on Right */}
+              <Button 
+                className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+                style={{ backgroundColor: '#6458AF' }}
+                onClick={() => navigate('/template-selection')}
+              >
+                Get Started
+              </Button>
             </div>
           </div>
         </header>
@@ -66,6 +84,7 @@ export default function TemplateSelection() {
       <header className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
+            {/* Logo on Left */}
             <div 
               className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
               onClick={() => navigate('/')}
@@ -76,6 +95,23 @@ export default function TemplateSelection() {
                 <div className="text-xs font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
+
+            {/* Menu Items in Middle */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <a onClick={() => navigate('/template-selection')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
+              <a onClick={() => navigate('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Websites</a>
+              <a onClick={() => navigate('/other-services')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Other Services</a>
+              <a onClick={() => navigate('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
+            </nav>
+
+            {/* Get Started Button on Right */}
+            <Button 
+              className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+              style={{ backgroundColor: '#6458AF' }}
+              onClick={() => navigate('/template-selection')}
+            >
+              Get Started
+            </Button>
           </div>
         </div>
       </header>
@@ -164,15 +200,52 @@ export default function TemplateSelection() {
             </p>
           </div>
         </div>
-        
-        
-        {/* Footer */}
-        <div className="text-center mt-12 pt-8 border-t border-gray-200">
-          <p className="text-sm text-gray-500">
-            Copyright © 2025 Landing Pages for Agents
-          </p>
-        </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center mb-4">
+                <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+                <div className="text-left">
+                  <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                  <div className="text-xs font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                </div>
+              </div>
+              <p className="text-gray-400 mb-4 max-w-md">
+                Professional landing page templates designed specifically for insurance agents. <strong>Build trust, generate leads, and grow your business online.</strong>
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">About LP4A</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a onClick={() => navigate('/template-selection')} className="hover:text-white transition-colors cursor-pointer">View Templates</a></li>
+                <li><a onClick={() => navigate('/custom-websites')} className="hover:text-white transition-colors cursor-pointer">Custom Websites</a></li>
+                <li><a onClick={() => navigate('/other-services')} className="hover:text-white transition-colors cursor-pointer">Other Services</a></li>
+                <li><a onClick={() => navigate('/pricing')} className="hover:text-white transition-colors cursor-pointer">Pricing</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a onClick={() => navigate('/blog')} className="hover:text-white transition-colors cursor-pointer">Blog</a></li>
+                <li><a onClick={() => navigate('/contact')} className="hover:text-white transition-colors cursor-pointer">Contact</a></li>
+                <li><a onClick={() => navigate('/terms-of-service')} className="hover:text-white transition-colors cursor-pointer">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p className="text-gray-400 text-sm">
+              © 2025 Landing Pages for Agents. All rights reserved.
+            </p>
+            <p className="text-gray-400 text-sm mt-2" style={{ opacity: 0.3 }}>
+              Landing Pages for Agents is Owned and Operated by 1612 Media, LLC
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

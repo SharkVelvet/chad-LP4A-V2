@@ -131,6 +131,10 @@ export default function OtherServices() {
                 className="w-full h-auto object-cover"
               />
             </div>
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -right-4 w-8 h-8 rounded-full" style={{ backgroundColor: '#6458AF' }}></div>
+            <div className="absolute -bottom-4 -left-4 w-6 h-6 rounded-full bg-orange-400"></div>
+            <div className="absolute top-1/2 -left-8 w-4 h-4 rounded-full bg-pink-400"></div>
           </div>
         </div>
       </div>
@@ -149,6 +153,10 @@ export default function OtherServices() {
                 className="w-full h-auto object-cover"
               />
             </div>
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -right-4 w-8 h-8 rounded-full" style={{ backgroundColor: '#6458AF' }}></div>
+            <div className="absolute -bottom-4 -left-4 w-6 h-6 rounded-full bg-orange-400"></div>
+            <div className="absolute top-1/2 -left-8 w-4 h-4 rounded-full bg-pink-400"></div>
           </div>
 
           {/* Right side - Content */}

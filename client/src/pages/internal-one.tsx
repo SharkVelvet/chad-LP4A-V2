@@ -115,15 +115,15 @@ export default function InternalOne() {
 
             {/* Video Below - Like Dashboard in Example */}
             <div className="mt-8">
-              <div className="relative w-full max-w-6xl mx-auto" style={{ paddingBottom: '56.25%' }}>
-                <div className="absolute inset-0 bg-gray-100 rounded-xl overflow-hidden shadow-2xl border-2" style={{ borderColor: '#6458AF' }}>
+              <div className="relative w-full max-w-6xl mx-auto">
+                <div className="relative bg-gray-100 rounded-xl overflow-hidden shadow-2xl border-2" style={{ borderColor: '#6458AF' }}>
                   <video
                     ref={videoRef}
-                    className="w-full h-full"
+                    className="w-full"
                     controls
                     playsInline
                     preload="auto"
-                    style={{ backgroundColor: '#000000' }}
+                    style={{ display: 'block' }}
                   >
                     <source
                       src="https://www.dropbox.com/scl/fi/oqmtsyntyq3w1x5v30e2m/lp4a-sept26.mp4?rlkey=ur3nwss1sgf81myc46x5ghqbf&st=bfumo3c1&raw=1"

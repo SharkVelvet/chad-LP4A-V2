@@ -95,7 +95,7 @@ export default function Pricing() {
                 Templates
               </div>
               <p className="text-gray-600 mb-8">
-                Ideal for those who've already got their website up and running and are seeking assistance to enhance and update it further.
+                Ideal for agents ready to inspire trust — whether clients are shopping for coverage or recruits are exploring your team, your page should make them feel confident in who you are.
               </p>
               <div className="mb-8">
                 <span className="text-5xl font-bold text-gray-900">$18</span>

@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ArrowLeft, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 
 type Template = {
   id: number;
@@ -101,28 +101,25 @@ export default function WebsiteSetup() {
     }
   };
 
-  const handleGoBack = () => {
-    navigate("/template-selection");
-  };
-
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b border-border">
+      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm" onClick={handleGoBack}>
-                <ArrowLeft className="h-4 w-4" />
-              </Button>
-              <div className="flex items-center space-x-2">
-                <FileText className="h-7 w-7" style={{ color: '#6458AF' }} />
-                <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
+          <div className="flex justify-between items-center py-4">
+            <div 
+              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => navigate('/')}
+            >
+              <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+              <div className="text-left">
+                <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                <div className="text-xs font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
           </div>
         </div>
-      </nav>
+      </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Step Indicator */}

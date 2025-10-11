@@ -196,14 +196,14 @@ export default function InternalOne() {
         </div>
       </div>
 
-        {/* Additional Services & How It Works Section */}
+        {/* Why Professional Webpages Matter & How It Works Section */}
         <div className="relative z-10 bg-gradient-to-b from-gray-50 to-white">
-          {/* Additional Services */}
+          {/* Why Professional Webpages Matter */}
           <div className="pt-20 pb-8 lg:py-20">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Additional Services</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Your Professional Webpage Matters</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Need something beyond our templates? We create Custom Websites, Custom Logos, Print Material, and specialized solutions for Agents.
+                A professional webpage is essential for insurance agents—not just for selling services to the public, but for establishing trust, transparency, and credibility. It helps you grow your business and attract top agents as you scale your team.
               </p>
             </div>
           </div>

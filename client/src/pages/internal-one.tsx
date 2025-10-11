@@ -376,7 +376,7 @@ export default function InternalOne() {
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <Badge className="mb-6 inline-block" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents Nationwide</Badge>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Professional Landing Pages <span className="whitespace-nowrap">for <span style={{ color: '#6458AF' }}>Insurance Agents</span></span>
+                  Professional Landing Pages for <span style={{ color: '#6458AF' }}>Insurance Agents</span>
                 </h1>
                 <p className="text-lg lg:text-xl text-gray-600 mb-8">
                   Are you looking to grow your clients or grow your team? Either way we got you covered!

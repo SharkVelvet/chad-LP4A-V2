@@ -117,16 +117,6 @@ export default function TemplateSelection() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Step Indicator */}
-        <div className="mb-8">
-          <div className="text-center">
-            <p className="text-sm font-medium text-gray-500 mb-2">Step 1 of 5</p>
-            <div className="w-full bg-gray-200 rounded-full h-2 mb-4 max-w-md mx-auto">
-              <div className="h-2 rounded-full" style={{ width: '20%', backgroundColor: '#6458AF' }}></div>
-            </div>
-          </div>
-        </div>
-
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">Preview Templates Below</h1>
@@ -174,8 +164,7 @@ export default function TemplateSelection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
-              size="lg"
-              className="px-8 py-3 text-white font-semibold"
+              className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
               style={{ backgroundColor: '#6458AF' }}
               onClick={() => navigate('/setup')}
             >

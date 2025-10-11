@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import TemplateCard from "@/components/template-card";
-import { FileText, ArrowLeft } from "lucide-react";
+import { FileText } from "lucide-react";
 import { useEffect } from "react";
 import { trackViewContent } from "@/lib/facebook-pixel";
 
@@ -28,10 +28,6 @@ export default function TemplateSelection() {
     trackViewContent('template_catalog');
   }, []);
 
-  const handleGoBack = () => {
-    navigate("/start-the-process");
-  };
-
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
@@ -39,16 +35,14 @@ export default function TemplateSelection() {
         <div className="bg-white border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
-              <div className="flex items-center space-x-4">
-                <Button variant="ghost" size="sm" onClick={handleGoBack}>
-                  <ArrowLeft className="h-4 w-4" />
-                </Button>
-                <div 
-                  className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => navigate('/')}
-                >
-                  <FileText className="h-7 w-7" style={{ color: '#6458AF' }} />
-                  <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
+              <div 
+                className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={() => navigate('/')}
+              >
+                <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+                <div className="text-left">
+                  <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                  <div className="text-xs font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
                 </div>
               </div>
             </div>
@@ -72,16 +66,14 @@ export default function TemplateSelection() {
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm" onClick={handleGoBack}>
-                <ArrowLeft className="h-4 w-4" />
-              </Button>
-              <div 
-                className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => navigate('/')}
-              >
-                <FileText className="h-7 w-7" style={{ color: '#6458AF' }} />
-                <h1 className="text-xl font-semibold" style={{ color: '#6458AF' }}>Landing Pages for Agents</h1>
+            <div 
+              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => navigate('/')}
+            >
+              <FileText className="h-8 w-8 mr-3" style={{ color: '#6458AF' }} />
+              <div className="text-left">
+                <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                <div className="text-xs font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
               </div>
             </div>
           </div>

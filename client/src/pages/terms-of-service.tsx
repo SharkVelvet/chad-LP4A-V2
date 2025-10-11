@@ -159,7 +159,7 @@ export default function TermsOfService() {
                 </div>
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
-                Professional landing page templates designed specifically for insurance agents. Build trust, generate leads, and grow your business online.
+                Professional landing page templates designed specifically for insurance agents. <strong>Build trust, generate leads, and grow your business online.</strong>
               </p>
             </div>
             <div>

@@ -10,6 +10,7 @@ import playNowImage from "@assets/LPFA-PLAY-now_1757278621958.png";
 import handshakeImage from "@assets/landingpagesforagents-hand-shake_1760211806774.jpg";
 import logoDesignImage from "@assets/lp4a-logo-design_1757611811508.jpg";
 import printDesignImage from "@assets/lp4a-print-design_1757611869956.jpg";
+import leadershipTeamImage from "@assets/landingpagesforagents-leaders_1760213764577.jpg";
 
 export default function InternalOne() {
   const [, setLocation] = useLocation();
@@ -273,8 +274,8 @@ export default function InternalOne() {
             <div className="relative lg:order-2">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src={logoDesignImage}
-                  alt="Logo design and branding materials"
+                  src={leadershipTeamImage}
+                  alt="Professional team leadership meeting"
                   className="w-full h-auto object-cover max-h-[220px] lg:max-h-none"
                 />
               </div>
@@ -329,7 +330,7 @@ export default function InternalOne() {
                 </div>
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
-                Professional landing page templates designed specifically for insurance agents. Build trust, generate leads, and grow your business online.
+                Professional landing page templates designed specifically for insurance agents. <strong>Build trust, generate leads, and grow your business online.</strong>
               </p>
             </div>
             <div>
@@ -344,7 +345,7 @@ export default function InternalOne() {
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+                <li><a onClick={() => setLocation('/contact')} className="hover:text-white transition-colors cursor-pointer">Contact</a></li>
                 <li><a onClick={() => setLocation('/blog')} className="hover:text-white transition-colors cursor-pointer">Our Blog</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">FAQ's</a></li>
                 <li><a onClick={() => setLocation('/terms-of-service')} className="hover:text-white transition-colors cursor-pointer">Terms of Service</a></li>

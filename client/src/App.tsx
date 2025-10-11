@@ -30,6 +30,7 @@ import CustomWebsites from "@/pages/custom-websites";
 import OtherServices from "@/pages/other-services";
 import Pricing from "@/pages/pricing";
 import TermsOfService from "@/pages/terms-of-service";
+import Contact from "@/pages/contact";
 import AdminSetup from "@/pages/admin-setup";
 import AdminLogin from "@/pages/admin-login";
 import AdminDashboard from "@/pages/admin-dashboard";
@@ -74,6 +75,7 @@ function Router() {
         <Route path="/other-services" component={OtherServices} />
         <Route path="/pricing" component={Pricing} />
         <Route path="/terms-of-service" component={TermsOfService} />
+        <Route path="/contact" component={Contact} />
         <Route path="/admin/setup" component={AdminSetup} />
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin/dashboard" component={AdminDashboard} />

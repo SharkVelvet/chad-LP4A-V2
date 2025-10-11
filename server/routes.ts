@@ -13,7 +13,7 @@ import {
   insertAnalyticsEventSchema,
   insertSeoDataSchema
 } from "@shared/schema";
-import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sendCustomSolutionInquiry } from "./email";
+import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sendCustomSolutionInquiry, sendContactFormSubmission } from "./email";
 import { validatePassword } from "./passwords";
 
 // Initialize Stripe only if the secret key is available
@@ -829,6 +829,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Error creating custom solution inquiry:', error);
       res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Contact form submission endpoint
+  app.post("/api/contact", async (req, res) => {
+    try {
+      const { name, email, phone, message } = req.body;
+      
+      // Basic validation
+      if (!name || !email || !message) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "Name, email, and message are required" 
+        });
+      }
+      
+      // Send email notification to chad@landingpagesforagents.com
+      const emailSent = await sendContactFormSubmission({
+        name,
+        email,
+        phone: phone || null,
+        message,
+      });
+      
+      if (emailSent) {
+        res.status(201).json({ 
+          success: true, 
+          message: "Thank you for contacting us! We'll get back to you soon." 
+        });
+      } else {
+        res.status(500).json({ 
+          success: false, 
+          message: "There was an error sending your message. Please try again." 
+        });
+      }
+    } catch (error: any) {
+      console.error('Error processing contact form:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: "An error occurred. Please try again later." 
+      });
     }
   });
 

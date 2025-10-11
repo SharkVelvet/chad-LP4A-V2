@@ -366,6 +366,74 @@ export async function sendCustomSolutionInquiry(inquiryData: {
   }
 }
 
+export async function sendContactFormSubmission(contactData: {
+  name: string;
+  email: string;
+  phone?: string | null;
+  message: string;
+}) {
+  const {
+    name,
+    email,
+    phone,
+    message
+  } = contactData;
+
+  const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #6458AF; border-bottom: 2px solid #6458AF; padding-bottom: 10px;">
+        New Contact Form Submission
+      </h2>
+      
+      <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #374151; margin-top: 0;">Contact Information</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 8px 0; font-weight: bold; color: #374151;">Name:</td>
+            <td style="padding: 8px 0;">${name}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; font-weight: bold; color: #374151;">Email:</td>
+            <td style="padding: 8px 0;">${email}</td>
+          </tr>
+          ${phone ? `
+          <tr>
+            <td style="padding: 8px 0; font-weight: bold; color: #374151;">Phone:</td>
+            <td style="padding: 8px 0;">${phone}</td>
+          </tr>
+          ` : ''}
+        </table>
+      </div>
+
+      <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #374151; margin-top: 0;">How can we help you?</h3>
+        <p style="color: #374151; white-space: pre-wrap; line-height: 1.6;">${message}</p>
+      </div>
+
+      <div style="text-align: center; padding: 20px; color: #6b7280; font-size: 14px;">
+        <p>Reply to this email to respond to ${name} directly at ${email}</p>
+        <p>Contact form submitted via Landing Pages for Agents</p>
+      </div>
+    </div>
+  `;
+
+  try {
+    await transporter.sendMail({
+      from: process.env.SMTP_USER,
+      to: 'chad@landingpagesforagents.com',
+      replyTo: email,
+      subject: `Contact Form: ${name}`,
+      html: htmlContent,
+    });
+
+    console.log('Contact form submission sent to chad@landingpagesforagents.com');
+    return true;
+  } catch (error) {
+    console.error('Error sending contact form submission:', error);
+    return false;
+  }
+}
+
 export async function testEmailConnection() {
   try {
     await transporter.verify();

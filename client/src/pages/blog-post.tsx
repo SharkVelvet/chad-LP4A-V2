@@ -709,22 +709,42 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-50 border-t border-gray-200 py-12">
+      <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div 
-              className="flex items-center justify-center mb-6 cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={() => setLocation('/')}
-            >
-              <FileText className="h-8 w-8 mr-2" style={{ color: '#6458AF' }} />
-              <div className="text-left">
-                <div className="text-xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
-                <div className="text-xs font-medium text-gray-600" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center mb-4">
+                <FileText className="h-10 w-10 mr-3" style={{ color: '#6458AF' }} />
+                <div className="text-left">
+                  <div className="text-2xl font-bold leading-none" style={{ color: '#6458AF' }}>Landing Pages</div>
+                  <div className="text-sm font-medium text-gray-400" style={{ letterSpacing: '0.15em' }}>for Agents</div>
+                </div>
               </div>
+              <p className="text-gray-400 mb-4 max-w-md">
+                Professional landing page templates designed specifically for insurance agents. <strong>Build trust, generate leads, and grow your business online.</strong>
+              </p>
             </div>
-            <p className="text-sm text-gray-500">
-              Copyright © 2025 Landing Pages for Agents
-            </p>
+            <div>
+              <h4 className="font-semibold mb-4">About LP4A</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a onClick={() => setLocation('/template-selection')} className="hover:text-white transition-colors cursor-pointer">View Templates</a></li>
+                <li><a onClick={() => setLocation('/custom-websites')} className="hover:text-white transition-colors cursor-pointer">Custom Websites</a></li>
+                <li><a onClick={() => setLocation('/other-services')} className="hover:text-white transition-colors cursor-pointer">Other Services</a></li>
+                <li><a onClick={() => setLocation('/pricing')} className="hover:text-white transition-colors cursor-pointer">Pricing</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+                <li><a onClick={() => setLocation('/blog')} className="hover:text-white transition-colors cursor-pointer">Our Blog</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">FAQ's</a></li>
+                <li><a onClick={() => setLocation('/terms-of-service')} className="hover:text-white transition-colors cursor-pointer">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Landing Pages for Agents. All rights reserved.</p>
           </div>
         </div>
       </footer>

@@ -168,7 +168,7 @@ export default function TemplateSelection() {
               style={{ backgroundColor: '#6458AF' }}
               onClick={() => navigate('/setup')}
             >
-              Continue to Next Step
+              Click Here to Pick your Preview and Build Your Website
             </Button>
             <p className="text-sm text-gray-500">
               You'll select your template in the next step

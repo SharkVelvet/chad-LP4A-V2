@@ -121,7 +121,7 @@ export default function TemplateSelection() {
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">Preview Templates Below</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-            Browse our professionally designed website templates created specifically for insurance agents.
+            Browse our professionally designed website templates below. Once you know what template you want to purchase and use, scroll to the bottom of this page and hit Start the Process
           </p>
           <div className="flex justify-center">
             <div className="bg-purple-50 px-6 py-4 rounded-lg border border-purple-200">

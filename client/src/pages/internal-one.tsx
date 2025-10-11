@@ -305,7 +305,7 @@ export default function InternalOne() {
       {/* Main Content - 2 Column Hero */}
       <div className="relative z-10 flex-1 flex flex-col">
         <div className="flex-1 flex items-center justify-center py-12 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="mx-auto px-4 sm:px-6 lg:px-8 w-full" style={{ maxWidth: '90%' }}>
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left Column - Video */}
               <div className="order-2 lg:order-1">

@@ -3,6 +3,8 @@ import { FileText } from "lucide-react";
 import { useLocation } from "wouter";
 import { useEffect } from "react";
 import designersImage from "@assets/lpfa-designers_1757289648427.png";
+import logoDesignImage from "@assets/lp4a-logo-design_1757611811508.jpg";
+import printDesignImage from "@assets/lp4a-print-design_1757611869956.jpg";
 
 export default function OtherServices() {
   const [, setLocation] = useLocation();
@@ -220,12 +222,14 @@ export default function OtherServices() {
             </Button>
           </div>
 
-          {/* Right side - Visual placeholder */}
+          {/* Right side - Image */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-12 flex items-center justify-center min-h-[400px]">
-              <svg className="w-48 h-48" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-              </svg>
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <img 
+                src={logoDesignImage}
+                alt="Logo design examples"
+                className="w-full h-auto object-cover"
+              />
             </div>
           </div>
         </div>
@@ -236,12 +240,14 @@ export default function OtherServices() {
     <div className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Visual placeholder */}
+          {/* Left side - Image */}
           <div className="relative order-2 lg:order-1">
-            <div className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-12 flex items-center justify-center min-h-[400px]">
-              <svg className="w-48 h-48 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-              </svg>
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <img 
+                src={printDesignImage}
+                alt="Print design examples"
+                className="w-full h-auto object-cover"
+              />
             </div>
           </div>
 

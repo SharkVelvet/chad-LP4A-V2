@@ -318,107 +318,6 @@ export default function InternalOne() {
         </div>
       </div>
 
-      {/* Print Design Section */}
-      <div className="bg-gray-50 py-20">
-        <div className="flex justify-center px-4 sm:px-6 lg:px-8">
-          <div 
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-            style={{ maxWidth: '1050px', width: '100%' }}
-          >
-            {/* Left side - Image */}
-            <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src={printDesignImage}
-                  alt="Print design materials and branding"
-                  className="w-full h-auto object-cover max-h-[220px] lg:max-h-none"
-                />
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 rounded-full" style={{ backgroundColor: '#6458AF' }}></div>
-              <div className="absolute -bottom-4 -left-4 w-12 h-12 rounded-full bg-orange-400"></div>
-            </div>
-
-            {/* Right side - Steps */}
-            <div>
-              <div className="mb-12">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">Print Design</h2>
-                <p className="text-lg text-gray-600">Need professional print materials? We create stunning designs that make you stand out!</p>
-              </div>
-
-              <div className="space-y-8">
-                {/* Step 1 */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                      <svg className="w-6 h-6" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">1. Tell us what you need</h3>
-                    <p className="text-gray-600 mb-3">
-                      From door flyers and mail pieces to business cards, brochures, t-shirt designs, hat designs, and garments - share your print design needs and we'll create something amazing.
-                    </p>
-                    <div className="w-16 h-1 rounded-full" style={{ backgroundColor: '#6458AF' }}></div>
-                  </div>
-                </div>
-
-                {/* Step 2 */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                      <svg className="w-6 h-6" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">2. We design and perfect</h3>
-                    <p className="text-gray-600 mb-3">
-                      Our team creates high-quality print designs that match your brand and deliver your message with maximum impact and professionalism.
-                    </p>
-                    <div className="w-16 h-1 rounded-full bg-orange-400"></div>
-                  </div>
-                </div>
-
-                {/* Step 3 */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#f0eeff' }}>
-                      <svg className="w-6 h-6" style={{ color: '#6458AF' }} fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">3. Ready to print and impress</h3>
-                    <p className="text-gray-600 mb-3">
-                      Receive print-ready files optimized for professional printing, ensuring your materials look crisp and impressive every time.
-                    </p>
-                    <div className="w-16 h-1 rounded-full bg-pink-400"></div>
-                  </div>
-                </div>
-
-                {/* Call to Action Button - Left Aligned */}
-                <div className="mt-8 flex justify-start">
-                  <Button 
-                    size="lg"
-                    className="px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
-                    style={{ backgroundColor: '#6458AF' }}
-                    onClick={() => setLocation('/services')}
-                  >
-                    Get Print Design Quote
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-        </div>
-      </div>
-
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -458,6 +357,7 @@ export default function InternalOne() {
         </div>
       </footer>
 
+    </div>
     </div>
   );
 }

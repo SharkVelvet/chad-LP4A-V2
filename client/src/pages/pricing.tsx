@@ -108,19 +108,19 @@ export default function Pricing() {
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Native Development</span>
+                  <span className="text-gray-700">Freedom name</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Task delivered one-by-one</span>
+                  <span className="text-gray-700">Free hosting</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Dedicated dashboard</span>
+                  <span className="text-gray-700">Free business email</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">Updates via Dashboard & Slack</span>
+                  <span className="text-gray-700">Free support</span>
                 </div>
               </div>
               <Button 

@@ -62,12 +62,12 @@ export default function InternalOne() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex flex-col">
+    <div className="min-h-screen relative flex flex-col">
       {/* Hero Section with Gradient Background - Purple sides, white center */}
-      <div className="absolute inset-0 pointer-events-none" style={{
+      <div className="relative overflow-hidden" style={{
         background: 'linear-gradient(90deg, #ede9fe 0%, #ffffff 35%, #ffffff 65%, #ede9fe 100%)',
-      }}></div>
-
+      }}>
+      
       {/* Logo at Top */}
       <div className="relative z-10 pt-8">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -178,6 +178,7 @@ export default function InternalOne() {
             </div>
           </div>
         </div>
+      </div>
 
         {/* Additional Services & How It Works Section */}
         <div className="relative z-10 bg-gradient-to-b from-gray-50 to-white">

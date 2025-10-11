@@ -32,7 +32,7 @@ export default function TemplateSelection() {
     return (
       <div className="min-h-screen bg-background">
         {/* Navigation */}
-        <div className="bg-white border-b">
+        <header className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
               <div 
@@ -47,7 +47,7 @@ export default function TemplateSelection() {
               </div>
             </div>
           </div>
-        </div>
+        </header>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center mb-12">
@@ -63,7 +63,7 @@ export default function TemplateSelection() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <div className="bg-white border-b">
+      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div 
@@ -78,7 +78,7 @@ export default function TemplateSelection() {
             </div>
           </div>
         </div>
-      </div>
+      </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Step Indicator */}

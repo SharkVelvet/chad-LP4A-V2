@@ -164,7 +164,7 @@ export default function Pricing() {
                 If these plans don't fit, let's create one that suits. Customize your subscription for a perfect fit, bigger or smaller!
               </p>
               <div className="mb-8">
-                <h2 className="text-5xl font-bold text-gray-900">Let's Talks!</h2>
+                <h2 className="text-5xl font-bold text-gray-900">We Do That!</h2>
               </div>
               <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-3">

@@ -347,7 +347,7 @@ export default function InternalOne() {
                 <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
                 <li><a onClick={() => setLocation('/blog')} className="hover:text-white transition-colors cursor-pointer">Our Blog</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">FAQ's</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a onClick={() => setLocation('/terms-of-service')} className="hover:text-white transition-colors cursor-pointer">Terms of Service</a></li>
               </ul>
             </div>
           </div>

@@ -65,7 +65,7 @@ export default function OtherServices() {
 
     {/* Logo Design Section */}
     <div className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1050px' }}>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Content */}
           <div>
@@ -138,7 +138,7 @@ export default function OtherServices() {
 
     {/* Print Material Section */}
     <div className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1050px' }}>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Image */}
           <div className="relative order-2 lg:order-1">

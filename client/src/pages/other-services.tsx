@@ -113,8 +113,7 @@ export default function OtherServices() {
             </div>
 
             <Button 
-              size="lg"
-              className="mt-8 px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
+              className="mt-8 px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
               style={{ backgroundColor: '#6458AF' }}
               onClick={() => setLocation('/services')}
             >
@@ -205,8 +204,7 @@ export default function OtherServices() {
             </div>
 
             <Button 
-              size="lg"
-              className="mt-8 px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity"
+              className="mt-8 px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
               style={{ backgroundColor: '#6458AF' }}
               onClick={() => setLocation('/services')}
             >

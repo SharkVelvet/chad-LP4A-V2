@@ -98,9 +98,9 @@ export default function InternalOne() {
         </div>
       </header>
 
-      {/* Hero Section with Gradient Background - Purple edges to white center */}
+      {/* Hero Section with Gradient Background - Purple edges to white center with orange accent in top right */}
       <div className="relative overflow-hidden" style={{
-        background: 'linear-gradient(90deg, #ede9fe 0%, #ffffff 50%, #ede9fe 100%)',
+        background: 'radial-gradient(circle at top right, #ff6b35 0%, #ffb088 15%, transparent 40%), linear-gradient(90deg, #ede9fe 0%, #ffffff 50%, #ede9fe 100%)',
       }}>
 
       {/* Main Content - Centered Hero */}

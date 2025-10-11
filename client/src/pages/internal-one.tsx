@@ -287,7 +287,10 @@ export default function InternalOne() {
             {/* Content ordered first on desktop */}
             <div className="lg:order-1">
               <div className="mb-8">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">Lead by Example. Attract Talent That Lasts.</h2>
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                  Lead by Example.<br />
+                  Attract Talent That Lasts.
+                </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Top producers don't just recruit — they inspire. When every agent on your team has a professional landing page, it sends a message that your agency values excellence, consistency, and success.
                 </p>

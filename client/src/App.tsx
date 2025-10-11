@@ -26,6 +26,7 @@ import StartTheProcess from "@/pages/start-the-process";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
 import CustomSolutions from "@/pages/custom-solutions";
+import OtherServices from "@/pages/other-services";
 import AdminSetup from "@/pages/admin-setup";
 import AdminLogin from "@/pages/admin-login";
 import AdminDashboard from "@/pages/admin-dashboard";
@@ -66,6 +67,7 @@ function Router() {
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:slug" component={BlogPost} />
         <Route path="/services" component={CustomSolutions} />
+        <Route path="/other-services" component={OtherServices} />
         <Route path="/admin/setup" component={AdminSetup} />
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin/dashboard" component={AdminDashboard} />

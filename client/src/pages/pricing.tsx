@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { FileText, Check } from "lucide-react";
 import { useLocation } from "wouter";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Pricing() {
   const [, setLocation] = useLocation();
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'quarterly'>('monthly');
 
   // Set page title
   useEffect(() => {
@@ -33,13 +32,14 @@ export default function Pricing() {
             {/* Menu Items in Middle */}
             <nav className="hidden md:flex items-center space-x-8">
               <a onClick={() => setLocation('/template-selection')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
+              <a onClick={() => setLocation('/other-services')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Websites</a>
               <a onClick={() => setLocation('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
               <a onClick={() => setLocation('/other-services')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Other Services</a>
             </nav>
 
             {/* Get Started Button on Right */}
             <Button 
-              className="px-12 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+              className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
               style={{ backgroundColor: '#6458AF' }}
               onClick={() => setLocation('/template-selection')}
             >
@@ -55,36 +55,10 @@ export default function Pricing() {
           {/* Title and Subtitle */}
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold text-gray-900 mb-4">Choose your right plan!</h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Select from best plans, ensuring a perfect match. Need more or less?<br />
               Customize your subscription for a seamless fit!
             </p>
-
-            {/* Billing Toggle */}
-            <div className="inline-flex rounded-full p-1 bg-white shadow-sm">
-              <button
-                onClick={() => setBillingCycle('monthly')}
-                className={`px-12 py-3 rounded-full text-sm font-medium transition-all ${
-                  billingCycle === 'monthly' 
-                    ? 'text-white shadow-md' 
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-                style={{ backgroundColor: billingCycle === 'monthly' ? '#6458AF' : 'transparent' }}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setBillingCycle('quarterly')}
-                className={`px-12 py-3 rounded-full text-sm font-medium transition-all ${
-                  billingCycle === 'quarterly' 
-                    ? 'text-white shadow-md' 
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-                style={{ backgroundColor: billingCycle === 'quarterly' ? '#6458AF' : 'transparent' }}
-              >
-                Quarterly (save 10%)
-              </button>
-            </div>
           </div>
 
           {/* Pricing Cards */}

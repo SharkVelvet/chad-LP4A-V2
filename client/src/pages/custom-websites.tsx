@@ -55,7 +55,7 @@ export default function CustomWebsites() {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle menu"
               >
-                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMobileMenuOpen ? <X className="h-6 w-6" strokeWidth={1.5} /> : <Menu className="h-6 w-6" strokeWidth={1.5} />}
               </button>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function CustomWebsites() {
         {/* Page Title */}
         <div className="pt-10 pb-8 lg:py-10">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">Custom Website Design</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">Custom Website Design</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Don't see a template that you like? Want something a little more? Our team is happy to help you build a custom solution tailored specifically for your insurance agency.
             </p>

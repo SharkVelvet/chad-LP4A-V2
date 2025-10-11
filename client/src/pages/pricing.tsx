@@ -54,7 +54,7 @@ export default function Pricing() {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle menu"
               >
-                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMobileMenuOpen ? <X className="h-6 w-6" strokeWidth={1.5} /> : <Menu className="h-6 w-6" strokeWidth={1.5} />}
               </button>
             </div>
           </div>
@@ -154,7 +154,7 @@ export default function Pricing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Title and Subtitle */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-gray-900 mb-4">Choose your right plan!</h1>
+            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">Choose your right plan!</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Select from best plans, ensuring a perfect match. Need more or less?<br />
               Customize your subscription for a seamless fit!

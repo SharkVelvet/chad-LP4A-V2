@@ -121,7 +121,7 @@ export default function TemplateSelection() {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle menu"
               >
-                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMobileMenuOpen ? <X className="h-6 w-6" strokeWidth={1.5} /> : <Menu className="h-6 w-6" strokeWidth={1.5} />}
               </button>
             </div>
           </div>
@@ -219,7 +219,7 @@ export default function TemplateSelection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">Preview Templates Below</h1>
+          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">Preview Templates Below</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
             Browse our professionally designed website templates below. Once you know what template you want to purchase and use, scroll to the bottom of this page and hit Start the Process
           </p>

@@ -73,7 +73,7 @@ export default function Blog() {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle menu"
               >
-                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMobileMenuOpen ? <X className="h-6 w-6" strokeWidth={1.5} /> : <Menu className="h-6 w-6" strokeWidth={1.5} />}
               </button>
             </div>
           </div>
@@ -171,7 +171,7 @@ export default function Blog() {
       {/* Hero Section */}
       <section className="py-10 bg-gradient-to-br from-purple-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-bold mb-6" style={{ color: '#6458AF' }}>
+          <h1 className="text-3xl md:text-5xl font-bold mb-6" style={{ color: '#6458AF' }}>
             Insurance Marketing Blog
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">

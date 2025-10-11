@@ -89,10 +89,10 @@ export default function Pricing() {
 
           {/* Pricing Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {/* Pro Plan */}
+            {/* Templates Plan */}
             <div className="bg-white rounded-3xl p-8 shadow-sm">
               <div className="inline-block px-4 py-1 rounded-full text-sm font-medium text-white mb-6" style={{ backgroundColor: '#6458AF' }}>
-                Pro
+                Templates
               </div>
               <p className="text-gray-600 mb-8">
                 Ideal for those who've already got their website up and running and are seeking assistance to enhance and update it further.
@@ -131,10 +131,10 @@ export default function Pricing() {
               </Button>
             </div>
 
-            {/* Pro Plus Plan */}
+            {/* Custom Site Plan */}
             <div className="bg-white rounded-3xl p-8 shadow-sm">
               <div className="inline-block px-4 py-1 rounded-full text-sm font-medium text-white mb-6" style={{ backgroundColor: '#6458AF' }}>
-                Pro Plus
+                Custom Site
               </div>
               <p className="text-gray-600 mb-8">
                 Ideal if you want to build or scale your website fast, with the strategy calls included.
@@ -181,10 +181,10 @@ export default function Pricing() {
               </Button>
             </div>
 
-            {/* Custom Plan */}
+            {/* Other Services Plan */}
             <div className="rounded-3xl p-8 shadow-sm" style={{ backgroundColor: '#E5E1F5' }}>
               <div className="inline-block px-4 py-1 rounded-full text-sm font-medium text-white mb-6" style={{ backgroundColor: '#6458AF' }}>
-                Custom
+                Other Services
               </div>
               <p className="text-gray-700 mb-8">
                 If these plans don't fit, let's create one that suits. Customize your subscription for a perfect fit, bigger or smaller!

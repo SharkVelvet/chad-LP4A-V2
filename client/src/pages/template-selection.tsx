@@ -162,7 +162,7 @@ export default function TemplateSelection() {
           <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
             Once you've previewed the templates above, you can proceed to customize your chosen design with your business information.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex justify-center">
             <Button
               className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
               style={{ backgroundColor: '#6458AF' }}
@@ -170,9 +170,6 @@ export default function TemplateSelection() {
             >
               Click Here to Pick your Preview and Build Your Website
             </Button>
-            <p className="text-sm text-gray-500">
-              You'll select your template in the next step
-            </p>
           </div>
           
           {/* Custom Solution Link */}

@@ -239,7 +239,7 @@ export default function InternalOne() {
             <div className="mt-8">
               <div className="relative w-full max-w-6xl mx-auto">
                 {/* Aspect ratio container to prevent layout shift */}
-                <div className="relative bg-gray-100 rounded-xl overflow-hidden shadow-2xl border-2" style={{ borderColor: '#6458AF', aspectRatio: '16 / 9' }}>
+                <div className="relative bg-gray-100 rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '16 / 9' }}>
                   <video
                     ref={videoRef}
                     className="absolute inset-0 w-full h-full"

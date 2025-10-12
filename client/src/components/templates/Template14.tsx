@@ -145,7 +145,7 @@ export default function Template14({ className = "" }: Template14Props) {
                   <div className="text-center">
                     <div className="relative inline-block mb-4">
                       <img 
-                        src="/attached_assets/plr-hiring4_1758661521235.jpg" 
+                        src="/attached_assets/template-14-2_1760239529912.jpg" 
                         alt="Mandy Johnson" 
                         className="w-64 h-64 rounded-2xl object-cover mx-auto"
                       />

@@ -319,6 +319,76 @@ export default function InternalOne() {
         </div>
       </div>
 
+      {/* Hero CTA Section with Stats */}
+      <div className="relative overflow-hidden py-20 lg:py-28" style={{ 
+        background: 'linear-gradient(135deg, #8B1538 0%, #A52045 100%)',
+      }}>
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.05) 10px, rgba(255,255,255,.05) 20px)',
+        }}></div>
+        
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <span>⭐</span> Join Thousands of Successful Insurance Agents
+          </div>
+          
+          {/* Main Headline */}
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            Turn Your Expertise Into <br className="hidden sm:block" />
+            <span className="text-pink-200">Professional Online Presence</span>
+          </h2>
+          
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Build a thriving insurance business with professional landing pages. We provide world-class templates, affordable pricing, and the support system you need to stand out online.
+          </p>
+          
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <Button 
+              className="px-8 py-3 text-sm font-medium hover:opacity-90 transition-opacity rounded-full"
+              style={{ backgroundColor: 'white', color: '#8B1538' }}
+              onClick={() => setLocation('/template-selection')}
+            >
+              Start Your Journey
+            </Button>
+            <Button 
+              className="px-8 py-3 text-sm font-medium border-2 hover:bg-white/10 transition-colors rounded-full"
+              style={{ borderColor: 'white', color: 'white', backgroundColor: 'transparent' }}
+              onClick={() => setLocation('/pricing')}
+            >
+              Learn More
+            </Button>
+          </div>
+        </div>
+
+        {/* Stats Bar */}
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold mb-2" style={{ color: '#8B1538' }}>1000+</div>
+                <div className="text-sm text-gray-600 font-medium">Active Websites</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold mb-2" style={{ color: '#8B1538' }}>24/7</div>
+                <div className="text-sm text-gray-600 font-medium">Support Available</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold mb-2" style={{ color: '#8B1538' }}>98%</div>
+                <div className="text-sm text-gray-600 font-medium">Client Satisfaction</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold mb-2" style={{ color: '#8B1538' }}>5+</div>
+                <div className="text-sm text-gray-600 font-medium">Years of Excellence</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
         {/* Why Professional Webpages Matter & How It Works Section */}
         <div className="relative z-10 bg-gradient-to-b from-gray-50 to-white">
           {/* Why Professional Webpages Matter */}

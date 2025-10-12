@@ -386,16 +386,42 @@ export default function InternalOne() {
         </div>
       </div>
 
-      {/* Masonry Grid Section - Example Layout */}
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Grid - 5 columns on desktop, responsive on smaller screens */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {[...Array(15)].map((_, index) => (
-              <div key={index} className="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+      {/* Masonry Grid Section - Staggered Layout */}
+      <div className="bg-gray-50 py-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          {/* Row 1 - Normal alignment */}
+          <div className="flex gap-4 mb-4 px-4">
+            {[...Array(5)].map((_, index) => (
+              <div key={`row1-${index}`} className="flex-shrink-0 w-[280px] rounded-xl overflow-hidden">
                 <img 
                   src={gridExampleImage} 
-                  alt={`Grid item ${index + 1}`}
+                  alt={`Grid item row 1 - ${index + 1}`}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            ))}
+          </div>
+          
+          {/* Row 2 - Offset to the left */}
+          <div className="flex gap-4 mb-4" style={{ marginLeft: '-80px' }}>
+            {[...Array(5)].map((_, index) => (
+              <div key={`row2-${index}`} className="flex-shrink-0 w-[280px] rounded-xl overflow-hidden">
+                <img 
+                  src={gridExampleImage} 
+                  alt={`Grid item row 2 - ${index + 1}`}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            ))}
+          </div>
+          
+          {/* Row 3 - Different offset */}
+          <div className="flex gap-4 px-4">
+            {[...Array(5)].map((_, index) => (
+              <div key={`row3-${index}`} className="flex-shrink-0 w-[280px] rounded-xl overflow-hidden">
+                <img 
+                  src={gridExampleImage} 
+                  alt={`Grid item row 3 - ${index + 1}`}
                   className="w-full h-auto object-cover"
                 />
               </div>

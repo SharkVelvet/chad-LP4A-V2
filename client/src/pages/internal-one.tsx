@@ -13,6 +13,7 @@ import printDesignImage from "@assets/lp4a-print-design_1757611869956.jpg";
 import leadershipTeamImage from "@assets/landingpagesforagents-leaders_1760213764577.jpg";
 import gridExampleImage from "@assets/scroll1_1760272781662.png";
 import gridExampleImage2 from "@assets/scroll2_1760273238786.png";
+import gridExampleImage3 from "@assets/scroll3_1760273349134.png";
 
 export default function InternalOne() {
   const [, setLocation] = useLocation();
@@ -392,7 +393,7 @@ export default function InternalOne() {
         <div className="max-w-7xl mx-auto">
           {/* Row 1 - Normal alignment */}
           <div className="flex gap-4 mb-4 px-4">
-            {[gridExampleImage, gridExampleImage2, gridExampleImage, gridExampleImage2, gridExampleImage].map((img, index) => (
+            {[gridExampleImage, gridExampleImage2, gridExampleImage3, gridExampleImage, gridExampleImage2].map((img, index) => (
               <div key={`row1-${index}`} className="flex-shrink-0 w-[350px] rounded-xl overflow-hidden">
                 <img 
                   src={img} 
@@ -405,7 +406,7 @@ export default function InternalOne() {
           
           {/* Row 2 - Offset to the left */}
           <div className="flex gap-4 mb-4" style={{ marginLeft: '-100px' }}>
-            {[gridExampleImage2, gridExampleImage, gridExampleImage2, gridExampleImage, gridExampleImage2].map((img, index) => (
+            {[gridExampleImage3, gridExampleImage, gridExampleImage2, gridExampleImage3, gridExampleImage].map((img, index) => (
               <div key={`row2-${index}`} className="flex-shrink-0 w-[350px] rounded-xl overflow-hidden">
                 <img 
                   src={img} 
@@ -418,7 +419,7 @@ export default function InternalOne() {
           
           {/* Row 3 - Different offset */}
           <div className="flex gap-4 px-4">
-            {[gridExampleImage, gridExampleImage2, gridExampleImage, gridExampleImage2, gridExampleImage].map((img, index) => (
+            {[gridExampleImage2, gridExampleImage3, gridExampleImage, gridExampleImage2, gridExampleImage3].map((img, index) => (
               <div key={`row3-${index}`} className="flex-shrink-0 w-[350px] rounded-xl overflow-hidden">
                 <img 
                   src={img} 

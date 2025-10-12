@@ -88,7 +88,7 @@ export default function Template14({ className = "" }: Template14Props) {
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
           {/* Left Content - Dark Background */}
           <div className="bg-red-700 flex items-center py-8 lg:py-0">
-            <div className="w-full px-4 sm:px-6 lg:pl-8 xl:pl-[max(2rem,calc((100vw-80rem)/2))]">
+            <div className="w-full px-4 sm:px-6 lg:pl-8 xl:pl-[max(3.25rem,calc((100vw-80rem)/2+1.25rem))]">
               <div className="max-w-lg text-center lg:text-left">
                 <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white mb-6">
                   Begin building the career of your dreams!

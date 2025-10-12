@@ -16,6 +16,7 @@ import gridExampleImage2 from "@assets/scroll2_1760273238786.png";
 import gridExampleImage3 from "@assets/scroll3_1760273349134.png";
 import gridExampleImage4 from "@assets/scroll4_1760273592823.png";
 import gridExampleImage5 from "@assets/scroll5_1760273718259.png";
+import gridExampleImage6 from "@assets/scroll6_1760273898739.png";
 
 export default function InternalOne() {
   const [, setLocation] = useLocation();
@@ -408,7 +409,7 @@ export default function InternalOne() {
           
           {/* Row 2 - Offset to the left */}
           <div className="flex gap-8 mb-8" style={{ marginLeft: '-100px' }}>
-            {[gridExampleImage2, gridExampleImage3, gridExampleImage4, gridExampleImage5, gridExampleImage].map((img, index) => (
+            {[gridExampleImage6, gridExampleImage, gridExampleImage2, gridExampleImage3, gridExampleImage4].map((img, index) => (
               <div key={`row2-${index}`} className="flex-shrink-0 w-[350px] rounded-xl overflow-hidden">
                 <img 
                   src={img} 
@@ -421,7 +422,7 @@ export default function InternalOne() {
           
           {/* Row 3 - Different offset */}
           <div className="flex gap-8 px-4">
-            {[gridExampleImage3, gridExampleImage4, gridExampleImage5, gridExampleImage, gridExampleImage2].map((img, index) => (
+            {[gridExampleImage5, gridExampleImage6, gridExampleImage, gridExampleImage2, gridExampleImage3].map((img, index) => (
               <div key={`row3-${index}`} className="flex-shrink-0 w-[350px] rounded-xl overflow-hidden">
                 <img 
                   src={img} 

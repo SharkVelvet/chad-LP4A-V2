@@ -85,7 +85,7 @@ export default function Template14({ className = "" }: Template14Props) {
 
       {/* Big Announcement Section */}
       <section className="overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[75vh] lg:min-h-[70vh]">
           {/* Left Content - Dark Background */}
           <div className="bg-red-700 flex items-center py-8 lg:py-0">
             <div className="w-full px-4 sm:px-6 lg:pl-8 xl:pl-[max(3.5rem,calc((100vw-80rem)/2+1.5rem))]">

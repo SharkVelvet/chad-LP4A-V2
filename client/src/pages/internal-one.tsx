@@ -303,6 +303,15 @@ export default function InternalOne() {
         </div>
       </div>
 
+      {/* Pricing Banner - Bold & Elegant */}
+      <div className="relative z-10 py-12" style={{ backgroundColor: '#6458AF' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+            Start building your online presence and brand for just <span className="text-yellow-300">$18 a month</span>
+          </p>
+        </div>
+      </div>
+
         {/* Why Professional Webpages Matter & How It Works Section */}
         <div className="relative z-10 bg-gradient-to-b from-gray-50 to-white">
           {/* Why Professional Webpages Matter */}

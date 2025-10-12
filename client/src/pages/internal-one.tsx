@@ -220,7 +220,8 @@ export default function InternalOne() {
             </h1>
             
             <p className="text-lg lg:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Are you looking to grow your clients or grow your team? Either way we got you covered!
+              Are you looking to grow your clients or grow your team?<br />
+              Either way we got you covered!
             </p>
             
             {/* Get Started Button */}

@@ -392,7 +392,7 @@ export default function InternalOne() {
           {/* Row 1 - Normal alignment */}
           <div className="flex gap-4 mb-4 px-4">
             {[...Array(5)].map((_, index) => (
-              <div key={`row1-${index}`} className="flex-shrink-0 w-[280px] rounded-xl overflow-hidden">
+              <div key={`row1-${index}`} className="flex-shrink-0 w-[350px] rounded-xl overflow-hidden">
                 <img 
                   src={gridExampleImage} 
                   alt={`Grid item row 1 - ${index + 1}`}
@@ -403,9 +403,9 @@ export default function InternalOne() {
           </div>
           
           {/* Row 2 - Offset to the left */}
-          <div className="flex gap-4 mb-4" style={{ marginLeft: '-80px' }}>
+          <div className="flex gap-4 mb-4" style={{ marginLeft: '-100px' }}>
             {[...Array(5)].map((_, index) => (
-              <div key={`row2-${index}`} className="flex-shrink-0 w-[280px] rounded-xl overflow-hidden">
+              <div key={`row2-${index}`} className="flex-shrink-0 w-[350px] rounded-xl overflow-hidden">
                 <img 
                   src={gridExampleImage} 
                   alt={`Grid item row 2 - ${index + 1}`}
@@ -418,7 +418,7 @@ export default function InternalOne() {
           {/* Row 3 - Different offset */}
           <div className="flex gap-4 px-4">
             {[...Array(5)].map((_, index) => (
-              <div key={`row3-${index}`} className="flex-shrink-0 w-[280px] rounded-xl overflow-hidden">
+              <div key={`row3-${index}`} className="flex-shrink-0 w-[350px] rounded-xl overflow-hidden">
                 <img 
                   src={gridExampleImage} 
                   alt={`Grid item row 3 - ${index + 1}`}

@@ -305,10 +305,17 @@ export default function InternalOne() {
 
       {/* Pricing Banner - Bold & Elegant */}
       <div className="relative z-10 py-12" style={{ backgroundColor: '#6458AF' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white" style={{ fontFamily: 'Lora, serif' }}>
-            Start building your online presence and brand for just <span className="text-yellow-300">$18 a month</span>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-8" style={{ fontFamily: 'Lora, serif' }}>
+            Start building your online presence and brand<br />for just <span className="text-yellow-300">$18 a month</span>
           </p>
+          <Button 
+            className="px-8 py-3 text-sm font-medium hover:opacity-90 transition-opacity rounded-full"
+            style={{ backgroundColor: 'white', color: '#6458AF' }}
+            onClick={() => setLocation('/template-selection')}
+          >
+            Get Started
+          </Button>
         </div>
       </div>
 

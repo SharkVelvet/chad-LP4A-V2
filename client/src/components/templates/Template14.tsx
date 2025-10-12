@@ -109,9 +109,9 @@ export default function Template14({ className = "" }: Template14Props) {
           {/* Right Image */}
           <div className="relative bg-gray-100 h-full min-h-[50vh] lg:min-h-0">
             <img 
-              src="/attached_assets/plr-hiring4_1758661521235.jpg" 
+              src="/attached_assets/template-14-hero_1760239504716.jpg" 
               alt="Mandy Johnson - Delta Life Insurance Professional" 
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              className="absolute inset-0 w-full h-full object-cover object-center"
             />
             {/* Badge */}
             <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg px-4 py-3">

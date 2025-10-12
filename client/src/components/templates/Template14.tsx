@@ -88,23 +88,21 @@ export default function Template14({ className = "" }: Template14Props) {
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
           {/* Left Content - Dark Background */}
           <div className="bg-red-700 flex items-center py-8 lg:py-0">
-            <div className="w-full">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-lg text-center lg:text-left">
-                  <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white mb-6">
-                    Begin building the career of your dreams!
-                  </h1>
-                  <p className="text-white opacity-90 text-lg mb-8 leading-relaxed">
-                    Join Mandy at Delta Life Insurance to maximize your earning potential faster and more efficiently!
-                  </p>
-                  <div className="flex justify-center lg:justify-start">
-                    <button 
-                      onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
-                      className="bg-white text-red-700 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors"
-                    >
-                      Join Our Team
-                    </button>
-                  </div>
+            <div className="w-full px-4 sm:px-6 lg:pl-8 xl:pl-[max(2rem,calc((100vw-80rem)/2))]">
+              <div className="max-w-lg text-center lg:text-left">
+                <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white mb-6">
+                  Begin building the career of your dreams!
+                </h1>
+                <p className="text-white opacity-90 text-lg mb-8 leading-relaxed">
+                  Join Mandy at Delta Life Insurance to maximize your earning potential faster and more efficiently!
+                </p>
+                <div className="flex justify-center lg:justify-start">
+                  <button 
+                    onClick={(e) => handleSmoothScroll(e, 'get-started-form')}
+                    className="bg-white text-red-700 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors"
+                  >
+                    Join Our Team
+                  </button>
                 </div>
               </div>
             </div>

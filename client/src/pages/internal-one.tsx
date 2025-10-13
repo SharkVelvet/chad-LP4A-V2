@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { FileText, Globe, Zap, Building2, X, Menu } from "lucide-react";
+import { FileText, Globe, Zap, Building2, X, Menu, QrCode, MessageSquare, Users } from "lucide-react";
 import { useLocation } from "wouter";
 import { useEffect, useState, useRef } from "react";
 import playAgainImage from "@assets/LPFA-PLAY-AGAIN_1757278384329.png";
@@ -335,6 +335,89 @@ export default function InternalOne() {
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 A professional webpage is essential for insurance agents—not just for selling services to the public, but for establishing trust, transparency, and credibility. It helps you grow your business and attract top agents as you scale your team.
               </p>
+            </div>
+          </div>
+
+          {/* How to Use Your Landing Page Section */}
+          <div className="bg-white py-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                {/* Left side - Content */}
+                <div>
+                  <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                    How to Use Your Landing Page
+                  </h2>
+                  <p className="text-lg text-gray-600 mb-10">
+                    Simple, shareable, and built to convert — place your page wherever people meet you.
+                  </p>
+
+                  {/* Features List */}
+                  <div className="space-y-8">
+                    {/* Business cards & QR codes */}
+                    <div className="flex gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#6458AF' }}>
+                          <QrCode className="w-6 h-6 text-white" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">Business cards & QR codes</h3>
+                        <p className="text-gray-600">
+                          Add a short URL or QR to printed materials — prospects land on your page and can call or book instantly.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Social posts & ads */}
+                    <div className="flex gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#6458AF' }}>
+                          <MessageSquare className="w-6 h-6 text-white" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">Social posts & ads</h3>
+                        <p className="text-gray-600">
+                          Use one link in bio or send ad traffic to a page that answers questions and captures leads.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Recruiting & follow-up */}
+                    <div className="flex gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#6458AF' }}>
+                          <Users className="w-6 h-6 text-white" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">Recruiting & follow-up</h3>
+                        <p className="text-gray-600">
+                          Share branded pages with recruits or after meetings so they see your team and book next steps with confidence.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Call to Action Button */}
+                  <div className="mt-10">
+                    <Button 
+                      className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
+                      style={{ backgroundColor: '#6458AF' }}
+                      onClick={() => setLocation('/template-selection')}
+                    >
+                      Start your page — $18/mo
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Right side - Image placeholder */}
+                <div className="relative">
+                  <div className="bg-gray-200 rounded-2xl overflow-hidden shadow-xl aspect-[4/3] flex items-center justify-center">
+                    <p className="text-gray-500 text-lg">Preview thumbnail</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

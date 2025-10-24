@@ -19,6 +19,10 @@ export const users = pgTable("users", {
   role: text("role").notNull().default("customer"),
   stripeCustomerId: text("stripe_customer_id"),
   stripeSubscriptionId: text("stripe_subscription_id"),
+  otpCode: text("otp_code"),
+  otpExpiry: timestamp("otp_expiry"),
+  otpAttempts: integer("otp_attempts").default(0),
+  emailVerified: boolean("email_verified").notNull().default(false),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 

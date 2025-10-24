@@ -17,12 +17,11 @@ export default function AuthPage() {
   const { user } = useAuth();
   const [, navigate] = useLocation();
   const { toast } = useToast();
-  const [loginData, setLoginData] = useState({ username: "", password: "", siteType: "" });
+  const [loginData, setLoginData] = useState({ username: "", password: "" });
   const [registerData, setRegisterData] = useState({ 
     username: "", 
     email: "",
-    password: "", 
-    siteType: "" 
+    password: ""
   });
   const [otpData, setOtpData] = useState<{ userId: number; email: string; type: 'signup' | 'login' } | null>(null);
 
@@ -72,13 +71,6 @@ export default function AuthPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!loginData.siteType) {
-      return; // Site type is required
-    }
-    
-    // Store site type selection for later use
-    localStorage.setItem('selectedSiteType', loginData.siteType);
-    
     loginMutation.mutate({
       username: loginData.username,
       password: loginData.password,
@@ -87,13 +79,6 @@ export default function AuthPage() {
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!registerData.siteType) {
-      return; // Site type is required
-    }
-    
-    // Store site type selection for later use
-    localStorage.setItem('selectedSiteType', registerData.siteType);
-    
     registerMutation.mutate({
       username: registerData.username,
       email: registerData.email,
@@ -125,7 +110,7 @@ export default function AuthPage() {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-gray-900">Welcome</h1>
-            <p className="text-gray-600 mt-2">Sign in to create your website</p>
+            <p className="text-gray-600 mt-2">Create your free account to get started</p>
           </div>
 
           <Tabs defaultValue="register" className="space-y-4">
@@ -164,23 +149,11 @@ export default function AuthPage() {
                       />
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="login-site-type">What type of site are you interested in?</Label>
-                      <Select value={loginData.siteType} onValueChange={(value) => setLoginData({ ...loginData, siteType: value })}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select site type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="single-page">Splash Page</SelectItem>
-                          <SelectItem value="full-site">Full Site</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
                     <Button 
                       type="submit" 
                       className="w-full"
-                      disabled={loginMutation.isPending || !loginData.siteType}
+                      disabled={loginMutation.isPending}
+                      data-testid="button-login"
                     >
                       {loginMutation.isPending ? "Signing in..." : "Sign In"}
                     </Button>
@@ -230,23 +203,11 @@ export default function AuthPage() {
                       />
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="register-site-type">What type of site are you interested in?</Label>
-                      <Select value={registerData.siteType} onValueChange={(value) => setRegisterData({ ...registerData, siteType: value })}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select site type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="single-page">Splash Page</SelectItem>
-                          <SelectItem value="full-site">Full Site</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
                     <Button 
                       type="submit" 
                       className="w-full"
-                      disabled={registerMutation.isPending || !registerData.siteType}
+                      disabled={registerMutation.isPending}
+                      data-testid="button-register"
                     >
                       {registerMutation.isPending ? "Creating account..." : "Sign Up"}
                     </Button>

@@ -62,6 +62,11 @@ export default function Dashboard() {
   const [createFormData, setCreateFormData] = useState({ name: "", templateId: "" });
   const [previewTemplate, setPreviewTemplate] = useState<Template | null>(null);
 
+  // Fetch all user websites
+  const { data: websites = [], isLoading: websitesLoading } = useQuery<Website[]>({
+    queryKey: ["/api/websites"],
+  });
+
   // Listen for template selection from preview window
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -83,11 +88,6 @@ export default function Dashboard() {
       setSelectedWebsiteId(websites[0].id);
     }
   }, [websites, selectedWebsiteId]);
-
-  // Fetch all user websites
-  const { data: websites = [], isLoading: websitesLoading } = useQuery<Website[]>({
-    queryKey: ["/api/websites"],
-  });
 
   // Fetch templates for creating new site
   const { data: templates = [] } = useQuery<Template[]>({

@@ -7,7 +7,7 @@ export default function StartTheProcess() {
   const [, setLocation] = useLocation();
 
   const handleGetStarted = () => {
-    setLocation("/template-selection");
+    setLocation("/auth");
   };
 
   return (

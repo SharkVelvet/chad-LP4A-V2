@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/use-auth";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -8,10 +10,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Building2, Globe, Users, Shield } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import OTPVerification from "@/components/otp-verification";
 
 export default function AuthPage() {
-  const { user, loginMutation, registerMutation } = useAuth();
+  const { user } = useAuth();
   const [, navigate] = useLocation();
+  const { toast } = useToast();
   const [loginData, setLoginData] = useState({ username: "", password: "", siteType: "" });
   const [registerData, setRegisterData] = useState({ 
     username: "", 
@@ -19,15 +24,51 @@ export default function AuthPage() {
     password: "", 
     siteType: "" 
   });
+  const [otpData, setOtpData] = useState<{ userId: number; email: string; type: 'signup' | 'login' } | null>(null);
 
   // Redirect if already logged in
   React.useEffect(() => {
     if (user) {
-      // Redirect to templates page with site type filter
-      const siteType = loginData.siteType || localStorage.getItem('selectedSiteType') || 'single-page';
-      navigate(`/templates?type=${siteType}`);
+      // Redirect to dashboard
+      navigate('/dashboard');
     }
   }, [user, navigate]);
+
+  const loginMutation = useMutation({
+    mutationFn: async (data: { username: string; password: string }) => {
+      const res = await apiRequest("POST", "/api/login", data);
+      return res.json();
+    },
+    onSuccess: (data) => {
+      // OTP sent, show verification screen
+      setOtpData({ userId: data.userId, email: data.email, type: 'login' });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Login Failed",
+        description: error.message || "Invalid credentials",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const registerMutation = useMutation({
+    mutationFn: async (data: { username: string; email: string; password: string }) => {
+      const res = await apiRequest("POST", "/api/register", data);
+      return res.json();
+    },
+    onSuccess: (data) => {
+      // OTP sent, show verification screen
+      setOtpData({ userId: data.userId, email: data.email, type: 'signup' });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Registration Failed",
+        description: error.message || "Could not create account",
+        variant: "destructive",
+      });
+    },
+  });
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,9 +98,25 @@ export default function AuthPage() {
       username: registerData.username,
       email: registerData.email,
       password: registerData.password,
-      locationId: 1, // Default location for now
-    } as any);
+    });
   };
+
+  const handleOTPVerified = () => {
+    // After OTP verification, user is logged in, navigate to dashboard
+    window.location.href = '/dashboard';
+  };
+
+  // Show OTP verification screen if OTP data is set
+  if (otpData) {
+    return (
+      <OTPVerification
+        userId={otpData.userId}
+        email={otpData.email}
+        type={otpData.type}
+        onVerified={handleOTPVerified}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen flex">
@@ -71,7 +128,7 @@ export default function AuthPage() {
             <p className="text-gray-600 mt-2">Sign in to create your website</p>
           </div>
 
-          <Tabs defaultValue="login" className="space-y-4">
+          <Tabs defaultValue="register" className="space-y-4">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="login">Sign In</TabsTrigger>
               <TabsTrigger value="register">Sign Up</TabsTrigger>

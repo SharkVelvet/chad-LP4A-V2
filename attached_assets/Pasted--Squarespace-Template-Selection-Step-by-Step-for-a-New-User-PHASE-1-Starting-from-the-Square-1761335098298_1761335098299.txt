@@ -1,0 +1,84 @@
+🧭 Squarespace Template Selection — Step-by-Step for a New User
+🩵 PHASE 1: Starting from the Squarespace Homepage
+
+Go to squarespace.com
+
+→ You’ll land on their main marketing page with buttons like Get Started, Start Free Trial, or Templates.
+
+Click “Templates” in the top navigation (or “Get Started”)
+→ This takes you to the full template gallery, where you can browse design options.
+
+🩶 PHASE 2: Browsing and Previewing Templates
+
+Browse by Category
+
+Use filters like Portfolio, Blog, Online Store, Consulting, Real Estate, etc.
+
+These filters help narrow designs based on your business type.
+
+Click a Template Thumbnail
+→ You’ll enter a live demo preview of that template.
+
+You can scroll, click through pages, and view how it looks on desktop and mobile.
+
+The demo site often has fake text and images to simulate a real business.
+
+Optional: Click “Preview in New Tab” or “View Demo Site” (if available)
+→ This opens a full-screen version so you can experience it as a visitor would.
+
+Compare multiple templates
+→ You can go back and click other templates to preview their demo sites the same way.
+
+🩵 PHASE 3: Choosing a Template to Start With
+
+Click “Start With This Design” (or “Start with [Template Name]”)
+→ This begins a free trial site using that design as your starting layout.
+
+Squarespace will prompt you to create an account (email, Google, or Apple login).
+
+You’ll automatically enter the site editor once signed in.
+
+Name your site (optional)
+→ You can give it a title like “Sarah’s Salon” or “Kellough Designs” to appear on top of pages.
+(This can be changed later.)
+
+🩶 PHASE 4: Editing & Previewing Before Going Live
+
+You’re now inside the Site Editor.
+→ From here, you can:
+
+Click Edit on any page section to replace demo content.
+
+Click Design → Site Styles to change fonts, colors, and layout spacing.
+
+Use Pages in the sidebar to add or delete pages.
+
+Use “Preview Mode” before publishing
+
+Click the eye icon (👁️) or “Preview” button in the top bar.
+
+This lets you see what the site will look like live — but it’s not public yet.
+
+Choose visibility settings
+
+You can keep your site private while you edit.
+
+Use Settings → Site Availability → Private or Password Protected to prevent public access.
+
+🩵 PHASE 5: Publishing or Switching
+
+When you’re ready, click “Publish” or “Set Site Live.”
+
+You’ll be prompted to choose a custom domain or keep the free Squarespace trial URL (e.g., my-site.squarespace.com).
+
+Once published, the site becomes visible to the public.
+
+If you want to try another design:
+
+In Squarespace 7.0: go to Design → Templates → Install New Template → Preview → Set Live when ready.
+
+In Squarespace 7.1: you must start a new site to use a totally different template. (All 7.1 templates share one base design system.)
+
+✅ Quick Summary Flow
+
+Homepage → Templates → Preview Template → Start With This Design → Sign Up → Customize → Preview Site → Publish

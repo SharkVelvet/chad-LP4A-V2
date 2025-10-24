@@ -109,7 +109,12 @@ export function setupAuth(app: Express) {
     try {
       const { username, password } = req.body;
 
-      const user = await storage.getUserByUsername(username);
+      // Try to find user by username first, then by email
+      let user = await storage.getUserByUsername(username);
+      if (!user) {
+        user = await storage.getUserByEmail(username);
+      }
+      
       if (!user || !(await comparePasswords(password, user.password))) {
         return res.status(401).json({ message: "Invalid username or password" });
       }

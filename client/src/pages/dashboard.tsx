@@ -587,24 +587,40 @@ export default function Dashboard() {
                 </TabsContent>
 
                 {/* Preview Tab */}
-                <TabsContent value="preview">
-                  <Card>
-                    <CardContent className="pt-6 text-center py-12">
-                      <Eye className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium mb-2">Preview Coming Soon</h3>
-                      <p className="text-gray-600 mb-4">
-                        Live preview will show how your website looks with current changes.
-                      </p>
-                      {selectedWebsite?.domain && (
-                        <Button variant="outline" asChild data-testid="link-view-live">
-                          <a href={`https://${selectedWebsite.domain}`} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            View Published Site
-                          </a>
+                <TabsContent value="preview" className="mt-0">
+                  <div className="bg-gray-100 rounded-lg p-4">
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                      <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div className="text-sm text-gray-400">Preview</div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            const template = templates?.find(t => t.id === selectedWebsite?.templateId);
+                            if (template) {
+                              window.open(`/template-preview?template=${template.slug}`, '_blank');
+                            }
+                          }}
+                          className="text-white hover:text-white hover:bg-gray-700"
+                          data-testid="button-open-preview"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Open in New Window
                         </Button>
-                      )}
-                    </CardContent>
-                  </Card>
+                      </div>
+                      <iframe
+                        src={`/template-preview?template=${templates?.find(t => t.id === selectedWebsite?.templateId)?.slug}`}
+                        className="w-full h-[600px] border-0"
+                        title="Website Preview"
+                        data-testid="iframe-preview"
+                      />
+                    </div>
+                  </div>
                 </TabsContent>
               </Tabs>
             )}

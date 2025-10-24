@@ -323,14 +323,24 @@ export default function Dashboard() {
                       }`}
                       data-testid={`website-card-${website.id}`}
                     >
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1 min-w-0">
-                          <p className="font-medium text-sm truncate">{website.name}</p>
-                          <p className="text-xs text-gray-500 truncate">{website.domain || "No domain"}</p>
+                      <div className="space-y-2">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium text-sm truncate">{website.name}</p>
+                            <p className="text-xs text-gray-500 truncate">{website.domain || "No domain"}</p>
+                          </div>
+                          <Badge variant={website.isActive ? "default" : "secondary"} className="ml-2">
+                            {website.subscriptionStatus}
+                          </Badge>
                         </div>
-                        <Badge variant={website.isActive ? "default" : "secondary"} className="ml-2">
-                          {website.subscriptionStatus}
-                        </Badge>
+                        <div className="flex items-center gap-1">
+                          <Badge 
+                            variant={website.content?.isPublished ? "default" : "outline"} 
+                            className={website.content?.isPublished ? "bg-green-600" : "bg-amber-100 text-amber-800 border-amber-300"}
+                          >
+                            {website.content?.isPublished ? "Published Live" : "Draft Mode"}
+                          </Badge>
+                        </div>
                       </div>
                     </button>
                   ))

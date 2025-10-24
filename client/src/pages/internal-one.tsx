@@ -101,7 +101,7 @@ export default function InternalOne() {
               <Button 
                 className="hidden md:flex items-center px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                 style={{ backgroundColor: '#6458AF' }}
-                onClick={() => setLocation('/template-selection')}
+                onClick={() => setLocation('/auth')}
               >
                 Get Started
               </Button>
@@ -197,7 +197,7 @@ export default function InternalOne() {
                   style={{ backgroundColor: '#6458AF' }}
                   onClick={() => {
                     setIsMobileMenuOpen(false);
-                    setLocation('/template-selection');
+                    setLocation('/auth');
                   }}
                 >
                   Get Started
@@ -236,7 +236,7 @@ export default function InternalOne() {
               <Button 
                 className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity whitespace-nowrap rounded-full"
                 style={{ backgroundColor: '#6458AF' }}
-                onClick={() => setLocation('/template-selection')}
+                onClick={() => setLocation('/auth')}
               >
                 Click Here to get Started!
               </Button>

@@ -24,6 +24,9 @@ export default function TemplatePreviewPage() {
   const params = new URLSearchParams(window.location.search);
   const templateSlug = params.get('template');
   const siteType = params.get('type') || localStorage.getItem('selectedSiteType') || 'single-page';
+  
+  // Check if page is loaded in iframe
+  const isInIframe = window.self !== window.top;
 
   const { data: templates } = useQuery<Template[]>({
     queryKey: ["/api/templates"],
@@ -67,22 +70,24 @@ export default function TemplatePreviewPage() {
 
   return (
     <div className="bg-gray-50">
-      {/* Sticky Banner */}
-      <div className="relative bg-white border-b shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-center space-x-4">
-            <Button
-              variant="outline"
-              onClick={handleBackToTemplates}
-              className="flex items-center space-x-2"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back to All Templates</span>
-            </Button>
-            <h1 className="text-xl font-semibold">{template.name}</h1>
+      {/* Sticky Banner - Hide when in iframe */}
+      {!isInIframe && (
+        <div className="relative bg-white border-b shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 py-4">
+            <div className="flex items-center justify-center space-x-4">
+              <Button
+                variant="outline"
+                onClick={handleBackToTemplates}
+                className="flex items-center space-x-2"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span>Back to All Templates</span>
+              </Button>
+              <h1 className="text-xl font-semibold">{template.name}</h1>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Template Preview */}
       <div className="w-full" style={{ scrollBehavior: 'smooth' }}>

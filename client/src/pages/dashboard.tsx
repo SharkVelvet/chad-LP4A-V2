@@ -60,6 +60,7 @@ export default function Dashboard() {
   const [selectedWebsiteId, setSelectedWebsiteId] = useState<number | null>(null);
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [createFormData, setCreateFormData] = useState({ name: "", templateId: "" });
+  const [previewTemplate, setPreviewTemplate] = useState<Template | null>(null);
 
   // Fetch all user websites
   const { data: websites = [], isLoading: websitesLoading } = useQuery<Website[]>({
@@ -310,14 +311,11 @@ export default function Dashboard() {
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {templates.map((template) => (
+                  {[...templates].sort((a, b) => a.id - b.id).map((template) => (
                     <Card
                       key={template.id}
                       className="cursor-pointer hover:shadow-lg transition-shadow overflow-hidden group"
-                      onClick={() => {
-                        setCreateFormData({ name: "", templateId: template.id.toString() });
-                        setShowCreateDialog(true);
-                      }}
+                      onClick={() => setPreviewTemplate(template)}
                       data-testid={`template-card-${template.id}`}
                     >
                       <div className="aspect-video relative overflow-hidden bg-gray-100">
@@ -591,6 +589,44 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Template Preview Modal */}
+      <Dialog open={!!previewTemplate} onOpenChange={(open) => !open && setPreviewTemplate(null)}>
+        <DialogContent className="max-w-[80vw] max-h-[80vh] h-[80vh] p-0 overflow-hidden">
+          <DialogHeader className="px-6 py-4 border-b">
+            <div className="flex items-center justify-between">
+              <div>
+                <DialogTitle className="text-2xl">{previewTemplate?.name}</DialogTitle>
+                <p className="text-sm text-gray-600 mt-1">{previewTemplate?.description}</p>
+              </div>
+              <Button
+                onClick={() => {
+                  if (previewTemplate) {
+                    setCreateFormData({ name: "", templateId: previewTemplate.id.toString() });
+                    setPreviewTemplate(null);
+                    setShowCreateDialog(true);
+                  }
+                }}
+                data-testid="button-select-template"
+              >
+                Select This Template
+              </Button>
+            </div>
+          </DialogHeader>
+          <div className="flex-1 overflow-y-auto bg-gray-50">
+            {previewTemplate && (
+              <div className="w-full h-full">
+                <iframe
+                  src={`/template-preview/${previewTemplate.slug}`}
+                  className="w-full h-full border-0"
+                  title={`Preview of ${previewTemplate.name}`}
+                  data-testid="iframe-template-preview"
+                />
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

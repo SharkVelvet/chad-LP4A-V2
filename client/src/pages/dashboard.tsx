@@ -592,7 +592,7 @@ export default function Dashboard() {
 
       {/* Template Preview Modal */}
       <Dialog open={!!previewTemplate} onOpenChange={(open) => !open && setPreviewTemplate(null)}>
-        <DialogContent className="max-w-[80vw] max-h-[80vh] h-[80vh] p-0 overflow-hidden" closeButtonPosition="left">
+        <DialogContent className="max-w-[80vw] max-h-[80vh] h-[80vh] p-0 overflow-visible" closeButtonPosition="left">
           <DialogHeader className="px-6 py-4 border-b">
             <div className="flex items-center justify-between gap-8">
               <div className="flex-1">
@@ -614,13 +614,14 @@ export default function Dashboard() {
               </Button>
             </div>
           </DialogHeader>
-          <div className="flex-1 overflow-y-auto bg-gray-50 flex items-start justify-center p-4">
+          <div className="flex-1 overflow-y-auto bg-gray-50 flex items-start justify-center">
             {previewTemplate && (
               <div className="w-full max-w-5xl">
                 <img
                   src={previewTemplate.previewImage}
                   alt={`Preview of ${previewTemplate.name}`}
-                  className="w-full h-auto rounded-lg shadow-lg"
+                  className="w-full h-auto shadow-lg"
+                  style={{ borderRadius: '12px' }}
                   data-testid="img-template-preview"
                 />
               </div>

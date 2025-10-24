@@ -614,10 +614,11 @@ export default function Dashboard() {
                         </Button>
                       </div>
                       <iframe
-                        src={`/template-preview?template=${templates?.find(t => t.id === selectedWebsite?.templateId)?.slug}`}
+                        src={`/template-preview?template=${templates?.find(t => t.id === selectedWebsite?.templateId)?.slug}&websiteId=${selectedWebsiteId}`}
                         className="w-full h-[600px] border-0"
                         title="Website Preview"
                         data-testid="iframe-preview"
+                        key={`preview-${selectedWebsiteId}-${selectedWebsite?.content?.updatedAt}`}
                       />
                     </div>
                   </div>

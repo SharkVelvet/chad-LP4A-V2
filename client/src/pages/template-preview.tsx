@@ -19,10 +19,25 @@ type Template = {
   isActive: boolean;
 };
 
+type Website = {
+  id: number;
+  name: string;
+  templateId: number;
+  content?: {
+    businessName: string | null;
+    tagline: string | null;
+    aboutUs: string | null;
+    phone: string | null;
+    email: string | null;
+    address: string | null;
+  };
+};
+
 export default function TemplatePreviewPage() {
   const [, navigate] = useLocation();
   const params = new URLSearchParams(window.location.search);
   const templateSlug = params.get('template');
+  const websiteId = params.get('websiteId');
   const siteType = params.get('type') || localStorage.getItem('selectedSiteType') || 'single-page';
   
   // Check if page is loaded in iframe
@@ -32,7 +47,23 @@ export default function TemplatePreviewPage() {
     queryKey: ["/api/templates"],
   });
 
+  // Fetch website content if websiteId is provided
+  const { data: website } = useQuery<Website>({
+    queryKey: ["/api/websites", websiteId],
+    enabled: !!websiteId,
+  });
+
   const template = templates?.find(t => t.slug === templateSlug);
+  
+  // Prepare content data for template
+  const contentData = website?.content || {
+    businessName: null,
+    tagline: null,
+    aboutUs: null,
+    phone: null,
+    email: null,
+    address: null,
+  };
 
   // Track template preview view
   useEffect(() => {
@@ -120,13 +151,13 @@ export default function TemplatePreviewPage() {
       {/* Template Preview */}
       <div className="w-full" style={{ scrollBehavior: 'smooth' }}>
         {template.slug === "template-13" || template.slug === "Template-13" ? (
-          <Template13 className="w-full" />
+          <Template13 className="w-full" content={contentData} />
         ) : template.slug === "template-14" || template.slug === "Template-14" ? (
-          <Template14 className="w-full" />
+          <Template14 className="w-full" content={contentData} />
         ) : template.slug === "template-15" || template.slug === "Template-15" ? (
-          <Template15 className="w-full" />
+          <Template15 className="w-full" content={contentData} />
         ) : ["Template-1", "Template-2", "Template-3", "Template-4", "Template-5", "Template-6", "Template-7", "Template-8", "template-9", "Template-10", "Template-11", "Template-12"].includes(template.slug) ? (
-          <TemplatePreview templateSlug={template.slug} className="w-full" />
+          <TemplatePreview templateSlug={template.slug} className="w-full" content={contentData} />
         ) : (
           <div className="w-full min-h-screen bg-white">
             <img

@@ -622,7 +622,7 @@ export default function Dashboard() {
                           <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                           <div className="w-3 h-3 rounded-full bg-green-500"></div>
                         </div>
-                        <div className="text-sm text-gray-400">Desktop Preview (80% scale)</div>
+                        <div className="text-sm text-gray-400">Desktop Preview</div>
                         <Button
                           variant="ghost"
                           size="sm"
@@ -639,12 +639,12 @@ export default function Dashboard() {
                           Open in New Window
                         </Button>
                       </div>
-                      <div className="overflow-auto bg-gray-50" style={{ height: '750px' }}>
+                      <div className="overflow-auto bg-gray-50" style={{ height: '700px' }}>
                         <div 
                           style={{ 
                             width: '1440px',
                             height: '900px',
-                            transform: 'scale(0.8)',
+                            transform: 'scale(0.7)',
                             transformOrigin: 'top left',
                           }}
                         >

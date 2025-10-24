@@ -62,6 +62,21 @@ export default function Dashboard() {
   const [createFormData, setCreateFormData] = useState({ name: "", templateId: "" });
   const [previewTemplate, setPreviewTemplate] = useState<Template | null>(null);
 
+  // Listen for template selection from preview window
+  React.useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return;
+      
+      if (event.data.type === 'SELECT_TEMPLATE') {
+        setCreateFormData({ name: "", templateId: event.data.templateId.toString() });
+        setShowCreateDialog(true);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
+
   // Fetch all user websites
   const { data: websites = [], isLoading: websitesLoading } = useQuery<Website[]>({
     queryKey: ["/api/websites"],
@@ -307,7 +322,7 @@ export default function Dashboard() {
               <div>
                 <div className="mb-6">
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Choose a Template</h2>
-                  <p className="text-gray-600">Click on any template to preview it and create your website</p>
+                  <p className="text-gray-600">Click on any template to preview it in a new window</p>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

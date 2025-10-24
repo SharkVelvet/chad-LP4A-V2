@@ -315,7 +315,7 @@ export default function Dashboard() {
                     <Card
                       key={template.id}
                       className="cursor-pointer hover:shadow-lg transition-shadow overflow-hidden group"
-                      onClick={() => setPreviewTemplate(template)}
+                      onClick={() => window.open(`/template-preview?template=${template.slug}`, '_blank')}
                       data-testid={`template-card-${template.id}`}
                     >
                       <div className="aspect-video relative overflow-hidden bg-gray-100">

@@ -97,6 +97,13 @@ export default function Dashboard() {
   // Fetch selected website details
   const { data: selectedWebsite } = useQuery<Website>({
     queryKey: ["/api/websites", selectedWebsiteId],
+    queryFn: async () => {
+      const res = await fetch(`/api/websites/${selectedWebsiteId}`, {
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error("Failed to fetch website");
+      return res.json();
+    },
     enabled: !!selectedWebsiteId,
     staleTime: 0,
     refetchOnMount: true,

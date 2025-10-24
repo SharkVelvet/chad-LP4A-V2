@@ -13,6 +13,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, ExternalLink, Settings, Edit, Globe, Palette, Eye, Save } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import DomainSearch from "@/components/domain-search";
 
 type Website = {
   id: number;
@@ -457,20 +458,35 @@ export default function Dashboard() {
                         </div>
 
                         <div>
-                          <Label>Domain</Label>
+                          <Label>Current Domain</Label>
                           <div className="flex gap-2">
                             <Input
-                              value={selectedWebsite?.domain || ""}
+                              value={selectedWebsite?.domain || "Not connected"}
                               readOnly
-                              placeholder="Not connected"
                               className="bg-gray-50"
                               data-testid="text-domain"
                             />
-                            <Button variant="outline" data-testid="button-connect-domain">
-                              <Globe className="h-4 w-4 mr-2" />
-                              Connect
-                            </Button>
+                            {selectedWebsite?.domain && (
+                              <Badge variant={selectedWebsite.domainVerified ? "default" : "secondary"}>
+                                {selectedWebsite.domainVerified ? "Verified" : "Pending"}
+                              </Badge>
+                            )}
                           </div>
+                        </div>
+
+                        {/* Domain Search and Purchase */}
+                        <div className="pt-4 border-t">
+                          <DomainSearch
+                            websiteId={selectedWebsiteId}
+                            onDomainPurchased={(domain) => {
+                              queryClient.invalidateQueries({ queryKey: ["/api/websites"] });
+                              queryClient.invalidateQueries({ queryKey: ["/api/websites", selectedWebsiteId] });
+                              toast({
+                                title: "Domain Connected",
+                                description: `${domain} is now connected to your website.`,
+                              });
+                            }}
+                          />
                         </div>
 
                         <div>

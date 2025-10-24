@@ -15,6 +15,7 @@ import {
 } from "@shared/schema";
 import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sendCustomSolutionInquiry, sendContactFormSubmission } from "./email";
 import { validatePassword } from "./passwords";
+import { domainService } from "./domainService";
 
 // Initialize Stripe only if the secret key is available
 let stripe: Stripe | null = null;
@@ -229,7 +230,140 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Domain routes
+  // Check domain availability
+  app.post("/api/domains/check-availability", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
 
+    try {
+      const { domains } = req.body;
+      
+      if (!domains || !Array.isArray(domains) || domains.length === 0) {
+        return res.status(400).json({ message: "Domains array is required" });
+      }
+
+      const results = await domainService.checkAvailability(domains);
+      res.json(results);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Get domain pricing
+  app.post("/api/domains/pricing", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domains } = req.body;
+      
+      if (!domains || !Array.isArray(domains) || domains.length === 0) {
+        return res.status(400).json({ message: "Domains array is required" });
+      }
+
+      const pricing = await domainService.getPricing(domains);
+      res.json(pricing);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Register a domain
+  app.post("/api/domains/register", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain, years = 1, websiteId, contactInfo } = req.body;
+      
+      if (!domain || !contactInfo) {
+        return res.status(400).json({ message: "Domain and contact info are required" });
+      }
+
+      // Validate contact info completeness
+      const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'address1', 'city', 'stateProvince', 'postalCode', 'country'];
+      const missingFields = requiredFields.filter(field => !contactInfo[field]);
+      if (missingFields.length > 0) {
+        return res.status(400).json({ 
+          message: `Missing required contact fields: ${missingFields.join(', ')}` 
+        });
+      }
+
+      // Verify website ownership if websiteId is provided
+      if (websiteId) {
+        const website = await storage.getWebsite(websiteId);
+        if (!website || website.userId !== req.user.id) {
+          return res.status(403).json({ message: "Forbidden" });
+        }
+      }
+
+      const result = await domainService.registerDomain(domain, years, contactInfo);
+
+      if (result.success && websiteId) {
+        // Update website with the purchased domain
+        await storage.updateWebsite(websiteId, { domain, domainVerified: false });
+      }
+
+      res.json(result);
+    } catch (error: any) {
+      console.error("Domain registration error:", error);
+      
+      // Map common Namecheap errors to user-friendly messages
+      const errorMessage = error.message || "Failed to register domain";
+      
+      if (errorMessage.includes("Domain not available")) {
+        return res.status(409).json({ message: "This domain is no longer available" });
+      }
+      if (errorMessage.includes("Invalid contact")) {
+        return res.status(400).json({ message: "Invalid contact information provided" });
+      }
+      if (errorMessage.includes("Insufficient funds")) {
+        return res.status(402).json({ message: "Insufficient funds in domain registrar account" });
+      }
+      
+      res.status(500).json({ message: errorMessage });
+    }
+  });
+
+  // Get domain info
+  app.get("/api/domains/:domain/info", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      const info = await domainService.getDomainInfo(domain);
+      res.json(info);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Set nameservers for a domain
+  app.post("/api/domains/:domain/nameservers", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      const { nameservers } = req.body;
+
+      if (!nameservers || !Array.isArray(nameservers)) {
+        return res.status(400).json({ message: "Nameservers array is required" });
+      }
+
+      const success = await domainService.setNameservers(domain, nameservers);
+      res.json({ success });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
 
   // Test email connection
   app.get('/api/test-email', async (req, res) => {

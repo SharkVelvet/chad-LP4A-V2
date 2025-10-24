@@ -1,0 +1,419 @@
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
+import { Search, CheckCircle2, XCircle, ShoppingCart, Loader2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+interface DomainSearchProps {
+  websiteId: number;
+  onDomainPurchased: (domain: string) => void;
+}
+
+type DomainResult = {
+  domain: string;
+  available: boolean;
+  price?: number;
+};
+
+export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSearchProps) {
+  const { toast } = useToast();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState<DomainResult[]>([]);
+  const [selectedDomain, setSelectedDomain] = useState<string | null>(null);
+  const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
+  const [contactInfo, setContactInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address1: "",
+    city: "",
+    stateProvince: "",
+    postalCode: "",
+    country: "US",
+  });
+
+  const searchMutation = useMutation({
+    mutationFn: async (searchQuery: string) => {
+      const baseDomain = searchQuery.toLowerCase().replace(/^www\./, "").replace(/\s+/g, "");
+      
+      // If user already typed a full domain, check it and common alternatives
+      // If they typed just a name, check common TLDs
+      const hasExtension = baseDomain.includes(".");
+      const domainsToCheck = hasExtension
+        ? [baseDomain]
+        : [
+            `${baseDomain}.com`,
+            `${baseDomain}.net`,
+            `${baseDomain}.org`,
+            `${baseDomain}.io`,
+          ];
+
+      // Check availability
+      const availabilityRes = await apiRequest("POST", "/api/domains/check-availability", { domains: domainsToCheck });
+      const availabilityResults: DomainResult[] = await availabilityRes.json();
+
+      // Get pricing for available domains
+      const availableDomains = availabilityResults.filter(r => r.available).map(r => r.domain);
+      if (availableDomains.length > 0) {
+        const pricingRes = await apiRequest("POST", "/api/domains/pricing", { domains: availableDomains });
+        const pricingResults: { domain: string; price: number; currency: string }[] = await pricingRes.json();
+
+        // Merge pricing into availability results
+        return availabilityResults.map(result => {
+          const pricing = pricingResults.find(p => p.domain === result.domain);
+          return {
+            ...result,
+            price: pricing?.price || 15.00,
+          };
+        });
+      }
+
+      return availabilityResults;
+    },
+    onSuccess: (results: DomainResult[]) => {
+      setSearchResults(results);
+      if (results.every((r) => !r.available)) {
+        toast({
+          title: "All Checked Domains Unavailable",
+          description: "Try a different name or variation.",
+          variant: "destructive",
+        });
+      }
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Search Failed",
+        description: error.message || "Could not check domain availability",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const purchaseMutation = useMutation({
+    mutationFn: async (data: { domain: string; contactInfo: any }) => {
+      const res = await apiRequest("POST", "/api/domains/register", {
+        domain: data.domain,
+        years: 1,
+        websiteId,
+        contactInfo: data.contactInfo,
+      });
+      return res.json();
+    },
+    onSuccess: (result) => {
+      if (result.success) {
+        toast({
+          title: "Domain Registered!",
+          description: `${selectedDomain} has been successfully registered.`,
+        });
+        setShowPurchaseDialog(false);
+        setSelectedDomain(null);
+        setSearchResults([]);
+        setSearchTerm("");
+        if (selectedDomain) {
+          onDomainPurchased(selectedDomain);
+        }
+      } else {
+        toast({
+          title: "Registration Failed",
+          description: "Could not register the domain. Please try again.",
+          variant: "destructive",
+        });
+      }
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Registration Error",
+        description: error.message || "Failed to register domain",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchTerm.trim()) {
+      toast({
+        title: "Enter a Domain",
+        description: "Please enter a domain name to search.",
+        variant: "destructive",
+      });
+      return;
+    }
+    searchMutation.mutate(searchTerm);
+  };
+
+  const handlePurchase = (domain: string) => {
+    setSelectedDomain(domain);
+    setShowPurchaseDialog(true);
+  };
+
+  const getSelectedDomainPrice = () => {
+    if (!selectedDomain) return 15.00;
+    const result = searchResults.find(r => r.domain === selectedDomain);
+    return result?.price || 15.00;
+  };
+
+  const handleSubmitPurchase = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedDomain) return;
+
+    // Validate all required fields
+    const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'address1', 'city', 'stateProvince', 'postalCode', 'country'];
+    const missingFields = requiredFields.filter((field) => !contactInfo[field as keyof typeof contactInfo]);
+    
+    if (missingFields.length > 0) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    purchaseMutation.mutate({
+      domain: selectedDomain,
+      contactInfo,
+    });
+  };
+
+  return (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <CardTitle>Search for a Domain</CardTitle>
+          <CardDescription>Find and register the perfect domain for your website</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSearch} className="space-y-4">
+            <div>
+              <Label htmlFor="domain-search">Domain Name</Label>
+              <div className="flex gap-2">
+                <Input
+                  id="domain-search"
+                  placeholder="yourbusiness.com"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  data-testid="input-domain-search"
+                />
+                <Button type="submit" disabled={searchMutation.isPending} data-testid="button-search-domain">
+                  {searchMutation.isPending ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Searching...
+                    </>
+                  ) : (
+                    <>
+                      <Search className="h-4 w-4 mr-2" />
+                      Search
+                    </>
+                  )}
+                </Button>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">
+                Enter a domain name (e.g., "mybusiness" or "mybusiness.com")
+              </p>
+            </div>
+          </form>
+
+          {searchResults.length > 0 && (
+            <div className="mt-6 space-y-2">
+              <h3 className="font-medium mb-3">Search Results</h3>
+              {searchResults.map((result) => (
+                <div
+                  key={result.domain}
+                  className="flex items-center justify-between p-3 border rounded-lg"
+                  data-testid={`domain-result-${result.domain}`}
+                >
+                  <div className="flex items-center gap-3">
+                    {result.available ? (
+                      <CheckCircle2 className="h-5 w-5 text-green-500" />
+                    ) : (
+                      <XCircle className="h-5 w-5 text-red-500" />
+                    )}
+                    <div>
+                      <p className="font-medium">{result.domain}</p>
+                      <p className="text-sm text-gray-500">
+                        {result.available ? "Available" : "Not Available"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {result.available && (
+                      <>
+                        <Badge variant="secondary">
+                          ${result.price?.toFixed(2) || "15.00"}/year
+                        </Badge>
+                        <Button
+                          size="sm"
+                          onClick={() => handlePurchase(result.domain)}
+                          data-testid={`button-purchase-${result.domain}`}
+                        >
+                          <ShoppingCart className="h-4 w-4 mr-2" />
+                          Purchase
+                        </Button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Purchase Dialog */}
+      <Dialog open={showPurchaseDialog} onOpenChange={(open) => {
+        setShowPurchaseDialog(open);
+        if (!open) {
+          purchaseMutation.reset();
+        }
+      }}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Register {selectedDomain}</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleSubmitPurchase} className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="firstName">First Name *</Label>
+                <Input
+                  id="firstName"
+                  required
+                  value={contactInfo.firstName}
+                  onChange={(e) => setContactInfo({ ...contactInfo, firstName: e.target.value })}
+                  data-testid="input-firstname"
+                />
+              </div>
+              <div>
+                <Label htmlFor="lastName">Last Name *</Label>
+                <Input
+                  id="lastName"
+                  required
+                  value={contactInfo.lastName}
+                  onChange={(e) => setContactInfo({ ...contactInfo, lastName: e.target.value })}
+                  data-testid="input-lastname"
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label htmlFor="email">Email *</Label>
+              <Input
+                id="email"
+                type="email"
+                required
+                value={contactInfo.email}
+                onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })}
+                data-testid="input-contact-email"
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="phone">Phone *</Label>
+              <Input
+                id="phone"
+                type="tel"
+                required
+                value={contactInfo.phone}
+                onChange={(e) => setContactInfo({ ...contactInfo, phone: e.target.value })}
+                placeholder="+1.5555555555"
+                data-testid="input-contact-phone"
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="address1">Address *</Label>
+              <Input
+                id="address1"
+                required
+                value={contactInfo.address1}
+                onChange={(e) => setContactInfo({ ...contactInfo, address1: e.target.value })}
+                data-testid="input-address"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="city">City *</Label>
+                <Input
+                  id="city"
+                  required
+                  value={contactInfo.city}
+                  onChange={(e) => setContactInfo({ ...contactInfo, city: e.target.value })}
+                  data-testid="input-city"
+                />
+              </div>
+              <div>
+                <Label htmlFor="stateProvince">State/Province *</Label>
+                <Input
+                  id="stateProvince"
+                  required
+                  value={contactInfo.stateProvince}
+                  onChange={(e) => setContactInfo({ ...contactInfo, stateProvince: e.target.value })}
+                  placeholder="CA"
+                  data-testid="input-state"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="postalCode">Postal Code *</Label>
+                <Input
+                  id="postalCode"
+                  required
+                  value={contactInfo.postalCode}
+                  onChange={(e) => setContactInfo({ ...contactInfo, postalCode: e.target.value })}
+                  data-testid="input-postal"
+                />
+              </div>
+              <div>
+                <Label htmlFor="country">Country *</Label>
+                <Input
+                  id="country"
+                  required
+                  value={contactInfo.country}
+                  onChange={(e) => setContactInfo({ ...contactInfo, country: e.target.value })}
+                  placeholder="US"
+                  data-testid="input-country"
+                />
+              </div>
+            </div>
+
+            <div className="pt-4 border-t">
+              <div className="flex justify-between items-center mb-4">
+                <span className="font-medium">Total (1 year registration)</span>
+                <span className="text-xl font-bold">${getSelectedDomainPrice().toFixed(2)}</span>
+              </div>
+              <p className="text-xs text-gray-500 mb-4">
+                Free WHOIS privacy protection included. Domain will be registered through our partner registrar.
+              </p>
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={purchaseMutation.isPending}
+                data-testid="button-submit-purchase"
+              >
+                {purchaseMutation.isPending ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Processing Purchase...
+                  </>
+                ) : (
+                  "Complete Purchase"
+                )}
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}

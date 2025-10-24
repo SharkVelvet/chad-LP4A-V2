@@ -215,8 +215,15 @@ export const insertWebsiteSchema = createInsertSchema(websites).omit({
   id: true,
   userId: true,
   locationId: true,
+  domainVerified: true,
+  subscriptionStatus: true,
+  primaryColor: true,
+  isActive: true,
   createdAt: true,
   updatedAt: true,
+}).extend({
+  domain: z.string().optional(),
+  domainPreferences: z.array(z.string()).optional(),
 });
 
 export const insertWebsiteContentSchema = createInsertSchema(websiteContent).omit({

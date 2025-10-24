@@ -6,6 +6,7 @@ import { scrypt, randomBytes, timingSafeEqual } from "crypto";
 import { promisify } from "util";
 import { storage } from "./storage";
 import { User as SelectUser } from "@shared/schema";
+import { generateOTP, getOTPExpiry, sendOTPEmail } from "./emailService";
 
 declare global {
   namespace Express {
@@ -59,24 +60,82 @@ export function setupAuth(app: Express) {
   });
 
   app.post("/api/register", async (req, res, next) => {
-    const existingUser = await storage.getUserByUsername(req.body.username);
-    if (existingUser) {
-      return res.status(400).send("Username already exists");
+    try {
+      const { username, email, password } = req.body;
+
+      const existingUser = await storage.getUserByUsername(username);
+      if (existingUser) {
+        return res.status(400).json({ message: "Username already exists" });
+      }
+
+      const existingEmail = await storage.getUserByEmail(email);
+      if (existingEmail) {
+        return res.status(400).json({ message: "Email already exists" });
+      }
+
+      // Create user with hashed password but not verified yet
+      const user = await storage.createUser({
+        username,
+        email,
+        password: await hashPassword(password),
+        role: "customer",
+      });
+
+      // Generate and store OTP
+      const otpCode = generateOTP();
+      const otpExpiry = getOTPExpiry();
+      
+      await storage.updateUser(user.id, {
+        otpCode,
+        otpExpiry,
+        otpAttempts: 0,
+      });
+
+      // Send OTP email
+      await sendOTPEmail(email, otpCode, 'signup');
+
+      res.status(200).json({ 
+        message: "Verification code sent to your email",
+        userId: user.id,
+        email: user.email,
+      });
+    } catch (error: any) {
+      console.error("Registration error:", error);
+      res.status(500).json({ message: error.message || "Registration failed" });
     }
-
-    const user = await storage.createUser({
-      ...req.body,
-      password: await hashPassword(req.body.password),
-    });
-
-    req.login(user, (err) => {
-      if (err) return next(err);
-      res.status(201).json(user);
-    });
   });
 
-  app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    res.status(200).json(req.user);
+  app.post("/api/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+
+      const user = await storage.getUserByUsername(username);
+      if (!user || !(await comparePasswords(password, user.password))) {
+        return res.status(401).json({ message: "Invalid username or password" });
+      }
+
+      // Generate and store OTP
+      const otpCode = generateOTP();
+      const otpExpiry = getOTPExpiry();
+      
+      await storage.updateUser(user.id, {
+        otpCode,
+        otpExpiry,
+        otpAttempts: 0,
+      });
+
+      // Send OTP email
+      await sendOTPEmail(user.email, otpCode, 'login');
+
+      res.status(200).json({ 
+        message: "Verification code sent to your email",
+        userId: user.id,
+        email: user.email,
+      });
+    } catch (error: any) {
+      console.error("Login error:", error);
+      res.status(500).json({ message: error.message || "Login failed" });
+    }
   });
 
   app.post("/api/logout", (req, res, next) => {
@@ -89,5 +148,99 @@ export function setupAuth(app: Express) {
   app.get("/api/user", (req, res) => {
     if (!req.isAuthenticated()) return res.sendStatus(401);
     res.json(req.user);
+  });
+
+  app.post("/api/verify-otp", async (req, res, next) => {
+    try {
+      const { userId, otpCode } = req.body;
+
+      if (!userId || !otpCode) {
+        return res.status(400).json({ message: "User ID and OTP code are required" });
+      }
+
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      // Check if OTP has expired
+      if (!user.otpExpiry || new Date() > new Date(user.otpExpiry)) {
+        return res.status(400).json({ message: "Verification code has expired" });
+      }
+
+      // Check if too many attempts
+      if (user.otpAttempts && user.otpAttempts >= 3) {
+        return res.status(400).json({ message: "Too many failed attempts. Please request a new code." });
+      }
+
+      // Verify OTP code
+      if (user.otpCode !== otpCode) {
+        await storage.updateUser(userId, {
+          otpAttempts: (user.otpAttempts || 0) + 1,
+        });
+        return res.status(400).json({ message: "Invalid verification code" });
+      }
+
+      // OTP is valid - mark user as verified and clear OTP data
+      await storage.updateUser(userId, {
+        emailVerified: true,
+        otpCode: null,
+        otpExpiry: null,
+        otpAttempts: 0,
+      });
+
+      // Log the user in
+      req.login(user, (err) => {
+        if (err) {
+          console.error("Login error after OTP verification:", err);
+          return next(err);
+        }
+        res.status(200).json({ 
+          message: "Verification successful",
+          user: {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            role: user.role,
+          },
+        });
+      });
+    } catch (error: any) {
+      console.error("OTP verification error:", error);
+      res.status(500).json({ message: error.message || "Verification failed" });
+    }
+  });
+
+  app.post("/api/resend-otp", async (req, res) => {
+    try {
+      const { userId } = req.body;
+
+      if (!userId) {
+        return res.status(400).json({ message: "User ID is required" });
+      }
+
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      // Generate new OTP
+      const otpCode = generateOTP();
+      const otpExpiry = getOTPExpiry();
+      
+      await storage.updateUser(userId, {
+        otpCode,
+        otpExpiry,
+        otpAttempts: 0,
+      });
+
+      // Send OTP email
+      await sendOTPEmail(user.email, otpCode, user.emailVerified ? 'login' : 'signup');
+
+      res.status(200).json({ message: "New verification code sent to your email" });
+    } catch (error: any) {
+      console.error("Resend OTP error:", error);
+      res.status(500).json({ message: error.message || "Failed to resend code" });
+    }
   });
 }

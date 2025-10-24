@@ -43,6 +43,7 @@ export interface IStorage {
   getUserByUsername(username: string): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  updateUser(userId: number, data: Partial<User>): Promise<User>;
   updateUserStripeInfo(userId: number, customerId: string, subscriptionId: string): Promise<User>;
 
   // Location management
@@ -135,6 +136,15 @@ export class DatabaseStorage implements IStorage {
     const [user] = await db
       .insert(users)
       .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  async updateUser(userId: number, data: Partial<User>): Promise<User> {
+    const [user] = await db
+      .update(users)
+      .set(data as any)
+      .where(eq(users.id, userId))
       .returning();
     return user;
   }

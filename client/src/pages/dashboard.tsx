@@ -91,6 +91,8 @@ export default function Dashboard() {
   const { data: selectedWebsite } = useQuery<Website>({
     queryKey: ["/api/websites", selectedWebsiteId],
     enabled: !!selectedWebsiteId,
+    staleTime: 0,
+    refetchOnMount: true,
   });
 
   // Create website mutation

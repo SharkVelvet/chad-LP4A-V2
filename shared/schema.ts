@@ -213,6 +213,8 @@ export const insertLocationSchema = createInsertSchema(locations).omit({
 
 export const insertWebsiteSchema = createInsertSchema(websites).omit({
   id: true,
+  userId: true,
+  locationId: true,
   createdAt: true,
   updatedAt: true,
 });

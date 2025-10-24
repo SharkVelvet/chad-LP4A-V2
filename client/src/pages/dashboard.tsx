@@ -108,6 +108,13 @@ export default function Dashboard() {
         description: "Your new website has been created successfully.",
       });
     },
+    onError: (error: any) => {
+      toast({
+        title: "Error Creating Website",
+        description: error.message || "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    },
   });
 
   // Update website content mutation

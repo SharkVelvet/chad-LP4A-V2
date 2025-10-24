@@ -120,33 +120,35 @@ export default function TemplatePreviewPage() {
 
   return (
     <div className="bg-gray-50">
-      {/* Sticky Banner */}
-      <div className="sticky top-0 z-50 bg-white border-b shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Button
-              variant="outline"
-              onClick={handleBackToTemplates}
-              className="flex items-center space-x-2"
-              data-testid="button-back-to-templates"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back to Templates</span>
-            </Button>
-            
-            <h1 className="text-xl font-semibold">{template.name}</h1>
-            
-            <Button
-              onClick={handleChooseTemplate}
-              size="lg"
-              className="bg-[#6458AF] hover:bg-[#5347A0]"
-              data-testid="button-choose-template"
-            >
-              Choose This Template
-            </Button>
+      {/* Sticky Banner - Only show when NOT viewing from dashboard (no websiteId) */}
+      {!websiteId && (
+        <div className="sticky top-0 z-50 bg-white border-b shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 py-4">
+            <div className="flex items-center justify-between">
+              <Button
+                variant="outline"
+                onClick={handleBackToTemplates}
+                className="flex items-center space-x-2"
+                data-testid="button-back-to-templates"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span>Back to Templates</span>
+              </Button>
+              
+              <h1 className="text-xl font-semibold">{template.name}</h1>
+              
+              <Button
+                onClick={handleChooseTemplate}
+                size="lg"
+                className="bg-[#6458AF] hover:bg-[#5347A0]"
+                data-testid="button-choose-template"
+              >
+                Choose This Template
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Template Preview */}
       <div className="w-full" style={{ scrollBehavior: 'smooth' }}>

@@ -408,7 +408,7 @@ export default function Dashboard() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <form onSubmit={handleContentUpdate} key={selectedWebsiteId} className="space-y-4">
+                      <form onSubmit={handleContentUpdate} key={`${selectedWebsiteId}-${selectedWebsite?.content?.updatedAt}`} className="space-y-4">
                         <div>
                           <Label htmlFor="businessName">Business Name</Label>
                           <Input

@@ -15,10 +15,11 @@ export const users = pgTable("users", {
   username: text("username").notNull().unique(),
   email: text("email").notNull().unique(),
   password: text("password").notNull(),
-  locationId: integer("location_id").notNull().references(() => locations.id),
-  role: text("role").notNull().default("employee"),
+  locationId: integer("location_id").references(() => locations.id),
+  role: text("role").notNull().default("customer"),
   stripeCustomerId: text("stripe_customer_id"),
   stripeSubscriptionId: text("stripe_subscription_id"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
 export const templates = pgTable("templates", {
@@ -33,13 +34,19 @@ export const templates = pgTable("templates", {
 
 export const websites = pgTable("websites", {
   id: serial("id").primaryKey(),
-  locationId: integer("location_id").notNull().references(() => locations.id),
+  userId: integer("user_id").notNull().references(() => users.id),
+  locationId: integer("location_id").references(() => locations.id),
   templateId: integer("template_id").notNull().references(() => templates.id),
+  name: text("name").notNull(),
   domain: text("domain"),
+  domainVerified: boolean("domain_verified").notNull().default(false),
   domainPreferences: jsonb("domain_preferences").$type<string[]>(),
   subscriptionPlan: text("subscription_plan").notNull(),
+  subscriptionStatus: text("subscription_status").notNull().default("active"),
+  primaryColor: text("primary_color").default("#000000"),
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
 export const websiteContent = pgTable("website_content", {
@@ -54,6 +61,8 @@ export const websiteContent = pgTable("website_content", {
   heroImage: text("hero_image"),
   logo: text("logo"),
   galleryImages: jsonb("gallery_images").$type<string[]>(),
+  isPublished: boolean("is_published").notNull().default(false),
+  publishedAt: timestamp("published_at"),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
@@ -143,11 +152,12 @@ export const locationsRelations = relations(locations, ({ many }) => ({
   websites: many(websites),
 }));
 
-export const usersRelations = relations(users, ({ one }) => ({
+export const usersRelations = relations(users, ({ one, many }) => ({
   location: one(locations, {
     fields: [users.locationId],
     references: [locations.id],
   }),
+  websites: many(websites),
 }));
 
 export const templatesRelations = relations(templates, ({ many }) => ({
@@ -155,6 +165,10 @@ export const templatesRelations = relations(templates, ({ many }) => ({
 }));
 
 export const websitesRelations = relations(websites, ({ one, many }) => ({
+  user: one(users, {
+    fields: [websites.userId],
+    references: [users.id],
+  }),
   location: one(locations, {
     fields: [websites.locationId],
     references: [locations.id],
@@ -186,6 +200,7 @@ export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
   stripeCustomerId: true,
   stripeSubscriptionId: true,
+  createdAt: true,
 });
 
 export const insertLocationSchema = createInsertSchema(locations).omit({
@@ -195,11 +210,13 @@ export const insertLocationSchema = createInsertSchema(locations).omit({
 export const insertWebsiteSchema = createInsertSchema(websites).omit({
   id: true,
   createdAt: true,
+  updatedAt: true,
 });
 
 export const insertWebsiteContentSchema = createInsertSchema(websiteContent).omit({
   id: true,
   updatedAt: true,
+  publishedAt: true,
 });
 
 export const insertFormSubmissionSchema = createInsertSchema(formSubmissions).omit({

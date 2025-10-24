@@ -57,13 +57,18 @@ export interface IStorage {
 
   // Website management
   getWebsiteByLocationId(locationId: number): Promise<Website | undefined>;
+  getUserWebsites(userId: number): Promise<Website[]>;
+  getWebsite(id: number): Promise<Website | undefined>;
   createWebsite(website: InsertWebsite): Promise<Website>;
+  updateWebsite(websiteId: number, data: Partial<InsertWebsite>): Promise<Website>;
   updateWebsiteDomain(websiteId: number, domain: string): Promise<Website>;
+  deleteWebsite(websiteId: number): Promise<void>;
 
   // Website content management
   getWebsiteContent(websiteId: number): Promise<WebsiteContent | undefined>;
   createWebsiteContent(content: InsertWebsiteContent): Promise<WebsiteContent>;
   updateWebsiteContent(websiteId: number, content: Partial<InsertWebsiteContent>): Promise<WebsiteContent>;
+  publishWebsiteContent(websiteId: number): Promise<WebsiteContent>;
 
   // Blog management
   getAllBlogPosts(): Promise<BlogPost[]>;
@@ -187,13 +192,18 @@ export class DatabaseStorage implements IStorage {
 
   async createWebsite(website: InsertWebsite): Promise<Website> {
     const websiteData = {
-      locationId: website.locationId,
+      userId: website.userId,
+      locationId: website.locationId || null,
       templateId: website.templateId,
+      name: website.name,
       subscriptionPlan: website.subscriptionPlan,
+      subscriptionStatus: website.subscriptionStatus || 'active',
       domain: website.domain || null,
+      domainVerified: website.domainVerified || false,
       domainPreferences: website.domainPreferences || null,
+      primaryColor: website.primaryColor || '#000000',
       isActive: website.isActive !== undefined ? website.isActive : true
-    };
+    } as any;
     
     const [newWebsite] = await db
       .insert(websites)
@@ -209,6 +219,29 @@ export class DatabaseStorage implements IStorage {
       .where(eq(websites.id, websiteId))
       .returning();
     return website;
+  }
+
+  async getUserWebsites(userId: number): Promise<Website[]> {
+    return await db.select().from(websites).where(eq(websites.userId, userId));
+  }
+
+  async getWebsite(id: number): Promise<Website | undefined> {
+    const [website] = await db.select().from(websites).where(eq(websites.id, id));
+    return website || undefined;
+  }
+
+  async updateWebsite(websiteId: number, data: Partial<InsertWebsite>): Promise<Website> {
+    const updateData = { ...data, updatedAt: new Date() } as any;
+    const [website] = await db
+      .update(websites)
+      .set(updateData)
+      .where(eq(websites.id, websiteId))
+      .returning();
+    return website;
+  }
+
+  async deleteWebsite(websiteId: number): Promise<void> {
+    await db.delete(websites).where(eq(websites.id, websiteId));
   }
 
   // Website content management
@@ -239,13 +272,22 @@ export class DatabaseStorage implements IStorage {
   }
 
   async updateWebsiteContent(websiteId: number, content: Partial<InsertWebsiteContent>): Promise<WebsiteContent> {
-    const updateData = { ...content, updatedAt: new Date() };
+    const updateData = { ...content, updatedAt: new Date() } as any;
     const [updatedContent] = await db
       .update(websiteContent)
       .set(updateData)
       .where(eq(websiteContent.websiteId, websiteId))
       .returning();
     return updatedContent;
+  }
+
+  async publishWebsiteContent(websiteId: number): Promise<WebsiteContent> {
+    const [publishedContent] = await db
+      .update(websiteContent)
+      .set({ isPublished: true, publishedAt: new Date(), updatedAt: new Date() })
+      .where(eq(websiteContent.websiteId, websiteId))
+      .returning();
+    return publishedContent;
   }
 
   // Blog management

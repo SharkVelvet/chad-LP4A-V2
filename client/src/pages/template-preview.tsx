@@ -50,7 +50,16 @@ export default function TemplatePreviewPage() {
   // Fetch website content if websiteId is provided
   const { data: website } = useQuery<Website>({
     queryKey: ["/api/websites", websiteId],
+    queryFn: async () => {
+      const res = await fetch(`/api/websites/${websiteId}`, {
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error("Failed to fetch website");
+      return res.json();
+    },
     enabled: !!websiteId,
+    staleTime: 0,
+    refetchOnMount: true,
   });
 
   const template = templates?.find(t => t.slug === templateSlug);

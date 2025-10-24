@@ -612,14 +612,14 @@ export default function Dashboard() {
                           <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                           <div className="w-3 h-3 rounded-full bg-green-500"></div>
                         </div>
-                        <div className="text-sm text-gray-400">Preview</div>
+                        <div className="text-sm text-gray-400">Desktop Preview (80% scale)</div>
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => {
                             const template = templates?.find(t => t.id === selectedWebsite?.templateId);
                             if (template) {
-                              window.open(`/template-preview?template=${template.slug}`, '_blank');
+                              window.open(`/template-preview?template=${template.slug}&websiteId=${selectedWebsiteId}`, '_blank');
                             }
                           }}
                           className="text-white hover:text-white hover:bg-gray-700"
@@ -629,13 +629,25 @@ export default function Dashboard() {
                           Open in New Window
                         </Button>
                       </div>
-                      <iframe
-                        src={`/template-preview?template=${templates?.find(t => t.id === selectedWebsite?.templateId)?.slug}&websiteId=${selectedWebsiteId}`}
-                        className="w-full h-[600px] border-0"
-                        title="Website Preview"
-                        data-testid="iframe-preview"
-                        key={`preview-${selectedWebsiteId}-${selectedWebsite?.content?.updatedAt}`}
-                      />
+                      <div className="overflow-auto bg-gray-50" style={{ height: '750px' }}>
+                        <div 
+                          style={{ 
+                            width: '1440px',
+                            height: '900px',
+                            transform: 'scale(0.8)',
+                            transformOrigin: 'top left',
+                          }}
+                        >
+                          <iframe
+                            src={`/template-preview?template=${templates?.find(t => t.id === selectedWebsite?.templateId)?.slug}&websiteId=${selectedWebsiteId}`}
+                            className="border-0"
+                            style={{ width: '1440px', height: '900px' }}
+                            title="Website Preview"
+                            data-testid="iframe-preview"
+                            key={`preview-${selectedWebsiteId}-${selectedWebsite?.content?.updatedAt}`}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </TabsContent>

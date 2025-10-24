@@ -77,6 +77,13 @@ export default function Dashboard() {
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
+  // Auto-select the first website when websites load
+  useEffect(() => {
+    if (websites.length > 0 && !selectedWebsiteId) {
+      setSelectedWebsiteId(websites[0].id);
+    }
+  }, [websites, selectedWebsiteId]);
+
   // Fetch all user websites
   const { data: websites = [], isLoading: websitesLoading } = useQuery<Website[]>({
     queryKey: ["/api/websites"],

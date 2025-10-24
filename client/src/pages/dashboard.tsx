@@ -303,13 +303,52 @@ export default function Dashboard() {
           {/* Main Content Area */}
           <div className="lg:col-span-3">
             {!selectedWebsiteId ? (
-              <Card>
-                <CardContent className="pt-6 text-center py-12">
-                  <Globe className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium mb-2">Select a Website</h3>
-                  <p className="text-gray-600 mb-4">Choose a website from the list to edit its content and settings.</p>
-                </CardContent>
-              </Card>
+              <div>
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Choose a Template</h2>
+                  <p className="text-gray-600">Click on any template to preview it and create your website</p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {templates.map((template) => (
+                    <Card
+                      key={template.id}
+                      className="cursor-pointer hover:shadow-lg transition-shadow overflow-hidden group"
+                      onClick={() => {
+                        setCreateFormData({ name: "", templateId: template.id.toString() });
+                        setShowCreateDialog(true);
+                      }}
+                      data-testid={`template-card-${template.id}`}
+                    >
+                      <div className="aspect-video relative overflow-hidden bg-gray-100">
+                        <img
+                          src={template.previewImage}
+                          alt={template.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200" />
+                      </div>
+                      <CardHeader>
+                        <CardTitle className="text-lg">{template.name}</CardTitle>
+                        <CardDescription className="line-clamp-2">{template.description}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <Badge variant="outline">{template.category}</Badge>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+
+                {templates.length === 0 && (
+                  <Card>
+                    <CardContent className="pt-6 text-center py-12">
+                      <Globe className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                      <h3 className="text-lg font-medium mb-2">No Templates Available</h3>
+                      <p className="text-gray-600 mb-4">Templates are being loaded. Please check back soon.</p>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
             ) : (
               <Tabs defaultValue="content" className="w-full">
                 <TabsList className="grid w-full grid-cols-3 mb-6">

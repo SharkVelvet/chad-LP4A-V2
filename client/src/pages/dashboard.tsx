@@ -614,14 +614,14 @@ export default function Dashboard() {
               </Button>
             </div>
           </DialogHeader>
-          <div className="flex-1 overflow-y-auto bg-gray-50">
+          <div className="flex-1 overflow-y-auto bg-gray-50 flex items-start justify-center p-4">
             {previewTemplate && (
-              <div className="w-full h-full">
-                <iframe
-                  src={`/template-preview?template=${previewTemplate.slug}`}
-                  className="w-full h-full border-0"
-                  title={`Preview of ${previewTemplate.name}`}
-                  data-testid="iframe-template-preview"
+              <div className="w-full max-w-5xl">
+                <img
+                  src={previewTemplate.previewImage}
+                  alt={`Preview of ${previewTemplate.name}`}
+                  className="w-full h-auto rounded-lg shadow-lg"
+                  data-testid="img-template-preview"
                 />
               </div>
             )}

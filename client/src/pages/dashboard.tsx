@@ -592,10 +592,10 @@ export default function Dashboard() {
 
       {/* Template Preview Modal */}
       <Dialog open={!!previewTemplate} onOpenChange={(open) => !open && setPreviewTemplate(null)}>
-        <DialogContent className="max-w-[80vw] max-h-[80vh] h-[80vh] p-0 overflow-hidden">
+        <DialogContent className="max-w-[80vw] max-h-[80vh] h-[80vh] p-0 overflow-hidden" closeButtonPosition="left">
           <DialogHeader className="px-6 py-4 border-b">
-            <div className="flex items-center justify-between">
-              <div>
+            <div className="flex items-center justify-between gap-8">
+              <div className="flex-1">
                 <DialogTitle className="text-2xl">{previewTemplate?.name}</DialogTitle>
                 <p className="text-sm text-gray-600 mt-1">{previewTemplate?.description}</p>
               </div>
@@ -608,6 +608,7 @@ export default function Dashboard() {
                   }
                 }}
                 data-testid="button-select-template"
+                className="shrink-0"
               >
                 Select This Template
               </Button>
@@ -617,7 +618,7 @@ export default function Dashboard() {
             {previewTemplate && (
               <div className="w-full h-full">
                 <iframe
-                  src={`/template-preview/${previewTemplate.slug}`}
+                  src={`/template-preview?template=${previewTemplate.slug}`}
                   className="w-full h-full border-0"
                   title={`Preview of ${previewTemplate.name}`}
                   data-testid="iframe-template-preview"

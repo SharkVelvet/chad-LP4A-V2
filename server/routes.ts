@@ -68,16 +68,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Website routes
-  app.get("/api/website", async (req, res) => {
+  // Website routes - multi-website support
+  // Get all websites for current user
+  app.get("/api/websites", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const website = await storage.getWebsiteByLocationId(req.user.locationId);
+      const websites = await storage.getUserWebsites(req.user.id);
+      res.json(websites);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Get a specific website by ID
+  app.get("/api/websites/:id", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const website = await storage.getWebsite(parseInt(req.params.id));
       if (!website) {
         return res.status(404).json({ message: "Website not found" });
+      }
+
+      // Verify ownership
+      if (website.userId !== req.user.id) {
+        return res.status(403).json({ message: "Forbidden" });
       }
 
       const content = await storage.getWebsiteContent(website.id);
@@ -87,25 +107,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/website", async (req, res) => {
+  // Create a new website
+  app.post("/api/websites", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const { templateId, domainPreferences, subscriptionPlan } = insertWebsiteSchema.parse(req.body);
-      
-      // Check if website already exists for this location
-      const existingWebsite = await storage.getWebsiteByLocationId(req.user.locationId);
-      if (existingWebsite) {
-        return res.status(400).json({ message: "Website already exists for this location" });
-      }
+      const { templateId, name, subscriptionPlan, domainPreferences } = insertWebsiteSchema.parse(req.body);
 
       const website = await storage.createWebsite({
-        locationId: req.user.locationId,
+        userId: req.user.id,
         templateId,
-        domainPreferences,
+        name,
         subscriptionPlan,
+        domainPreferences,
       });
 
       // Create default content
@@ -115,7 +131,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         tagline: "",
         aboutUs: "",
         phone: "",
-        email: "",
+        email: req.user.email,
         address: "",
       });
 
@@ -125,44 +141,91 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get website for current user's location
-  app.get("/api/website", async (req, res) => {
+  // Update website settings
+  app.put("/api/websites/:id", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const website = await storage.getWebsiteByLocationId(req.user.locationId);
-      if (!website) {
+      const websiteId = parseInt(req.params.id);
+      const website = await storage.getWebsite(websiteId);
+      
+      if (!website || website.userId !== req.user.id) {
         return res.status(404).json({ message: "Website not found" });
       }
 
-      // Get content too
-      const content = await storage.getWebsiteContent(website.id);
-      res.json({ ...website, content });
+      const updateData = insertWebsiteSchema.partial().parse(req.body);
+      const updatedWebsite = await storage.updateWebsite(websiteId, updateData);
+      
+      res.json(updatedWebsite);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Delete a website
+  app.delete("/api/websites/:id", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const websiteId = parseInt(req.params.id);
+      const website = await storage.getWebsite(websiteId);
+      
+      if (!website || website.userId !== req.user.id) {
+        return res.status(404).json({ message: "Website not found" });
+      }
+
+      await storage.deleteWebsite(websiteId);
+      res.sendStatus(204);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
 
   // Website content routes
-  app.put("/api/website/content", async (req, res) => {
+  app.put("/api/websites/:id/content", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const website = await storage.getWebsiteByLocationId(req.user.locationId);
-      if (!website) {
+      const websiteId = parseInt(req.params.id);
+      const website = await storage.getWebsite(websiteId);
+      
+      if (!website || website.userId !== req.user.id) {
         return res.status(404).json({ message: "Website not found" });
       }
 
       const contentData = insertWebsiteContentSchema.partial().parse(req.body);
-      const updatedContent = await storage.updateWebsiteContent(website.id, contentData);
+      const updatedContent = await storage.updateWebsiteContent(websiteId, contentData);
       
       res.json(updatedContent);
     } catch (error: any) {
       res.status(400).json({ message: error.message });
+    }
+  });
+
+  // Publish website content
+  app.post("/api/websites/:id/publish", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const websiteId = parseInt(req.params.id);
+      const website = await storage.getWebsite(websiteId);
+      
+      if (!website || website.userId !== req.user.id) {
+        return res.status(404).json({ message: "Website not found" });
+      }
+
+      const publishedContent = await storage.publishWebsiteContent(websiteId);
+      res.json(publishedContent);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
     }
   });
 

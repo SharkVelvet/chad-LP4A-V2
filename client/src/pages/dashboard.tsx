@@ -570,7 +570,7 @@ export default function Dashboard() {
                             <Input
                               type="color"
                               defaultValue={selectedWebsite?.primaryColor || "#000000"}
-                              key={`color-${selectedWebsiteId}`}
+                              key={`color-${selectedWebsiteId}-${selectedWebsite?.primaryColor}`}
                               className="w-20 h-10"
                               data-testid="input-primary-color"
                               onBlur={(e) => {

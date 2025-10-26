@@ -73,10 +73,8 @@ export default function WebsiteEditor() {
   // Save content mutation
   const saveContentMutation = useMutation({
     mutationFn: async (content: typeof formData) => {
-      return await apiRequest(`/api/websites/${websiteId}/content`, {
-        method: "PATCH",
-        body: JSON.stringify(content),
-      });
+      const res = await apiRequest("PATCH", `/api/websites/${websiteId}/content`, content);
+      return await res.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });

@@ -33,15 +33,13 @@ export default function SelectTemplateByCategory() {
   // Create website mutation
   const createWebsiteMutation = useMutation({
     mutationFn: async (templateId: number) => {
-      return await apiRequest("/api/websites", {
-        method: "POST",
-        body: JSON.stringify({
-          templateId,
-          name: `My Website`,
-          subscriptionPlan: "basic",
-          domainPreferences: [],
-        }),
+      const res = await apiRequest("POST", "/api/websites", {
+        templateId,
+        name: `My Website`,
+        subscriptionPlan: "basic",
+        domainPreferences: [],
       });
+      return await res.json();
     },
     onSuccess: (newWebsite: any) => {
       queryClient.invalidateQueries({ queryKey: ["/api/websites"] });

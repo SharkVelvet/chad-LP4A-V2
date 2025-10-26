@@ -3,7 +3,8 @@ import { useLocation, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { ArrowLeft, X } from "lucide-react";
 
 type Template = {
@@ -140,6 +141,11 @@ export default function SelectTemplateByCategory() {
             margin: 0
           }}
         >
+          <VisuallyHidden>
+            <DialogTitle>{selectedTemplate?.name} Preview</DialogTitle>
+            <DialogDescription>Preview of {selectedTemplate?.name} template</DialogDescription>
+          </VisuallyHidden>
+          
           <style>
             {`
               @keyframes slideUp {
@@ -161,38 +167,23 @@ export default function SelectTemplateByCategory() {
             `}
           </style>
           
-          {/* Header with buttons */}
-          <div className="sticky top-0 z-50 bg-white border-b px-6 py-4 flex items-center justify-between rounded-t-xl">
-            <h3 className="text-lg font-semibold">{selectedTemplate?.name}</h3>
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setSelectedTemplate(null)}
-                data-testid="button-close-preview"
-              >
-                <X className="h-4 w-4 mr-2" />
-                Close
-              </Button>
-              <Button
-                size="sm"
-                onClick={() => {
-                  // TODO: Handle template selection
-                  console.log('Selected template:', selectedTemplate);
-                  setSelectedTemplate(null);
-                }}
-                data-testid="button-choose-template"
-              >
-                Choose This Template
-              </Button>
-            </div>
+          {/* Header with close button */}
+          <div className="sticky top-0 z-50 bg-white border-b px-3 py-1.5 flex items-center justify-end rounded-t-xl">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setSelectedTemplate(null)}
+              data-testid="button-close-preview"
+            >
+              Close
+            </Button>
           </div>
 
           {/* Scrollable iframe content */}
           <div className="flex-1 overflow-auto bg-gray-50">
             {selectedTemplate && (
               <iframe
-                src={`/template-preview?template=${selectedTemplate.slug}`}
+                src={`/template-preview?template=${selectedTemplate.slug}&hideNav=true`}
                 className="w-full h-full border-0"
                 title={`Preview of ${selectedTemplate.name}`}
                 data-testid="iframe-template-preview"

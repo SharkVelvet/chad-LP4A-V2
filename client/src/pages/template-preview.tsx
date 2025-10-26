@@ -38,6 +38,7 @@ export default function TemplatePreviewPage() {
   const params = new URLSearchParams(window.location.search);
   const templateSlug = params.get('template');
   const websiteId = params.get('websiteId');
+  const hideNav = params.get('hideNav') === 'true';
   const siteType = params.get('type') || localStorage.getItem('selectedSiteType') || 'single-page';
   
   // Check if page is loaded in iframe
@@ -129,8 +130,8 @@ export default function TemplatePreviewPage() {
 
   return (
     <div className="bg-gray-50">
-      {/* Sticky Banner - Only show when NOT viewing from dashboard (no websiteId) */}
-      {!websiteId && (
+      {/* Sticky Banner - Only show when NOT viewing from dashboard (no websiteId) and not hiding nav */}
+      {!websiteId && !hideNav && (
         <div className="sticky top-0 z-50 bg-white border-b shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex items-center justify-between">

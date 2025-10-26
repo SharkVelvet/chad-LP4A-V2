@@ -107,32 +107,29 @@ export default function TemplatePreviewPage() {
         return;
       }
       
-      // Check if it's a text element (only headings, paragraphs, and spans)
-      if (target.matches('h1, h2, h3, h4, h5, h6, p, span')) {
+      // First check if element or any parent has data-content-id
+      let contentIdElement = target.hasAttribute('data-content-id') ? target : target.closest('[data-content-id]');
+      
+      // Or check for legacy data-field
+      let legacyFieldElement = !contentIdElement && (target.hasAttribute('data-field') ? target : target.closest('[data-field]'));
+      
+      // Or it's a text element (headings, paragraphs, spans)
+      const isTextElement = target.matches('h1, h2, h3, h4, h5, h6, p, span');
+      
+      if (contentIdElement || legacyFieldElement || isTextElement) {
         e.preventDefault();
         e.stopPropagation();
         
         const text = target.textContent || '';
         
-        // First check for data-content-id (flexible content system)
-        let contentId = target.getAttribute('data-content-id');
-        if (!contentId) {
-          // Fall back to checking parent elements for data-content-id
-          const parent = target.closest('[data-content-id]');
-          contentId = parent?.getAttribute('data-content-id') || null;
-        }
-        
-        // Legacy: check for data-field
-        let fieldName = null;
-        if (!contentId) {
-          const field = target.getAttribute('data-field') || target.closest('[data-field]')?.getAttribute('data-field');
-          fieldName = field || 'text';
-        }
+        // Get content ID or field name
+        const contentId = contentIdElement?.getAttribute('data-content-id') || null;
+        const legacyField = legacyFieldElement?.getAttribute('data-field') || null;
         
         setEditingElement({
           type: 'text',
           content: text,
-          fieldName: fieldName || contentId || 'text'
+          fieldName: legacyField || contentId || 'text'
         });
         setEditValue(text);
         setIsEditModalOpen(true);

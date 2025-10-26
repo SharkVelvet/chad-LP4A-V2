@@ -4103,14 +4103,14 @@ export default function TemplatePreview({ templateSlug, className = "", content,
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="text-center lg:text-left">
-                <div className="inline-block bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-block bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium mb-6" data-content-id="template-7.hero.badge">
                   Life & Health Insurance Expert
                 </div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight" data-content-id="template-7.hero.title">
                   Protect Your Family's 
                   <span className="text-red-600"> Financial Future</span>
                 </h1>
-                <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed">
+                <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed" data-content-id="template-7.hero.description">
                   Comprehensive life insurance and health coverage solutions tailored to your family's needs. 
                   Secure your legacy and protect against unexpected medical costs.
                 </p>
@@ -4185,10 +4185,10 @@ export default function TemplatePreview({ templateSlug, className = "", content,
         <div id="stats" className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4" data-content-id="template-7.stats.heading">
                 Protecting families across America
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto" data-content-id="template-7.stats.description">
                 Our proven track record in life and health insurance speaks for itself. Join thousands of families who trust us with their financial security.
               </p>
             </div>

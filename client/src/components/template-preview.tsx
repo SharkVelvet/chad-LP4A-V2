@@ -4006,21 +4006,21 @@ export default function TemplatePreview({ templateSlug, className = "", content,
                   <Phone className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-semibold mb-1">Phone</h3>
-                <p className="text-gray-600">(555) 123-4567</p>
+                <p className="text-gray-600" data-field="phone">{content?.phone || "(555) 123-4567"}</p>
               </div>
               <div className="flex flex-col items-center">
                 <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mb-3">
                   <Mail className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-semibold mb-1">Email</h3>
-                <p className="text-gray-600">info@youragency.com</p>
+                <p className="text-gray-600" data-field="email">{content?.email || "info@youragency.com"}</p>
               </div>
               <div className="flex flex-col items-center">
                 <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mb-3">
                   <MapPin className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-semibold mb-1">Address</h3>
-                <p className="text-gray-600">123 Main Street, Suite 100<br />Your City, ST 12345</p>
+                <p className="text-gray-600" data-field="address">{content?.address || "123 Main Street, Suite 100\nYour City, ST 12345"}</p>
               </div>
             </div>
           </div>
@@ -4041,8 +4041,8 @@ export default function TemplatePreview({ templateSlug, className = "", content,
             
             {/* Company Name */}
             <div className="mb-4">
-              <h2 className="text-2xl font-bold text-red-600 mb-2">Your Agency Here</h2>
-              <p className="text-gray-400 text-sm">info@youragency.com</p>
+              <h2 className="text-2xl font-bold text-red-600 mb-2" data-field="businessName">{content?.businessName || "Your Agency Here"}</h2>
+              <p className="text-gray-400 text-sm" data-field="email">{content?.email || "info@youragency.com"}</p>
             </div>
             
             {/* Tagline */}

@@ -218,7 +218,7 @@ export default function WebsiteEditor() {
           size="sm"
           onClick={handleSave}
           disabled={saveContentMutation.isPending}
-          className="bg-[#6458AF] hover:bg-[#5347A0]"
+          className="border-2 border-black text-black hover:bg-gray-100"
           data-testid="button-save"
         >
           <Save className="h-4 w-4 mr-2" />
@@ -242,7 +242,7 @@ export default function WebsiteEditor() {
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     activeSection === "website" || activeSection === "edit-content" || activeSection === "colors"
-                      ? "bg-[#6458AF] text-white"
+                      ? "border-2 border-black text-black bg-white"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                   data-testid="menu-website"
@@ -274,7 +274,7 @@ export default function WebsiteEditor() {
                           }}
                           className={`w-full flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                             isActive
-                              ? "bg-[#6458AF] text-white"
+                              ? "border-2 border-black text-black bg-white"
                               : "text-gray-600 hover:bg-gray-100"
                           }`}
                           data-testid={`menu-${item.id}`}
@@ -301,7 +301,7 @@ export default function WebsiteEditor() {
                     }}
                     className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                       isActive
-                        ? "bg-[#6458AF] text-white"
+                        ? "border-2 border-black text-black bg-white"
                         : "text-gray-700 hover:bg-gray-100"
                     }`}
                     data-testid={`menu-${item.id}`}
@@ -481,7 +481,7 @@ export default function WebsiteEditor() {
                 setIsEditOverlayOpen(false);
               }}
               disabled={saveContentMutation.isPending}
-              className="bg-[#6458AF] hover:bg-[#5347A0]"
+              className="border-2 border-black text-black hover:bg-gray-100"
               data-testid="button-save-and-close"
             >
               <Save className="h-4 w-4 mr-2" />

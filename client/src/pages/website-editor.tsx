@@ -74,6 +74,28 @@ export default function WebsiteEditor() {
 
   const template = templates?.find(t => t.id === website?.templateId);
 
+  // Save content mutation (defined early so it can be used in effects)
+  const saveContentMutation = useMutation({
+    mutationFn: async (content: typeof formData) => {
+      const res = await apiRequest("PATCH", `/api/websites/${websiteId}/content`, content);
+      return await res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      toast({
+        title: "Changes saved",
+        description: "Your website content has been updated.",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to save changes. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   // Populate form with existing data
   useEffect(() => {
     if (website?.content) {
@@ -120,28 +142,6 @@ export default function WebsiteEditor() {
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
   }, [formData, saveContentMutation, toast]);
-
-  // Save content mutation
-  const saveContentMutation = useMutation({
-    mutationFn: async (content: typeof formData) => {
-      const res = await apiRequest("PATCH", `/api/websites/${websiteId}/content`, content);
-      return await res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
-      toast({
-        title: "Changes saved",
-        description: "Your website content has been updated.",
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to save changes. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
 
   const handleSave = () => {
     saveContentMutation.mutate(formData);

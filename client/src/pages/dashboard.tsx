@@ -393,21 +393,36 @@ export default function Dashboard() {
                             </CardDescription>
                           </CardHeader>
                           <CardContent>
-                            <div className="flex gap-2">
+                            <div className="grid grid-cols-3 gap-2">
                               <Button 
                                 onClick={() => setSelectedWebsiteId(website.id)}
-                                className="flex-1"
+                                variant="outline"
+                                className="w-full"
                                 data-testid={`button-edit-${website.id}`}
                               >
-                                <Edit className="h-4 w-4 mr-2" />
+                                <Edit className="h-4 w-4 mr-1" />
                                 Edit
                               </Button>
                               <Button 
+                                onClick={() => {
+                                  setSelectedWebsiteId(website.id);
+                                  // TODO: Navigate to settings tab
+                                }}
                                 variant="outline"
-                                onClick={() => window.open(`/template-preview?websiteId=${website.id}`, '_blank')}
-                                data-testid={`button-view-${website.id}`}
+                                className="w-full"
+                                data-testid={`button-setup-${website.id}`}
                               >
-                                <ExternalLink className="h-4 w-4" />
+                                <Settings className="h-4 w-4 mr-1" />
+                                Setup
+                              </Button>
+                              <Button 
+                                onClick={() => window.open(`/template-preview?websiteId=${website.id}`, '_blank')}
+                                variant="outline"
+                                className="w-full"
+                                data-testid={`button-preview-${website.id}`}
+                              >
+                                <Eye className="h-4 w-4 mr-1" />
+                                Preview
                               </Button>
                             </div>
                           </CardContent>

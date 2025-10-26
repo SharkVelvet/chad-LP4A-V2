@@ -42,6 +42,7 @@ export default function WebsiteEditor() {
   const [activeSection, setActiveSection] = useState<MenuSection>("website");
   const [isWebsiteExpanded, setIsWebsiteExpanded] = useState(true);
   const [isEditOverlayOpen, setIsEditOverlayOpen] = useState(false);
+  const [isIframeLoading, setIsIframeLoading] = useState(true);
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -273,20 +274,22 @@ export default function WebsiteEditor() {
               activeSection === "website" ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            {template ? (
-              <iframe
-                src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
-                className="w-full h-full border-0"
-                title="Website Preview"
-                data-testid="iframe-website-preview"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
+            {!template || isIframeLoading ? (
+              <div className="w-full h-full flex items-center justify-center bg-white">
                 <div className="flex flex-col items-center gap-4">
                   <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
-                  <p className="text-sm text-gray-600">Loading template...</p>
+                  <p className="text-sm text-gray-600">Loading website...</p>
                 </div>
               </div>
+            ) : null}
+            {template && (
+              <iframe
+                src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
+                className={`w-full h-full border-0 ${isIframeLoading ? 'invisible' : 'visible'}`}
+                title="Website Preview"
+                data-testid="iframe-website-preview"
+                onLoad={() => setIsIframeLoading(false)}
+              />
             )}
           </div>
 

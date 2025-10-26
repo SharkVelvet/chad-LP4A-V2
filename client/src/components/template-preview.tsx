@@ -3643,6 +3643,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
             <div 
               className="font-bold text-lg sm:text-xl text-red-600 cursor-pointer hover:opacity-80 transition-opacity"
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              data-field="businessName"
             >
               Your Agency Here
             </div>
@@ -3667,12 +3668,12 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
         <div id="hero" className="relative bg-gradient-to-r from-purple-50 to-blue-50 px-4 sm:px-6 py-16 sm:py-20">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center" style={{ maxWidth: '1080px' }}>
             <div className="text-center lg:text-left">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6" data-field="tagline">
                 Secure, Reliable, and 
                 <span className="block text-red-600">Client-Friendly</span>
                 <span className="block text-gray-700">Financial Solutions</span>
               </h1>
-              <p className="text-lg text-gray-600 mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0">
+              <p className="text-lg text-gray-600 mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0" data-field="aboutUs">
                 Providing comprehensive financial services and solutions designed to protect what matters most to you and your family.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -3710,7 +3711,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </p>
                 <div className="flex items-center text-sm text-gray-500">
                   <Phone className="w-4 h-4 mr-2" />
-                  (555) 123-4567
+                  <span data-field="phone">(555) 123-4567</span>
                 </div>
               </div>
             </div>

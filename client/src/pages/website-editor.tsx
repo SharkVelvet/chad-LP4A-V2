@@ -118,30 +118,23 @@ export default function WebsiteEditor() {
       if (event.data.type === 'CONTENT_EDIT') {
         const { field, value } = event.data;
         
-        // Update form data
-        setFormData(prev => ({
-          ...prev,
+        // Build the updated content object
+        const updatedContent = {
+          ...formData,
           [field]: value
-        }));
+        };
         
-        // Auto-save after a short delay
-        setTimeout(() => {
-          saveContentMutation.mutate({
-            ...formData,
-            [field]: value
-          });
-        }, 500);
+        // Update form data
+        setFormData(updatedContent);
         
-        toast({
-          title: "Content updated",
-          description: `${field} has been updated successfully.`,
-        });
+        // Save to database
+        saveContentMutation.mutate(updatedContent);
       }
     };
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [formData, toast]);
+  }, [formData]);
 
   const handleSave = () => {
     saveContentMutation.mutate(formData);

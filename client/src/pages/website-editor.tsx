@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { X, Menu, Save } from "lucide-react";
+import { Settings, FileEdit, BarChart3, Search, Save } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 
@@ -33,11 +33,13 @@ type Template = {
   slug: string;
 };
 
+type MenuSection = "settings" | "content" | "seo" | "analytics";
+
 export default function WebsiteEditor() {
   const [, navigate] = useLocation();
   const [, params] = useRoute("/editor/:websiteId");
   const websiteId = params?.websiteId ? parseInt(params.websiteId) : null;
-  const [isPanelOpen, setIsPanelOpen] = useState(true);
+  const [activeSection, setActiveSection] = useState<MenuSection>("content");
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -132,10 +134,17 @@ export default function WebsiteEditor() {
     return <div>Website not found</div>;
   }
 
+  const menuItems = [
+    { id: "settings" as MenuSection, label: "Settings", icon: Settings },
+    { id: "content" as MenuSection, label: "Edit Content", icon: FileEdit },
+    { id: "seo" as MenuSection, label: "SEO", icon: Search },
+    { id: "analytics" as MenuSection, label: "Analytics", icon: BarChart3 },
+  ];
+
   return (
-    <div className="relative h-screen overflow-hidden bg-gray-50">
+    <div className="h-screen flex flex-col bg-gray-50">
       {/* Top header */}
-      <div className="absolute top-0 left-0 right-0 z-30 bg-white border-b h-14 flex items-center justify-between px-4">
+      <div className="bg-white border-b h-14 flex items-center justify-between px-4 flex-shrink-0">
         <div className="flex items-center gap-3">
           <Button
             variant="ghost"
@@ -149,151 +158,210 @@ export default function WebsiteEditor() {
           <h1 className="text-sm font-semibold">{website.name}</h1>
         </div>
         
-        <div className="flex items-center gap-2">
-          <Button
-            size="sm"
-            onClick={handleSave}
-            disabled={saveContentMutation.isPending}
-            className="bg-[#6458AF] hover:bg-[#5347A0]"
-            data-testid="button-save"
-          >
-            <Save className="h-4 w-4 mr-2" />
-            {saveContentMutation.isPending ? "Saving..." : "Save"}
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsPanelOpen(!isPanelOpen)}
-            data-testid="button-toggle-panel"
-          >
-            <Menu className="h-4 w-4" />
-          </Button>
+        <Button
+          size="sm"
+          onClick={handleSave}
+          disabled={saveContentMutation.isPending}
+          className="bg-[#6458AF] hover:bg-[#5347A0]"
+          data-testid="button-save"
+        >
+          <Save className="h-4 w-4 mr-2" />
+          {saveContentMutation.isPending ? "Saving..." : "Save"}
+        </Button>
+      </div>
+
+      {/* Main content area */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Left sidebar - Menu */}
+        <div className="w-64 bg-white border-r flex-shrink-0 overflow-y-auto">
+          <div className="p-4">
+            <h2 className="text-xs font-semibold text-gray-500 uppercase mb-3">Editor Menu</h2>
+            <div className="space-y-1">
+              {menuItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeSection === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveSection(item.id)}
+                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                      isActive
+                        ? "bg-[#6458AF] text-white"
+                        : "text-gray-700 hover:bg-gray-100"
+                    }`}
+                    data-testid={`menu-${item.id}`}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Preview iframe */}
-      <div className="absolute top-14 left-0 right-0 bottom-0">
-        {template ? (
-          <iframe
-            src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
-            className="w-full h-full border-0"
-            title="Website Preview"
-            data-testid="iframe-website-preview"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gray-50">
-            <div className="flex flex-col items-center gap-4">
-              <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
-              <p className="text-sm text-gray-600">Loading template...</p>
+        {/* Center - Preview */}
+        <div className="flex-1 bg-gray-100 overflow-hidden">
+          {template ? (
+            <iframe
+              src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
+              className="w-full h-full border-0"
+              title="Website Preview"
+              data-testid="iframe-website-preview"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
+                <p className="text-sm text-gray-600">Loading template...</p>
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
 
-      {/* Slide-in edit panel */}
-      <div
-        className={`absolute top-14 right-0 bottom-0 w-80 bg-white border-l shadow-2xl z-40 transition-transform duration-300 ease-in-out ${
-          isPanelOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-        data-testid="panel-editor"
-      >
-        <div className="h-full flex flex-col">
-          {/* Panel header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b">
-            <h2 className="text-sm font-semibold">Edit Website</h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsPanelOpen(false)}
-              data-testid="button-close-panel"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
+        {/* Right panel - Section content */}
+        <div className="w-80 bg-white border-l flex-shrink-0 overflow-y-auto">
+          <div className="p-6">
+            {activeSection === "settings" && (
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">Website Settings</h3>
+                  <p className="text-sm text-gray-600 mb-4">Manage your website configuration and preferences.</p>
+                </div>
+                <div>
+                  <Label htmlFor="siteName">Site Name</Label>
+                  <Input
+                    id="siteName"
+                    value={website.name}
+                    disabled
+                    className="bg-gray-50"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="domain">Domain</Label>
+                  <Input
+                    id="domain"
+                    value={website.domain || "Not set"}
+                    disabled
+                    className="bg-gray-50"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="status">Status</Label>
+                  <Input
+                    id="status"
+                    value={website.siteStatus}
+                    disabled
+                    className="bg-gray-50"
+                  />
+                </div>
+              </div>
+            )}
 
-          {/* Panel content */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            <div>
-              <Label htmlFor="businessName">Business Name</Label>
-              <Input
-                id="businessName"
-                value={formData.businessName}
-                onChange={(e) => handleInputChange("businessName", e.target.value)}
-                placeholder="Enter business name"
-                data-testid="input-business-name"
-              />
-            </div>
+            {activeSection === "content" && (
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">Edit Content</h3>
+                  <p className="text-sm text-gray-600 mb-4">Update your website content and information.</p>
+                </div>
+                <div>
+                  <Label htmlFor="businessName">Business Name</Label>
+                  <Input
+                    id="businessName"
+                    value={formData.businessName}
+                    onChange={(e) => handleInputChange("businessName", e.target.value)}
+                    placeholder="Enter business name"
+                    data-testid="input-business-name"
+                  />
+                </div>
 
-            <div>
-              <Label htmlFor="tagline">Tagline</Label>
-              <Input
-                id="tagline"
-                value={formData.tagline}
-                onChange={(e) => handleInputChange("tagline", e.target.value)}
-                placeholder="Enter tagline"
-                data-testid="input-tagline"
-              />
-            </div>
+                <div>
+                  <Label htmlFor="tagline">Tagline</Label>
+                  <Input
+                    id="tagline"
+                    value={formData.tagline}
+                    onChange={(e) => handleInputChange("tagline", e.target.value)}
+                    placeholder="Enter tagline"
+                    data-testid="input-tagline"
+                  />
+                </div>
 
-            <div>
-              <Label htmlFor="aboutUs">About Us</Label>
-              <Textarea
-                id="aboutUs"
-                value={formData.aboutUs}
-                onChange={(e) => handleInputChange("aboutUs", e.target.value)}
-                placeholder="Enter about us description"
-                rows={4}
-                data-testid="textarea-about-us"
-              />
-            </div>
+                <div>
+                  <Label htmlFor="aboutUs">About Us</Label>
+                  <Textarea
+                    id="aboutUs"
+                    value={formData.aboutUs}
+                    onChange={(e) => handleInputChange("aboutUs", e.target.value)}
+                    placeholder="Enter about us description"
+                    rows={4}
+                    data-testid="textarea-about-us"
+                  />
+                </div>
 
-            <div>
-              <Label htmlFor="phone">Phone</Label>
-              <Input
-                id="phone"
-                value={formData.phone}
-                onChange={(e) => handleInputChange("phone", e.target.value)}
-                placeholder="(555) 123-4567"
-                data-testid="input-phone"
-              />
-            </div>
+                <div>
+                  <Label htmlFor="phone">Phone</Label>
+                  <Input
+                    id="phone"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    placeholder="(555) 123-4567"
+                    data-testid="input-phone"
+                  />
+                </div>
 
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => handleInputChange("email", e.target.value)}
-                placeholder="contact@example.com"
-                data-testid="input-email"
-              />
-            </div>
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    placeholder="contact@example.com"
+                    data-testid="input-email"
+                  />
+                </div>
 
-            <div>
-              <Label htmlFor="address">Address</Label>
-              <Textarea
-                id="address"
-                value={formData.address}
-                onChange={(e) => handleInputChange("address", e.target.value)}
-                placeholder="Enter address"
-                rows={3}
-                data-testid="textarea-address"
-              />
-            </div>
-          </div>
+                <div>
+                  <Label htmlFor="address">Address</Label>
+                  <Textarea
+                    id="address"
+                    value={formData.address}
+                    onChange={(e) => handleInputChange("address", e.target.value)}
+                    placeholder="Enter address"
+                    rows={3}
+                    data-testid="textarea-address"
+                  />
+                </div>
+              </div>
+            )}
 
-          {/* Panel footer */}
-          <div className="border-t p-4">
-            <Button
-              className="w-full bg-[#6458AF] hover:bg-[#5347A0]"
-              onClick={handleSave}
-              disabled={saveContentMutation.isPending}
-              data-testid="button-save-panel"
-            >
-              <Save className="h-4 w-4 mr-2" />
-              {saveContentMutation.isPending ? "Saving..." : "Save Changes"}
-            </Button>
+            {activeSection === "seo" && (
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">SEO Settings</h3>
+                  <p className="text-sm text-gray-600 mb-4">Optimize your website for search engines.</p>
+                </div>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <p className="text-sm text-blue-800">
+                    SEO features coming soon! You'll be able to customize meta titles, descriptions, and keywords.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {activeSection === "analytics" && (
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">Analytics</h3>
+                  <p className="text-sm text-gray-600 mb-4">Track your website performance and visitor data.</p>
+                </div>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <p className="text-sm text-blue-800">
+                    Analytics dashboard coming soon! You'll see visitor stats, page views, and engagement metrics.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

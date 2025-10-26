@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
@@ -57,6 +58,7 @@ type Template = {
 export default function Dashboard() {
   const { user, logoutMutation } = useAuth();
   const { toast } = useToast();
+  const [, navigate] = useLocation();
   const [selectedWebsiteId, setSelectedWebsiteId] = useState<number | null>(null);
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [createFormData, setCreateFormData] = useState({ name: "", templateId: "" });
@@ -441,8 +443,7 @@ export default function Dashboard() {
                               </Button>
                               <Button 
                                 onClick={() => {
-                                  setSelectedWebsiteId(website.id);
-                                  // TODO: Navigate to settings tab
+                                  navigate(`/editor/${website.id}`);
                                 }}
                                 variant="outline"
                                 size="sm"

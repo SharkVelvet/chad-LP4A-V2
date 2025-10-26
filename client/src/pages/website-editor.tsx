@@ -77,7 +77,7 @@ export default function WebsiteEditor() {
   // Save content mutation (defined early so it can be used in effects)
   const saveContentMutation = useMutation({
     mutationFn: async (content: typeof formData) => {
-      const res = await apiRequest("PATCH", `/api/websites/${websiteId}/content`, content);
+      const res = await apiRequest("PUT", `/api/websites/${websiteId}/content`, content);
       return await res.json();
     },
     onSuccess: () => {

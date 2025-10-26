@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Settings, FileEdit, BarChart3, Search, Save } from "lucide-react";
+import { Settings, FileEdit, BarChart3, Search, Save, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 
@@ -33,13 +33,13 @@ type Template = {
   slug: string;
 };
 
-type MenuSection = "settings" | "content" | "seo" | "analytics";
+type MenuSection = "preview" | "settings" | "content" | "seo" | "analytics";
 
 export default function WebsiteEditor() {
   const [, navigate] = useLocation();
   const [, params] = useRoute("/editor/:websiteId");
   const websiteId = params?.websiteId ? parseInt(params.websiteId) : null;
-  const [activeSection, setActiveSection] = useState<MenuSection>("content");
+  const [activeSection, setActiveSection] = useState<MenuSection>("preview");
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -200,34 +200,55 @@ export default function WebsiteEditor() {
           </div>
         </div>
 
-        {/* Center - Preview */}
-        <div className="flex-1 bg-gray-100 overflow-hidden">
-          {template ? (
-            <iframe
-              src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
-              className="w-full h-full border-0"
-              title="Website Preview"
-              data-testid="iframe-website-preview"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
-                <p className="text-sm text-gray-600">Loading template...</p>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Right panel - Section content */}
-        <div className="w-80 bg-white border-l flex-shrink-0 overflow-y-auto">
-          <div className="p-6">
-            {activeSection === "settings" && (
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-lg font-semibold mb-4">Website Settings</h3>
-                  <p className="text-sm text-gray-600 mb-4">Manage your website configuration and preferences.</p>
+        {/* Main content area with sliding panels */}
+        <div className="flex-1 relative overflow-hidden">
+          {/* Preview panel */}
+          <div
+            className={`absolute inset-0 transition-transform duration-300 ease-in-out ${
+              activeSection === "preview" ? "translate-x-0" : "-translate-x-full"
+            }`}
+          >
+            {template ? (
+              <iframe
+                src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
+                className="w-full h-full border-0"
+                title="Website Preview"
+                data-testid="iframe-website-preview"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
+                  <p className="text-sm text-gray-600">Loading template...</p>
                 </div>
+              </div>
+            )}
+          </div>
+
+          {/* Settings panel */}
+          <div
+            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
+              activeSection === "settings" ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="h-full overflow-y-auto p-8">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setActiveSection("preview")}
+                className="mb-6"
+                data-testid="button-back-to-preview"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Preview
+              </Button>
+              
+              <div className="max-w-2xl space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">Website Settings</h3>
+                  <p className="text-sm text-gray-600 mb-6">Manage your website configuration and preferences.</p>
+                </div>
+                
                 <div>
                   <Label htmlFor="siteName">Site Name</Label>
                   <Input
@@ -256,14 +277,33 @@ export default function WebsiteEditor() {
                   />
                 </div>
               </div>
-            )}
+            </div>
+          </div>
 
-            {activeSection === "content" && (
-              <div className="space-y-4">
+          {/* Edit Content panel */}
+          <div
+            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
+              activeSection === "content" ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="h-full overflow-y-auto p-8">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setActiveSection("preview")}
+                className="mb-6"
+                data-testid="button-back-to-preview"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Preview
+              </Button>
+
+              <div className="max-w-2xl space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold mb-4">Edit Content</h3>
-                  <p className="text-sm text-gray-600 mb-4">Update your website content and information.</p>
+                  <h3 className="text-2xl font-bold mb-2">Edit Content</h3>
+                  <p className="text-sm text-gray-600 mb-6">Update your website content and information.</p>
                 </div>
+                
                 <div>
                   <Label htmlFor="businessName">Business Name</Label>
                   <Input
@@ -293,7 +333,7 @@ export default function WebsiteEditor() {
                     value={formData.aboutUs}
                     onChange={(e) => handleInputChange("aboutUs", e.target.value)}
                     placeholder="Enter about us description"
-                    rows={4}
+                    rows={6}
                     data-testid="textarea-about-us"
                   />
                 </div>
@@ -333,35 +373,73 @@ export default function WebsiteEditor() {
                   />
                 </div>
               </div>
-            )}
+            </div>
+          </div>
 
-            {activeSection === "seo" && (
-              <div className="space-y-4">
+          {/* SEO panel */}
+          <div
+            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
+              activeSection === "seo" ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="h-full overflow-y-auto p-8">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setActiveSection("preview")}
+                className="mb-6"
+                data-testid="button-back-to-preview"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Preview
+              </Button>
+
+              <div className="max-w-2xl space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold mb-4">SEO Settings</h3>
-                  <p className="text-sm text-gray-600 mb-4">Optimize your website for search engines.</p>
+                  <h3 className="text-2xl font-bold mb-2">SEO Settings</h3>
+                  <p className="text-sm text-gray-600 mb-6">Optimize your website for search engines.</p>
                 </div>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                   <p className="text-sm text-blue-800">
                     SEO features coming soon! You'll be able to customize meta titles, descriptions, and keywords.
                   </p>
                 </div>
               </div>
-            )}
+            </div>
+          </div>
 
-            {activeSection === "analytics" && (
-              <div className="space-y-4">
+          {/* Analytics panel */}
+          <div
+            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
+              activeSection === "analytics" ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="h-full overflow-y-auto p-8">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setActiveSection("preview")}
+                className="mb-6"
+                data-testid="button-back-to-preview"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Preview
+              </Button>
+
+              <div className="max-w-2xl space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold mb-4">Analytics</h3>
-                  <p className="text-sm text-gray-600 mb-4">Track your website performance and visitor data.</p>
+                  <h3 className="text-2xl font-bold mb-2">Analytics</h3>
+                  <p className="text-sm text-gray-600 mb-6">Track your website performance and visitor data.</p>
                 </div>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                   <p className="text-sm text-blue-800">
                     Analytics dashboard coming soon! You'll see visitor stats, page views, and engagement metrics.
                   </p>
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

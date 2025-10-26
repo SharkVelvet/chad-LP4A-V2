@@ -95,28 +95,49 @@ export default function TemplatePreviewPage() {
     }
   }, [template]);
 
-  // Apply saved content to elements with data-content-id
+  // Auto-generate IDs and apply saved content
   useEffect(() => {
-    if (!website?.content) return;
-    
-    const content = website.content as Record<string, any>;
-    
-    // Find all elements with data-content-id and update their text
-    const elements = document.querySelectorAll('[data-content-id]');
-    elements.forEach((element) => {
-      const contentId = element.getAttribute('data-content-id');
-      if (contentId && content[contentId]) {
-        const htmlElement = element as HTMLElement;
-        // Check if element has child elements (like spans for styling)
-        if (htmlElement.children.length > 0) {
-          // Preserve HTML structure - update innerHTML
-          htmlElement.innerHTML = content[contentId];
-        } else {
-          // Simple text element - update textContent
-          htmlElement.textContent = content[contentId];
-        }
+    // First, auto-generate IDs for all editable elements that don't have them
+    const editableElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span');
+    editableElements.forEach((element) => {
+      const htmlElement = element as HTMLElement;
+      
+      // Skip if already has an ID or is inside a button/link
+      if (htmlElement.hasAttribute('data-content-id') || htmlElement.closest('button, a')) {
+        return;
       }
+      
+      // Generate ID based on position and content
+      const text = htmlElement.textContent || '';
+      const words = text.trim().split(/\s+/).slice(0, 3).join('-').toLowerCase().replace(/[^a-z0-9-]/g, '');
+      const tagName = htmlElement.tagName.toLowerCase();
+      const siblings = Array.from(htmlElement.parentElement?.children || []);
+      const index = siblings.indexOf(htmlElement);
+      const autoId = `auto.${tagName}.${index}.${words}`;
+      
+      htmlElement.setAttribute('data-content-id', autoId);
     });
+    
+    // Then apply saved content to all elements with IDs
+    if (website?.content) {
+      const content = website.content as Record<string, any>;
+      const elements = document.querySelectorAll('[data-content-id]');
+      
+      elements.forEach((element) => {
+        const contentId = element.getAttribute('data-content-id');
+        if (contentId && content[contentId]) {
+          const htmlElement = element as HTMLElement;
+          // Check if element has child elements (like spans for styling)
+          if (htmlElement.children.length > 0) {
+            // Preserve HTML structure - update innerHTML
+            htmlElement.innerHTML = content[contentId];
+          } else {
+            // Simple text element - update textContent
+            htmlElement.textContent = content[contentId];
+          }
+        }
+      });
+    }
   }, [website?.content]);
 
   // Add click handlers for edit mode

@@ -111,7 +111,7 @@ export default function TemplatePreviewPage() {
       let contentIdElement = target.hasAttribute('data-content-id') ? target : target.closest('[data-content-id]');
       
       // Or check for legacy data-field
-      let legacyFieldElement = !contentIdElement && (target.hasAttribute('data-field') ? target : target.closest('[data-field]'));
+      let legacyFieldElement = !contentIdElement ? (target.hasAttribute('data-field') ? target : target.closest('[data-field]')) : null;
       
       // Or it's a text element (headings, paragraphs, spans)
       const isTextElement = target.matches('h1, h2, h3, h4, h5, h6, p, span');

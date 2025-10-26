@@ -3,7 +3,8 @@ import { useLocation, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ArrowLeft, X } from "lucide-react";
 
 type Template = {
   id: number;
@@ -18,6 +19,7 @@ export default function SelectTemplateByCategory() {
   const [, setLocation] = useLocation();
   const [, params] = useRoute("/templates/:category");
   const category = params?.category;
+  const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
 
   // Map URL category to display name
   const categoryDisplay = category === 'get-clients' ? 'Get More Clients' : 'Hire Agents';
@@ -103,7 +105,7 @@ export default function SelectTemplateByCategory() {
               <Card
                 key={template.id}
                 className="cursor-pointer hover:shadow-lg transition-shadow overflow-hidden group"
-                onClick={() => window.open(`/template-preview?template=${template.slug}`, '_blank')}
+                onClick={() => setSelectedTemplate(template)}
                 data-testid={`template-card-${template.id}`}
               >
                 <div className="aspect-video relative overflow-hidden bg-gray-100">
@@ -128,6 +130,77 @@ export default function SelectTemplateByCategory() {
           </div>
         )}
       </div>
+
+      {/* Template Preview Modal */}
+      <Dialog open={!!selectedTemplate} onOpenChange={(open) => !open && setSelectedTemplate(null)}>
+        <DialogContent 
+          className="max-w-full max-h-[85vh] h-[85vh] p-0 fixed bottom-0 top-auto translate-y-0 data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom rounded-t-xl"
+          style={{ 
+            animation: selectedTemplate ? 'slideUp 0.3s ease-out' : 'slideDown 0.3s ease-out',
+            margin: 0
+          }}
+        >
+          <style>
+            {`
+              @keyframes slideUp {
+                from {
+                  transform: translateY(100%);
+                }
+                to {
+                  transform: translateY(0);
+                }
+              }
+              @keyframes slideDown {
+                from {
+                  transform: translateY(0);
+                }
+                to {
+                  transform: translateY(100%);
+                }
+              }
+            `}
+          </style>
+          
+          {/* Header with buttons */}
+          <div className="sticky top-0 z-50 bg-white border-b px-6 py-4 flex items-center justify-between rounded-t-xl">
+            <h3 className="text-lg font-semibold">{selectedTemplate?.name}</h3>
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setSelectedTemplate(null)}
+                data-testid="button-close-preview"
+              >
+                <X className="h-4 w-4 mr-2" />
+                Close
+              </Button>
+              <Button
+                size="sm"
+                onClick={() => {
+                  // TODO: Handle template selection
+                  console.log('Selected template:', selectedTemplate);
+                  setSelectedTemplate(null);
+                }}
+                data-testid="button-choose-template"
+              >
+                Choose This Template
+              </Button>
+            </div>
+          </div>
+
+          {/* Scrollable iframe content */}
+          <div className="flex-1 overflow-auto bg-gray-50">
+            {selectedTemplate && (
+              <iframe
+                src={`/template-preview?template=${selectedTemplate.slug}`}
+                className="w-full h-full border-0"
+                title={`Preview of ${selectedTemplate.name}`}
+                data-testid="iframe-template-preview"
+              />
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

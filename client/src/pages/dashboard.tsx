@@ -377,20 +377,35 @@ export default function Dashboard() {
                               alt={website.name}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                             />
-                            <div className="absolute top-3 right-3">
-                              <Badge 
-                                variant={website.content?.isPublished ? "default" : "outline"} 
-                                className={website.content?.isPublished ? "bg-green-600 shadow-lg" : "bg-amber-100 text-amber-800 border-amber-300 shadow-lg"}
-                              >
-                                {website.content?.isPublished ? "Published" : "Draft"}
-                              </Badge>
-                            </div>
                           </div>
-                          <CardHeader>
+                          <CardHeader className="space-y-3">
                             <CardTitle className="text-lg truncate">{website.name}</CardTitle>
-                            <CardDescription className="truncate">
-                              {website.domain || "No domain configured"}
-                            </CardDescription>
+                            <div className="space-y-1.5 text-sm">
+                              <div className="flex items-center gap-2">
+                                <span className="text-gray-600">Subscription Status:</span>
+                                <Badge 
+                                  variant={website.isActive ? "default" : "secondary"}
+                                  className={
+                                    website.subscriptionStatus === 'active' ? "bg-green-600" : 
+                                    website.subscriptionStatus === 'paused' ? "bg-amber-500" : 
+                                    "bg-gray-500"
+                                  }
+                                >
+                                  {website.subscriptionStatus === 'active' ? 'Active' : 
+                                   website.subscriptionStatus === 'paused' ? 'Paused' : 
+                                   'Disconnected'}
+                                </Badge>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-gray-600">Site Status:</span>
+                                <Badge 
+                                  variant={website.content?.isPublished ? "default" : "outline"} 
+                                  className={website.content?.isPublished ? "bg-blue-600" : "bg-amber-100 text-amber-800 border-amber-300"}
+                                >
+                                  {website.content?.isPublished ? "Live to Public" : "Draft"}
+                                </Badge>
+                              </div>
+                            </div>
                           </CardHeader>
                           <CardContent>
                             <div className="flex gap-2">

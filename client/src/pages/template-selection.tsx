@@ -56,13 +56,13 @@ export default function TemplateSelection() {
                 <a onClick={() => navigate('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
               </nav>
 
-              {/* Get Started Button on Right */}
+              {/* Login / Signup Button on Right */}
               <Button 
                 className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                 style={{ backgroundColor: '#6458AF' }}
-                onClick={() => navigate('/template-selection')}
+                onClick={() => navigate('/auth')}
               >
-                Get Started
+                Login / Signup
               </Button>
             </div>
           </div>
@@ -105,14 +105,14 @@ export default function TemplateSelection() {
               <a onClick={() => navigate('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
             </nav>
 
-            {/* Get Started Button on Desktop, Hamburger on Mobile */}
+            {/* Login / Signup Button on Desktop, Hamburger on Mobile */}
             <div className="flex items-center gap-4">
               <Button 
                 className="hidden md:flex items-center px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                 style={{ backgroundColor: '#6458AF' }}
-                onClick={() => navigate('/template-selection')}
+                onClick={() => navigate('/auth')}
               >
-                Get Started
+                Login / Signup
               </Button>
               
               {/* Mobile Menu Button */}

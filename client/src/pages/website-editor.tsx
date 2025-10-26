@@ -39,8 +39,9 @@ export default function WebsiteEditor() {
   const [, navigate] = useLocation();
   const [, params] = useRoute("/editor/:websiteId");
   const websiteId = params?.websiteId ? parseInt(params.websiteId) : null;
-  const [activeSection, setActiveSection] = useState<MenuSection>("edit-content");
+  const [activeSection, setActiveSection] = useState<MenuSection>("website");
   const [isWebsiteExpanded, setIsWebsiteExpanded] = useState(true);
+  const [isEditOverlayOpen, setIsEditOverlayOpen] = useState(false);
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -187,9 +188,7 @@ export default function WebsiteEditor() {
                 <button
                   onClick={() => {
                     setIsWebsiteExpanded(!isWebsiteExpanded);
-                    if (!isWebsiteExpanded) {
-                      setActiveSection("edit-content");
-                    }
+                    setActiveSection("website");
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     activeSection === "website" || activeSection === "edit-content" || activeSection === "colors"
@@ -216,7 +215,13 @@ export default function WebsiteEditor() {
                       return (
                         <button
                           key={item.id}
-                          onClick={() => setActiveSection(item.id)}
+                          onClick={() => {
+                            if (item.id === "edit-content") {
+                              setIsEditOverlayOpen(true);
+                            } else {
+                              setActiveSection(item.id);
+                            }
+                          }}
                           className={`w-full flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                             isActive
                               ? "bg-[#6458AF] text-white"
@@ -262,89 +267,27 @@ export default function WebsiteEditor() {
 
         {/* Main content area with sliding panels */}
         <div className="flex-1 relative overflow-hidden">
-          {/* Edit Content panel */}
+          {/* Website preview panel */}
           <div
-            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
-              activeSection === "edit-content" ? "translate-x-0" : "translate-x-full"
+            className={`absolute inset-0 transition-transform duration-300 ease-in-out ${
+              activeSection === "website" ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            <div className="h-full overflow-y-auto p-8">
-              <div className="max-w-2xl space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">Edit Content</h3>
-                  <p className="text-sm text-gray-600 mb-6">Update your website content and information.</p>
-                </div>
-                
-                <div>
-                  <Label htmlFor="businessName">Business Name</Label>
-                  <Input
-                    id="businessName"
-                    value={formData.businessName}
-                    onChange={(e) => handleInputChange("businessName", e.target.value)}
-                    placeholder="Enter business name"
-                    data-testid="input-business-name"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="tagline">Tagline</Label>
-                  <Input
-                    id="tagline"
-                    value={formData.tagline}
-                    onChange={(e) => handleInputChange("tagline", e.target.value)}
-                    placeholder="Enter tagline"
-                    data-testid="input-tagline"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="aboutUs">About Us</Label>
-                  <Textarea
-                    id="aboutUs"
-                    value={formData.aboutUs}
-                    onChange={(e) => handleInputChange("aboutUs", e.target.value)}
-                    placeholder="Enter about us description"
-                    rows={6}
-                    data-testid="textarea-about-us"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input
-                    id="phone"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                    placeholder="(555) 123-4567"
-                    data-testid="input-phone"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    placeholder="contact@example.com"
-                    data-testid="input-email"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="address">Address</Label>
-                  <Textarea
-                    id="address"
-                    value={formData.address}
-                    onChange={(e) => handleInputChange("address", e.target.value)}
-                    placeholder="Enter address"
-                    rows={3}
-                    data-testid="textarea-address"
-                  />
+            {template ? (
+              <iframe
+                src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
+                className="w-full h-full border-0"
+                title="Website Preview"
+                data-testid="iframe-website-preview"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
+                  <p className="text-sm text-gray-600">Loading template...</p>
                 </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Colors panel */}
@@ -459,6 +402,136 @@ export default function WebsiteEditor() {
                     Analytics dashboard coming soon! You'll see visitor stats, page views, and engagement metrics.
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Full-screen Edit Overlay - slides up from bottom */}
+      <div
+        className={`fixed inset-0 bg-white z-50 transition-transform duration-500 ease-in-out ${
+          isEditOverlayOpen ? "translate-y-0" : "translate-y-full"
+        }`}
+      >
+        {/* Edit mode header */}
+        <div className="absolute top-0 left-0 right-0 bg-white border-b h-14 flex items-center justify-between px-4 z-10">
+          <div className="flex items-center gap-3">
+            <h2 className="text-sm font-semibold">Edit Mode - Click elements to edit</h2>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <Button
+              size="sm"
+              onClick={() => {
+                handleSave();
+                setIsEditOverlayOpen(false);
+              }}
+              disabled={saveContentMutation.isPending}
+              className="bg-[#6458AF] hover:bg-[#5347A0]"
+              data-testid="button-save-and-close"
+            >
+              <Save className="h-4 w-4 mr-2" />
+              {saveContentMutation.isPending ? "Saving..." : "Save"}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setIsEditOverlayOpen(false)}
+              data-testid="button-close-edit-mode"
+            >
+              Close
+            </Button>
+          </div>
+        </div>
+
+        {/* Edit mode content - full page with inline editing */}
+        <div className="absolute top-14 left-0 right-0 bottom-0 overflow-y-auto">
+          <div className="max-w-6xl mx-auto p-8 space-y-8">
+            <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6 mb-6">
+              <h3 className="text-lg font-semibold text-blue-900 mb-2">Visual Editor Coming Soon!</h3>
+              <p className="text-sm text-blue-800 mb-4">
+                The inline visual editor with gear icons on each element is currently in development. 
+                For now, use the form below to edit your content.
+              </p>
+            </div>
+
+            <div className="bg-white border rounded-lg p-6 space-y-6">
+              <div>
+                <h3 className="text-xl font-bold mb-4">Website Content</h3>
+                <p className="text-sm text-gray-600 mb-6">Update your website information below.</p>
+              </div>
+
+              <div>
+                <Label htmlFor="businessName">Business Name</Label>
+                <Input
+                  id="businessName"
+                  value={formData.businessName}
+                  onChange={(e) => handleInputChange("businessName", e.target.value)}
+                  placeholder="Enter business name"
+                  data-testid="input-business-name"
+                  className="text-lg"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="tagline">Tagline</Label>
+                <Input
+                  id="tagline"
+                  value={formData.tagline}
+                  onChange={(e) => handleInputChange("tagline", e.target.value)}
+                  placeholder="Enter tagline"
+                  data-testid="input-tagline"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="aboutUs">About Us</Label>
+                <Textarea
+                  id="aboutUs"
+                  value={formData.aboutUs}
+                  onChange={(e) => handleInputChange("aboutUs", e.target.value)}
+                  placeholder="Enter about us description"
+                  rows={8}
+                  data-testid="textarea-about-us"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="phone">Phone</Label>
+                  <Input
+                    id="phone"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    placeholder="(555) 123-4567"
+                    data-testid="input-phone"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    placeholder="contact@example.com"
+                    data-testid="input-email"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="address">Address</Label>
+                <Textarea
+                  id="address"
+                  value={formData.address}
+                  onChange={(e) => handleInputChange("address", e.target.value)}
+                  placeholder="Enter address"
+                  rows={3}
+                  data-testid="textarea-address"
+                />
               </div>
             </div>
           </div>

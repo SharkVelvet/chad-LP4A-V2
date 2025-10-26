@@ -394,7 +394,13 @@ export default function Dashboard() {
                             />
                           </div>
                           <CardHeader className="pb-3">
-                            <CardTitle className="text-base truncate mb-2">{website.name}</CardTitle>
+                            <CardTitle className="text-base truncate mb-1">{website.name}</CardTitle>
+                            <p className="text-xs text-blue-600 truncate mb-2">
+                              {website.domain 
+                                ? `https://${website.domain}` 
+                                : `Preview: https://preview.yoursite.com/${website.id}`
+                              }
+                            </p>
                             <div className="space-y-1 text-xs">
                               <div className="flex items-center gap-1.5">
                                 <span className="text-gray-500 min-w-fit">Subscription:</span>

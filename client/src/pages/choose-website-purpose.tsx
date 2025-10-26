@@ -34,7 +34,7 @@ export default function ChooseWebsitePurpose() {
           {/* Get More Clients Card */}
           <Card 
             className="cursor-pointer hover:shadow-xl transition-all hover:border-primary group"
-            onClick={() => setLocation('/dashboard')}
+            onClick={() => setLocation('/templates/get-clients')}
             data-testid="card-get-clients"
           >
             <CardHeader className="text-center pb-4">
@@ -56,7 +56,7 @@ export default function ChooseWebsitePurpose() {
           {/* Hire Agents Card */}
           <Card 
             className="cursor-pointer hover:shadow-xl transition-all hover:border-primary group"
-            onClick={() => setLocation('/dashboard')}
+            onClick={() => setLocation('/templates/hire-agents')}
             data-testid="card-hire-agents"
           >
             <CardHeader className="text-center pb-4">

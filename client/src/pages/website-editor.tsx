@@ -88,6 +88,39 @@ export default function WebsiteEditor() {
     }
   }, [website]);
 
+  // Listen for edit messages from iframe
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return;
+      
+      if (event.data.type === 'CONTENT_EDIT') {
+        const { field, value } = event.data;
+        
+        // Update form data
+        setFormData(prev => ({
+          ...prev,
+          [field]: value
+        }));
+        
+        // Auto-save after a short delay
+        setTimeout(() => {
+          saveContentMutation.mutate({
+            ...formData,
+            [field]: value
+          });
+        }, 500);
+        
+        toast({
+          title: "Content updated",
+          description: `${field} has been updated successfully.`,
+        });
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [formData, saveContentMutation, toast]);
+
   // Save content mutation
   const saveContentMutation = useMutation({
     mutationFn: async (content: typeof formData) => {

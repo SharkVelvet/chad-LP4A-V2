@@ -135,7 +135,8 @@ export default function SelectTemplateByCategory() {
       {/* Template Preview Modal */}
       <Dialog open={!!selectedTemplate} onOpenChange={(open) => !open && setSelectedTemplate(null)}>
         <DialogContent 
-          className="max-w-full max-h-[85vh] h-[85vh] p-0 fixed bottom-0 top-auto translate-y-0 data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom rounded-t-xl"
+          hideCloseButton
+          className="max-w-full max-h-[85vh] h-[85vh] p-0 gap-0 fixed bottom-0 top-auto translate-y-0 data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom rounded-t-xl border-0"
           style={{ 
             animation: selectedTemplate ? 'slideUp 0.3s ease-out' : 'slideDown 0.3s ease-out',
             margin: 0

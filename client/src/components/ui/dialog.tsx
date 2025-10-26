@@ -33,8 +33,9 @@ const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
     closeButtonPosition?: "left" | "right"
+    hideCloseButton?: boolean
   }
->(({ className, children, closeButtonPosition = "right", ...props }, ref) => (
+>(({ className, children, closeButtonPosition = "right", hideCloseButton = false, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay />
     <DialogPrimitive.Content
@@ -46,13 +47,15 @@ const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className={cn(
-        "absolute rounded-full bg-white shadow-lg transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none p-2 z-50",
-        closeButtonPosition === "left" ? "-left-4 -top-4" : "right-4 top-4"
-      )}>
-        <X className="h-5 w-5 text-gray-700" />
-        <span className="sr-only">Close</span>
-      </DialogPrimitive.Close>
+      {!hideCloseButton && (
+        <DialogPrimitive.Close className={cn(
+          "absolute rounded-full bg-white shadow-lg transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none p-2 z-50",
+          closeButtonPosition === "left" ? "-left-4 -top-4" : "right-4 top-4"
+        )}>
+          <X className="h-5 w-5 text-gray-700" />
+          <span className="sr-only">Close</span>
+        </DialogPrimitive.Close>
+      )}
     </DialogPrimitive.Content>
   </DialogPortal>
 ))

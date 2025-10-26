@@ -144,7 +144,7 @@ export default function WebsiteEditor() {
   ];
 
   const websiteSubItems = [
-    { id: "edit-content" as MenuSection, label: "Edit Content", icon: Edit },
+    { id: "edit-content" as MenuSection, label: "Edit Content", icon: FileEdit },
     { id: "colors" as MenuSection, label: "Colors", icon: Palette },
   ];
 

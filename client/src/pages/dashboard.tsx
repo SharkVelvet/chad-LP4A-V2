@@ -240,112 +240,7 @@ export default function Dashboard() {
       </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Websites List Sidebar */}
-          <div className="lg:col-span-1">
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-base">Your Websites</CardTitle>
-                  <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
-                    <DialogTrigger asChild>
-                      <Button size="sm" data-testid="button-create-website">
-                        <Plus className="h-4 w-4 mr-1" />
-                        New
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Create New Website</DialogTitle>
-                      </DialogHeader>
-                      <form onSubmit={handleCreateWebsite} className="space-y-4">
-                        <div>
-                          <Label htmlFor="name">Website Name</Label>
-                          <Input
-                            id="name"
-                            name="name"
-                            required
-                            value={createFormData.name}
-                            onChange={(e) => setCreateFormData(prev => ({ ...prev, name: e.target.value }))}
-                            placeholder="My Business Website"
-                            data-testid="input-website-name"
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="templateId">Template</Label>
-                          <Select
-                            value={createFormData.templateId}
-                            onValueChange={(value) => setCreateFormData(prev => ({ ...prev, templateId: value }))}
-                            required
-                          >
-                            <SelectTrigger data-testid="select-template">
-                              <SelectValue placeholder="Select a template" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {templates.map((template) => (
-                                <SelectItem key={template.id} value={template.id.toString()}>
-                                  {template.name}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <Button
-                          type="submit"
-                          className="w-full"
-                          disabled={createWebsiteMutation.isPending}
-                          data-testid="button-submit-create"
-                        >
-                          {createWebsiteMutation.isPending ? "Creating..." : "Create Website"}
-                        </Button>
-                      </form>
-                    </DialogContent>
-                  </Dialog>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                {websites.length === 0 ? (
-                  <p className="text-sm text-gray-500 text-center py-4">No websites yet. Create one to get started!</p>
-                ) : (
-                  websites.map((website) => (
-                    <button
-                      key={website.id}
-                      onClick={() => setSelectedWebsiteId(website.id)}
-                      className={`w-full text-left p-3 rounded-lg border transition-colors ${
-                        selectedWebsiteId === website.id
-                          ? "bg-primary/10 border-primary"
-                          : "bg-white border-border hover:bg-gray-50"
-                      }`}
-                      data-testid={`website-card-${website.id}`}
-                    >
-                      <div className="space-y-2">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium text-sm truncate">{website.name}</p>
-                            <p className="text-xs text-gray-500 truncate">{website.domain || "No domain"}</p>
-                          </div>
-                          <Badge variant={website.isActive ? "default" : "secondary"} className="ml-2">
-                            {website.subscriptionStatus}
-                          </Badge>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Badge 
-                            variant={website.content?.isPublished ? "default" : "outline"} 
-                            className={website.content?.isPublished ? "bg-green-600" : "bg-amber-100 text-amber-800 border-amber-300"}
-                          >
-                            {website.content?.isPublished ? "Published Live" : "Draft Mode"}
-                          </Badge>
-                        </div>
-                      </div>
-                    </button>
-                  ))
-                )}
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Main Content Area */}
-          <div className="lg:col-span-3">
+        <div>
             {!selectedWebsiteId ? (
               <div>
                 <div className="mb-6 flex items-center justify-between">
@@ -801,7 +696,6 @@ export default function Dashboard() {
               </Tabs>
               </div>
             )}
-          </div>
         </div>
       </div>
 

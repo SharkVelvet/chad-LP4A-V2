@@ -21,6 +21,7 @@ export default function SelectTemplateByCategory() {
   const [, params] = useRoute("/templates/:category");
   const category = params?.category;
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
+  const [isIframeLoading, setIsIframeLoading] = useState(false);
 
   // Map URL category to display name
   const categoryDisplay = category === 'get-clients' ? 'Get More Clients' : 'Hire Agents';
@@ -106,7 +107,10 @@ export default function SelectTemplateByCategory() {
               <Card
                 key={template.id}
                 className="cursor-pointer hover:shadow-lg transition-shadow overflow-hidden group"
-                onClick={() => setSelectedTemplate(template)}
+                onClick={() => {
+                  setSelectedTemplate(template);
+                  setIsIframeLoading(true);
+                }}
                 data-testid={`template-card-${template.id}`}
               >
                 <div className="aspect-video relative overflow-hidden bg-gray-100">
@@ -196,13 +200,22 @@ export default function SelectTemplateByCategory() {
           </div>
 
           {/* Scrollable iframe content - padded by 50px to account for fixed header */}
-          <div className="w-full h-full overflow-auto pt-[50px]">
+          <div className="w-full h-full overflow-auto pt-[50px] relative">
+            {isIframeLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
+                  <p className="text-sm text-gray-600">Loading template preview...</p>
+                </div>
+              </div>
+            )}
             {selectedTemplate && (
               <iframe
                 src={`/template-preview?template=${selectedTemplate.slug}&hideNav=true`}
                 className="w-full h-full border-0 block"
                 title={`Preview of ${selectedTemplate.name}`}
                 data-testid="iframe-template-preview"
+                onLoad={() => setIsIframeLoading(false)}
               />
             )}
           </div>

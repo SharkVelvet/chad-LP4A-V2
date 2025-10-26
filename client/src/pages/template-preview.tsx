@@ -1,13 +1,16 @@
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { ArrowLeft, Edit2, X } from "lucide-react";
 import TemplatePreview from "@/components/template-preview";
 import Template13 from "@/components/templates/Template13";
 import Template14 from "@/components/templates/Template14";
 import Template15 from "@/components/templates/Template15";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { trackTemplateView, trackTemplateSelection } from "@/lib/facebook-pixel";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 type Template = {
   id: number;
@@ -44,6 +47,15 @@ export default function TemplatePreviewPage() {
   
   // Check if page is loaded in iframe
   const isInIframe = window.self !== window.top;
+
+  // Edit mode state
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editingElement, setEditingElement] = useState<{
+    type: 'text' | 'image';
+    content: string;
+    fieldName: string;
+  } | null>(null);
+  const [editValue, setEditValue] = useState("");
 
   const { data: templates, isLoading: templatesLoading } = useQuery<Template[]>({
     queryKey: ["/api/templates"],
@@ -82,6 +94,78 @@ export default function TemplatePreviewPage() {
       trackTemplateView(template.name);
     }
   }, [template]);
+
+  // Add click handlers for edit mode
+  useEffect(() => {
+    if (!editMode) return;
+
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      
+      // Check if it's a text element
+      if (target.matches('h1, h2, h3, h4, h5, h6, p, span, a, button')) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const text = target.textContent || '';
+        const tagName = target.tagName.toLowerCase();
+        
+        // Determine field name based on content or position
+        let fieldName = 'text';
+        if (text.toLowerCase().includes('insurance') || target.closest('[data-field="businessName"]')) {
+          fieldName = 'businessName';
+        } else if (tagName === 'h1' || target.closest('[data-field="tagline"]')) {
+          fieldName = 'tagline';
+        } else if (target.closest('[data-field="aboutUs"]')) {
+          fieldName = 'aboutUs';
+        } else if (text.includes('@') || text.includes('email')) {
+          fieldName = 'email';
+        } else if (text.match(/\d{3}[-.\s]?\d{3}[-.\s]?\d{4}/)) {
+          fieldName = 'phone';
+        } else if (target.closest('[data-field="address"]')) {
+          fieldName = 'address';
+        }
+        
+        setEditingElement({
+          type: 'text',
+          content: text,
+          fieldName
+        });
+        setEditValue(text);
+        setIsEditModalOpen(true);
+      }
+      
+      // Check if it's an image
+      if (target.matches('img')) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        setEditingElement({
+          type: 'image',
+          content: (target as HTMLImageElement).src,
+          fieldName: 'image'
+        });
+        setEditValue((target as HTMLImageElement).src);
+        setIsEditModalOpen(true);
+      }
+    };
+
+    document.addEventListener('click', handleClick, true);
+    return () => document.removeEventListener('click', handleClick, true);
+  }, [editMode]);
+
+  const handleSaveEdit = () => {
+    if (editingElement && window.parent) {
+      // Send message to parent window with the edit
+      window.parent.postMessage({
+        type: 'CONTENT_EDIT',
+        field: editingElement.fieldName,
+        value: editValue
+      }, window.location.origin);
+    }
+    setIsEditModalOpen(false);
+    setEditingElement(null);
+  };
 
   // Show loading state while templates are being fetched
   if (templatesLoading) {
@@ -217,6 +301,75 @@ export default function TemplatePreviewPage() {
           }
         `}</style>
       )}
+
+      {/* Edit Modal */}
+      <Dialog open={isEditModalOpen} onOpenChange={setIsEditModalOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Edit2 className="h-5 w-5" />
+              Edit {editingElement?.type === 'image' ? 'Image' : 'Content'}
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4 py-4">
+            {editingElement?.type === 'text' ? (
+              <>
+                <div className="text-xs text-gray-500 uppercase font-semibold">
+                  Field: {editingElement.fieldName}
+                </div>
+                {editingElement.content.length > 100 ? (
+                  <Textarea
+                    value={editValue}
+                    onChange={(e) => setEditValue(e.target.value)}
+                    rows={6}
+                    className="w-full"
+                    placeholder="Enter your text..."
+                  />
+                ) : (
+                  <Input
+                    value={editValue}
+                    onChange={(e) => setEditValue(e.target.value)}
+                    className="w-full"
+                    placeholder="Enter your text..."
+                  />
+                )}
+              </>
+            ) : (
+              <>
+                <div className="text-xs text-gray-500 uppercase font-semibold">Image URL</div>
+                <Input
+                  value={editValue}
+                  onChange={(e) => setEditValue(e.target.value)}
+                  className="w-full"
+                  placeholder="Enter image URL..."
+                />
+                <div className="bg-blue-50 border border-blue-200 rounded p-3 text-sm text-blue-800">
+                  Image upload feature coming soon! For now, you can paste an image URL.
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="flex justify-end gap-2">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setIsEditModalOpen(false);
+                setEditingElement(null);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSaveEdit}
+              className="bg-[#6458AF] hover:bg-[#5347A0]"
+            >
+              Save Changes
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

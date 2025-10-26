@@ -39,6 +39,7 @@ export default function TemplatePreviewPage() {
   const templateSlug = params.get('template');
   const websiteId = params.get('websiteId');
   const hideNav = params.get('hideNav') === 'true';
+  const editMode = params.get('editMode') === 'true';
   const siteType = params.get('type') || localStorage.getItem('selectedSiteType') || 'single-page';
   
   // Check if page is loaded in iframe
@@ -174,15 +175,19 @@ export default function TemplatePreviewPage() {
       )}
 
       {/* Template Preview */}
-      <div className="w-full" style={{ scrollBehavior: 'smooth' }}>
+      <div 
+        className={`w-full ${editMode ? 'edit-mode-active' : ''}`} 
+        style={{ scrollBehavior: 'smooth' }}
+        data-edit-mode={editMode}
+      >
         {template.slug === "template-13" || template.slug === "Template-13" ? (
-          <Template13 className="w-full" content={contentData} />
+          <Template13 className="w-full" content={contentData} editMode={editMode} />
         ) : template.slug === "template-14" || template.slug === "Template-14" ? (
-          <Template14 className="w-full" content={contentData} />
+          <Template14 className="w-full" content={contentData} editMode={editMode} />
         ) : template.slug === "template-15" || template.slug === "Template-15" ? (
-          <Template15 className="w-full" content={contentData} />
+          <Template15 className="w-full" content={contentData} editMode={editMode} />
         ) : ["Template-1", "Template-2", "Template-3", "Template-4", "Template-5", "Template-6", "Template-7", "Template-8", "template-9", "Template-10", "Template-11", "Template-12"].includes(template.slug) ? (
-          <TemplatePreview templateSlug={template.slug} className="w-full" content={contentData} />
+          <TemplatePreview templateSlug={template.slug} className="w-full" content={contentData} editMode={editMode} />
         ) : (
           <div className="w-full min-h-screen bg-white">
             <img
@@ -193,6 +198,25 @@ export default function TemplatePreviewPage() {
           </div>
         )}
       </div>
+      
+      {/* Edit Mode CSS */}
+      {editMode && (
+        <style>{`
+          .edit-mode-active * {
+            cursor: pointer !important;
+          }
+          .edit-mode-active h1:hover,
+          .edit-mode-active h2:hover,
+          .edit-mode-active h3:hover,
+          .edit-mode-active p:hover,
+          .edit-mode-active span:hover,
+          .edit-mode-active img:hover {
+            outline: 2px solid #6458AF;
+            outline-offset: 2px;
+            position: relative;
+          }
+        `}</style>
+      )}
     </div>
   );
 }

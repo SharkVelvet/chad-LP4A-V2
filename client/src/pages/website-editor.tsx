@@ -448,96 +448,23 @@ export default function WebsiteEditor() {
           </div>
         </div>
 
-        {/* Edit mode content - full page with inline editing */}
-        <div className="absolute top-14 left-0 right-0 bottom-0 overflow-y-auto">
-          <div className="max-w-6xl mx-auto p-8 space-y-8">
-            <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6 mb-6">
-              <h3 className="text-lg font-semibold text-blue-900 mb-2">Visual Editor Coming Soon!</h3>
-              <p className="text-sm text-blue-800 mb-4">
-                The inline visual editor with gear icons on each element is currently in development. 
-                For now, use the form below to edit your content.
-              </p>
-            </div>
-
-            <div className="bg-white border rounded-lg p-6 space-y-6">
-              <div>
-                <h3 className="text-xl font-bold mb-4">Website Content</h3>
-                <p className="text-sm text-gray-600 mb-6">Update your website information below.</p>
-              </div>
-
-              <div>
-                <Label htmlFor="businessName">Business Name</Label>
-                <Input
-                  id="businessName"
-                  value={formData.businessName}
-                  onChange={(e) => handleInputChange("businessName", e.target.value)}
-                  placeholder="Enter business name"
-                  data-testid="input-business-name"
-                  className="text-lg"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="tagline">Tagline</Label>
-                <Input
-                  id="tagline"
-                  value={formData.tagline}
-                  onChange={(e) => handleInputChange("tagline", e.target.value)}
-                  placeholder="Enter tagline"
-                  data-testid="input-tagline"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="aboutUs">About Us</Label>
-                <Textarea
-                  id="aboutUs"
-                  value={formData.aboutUs}
-                  onChange={(e) => handleInputChange("aboutUs", e.target.value)}
-                  placeholder="Enter about us description"
-                  rows={8}
-                  data-testid="textarea-about-us"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input
-                    id="phone"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                    placeholder="(555) 123-4567"
-                    data-testid="input-phone"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    placeholder="contact@example.com"
-                    data-testid="input-email"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="address">Address</Label>
-                <Textarea
-                  id="address"
-                  value={formData.address}
-                  onChange={(e) => handleInputChange("address", e.target.value)}
-                  placeholder="Enter address"
-                  rows={3}
-                  data-testid="textarea-address"
-                />
+        {/* Edit mode content - website preview with editing enabled */}
+        <div className="absolute top-14 left-0 right-0 bottom-0 bg-gray-100">
+          {template ? (
+            <iframe
+              src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&editMode=true&hideNav=true`}
+              className="w-full h-full border-0"
+              title="Edit Website"
+              data-testid="iframe-edit-mode"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
+                <p className="text-sm text-gray-600">Loading editor...</p>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

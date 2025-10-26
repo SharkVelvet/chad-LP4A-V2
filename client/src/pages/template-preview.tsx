@@ -102,8 +102,13 @@ export default function TemplatePreviewPage() {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       
-      // Check if it's a text element
-      if (target.matches('h1, h2, h3, h4, h5, h6, p, span, a, button')) {
+      // Skip buttons and links - they shouldn't be editable
+      if (target.matches('button, a')) {
+        return;
+      }
+      
+      // Check if it's a text element (only headings, paragraphs, and spans)
+      if (target.matches('h1, h2, h3, h4, h5, h6, p, span')) {
         e.preventDefault();
         e.stopPropagation();
         

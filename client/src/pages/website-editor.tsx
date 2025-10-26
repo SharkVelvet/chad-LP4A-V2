@@ -141,7 +141,7 @@ export default function WebsiteEditor() {
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [formData, saveContentMutation, toast]);
+  }, [formData, toast]);
 
   const handleSave = () => {
     saveContentMutation.mutate(formData);

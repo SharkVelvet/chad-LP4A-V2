@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation, useRoute } from "wouter";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { ArrowLeft, X } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 
 type Template = {
   id: number;
@@ -22,10 +24,37 @@ export default function SelectTemplateByCategory() {
   const category = params?.category;
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
   const [isIframeLoading, setIsIframeLoading] = useState(false);
+  const { toast } = useToast();
 
   // Map URL category to display name
   const categoryDisplay = category === 'get-clients' ? 'Get More Clients' : 'Hire Agents';
   const templateCategory = category === 'get-clients' ? 'client' : 'hiring';
+
+  // Create website mutation
+  const createWebsiteMutation = useMutation({
+    mutationFn: async (templateId: number) => {
+      return await apiRequest("/api/websites", {
+        method: "POST",
+        body: JSON.stringify({
+          templateId,
+          name: `My Website`,
+          subscriptionPlan: "basic",
+          domainPreferences: [],
+        }),
+      });
+    },
+    onSuccess: (newWebsite: any) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/websites"] });
+      setLocation(`/editor/${newWebsite.id}`);
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to create website. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
 
   // Set page title
   useEffect(() => {
@@ -178,13 +207,14 @@ export default function SelectTemplateByCategory() {
               size="sm"
               className="bg-[#6458AF] hover:bg-[#5347A0]"
               onClick={() => {
-                // TODO: Handle template selection
-                console.log('Selected template:', selectedTemplate);
-                setSelectedTemplate(null);
+                if (selectedTemplate) {
+                  createWebsiteMutation.mutate(selectedTemplate.id);
+                }
               }}
+              disabled={createWebsiteMutation.isPending}
               data-testid="button-choose-template"
             >
-              Choose this Template
+              {createWebsiteMutation.isPending ? "Creating..." : "Choose this Template"}
             </Button>
             
             <h3 className="text-sm font-semibold text-gray-900">{selectedTemplate?.name}</h3>

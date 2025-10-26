@@ -36,6 +36,7 @@ import AdminLogin from "@/pages/admin-login";
 import AdminDashboard from "@/pages/admin-dashboard";
 import ChooseWebsitePurpose from "@/pages/choose-website-purpose";
 import SelectTemplateByCategory from "@/pages/select-template-by-category";
+import WebsiteEditor from "@/pages/website-editor";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -66,6 +67,7 @@ function Router() {
         <ProtectedRoute path="/dashboard" component={Dashboard} />
         <ProtectedRoute path="/choose-purpose" component={ChooseWebsitePurpose} />
         <ProtectedRoute path="/templates/:category" component={SelectTemplateByCategory} />
+        <ProtectedRoute path="/editor/:websiteId" component={WebsiteEditor} />
         <Route path="/ideas" component={Ideas} />
         <Route path="/internal-one" component={InternalOne} />
         <Route path="/get-clients" component={GetClients} />

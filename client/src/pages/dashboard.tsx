@@ -82,12 +82,7 @@ export default function Dashboard() {
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
-  // Auto-select the first website when websites load
-  useEffect(() => {
-    if (websites.length > 0 && !selectedWebsiteId) {
-      setSelectedWebsiteId(websites[0].id);
-    }
-  }, [websites, selectedWebsiteId]);
+  // Don't auto-select website - let user choose from overview
 
   // Fetch templates for creating new site
   const { data: templates = [] } = useQuery<Template[]>({
@@ -353,64 +348,206 @@ export default function Dashboard() {
           <div className="lg:col-span-3">
             {!selectedWebsiteId ? (
               <div>
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Choose a Template</h2>
-                  <p className="text-gray-600">Click on any template to preview it in a new window</p>
+                <div className="mb-6 flex items-center justify-between">
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">My Websites</h2>
+                    <p className="text-gray-600">Manage and edit your websites</p>
+                  </div>
+                  <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
+                    <DialogTrigger asChild>
+                      <Button size="lg" data-testid="button-create-website-main">
+                        <Plus className="h-5 w-5 mr-2" />
+                        Create New Website
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Create New Website</DialogTitle>
+                      </DialogHeader>
+                      <form onSubmit={handleCreateWebsite} className="space-y-4">
+                        <div>
+                          <Label htmlFor="name">Website Name</Label>
+                          <Input
+                            id="name"
+                            name="name"
+                            required
+                            value={createFormData.name}
+                            onChange={(e) => setCreateFormData(prev => ({ ...prev, name: e.target.value }))}
+                            placeholder="My Business Website"
+                            data-testid="input-website-name-main"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="templateId">Template</Label>
+                          <Select
+                            value={createFormData.templateId}
+                            onValueChange={(value) => setCreateFormData(prev => ({ ...prev, templateId: value }))}
+                            required
+                          >
+                            <SelectTrigger data-testid="select-template-main">
+                              <SelectValue placeholder="Select a template" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {templates.map((template) => (
+                                <SelectItem key={template.id} value={template.id.toString()}>
+                                  {template.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <Button
+                          type="submit"
+                          className="w-full"
+                          disabled={createWebsiteMutation.isPending}
+                          data-testid="button-submit-create-main"
+                        >
+                          {createWebsiteMutation.isPending ? "Creating..." : "Create Website"}
+                        </Button>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[...templates].sort((a, b) => a.id - b.id).map((template) => (
-                    <Card
-                      key={template.id}
-                      className="cursor-pointer hover:shadow-lg transition-shadow overflow-hidden group"
-                      onClick={() => window.open(`/template-preview?template=${template.slug}`, '_blank')}
-                      data-testid={`template-card-${template.id}`}
-                    >
-                      <div className="aspect-video relative overflow-hidden bg-gray-100">
-                        <img
-                          src={template.previewImage}
-                          alt={template.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200" />
-                      </div>
-                      <CardHeader>
-                        <CardTitle className="text-lg">{template.name}</CardTitle>
-                        <CardDescription className="line-clamp-2">{template.description}</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <Badge variant="outline">{template.category}</Badge>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-
-                {templates.length === 0 && (
+                {/* Website Cards Grid */}
+                {websites.length === 0 ? (
                   <Card>
-                    <CardContent className="pt-6 text-center py-12">
-                      <Globe className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium mb-2">No Templates Available</h3>
-                      <p className="text-gray-600 mb-4">Templates are being loaded. Please check back soon.</p>
+                    <CardContent className="pt-6 text-center py-16">
+                      <Globe className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                      <h3 className="text-xl font-medium mb-2">No websites yet</h3>
+                      <p className="text-gray-600 mb-6">Create your first website to get started</p>
+                      <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
+                        <DialogTrigger asChild>
+                          <Button size="lg">
+                            <Plus className="h-5 w-5 mr-2" />
+                            Create Your First Website
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Create New Website</DialogTitle>
+                          </DialogHeader>
+                          <form onSubmit={handleCreateWebsite} className="space-y-4">
+                            <div>
+                              <Label htmlFor="name">Website Name</Label>
+                              <Input
+                                id="name"
+                                name="name"
+                                required
+                                value={createFormData.name}
+                                onChange={(e) => setCreateFormData(prev => ({ ...prev, name: e.target.value }))}
+                                placeholder="My Business Website"
+                              />
+                            </div>
+                            <div>
+                              <Label htmlFor="templateId">Template</Label>
+                              <Select
+                                value={createFormData.templateId}
+                                onValueChange={(value) => setCreateFormData(prev => ({ ...prev, templateId: value }))}
+                                required
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select a template" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {templates.map((template) => (
+                                    <SelectItem key={template.id} value={template.id.toString()}>
+                                      {template.name}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <Button
+                              type="submit"
+                              className="w-full"
+                              disabled={createWebsiteMutation.isPending}
+                            >
+                              {createWebsiteMutation.isPending ? "Creating..." : "Create Website"}
+                            </Button>
+                          </form>
+                        </DialogContent>
+                      </Dialog>
                     </CardContent>
                   </Card>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {websites.map((website) => {
+                      const template = templates.find(t => t.id === website.templateId);
+                      return (
+                        <Card key={website.id} className="overflow-hidden group hover:shadow-lg transition-shadow" data-testid={`website-overview-card-${website.id}`}>
+                          <div className="aspect-video relative overflow-hidden bg-gray-100">
+                            <img
+                              src={template?.previewImage || '/placeholder.jpg'}
+                              alt={website.name}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                            />
+                            <div className="absolute top-3 right-3">
+                              <Badge 
+                                variant={website.content?.isPublished ? "default" : "outline"} 
+                                className={website.content?.isPublished ? "bg-green-600 shadow-lg" : "bg-amber-100 text-amber-800 border-amber-300 shadow-lg"}
+                              >
+                                {website.content?.isPublished ? "Published" : "Draft"}
+                              </Badge>
+                            </div>
+                          </div>
+                          <CardHeader>
+                            <CardTitle className="text-lg truncate">{website.name}</CardTitle>
+                            <CardDescription className="truncate">
+                              {website.domain || "No domain configured"}
+                            </CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="flex gap-2">
+                              <Button 
+                                onClick={() => setSelectedWebsiteId(website.id)}
+                                className="flex-1"
+                                data-testid={`button-edit-${website.id}`}
+                              >
+                                <Edit className="h-4 w-4 mr-2" />
+                                Edit
+                              </Button>
+                              <Button 
+                                variant="outline"
+                                onClick={() => window.open(`/template-preview?websiteId=${website.id}`, '_blank')}
+                                data-testid={`button-view-${website.id}`}
+                              >
+                                <ExternalLink className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
+                  </div>
                 )}
               </div>
             ) : (
-              <Tabs defaultValue="content" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-6">
-                  <TabsTrigger value="content" data-testid="tab-content">
-                    <Edit className="h-4 w-4 mr-2" />
-                    Content
-                  </TabsTrigger>
-                  <TabsTrigger value="settings" data-testid="tab-settings">
-                    <Settings className="h-4 w-4 mr-2" />
-                    Settings
-                  </TabsTrigger>
-                  <TabsTrigger value="preview" data-testid="tab-preview">
-                    <Eye className="h-4 w-4 mr-2" />
-                    Preview
-                  </TabsTrigger>
-                </TabsList>
+              <div>
+                <div className="mb-4">
+                  <Button 
+                    variant="ghost" 
+                    onClick={() => setSelectedWebsiteId(null)}
+                    data-testid="button-back-to-dashboard"
+                  >
+                    ← Back to Dashboard
+                  </Button>
+                </div>
+                <Tabs defaultValue="content" className="w-full">
+                  <TabsList className="grid w-full grid-cols-3 mb-6">
+                    <TabsTrigger value="content" data-testid="tab-content">
+                      <Edit className="h-4 w-4 mr-2" />
+                      Content
+                    </TabsTrigger>
+                    <TabsTrigger value="settings" data-testid="tab-settings">
+                      <Settings className="h-4 w-4 mr-2" />
+                      Settings
+                    </TabsTrigger>
+                    <TabsTrigger value="preview" data-testid="tab-preview">
+                      <Eye className="h-4 w-4 mr-2" />
+                      Preview
+                    </TabsTrigger>
+                  </TabsList>
 
                 {/* Content Editor Tab */}
                 <TabsContent value="content">
@@ -662,6 +799,7 @@ export default function Dashboard() {
                   </div>
                 </TabsContent>
               </Tabs>
+              </div>
             )}
           </div>
         </div>

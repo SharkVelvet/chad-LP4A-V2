@@ -27,6 +27,12 @@ type Website = {
   };
 };
 
+type Template = {
+  id: number;
+  name: string;
+  slug: string;
+};
+
 export default function WebsiteEditor() {
   const [, navigate] = useLocation();
   const [, params] = useRoute("/editor/:websiteId");
@@ -55,6 +61,13 @@ export default function WebsiteEditor() {
     },
     enabled: !!websiteId,
   });
+
+  // Fetch templates to get the slug
+  const { data: templates } = useQuery<Template[]>({
+    queryKey: ["/api/templates"],
+  });
+
+  const template = templates?.find(t => t.id === website?.templateId);
 
   // Populate form with existing data
   useEffect(() => {
@@ -160,12 +173,21 @@ export default function WebsiteEditor() {
 
       {/* Preview iframe */}
       <div className="absolute top-14 left-0 right-0 bottom-0">
-        <iframe
-          src={`/template-preview?template=${website.templateId}&websiteId=${websiteId}&hideNav=true`}
-          className="w-full h-full border-0"
-          title="Website Preview"
-          data-testid="iframe-website-preview"
-        />
+        {template ? (
+          <iframe
+            src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
+            className="w-full h-full border-0"
+            title="Website Preview"
+            data-testid="iframe-website-preview"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gray-50">
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
+              <p className="text-sm text-gray-600">Loading template...</p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Slide-in edit panel */}

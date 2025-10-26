@@ -65,6 +65,7 @@ export const websiteContent = pgTable("website_content", {
   heroImage: text("hero_image"),
   logo: text("logo"),
   galleryImages: jsonb("gallery_images").$type<string[]>(),
+  content: jsonb("content").$type<Record<string, string>>().notNull().default({}),
   isPublished: boolean("is_published").notNull().default(false),
   publishedAt: timestamp("published_at"),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),

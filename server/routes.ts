@@ -209,6 +209,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update flexible content by ID
+  app.patch("/api/websites/:id/content/:contentId", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const websiteId = parseInt(req.params.id);
+      const contentId = req.params.contentId;
+      const { value } = req.body;
+
+      const website = await storage.getWebsite(websiteId);
+      
+      if (!website || website.userId !== req.user.id) {
+        return res.status(404).json({ message: "Website not found" });
+      }
+
+      const updatedContent = await storage.updateFlexibleContent(websiteId, contentId, value);
+      
+      res.json(updatedContent);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
   // Publish website content
   app.post("/api/websites/:id/publish", async (req, res) => {
     if (!req.isAuthenticated()) {

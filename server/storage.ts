@@ -69,6 +69,7 @@ export interface IStorage {
   getWebsiteContent(websiteId: number): Promise<WebsiteContent | undefined>;
   createWebsiteContent(content: InsertWebsiteContent): Promise<WebsiteContent>;
   updateWebsiteContent(websiteId: number, content: Partial<InsertWebsiteContent>): Promise<WebsiteContent>;
+  updateFlexibleContent(websiteId: number, contentId: string, value: string): Promise<WebsiteContent>;
   publishWebsiteContent(websiteId: number): Promise<WebsiteContent>;
 
   // Blog management
@@ -286,6 +287,23 @@ export class DatabaseStorage implements IStorage {
     const [updatedContent] = await db
       .update(websiteContent)
       .set(updateData)
+      .where(eq(websiteContent.websiteId, websiteId))
+      .returning();
+    return updatedContent;
+  }
+
+  async updateFlexibleContent(websiteId: number, contentId: string, value: string): Promise<WebsiteContent> {
+    // Get current content
+    const currentContent = await this.getWebsiteContent(websiteId);
+    const flexibleContent = (currentContent?.content as Record<string, string>) || {};
+    
+    // Update the specific content ID
+    flexibleContent[contentId] = value;
+    
+    // Save back to database
+    const [updatedContent] = await db
+      .update(websiteContent)
+      .set({ content: flexibleContent, updatedAt: new Date() })
       .where(eq(websiteContent.websiteId, websiteId))
       .returning();
     return updatedContent;

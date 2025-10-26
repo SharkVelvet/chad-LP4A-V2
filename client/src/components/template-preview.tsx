@@ -3735,10 +3735,10 @@ export default function TemplatePreview({ templateSlug, className = "", content,
         <div id="about" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-7xl mx-auto" style={{ maxWidth: '1080px' }}>
             <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4" data-content-id="template-7.about.heading">
                 Why Choose <span className="text-red-600">Us</span>
               </h2>
-              <p className="text-gray-600 max-w-3xl mx-auto text-sm sm:text-base">
+              <p className="text-gray-600 max-w-3xl mx-auto text-sm sm:text-base" data-content-id="template-7.about.description">
                 We're committed to providing exceptional service and tailored financial solutions that meet your unique needs.
               </p>
             </div>
@@ -3747,8 +3747,8 @@ export default function TemplatePreview({ templateSlug, className = "", content,
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-8 h-8 text-red-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Trusted Protection</h3>
-                <p className="text-gray-600 text-sm">
+                <h3 className="text-xl font-semibold mb-2" data-content-id="template-7.about.feature1.title">Trusted Protection</h3>
+                <p className="text-gray-600 text-sm" data-content-id="template-7.about.feature1.description">
                   Comprehensive coverage options to protect you and your loved ones from life's uncertainties.
                 </p>
               </div>
@@ -3756,8 +3756,8 @@ export default function TemplatePreview({ templateSlug, className = "", content,
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-red-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Personal Service</h3>
-                <p className="text-gray-600 text-sm">
+                <h3 className="text-xl font-semibold mb-2" data-content-id="template-7.about.feature2.title">Personal Service</h3>
+                <p className="text-gray-600 text-sm" data-content-id="template-7.about.feature2.description">
                   One-on-one guidance from experienced professionals who understand your financial goals.
                 </p>
               </div>
@@ -3765,8 +3765,8 @@ export default function TemplatePreview({ templateSlug, className = "", content,
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <TrendingUp className="w-8 h-8 text-red-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Proven Results</h3>
-                <p className="text-gray-600 text-sm">
+                <h3 className="text-xl font-semibold mb-2" data-content-id="template-7.about.feature3.title">Proven Results</h3>
+                <p className="text-gray-600 text-sm" data-content-id="template-7.about.feature3.description">
                   Track record of helping clients achieve their financial objectives and build lasting wealth.
                 </p>
               </div>
@@ -3994,10 +3994,10 @@ export default function TemplatePreview({ templateSlug, className = "", content,
         {/* Contact Section */}
         <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto text-center" style={{ maxWidth: '1080px' }}>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4" data-content-id="template-7.contact.heading">
               Contact <span className="text-red-600">Us</span>
             </h2>
-            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto" data-content-id="template-7.contact.description">
               Ready to protect what matters most? Contact us for a personalized quote and consultation.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

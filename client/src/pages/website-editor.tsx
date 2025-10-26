@@ -110,25 +110,48 @@ export default function WebsiteEditor() {
     }
   }, [website]);
 
+  // Save flexible content mutation (for any content ID)
+  const saveFlexibleContentMutation = useMutation({
+    mutationFn: async ({ contentId, value }: { contentId: string; value: string }) => {
+      const res = await apiRequest("PATCH", `/api/websites/${websiteId}/content/${encodeURIComponent(contentId)}`, { value });
+      return await res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      toast({
+        title: "Changes saved",
+        description: "Your website content has been updated.",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to save changes. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   // Listen for edit messages from iframe
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       if (event.origin !== window.location.origin) return;
       
       if (event.data.type === 'CONTENT_EDIT') {
-        const { field, value } = event.data;
+        const { field, value, contentId } = event.data;
         
-        // Build the updated content object
-        const updatedContent = {
-          ...formData,
-          [field]: value
-        };
-        
-        // Update form data
-        setFormData(updatedContent);
-        
-        // Save to database
-        saveContentMutation.mutate(updatedContent);
+        // Use flexible content ID if provided, otherwise fall back to legacy field
+        if (contentId) {
+          saveFlexibleContentMutation.mutate({ contentId, value });
+        } else if (field) {
+          // Legacy support - save using old method
+          const updatedContent = {
+            ...formData,
+            [field]: value
+          };
+          setFormData(updatedContent);
+          saveContentMutation.mutate(updatedContent);
+        }
       }
     };
 

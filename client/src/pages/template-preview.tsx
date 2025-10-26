@@ -113,28 +113,26 @@ export default function TemplatePreviewPage() {
         e.stopPropagation();
         
         const text = target.textContent || '';
-        const tagName = target.tagName.toLowerCase();
         
-        // Determine field name based on content or position
-        let fieldName = 'text';
-        if (text.toLowerCase().includes('insurance') || target.closest('[data-field="businessName"]')) {
-          fieldName = 'businessName';
-        } else if (tagName === 'h1' || target.closest('[data-field="tagline"]')) {
-          fieldName = 'tagline';
-        } else if (target.closest('[data-field="aboutUs"]')) {
-          fieldName = 'aboutUs';
-        } else if (text.includes('@') || text.includes('email')) {
-          fieldName = 'email';
-        } else if (text.match(/\d{3}[-.\s]?\d{3}[-.\s]?\d{4}/)) {
-          fieldName = 'phone';
-        } else if (target.closest('[data-field="address"]')) {
-          fieldName = 'address';
+        // First check for data-content-id (flexible content system)
+        let contentId = target.getAttribute('data-content-id');
+        if (!contentId) {
+          // Fall back to checking parent elements for data-content-id
+          const parent = target.closest('[data-content-id]');
+          contentId = parent?.getAttribute('data-content-id') || null;
+        }
+        
+        // Legacy: check for data-field
+        let fieldName = null;
+        if (!contentId) {
+          const field = target.getAttribute('data-field') || target.closest('[data-field]')?.getAttribute('data-field');
+          fieldName = field || 'text';
         }
         
         setEditingElement({
           type: 'text',
           content: text,
-          fieldName
+          fieldName: fieldName || contentId || 'text'
         });
         setEditValue(text);
         setIsEditModalOpen(true);
@@ -161,10 +159,14 @@ export default function TemplatePreviewPage() {
 
   const handleSaveEdit = () => {
     if (editingElement && window.parent) {
+      // Check if this is a legacy field or new content ID
+      const isLegacyField = ['businessName', 'tagline', 'aboutUs', 'phone', 'email', 'address'].includes(editingElement.fieldName);
+      
       // Send message to parent window with the edit
       window.parent.postMessage({
         type: 'CONTENT_EDIT',
-        field: editingElement.fieldName,
+        field: isLegacyField ? editingElement.fieldName : null,
+        contentId: !isLegacyField ? editingElement.fieldName : null,
         value: editValue
       }, window.location.origin);
     }

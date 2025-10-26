@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Settings, FileEdit, BarChart3, Search, Save, ArrowLeft } from "lucide-react";
+import { Settings, Globe, BarChart3, Search, Save, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 
@@ -33,13 +33,13 @@ type Template = {
   slug: string;
 };
 
-type MenuSection = "preview" | "settings" | "content" | "seo" | "analytics";
+type MenuSection = "website" | "settings" | "seo" | "analytics";
 
 export default function WebsiteEditor() {
   const [, navigate] = useLocation();
   const [, params] = useRoute("/editor/:websiteId");
   const websiteId = params?.websiteId ? parseInt(params.websiteId) : null;
-  const [activeSection, setActiveSection] = useState<MenuSection>("preview");
+  const [activeSection, setActiveSection] = useState<MenuSection>("website");
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -135,8 +135,8 @@ export default function WebsiteEditor() {
   }
 
   const menuItems = [
+    { id: "website" as MenuSection, label: "Website", icon: Globe },
     { id: "settings" as MenuSection, label: "Settings", icon: Settings },
-    { id: "content" as MenuSection, label: "Edit Content", icon: FileEdit },
     { id: "seo" as MenuSection, label: "SEO", icon: Search },
     { id: "analytics" as MenuSection, label: "Analytics", icon: BarChart3 },
   ];
@@ -202,10 +202,10 @@ export default function WebsiteEditor() {
 
         {/* Main content area with sliding panels */}
         <div className="flex-1 relative overflow-hidden">
-          {/* Preview panel */}
+          {/* Website preview panel */}
           <div
             className={`absolute inset-0 transition-transform duration-300 ease-in-out ${
-              activeSection === "preview" ? "translate-x-0" : "-translate-x-full"
+              activeSection === "website" ? "translate-x-0" : "translate-x-full"
             }`}
           >
             {template ? (
@@ -235,12 +235,12 @@ export default function WebsiteEditor() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setActiveSection("preview")}
+                onClick={() => setActiveSection("website")}
                 className="mb-6"
-                data-testid="button-back-to-preview"
+                data-testid="button-back-to-website"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Preview
+                Back to Website
               </Button>
               
               <div className="max-w-2xl space-y-6">
@@ -280,102 +280,6 @@ export default function WebsiteEditor() {
             </div>
           </div>
 
-          {/* Edit Content panel */}
-          <div
-            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
-              activeSection === "content" ? "translate-x-0" : "translate-x-full"
-            }`}
-          >
-            <div className="h-full overflow-y-auto p-8">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setActiveSection("preview")}
-                className="mb-6"
-                data-testid="button-back-to-preview"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Preview
-              </Button>
-
-              <div className="max-w-2xl space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">Edit Content</h3>
-                  <p className="text-sm text-gray-600 mb-6">Update your website content and information.</p>
-                </div>
-                
-                <div>
-                  <Label htmlFor="businessName">Business Name</Label>
-                  <Input
-                    id="businessName"
-                    value={formData.businessName}
-                    onChange={(e) => handleInputChange("businessName", e.target.value)}
-                    placeholder="Enter business name"
-                    data-testid="input-business-name"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="tagline">Tagline</Label>
-                  <Input
-                    id="tagline"
-                    value={formData.tagline}
-                    onChange={(e) => handleInputChange("tagline", e.target.value)}
-                    placeholder="Enter tagline"
-                    data-testid="input-tagline"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="aboutUs">About Us</Label>
-                  <Textarea
-                    id="aboutUs"
-                    value={formData.aboutUs}
-                    onChange={(e) => handleInputChange("aboutUs", e.target.value)}
-                    placeholder="Enter about us description"
-                    rows={6}
-                    data-testid="textarea-about-us"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input
-                    id="phone"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                    placeholder="(555) 123-4567"
-                    data-testid="input-phone"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    placeholder="contact@example.com"
-                    data-testid="input-email"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="address">Address</Label>
-                  <Textarea
-                    id="address"
-                    value={formData.address}
-                    onChange={(e) => handleInputChange("address", e.target.value)}
-                    placeholder="Enter address"
-                    rows={3}
-                    data-testid="textarea-address"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* SEO panel */}
           <div
             className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
@@ -386,12 +290,12 @@ export default function WebsiteEditor() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setActiveSection("preview")}
+                onClick={() => setActiveSection("website")}
                 className="mb-6"
-                data-testid="button-back-to-preview"
+                data-testid="button-back-to-website"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Preview
+                Back to Website
               </Button>
 
               <div className="max-w-2xl space-y-6">
@@ -419,12 +323,12 @@ export default function WebsiteEditor() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setActiveSection("preview")}
+                onClick={() => setActiveSection("website")}
                 className="mb-6"
-                data-testid="button-back-to-preview"
+                data-testid="button-back-to-website"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Preview
+                Back to Website
               </Button>
 
               <div className="max-w-2xl space-y-6">

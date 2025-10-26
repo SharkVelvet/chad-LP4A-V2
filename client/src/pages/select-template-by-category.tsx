@@ -169,7 +169,7 @@ export default function SelectTemplateByCategory() {
           </style>
           
           {/* Header with close button - 50px tall */}
-          <div className="absolute top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b px-3 flex items-center justify-end rounded-t-xl h-[50px]">
+          <div className="absolute top-0 left-0 right-0 z-50 bg-white border-b px-3 flex items-center justify-end rounded-t-xl h-[50px]">
             <Button
               variant="ghost"
               size="sm"
@@ -180,8 +180,8 @@ export default function SelectTemplateByCategory() {
             </Button>
           </div>
 
-          {/* Scrollable iframe content */}
-          <div className="w-full h-full overflow-auto">
+          {/* Scrollable iframe content - padded by 50px to account for fixed header */}
+          <div className="w-full h-full overflow-auto pt-[50px]">
             {selectedTemplate && (
               <iframe
                 src={`/template-preview?template=${selectedTemplate.slug}&hideNav=true`}

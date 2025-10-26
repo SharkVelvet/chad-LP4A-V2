@@ -44,7 +44,7 @@ export default function TemplatePreviewPage() {
   // Check if page is loaded in iframe
   const isInIframe = window.self !== window.top;
 
-  const { data: templates } = useQuery<Template[]>({
+  const { data: templates, isLoading: templatesLoading } = useQuery<Template[]>({
     queryKey: ["/api/templates"],
   });
 
@@ -82,6 +82,19 @@ export default function TemplatePreviewPage() {
     }
   }, [template]);
 
+  // Show loading state while templates are being fetched
+  if (templatesLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-sm text-gray-600">Loading template...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Only show "not found" after templates have loaded
   if (!template) {
     return (
       <div className="min-h-screen flex items-center justify-center">

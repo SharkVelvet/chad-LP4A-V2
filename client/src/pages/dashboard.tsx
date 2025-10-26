@@ -366,49 +366,49 @@ export default function Dashboard() {
                     </CardContent>
                   </Card>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {websites.map((website) => {
                       const template = templates.find(t => t.id === website.templateId);
                       return (
                         <Card key={website.id} className="overflow-hidden group hover:shadow-lg transition-shadow" data-testid={`website-overview-card-${website.id}`}>
-                          <div className="aspect-video relative overflow-hidden bg-gray-100">
+                          <div className="aspect-[4/3] relative overflow-hidden bg-gray-100">
                             <img
                               src={template?.previewImage || '/placeholder.jpg'}
                               alt={website.name}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                             />
                           </div>
-                          <CardHeader className="space-y-3">
-                            <CardTitle className="text-lg truncate">{website.name}</CardTitle>
-                            <div className="space-y-1.5 text-sm">
-                              <div className="flex items-center gap-2">
-                                <span className="text-gray-600">Subscription Status:</span>
+                          <CardHeader className="pb-3">
+                            <CardTitle className="text-base truncate mb-2">{website.name}</CardTitle>
+                            <div className="space-y-1 text-xs">
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-gray-500 min-w-fit">Subscription:</span>
                                 <Badge 
                                   variant={website.isActive ? "default" : "secondary"}
-                                  className={
+                                  className={`text-xs h-5 ${
                                     website.subscriptionStatus === 'active' ? "bg-green-600" : 
                                     website.subscriptionStatus === 'paused' ? "bg-amber-500" : 
                                     "bg-gray-500"
-                                  }
+                                  }`}
                                 >
                                   {website.subscriptionStatus === 'active' ? 'Active' : 
                                    website.subscriptionStatus === 'paused' ? 'Paused' : 
                                    'Disconnected'}
                                 </Badge>
                               </div>
-                              <div className="flex items-center gap-2">
-                                <span className="text-gray-600">Site Status:</span>
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-gray-500 min-w-fit">Site Status:</span>
                                 <Badge 
                                   variant={website.content?.isPublished ? "default" : "outline"} 
-                                  className={website.content?.isPublished ? "bg-blue-600" : "bg-amber-100 text-amber-800 border-amber-300"}
+                                  className={`text-xs h-5 ${website.content?.isPublished ? "bg-blue-600" : "bg-amber-100 text-amber-800 border-amber-300"}`}
                                 >
                                   {website.content?.isPublished ? "Live to Public" : "Draft"}
                                 </Badge>
                               </div>
                             </div>
                           </CardHeader>
-                          <CardContent>
-                            <div className="flex gap-2">
+                          <CardContent className="pt-0">
+                            <div className="flex gap-1.5">
                               <Button 
                                 onClick={() => setSelectedWebsiteId(website.id)}
                                 variant="outline"

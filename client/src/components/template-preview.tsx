@@ -15,9 +15,18 @@ import jakeImage from "@assets/landing-temp1_1753549944630.png";
 interface TemplatePreviewProps {
   templateSlug: string;
   className?: string;
+  content?: {
+    businessName: string | null;
+    tagline: string | null;
+    aboutUs: string | null;
+    phone: string | null;
+    email: string | null;
+    address: string | null;
+  };
+  editMode?: boolean;
 }
 
-export default function TemplatePreview({ templateSlug, className = "" }: TemplatePreviewProps) {
+export default function TemplatePreview({ templateSlug, className = "", content, editMode = false }: TemplatePreviewProps) {
   
   
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
@@ -3645,7 +3654,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
               data-field="businessName"
             >
-              Your Agency Here
+              {content?.businessName || "Your Agency Here"}
             </div>
             <div className="flex items-center space-x-2 sm:space-x-6">
               <div className="hidden md:flex space-x-6 text-sm text-gray-700">
@@ -3669,12 +3678,16 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center" style={{ maxWidth: '1080px' }}>
             <div className="text-center lg:text-left">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6" data-field="tagline">
-                Secure, Reliable, and 
-                <span className="block text-red-600">Client-Friendly</span>
-                <span className="block text-gray-700">Financial Solutions</span>
+                {content?.tagline || (
+                  <>
+                    Secure, Reliable, and 
+                    <span className="block text-red-600">Client-Friendly</span>
+                    <span className="block text-gray-700">Financial Solutions</span>
+                  </>
+                )}
               </h1>
               <p className="text-lg text-gray-600 mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0" data-field="aboutUs">
-                Providing comprehensive financial services and solutions designed to protect what matters most to you and your family.
+                {content?.aboutUs || "Providing comprehensive financial services and solutions designed to protect what matters most to you and your family."}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button 
@@ -3711,7 +3724,7 @@ export default function TemplatePreview({ templateSlug, className = "" }: Templa
                 </p>
                 <div className="flex items-center text-sm text-gray-500">
                   <Phone className="w-4 h-4 mr-2" />
-                  <span data-field="phone">(555) 123-4567</span>
+                  <span data-field="phone">{content?.phone || "(555) 123-4567"}</span>
                 </div>
               </div>
             </div>

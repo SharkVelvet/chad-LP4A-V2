@@ -40,7 +40,7 @@ export default function WebsiteEditor() {
   const [, params] = useRoute("/editor/:websiteId");
   const websiteId = params?.websiteId ? parseInt(params.websiteId) : null;
   const [activeSection, setActiveSection] = useState<MenuSection>("website");
-  const [isWebsiteExpanded, setIsWebsiteExpanded] = useState(true);
+  const [isWebsiteExpanded] = useState(true); // Always keep Website menu expanded
   const [isEditOverlayOpen, setIsEditOverlayOpen] = useState(false);
   const [isIframeLoading, setIsIframeLoading] = useState(true);
   const { toast } = useToast();
@@ -238,7 +238,6 @@ export default function WebsiteEditor() {
               <div>
                 <button
                   onClick={() => {
-                    setIsWebsiteExpanded(!isWebsiteExpanded);
                     setActiveSection("website");
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
@@ -250,15 +249,11 @@ export default function WebsiteEditor() {
                 >
                   <Globe className="h-4 w-4" />
                   <span className="flex-1 text-left">Website</span>
-                  {isWebsiteExpanded ? (
-                    <ChevronDown className="h-4 w-4" />
-                  ) : (
-                    <ChevronRight className="h-4 w-4" />
-                  )}
+                  <ChevronDown className="h-4 w-4" />
                 </button>
                 
-                {/* Website submenu */}
-                {isWebsiteExpanded && (
+                {/* Website submenu - Always visible */}
+                {true && (
                   <div className="mt-1 ml-4 space-y-1">
                     {websiteSubItems.map((item) => {
                       const Icon = item.icon;
@@ -297,7 +292,6 @@ export default function WebsiteEditor() {
                   <button
                     key={item.id}
                     onClick={() => {
-                      setIsWebsiteExpanded(false);
                       setActiveSection(item.id);
                     }}
                     className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${

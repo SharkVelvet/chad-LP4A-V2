@@ -218,7 +218,8 @@ export default function WebsiteEditor() {
           size="sm"
           onClick={handleSave}
           disabled={saveContentMutation.isPending}
-          className="border-2 border-black text-black hover:bg-gray-100"
+          variant="outline"
+          className="border-2 border-black text-black hover:bg-gray-100 bg-white"
           data-testid="button-save"
         >
           <Save className="h-4 w-4 mr-2" />
@@ -481,7 +482,8 @@ export default function WebsiteEditor() {
                 setIsEditOverlayOpen(false);
               }}
               disabled={saveContentMutation.isPending}
-              className="border-2 border-black text-black hover:bg-gray-100"
+              variant="outline"
+              className="border-2 border-black text-black hover:bg-gray-100 bg-white"
               data-testid="button-save-and-close"
             >
               <Save className="h-4 w-4 mr-2" />

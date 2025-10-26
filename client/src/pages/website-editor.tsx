@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Settings, Globe, BarChart3, Search, Save, ArrowLeft } from "lucide-react";
+import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, ChevronRight, Edit, Palette } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 
@@ -33,13 +33,14 @@ type Template = {
   slug: string;
 };
 
-type MenuSection = "website" | "settings" | "seo" | "analytics";
+type MenuSection = "website" | "edit-content" | "colors" | "settings" | "seo" | "analytics";
 
 export default function WebsiteEditor() {
   const [, navigate] = useLocation();
   const [, params] = useRoute("/editor/:websiteId");
   const websiteId = params?.websiteId ? parseInt(params.websiteId) : null;
-  const [activeSection, setActiveSection] = useState<MenuSection>("website");
+  const [activeSection, setActiveSection] = useState<MenuSection>("edit-content");
+  const [isWebsiteExpanded, setIsWebsiteExpanded] = useState(true);
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -135,10 +136,14 @@ export default function WebsiteEditor() {
   }
 
   const menuItems = [
-    { id: "website" as MenuSection, label: "Website", icon: Globe },
     { id: "settings" as MenuSection, label: "Settings", icon: Settings },
     { id: "seo" as MenuSection, label: "SEO", icon: Search },
     { id: "analytics" as MenuSection, label: "Analytics", icon: BarChart3 },
+  ];
+
+  const websiteSubItems = [
+    { id: "edit-content" as MenuSection, label: "Edit Content", icon: Edit },
+    { id: "colors" as MenuSection, label: "Colors", icon: Palette },
   ];
 
   return (
@@ -177,13 +182,68 @@ export default function WebsiteEditor() {
           <div className="p-4">
             <h2 className="text-xs font-semibold text-gray-500 uppercase mb-3">Editor Menu</h2>
             <div className="space-y-1">
+              {/* Website menu item with submenu */}
+              <div>
+                <button
+                  onClick={() => {
+                    setIsWebsiteExpanded(!isWebsiteExpanded);
+                    if (!isWebsiteExpanded) {
+                      setActiveSection("edit-content");
+                    }
+                  }}
+                  className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                    activeSection === "website" || activeSection === "edit-content" || activeSection === "colors"
+                      ? "bg-[#6458AF] text-white"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                  data-testid="menu-website"
+                >
+                  <Globe className="h-4 w-4" />
+                  <span className="flex-1 text-left">Website</span>
+                  {isWebsiteExpanded ? (
+                    <ChevronDown className="h-4 w-4" />
+                  ) : (
+                    <ChevronRight className="h-4 w-4" />
+                  )}
+                </button>
+                
+                {/* Website submenu */}
+                {isWebsiteExpanded && (
+                  <div className="mt-1 ml-4 space-y-1">
+                    {websiteSubItems.map((item) => {
+                      const Icon = item.icon;
+                      const isActive = activeSection === item.id;
+                      return (
+                        <button
+                          key={item.id}
+                          onClick={() => setActiveSection(item.id)}
+                          className={`w-full flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                            isActive
+                              ? "bg-[#6458AF] text-white"
+                              : "text-gray-600 hover:bg-gray-100"
+                          }`}
+                          data-testid={`menu-${item.id}`}
+                        >
+                          <Icon className="h-4 w-4" />
+                          {item.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Other menu items */}
               {menuItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = activeSection === item.id;
                 return (
                   <button
                     key={item.id}
-                    onClick={() => setActiveSection(item.id)}
+                    onClick={() => {
+                      setIsWebsiteExpanded(false);
+                      setActiveSection(item.id);
+                    }}
                     className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                       isActive
                         ? "bg-[#6458AF] text-white"
@@ -202,27 +262,111 @@ export default function WebsiteEditor() {
 
         {/* Main content area with sliding panels */}
         <div className="flex-1 relative overflow-hidden">
-          {/* Website preview panel */}
+          {/* Edit Content panel */}
           <div
-            className={`absolute inset-0 transition-transform duration-300 ease-in-out ${
-              activeSection === "website" ? "translate-x-0" : "translate-x-full"
+            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
+              activeSection === "edit-content" ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            {template ? (
-              <iframe
-                src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
-                className="w-full h-full border-0"
-                title="Website Preview"
-                data-testid="iframe-website-preview"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
-                  <p className="text-sm text-gray-600">Loading template...</p>
+            <div className="h-full overflow-y-auto p-8">
+              <div className="max-w-2xl space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">Edit Content</h3>
+                  <p className="text-sm text-gray-600 mb-6">Update your website content and information.</p>
+                </div>
+                
+                <div>
+                  <Label htmlFor="businessName">Business Name</Label>
+                  <Input
+                    id="businessName"
+                    value={formData.businessName}
+                    onChange={(e) => handleInputChange("businessName", e.target.value)}
+                    placeholder="Enter business name"
+                    data-testid="input-business-name"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="tagline">Tagline</Label>
+                  <Input
+                    id="tagline"
+                    value={formData.tagline}
+                    onChange={(e) => handleInputChange("tagline", e.target.value)}
+                    placeholder="Enter tagline"
+                    data-testid="input-tagline"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="aboutUs">About Us</Label>
+                  <Textarea
+                    id="aboutUs"
+                    value={formData.aboutUs}
+                    onChange={(e) => handleInputChange("aboutUs", e.target.value)}
+                    placeholder="Enter about us description"
+                    rows={6}
+                    data-testid="textarea-about-us"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="phone">Phone</Label>
+                  <Input
+                    id="phone"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    placeholder="(555) 123-4567"
+                    data-testid="input-phone"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    placeholder="contact@example.com"
+                    data-testid="input-email"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="address">Address</Label>
+                  <Textarea
+                    id="address"
+                    value={formData.address}
+                    onChange={(e) => handleInputChange("address", e.target.value)}
+                    placeholder="Enter address"
+                    rows={3}
+                    data-testid="textarea-address"
+                  />
                 </div>
               </div>
-            )}
+            </div>
+          </div>
+
+          {/* Colors panel */}
+          <div
+            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
+              activeSection === "colors" ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="h-full overflow-y-auto p-8">
+              <div className="max-w-2xl space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">Colors</h3>
+                  <p className="text-sm text-gray-600 mb-6">Customize your website colors and branding.</p>
+                </div>
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <p className="text-sm text-blue-800">
+                    Color customization coming soon! You'll be able to customize your website's color scheme, including primary colors, accent colors, and text colors.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Settings panel */}
@@ -232,16 +376,7 @@ export default function WebsiteEditor() {
             }`}
           >
             <div className="h-full overflow-y-auto p-8">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setActiveSection("website")}
-                className="mb-6"
-                data-testid="button-back-to-website"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Website
-              </Button>
+
               
               <div className="max-w-2xl space-y-6">
                 <div>
@@ -287,16 +422,7 @@ export default function WebsiteEditor() {
             }`}
           >
             <div className="h-full overflow-y-auto p-8">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setActiveSection("website")}
-                className="mb-6"
-                data-testid="button-back-to-website"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Website
-              </Button>
+
 
               <div className="max-w-2xl space-y-6">
                 <div>
@@ -320,16 +446,7 @@ export default function WebsiteEditor() {
             }`}
           >
             <div className="h-full overflow-y-auto p-8">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setActiveSection("website")}
-                className="mb-6"
-                data-testid="button-back-to-website"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Website
-              </Button>
+
 
               <div className="max-w-2xl space-y-6">
                 <div>

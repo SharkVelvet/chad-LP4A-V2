@@ -126,10 +126,21 @@ export default function TemplatePreviewPage() {
         const contentId = contentIdElement?.getAttribute('data-content-id') || null;
         const legacyField = legacyFieldElement?.getAttribute('data-field') || null;
         
+        // Auto-generate content ID if none exists
+        let finalContentId = legacyField || contentId;
+        if (!finalContentId) {
+          // Generate unique ID based on element's position and first few words
+          const words = text.trim().split(/\s+/).slice(0, 3).join('-').toLowerCase().replace(/[^a-z0-9-]/g, '');
+          const tagName = target.tagName.toLowerCase();
+          const siblings = Array.from(target.parentElement?.children || []);
+          const index = siblings.indexOf(target);
+          finalContentId = `auto.${tagName}.${index}.${words}`;
+        }
+        
         setEditingElement({
           type: 'text',
           content: text,
-          fieldName: legacyField || contentId || 'text'
+          fieldName: finalContentId
         });
         setEditValue(text);
         setIsEditModalOpen(true);

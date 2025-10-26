@@ -4171,9 +4171,9 @@ export default function TemplatePreview({ templateSlug, className = "", content,
                   
                   {/* Agent Info Card */}
                   <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-4 text-center min-w-max">
-                    <h3 className="font-semibold text-gray-900">Sarah Johnson</h3>
-                    <p className="text-sm text-gray-600">Licensed Life & Health Agent</p>
-                    <p className="text-xs text-red-600 mt-1">15+ Years Experience</p>
+                    <h3 className="font-semibold text-gray-900" data-content-id="template-7.hero.agent.name">Sarah Johnson</h3>
+                    <p className="text-sm text-gray-600" data-content-id="template-7.hero.agent.title">Licensed Life & Health Agent</p>
+                    <p className="text-xs text-red-600 mt-1" data-content-id="template-7.hero.agent.experience">15+ Years Experience</p>
                   </div>
                 </div>
               </div>
@@ -4195,20 +4195,20 @@ export default function TemplatePreview({ templateSlug, className = "", content,
             
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">15.2k</div>
-                <div className="text-gray-600">Life Policies Issued</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2" data-content-id="template-7.stats.stat1.number">15.2k</div>
+                <div className="text-gray-600" data-content-id="template-7.stats.stat1.label">Life Policies Issued</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">$2.8B</div>
-                <div className="text-gray-600">Coverage in Force</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2" data-content-id="template-7.stats.stat2.number">$2.8B</div>
+                <div className="text-gray-600" data-content-id="template-7.stats.stat2.label">Coverage in Force</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">24hrs</div>
-                <div className="text-gray-600">Avg. Claim Processing</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2" data-content-id="template-7.stats.stat3.number">24hrs</div>
+                <div className="text-gray-600" data-content-id="template-7.stats.stat3.label">Avg. Claim Processing</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2">98.7%</div>
-                <div className="text-gray-600">Claims Approved</div>
+                <div className="text-4xl sm:text-5xl font-bold text-red-600 mb-2" data-content-id="template-7.stats.stat4.number">98.7%</div>
+                <div className="text-gray-600" data-content-id="template-7.stats.stat4.label">Claims Approved</div>
               </div>
             </div>
           </div>
@@ -4218,10 +4218,10 @@ export default function TemplatePreview({ templateSlug, className = "", content,
         <div id="services" className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4" data-content-id="template-7.services.heading">
                 Life & Health Insurance Services
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto" data-content-id="template-7.services.description">
                 Comprehensive life and health insurance solutions designed to protect your family's financial future and well-being.
               </p>
             </div>
@@ -4231,24 +4231,24 @@ export default function TemplatePreview({ templateSlug, className = "", content,
                 <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
                   <Heart className="w-6 h-6 text-red-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Life Insurance</h3>
-                <p className="text-gray-600">Term and whole life insurance policies to secure your family's financial future and legacy.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3" data-content-id="template-7.services.service1.title">Life Insurance</h3>
+                <p className="text-gray-600" data-content-id="template-7.services.service1.description">Term and whole life insurance policies to secure your family's financial future and legacy.</p>
               </div>
               
               <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <Shield className="w-6 h-6 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Health Insurance</h3>
-                <p className="text-gray-600">Individual and family health plans with comprehensive medical coverage and prescription benefits.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3" data-content-id="template-7.services.service2.title">Health Insurance</h3>
+                <p className="text-gray-600" data-content-id="template-7.services.service2.description">Individual and family health plans with comprehensive medical coverage and prescription benefits.</p>
               </div>
               
               <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                   <Users className="w-6 h-6 text-green-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Family Protection</h3>
-                <p className="text-gray-600">Customized coverage plans that protect your entire family's health and financial security.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3" data-content-id="template-7.services.service3.title">Family Protection</h3>
+                <p className="text-gray-600" data-content-id="template-7.services.service3.description">Customized coverage plans that protect your entire family's health and financial security.</p>
               </div>
             </div>
           </div>
@@ -4259,13 +4259,13 @@ export default function TemplatePreview({ templateSlug, className = "", content,
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" data-content-id="template-7.about2.heading">
                   Life insurance is the cornerstone of financial security
                 </h2>
-                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                <p className="text-lg text-gray-600 mb-6 leading-relaxed" data-content-id="template-7.about2.paragraph1">
                   Just as you invest in your family's future, life and health insurance protect that investment. Our comprehensive coverage ensures your loved ones are financially secure, no matter what life brings.
                 </p>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed" data-content-id="template-7.about2.paragraph2">
                   With decades of experience and a commitment to personalized service, we help families across America build the protection they need for true peace of mind.
                 </p>
                 

@@ -34,6 +34,7 @@ import Contact from "@/pages/contact";
 import AdminSetup from "@/pages/admin-setup";
 import AdminLogin from "@/pages/admin-login";
 import AdminDashboard from "@/pages/admin-dashboard";
+import ChooseWebsitePurpose from "@/pages/choose-website-purpose";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -62,6 +63,7 @@ function Router() {
         <Route path="/step4-payment" component={Step4Payment} />
         <Route path="/step5-success" component={Step5Success} />
         <ProtectedRoute path="/dashboard" component={Dashboard} />
+        <ProtectedRoute path="/choose-purpose" component={ChooseWebsitePurpose} />
         <Route path="/ideas" component={Ideas} />
         <Route path="/internal-one" component={InternalOne} />
         <Route path="/get-clients" component={GetClients} />

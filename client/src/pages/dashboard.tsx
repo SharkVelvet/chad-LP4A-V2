@@ -248,11 +248,19 @@ export default function Dashboard() {
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">My Websites</h2>
                     <p className="text-gray-600">Manage and edit your websites</p>
                   </div>
+                  <Button 
+                    size="lg" 
+                    onClick={() => window.location.href = '/choose-purpose'}
+                    data-testid="button-create-website-main"
+                  >
+                    <Plus className="h-5 w-5 mr-2" />
+                    Create New Website
+                  </Button>
                   <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
                     <DialogTrigger asChild>
-                      <Button size="lg" data-testid="button-create-website-main">
+                      <Button size="lg" className="hidden" data-testid="button-create-website-dialog">
                         <Plus className="h-5 w-5 mr-2" />
-                        Create New Website
+                        Create New Website (Dialog)
                       </Button>
                     </DialogTrigger>
                     <DialogContent>
@@ -311,11 +319,18 @@ export default function Dashboard() {
                       <Globe className="h-16 w-16 text-gray-400 mx-auto mb-4" />
                       <h3 className="text-xl font-medium mb-2">No websites yet</h3>
                       <p className="text-gray-600 mb-6">Create your first website to get started</p>
+                      <Button 
+                        size="lg"
+                        onClick={() => window.location.href = '/choose-purpose'}
+                      >
+                        <Plus className="h-5 w-5 mr-2" />
+                        Create Your First Website
+                      </Button>
                       <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
                         <DialogTrigger asChild>
-                          <Button size="lg">
+                          <Button size="lg" className="hidden">
                             <Plus className="h-5 w-5 mr-2" />
-                            Create Your First Website
+                            Create Your First Website (Dialog)
                           </Button>
                         </DialogTrigger>
                         <DialogContent>

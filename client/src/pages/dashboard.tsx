@@ -395,7 +395,7 @@ export default function Dashboard() {
                           </div>
                           <CardHeader className="pb-3">
                             <CardTitle className="text-base truncate mb-1">{website.name}</CardTitle>
-                            <p className="text-xs text-blue-600 truncate mb-2">
+                            <p className="text-xs text-gray-600 truncate mb-2">
                               {website.domain 
                                 ? `https://${website.domain}` 
                                 : `Preview: https://preview.yoursite.com/${website.id}`

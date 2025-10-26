@@ -117,15 +117,12 @@ export default function WebsiteEditor() {
       
       if (event.data.type === 'CONTENT_EDIT') {
         const { field, value } = event.data;
-        console.log('Received edit message - Field:', field, 'Value:', value);
-        console.log('Current formData:', formData);
         
         // Build the updated content object
         const updatedContent = {
           ...formData,
           [field]: value
         };
-        console.log('Updated content to save:', updatedContent);
         
         // Update form data
         setFormData(updatedContent);

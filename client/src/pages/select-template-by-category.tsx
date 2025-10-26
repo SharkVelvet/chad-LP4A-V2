@@ -168,8 +168,23 @@ export default function SelectTemplateByCategory() {
             `}
           </style>
           
-          {/* Header with close button - 50px tall */}
-          <div className="absolute top-0 left-0 right-0 z-50 bg-white border-b px-3 flex items-center justify-end rounded-t-xl h-[50px]">
+          {/* Header with template selection - 50px tall */}
+          <div className="absolute top-0 left-0 right-0 z-50 bg-white border-b px-3 flex items-center justify-between rounded-t-xl h-[50px]">
+            <Button
+              size="sm"
+              className="bg-[#6458AF] hover:bg-[#5347A0]"
+              onClick={() => {
+                // TODO: Handle template selection
+                console.log('Selected template:', selectedTemplate);
+                setSelectedTemplate(null);
+              }}
+              data-testid="button-choose-template"
+            >
+              Choose this Template
+            </Button>
+            
+            <h3 className="text-sm font-semibold text-gray-900">{selectedTemplate?.name}</h3>
+            
             <Button
               variant="ghost"
               size="sm"

@@ -131,6 +131,7 @@ export default function TemplatePreviewPage() {
           fieldName = 'address';
         }
         
+        console.log('Editing field:', fieldName, 'Current text:', text);
         setEditingElement({
           type: 'text',
           content: text,
@@ -161,6 +162,7 @@ export default function TemplatePreviewPage() {
 
   const handleSaveEdit = () => {
     if (editingElement && window.parent) {
+      console.log('Saving edit - Field:', editingElement.fieldName, 'New value:', editValue);
       // Send message to parent window with the edit
       window.parent.postMessage({
         type: 'CONTENT_EDIT',

@@ -393,11 +393,11 @@ export default function Dashboard() {
                             </CardDescription>
                           </CardHeader>
                           <CardContent>
-                            <div className="grid grid-cols-3 gap-2">
+                            <div className="flex gap-2">
                               <Button 
                                 onClick={() => setSelectedWebsiteId(website.id)}
                                 variant="outline"
-                                className="w-full"
+                                size="sm"
                                 data-testid={`button-edit-${website.id}`}
                               >
                                 <Edit className="h-4 w-4 mr-1" />
@@ -409,7 +409,7 @@ export default function Dashboard() {
                                   // TODO: Navigate to settings tab
                                 }}
                                 variant="outline"
-                                className="w-full"
+                                size="sm"
                                 data-testid={`button-setup-${website.id}`}
                               >
                                 <Settings className="h-4 w-4 mr-1" />
@@ -418,7 +418,7 @@ export default function Dashboard() {
                               <Button 
                                 onClick={() => window.open(`/template-preview?websiteId=${website.id}`, '_blank')}
                                 variant="outline"
-                                className="w-full"
+                                size="sm"
                                 data-testid={`button-preview-${website.id}`}
                               >
                                 <Eye className="h-4 w-4 mr-1" />

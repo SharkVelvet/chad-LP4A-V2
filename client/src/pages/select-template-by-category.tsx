@@ -47,7 +47,7 @@ export default function SelectTemplateByCategory() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
-        <nav className="bg-white shadow-sm border-b border-border">
+        <nav className="bg-white shadow-sm border-b border-border sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <h1 className="text-xl font-semibold text-gray-900">Loading Templates...</h1>
@@ -68,7 +68,7 @@ export default function SelectTemplateByCategory() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b border-border">
+      <nav className="bg-white shadow-sm border-b border-border sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <h1 className="text-xl font-semibold text-gray-900">Select a Template</h1>

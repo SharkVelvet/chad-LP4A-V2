@@ -310,6 +310,7 @@ export default function WebsiteEditor() {
             ) : null}
             {template && (
               <iframe
+                key={JSON.stringify(website?.content)}
                 src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
                 className={`w-full h-full border-0 ${isIframeLoading ? 'invisible' : 'visible'}`}
                 title="Website Preview"
@@ -478,6 +479,7 @@ export default function WebsiteEditor() {
         <div className="absolute top-14 left-0 right-0 bottom-0 bg-gray-100">
           {template ? (
             <iframe
+              key={`edit-${JSON.stringify(website?.content)}`}
               src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&editMode=true&hideNav=true`}
               className="w-full h-full border-0"
               title="Edit Website"

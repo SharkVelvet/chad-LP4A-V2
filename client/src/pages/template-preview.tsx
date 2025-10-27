@@ -59,8 +59,8 @@ export default function TemplatePreviewPage() {
   } | null>(null);
   const [editValue, setEditValue] = useState("");
   const [buttonUrl, setButtonUrl] = useState("");
-  const [hoveredButton, setHoveredButton] = useState<HTMLElement | null>(null);
-  const [hoveredImage, setHoveredImage] = useState<HTMLElement | null>(null);
+  const [buttonElements, setButtonElements] = useState<HTMLElement[]>([]);
+  const [imageElements, setImageElements] = useState<HTMLElement[]>([]);
 
   const { data: templates, isLoading: templatesLoading } = useQuery<Template[]>({
     queryKey: ["/api/templates"],
@@ -209,32 +209,32 @@ export default function TemplatePreviewPage() {
     }
   }, [website?.content]);
 
-  // Add hover effects for buttons and images in edit mode
+  // Find all buttons and images when in edit mode
   useEffect(() => {
-    if (!editMode) return;
+    if (!editMode) {
+      setButtonElements([]);
+      setImageElements([]);
+      return;
+    }
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
+    // Find all buttons and links
+    const buttons = Array.from(document.querySelectorAll('button, a[href]')) as HTMLElement[];
+    setButtonElements(buttons.filter(b => !b.closest('.gear-icon-overlay')));
+    
+    // Find all images
+    const images = Array.from(document.querySelectorAll('img')) as HTMLElement[];
+    setImageElements(images.filter(img => !img.closest('.gear-icon-overlay')));
+    
+    // Re-scan every second in case content changes
+    const interval = setInterval(() => {
+      const newButtons = Array.from(document.querySelectorAll('button, a[href]')) as HTMLElement[];
+      setButtonElements(newButtons.filter(b => !b.closest('.gear-icon-overlay')));
       
-      // Check if hovering over a button
-      const button = target.closest('button, a[href]') as HTMLElement;
-      if (button && !button.closest('.gear-icon-overlay')) {
-        setHoveredButton(button);
-      } else if (!target.closest('.gear-icon-overlay')) {
-        setHoveredButton(null);
-      }
-      
-      // Check if hovering over an image
-      const image = target.closest('img') as HTMLElement;
-      if (image && !image.closest('.gear-icon-overlay')) {
-        setHoveredImage(image);
-      } else if (!target.closest('.gear-icon-overlay') && !target.closest('img')) {
-        setHoveredImage(null);
-      }
-    };
+      const newImages = Array.from(document.querySelectorAll('img')) as HTMLElement[];
+      setImageElements(newImages.filter(img => !img.closest('.gear-icon-overlay')));
+    }, 1000);
 
-    document.addEventListener('mousemove', handleMouseMove);
-    return () => document.removeEventListener('mousemove', handleMouseMove);
+    return () => clearInterval(interval);
   }, [editMode]);
 
   // Add click handlers for edit mode
@@ -536,49 +536,57 @@ export default function TemplatePreviewPage() {
         )}
       </div>
       
-      {/* Gear icon overlays for buttons - only show when modal is NOT open */}
-      {editMode && hoveredButton && !isEditModalOpen && (
-        <div
-          className="gear-icon-overlay fixed pointer-events-auto z-[9999]"
-          style={{
-            left: `${hoveredButton.getBoundingClientRect().right - 30}px`,
-            top: `${hoveredButton.getBoundingClientRect().top + 5}px`,
-          }}
-        >
-          <button
-            onClick={() => handleGearClick(hoveredButton, 'button')}
-            className="bg-black/80 text-white p-2 rounded-full hover:bg-black shadow-lg"
-            data-testid="gear-button"
+      {/* Gear icon overlays for ALL buttons - always visible in edit mode */}
+      {editMode && !isEditModalOpen && buttonElements.map((buttonEl, idx) => {
+        const rect = buttonEl.getBoundingClientRect();
+        return (
+          <div
+            key={`button-gear-${idx}`}
+            className="gear-icon-overlay fixed pointer-events-auto z-[9999]"
+            style={{
+              left: `${rect.right - 30}px`,
+              top: `${rect.top + 5}px`,
+            }}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-          </button>
-        </div>
-      )}
+            <button
+              onClick={() => handleGearClick(buttonEl, 'button')}
+              className="bg-black/80 text-white p-2 rounded-full hover:bg-black shadow-lg"
+              data-testid={`gear-button-${idx}`}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </button>
+          </div>
+        );
+      })}
       
-      {/* Gear icon overlays for images - only show when modal is NOT open */}
-      {editMode && hoveredImage && !isEditModalOpen && (
-        <div
-          className="gear-icon-overlay fixed pointer-events-auto z-[9999]"
-          style={{
-            left: `${hoveredImage.getBoundingClientRect().right - 30}px`,
-            top: `${hoveredImage.getBoundingClientRect().top + 5}px`,
-          }}
-        >
-          <button
-            onClick={() => handleGearClick(hoveredImage, 'image')}
-            className="bg-black/80 text-white p-2 rounded-full hover:bg-black shadow-lg"
-            data-testid="gear-image"
+      {/* Gear icon overlays for ALL images - always visible in edit mode */}
+      {editMode && !isEditModalOpen && imageElements.map((imgEl, idx) => {
+        const rect = imgEl.getBoundingClientRect();
+        return (
+          <div
+            key={`image-gear-${idx}`}
+            className="gear-icon-overlay fixed pointer-events-auto z-[9999]"
+            style={{
+              left: `${rect.right - 30}px`,
+              top: `${rect.top + 5}px`,
+            }}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-          </button>
-        </div>
-      )}
+            <button
+              onClick={() => handleGearClick(imgEl, 'image')}
+              className="bg-black/80 text-white p-2 rounded-full hover:bg-black shadow-lg"
+              data-testid={`gear-image-${idx}`}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </button>
+          </div>
+        );
+      })}
       
       {/* Edit Mode CSS */}
       {editMode && (

@@ -574,18 +574,257 @@ export default function WebsiteEditor() {
             }`}
           >
             <div className="h-full overflow-y-auto p-8">
-
-
-              <div className="max-w-2xl space-y-6">
+              <div className="max-w-6xl space-y-6">
                 <div>
-                  <h3 className="text-2xl font-bold mb-2">Analytics</h3>
+                  <h3 className="text-2xl font-bold mb-2">Analytics Dashboard</h3>
                   <p className="text-sm text-gray-600 mb-6">Track your website performance and visitor data.</p>
                 </div>
-                
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <p className="text-sm text-blue-800">
-                    Analytics dashboard coming soon! You'll see visitor stats, page views, and engagement metrics.
-                  </p>
+
+                {/* Overview Stats */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                    <p className="text-sm text-gray-600 mb-1">Total Visits</p>
+                    <p className="text-3xl font-bold">2,847</p>
+                    <p className="text-xs text-green-600 mt-1">↑ 12.5% from last month</p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                    <p className="text-sm text-gray-600 mb-1">Unique Visitors</p>
+                    <p className="text-3xl font-bold">1,924</p>
+                    <p className="text-xs text-green-600 mt-1">↑ 8.3% from last month</p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                    <p className="text-sm text-gray-600 mb-1">Pageviews</p>
+                    <p className="text-3xl font-bold">4,523</p>
+                    <p className="text-xs text-green-600 mt-1">↑ 15.2% from last month</p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                    <p className="text-sm text-gray-600 mb-1">Avg. Time on Page</p>
+                    <p className="text-3xl font-bold">2:34</p>
+                    <p className="text-xs text-red-600 mt-1">↓ 3.1% from last month</p>
+                  </div>
+                </div>
+
+                {/* Traffic Over Time */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold mb-4">Traffic Trends (Last 30 Days)</h4>
+                  <div className="h-64 flex items-end justify-between gap-2">
+                    {[45, 52, 48, 61, 55, 58, 62, 59, 67, 71, 68, 75, 82, 78, 85, 91, 88, 95, 92, 98, 105, 102, 110, 115, 108, 120, 125, 118, 130, 135].map((height, i) => (
+                      <div key={i} className="flex-1 bg-[#6458AF] rounded-t hover:bg-[#5347A0] transition-colors" style={{ height: `${(height / 135) * 100}%` }} title={`Day ${i + 1}: ${height} visits`}></div>
+                    ))}
+                  </div>
+                  <div className="flex justify-between mt-2 text-xs text-gray-500">
+                    <span>30 days ago</span>
+                    <span>Today</span>
+                  </div>
+                </div>
+
+                {/* Device & Browser Breakdown */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold mb-4">Device Types</h4>
+                    <div className="space-y-3">
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm text-gray-600">Desktop</span>
+                          <span className="text-sm font-semibold">58%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-[#6458AF] h-2 rounded-full" style={{ width: '58%' }}></div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm text-gray-600">Mobile</span>
+                          <span className="text-sm font-semibold">35%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-[#6458AF] h-2 rounded-full" style={{ width: '35%' }}></div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm text-gray-600">Tablet</span>
+                          <span className="text-sm font-semibold">7%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-[#6458AF] h-2 rounded-full" style={{ width: '7%' }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold mb-4">Top Browsers</h4>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">Chrome</span>
+                        <span className="text-sm font-semibold">1,245 (44%)</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">Safari</span>
+                        <span className="text-sm font-semibold">892 (31%)</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">Firefox</span>
+                        <span className="text-sm font-semibold">485 (17%)</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">Edge</span>
+                        <span className="text-sm font-semibold">225 (8%)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Traffic Sources */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold mb-4">Traffic Sources</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <p className="text-sm text-gray-600 mb-1">Organic Search</p>
+                      <p className="text-2xl font-bold">1,423</p>
+                      <p className="text-xs text-gray-500">50% of traffic</p>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <p className="text-sm text-gray-600 mb-1">Direct</p>
+                      <p className="text-2xl font-bold">854</p>
+                      <p className="text-xs text-gray-500">30% of traffic</p>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <p className="text-sm text-gray-600 mb-1">Social Media</p>
+                      <p className="text-2xl font-bold">285</p>
+                      <p className="text-xs text-gray-500">10% of traffic</p>
+                    </div>
+                  </div>
+                  
+                  <h5 className="font-medium mb-3">Top Referral Sources</h5>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center py-2 border-b">
+                      <span className="text-sm text-gray-600">google.com</span>
+                      <span className="text-sm font-semibold">1,245 visits</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b">
+                      <span className="text-sm text-gray-600">facebook.com</span>
+                      <span className="text-sm font-semibold">185 visits</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b">
+                      <span className="text-sm text-gray-600">linkedin.com</span>
+                      <span className="text-sm font-semibold">100 visits</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Search Keywords */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold mb-4">Top Keywords from Google</h4>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center py-2 border-b">
+                      <div>
+                        <span className="text-sm font-medium">insurance agent near me</span>
+                        <p className="text-xs text-gray-500">Avg. position: 4.2</p>
+                      </div>
+                      <span className="text-sm font-semibold">342 clicks</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b">
+                      <div>
+                        <span className="text-sm font-medium">life insurance quotes</span>
+                        <p className="text-xs text-gray-500">Avg. position: 6.8</p>
+                      </div>
+                      <span className="text-sm font-semibold">215 clicks</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b">
+                      <div>
+                        <span className="text-sm font-medium">health insurance plans</span>
+                        <p className="text-xs text-gray-500">Avg. position: 8.1</p>
+                      </div>
+                      <span className="text-sm font-semibold">158 clicks</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b">
+                      <div>
+                        <span className="text-sm font-medium">auto insurance coverage</span>
+                        <p className="text-xs text-gray-500">Avg. position: 5.3</p>
+                      </div>
+                      <span className="text-sm font-semibold">124 clicks</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Geography */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold mb-4">Visitor Geography</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h5 className="font-medium mb-3">Top Countries</h5>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">🇺🇸 United States</span>
+                          <span className="text-sm font-semibold">2,145 (75%)</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">🇨🇦 Canada</span>
+                          <span className="text-sm font-semibold">428 (15%)</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">🇬🇧 United Kingdom</span>
+                          <span className="text-sm font-semibold">142 (5%)</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">🇦🇺 Australia</span>
+                          <span className="text-sm font-semibold">85 (3%)</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h5 className="font-medium mb-3">Top Cities (US)</h5>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">New York, NY</span>
+                          <span className="text-sm font-semibold">345 visits</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">Los Angeles, CA</span>
+                          <span className="text-sm font-semibold">298 visits</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">Chicago, IL</span>
+                          <span className="text-sm font-semibold">215 visits</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">Houston, TX</span>
+                          <span className="text-sm font-semibold">187 visits</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Engagement Metrics */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold mb-4">Engagement Metrics</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <p className="text-sm text-gray-600 mb-2">Bounce Rate</p>
+                      <p className="text-3xl font-bold mb-1">42.3%</p>
+                      <p className="text-xs text-gray-500">Visitors who left after one page</p>
+                      <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
+                        <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '42.3%' }}></div>
+                      </div>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <p className="text-sm text-gray-600 mb-2">Exit Rate</p>
+                      <p className="text-3xl font-bold mb-1">38.7%</p>
+                      <p className="text-xs text-gray-500">Visitors who left from this page</p>
+                      <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
+                        <div className="bg-orange-500 h-2 rounded-full" style={{ width: '38.7%' }}></div>
+                      </div>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <p className="text-sm text-gray-600 mb-2">Pages per Visit</p>
+                      <p className="text-3xl font-bold mb-1">1.59</p>
+                      <p className="text-xs text-gray-500">Average pages viewed per session</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

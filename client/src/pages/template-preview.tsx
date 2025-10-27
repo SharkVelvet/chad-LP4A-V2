@@ -52,7 +52,7 @@ export default function TemplatePreviewPage() {
   // Edit mode state
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingElement, setEditingElement] = useState<{
-    type: 'text' | 'image' | 'button';
+    type: 'text' | 'image' | 'button' | 'section';
     content: string;
     fieldName: string;
     buttonUrl?: string;
@@ -311,16 +311,48 @@ export default function TemplatePreviewPage() {
         return;
       }
       
+      // Check if clicking on a section/container background (for background editing)
+      if (target.matches('section, article, div.section, header, footer, main')) {
+        // Only if we didn't click on a child element with content
+        const clickedOnBackground = target === e.target;
+        if (clickedOnBackground) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Generate ID for the section
+          const tagName = target.tagName.toLowerCase();
+          const siblings = Array.from(target.parentElement?.children || []);
+          const index = siblings.indexOf(target);
+          let pathParts = [tagName, index.toString()];
+          let parent = target.parentElement;
+          while (parent && parent !== document.body) {
+            const parentSiblings = Array.from(parent.parentElement?.children || []);
+            const parentIndex = parentSiblings.indexOf(parent);
+            pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
+            parent = parent.parentElement;
+          }
+          const contentId = `auto.${pathParts.join('.')}.background`;
+          
+          setEditingElement({
+            type: 'section',
+            content: '',
+            fieldName: contentId
+          });
+          setIsEditModalOpen(true);
+          return;
+        }
+      }
+      
       // First check if element or any parent has data-content-id
       let contentIdElement = target.hasAttribute('data-content-id') ? target : target.closest('[data-content-id]');
       
       // Or check for legacy data-field
       let legacyFieldElement = !contentIdElement ? (target.hasAttribute('data-field') ? target : target.closest('[data-field]')) : null;
       
-      // Or it's ANY element with text content (not just specific tags)
+      // Only allow editing on DIRECT text elements (p, h1-h6, span, etc.) - NOT containers
+      const isDirectTextElement = target.matches('p, h1, h2, h3, h4, h5, h6, span, li, td, th, label, div:not([class*="section"])');
       const hasText = target.textContent?.trim();
-      const isNotContainer = !target.matches('body, html, section, article, main, header, footer, nav');
-      const isTextElement = hasText && isNotContainer;
+      const isTextElement = hasText && isDirectTextElement;
       
       if (contentIdElement || legacyFieldElement || isTextElement) {
         e.preventDefault();
@@ -718,6 +750,43 @@ export default function TemplatePreviewPage() {
                     placeholder="Enter your text..."
                   />
                 )}
+              </>
+            ) : editingElement?.type === 'section' ? (
+              <>
+                <div className="text-xs text-gray-500 uppercase font-semibold mb-3">
+                  Section Background
+                </div>
+                <p className="text-sm text-gray-600 mb-4">
+                  Choose a background color or upload a background image for this section.
+                </p>
+                <div className="mb-4">
+                  <label className="text-xs text-gray-500 uppercase font-semibold">Background Color</label>
+                  <Input
+                    type="color"
+                    value={editValue || '#ffffff'}
+                    onChange={(e) => setEditValue(e.target.value)}
+                    className="w-full h-12 mt-1"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-500 uppercase font-semibold">Or Upload Background Image</label>
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageFileChange}
+                    className="w-full mt-1"
+                  />
+                  {imagePreview && (
+                    <div className="mt-2">
+                      <div className="text-xs text-gray-500 uppercase font-semibold mb-2">Preview</div>
+                      <img 
+                        src={imagePreview} 
+                        alt="Background Preview" 
+                        className="max-w-full h-auto rounded border max-h-32 object-cover mx-auto" 
+                      />
+                    </div>
+                  )}
+                </div>
               </>
             ) : (
               <>

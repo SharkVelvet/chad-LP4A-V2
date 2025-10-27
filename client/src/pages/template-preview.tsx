@@ -115,13 +115,24 @@ export default function TemplatePreviewPage() {
 
   // Auto-generate IDs and apply saved content
   useEffect(() => {
-    // First, auto-generate IDs for all editable elements that don't have them
-    const editableElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span');
-    editableElements.forEach((element) => {
+    // First, auto-generate IDs for ALL elements with text content
+    const allElements = document.querySelectorAll('*');
+    allElements.forEach((element) => {
       const htmlElement = element as HTMLElement;
       
-      // Skip if already has an ID or is inside a button/link
-      if (htmlElement.hasAttribute('data-content-id') || htmlElement.closest('button, a')) {
+      // Skip if already has an ID, is inside a button/link, or has no text
+      if (htmlElement.hasAttribute('data-content-id') || 
+          htmlElement.closest('button, a, script, style, svg') ||
+          !htmlElement.textContent?.trim()) {
+        return;
+      }
+      
+      // Skip if element only contains child elements with text (not direct text)
+      // This prevents parent containers from being editable when children should be
+      const hasDirectText = Array.from(htmlElement.childNodes).some(
+        node => node.nodeType === Node.TEXT_NODE && node.textContent?.trim()
+      );
+      if (!hasDirectText) {
         return;
       }
       
@@ -187,8 +198,10 @@ export default function TemplatePreviewPage() {
       // Or check for legacy data-field
       let legacyFieldElement = !contentIdElement ? (target.hasAttribute('data-field') ? target : target.closest('[data-field]')) : null;
       
-      // Or it's a text element (headings, paragraphs, spans)
-      const isTextElement = target.matches('h1, h2, h3, h4, h5, h6, p, span');
+      // Or it's ANY element with text content (not just specific tags)
+      const hasText = target.textContent?.trim();
+      const isNotContainer = !target.matches('body, html, section, article, main, header, footer, nav');
+      const isTextElement = hasText && isNotContainer;
       
       if (contentIdElement || legacyFieldElement || isTextElement) {
         e.preventDefault();

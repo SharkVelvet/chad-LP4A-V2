@@ -209,7 +209,7 @@ export default function WebsiteEditor() {
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       {/* Top header */}
-      <div className="bg-white border-b h-14 flex items-center justify-between px-4 flex-shrink-0">
+      <div className="bg-white border-b h-14 flex items-center px-4 flex-shrink-0">
         <div className="flex items-center gap-3">
           <Button
             variant="ghost"
@@ -222,18 +222,6 @@ export default function WebsiteEditor() {
           <span className="text-sm text-gray-500">|</span>
           <h1 className="text-sm font-semibold">{website.name}</h1>
         </div>
-        
-        <Button
-          size="sm"
-          onClick={handleSave}
-          disabled={saveContentMutation.isPending}
-          variant="outline"
-          className="border-2 border-black text-black hover:bg-gray-100 bg-white"
-          data-testid="button-save"
-        >
-          <Save className="h-4 w-4 mr-2" />
-          {saveContentMutation.isPending ? "Saving..." : "Save"}
-        </Button>
       </div>
 
       {/* Main content area */}

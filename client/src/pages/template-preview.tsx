@@ -343,18 +343,19 @@ export default function TemplatePreviewPage() {
         }
       }
       
-      // First check if element or any parent has data-content-id
-      let contentIdElement = target.hasAttribute('data-content-id') ? target : target.closest('[data-content-id]');
+      // Check if element has explicit data-content-id or data-field
+      let contentIdElement = target.hasAttribute('data-content-id') ? target : null;
+      let legacyFieldElement = target.hasAttribute('data-field') ? target : null;
       
-      // Or check for legacy data-field
-      let legacyFieldElement = !contentIdElement ? (target.hasAttribute('data-field') ? target : target.closest('[data-field]')) : null;
-      
-      // Only allow editing on DIRECT text elements (p, h1-h6, span, etc.) - NOT containers
-      const isDirectTextElement = target.matches('p, h1, h2, h3, h4, h5, h6, span, li, td, th, label, div:not([class*="section"])');
+      // Only allow editing on SPECIFIC text elements that are actual text containers
+      // NOT generic divs, sections, or containers
+      const isTextElement = target.matches('p, h1, h2, h3, h4, h5, h6, span:not(.icon), li, td, th, label, a:not([href])');
       const hasText = target.textContent?.trim();
-      const isTextElement = hasText && isDirectTextElement;
       
-      if (contentIdElement || legacyFieldElement || isTextElement) {
+      // Only proceed if:
+      // 1. Element has explicit content ID/field, OR
+      // 2. Element is a specific text element (not a generic container)
+      if ((contentIdElement || legacyFieldElement) || (isTextElement && hasText)) {
         e.preventDefault();
         e.stopPropagation();
         
@@ -364,15 +365,13 @@ export default function TemplatePreviewPage() {
         const contentId = contentIdElement?.getAttribute('data-content-id') || null;
         const legacyField = legacyFieldElement?.getAttribute('data-field') || null;
         
-        // Auto-generate content ID if none exists using SAME method as page load
+        // Auto-generate content ID if none exists
         let finalContentId = legacyField || contentId;
         if (!finalContentId) {
-          // Generate stable ID based ONLY on position (same as auto-generation)
           const tagName = target.tagName.toLowerCase();
           const siblings = Array.from(target.parentElement?.children || []);
           const index = siblings.indexOf(target);
           
-          // Create FULL path to element for uniqueness (traverse all the way to body)
           let pathParts = [tagName, index.toString()];
           let parent = target.parentElement;
           while (parent && parent !== document.body) {
@@ -392,6 +391,7 @@ export default function TemplatePreviewPage() {
         });
         setEditValue(text);
         setIsEditModalOpen(true);
+        return;
       }
       
       // Check if it's an image

@@ -52,11 +52,15 @@ export default function TemplatePreviewPage() {
   // Edit mode state
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingElement, setEditingElement] = useState<{
-    type: 'text' | 'image';
+    type: 'text' | 'image' | 'button';
     content: string;
     fieldName: string;
+    buttonUrl?: string;
   } | null>(null);
   const [editValue, setEditValue] = useState("");
+  const [buttonUrl, setButtonUrl] = useState("");
+  const [hoveredButton, setHoveredButton] = useState<HTMLElement | null>(null);
+  const [hoveredImage, setHoveredImage] = useState<HTMLElement | null>(null);
 
   const { data: templates, isLoading: templatesLoading } = useQuery<Template[]>({
     queryKey: ["/api/templates"],
@@ -177,8 +181,61 @@ export default function TemplatePreviewPage() {
           }
         }
       });
+      
+      // Also apply button URLs
+      const buttons = document.querySelectorAll('button, a[href]');
+      buttons.forEach((button) => {
+        // Generate ID for this button same way as click handler
+        const tagName = button.tagName.toLowerCase();
+        const siblings = Array.from(button.parentElement?.children || []);
+        const index = siblings.indexOf(button);
+        let pathParts = [tagName, index.toString()];
+        let parent = button.parentElement;
+        let depth = 0;
+        while (parent && parent !== document.body && depth < 3) {
+          const parentSiblings = Array.from(parent.parentElement?.children || []);
+          const parentIndex = parentSiblings.indexOf(parent);
+          pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
+          parent = parent.parentElement;
+          depth++;
+        }
+        const buttonId = `auto.${pathParts.join('.')}`;
+        const urlKey = `${buttonId}.url`;
+        
+        if (flexibleContent[urlKey]) {
+          (button as HTMLAnchorElement).href = flexibleContent[urlKey];
+        }
+      });
     }
   }, [website?.content]);
+
+  // Add hover effects for buttons and images in edit mode
+  useEffect(() => {
+    if (!editMode) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      
+      // Check if hovering over a button
+      const button = target.closest('button, a[href]') as HTMLElement;
+      if (button && !button.closest('.gear-icon-overlay')) {
+        setHoveredButton(button);
+      } else if (!target.closest('.gear-icon-overlay')) {
+        setHoveredButton(null);
+      }
+      
+      // Check if hovering over an image
+      const image = target.closest('img') as HTMLElement;
+      if (image && !image.closest('.gear-icon-overlay')) {
+        setHoveredImage(image);
+      } else if (!target.closest('.gear-icon-overlay') && !target.closest('img')) {
+        setHoveredImage(null);
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => document.removeEventListener('mousemove', handleMouseMove);
+  }, [editMode]);
 
   // Add click handlers for edit mode
   useEffect(() => {
@@ -187,7 +244,12 @@ export default function TemplatePreviewPage() {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       
-      // Skip buttons and links - they shouldn't be editable
+      // Check if clicking on a gear icon
+      if (target.closest('.gear-icon-overlay')) {
+        return; // Let the gear icon handler deal with it
+      }
+      
+      // Skip buttons and links - they have gear icons instead
       if (target.matches('button, a')) {
         return;
       }
@@ -264,18 +326,95 @@ export default function TemplatePreviewPage() {
     return () => document.removeEventListener('click', handleClick, true);
   }, [editMode]);
 
+  const handleGearClick = (element: HTMLElement, type: 'button' | 'image') => {
+    if (type === 'button') {
+      const buttonElement = element as HTMLButtonElement | HTMLAnchorElement;
+      const text = buttonElement.textContent || '';
+      const url = (buttonElement as HTMLAnchorElement).href || '';
+      
+      // Generate ID for the button
+      const tagName = buttonElement.tagName.toLowerCase();
+      const siblings = Array.from(buttonElement.parentElement?.children || []);
+      const index = siblings.indexOf(buttonElement);
+      let pathParts = [tagName, index.toString()];
+      let parent = buttonElement.parentElement;
+      let depth = 0;
+      while (parent && parent !== document.body && depth < 3) {
+        const parentSiblings = Array.from(parent.parentElement?.children || []);
+        const parentIndex = parentSiblings.indexOf(parent);
+        pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
+        parent = parent.parentElement;
+        depth++;
+      }
+      const contentId = `auto.${pathParts.join('.')}`;
+      
+      setEditingElement({
+        type: 'button',
+        content: text,
+        fieldName: contentId,
+        buttonUrl: url
+      });
+      setEditValue(text);
+      setButtonUrl(url);
+      setIsEditModalOpen(true);
+    } else if (type === 'image') {
+      const imgElement = element as HTMLImageElement;
+      const src = imgElement.src || '';
+      
+      // Generate ID for the image
+      const tagName = imgElement.tagName.toLowerCase();
+      const siblings = Array.from(imgElement.parentElement?.children || []);
+      const index = siblings.indexOf(imgElement);
+      let pathParts = [tagName, index.toString()];
+      let parent = imgElement.parentElement;
+      let depth = 0;
+      while (parent && parent !== document.body && depth < 3) {
+        const parentSiblings = Array.from(parent.parentElement?.children || []);
+        const parentIndex = parentSiblings.indexOf(parent);
+        pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
+        parent = parent.parentElement;
+        depth++;
+      }
+      const contentId = `auto.${pathParts.join('.')}`;
+      
+      setEditingElement({
+        type: 'image',
+        content: src,
+        fieldName: contentId
+      });
+      setEditValue(src);
+      setIsEditModalOpen(true);
+    }
+  };
+
   const handleSaveEdit = () => {
     if (editingElement && window.parent) {
-      // Check if this is a legacy field or new content ID
-      const isLegacyField = ['businessName', 'tagline', 'aboutUs', 'phone', 'email', 'address'].includes(editingElement.fieldName);
-      
-      // Send message to parent window with the edit
-      window.parent.postMessage({
-        type: 'CONTENT_EDIT',
-        field: isLegacyField ? editingElement.fieldName : null,
-        contentId: !isLegacyField ? editingElement.fieldName : null,
-        value: editValue
-      }, window.location.origin);
+      if (editingElement.type === 'button') {
+        // Save button text
+        window.parent.postMessage({
+          type: 'CONTENT_EDIT',
+          contentId: editingElement.fieldName,
+          value: editValue
+        }, window.location.origin);
+        
+        // Save button URL
+        window.parent.postMessage({
+          type: 'CONTENT_EDIT',
+          contentId: `${editingElement.fieldName}.url`,
+          value: buttonUrl
+        }, window.location.origin);
+      } else {
+        // Check if this is a legacy field or new content ID
+        const isLegacyField = ['businessName', 'tagline', 'aboutUs', 'phone', 'email', 'address'].includes(editingElement.fieldName);
+        
+        // Send message to parent window with the edit
+        window.parent.postMessage({
+          type: 'CONTENT_EDIT',
+          field: isLegacyField ? editingElement.fieldName : null,
+          contentId: !isLegacyField ? editingElement.fieldName : null,
+          value: editValue
+        }, window.location.origin);
+      }
     }
     setIsEditModalOpen(false);
     setEditingElement(null);
@@ -397,6 +536,50 @@ export default function TemplatePreviewPage() {
         )}
       </div>
       
+      {/* Gear icon overlays for buttons */}
+      {editMode && hoveredButton && (
+        <div
+          className="gear-icon-overlay fixed pointer-events-auto z-[9999]"
+          style={{
+            left: `${hoveredButton.getBoundingClientRect().right - 30}px`,
+            top: `${hoveredButton.getBoundingClientRect().top + 5}px`,
+          }}
+        >
+          <button
+            onClick={() => handleGearClick(hoveredButton, 'button')}
+            className="bg-black/80 text-white p-2 rounded-full hover:bg-black shadow-lg"
+            data-testid="gear-button"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+        </div>
+      )}
+      
+      {/* Gear icon overlays for images */}
+      {editMode && hoveredImage && (
+        <div
+          className="gear-icon-overlay fixed pointer-events-auto z-[9999]"
+          style={{
+            left: `${hoveredImage.getBoundingClientRect().right - 30}px`,
+            top: `${hoveredImage.getBoundingClientRect().top + 5}px`,
+          }}
+        >
+          <button
+            onClick={() => handleGearClick(hoveredImage, 'image')}
+            className="bg-black/80 text-white p-2 rounded-full hover:bg-black shadow-lg"
+            data-testid="gear-image"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+        </div>
+      )}
+      
       {/* Edit Mode CSS */}
       {editMode && (
         <style>{`
@@ -427,7 +610,28 @@ export default function TemplatePreviewPage() {
           </DialogHeader>
           
           <div className="space-y-4 py-4">
-            {editingElement?.type === 'text' ? (
+            {editingElement?.type === 'button' ? (
+              <>
+                <div>
+                  <label className="text-xs text-gray-500 uppercase font-semibold">Button Text</label>
+                  <Input
+                    value={editValue}
+                    onChange={(e) => setEditValue(e.target.value)}
+                    className="w-full mt-1"
+                    placeholder="Enter button text..."
+                  />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-500 uppercase font-semibold">Button URL</label>
+                  <Input
+                    value={buttonUrl}
+                    onChange={(e) => setButtonUrl(e.target.value)}
+                    className="w-full mt-1"
+                    placeholder="Enter URL (e.g., https://example.com)..."
+                  />
+                </div>
+              </>
+            ) : editingElement?.type === 'text' ? (
               <>
                 <div className="text-xs text-gray-500 uppercase font-semibold">
                   Field: {editingElement.fieldName}

@@ -120,12 +120,14 @@ export default function WebsiteEditor() {
       // Refetch website data
       await queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
       
-      // Tell iframe to reload content without full page refresh
+      // Force iframe to reload to show updated content
       const iframe = document.querySelector('iframe[data-testid="iframe-edit-mode"]') as HTMLIFrameElement;
-      console.log('[Website Editor] Found iframe:', !!iframe, 'with contentWindow:', !!iframe?.contentWindow);
-      if (iframe?.contentWindow) {
-        console.log('[Website Editor] Sending RELOAD_CONTENT message to iframe');
-        iframe.contentWindow.postMessage({ type: 'RELOAD_CONTENT' }, window.location.origin);
+      console.log('[Website Editor] Found iframe:', !!iframe);
+      if (iframe) {
+        console.log('[Website Editor] Reloading iframe to show updated content');
+        // Force reload by setting src to itself
+        const currentSrc = iframe.src;
+        iframe.src = currentSrc;
       }
       
       toast({

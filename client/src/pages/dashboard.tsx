@@ -27,6 +27,8 @@ type Website = {
   subscriptionPlan: string;
   subscriptionStatus: string;
   isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
   content?: WebsiteContent;
 };
 
@@ -398,31 +400,24 @@ export default function Dashboard() {
                             />
                           </div>
                           <CardHeader className="pb-3">
-                            <CardTitle className="text-base truncate mb-1">{website.name}</CardTitle>
-                            <p className="text-xs text-gray-600 truncate mb-2">
+                            <CardTitle className="text-base truncate mb-2">{website.name}</CardTitle>
+                            <p className="text-xs text-gray-600 truncate mb-3">
                               {website.domain 
                                 ? `https://${website.domain}` 
                                 : `Preview: https://preview.yoursite.com/${website.id}`
                               }
                             </p>
-                            <div className="space-y-1 text-xs">
+                            <div className="space-y-2 text-xs">
                               <div className="flex items-center gap-1.5">
-                                <span className="text-gray-500 min-w-fit">Subscription:</span>
-                                <Badge 
-                                  variant={website.isActive ? "default" : "secondary"}
-                                  className={`text-xs h-5 ${
-                                    website.subscriptionStatus === 'active' ? "bg-green-600" : 
-                                    website.subscriptionStatus === 'paused' ? "bg-amber-500" : 
-                                    "bg-gray-500"
-                                  }`}
-                                >
-                                  {website.subscriptionStatus === 'active' ? 'Active' : 
-                                   website.subscriptionStatus === 'paused' ? 'Paused' : 
-                                   'Disconnected'}
-                                </Badge>
+                                <span className="text-gray-500 min-w-[85px]">Start Date:</span>
+                                <span className="text-gray-700">{new Date(website.createdAt).toLocaleDateString()}</span>
                               </div>
                               <div className="flex items-center gap-1.5">
-                                <span className="text-gray-500 min-w-fit">Site Status:</span>
+                                <span className="text-gray-500 min-w-[85px]">Last Modified:</span>
+                                <span className="text-gray-700">{new Date(website.updatedAt).toLocaleDateString()}</span>
+                              </div>
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-gray-500 min-w-[85px]">Site Status:</span>
                                 <Badge 
                                   variant={website.content?.isPublished ? "default" : "outline"} 
                                   className={`text-xs h-5 ${website.content?.isPublished ? "bg-blue-600" : "bg-amber-100 text-amber-800 border-amber-300"}`}

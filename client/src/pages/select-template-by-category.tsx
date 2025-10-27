@@ -152,14 +152,14 @@ export default function SelectTemplateByCategory() {
                 }}
                 data-testid={`template-card-${template.id}`}
               >
-                <div className="relative overflow-hidden bg-gray-100" style={{ paddingBottom: '140%' }}>
+                <div className="relative overflow-hidden bg-white border-b" style={{ height: '400px' }}>
                   <img
                     src={template.previewImage}
                     alt={template.name}
-                    className="absolute inset-0 w-full h-full object-contain bg-white group-hover:scale-[1.02] transition-transform duration-200"
+                    className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-200"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-200" />
                 </div>
                 <CardHeader>
                   <CardTitle className="text-lg">{template.name}</CardTitle>

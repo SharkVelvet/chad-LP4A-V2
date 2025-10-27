@@ -15,7 +15,7 @@ if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
 }
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
-const CheckoutForm = ({ templateId, onSuccess }: { templateId: string; onSuccess: () => void }) => {
+const CheckoutForm = ({ templateId, onSuccess }: { templateId: string; onSuccess: (websiteId: number) => void }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
@@ -34,7 +34,7 @@ const CheckoutForm = ({ templateId, onSuccess }: { templateId: string; onSuccess
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-          return_url: `${window.location.origin}/step5-success?websiteCreated=true`,
+          return_url: `${window.location.origin}/payment-processing?templateId=${templateId}`,
         },
       });
 
@@ -45,9 +45,9 @@ const CheckoutForm = ({ templateId, onSuccess }: { templateId: string; onSuccess
           variant: "destructive",
         });
         setIsProcessing(false);
-      } else {
-        onSuccess();
       }
+      // If no error and not redirected, payment succeeded
+      // The return_url will handle creating the website
     } catch (err) {
       toast({
         title: "Error",
@@ -81,6 +81,9 @@ export default function WebsiteCheckout() {
   const [clientSecret, setClientSecret] = useState("");
   const { toast } = useToast();
 
+  // Fetch user data
+  const { data: user } = useQuery<any>({ queryKey: ['/api/user'] });
+
   // Fetch template details
   const { data: templates = [] } = useQuery<any[]>({
     queryKey: ["/api/templates"],
@@ -99,19 +102,30 @@ export default function WebsiteCheckout() {
   }, []);
 
   useEffect(() => {
-    if (!templateId) {
+    if (!templateId || !templates.length) {
+      return;
+    }
+
+    // Validate template exists
+    if (!selectedTemplate) {
       toast({
-        title: "Error",
-        description: "No template selected. Please go back and select a template.",
+        title: "Invalid Template",
+        description: "The selected template could not be found. Please go back and select a valid template.",
         variant: "destructive",
       });
+      setTimeout(() => setLocation('/choose-purpose'), 2000);
+      return;
+    }
+
+    // Wait for user data to load
+    if (!user || !user.email) {
       return;
     }
 
     // Create payment intent for website subscription
     apiRequest("POST", "/api/create-subscription", {
-      email: "temp@example.com", // Temporary, will be replaced after auth
-      customerName: "Website Customer",
+      email: user.email,
+      customerName: user.username || user.email,
       contractAgreed: true,
       disclaimerAgreed: true,
     })
@@ -131,7 +145,7 @@ export default function WebsiteCheckout() {
         });
         console.error("Payment initialization error:", error);
       });
-  }, [templateId]);
+  }, [templateId, templates, user, selectedTemplate]);
 
   if (!clientSecret) {
     return (
@@ -269,11 +283,12 @@ export default function WebsiteCheckout() {
                 <Elements stripe={stripePromise} options={{ clientSecret }}>
                   <CheckoutForm 
                     templateId={templateId} 
-                    onSuccess={() => {
+                    onSuccess={(websiteId: number) => {
                       toast({
                         title: "Payment Successful!",
                         description: "Your website is being created...",
                       });
+                      setLocation(`/editor/${websiteId}`);
                     }} 
                   />
                 </Elements>

@@ -59,7 +59,6 @@ export default function TemplatePreviewPage() {
   } | null>(null);
   const [editValue, setEditValue] = useState("");
   const [buttonUrl, setButtonUrl] = useState("");
-  const [isClosing, setIsClosing] = useState(false);
 
   const { data: templates, isLoading: templatesLoading } = useQuery<Template[]>({
     queryKey: ["/api/templates"],
@@ -216,8 +215,9 @@ export default function TemplatePreviewPage() {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       
-      // Don't process clicks if modal is closing
-      if (isClosing) {
+      // Ignore clicks that originated from within the edit modal (portaled content)
+      const path = e.composedPath();
+      if (path.some((el) => el instanceof HTMLElement && el.hasAttribute('data-edit-modal'))) {
         return;
       }
       
@@ -363,7 +363,7 @@ export default function TemplatePreviewPage() {
 
     document.addEventListener('click', handleClick, true);
     return () => document.removeEventListener('click', handleClick, true);
-  }, [editMode, isClosing]);
+  }, [editMode]);
 
   const handleGearClick = (element: HTMLElement, type: 'button' | 'image') => {
     if (type === 'button') {
@@ -456,35 +456,19 @@ export default function TemplatePreviewPage() {
       }
     }
     
-    // Set closing flag to prevent immediate re-opening
-    setIsClosing(true);
-    
     // Close modal and clear state
     setIsEditModalOpen(false);
     setEditingElement(null);
     setEditValue("");
     setButtonUrl("");
-    
-    // Clear closing flag after a short delay
-    setTimeout(() => {
-      setIsClosing(false);
-    }, 300);
   };
 
   const handleCancelEdit = () => {
-    // Set closing flag to prevent immediate re-opening
-    setIsClosing(true);
-    
     // Just close modal and clear state, no saving
     setIsEditModalOpen(false);
     setEditingElement(null);
     setEditValue("");
     setButtonUrl("");
-    
-    // Clear closing flag after a short delay
-    setTimeout(() => {
-      setIsClosing(false);
-    }, 300);
   };
 
   // Show loading state while templates are being fetched
@@ -634,7 +618,7 @@ export default function TemplatePreviewPage() {
           handleCancelEdit();
         }
       }}>
-        <DialogContent className="sm:max-w-[500px]" onClick={(e) => e.stopPropagation()}>
+        <DialogContent className="sm:max-w-[500px]" data-edit-modal onClick={(e) => e.stopPropagation()}>
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Edit2 className="h-5 w-5" />

@@ -148,8 +148,11 @@ export default function WebsiteEditor() {
       if (event.data.type === 'CONTENT_EDIT') {
         const { field, value, contentId } = event.data;
         
+        console.log('[Website Editor] Received content edit:', { field, contentId, valueLength: value?.length });
+        
         // Use flexible content ID if provided, otherwise fall back to legacy field
         if (contentId) {
+          console.log('[Website Editor] Saving flexible content:', contentId);
           saveFlexibleContentMutation.mutate({ contentId, value });
         } else if (field) {
           // Legacy support - save using old method

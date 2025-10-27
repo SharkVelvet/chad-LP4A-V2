@@ -172,6 +172,7 @@ export default function TemplatePreviewPage() {
           
           // Handle images
           if (htmlElement.tagName === 'IMG') {
+            console.log('[Template Preview] Setting image:', contentId, 'to:', flexibleContent[contentId].substring(0, 50) + '...');
             (htmlElement as HTMLImageElement).src = flexibleContent[contentId];
           }
           // Check if element has child elements (like spans for styling)
@@ -479,6 +480,7 @@ export default function TemplatePreviewPage() {
       if (editingElement.type === 'image') {
         // For images, use the preview (base64) if available, otherwise the URL
         const imageValue = imagePreview || editValue;
+        console.log('[Template Preview] Sending image update:', editingElement.fieldName, 'value length:', imageValue.length);
         window.parent.postMessage({
           type: 'CONTENT_EDIT',
           contentId: editingElement.fieldName,

@@ -199,15 +199,27 @@ export default function TemplatePreviewPage() {
         const contentId = contentIdElement?.getAttribute('data-content-id') || null;
         const legacyField = legacyFieldElement?.getAttribute('data-field') || null;
         
-        // Auto-generate content ID if none exists
+        // Auto-generate content ID if none exists using SAME method as page load
         let finalContentId = legacyField || contentId;
         if (!finalContentId) {
-          // Generate unique ID based on element's position and first few words
-          const words = text.trim().split(/\s+/).slice(0, 3).join('-').toLowerCase().replace(/[^a-z0-9-]/g, '');
+          // Generate stable ID based ONLY on position (same as auto-generation)
           const tagName = target.tagName.toLowerCase();
           const siblings = Array.from(target.parentElement?.children || []);
           const index = siblings.indexOf(target);
-          finalContentId = `auto.${tagName}.${index}.${words}`;
+          
+          // Create path to element for uniqueness (same as auto-generation)
+          let pathParts = [tagName, index.toString()];
+          let parent = target.parentElement;
+          let depth = 0;
+          while (parent && parent !== document.body && depth < 3) {
+            const parentSiblings = Array.from(parent.parentElement?.children || []);
+            const parentIndex = parentSiblings.indexOf(parent);
+            pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
+            parent = parent.parentElement;
+            depth++;
+          }
+          
+          finalContentId = `auto.${pathParts.join('.')}`;
         }
         
         setEditingElement({

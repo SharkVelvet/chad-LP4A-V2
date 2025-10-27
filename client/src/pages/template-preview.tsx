@@ -214,6 +214,20 @@ export default function TemplatePreviewPage() {
     }
   }, [website?.content]);
 
+  // Listen for reload message from parent
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return;
+      
+      if (event.data.type === 'RELOAD_CONTENT') {
+        // Refetch website data to get updated content
+        queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [websiteId]);
 
   // Add click handlers for edit mode
   useEffect(() => {

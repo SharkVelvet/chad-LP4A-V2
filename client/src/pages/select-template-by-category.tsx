@@ -152,11 +152,11 @@ export default function SelectTemplateByCategory() {
                 }}
                 data-testid={`template-card-${template.id}`}
               >
-                <div className="aspect-video relative overflow-hidden bg-gray-100">
+                <div className="relative overflow-hidden bg-gray-100" style={{ paddingBottom: '140%' }}>
                   <img
                     src={template.previewImage}
                     alt={template.name}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-200"
+                    className="absolute inset-0 w-full h-full object-contain bg-white group-hover:scale-[1.02] transition-transform duration-200"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200" />

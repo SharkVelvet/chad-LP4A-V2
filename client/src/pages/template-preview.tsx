@@ -148,20 +148,21 @@ export default function TemplatePreviewPage() {
     
     // Then apply saved content to all elements with IDs
     if (website?.content) {
-      const content = website.content as Record<string, any>;
+      // The flexible content is in website.content.content (JSONB field)
+      const flexibleContent = (website.content as any).content as Record<string, string> || {};
       const elements = document.querySelectorAll('[data-content-id]');
       
       elements.forEach((element) => {
         const contentId = element.getAttribute('data-content-id');
-        if (contentId && content[contentId]) {
+        if (contentId && flexibleContent[contentId]) {
           const htmlElement = element as HTMLElement;
           // Check if element has child elements (like spans for styling)
           if (htmlElement.children.length > 0) {
             // Preserve HTML structure - update innerHTML
-            htmlElement.innerHTML = content[contentId];
+            htmlElement.innerHTML = flexibleContent[contentId];
           } else {
             // Simple text element - update textContent
-            htmlElement.textContent = content[contentId];
+            htmlElement.textContent = flexibleContent[contentId];
           }
         }
       });

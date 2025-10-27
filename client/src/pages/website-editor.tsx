@@ -798,34 +798,6 @@ export default function WebsiteEditor() {
                     </div>
                   </div>
                 </div>
-
-                {/* Engagement Metrics */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold mb-4">Engagement Metrics</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <p className="text-sm text-gray-600 mb-2">Bounce Rate</p>
-                      <p className="text-3xl font-bold mb-1">42.3%</p>
-                      <p className="text-xs text-gray-500">Visitors who left after one page</p>
-                      <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
-                        <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '42.3%' }}></div>
-                      </div>
-                    </div>
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <p className="text-sm text-gray-600 mb-2">Exit Rate</p>
-                      <p className="text-3xl font-bold mb-1">38.7%</p>
-                      <p className="text-xs text-gray-500">Visitors who left from this page</p>
-                      <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
-                        <div className="bg-orange-500 h-2 rounded-full" style={{ width: '38.7%' }}></div>
-                      </div>
-                    </div>
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <p className="text-sm text-gray-600 mb-2">Pages per Visit</p>
-                      <p className="text-3xl font-bold mb-1">1.59</p>
-                      <p className="text-xs text-gray-500">Average pages viewed per session</p>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

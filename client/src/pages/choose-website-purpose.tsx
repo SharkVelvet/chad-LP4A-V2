@@ -1,10 +1,18 @@
 import { useLocation } from "wouter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, TrendingUp } from "lucide-react";
+import { Users, TrendingUp, AlertCircle } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import type { User } from "@shared/schema";
 
 export default function ChooseWebsitePurpose() {
   const [, setLocation] = useLocation();
+  
+  // Check if user already has websites (to show different pricing messaging)
+  const { data: user } = useQuery<User>({ queryKey: ['/api/user'] });
+  const { data: websites } = useQuery({ queryKey: ['/api/websites'] });
+  
+  const hasExistingWebsites = websites && Array.isArray(websites) && websites.length > 0;
 
   return (
     <div className="min-h-screen bg-background">
@@ -21,6 +29,23 @@ export default function ChooseWebsitePurpose() {
       </nav>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Pricing Banner */}
+        <div className="mb-8 bg-blue-50 border border-blue-200 rounded-lg p-6" data-testid="pricing-banner">
+          <div className="flex items-start gap-3">
+            <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+            <div>
+              <h3 className="text-base font-semibold text-blue-900 mb-1">
+                {hasExistingWebsites ? 'Adding Another Website' : 'New Website Pricing'}
+              </h3>
+              <p className="text-sm text-blue-800">
+                {hasExistingWebsites 
+                  ? 'Each additional website is $38 for the first month, then $18/month thereafter. You\'ll be charged when you select your template.'
+                  : 'Your first website is $38 for the first month, then $18/month. You\'ll complete payment after selecting your template.'}
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Pick what you would like to use your website for

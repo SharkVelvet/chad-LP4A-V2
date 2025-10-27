@@ -3,9 +3,9 @@ import { useLocation, useRoute } from "wouter";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader as DialogHeaderComponent } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { ArrowLeft, X } from "lucide-react";
+import { ArrowLeft, X, CreditCard, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 
@@ -24,11 +24,16 @@ export default function SelectTemplateByCategory() {
   const category = params?.category;
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
   const [isIframeLoading, setIsIframeLoading] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
   const { toast } = useToast();
 
   // Map URL category to display name
   const categoryDisplay = category === 'get-clients' ? 'Get More Clients' : 'Hire Agents';
   const templateCategory = category === 'get-clients' ? 'client' : 'hiring';
+
+  // Check if user already has websites
+  const { data: websites } = useQuery({ queryKey: ['/api/websites'] });
+  const hasExistingWebsites = websites && Array.isArray(websites) && websites.length > 0;
 
   // Create website mutation
   const createWebsiteMutation = useMutation({
@@ -112,6 +117,13 @@ export default function SelectTemplateByCategory() {
       </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Pricing reminder */}
+        <div className="mb-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <p className="text-sm text-blue-800 text-center">
+            💳 You'll complete payment after selecting your template — <strong>$38 first month</strong>, then <strong>$18/month</strong>
+          </p>
+        </div>
+
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             {categoryDisplay} Templates
@@ -205,14 +217,11 @@ export default function SelectTemplateByCategory() {
               size="sm"
               className="bg-[#6458AF] hover:bg-[#5347A0]"
               onClick={() => {
-                if (selectedTemplate) {
-                  createWebsiteMutation.mutate(selectedTemplate.id);
-                }
+                setShowPaymentModal(true);
               }}
-              disabled={createWebsiteMutation.isPending}
               data-testid="button-choose-template"
             >
-              {createWebsiteMutation.isPending ? "Creating..." : "Choose this Template"}
+              Choose this Template
             </Button>
             
             <h3 className="text-sm font-semibold text-gray-900">{selectedTemplate?.name}</h3>
@@ -246,6 +255,106 @@ export default function SelectTemplateByCategory() {
                 onLoad={() => setIsIframeLoading(false)}
               />
             )}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Payment Modal */}
+      <Dialog open={showPaymentModal} onOpenChange={setShowPaymentModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeaderComponent>
+            <DialogTitle>Complete Your Purchase</DialogTitle>
+            <DialogDescription>
+              Add this website to your subscription
+            </DialogDescription>
+          </DialogHeaderComponent>
+
+          <div className="space-y-6">
+            {/* Selected Template */}
+            <div className="border rounded-lg p-4 bg-gray-50">
+              <h4 className="font-semibold text-sm text-gray-700 mb-2">Selected Template</h4>
+              <p className="font-medium">{selectedTemplate?.name}</p>
+              <p className="text-sm text-gray-600 mt-1">{selectedTemplate?.description}</p>
+            </div>
+
+            {/* Pricing Breakdown */}
+            <div className="border rounded-lg p-4">
+              <h4 className="font-semibold text-sm text-gray-700 mb-3">Subscription Details</h4>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span>First month</span>
+                  <span className="font-semibold">$38.00</span>
+                </div>
+                <div className="flex justify-between text-sm text-gray-600">
+                  <span>Monthly thereafter</span>
+                  <span>$18.00/month</span>
+                </div>
+                {hasExistingWebsites && (
+                  <div className="pt-3 mt-3 border-t">
+                    <p className="text-sm text-gray-600 mb-2">Your billing:</p>
+                    <div className="flex justify-between">
+                      <span className="text-sm font-medium">New monthly total</span>
+                      <span className="font-semibold">${18 * (websites?.length || 0) + 18}/month</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">
+                      (after your first month payment of $38)
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Benefits */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm">
+                <Check className="h-4 w-4 text-green-600" />
+                <span>Full visual editor access</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <Check className="h-4 w-4 text-green-600" />
+                <span>Custom domain support</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <Check className="h-4 w-4 text-green-600" />
+                <span>Analytics & SEO tools</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <Check className="h-4 w-4 text-green-600" />
+                <span>Cancel anytime</span>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3 pt-2">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={() => setShowPaymentModal(false)}
+                data-testid="button-cancel-payment"
+              >
+                Go Back
+              </Button>
+              <Button
+                className="flex-1 bg-[#6458AF] hover:bg-[#5347A0]"
+                onClick={() => {
+                  // TODO: Integrate with Stripe payment
+                  if (selectedTemplate) {
+                    createWebsiteMutation.mutate(selectedTemplate.id);
+                    setShowPaymentModal(false);
+                    setSelectedTemplate(null);
+                  }
+                }}
+                disabled={createWebsiteMutation.isPending}
+                data-testid="button-proceed-payment"
+              >
+                <CreditCard className="h-4 w-4 mr-2" />
+                {createWebsiteMutation.isPending ? "Processing..." : "Proceed to Payment"}
+              </Button>
+            </div>
+
+            <p className="text-xs text-center text-gray-500">
+              Secure payment processed by Stripe. You can cancel your subscription at any time.
+            </p>
           </div>
         </DialogContent>
       </Dialog>

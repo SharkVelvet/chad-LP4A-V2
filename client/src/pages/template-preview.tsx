@@ -536,8 +536,8 @@ export default function TemplatePreviewPage() {
         )}
       </div>
       
-      {/* Gear icon overlays for buttons */}
-      {editMode && hoveredButton && (
+      {/* Gear icon overlays for buttons - only show when modal is NOT open */}
+      {editMode && hoveredButton && !isEditModalOpen && (
         <div
           className="gear-icon-overlay fixed pointer-events-auto z-[9999]"
           style={{
@@ -558,8 +558,8 @@ export default function TemplatePreviewPage() {
         </div>
       )}
       
-      {/* Gear icon overlays for images */}
-      {editMode && hoveredImage && (
+      {/* Gear icon overlays for images - only show when modal is NOT open */}
+      {editMode && hoveredImage && !isEditModalOpen && (
         <div
           className="gear-icon-overlay fixed pointer-events-auto z-[9999]"
           style={{

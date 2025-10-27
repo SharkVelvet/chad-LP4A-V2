@@ -449,8 +449,20 @@ export default function TemplatePreviewPage() {
         }, window.location.origin);
       }
     }
+    
+    // Close modal and clear state
     setIsEditModalOpen(false);
     setEditingElement(null);
+    setEditValue("");
+    setButtonUrl("");
+  };
+
+  const handleCancelEdit = () => {
+    // Just close modal and clear state, no saving
+    setIsEditModalOpen(false);
+    setEditingElement(null);
+    setEditValue("");
+    setButtonUrl("");
   };
 
   // Show loading state while templates are being fetched
@@ -595,8 +607,12 @@ export default function TemplatePreviewPage() {
       )}
 
       {/* Edit Modal */}
-      <Dialog open={isEditModalOpen} onOpenChange={setIsEditModalOpen}>
-        <DialogContent className="sm:max-w-[500px]">
+      <Dialog open={isEditModalOpen} onOpenChange={(open) => {
+        if (!open) {
+          handleCancelEdit();
+        }
+      }}>
+        <DialogContent className="sm:max-w-[500px]" onClick={(e) => e.stopPropagation()}>
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Edit2 className="h-5 w-5" />
@@ -667,16 +683,15 @@ export default function TemplatePreviewPage() {
           <div className="flex justify-end gap-2">
             <Button
               variant="outline"
-              onClick={() => {
-                setIsEditModalOpen(false);
-                setEditingElement(null);
-              }}
+              onClick={handleCancelEdit}
+              data-testid="button-cancel-edit"
             >
               Cancel
             </Button>
             <Button
               onClick={handleSaveEdit}
               className="bg-[#6458AF] hover:bg-[#5347A0]"
+              data-testid="button-save-edit"
             >
               Save Changes
             </Button>

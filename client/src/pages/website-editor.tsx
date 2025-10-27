@@ -198,12 +198,12 @@ export default function WebsiteEditor() {
     { id: "settings" as MenuSection, label: "Settings", icon: Settings },
     { id: "seo" as MenuSection, label: "SEO", icon: Search },
     { id: "analytics" as MenuSection, label: "Analytics", icon: BarChart3 },
+    { id: "domain" as MenuSection, label: "Domain Name", icon: Globe },
   ];
 
   const websiteSubItems = [
     { id: "edit-content" as MenuSection, label: "Edit Content", icon: FileEdit },
     { id: "colors" as MenuSection, label: "Colors", icon: Palette },
-    { id: "domain" as MenuSection, label: "Domain Name", icon: Globe },
   ];
 
   return (
@@ -376,32 +376,122 @@ export default function WebsiteEditor() {
             }`}
           >
             <div className="h-full overflow-y-auto p-8">
-              <div className="max-w-2xl space-y-6">
+              <div className="max-w-4xl space-y-8">
                 <div>
-                  <h3 className="text-2xl font-bold mb-2">Domain Name</h3>
-                  <p className="text-sm text-gray-600 mb-6">Manage your website domain and URL settings.</p>
+                  <h3 className="text-2xl font-bold mb-2">Domain Name Management</h3>
+                  <p className="text-sm text-gray-600 mb-6">Search for domains, view purchased domains, and manage DNS settings.</p>
                 </div>
-                
-                <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="currentDomain">Current Domain</Label>
+
+                {/* Domain Search Section */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
+                  <h4 className="text-lg font-semibold">Search for a Domain</h4>
+                  <div className="flex gap-2">
                     <Input
-                      id="currentDomain"
-                      value={website.domain || "No domain set"}
-                      disabled
-                      className="bg-gray-50"
-                      data-testid="input-current-domain"
+                      placeholder="Enter domain name (e.g., myinsurance.com)"
+                      className="flex-1"
+                      data-testid="input-domain-search"
                     />
-                    <p className="text-xs text-gray-500 mt-1">
-                      This is your currently configured domain name
-                    </p>
+                    <Button className="bg-[#6458AF] hover:bg-[#5347A0]" data-testid="button-search-domain">
+                      Search
+                    </Button>
                   </div>
+                  <p className="text-xs text-gray-500">Search for available domains and purchase them instantly.</p>
                   
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <p className="text-sm text-blue-800">
-                      Domain purchase and management coming soon! You'll be able to purchase new domains via Namecheap and connect them to your website.
-                    </p>
+                  {/* Search Results Placeholder */}
+                  <div className="mt-4 space-y-2">
+                    <p className="text-sm text-gray-600">Search results will appear here</p>
                   </div>
+                </div>
+
+                {/* Purchased Domains Section */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
+                  <h4 className="text-lg font-semibold">Your Domains</h4>
+                  
+                  {website.domain ? (
+                    <div className="space-y-4">
+                      <div className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                        <div className="flex items-center justify-between mb-3">
+                          <div>
+                            <p className="font-semibold text-lg">{website.domain}</p>
+                            <p className="text-xs text-gray-500">Connected to this website</p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">Active</span>
+                          </div>
+                        </div>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          className="text-[#6458AF] border-[#6458AF] hover:bg-[#6458AF] hover:text-white"
+                          data-testid="button-manage-dns"
+                        >
+                          Manage DNS
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-8 border border-dashed border-gray-300 rounded-lg">
+                      <Globe className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                      <p className="text-gray-600 mb-1">No domains yet</p>
+                      <p className="text-sm text-gray-500">Search and purchase a domain to get started</p>
+                    </div>
+                  )}
+                </div>
+
+                {/* DNS Management Section */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
+                  <h4 className="text-lg font-semibold">DNS Settings</h4>
+                  <p className="text-sm text-gray-600">Point your domain to your website on our platform</p>
+                  
+                  {website.domain ? (
+                    <div className="space-y-4">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <p className="text-sm text-blue-800 font-medium mb-2">Platform DNS Settings</p>
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Type:</span>
+                            <span className="font-mono text-gray-900">A Record</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Host:</span>
+                            <span className="font-mono text-gray-900">@</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Points to:</span>
+                            <span className="font-mono text-gray-900">123.45.67.89</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label>Current DNS Records</Label>
+                        <div className="border rounded-lg overflow-hidden">
+                          <table className="w-full text-sm">
+                            <thead className="bg-gray-50 border-b">
+                              <tr>
+                                <th className="text-left p-3 font-medium">Type</th>
+                                <th className="text-left p-3 font-medium">Host</th>
+                                <th className="text-left p-3 font-medium">Value</th>
+                                <th className="text-left p-3 font-medium">TTL</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr className="border-b">
+                                <td className="p-3 font-mono text-xs">A</td>
+                                <td className="p-3 font-mono text-xs">@</td>
+                                <td className="p-3 font-mono text-xs">123.45.67.89</td>
+                                <td className="p-3 font-mono text-xs">3600</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-6 bg-gray-50 rounded-lg">
+                      <p className="text-sm text-gray-600">Purchase a domain to manage DNS settings</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

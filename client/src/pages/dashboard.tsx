@@ -388,11 +388,12 @@ export default function Dashboard() {
                       const template = templates.find(t => t.id === website.templateId);
                       return (
                         <Card key={website.id} className="overflow-hidden group hover:shadow-lg transition-shadow" data-testid={`website-overview-card-${website.id}`}>
-                          <div className="relative overflow-hidden bg-white border-b" style={{ height: '280px' }}>
+                          <div className="relative w-full bg-white border-b" style={{ height: '200px', overflow: 'hidden' }}>
                             <img
                               src={template?.previewImage || '/placeholder.jpg'}
                               alt={website.name}
-                              className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-200"
+                              className="absolute top-0 left-0 w-full h-auto min-h-full object-cover object-top"
+                              style={{ maxWidth: '100%' }}
                             />
                           </div>
                           <CardHeader className="pb-3">

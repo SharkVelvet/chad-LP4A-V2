@@ -156,7 +156,8 @@ export default function SelectTemplateByCategory() {
                   <img
                     src={template.previewImage}
                     alt={template.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-200"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200" />
                 </div>
@@ -337,18 +338,14 @@ export default function SelectTemplateByCategory() {
               <Button
                 className="flex-1 bg-[#6458AF] hover:bg-[#5347A0]"
                 onClick={() => {
-                  // TODO: Integrate with Stripe payment
                   if (selectedTemplate) {
-                    createWebsiteMutation.mutate(selectedTemplate.id);
-                    setShowPaymentModal(false);
-                    setSelectedTemplate(null);
+                    setLocation(`/checkout/${selectedTemplate.id}`);
                   }
                 }}
-                disabled={createWebsiteMutation.isPending}
                 data-testid="button-proceed-payment"
               >
                 <CreditCard className="h-4 w-4 mr-2" />
-                {createWebsiteMutation.isPending ? "Processing..." : "Proceed to Payment"}
+                Proceed to Payment
               </Button>
             </div>
 

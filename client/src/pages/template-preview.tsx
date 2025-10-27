@@ -502,7 +502,7 @@ export default function TemplatePreviewPage() {
       
       // Create preview URL
       const reader = new FileReader();
-      reader.onloadeddata = () => {
+      reader.onload = () => {
         const result = reader.result as string;
         setImagePreview(result);
       };

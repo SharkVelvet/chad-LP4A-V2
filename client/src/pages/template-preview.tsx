@@ -59,6 +59,8 @@ export default function TemplatePreviewPage() {
   } | null>(null);
   const [editValue, setEditValue] = useState("");
   const [buttonUrl, setButtonUrl] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>("");
 
   const { data: templates, isLoading: templatesLoading } = useQuery<Template[]>({
     queryKey: ["/api/templates"],
@@ -259,8 +261,8 @@ export default function TemplatePreviewPage() {
         return;
       }
       
-      // Check if clicking on an image
-      if (target.matches('img')) {
+      // Check if clicking on an image (but skip SVG icons)
+      if (target.matches('img') && !target.closest('svg')) {
         e.preventDefault();
         e.stopPropagation();
         
@@ -290,6 +292,11 @@ export default function TemplatePreviewPage() {
         });
         setEditValue(src);
         setIsEditModalOpen(true);
+        return;
+      }
+      
+      // Skip SVG elements and their children (icons are decorative)
+      if (target.closest('svg')) {
         return;
       }
       
@@ -428,7 +435,15 @@ export default function TemplatePreviewPage() {
 
   const handleSaveEdit = () => {
     if (editingElement && window.parent) {
-      if (editingElement.type === 'button') {
+      if (editingElement.type === 'image') {
+        // For images, use the preview (base64) if available, otherwise the URL
+        const imageValue = imagePreview || editValue;
+        window.parent.postMessage({
+          type: 'CONTENT_EDIT',
+          contentId: editingElement.fieldName,
+          value: imageValue
+        }, window.location.origin);
+      } else if (editingElement.type === 'button') {
         // Save button text
         window.parent.postMessage({
           type: 'CONTENT_EDIT',
@@ -461,6 +476,8 @@ export default function TemplatePreviewPage() {
     setEditingElement(null);
     setEditValue("");
     setButtonUrl("");
+    setImageFile(null);
+    setImagePreview("");
   };
 
   const handleCancelEdit = () => {
@@ -469,6 +486,23 @@ export default function TemplatePreviewPage() {
     setEditingElement(null);
     setEditValue("");
     setButtonUrl("");
+    setImageFile(null);
+    setImagePreview("");
+  };
+  
+  const handleImageFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+      
+      // Create preview URL
+      const reader = new FileReader();
+      reader.onloadeddata = () => {
+        const result = reader.result as string;
+        setImagePreview(result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   // Show loading state while templates are being fetched
@@ -609,6 +643,12 @@ export default function TemplatePreviewPage() {
             outline-offset: 2px;
             position: relative;
           }
+          
+          /* Don't show purple outline on SVG icons */
+          .edit-mode-active svg:hover,
+          .edit-mode-active svg *:hover {
+            outline: none !important;
+          }
         `}</style>
       )}
 
@@ -672,16 +712,24 @@ export default function TemplatePreviewPage() {
               </>
             ) : (
               <>
-                <div className="text-xs text-gray-500 uppercase font-semibold">Image URL</div>
+                <div className="text-xs text-gray-500 uppercase font-semibold">Upload Image</div>
                 <Input
-                  value={editValue}
-                  onChange={(e) => setEditValue(e.target.value)}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageFileChange}
                   className="w-full"
-                  placeholder="Enter image URL..."
+                  data-testid="input-image-upload"
                 />
-                <div className="bg-blue-50 border border-blue-200 rounded p-3 text-sm text-blue-800">
-                  Image upload feature coming soon! For now, you can paste an image URL.
-                </div>
+                {(imagePreview || editValue) && (
+                  <div className="mt-2">
+                    <div className="text-xs text-gray-500 uppercase font-semibold mb-2">Preview</div>
+                    <img 
+                      src={imagePreview || editValue} 
+                      alt="Preview" 
+                      className="max-w-full h-auto rounded border max-h-64 object-contain mx-auto" 
+                    />
+                  </div>
+                )}
               </>
             )}
           </div>

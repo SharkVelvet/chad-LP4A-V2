@@ -779,6 +779,7 @@ export default function TemplatePreviewPage() {
                     onChange={handleImageFileChange}
                     className="w-full mt-1"
                   />
+                  <p className="text-xs text-gray-500 mt-1">Maximum file size: 10 MB</p>
                   {imagePreview && (
                     <div className="mt-2">
                       <div className="text-xs text-gray-500 uppercase font-semibold mb-2">Preview</div>
@@ -801,6 +802,7 @@ export default function TemplatePreviewPage() {
                   className="w-full"
                   data-testid="input-image-upload"
                 />
+                <p className="text-xs text-gray-500 mt-1">Maximum file size: 10 MB</p>
                 {(imagePreview || editValue) && (
                   <div className="mt-2">
                     <div className="text-xs text-gray-500 uppercase font-semibold mb-2">Preview</div>

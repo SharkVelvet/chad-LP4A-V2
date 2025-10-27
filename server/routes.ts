@@ -636,215 +636,75 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Stripe subscription route for guest checkout
-  app.post('/api/create-subscription', async (req, res) => {
-    const { email, customerName, couponCode, contractAgreed, disclaimerAgreed } = req.body;
+  // Create Stripe Checkout Session for website purchase
+  app.post('/api/create-checkout-session', async (req, res) => {
+    const { templateId } = req.body;
     
-    if (!email) {
-      return res.status(400).json({ error: { message: 'Email is required for receipts' } });
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ error: 'Authentication required' });
+    }
+    
+    const user = req.user as any;
+    
+    if (!templateId) {
+      return res.status(400).json({ error: 'Template ID is required' });
     }
 
     if (!stripe) {
-      return res.status(500).json({ 
-        error: { message: 'Payment processing requires valid Stripe API keys. Please contact support.' } 
-      });
+      return res.status(500).json({ error: 'Payment processing not configured' });
     }
 
     try {
-      const customer = await stripe.customers.create({
-        email: email,
-        name: customerName || 'Website Customer',
+      // Get or create Stripe customer
+      let customer;
+      const existingCustomers = await stripe.customers.list({
+        email: user.email,
+        limit: 1,
       });
-
-      // Apply coupon discount if provided
-      let discountInfo = null;
-      console.log('Checking coupon code:', couponCode);
-      if (couponCode) {
-        try {
-          // Try to find as a promotion code first (most common case)
-          console.log('Looking up promotion code:', couponCode);
-          const promotionCodes = await stripe.promotionCodes.list({
-            code: couponCode,
-            active: true,
-            limit: 1,
-          });
-
-          if (promotionCodes.data.length > 0) {
-            const promotionCode = promotionCodes.data[0];
-            console.log('Found promotion code. Coupon details:', promotionCode.coupon);
-            
-            // The coupon property contains the full coupon object
-            if (promotionCode.coupon && promotionCode.coupon.valid) {
-              discountInfo = promotionCode.coupon;
-              console.log('Using coupon from promotion code. Amount off:', discountInfo.amount_off, 'Percent off:', discountInfo.percent_off);
-            }
-          } else {
-            console.log('No promotion code found with name:', couponCode);
-            // Try direct coupon lookup as fallback
-            try {
-              const coupon = await stripe.coupons.retrieve(couponCode);
-              console.log('Retrieved coupon directly from Stripe:', coupon);
-              if (coupon.valid) {
-                discountInfo = coupon;
-              }
-            } catch (directError: any) {
-              console.log('Direct coupon lookup also failed:', directError.message);
-            }
-          }
-        } catch (error: any) {
-          console.error('Error during coupon lookup:', couponCode, error.message);
-        }
-      }
-
-      // Calculate discounted amount for first month
-      let firstMonthAmount = 3800; // $38 default
-      console.log('Original amount (cents):', firstMonthAmount);
       
-      if (discountInfo) {
-        console.log('Applying discount:', discountInfo);
-        if (discountInfo.percent_off) {
-          firstMonthAmount = Math.round(firstMonthAmount * (1 - discountInfo.percent_off / 100));
-          console.log('Applied percent discount, new amount:', firstMonthAmount);
-        } else if (discountInfo.amount_off) {
-          firstMonthAmount = Math.max(0, firstMonthAmount - discountInfo.amount_off);
-          console.log('Applied amount discount, new amount:', firstMonthAmount);
-        }
+      if (existingCustomers.data.length > 0) {
+        customer = existingCustomers.data[0];
       } else {
-        console.log('No discount applied');
-      }
-      
-      console.log('Final payment intent amount (cents):', firstMonthAmount);
-
-      let paymentIntent;
-      if (firstMonthAmount === 0) {
-        // For $0 amounts, create a setup intent that REQUIRES payment method collection
-        console.log('Creating setup intent for $0 charge - REQUIRING payment method for future billing');
-        paymentIntent = await stripe.setupIntents.create({
-          customer: customer.id,
-          payment_method_types: ['card'],
-          usage: 'off_session',
-          confirm: false, // Require frontend confirmation with payment method
-          metadata: {
-            type: 'zero_dollar_setup_required',
-            customer_email: email,
-            original_amount: '3800',
-            discount_applied: discountInfo ? couponCode : 'none',
-            requires_payment_method: 'true',
-          },
-        });
-        
-        // For zero-dollar payments, we'll manually send receipt since Stripe won't
-        console.log('Zero-dollar payment - will send manual receipt after payment method collected');
-      } else {
-        // Create payment intent for non-zero amounts
-        paymentIntent = await stripe.paymentIntents.create({
-          amount: firstMonthAmount,
-          currency: 'usd',
-          customer: customer.id,
-          description: 'Planright first month - Website setup and hosting',
-          receipt_email: email,
-          setup_future_usage: 'off_session',
-          payment_method_types: ['card'], // Only allow credit cards
-          metadata: {
-            type: 'first_month_payment',
-            customer_email: email,
-            original_amount: '3800',
-            discount_applied: discountInfo ? couponCode : 'none',
-          },
+        customer = await stripe.customers.create({
+          email: user.email,
+          name: user.username || user.email,
         });
       }
 
-      // First create a product
-      const product = await stripe.products.create({
-        name: 'Planright Website Service',
-      });
+      const baseUrl = process.env.NODE_ENV === 'production' 
+        ? `https://${process.env.REPLIT_DEV_DOMAIN}`
+        : `http://localhost:${process.env.PORT || 5000}`;
 
-      // Then create a price for the product
-      const price = await stripe.prices.create({
-        currency: 'usd',
-        unit_amount: 1800, // $18 for ongoing months
-        recurring: {
-          interval: 'month',
-        },
-        product: product.id,
-      });
-
-      // Create the ongoing subscription starting next month ($18/month)
-      // IMPORTANT: Force incomplete state to REQUIRE payment method collection even for $0 first payments
-      const subscriptionOptions: any = {
+      // Create Checkout Session
+      const session = await stripe.checkout.sessions.create({
         customer: customer.id,
-        items: [{
-          price: price.id,
-        }],
-        trial_end: Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60), // Start billing in 30 days
-        collection_method: 'charge_automatically',
-        payment_behavior: 'default_incomplete', // Forces payment method requirement
-        expand: ['latest_invoice.payment_intent'],
+        payment_method_types: ['card'],
+        mode: 'payment',
+        line_items: [
+          {
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: 'Website Setup - First Month',
+                description: '$38 first month, then $18/month thereafter',
+              },
+              unit_amount: 3800, // $38 in cents
+            },
+            quantity: 1,
+          },
+        ],
+        success_url: `${baseUrl}/payment-processing?session_id={CHECKOUT_SESSION_ID}&templateId=${templateId}`,
+        cancel_url: `${baseUrl}/templates/client-acquisition?cancelled=true`,
         metadata: {
-          first_payment_intent: paymentIntent.id,
-          first_payment_amount: firstMonthAmount.toString(),
-          requires_payment_method: 'true', // Track that this subscription MUST have payment method
+          templateId: templateId.toString(),
+          userId: user.id.toString(),
         },
-      };
-
-      // Apply coupon to recurring subscription if provided and valid
-      // Note: For subscriptions, discounts only apply to ongoing billing, not the first payment
-      // The first payment discount is already handled in the payment intent above
-      if (discountInfo) {
-        subscriptionOptions.discounts = [{
-          coupon: discountInfo.id
-        }];
-      }
-
-      const subscription = await stripe.subscriptions.create(subscriptionOptions);
-      
-      // Get stored onboarding data and send customer notification email
-      try {
-        const onboardingData = (global as any).onboardingData?.get(email) || {};
-        console.log('Retrieved onboarding data for email:', email, onboardingData);
-        
-        const customerData = {
-          email: email,
-          customerName: customerName,
-          templateSelected: onboardingData.templateSelected || 'Not specified',
-          domainPreferences: onboardingData.domainPreferences || [],
-          paymentAmount: firstMonthAmount / 100, // Convert from cents to dollars for display
-          subscriptionId: subscription.id,
-          customerInfo: onboardingData.customerInfo,
-          contractAgreed: contractAgreed,
-          disclaimerAgreed: disclaimerAgreed,
-        };
-
-        console.log('Email data being sent:', {
-          originalAmount: 3800,
-          discountedAmount: firstMonthAmount,
-          dollarAmount: firstMonthAmount / 100,
-          couponCode: couponCode,
-          discountInfo: discountInfo
-        });
-
-        // Send notification to business owner
-        await sendCustomerNotification(customerData);
-        
-        // Send receipt to customer
-        await sendCustomerReceipt(customerData);
-        
-        // Clean up stored data after sending notification
-        if ((global as any).onboardingData) {
-          (global as any).onboardingData.delete(email);
-        }
-      } catch (emailError) {
-        console.error('Failed to send notification email:', emailError);
-        // Don't fail the payment if email fails
-      }
-
-      res.send({
-        subscriptionId: subscription.id,
-        clientSecret: paymentIntent.client_secret,
       });
+
+      res.json({ url: session.url });
     } catch (error: any) {
-      console.error('Stripe error:', error);
-      return res.status(400).send({ error: { message: error.message } });
+      console.error('Stripe Checkout Session error:', error);
+      return res.status(400).json({ error: error.message });
     }
   });
 

@@ -8,10 +8,10 @@ export default function PaymentProcessing() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   
-  // Get templateId from URL params
+  // Get params from URL
   const searchParams = new URLSearchParams(window.location.search);
   const templateId = searchParams.get('templateId');
-  const paymentIntent = searchParams.get('payment_intent');
+  const sessionId = searchParams.get('session_id');
 
   // Fetch template to get details
   const { data: templates = [] } = useQuery<any[]>({
@@ -60,7 +60,7 @@ export default function PaymentProcessing() {
     document.title = "Processing Payment - Professional Landing Pages for Insurance Agents";
     
     // Verify we have required params
-    if (!templateId || !paymentIntent) {
+    if (!templateId || !sessionId) {
       toast({
         title: "Error",
         description: "Missing payment information. Redirecting to dashboard...",
@@ -77,7 +77,7 @@ export default function PaymentProcessing() {
 
     // Create the website after successful payment
     createWebsiteMutation.mutate();
-  }, [templateId, paymentIntent, templates]);
+  }, [templateId, sessionId, templates]);
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center">

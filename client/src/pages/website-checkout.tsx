@@ -1,5 +1,3 @@
-import { useStripe, Elements, PaymentElement, useElements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import { useEffect, useState } from 'react';
 import { useLocation, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
@@ -9,80 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Lock, ArrowLeft } from "lucide-react";
 
-// Initialize Stripe
-if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
-  throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
-}
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
-
-const CheckoutForm = ({ templateId, onSuccess }: { templateId: string; onSuccess: (websiteId: number) => void }) => {
-  const stripe = useStripe();
-  const elements = useElements();
-  const { toast } = useToast();
-  const [isProcessing, setIsProcessing] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!stripe || !elements) {
-      return;
-    }
-
-    setIsProcessing(true);
-
-    try {
-      const { error } = await stripe.confirmPayment({
-        elements,
-        confirmParams: {
-          return_url: `${window.location.origin}/payment-processing?templateId=${templateId}`,
-        },
-      });
-
-      if (error) {
-        toast({
-          title: "Payment Failed",
-          description: error.message,
-          variant: "destructive",
-        });
-        setIsProcessing(false);
-      }
-      // If no error and not redirected, payment succeeded
-      // The return_url will handle creating the website
-    } catch (err) {
-      toast({
-        title: "Error",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive",
-      });
-      setIsProcessing(false);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <PaymentElement />
-      <Button 
-        type="submit" 
-        className="w-full bg-[#6458AF] hover:bg-[#5347A0]" 
-        disabled={!stripe || isProcessing}
-        data-testid="button-submit-payment"
-      >
-        <Lock className="h-4 w-4 mr-2" />
-        {isProcessing ? "Processing..." : "Complete Purchase"}
-      </Button>
-    </form>
-  );
-};
-
 export default function WebsiteCheckout() {
   const [, setLocation] = useLocation();
   const [, params] = useRoute("/checkout/:templateId");
   const templateId = params?.templateId || "";
-  const [clientSecret, setClientSecret] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-
-  // Fetch user data
-  const { data: user } = useQuery<any>({ queryKey: ['/api/user'] });
 
   // Fetch template details
   const { data: templates = [] } = useQuery<any[]>({
@@ -101,63 +31,41 @@ export default function WebsiteCheckout() {
     document.title = "Complete Your Purchase - Professional Landing Pages for Insurance Agents";
   }, []);
 
+  // Validate template on load
   useEffect(() => {
-    if (!templateId || !templates.length) {
-      return;
-    }
-
-    // Validate template exists
-    if (!selectedTemplate) {
+    if (templates.length > 0 && !selectedTemplate) {
       toast({
         title: "Invalid Template",
         description: "The selected template could not be found. Please go back and select a valid template.",
         variant: "destructive",
       });
       setTimeout(() => setLocation('/choose-purpose'), 2000);
-      return;
     }
+  }, [templates, selectedTemplate]);
 
-    // Wait for user data to load
-    if (!user || !user.email) {
-      return;
-    }
-
-    // Create payment intent for website subscription
-    apiRequest("POST", "/api/create-subscription", {
-      email: user.email,
-      customerName: user.username || user.email,
-      contractAgreed: true,
-      disclaimerAgreed: true,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.clientSecret) {
-          setClientSecret(data.clientSecret);
-        } else {
-          throw new Error("No client secret returned");
-        }
-      })
-      .catch((error) => {
-        toast({
-          title: "Error",
-          description: "Failed to initialize payment. Please try again.",
-          variant: "destructive",
-        });
-        console.error("Payment initialization error:", error);
+  const handleCheckout = async () => {
+    setIsLoading(true);
+    try {
+      const res = await apiRequest("POST", "/api/create-checkout-session", {
+        templateId: parseInt(templateId),
       });
-  }, [templateId, templates, user, selectedTemplate]);
-
-  if (!clientSecret) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Preparing Checkout</h2>
-          <p className="text-gray-600">Setting up your secure payment...</p>
-        </div>
-      </div>
-    );
-  }
+      const data = await res.json();
+      
+      if (data.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL returned");
+      }
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to start checkout. Please try again.",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -267,31 +175,33 @@ export default function WebsiteCheckout() {
             </Card>
           </div>
 
-          {/* Right column - Payment form */}
+          {/* Right column - Payment */}
           <div>
             <Card>
               <CardHeader>
-                <CardTitle>Payment Information</CardTitle>
+                <CardTitle>Ready to Get Started?</CardTitle>
                 <CardDescription>
-                  <div className="flex items-center gap-2 mt-2">
-                    <Lock className="h-4 w-4 text-gray-500" />
-                    <span>Secure payment processed by Stripe</span>
+                  <div className="flex items-center justify-center space-x-2 mt-2">
+                    <Lock className="h-4 w-4" />
+                    <span>Secure payment powered by Stripe</span>
                   </div>
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Elements stripe={stripePromise} options={{ clientSecret }}>
-                  <CheckoutForm 
-                    templateId={templateId} 
-                    onSuccess={(websiteId: number) => {
-                      toast({
-                        title: "Payment Successful!",
-                        description: "Your website is being created...",
-                      });
-                      setLocation(`/editor/${websiteId}`);
-                    }} 
-                  />
-                </Elements>
+                <div className="space-y-4">
+                  <p className="text-sm text-gray-600 text-center">
+                    Click below to proceed to secure checkout
+                  </p>
+                  <Button 
+                    onClick={handleCheckout}
+                    className="w-full bg-[#6458AF] hover:bg-[#5347A0]" 
+                    disabled={isLoading || !selectedTemplate}
+                    data-testid="button-checkout"
+                  >
+                    <Lock className="h-4 w-4 mr-2" />
+                    {isLoading ? "Redirecting to Checkout..." : "Proceed to Secure Checkout"}
+                  </Button>
+                </div>
               </CardContent>
             </Card>
 

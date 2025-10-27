@@ -59,6 +59,7 @@ export default function TemplatePreviewPage() {
   } | null>(null);
   const [editValue, setEditValue] = useState("");
   const [buttonUrl, setButtonUrl] = useState("");
+  const [isClosing, setIsClosing] = useState(false);
 
   const { data: templates, isLoading: templatesLoading } = useQuery<Template[]>({
     queryKey: ["/api/templates"],
@@ -215,6 +216,11 @@ export default function TemplatePreviewPage() {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       
+      // Don't process clicks if modal is closing
+      if (isClosing) {
+        return;
+      }
+      
       // Check if clicking on a button or link
       const button = target.closest('button, a[href]') as HTMLElement;
       if (button) {
@@ -357,7 +363,7 @@ export default function TemplatePreviewPage() {
 
     document.addEventListener('click', handleClick, true);
     return () => document.removeEventListener('click', handleClick, true);
-  }, [editMode]);
+  }, [editMode, isClosing]);
 
   const handleGearClick = (element: HTMLElement, type: 'button' | 'image') => {
     if (type === 'button') {
@@ -450,19 +456,35 @@ export default function TemplatePreviewPage() {
       }
     }
     
+    // Set closing flag to prevent immediate re-opening
+    setIsClosing(true);
+    
     // Close modal and clear state
     setIsEditModalOpen(false);
     setEditingElement(null);
     setEditValue("");
     setButtonUrl("");
+    
+    // Clear closing flag after a short delay
+    setTimeout(() => {
+      setIsClosing(false);
+    }, 300);
   };
 
   const handleCancelEdit = () => {
+    // Set closing flag to prevent immediate re-opening
+    setIsClosing(true);
+    
     // Just close modal and clear state, no saving
     setIsEditModalOpen(false);
     setEditingElement(null);
     setEditValue("");
     setButtonUrl("");
+    
+    // Clear closing flag after a short delay
+    setTimeout(() => {
+      setIsClosing(false);
+    }, 300);
   };
 
   // Show loading state while templates are being fetched

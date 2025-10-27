@@ -145,16 +145,14 @@ export default function TemplatePreviewPage() {
       const siblings = Array.from(htmlElement.parentElement?.children || []);
       const index = siblings.indexOf(htmlElement);
       
-      // Create path to element for uniqueness
+      // Create FULL path to element for uniqueness (traverse all the way to body)
       let pathParts = [tagName, index.toString()];
       let parent = htmlElement.parentElement;
-      let depth = 0;
-      while (parent && parent !== document.body && depth < 3) {
+      while (parent && parent !== document.body) {
         const parentSiblings = Array.from(parent.parentElement?.children || []);
         const parentIndex = parentSiblings.indexOf(parent);
         pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
         parent = parent.parentElement;
-        depth++;
       }
       
       const autoId = `auto.${pathParts.join('.')}`;
@@ -196,13 +194,11 @@ export default function TemplatePreviewPage() {
         const index = siblings.indexOf(button);
         let pathParts = [tagName, index.toString()];
         let parent = button.parentElement;
-        let depth = 0;
-        while (parent && parent !== document.body && depth < 3) {
+        while (parent && parent !== document.body) {
           const parentSiblings = Array.from(parent.parentElement?.children || []);
           const parentIndex = parentSiblings.indexOf(parent);
           pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
           parent = parent.parentElement;
-          depth++;
         }
         const buttonId = `auto.${pathParts.join('.')}`;
         const urlKey = `${buttonId}.url`;
@@ -258,13 +254,11 @@ export default function TemplatePreviewPage() {
         const index = siblings.indexOf(buttonElement);
         let pathParts = [tagName, index.toString()];
         let parent = buttonElement.parentElement;
-        let depth = 0;
-        while (parent && parent !== document.body && depth < 3) {
+        while (parent && parent !== document.body) {
           const parentSiblings = Array.from(parent.parentElement?.children || []);
           const parentIndex = parentSiblings.indexOf(parent);
           pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
           parent = parent.parentElement;
-          depth++;
         }
         const contentId = `auto.${pathParts.join('.')}`;
         
@@ -294,13 +288,11 @@ export default function TemplatePreviewPage() {
         const index = siblings.indexOf(imgElement);
         let pathParts = [tagName, index.toString()];
         let parent = imgElement.parentElement;
-        let depth = 0;
-        while (parent && parent !== document.body && depth < 3) {
+        while (parent && parent !== document.body) {
           const parentSiblings = Array.from(parent.parentElement?.children || []);
           const parentIndex = parentSiblings.indexOf(parent);
           pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
           parent = parent.parentElement;
-          depth++;
         }
         const contentId = `auto.${pathParts.join('.')}`;
         
@@ -348,16 +340,14 @@ export default function TemplatePreviewPage() {
           const siblings = Array.from(target.parentElement?.children || []);
           const index = siblings.indexOf(target);
           
-          // Create path to element for uniqueness (same as auto-generation)
+          // Create FULL path to element for uniqueness (traverse all the way to body)
           let pathParts = [tagName, index.toString()];
           let parent = target.parentElement;
-          let depth = 0;
-          while (parent && parent !== document.body && depth < 3) {
+          while (parent && parent !== document.body) {
             const parentSiblings = Array.from(parent.parentElement?.children || []);
             const parentIndex = parentSiblings.indexOf(parent);
             pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
             parent = parent.parentElement;
-            depth++;
           }
           
           finalContentId = `auto.${pathParts.join('.')}`;

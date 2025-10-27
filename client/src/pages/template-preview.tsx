@@ -171,8 +171,13 @@ export default function TemplatePreviewPage() {
         const contentId = element.getAttribute('data-content-id');
         if (contentId && flexibleContent[contentId]) {
           const htmlElement = element as HTMLElement;
+          
+          // Handle images
+          if (htmlElement.tagName === 'IMG') {
+            (htmlElement as HTMLImageElement).src = flexibleContent[contentId];
+          }
           // Check if element has child elements (like spans for styling)
-          if (htmlElement.children.length > 0) {
+          else if (htmlElement.children.length > 0) {
             // Preserve HTML structure - update innerHTML
             htmlElement.innerHTML = flexibleContent[contentId];
           } else {

@@ -435,6 +435,7 @@ export default function Dashboard() {
                                 }}
                                 variant="outline"
                                 size="sm"
+                                className="hover:bg-black hover:text-white"
                                 data-testid={`button-setup-${website.id}`}
                               >
                                 <Settings className="h-4 w-4 mr-1" />
@@ -444,6 +445,7 @@ export default function Dashboard() {
                                 onClick={() => window.open(`/template-preview?websiteId=${website.id}`, '_blank')}
                                 variant="outline"
                                 size="sm"
+                                className="hover:bg-black hover:text-white"
                                 data-testid={`button-preview-${website.id}`}
                               >
                                 <Eye className="h-4 w-4 mr-1" />

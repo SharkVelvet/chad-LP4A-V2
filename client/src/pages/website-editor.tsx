@@ -214,6 +214,7 @@ export default function WebsiteEditor() {
           <Button
             variant="ghost"
             size="sm"
+            className="hover:bg-black hover:text-white"
             onClick={() => navigate("/dashboard")}
             data-testid="button-back-to-dashboard"
           >

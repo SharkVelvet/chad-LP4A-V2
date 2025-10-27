@@ -122,7 +122,9 @@ export default function WebsiteEditor() {
       
       // Tell iframe to reload content without full page refresh
       const iframe = document.querySelector('iframe[data-testid="iframe-edit-mode"]') as HTMLIFrameElement;
+      console.log('[Website Editor] Found iframe:', !!iframe, 'with contentWindow:', !!iframe?.contentWindow);
       if (iframe?.contentWindow) {
+        console.log('[Website Editor] Sending RELOAD_CONTENT message to iframe');
         iframe.contentWindow.postMessage({ type: 'RELOAD_CONTENT' }, window.location.origin);
       }
       

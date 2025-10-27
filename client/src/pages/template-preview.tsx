@@ -217,6 +217,7 @@ export default function TemplatePreviewPage() {
       if (event.origin !== window.location.origin) return;
       
       if (event.data.type === 'RELOAD_CONTENT') {
+        console.log('[Template Preview] Received RELOAD_CONTENT message, invalidating queries');
         // Refetch website data to get updated content
         queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
       }

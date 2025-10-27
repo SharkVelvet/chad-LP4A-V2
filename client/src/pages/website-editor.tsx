@@ -519,6 +519,7 @@ export default function WebsiteEditor() {
                     value={website.name}
                     disabled
                     className="bg-gray-50"
+                    data-testid="input-site-name"
                   />
                 </div>
                 <div>
@@ -528,6 +529,7 @@ export default function WebsiteEditor() {
                     value={website.domain || "Not set"}
                     disabled
                     className="bg-gray-50"
+                    data-testid="input-domain"
                   />
                 </div>
                 <div>
@@ -537,7 +539,39 @@ export default function WebsiteEditor() {
                     value={website.siteStatus}
                     disabled
                     className="bg-gray-50"
+                    data-testid="input-status"
                   />
+                </div>
+                
+                <div className="border-t pt-6 mt-6">
+                  <h4 className="text-lg font-semibold mb-4">Site Branding</h4>
+                  
+                  <div>
+                    <Label htmlFor="favicon">Favicon</Label>
+                    <div className="mt-2 space-y-3">
+                      <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 border border-gray-300 rounded flex items-center justify-center bg-gray-50">
+                          <Globe className="w-8 h-8 text-gray-400" />
+                        </div>
+                        <div className="flex-1">
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            className="w-full sm:w-auto"
+                            data-testid="button-upload-favicon"
+                          >
+                            Upload Favicon
+                          </Button>
+                          <p className="text-xs text-gray-500 mt-1">
+                            Recommended: 32x32px or 64x64px, PNG or ICO format
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">
+                      The favicon is the small icon that appears in browser tabs and bookmarks.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -550,18 +584,159 @@ export default function WebsiteEditor() {
             }`}
           >
             <div className="h-full overflow-y-auto p-8">
-
-
-              <div className="max-w-2xl space-y-6">
+              <div className="max-w-3xl space-y-6">
                 <div>
                   <h3 className="text-2xl font-bold mb-2">SEO Settings</h3>
-                  <p className="text-sm text-gray-600 mb-6">Optimize your website for search engines.</p>
+                  <p className="text-sm text-gray-600 mb-6">Optimize your website for search engines and social media.</p>
                 </div>
-                
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <p className="text-sm text-blue-800">
-                    SEO features coming soon! You'll be able to customize meta titles, descriptions, and keywords.
+
+                {/* Basic SEO */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
+                  <h4 className="text-lg font-semibold">Essential SEO Tags</h4>
+                  
+                  <div>
+                    <Label htmlFor="metaTitle">Meta Title *</Label>
+                    <Input
+                      id="metaTitle"
+                      placeholder="Best Insurance Services | Your Business Name"
+                      maxLength={60}
+                      data-testid="input-meta-title"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      Keep under 60 characters. Include your primary keyword near the beginning.
+                    </p>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="metaDescription">Meta Description *</Label>
+                    <Textarea
+                      id="metaDescription"
+                      placeholder="Discover comprehensive insurance solutions tailored to protect what matters most. Get a free quote today and secure your future."
+                      maxLength={160}
+                      rows={3}
+                      data-testid="input-meta-description"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      Keep 150-160 characters. Include a call-to-action and secondary keywords.
+                    </p>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="canonicalUrl">Canonical URL</Label>
+                    <Input
+                      id="canonicalUrl"
+                      placeholder="https://yourdomain.com/page-name"
+                      data-testid="input-canonical-url"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      The "master" URL version to avoid duplicate content issues.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Social Media Tags */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
+                  <h4 className="text-lg font-semibold">Social Media Preview</h4>
+                  <p className="text-sm text-gray-600">Control how your site appears when shared on social media.</p>
+                  
+                  <div>
+                    <Label htmlFor="ogTitle">Open Graph Title (Facebook, LinkedIn)</Label>
+                    <Input
+                      id="ogTitle"
+                      placeholder="Your Page Title for Social Media"
+                      data-testid="input-og-title"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="ogDescription">Open Graph Description</Label>
+                    <Textarea
+                      id="ogDescription"
+                      placeholder="Compelling description for social media shares"
+                      rows={2}
+                      data-testid="input-og-description"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="ogImage">Open Graph Image URL</Label>
+                    <Input
+                      id="ogImage"
+                      placeholder="https://yourdomain.com/social-image.jpg"
+                      data-testid="input-og-image"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      Recommended size: 1200x630px for best results across platforms.
+                    </p>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="twitterCard">Twitter Card Type</Label>
+                    <select 
+                      id="twitterCard" 
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                      data-testid="select-twitter-card"
+                    >
+                      <option value="summary_large_image">Summary with Large Image</option>
+                      <option value="summary">Summary</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Indexing Settings */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
+                  <h4 className="text-lg font-semibold">Indexing & Crawling</h4>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2">
+                      <input 
+                        type="checkbox" 
+                        id="allowIndexing" 
+                        defaultChecked
+                        className="h-4 w-4 rounded border-gray-300"
+                        data-testid="checkbox-allow-indexing"
+                      />
+                      <Label htmlFor="allowIndexing" className="font-normal cursor-pointer">
+                        Allow search engines to index this page
+                      </Label>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <input 
+                        type="checkbox" 
+                        id="followLinks" 
+                        defaultChecked
+                        className="h-4 w-4 rounded border-gray-300"
+                        data-testid="checkbox-follow-links"
+                      />
+                      <Label htmlFor="followLinks" className="font-normal cursor-pointer">
+                        Allow search engines to follow links on this page
+                      </Label>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-gray-500">
+                    Uncheck only if you don't want this page to appear in search results.
                   </p>
+                </div>
+
+                {/* SEO Best Practices */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h4 className="text-sm font-semibold text-blue-900 mb-3">💡 SEO Tips for 2025</h4>
+                  <ul className="text-sm text-blue-800 space-y-2">
+                    <li>✓ Write unique titles and descriptions for better click-through rates</li>
+                    <li>✓ Include your location in titles (e.g., "Insurance Agent in Chicago")</li>
+                    <li>✓ Use action words in descriptions (e.g., "Get", "Discover", "Learn")</li>
+                    <li>✓ Add alt text to all images describing what they show</li>
+                    <li>✓ Keep mobile users in mind - most searches happen on phones</li>
+                    <li>✗ Don't use "meta keywords" - they're obsolete and ignored by Google</li>
+                  </ul>
+                </div>
+
+                <div className="flex justify-end">
+                  <Button className="bg-[#6458AF] hover:bg-[#5347A0]" data-testid="button-save-seo">
+                    Save SEO Settings
+                  </Button>
                 </div>
               </div>
             </div>

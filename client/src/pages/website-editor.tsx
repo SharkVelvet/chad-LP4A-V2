@@ -116,8 +116,16 @@ export default function WebsiteEditor() {
       const res = await apiRequest("PATCH", `/api/websites/${websiteId}/content/${encodeURIComponent(contentId)}`, { value });
       return await res.json();
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+    onSuccess: async () => {
+      // Refetch website data
+      await queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      
+      // Tell iframe to reload content without full page refresh
+      const iframe = document.querySelector('iframe[data-testid="iframe-edit-mode"]') as HTMLIFrameElement;
+      if (iframe?.contentWindow) {
+        iframe.contentWindow.postMessage({ type: 'RELOAD_CONTENT' }, window.location.origin);
+      }
+      
       toast({
         title: "Changes saved",
         description: "Your website content has been updated.",
@@ -328,7 +336,7 @@ export default function WebsiteEditor() {
             ) : null}
             {template && (
               <iframe
-                key={JSON.stringify(website?.content)}
+                key={`preview-${websiteId}`}
                 src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
                 className={`w-full h-full border-0 ${isIframeLoading ? 'invisible' : 'visible'}`}
                 title="Website Preview"
@@ -498,7 +506,7 @@ export default function WebsiteEditor() {
         <div className="absolute top-14 left-0 right-0 bottom-0 bg-gray-100">
           {template ? (
             <iframe
-              key={`edit-${JSON.stringify(website?.content)}`}
+              key={`edit-${websiteId}`}
               src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&editMode=true&hideNav=true`}
               className="w-full h-full border-0"
               title="Edit Website"

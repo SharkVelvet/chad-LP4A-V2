@@ -11,6 +11,7 @@ import Template15 from "@/components/templates/Template15";
 import { useEffect, useState } from "react";
 import { trackTemplateView, trackTemplateSelection } from "@/lib/facebook-pixel";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { queryClient } from "@/lib/queryClient";
 
 type Template = {
   id: number;
@@ -95,6 +96,23 @@ export default function TemplatePreviewPage() {
     }
   }, [template]);
 
+  // Listen for reload content message from parent
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return;
+      
+      if (event.data.type === 'RELOAD_CONTENT') {
+        // Refetch website content
+        if (websiteId) {
+          queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [websiteId]);
+
   // Auto-generate IDs and apply saved content
   useEffect(() => {
     // First, auto-generate IDs for all editable elements that don't have them
@@ -107,14 +125,24 @@ export default function TemplatePreviewPage() {
         return;
       }
       
-      // Generate ID based on position and content
-      const text = htmlElement.textContent || '';
-      const words = text.trim().split(/\s+/).slice(0, 3).join('-').toLowerCase().replace(/[^a-z0-9-]/g, '');
+      // Generate stable ID based ONLY on position (not content)
       const tagName = htmlElement.tagName.toLowerCase();
       const siblings = Array.from(htmlElement.parentElement?.children || []);
       const index = siblings.indexOf(htmlElement);
-      const autoId = `auto.${tagName}.${index}.${words}`;
       
+      // Create path to element for uniqueness
+      let pathParts = [tagName, index.toString()];
+      let parent = htmlElement.parentElement;
+      let depth = 0;
+      while (parent && parent !== document.body && depth < 3) {
+        const parentSiblings = Array.from(parent.parentElement?.children || []);
+        const parentIndex = parentSiblings.indexOf(parent);
+        pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
+        parent = parent.parentElement;
+        depth++;
+      }
+      
+      const autoId = `auto.${pathParts.join('.')}`;
       htmlElement.setAttribute('data-content-id', autoId);
     });
     

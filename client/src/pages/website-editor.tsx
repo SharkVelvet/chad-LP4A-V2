@@ -33,7 +33,7 @@ type Template = {
   slug: string;
 };
 
-type MenuSection = "website" | "edit-content" | "colors" | "settings" | "seo" | "analytics";
+type MenuSection = "website" | "edit-content" | "colors" | "domain" | "settings" | "seo" | "analytics";
 
 export default function WebsiteEditor() {
   const [, navigate] = useLocation();
@@ -203,6 +203,7 @@ export default function WebsiteEditor() {
   const websiteSubItems = [
     { id: "edit-content" as MenuSection, label: "Edit Content", icon: FileEdit },
     { id: "colors" as MenuSection, label: "Colors", icon: Palette },
+    { id: "domain" as MenuSection, label: "Domain Name", icon: Globe },
   ];
 
   return (
@@ -363,6 +364,44 @@ export default function WebsiteEditor() {
                   <p className="text-sm text-blue-800">
                     Color customization coming soon! You'll be able to customize your website's color scheme, including primary colors, accent colors, and text colors.
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Domain Name panel */}
+          <div
+            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
+              activeSection === "domain" ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="h-full overflow-y-auto p-8">
+              <div className="max-w-2xl space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">Domain Name</h3>
+                  <p className="text-sm text-gray-600 mb-6">Manage your website domain and URL settings.</p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="currentDomain">Current Domain</Label>
+                    <Input
+                      id="currentDomain"
+                      value={website.domain || "No domain set"}
+                      disabled
+                      className="bg-gray-50"
+                      data-testid="input-current-domain"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      This is your currently configured domain name
+                    </p>
+                  </div>
+                  
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <p className="text-sm text-blue-800">
+                      Domain purchase and management coming soon! You'll be able to purchase new domains via Namecheap and connect them to your website.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

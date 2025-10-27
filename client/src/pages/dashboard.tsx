@@ -252,6 +252,7 @@ export default function Dashboard() {
                   </div>
                   <Button 
                     size="lg" 
+                    className="bg-black text-white hover:bg-gray-800"
                     onClick={() => window.location.href = '/choose-purpose'}
                     data-testid="button-create-website-main"
                   >
@@ -439,17 +440,15 @@ export default function Dashboard() {
                                 }}
                                 variant="outline"
                                 size="sm"
-                                className="flex-1"
                                 data-testid={`button-setup-${website.id}`}
                               >
                                 <Settings className="h-4 w-4 mr-1" />
-                                Setup
+                                Edit Site
                               </Button>
                               <Button 
                                 onClick={() => window.open(`/template-preview?websiteId=${website.id}`, '_blank')}
                                 variant="outline"
                                 size="sm"
-                                className="flex-1"
                                 data-testid={`button-preview-${website.id}`}
                               >
                                 <Eye className="h-4 w-4 mr-1" />

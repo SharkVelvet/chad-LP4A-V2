@@ -113,29 +113,65 @@ class DomainService {
 
     const results: { domain: string; price: number; currency: string }[] = [];
     
-    for (const domain of domains) {
-      const tld = domain.split(".").pop() || "com";
-      
-      try {
-        const response = await this.makeRequest("namecheap.users.getPricing", {
-          ProductType: "DOMAIN",
-          ProductCategory: "REGISTER",
-          ActionName: "REGISTER",
-        });
+    try {
+      const response = await this.makeRequest("namecheap.users.getPricing", {
+        ProductType: "DOMAIN",
+        ActionName: "REGISTER",
+      });
 
-        // Parse pricing from response - this structure varies, so using fallback
-        results.push({
-          domain,
-          price: 15.00, // Default pricing, actual API call would return real pricing
-          currency: "USD",
-        });
-      } catch (error) {
-        results.push({
-          domain,
-          price: 15.00,
-          currency: "USD",
+      const pricingResult = response.CommandResponse?.UserGetPricingResult;
+      const productType = pricingResult?.ProductType;
+      
+      // Find the register category
+      const categories = Array.isArray(productType?.ProductCategory) 
+        ? productType.ProductCategory 
+        : [productType?.ProductCategory];
+      
+      const registerCategory = categories.find((cat: any) => cat?.["@_Name"] === "register");
+      
+      if (registerCategory) {
+        const products = Array.isArray(registerCategory.Product) 
+          ? registerCategory.Product 
+          : [registerCategory.Product];
+
+        for (const domain of domains) {
+          const tld = domain.split(".").pop() || "com";
+          
+          // Find the product for this TLD
+          const product = products.find((p: any) => p?.["@_Name"] === tld);
+          
+          if (product) {
+            const prices = Array.isArray(product.Price) ? product.Price : [product.Price];
+            // Get 1-year price
+            const yearPrice = prices.find((p: any) => p?.["@_Duration"] === "1");
+            
+            if (yearPrice) {
+              const basePrice = parseFloat(yearPrice["@_YourPrice"] || yearPrice["@_Price"] || "15.00");
+              const markup = 1.40; // 40% markup
+              results.push({
+                domain,
+                price: parseFloat((basePrice * markup).toFixed(2)),
+                currency: yearPrice["@_Currency"] || "USD",
+              });
+            } else {
+              results.push({ domain, price: 21.00, currency: "USD" }); // $15 + 40%
+            }
+          } else {
+            results.push({ domain, price: 21.00, currency: "USD" }); // $15 + 40%
+          }
+        }
+      } else {
+        // Fallback if we can't parse the response
+        domains.forEach(domain => {
+          results.push({ domain, price: 21.00, currency: "USD" }); // $15 + 40%
         });
       }
+    } catch (error) {
+      console.error("Error fetching pricing:", error);
+      // Fallback pricing if API call fails
+      domains.forEach(domain => {
+        results.push({ domain, price: 21.00, currency: "USD" }); // $15 + 40%
+      });
     }
 
     return results;

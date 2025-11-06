@@ -390,6 +390,97 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get DNS records for a domain
+  app.get("/api/domains/:domain/dns", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      
+      // Verify user owns a website with this domain
+      const websites = await storage.getUserWebsites(req.user.id);
+      const ownsDomain = websites.some(w => w.domain === domain);
+      
+      if (!ownsDomain) {
+        return res.status(403).json({ message: "You don't own this domain" });
+      }
+
+      const records = await domainService.getDnsRecords(domain);
+      res.json(records);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Update MX records for a domain
+  app.post("/api/domains/:domain/mx-records", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      const { mxRecords } = req.body;
+
+      if (!mxRecords || !Array.isArray(mxRecords)) {
+        return res.status(400).json({ message: "MX records array is required" });
+      }
+
+      // Verify user owns a website with this domain
+      const websites = await storage.getUserWebsites(req.user.id);
+      const ownsDomain = websites.some(w => w.domain === domain);
+      
+      if (!ownsDomain) {
+        return res.status(403).json({ message: "You don't own this domain" });
+      }
+
+      // Validate MX record structure
+      for (const record of mxRecords) {
+        if (!record.mailServer || typeof record.priority !== 'number') {
+          return res.status(400).json({ 
+            message: "Each MX record must have mailServer and priority" 
+          });
+        }
+      }
+
+      const success = await domainService.updateMxRecords(domain, mxRecords);
+      res.json({ success });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Add a single MX record to a domain
+  app.post("/api/domains/:domain/mx-records/add", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      const { mailServer, priority = 10, ttl = 1800 } = req.body;
+
+      if (!mailServer) {
+        return res.status(400).json({ message: "Mail server is required" });
+      }
+
+      // Verify user owns a website with this domain
+      const websites = await storage.getUserWebsites(req.user.id);
+      const ownsDomain = websites.some(w => w.domain === domain);
+      
+      if (!ownsDomain) {
+        return res.status(403).json({ message: "You don't own this domain" });
+      }
+
+      const success = await domainService.addMxRecord(domain, mailServer, priority, ttl);
+      res.json({ success });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Test email connection
   app.get('/api/test-email', async (req, res) => {
     try {

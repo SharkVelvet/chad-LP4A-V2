@@ -10,6 +10,7 @@ import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, Chevr
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import DomainSearch from "@/components/domain-search";
+import { MxRecordManager } from "@/components/mx-record-manager";
 
 type Website = {
   id: number;
@@ -508,10 +509,15 @@ export default function WebsiteEditor() {
                   />
                 </div>
 
+                {/* MX Record Manager */}
+                {website?.domain && (
+                  <MxRecordManager domain={website.domain} />
+                )}
+
                 {/* Info Box */}
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                   <p className="text-sm text-blue-800">
-                    <strong>Note:</strong> To purchase new domains, visit the <strong>My Domains</strong> section in your main dashboard.
+                    <strong>Note:</strong> You can purchase additional domains from the <strong>My Domains</strong> section in your main dashboard.
                   </p>
                 </div>
               </div>

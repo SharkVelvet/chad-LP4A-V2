@@ -123,7 +123,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         name,
         subscriptionPlan,
         domainPreferences,
-      });
+      } as any);
 
       // Create default content
       await storage.createWebsiteContent({
@@ -338,7 +338,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       if (result.success && websiteId) {
         // Update website with the purchased domain
-        await storage.updateWebsite(parseInt(websiteId), { domain, domainVerified: false });
+        await storage.updateWebsite(parseInt(websiteId), { domain, domainVerified: false } as any);
       }
 
       res.json(result);
@@ -1149,7 +1149,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         processed: 0,
         fixed: 0,
         failed: 0,
-        errors: []
+        errors: [] as string[]
       };
 
       // Get subscriptions with payment issues

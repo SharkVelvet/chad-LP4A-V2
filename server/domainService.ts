@@ -250,6 +250,129 @@ class DomainService {
       expiresDate: domainInfo?.DomainDetails?.ExpiredDate,
     };
   }
+
+  async getDnsRecords(domain: string): Promise<any[]> {
+    if (!this.isConfigured()) {
+      throw new Error("Domain service not configured");
+    }
+
+    const sld = domain.split(".")[0];
+    const tld = domain.split(".").slice(1).join(".");
+
+    const response = await this.makeRequest("namecheap.domains.dns.getHosts", {
+      SLD: sld,
+      TLD: tld,
+    });
+
+    const hosts = response.CommandResponse?.DomainDNSGetHostsResult?.host;
+    
+    if (!hosts) {
+      return [];
+    }
+
+    const hostArray = Array.isArray(hosts) ? hosts : [hosts];
+    
+    return hostArray.map((host: any) => ({
+      recordId: host["@_HostId"],
+      name: host["@_Name"],
+      type: host["@_Type"],
+      address: host["@_Address"],
+      mxPref: host["@_MXPref"] || null,
+      ttl: host["@_TTL"] || "1800",
+    }));
+  }
+
+  async setDnsRecords(
+    domain: string,
+    records: Array<{
+      name: string;
+      type: string;
+      address: string;
+      mxPref?: number;
+      ttl?: number;
+    }>
+  ): Promise<boolean> {
+    if (!this.isConfigured()) {
+      throw new Error("Domain service not configured");
+    }
+
+    const sld = domain.split(".")[0];
+    const tld = domain.split(".").slice(1).join(".");
+
+    const params: Record<string, string> = {
+      SLD: sld,
+      TLD: tld,
+    };
+
+    records.forEach((record, index) => {
+      const i = index + 1;
+      params[`HostName${i}`] = record.name;
+      params[`RecordType${i}`] = record.type;
+      params[`Address${i}`] = record.address;
+      params[`TTL${i}`] = (record.ttl || 1800).toString();
+      
+      if (record.type === "MX" && record.mxPref !== undefined) {
+        params[`MXPref${i}`] = record.mxPref.toString();
+      }
+    });
+
+    await this.makeRequest("namecheap.domains.dns.setHosts", params);
+    return true;
+  }
+
+  async addMxRecord(
+    domain: string,
+    mailServer: string,
+    priority: number = 10,
+    ttl: number = 1800
+  ): Promise<boolean> {
+    const existingRecords = await this.getDnsRecords(domain);
+    
+    const newRecord = {
+      name: "@",
+      type: "MX",
+      address: mailServer,
+      mxPref: priority,
+      ttl,
+    };
+
+    const allRecords = [...existingRecords.map(r => ({
+      name: r.name,
+      type: r.type,
+      address: r.address,
+      mxPref: r.mxPref,
+      ttl: parseInt(r.ttl),
+    })), newRecord];
+
+    return this.setDnsRecords(domain, allRecords);
+  }
+
+  async updateMxRecords(
+    domain: string,
+    mxRecords: Array<{ mailServer: string; priority: number; ttl?: number }>
+  ): Promise<boolean> {
+    const existingRecords = await this.getDnsRecords(domain);
+    
+    const nonMxRecords = existingRecords.filter(r => r.type !== "MX");
+    
+    const newMxRecords = mxRecords.map(mx => ({
+      name: "@",
+      type: "MX",
+      address: mx.mailServer,
+      mxPref: mx.priority,
+      ttl: mx.ttl || 1800,
+    }));
+
+    const allRecords = [...nonMxRecords.map(r => ({
+      name: r.name,
+      type: r.type,
+      address: r.address,
+      mxPref: r.mxPref,
+      ttl: parseInt(r.ttl),
+    })), ...newMxRecords];
+
+    return this.setDnsRecords(domain, allRecords);
+  }
 }
 
 export const domainService = new DomainService();

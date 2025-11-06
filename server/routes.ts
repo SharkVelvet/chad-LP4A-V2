@@ -296,41 +296,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Register a domain
-  app.post("/api/domains/register", async (req, res) => {
+  // Complete domain registration after successful payment
+  app.post("/api/domains/complete-purchase", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const { domain, years = 1, websiteId, contactInfo } = req.body;
+      const { sessionId } = req.body;
       
-      if (!domain || !contactInfo) {
-        return res.status(400).json({ message: "Domain and contact info are required" });
+      if (!sessionId) {
+        return res.status(400).json({ message: "Session ID is required" });
       }
 
-      // Validate contact info completeness
-      const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'address1', 'city', 'stateProvince', 'postalCode', 'country'];
-      const missingFields = requiredFields.filter(field => !contactInfo[field]);
-      if (missingFields.length > 0) {
-        return res.status(400).json({ 
-          message: `Missing required contact fields: ${missingFields.join(', ')}` 
-        });
+      if (!stripe) {
+        return res.status(500).json({ message: "Stripe not configured" });
       }
 
-      // Verify website ownership if websiteId is provided
-      if (websiteId) {
-        const website = await storage.getWebsite(websiteId);
-        if (!website || website.userId !== req.user.id) {
-          return res.status(403).json({ message: "Forbidden" });
-        }
+      // Verify the payment session
+      const session = await stripe.checkout.sessions.retrieve(sessionId);
+      
+      if (session.payment_status !== 'paid') {
+        return res.status(400).json({ message: "Payment not completed" });
       }
 
-      const result = await domainService.registerDomain(domain, years, contactInfo);
+      // Extract domain purchase details from session metadata
+      const { domain, years, websiteId, contactInfo } = session.metadata as any;
+      const parsedContactInfo = JSON.parse(contactInfo || '{}');
+      
+      if (!domain || !parsedContactInfo) {
+        return res.status(400).json({ message: "Invalid session data" });
+      }
+
+      // Verify user ownership
+      if (session.metadata?.userId !== req.user.id.toString()) {
+        return res.status(403).json({ message: "Forbidden" });
+      }
+
+      // Now register the domain with Namecheap (payment already collected)
+      const result = await domainService.registerDomain(domain, parseInt(years) || 1, parsedContactInfo);
 
       if (result.success && websiteId) {
         // Update website with the purchased domain
-        await storage.updateWebsite(websiteId, { domain, domainVerified: false });
+        await storage.updateWebsite(parseInt(websiteId), { domain, domainVerified: false });
       }
 
       res.json(result);
@@ -795,6 +803,90 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ url: session.url });
     } catch (error: any) {
       console.error('Stripe Checkout Session error:', error);
+      return res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Create Stripe Checkout Session for domain purchase
+  app.post('/api/create-domain-checkout-session', async (req, res) => {
+    const { domain, years = 1, websiteId, contactInfo } = req.body;
+    
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ error: 'Authentication required' });
+    }
+    
+    const user = req.user as any;
+    
+    if (!domain || !contactInfo) {
+      return res.status(400).json({ error: 'Domain and contact information are required' });
+    }
+
+    if (!stripe) {
+      return res.status(500).json({ error: 'Payment processing not configured' });
+    }
+
+    try {
+      // Get the current price for this domain
+      const pricing = await domainService.getPricing([domain]);
+      if (pricing.length === 0) {
+        return res.status(400).json({ error: 'Unable to get domain pricing' });
+      }
+      
+      const domainPrice = pricing[0];
+      const totalAmount = Math.round(domainPrice.price * 100); // Convert to cents
+
+      // Get or create Stripe customer
+      let customer;
+      const existingCustomers = await stripe.customers.list({
+        email: user.email,
+        limit: 1,
+      });
+      
+      if (existingCustomers.data.length > 0) {
+        customer = existingCustomers.data[0];
+      } else {
+        customer = await stripe.customers.create({
+          email: user.email,
+          name: user.username || user.email,
+        });
+      }
+
+      const baseUrl = process.env.NODE_ENV === 'production' 
+        ? `https://${process.env.REPLIT_DEV_DOMAIN}`
+        : `http://localhost:${process.env.PORT || 5000}`;
+
+      // Create Checkout Session
+      const session = await stripe.checkout.sessions.create({
+        customer: customer.id,
+        payment_method_types: ['card'],
+        mode: 'payment',
+        line_items: [
+          {
+            price_data: {
+              currency: domainPrice.currency.toLowerCase(),
+              product_data: {
+                name: `Domain Registration: ${domain}`,
+                description: `${years} year${years > 1 ? 's' : ''} registration`,
+              },
+              unit_amount: totalAmount,
+            },
+            quantity: 1,
+          },
+        ],
+        success_url: `${baseUrl}/domain-payment-success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${baseUrl}/dashboard?domain_cancelled=true`,
+        metadata: {
+          domain,
+          years: years.toString(),
+          userId: user.id.toString(),
+          websiteId: websiteId?.toString() || '',
+          contactInfo: JSON.stringify(contactInfo),
+        },
+      });
+
+      res.json({ url: session.url });
+    } catch (error: any) {
+      console.error('Stripe Domain Checkout Session error:', error);
       return res.status(400).json({ error: error.message });
     }
   });

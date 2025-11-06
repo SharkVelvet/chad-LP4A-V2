@@ -19,6 +19,8 @@ type DomainResult = {
   domain: string;
   available: boolean;
   price?: number;
+  isFree?: boolean;
+  isPremium?: boolean;
 };
 
 export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSearchProps) {
@@ -43,34 +45,43 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
     mutationFn: async (searchQuery: string) => {
       const baseDomain = searchQuery.toLowerCase().replace(/^www\./, "").replace(/\s+/g, "");
       
-      // If user already typed a full domain, check it and common alternatives
-      // If they typed just a name, check common TLDs
+      // Extract TLD if provided
       const hasExtension = baseDomain.includes(".");
-      const domainsToCheck = hasExtension
-        ? [baseDomain]
-        : [
-            `${baseDomain}.com`,
-            `${baseDomain}.net`,
-            `${baseDomain}.org`,
-            `${baseDomain}.io`,
-          ];
+      let domainsToCheck: string[] = [];
+      
+      if (hasExtension) {
+        const tld = baseDomain.split('.').pop();
+        // Only allow .com and .net
+        if (tld !== 'com' && tld !== 'net') {
+          throw new Error('Only .com and .net domains are available at this time');
+        }
+        domainsToCheck = [baseDomain];
+      } else {
+        // If no extension provided, check both .com and .net
+        domainsToCheck = [
+          `${baseDomain}.com`,
+          `${baseDomain}.net`,
+        ];
+      }
 
       // Check availability
-      const availabilityRes = await apiRequest("POST", "/api/domains/check-availability", { domains: domainsToCheck });
+      const availabilityRes = await apiRequest("POST", "/api/domains/check-availability", { domains: domainsToCheck, websiteId });
       const availabilityResults: DomainResult[] = await availabilityRes.json();
 
       // Get pricing for available domains
       const availableDomains = availabilityResults.filter(r => r.available).map(r => r.domain);
       if (availableDomains.length > 0) {
-        const pricingRes = await apiRequest("POST", "/api/domains/pricing", { domains: availableDomains });
-        const pricingResults: { domain: string; price: number; currency: string }[] = await pricingRes.json();
+        const pricingRes = await apiRequest("POST", "/api/domains/pricing", { domains: availableDomains, websiteId });
+        const pricingResults: { domain: string; price: number; currency: string; isFree?: boolean; isPremium?: boolean }[] = await pricingRes.json();
 
         // Merge pricing into availability results
         return availabilityResults.map(result => {
           const pricing = pricingResults.find(p => p.domain === result.domain);
           return {
             ...result,
-            price: pricing?.price || 15.00,
+            price: pricing?.price || 0,
+            isFree: pricing?.isFree || false,
+            isPremium: pricing?.isPremium || false,
           };
         });
       }
@@ -107,13 +118,26 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
       return res.json();
     },
     onSuccess: (result) => {
-      if (result.url) {
-        // Redirect to Stripe Checkout
+      if (result.isFree && result.success) {
+        // Free domain registered successfully!
+        toast({
+          title: "FREE Domain Registered!",
+          description: `${result.domain} has been successfully registered at no charge.`,
+        });
+        setShowPurchaseDialog(false);
+        setSelectedDomain(null);
+        setSearchResults([]);
+        setSearchTerm("");
+        if (result.domain) {
+          onDomainPurchased(result.domain);
+        }
+      } else if (result.url) {
+        // Premium domain - redirect to Stripe Checkout
         window.location.href = result.url;
       } else {
         toast({
-          title: "Checkout Failed",
-          description: "Unable to create checkout session. Please try again.",
+          title: "Registration Failed",
+          description: result.error || "Unable to register domain. Please try again.",
           variant: "destructive",
         });
       }
@@ -208,7 +232,7 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
                 </Button>
               </div>
               <p className="text-xs text-gray-500 mt-1">
-                Enter a domain name (e.g., "mybusiness" or "mybusiness.com")
+                Enter a domain name (e.g., "mybusiness"). <span className="font-semibold text-green-600">FREE .com and .net domains included with your website!</span> Only .com and .net extensions are available.
               </p>
             </div>
           </form>
@@ -238,16 +262,32 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
                   <div className="flex items-center gap-3">
                     {result.available && (
                       <>
-                        <Badge variant="secondary">
-                          ${result.price?.toFixed(2) || "15.00"}/year
-                        </Badge>
+                        {result.isFree ? (
+                          <Badge className="bg-green-500 hover:bg-green-600 text-white">
+                            FREE
+                          </Badge>
+                        ) : result.isPremium ? (
+                          <>
+                            <Badge variant="secondary" className="bg-amber-100 text-amber-800">
+                              Premium
+                            </Badge>
+                            <Badge variant="secondary">
+                              ${result.price?.toFixed(2)}/year
+                            </Badge>
+                          </>
+                        ) : (
+                          <Badge variant="secondary">
+                            ${result.price?.toFixed(2) || "0.00"}/year
+                          </Badge>
+                        )}
                         <Button
                           size="sm"
                           onClick={() => handlePurchase(result.domain)}
                           data-testid={`button-purchase-${result.domain}`}
+                          className={result.isFree ? "bg-green-500 hover:bg-green-600" : ""}
                         >
                           <ShoppingCart className="h-4 w-4 mr-2" />
-                          Purchase
+                          {result.isFree ? "Register FREE" : "Purchase"}
                         </Button>
                       </>
                     )}

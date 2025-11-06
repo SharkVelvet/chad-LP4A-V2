@@ -80,6 +80,14 @@ class DomainService {
       throw new Error("Domain service not configured");
     }
 
+    // Validate TLDs - only .com and .net allowed
+    for (const domain of domains) {
+      const tld = domain.split('.').pop()?.toLowerCase();
+      if (tld !== 'com' && tld !== 'net') {
+        throw new Error('Only .com and .net domains are available at this time');
+      }
+    }
+
     const domainList = domains.join(",");
     const response = await this.makeRequest("namecheap.domains.check", {
       DomainList: domainList,
@@ -106,12 +114,13 @@ class DomainService {
     return results;
   }
 
-  async getPricing(domains: string[]): Promise<{ domain: string; price: number; currency: string }[]> {
+  async getPricing(domains: string[]): Promise<{ domain: string; price: number; currency: string; isFree: boolean; isPremium: boolean }[]> {
     if (!this.isConfigured()) {
       throw new Error("Domain service not configured");
     }
 
-    const results: { domain: string; price: number; currency: string }[] = [];
+    const results: { domain: string; price: number; currency: string; isFree: boolean; isPremium: boolean }[] = [];
+    const FREE_THRESHOLD = 18.00; // Domains ≤$18 are free
     
     try {
       const response = await this.makeRequest("namecheap.users.getPricing", {
@@ -137,6 +146,11 @@ class DomainService {
         for (const domain of domains) {
           const tld = domain.split(".").pop() || "com";
           
+          // Only allow .com and .net
+          if (tld !== 'com' && tld !== 'net') {
+            throw new Error('Only .com and .net domains are available at this time');
+          }
+          
           // Find the product for this TLD
           const product = products.find((p: any) => p?.["@_Name"] === tld);
           
@@ -146,32 +160,45 @@ class DomainService {
             const yearPrice = prices.find((p: any) => p?.["@_Duration"] === "1");
             
             if (yearPrice) {
-              const basePrice = parseFloat(yearPrice["@_YourPrice"] || yearPrice["@_Price"] || "15.00");
-              const markup = 1.40; // 40% markup
-              results.push({
-                domain,
-                price: parseFloat((basePrice * markup).toFixed(2)),
-                currency: yearPrice["@_Currency"] || "USD",
-              });
+              const namecheapCost = parseFloat(yearPrice["@_YourPrice"] || yearPrice["@_Price"] || "15.00");
+              
+              if (namecheapCost <= FREE_THRESHOLD) {
+                // Free domain
+                results.push({
+                  domain,
+                  price: 0,
+                  currency: yearPrice["@_Currency"] || "USD",
+                  isFree: true,
+                  isPremium: false,
+                });
+              } else {
+                // Premium domain - charge Namecheap cost + 40%
+                const markup = 1.40;
+                results.push({
+                  domain,
+                  price: parseFloat((namecheapCost * markup).toFixed(2)),
+                  currency: yearPrice["@_Currency"] || "USD",
+                  isFree: false,
+                  isPremium: true,
+                });
+              }
             } else {
-              results.push({ domain, price: 21.00, currency: "USD" }); // $15 + 40%
+              // Missing pricing data - throw error instead of defaulting to free
+              throw new Error(`Unable to retrieve pricing for ${domain}. Please try again.`);
             }
           } else {
-            results.push({ domain, price: 21.00, currency: "USD" }); // $15 + 40%
+            // TLD not found in pricing - should never happen for .com/.net
+            throw new Error(`Pricing data not available for ${domain}. Please try again.`);
           }
         }
       } else {
-        // Fallback if we can't parse the response
-        domains.forEach(domain => {
-          results.push({ domain, price: 21.00, currency: "USD" }); // $15 + 40%
-        });
+        // Cannot parse pricing response - critical error
+        throw new Error('Unable to retrieve domain pricing from registrar. Please try again.');
       }
     } catch (error) {
       console.error("Error fetching pricing:", error);
-      // Fallback pricing if API call fails
-      domains.forEach(domain => {
-        results.push({ domain, price: 21.00, currency: "USD" }); // $15 + 40%
-      });
+      // Re-throw instead of defaulting to free
+      throw error;
     }
 
     return results;

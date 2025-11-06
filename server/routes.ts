@@ -263,10 +263,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     try {
-      const { domains } = req.body;
+      const { domains, websiteId } = req.body;
       
       if (!domains || !Array.isArray(domains) || domains.length === 0) {
         return res.status(400).json({ message: "Domains array is required" });
+      }
+      
+      if (!websiteId) {
+        return res.status(400).json({ message: "Website ID is required" });
+      }
+
+      // Verify the user owns an active paid website
+      const website = await storage.getWebsite(websiteId);
+      if (!website) {
+        return res.status(404).json({ message: "Website not found" });
+      }
+      if (website.userId !== req.user.id) {
+        return res.status(403).json({ message: "You do not own this website" });
+      }
+      if (website.subscriptionStatus !== 'active') {
+        return res.status(403).json({ message: "You must have an active website subscription to search for domains" });
       }
 
       const results = await domainService.checkAvailability(domains);
@@ -283,10 +299,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     try {
-      const { domains } = req.body;
+      const { domains, websiteId } = req.body;
       
       if (!domains || !Array.isArray(domains) || domains.length === 0) {
         return res.status(400).json({ message: "Domains array is required" });
+      }
+      
+      if (!websiteId) {
+        return res.status(400).json({ message: "Website ID is required" });
+      }
+
+      // Verify the user owns an active paid website
+      const website = await storage.getWebsite(websiteId);
+      if (!website) {
+        return res.status(404).json({ message: "Website not found" });
+      }
+      if (website.userId !== req.user.id) {
+        return res.status(403).json({ message: "You do not own this website" });
+      }
+      if (website.subscriptionStatus !== 'active') {
+        return res.status(403).json({ message: "You must have an active website subscription to view domain pricing" });
       }
 
       const pricing = await domainService.getPricing(domains);
@@ -817,8 +849,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     
     const user = req.user as any;
     
-    if (!domain || !contactInfo) {
-      return res.status(400).json({ error: 'Domain and contact information are required' });
+    if (!domain || !contactInfo || !websiteId) {
+      return res.status(400).json({ error: 'Domain, contact information, and website are required' });
+    }
+
+    // Verify the user owns a website and it's been paid for
+    const website = await storage.getWebsite(websiteId);
+    if (!website) {
+      return res.status(404).json({ error: 'Website not found' });
+    }
+    if (website.userId !== user.id) {
+      return res.status(403).json({ error: 'You do not own this website' });
+    }
+    if (website.subscriptionStatus !== 'active') {
+      return res.status(403).json({ error: 'You must have an active website subscription before purchasing a domain' });
     }
 
     if (!stripe) {
@@ -833,6 +877,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       const domainPrice = pricing[0];
+      
+      // If domain is FREE, register it directly without payment
+      if (domainPrice.isFree) {
+        const result = await domainService.registerDomain(domain, years, contactInfo);
+        
+        if (result.success) {
+          // Update website with the purchased domain
+          await storage.updateWebsite(websiteId, { domain, domainVerified: false } as any);
+          return res.json({ 
+            success: true, 
+            isFree: true,
+            message: 'Domain registered successfully for free!',
+            domain 
+          });
+        } else {
+          return res.status(400).json({ error: 'Failed to register domain with registrar' });
+        }
+      }
+      
+      // Premium domain - create Stripe checkout
       const totalAmount = Math.round(domainPrice.price * 100); // Convert to cents
 
       // Get or create Stripe customer

@@ -7,9 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Building2, Globe, Users, Shield, Eye, EyeOff } from "lucide-react";
+import { Mail, Shield, Users, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import OTPVerification from "@/components/otp-verification";
 
@@ -17,52 +16,54 @@ export default function AuthPage() {
   const { user } = useAuth();
   const [, navigate] = useLocation();
   const { toast } = useToast();
-  const [loginData, setLoginData] = useState({ username: "", password: "" });
+  const [loginEmail, setLoginEmail] = useState("");
   const [registerData, setRegisterData] = useState({ 
     username: "", 
-    email: "",
-    password: "",
-    confirmPassword: ""
+    email: ""
   });
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [passwordError, setPasswordError] = useState("");
   const [otpData, setOtpData] = useState<{ userId: number; email: string; type: 'signup' | 'login' } | null>(null);
 
   // Redirect if already logged in
   React.useEffect(() => {
     if (user) {
-      // Redirect to dashboard
       navigate('/dashboard');
     }
   }, [user, navigate]);
 
   const loginMutation = useMutation({
-    mutationFn: async (data: { username: string; password: string }) => {
+    mutationFn: async (data: { email: string }) => {
       const res = await apiRequest("POST", "/api/login", data);
       return res.json();
     },
     onSuccess: (data) => {
       // OTP sent, show verification screen
       setOtpData({ userId: data.userId, email: data.email, type: 'login' });
+      toast({
+        title: "Code Sent",
+        description: "Check your email for the verification code",
+      });
     },
     onError: (error: any) => {
       toast({
         title: "Login Failed",
-        description: error.message || "Invalid credentials",
+        description: error.message || "Could not send verification code",
         variant: "destructive",
       });
     },
   });
 
   const registerMutation = useMutation({
-    mutationFn: async (data: { username: string; email: string; password: string }) => {
+    mutationFn: async (data: { username: string; email: string }) => {
       const res = await apiRequest("POST", "/api/register", data);
       return res.json();
     },
     onSuccess: (data) => {
       // OTP sent, show verification screen
       setOtpData({ userId: data.userId, email: data.email, type: 'signup' });
+      toast({
+        title: "Code Sent",
+        description: "Check your email for the verification code",
+      });
     },
     onError: (error: any) => {
       toast({
@@ -75,26 +76,14 @@ export default function AuthPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    loginMutation.mutate({
-      username: loginData.username,
-      password: loginData.password,
-    });
+    loginMutation.mutate({ email: loginEmail });
   };
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Check if passwords match
-    if (registerData.password !== registerData.confirmPassword) {
-      setPasswordError("Passwords do not match");
-      return;
-    }
-    
-    setPasswordError("");
     registerMutation.mutate({
       username: registerData.username,
       email: registerData.email,
-      password: registerData.password,
     });
   };
 
@@ -122,10 +111,10 @@ export default function AuthPage() {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-gray-900">Welcome</h1>
-            <p className="text-gray-600 mt-2">Create your free account to get started</p>
+            <p className="text-gray-600 mt-2">Enter your email to receive a login code</p>
           </div>
 
-          <Tabs defaultValue="register" className="space-y-4">
+          <Tabs defaultValue="login" className="space-y-4">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="login">Sign In</TabsTrigger>
               <TabsTrigger value="register">Sign Up</TabsTrigger>
@@ -135,31 +124,25 @@ export default function AuthPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Sign In</CardTitle>
-                  <CardDescription>Enter your credentials to access your account</CardDescription>
+                  <CardDescription>We'll send a verification code to your email</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleLogin} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="login-username">Username or Email</Label>
-                      <Input
-                        id="login-username"
-                        type="text"
-                        value={loginData.username}
-                        onChange={(e) => setLoginData({ ...loginData, username: e.target.value })}
-                        placeholder="Enter your username or email"
-                        required
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="login-password">Password</Label>
-                      <Input
-                        id="login-password"
-                        type="password"
-                        value={loginData.password}
-                        onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-                        required
-                      />
+                      <Label htmlFor="login-email">Email</Label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+                        <Input
+                          id="login-email"
+                          type="email"
+                          value={loginEmail}
+                          onChange={(e) => setLoginEmail(e.target.value)}
+                          placeholder="your@email.com"
+                          className="pl-10"
+                          required
+                          data-testid="input-login-email"
+                        />
+                      </div>
                     </div>
 
                     <Button 
@@ -168,7 +151,7 @@ export default function AuthPage() {
                       disabled={loginMutation.isPending}
                       data-testid="button-login"
                     >
-                      {loginMutation.isPending ? "Signing in..." : "Sign In"}
+                      {loginMutation.isPending ? "Sending code..." : "Send Login Code"}
                     </Button>
                   </form>
                 </CardContent>
@@ -179,7 +162,7 @@ export default function AuthPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Sign Up</CardTitle>
-                  <CardDescription>Create a new account to get started</CardDescription>
+                  <CardDescription>Create a new account - no password needed</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleRegister} className="space-y-4">
@@ -190,72 +173,27 @@ export default function AuthPage() {
                         type="text"
                         value={registerData.username}
                         onChange={(e) => setRegisterData({ ...registerData, username: e.target.value })}
+                        placeholder="Choose a username"
                         required
+                        data-testid="input-register-username"
                       />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="register-email">Email</Label>
-                      <Input
-                        id="register-email"
-                        type="email"
-                        value={registerData.email}
-                        onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
-                        required
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="register-password">Password</Label>
                       <div className="relative">
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
                         <Input
-                          id="register-password"
-                          type={showPassword ? "text" : "password"}
-                          value={registerData.password}
-                          onChange={(e) => {
-                            setRegisterData({ ...registerData, password: e.target.value });
-                            if (passwordError) setPasswordError("");
-                          }}
+                          id="register-email"
+                          type="email"
+                          value={registerData.email}
+                          onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
+                          placeholder="your@email.com"
+                          className="pl-10"
                           required
-                          className="pr-10"
+                          data-testid="input-register-email"
                         />
-                        <button
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                          data-testid="button-toggle-password"
-                        >
-                          {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                        </button>
                       </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="register-confirm-password">Confirm Password</Label>
-                      <div className="relative">
-                        <Input
-                          id="register-confirm-password"
-                          type={showConfirmPassword ? "text" : "password"}
-                          value={registerData.confirmPassword}
-                          onChange={(e) => {
-                            setRegisterData({ ...registerData, confirmPassword: e.target.value });
-                            if (passwordError) setPasswordError("");
-                          }}
-                          required
-                          className="pr-10"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                          data-testid="button-toggle-confirm-password"
-                        >
-                          {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                        </button>
-                      </div>
-                      {passwordError && (
-                        <p className="text-sm text-red-600" data-testid="text-password-error">{passwordError}</p>
-                      )}
                     </div>
 
                     <Button 
@@ -264,7 +202,7 @@ export default function AuthPage() {
                       disabled={registerMutation.isPending}
                       data-testid="button-register"
                     >
-                      {registerMutation.isPending ? "Creating account..." : "Sign Up"}
+                      {registerMutation.isPending ? "Creating account..." : "Create Account"}
                     </Button>
                   </form>
                 </CardContent>
@@ -289,16 +227,16 @@ export default function AuthPage() {
               <div className="bg-white/20 rounded-full p-3 mx-auto mb-2 w-12 h-12 flex items-center justify-center">
                 <Globe className="h-6 w-6" />
               </div>
-              <h3 className="font-semibold mb-1">Single Page</h3>
-              <p className="text-sm text-blue-100">Perfect for businesses, portfolios, and landing pages</p>
+              <h3 className="font-semibold mb-1">Templates</h3>
+              <p className="text-sm text-blue-100">Professional designs ready to customize</p>
             </div>
             
             <div className="text-center">
               <div className="bg-white/20 rounded-full p-3 mx-auto mb-2 w-12 h-12 flex items-center justify-center">
-                <Building2 className="h-6 w-6" />
+                <Mail className="h-6 w-6" />
               </div>
-              <h3 className="font-semibold mb-1">Full Site</h3>
-              <p className="text-sm text-blue-100">Complete websites with multiple pages and features</p>
+              <h3 className="font-semibold mb-1">Email Login</h3>
+              <p className="text-sm text-blue-100">Simple, secure, passwordless access</p>
             </div>
           </div>
 

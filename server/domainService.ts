@@ -21,6 +21,14 @@ class DomainService {
     this.userName = process.env.NAMECHEAP_USERNAME || this.apiUser;
     this.clientIp = process.env.NAMECHEAP_CLIENT_IP || "";
 
+    console.log("🔧 Namecheap API Configuration:");
+    console.log("   API URL:", NAMECHEAP_API_URL);
+    console.log("   API User:", this.apiUser);
+    console.log("   Username:", this.userName);
+    console.log("   Client IP:", this.clientIp);
+    console.log("   API Key:", this.apiKey ? `${this.apiKey.substring(0, 10)}...` : "NOT SET");
+    console.log("   Sandbox Mode:", process.env.NAMECHEAP_SANDBOX);
+
     if (!this.apiUser || !this.apiKey) {
       console.warn("Namecheap API credentials not configured. Domain features will be disabled.");
     }

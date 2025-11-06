@@ -98,7 +98,7 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
 
   const purchaseMutation = useMutation({
     mutationFn: async (data: { domain: string; contactInfo: any }) => {
-      const res = await apiRequest("POST", "/api/domains/register", {
+      const res = await apiRequest("POST", "/api/create-domain-checkout-session", {
         domain: data.domain,
         years: 1,
         websiteId,
@@ -107,22 +107,13 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
       return res.json();
     },
     onSuccess: (result) => {
-      if (result.success) {
-        toast({
-          title: "Domain Registered!",
-          description: `${selectedDomain} has been successfully registered.`,
-        });
-        setShowPurchaseDialog(false);
-        setSelectedDomain(null);
-        setSearchResults([]);
-        setSearchTerm("");
-        if (selectedDomain) {
-          onDomainPurchased(selectedDomain);
-        }
+      if (result.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = result.url;
       } else {
         toast({
-          title: "Registration Failed",
-          description: "Could not register the domain. Please try again.",
+          title: "Checkout Failed",
+          description: "Unable to create checkout session. Please try again.",
           variant: "destructive",
         });
       }

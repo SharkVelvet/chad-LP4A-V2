@@ -38,6 +38,7 @@ import ChooseWebsitePurpose from "@/pages/choose-website-purpose";
 import SelectTemplateByCategory from "@/pages/select-template-by-category";
 import WebsiteCheckout from "@/pages/website-checkout";
 import PaymentProcessing from "@/pages/payment-processing";
+import DomainPaymentSuccess from "@/pages/domain-payment-success";
 import WebsiteEditor from "@/pages/website-editor";
 import NotFound from "@/pages/not-found";
 
@@ -71,6 +72,7 @@ function Router() {
         <ProtectedRoute path="/templates/:category" component={SelectTemplateByCategory} />
         <ProtectedRoute path="/checkout/:templateId" component={WebsiteCheckout} />
         <ProtectedRoute path="/payment-processing" component={PaymentProcessing} />
+        <ProtectedRoute path="/domain-payment-success" component={DomainPaymentSuccess} />
         <ProtectedRoute path="/editor/:websiteId" component={WebsiteEditor} />
         <Route path="/ideas" component={Ideas} />
         <Route path="/internal-one" component={InternalOne} />

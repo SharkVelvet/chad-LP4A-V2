@@ -61,7 +61,7 @@ export function setupAuth(app: Express) {
 
   app.post("/api/register", async (req, res, next) => {
     try {
-      const { username, email, password } = req.body;
+      const { username, email } = req.body;
 
       const existingUser = await storage.getUserByUsername(username);
       if (existingUser) {
@@ -73,11 +73,11 @@ export function setupAuth(app: Express) {
         return res.status(400).json({ message: "Email already exists" });
       }
 
-      // Create user with hashed password but not verified yet
+      // Create user without password (passwordless login)
       const user = await storage.createUser({
         username,
         email,
-        password: await hashPassword(password),
+        password: "", // Empty password for passwordless accounts
         role: "customer",
       });
 
@@ -107,19 +107,16 @@ export function setupAuth(app: Express) {
 
   app.post("/api/login", async (req, res) => {
     try {
-      const { username, password } = req.body;
+      const { email } = req.body;
 
-      // Try to find user by username first, then by email
-      let user = await storage.getUserByUsername(username);
-      if (!user) {
-        user = await storage.getUserByEmail(username);
-      }
+      // Find user by email
+      const user = await storage.getUserByEmail(email);
       
-      if (!user || !(await comparePasswords(password, user.password))) {
-        return res.status(401).json({ message: "Invalid username or password" });
+      if (!user) {
+        return res.status(401).json({ message: "No account found with this email" });
       }
 
-      // Generate and store OTP
+      // Generate and store OTP (no password check needed)
       const otpCode = generateOTP();
       const otpExpiry = getOTPExpiry();
       

@@ -505,10 +505,10 @@ export default function TemplatePreview({ templateSlug, className = "", content,
         </div>
 
         {/* Hero Section with Business Background */}
-        <div id="hero" className="relative h-[80vh] bg-cover bg-center bg-no-repeat" style={{
+        <div id="hero" className="relative min-h-[80vh] bg-cover bg-center bg-no-repeat py-12 sm:py-16" style={{
           backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${template1HeroImg})`
         }}>
-          <div className="absolute inset-0 flex items-center">
+          <div className="relative flex items-center">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center w-full">
               <div className="text-white text-center lg:text-left">
                 <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 leading-tight">Jake Smith</h1>

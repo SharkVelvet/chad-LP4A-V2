@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, ChevronRight, FileEdit, Palette } from "lucide-react";
+import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, ChevronRight, FileEdit, Palette, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import DomainSearch from "@/components/domain-search";
@@ -27,6 +27,8 @@ type Website = {
     phone: string | null;
     email: string | null;
     address: string | null;
+    isPublished: boolean;
+    publishedAt: string | null;
   };
 };
 
@@ -575,14 +577,14 @@ export default function WebsiteEditor() {
                     <div className="flex-1">
                       <h4 className="font-semibold text-gray-900 mb-1">Website Visibility</h4>
                       <p className="text-sm text-gray-600">
-                        {websiteContent?.isPublished 
+                        {website?.content?.isPublished 
                           ? "Your website is live and visible to the public."
                           : "Your website is in draft mode and not visible to the public."}
                       </p>
                     </div>
                     <Button
                       onClick={() => {
-                        if (websiteContent?.isPublished) {
+                        if (website?.content?.isPublished) {
                           // Unpublish
                           toast({
                             title: "Cannot Unpublish",
@@ -595,7 +597,7 @@ export default function WebsiteEditor() {
                         }
                       }}
                       disabled={publishMutation.isPending}
-                      className={websiteContent?.isPublished ? "bg-amber-600 hover:bg-amber-700" : "bg-green-600 hover:bg-green-700"}
+                      className={website?.content?.isPublished ? "bg-amber-600 hover:bg-amber-700" : "bg-green-600 hover:bg-green-700"}
                       data-testid="button-publish-website"
                     >
                       {publishMutation.isPending ? (
@@ -603,7 +605,7 @@ export default function WebsiteEditor() {
                           <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                           Publishing...
                         </>
-                      ) : websiteContent?.isPublished ? (
+                      ) : website?.content?.isPublished ? (
                         "Website is Live"
                       ) : (
                         "Publish Website"

@@ -299,6 +299,75 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Enable form embedding
+  app.post("/api/websites/:id/enable-form", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const websiteId = parseInt(req.params.id);
+      const website = await storage.getWebsite(websiteId);
+      
+      if (!website || website.userId !== req.user.id) {
+        return res.status(404).json({ message: "Website not found" });
+      }
+
+      const updatedContent = await storage.enableFormEmbed(websiteId);
+      res.json(updatedContent);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Save form embed configuration
+  app.post("/api/websites/:id/save-form", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const websiteId = parseInt(req.params.id);
+      const { formProvider, formEmbedCode } = req.body;
+      
+      if (!formProvider || !formEmbedCode) {
+        return res.status(400).json({ message: "Form provider and embed code are required" });
+      }
+
+      const website = await storage.getWebsite(websiteId);
+      
+      if (!website || website.userId !== req.user.id) {
+        return res.status(404).json({ message: "Website not found" });
+      }
+
+      const updatedContent = await storage.saveFormEmbed(websiteId, formProvider, formEmbedCode);
+      res.json(updatedContent);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Disable form embedding
+  app.post("/api/websites/:id/disable-form", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const websiteId = parseInt(req.params.id);
+      const website = await storage.getWebsite(websiteId);
+      
+      if (!website || website.userId !== req.user.id) {
+        return res.status(404).json({ message: "Website not found" });
+      }
+
+      const updatedContent = await storage.disableFormEmbed(websiteId);
+      res.json(updatedContent);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Domain routes
   // Check domain availability
   app.post("/api/domains/check-availability", async (req, res) => {

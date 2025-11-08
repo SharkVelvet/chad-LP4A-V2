@@ -70,6 +70,9 @@ export const websiteContent = pgTable("website_content", {
   isPublished: boolean("is_published").notNull().default(false),
   maintenanceMode: boolean("maintenance_mode").notNull().default(false),
   publishedAt: timestamp("published_at"),
+  formEnabled: boolean("form_enabled").notNull().default(false),
+  formProvider: text("form_provider"),
+  formEmbedCode: text("form_embed_code"),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 

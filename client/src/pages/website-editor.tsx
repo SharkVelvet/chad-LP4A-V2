@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, ChevronRight, FileEdit, Palette, Loader2, FileText } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import DomainSearch from "@/components/domain-search";
@@ -30,6 +31,9 @@ type Website = {
     isPublished: boolean;
     maintenanceMode: boolean;
     publishedAt: string | null;
+    formEnabled: boolean;
+    formProvider: string | null;
+    formEmbedCode: string | null;
   };
 };
 
@@ -555,22 +559,58 @@ export default function WebsiteEditor() {
               <div className="max-w-4xl space-y-6">
                 <div>
                   <h3 className="text-2xl font-bold mb-2">Add / Edit Forms</h3>
-                  <p className="text-sm text-gray-600 mb-6">Create and manage contact forms, lead capture forms, and more for your website.</p>
+                  <p className="text-sm text-gray-600 mb-6">Embed a third-party form into your contact section.</p>
                 </div>
-                
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-blue-900 mb-2">Form Builder Coming Soon</h4>
-                  <p className="text-sm text-blue-800">
-                    You'll be able to create custom forms for your website including:
-                  </p>
-                  <ul className="mt-3 space-y-2 text-sm text-blue-800">
-                    <li>• Contact forms with custom fields</li>
-                    <li>• Lead capture forms</li>
-                    <li>• Quote request forms</li>
-                    <li>• Newsletter signup forms</li>
-                    <li>• Custom survey forms</li>
-                  </ul>
+
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-gray-900 mb-1">Enable Form in Contact Section</h4>
+                      <p className="text-sm text-gray-600">
+                        {website?.content?.formEnabled 
+                          ? "Form embedding is active. Configure your embed code below."
+                          : "Turn on to embed a form from Go High Level, Formstack, or Formspree."
+                        }
+                      </p>
+                    </div>
+                    <Switch
+                      checked={website?.content?.formEnabled || false}
+                      onCheckedChange={async (checked) => {
+                        try {
+                          const endpoint = checked ? "enable-form" : "disable-form";
+                          const res = await apiRequest("POST", `/api/websites/${websiteId}/${endpoint}`, {});
+                          await res.json();
+                          queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+                          toast({
+                            title: checked ? "Forms Enabled" : "Forms Disabled",
+                            description: checked 
+                              ? "You can now configure your form embed code below."
+                              : "The form has been removed from your contact section.",
+                          });
+                        } catch (error) {
+                          toast({
+                            title: "Error",
+                            description: "Failed to update form settings. Please try again.",
+                            variant: "destructive",
+                          });
+                        }
+                      }}
+                      data-testid="switch-enable-form"
+                    />
+                  </div>
+
+                  {website?.content?.formEnabled && (
+                    <div className="pt-4 border-t">
+                      <p className="text-xs text-gray-500 mb-4">
+                        Note: Only one form per website is allowed. The form will be displayed in your contact section.
+                      </p>
+                    </div>
+                  )}
                 </div>
+
+                {website?.content?.formEnabled && (
+                  <FormsConfig websiteId={websiteId!} website={website} />
+                )}
               </div>
             </div>
           </div>
@@ -1265,6 +1305,171 @@ export default function WebsiteEditor() {
             </div>
           )}
         </div>
+      </div>
+    </div>
+  );
+}
+
+// FormsConfig component for managing form embed settings
+function FormsConfig({ websiteId, website }: { websiteId: string; website: Website | null | undefined }) {
+  const { toast } = useToast();
+  const [formProvider, setFormProvider] = useState<string>(website?.content?.formProvider || "");
+  const [formEmbedCode, setFormEmbedCode] = useState<string>(website?.content?.formEmbedCode || "");
+
+  const saveFormMutation = useMutation({
+    mutationFn: async () => {
+      if (!formProvider) {
+        throw new Error("Please select a form provider");
+      }
+      if (!formEmbedCode.trim()) {
+        throw new Error("Please enter the embed code");
+      }
+      
+      const res = await apiRequest("POST", `/api/websites/${websiteId}/save-form`, {
+        formProvider,
+        formEmbedCode,
+      });
+      return await res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      toast({
+        title: "Form Saved",
+        description: "Your form embed code has been saved successfully.",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to save form. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const disableFormMutation = useMutation({
+    mutationFn: async () => {
+      const res = await apiRequest("POST", `/api/websites/${websiteId}/disable-form`, {});
+      return await res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      toast({
+        title: "Form Disabled",
+        description: "The form has been removed from your contact section.",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to disable form. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  return (
+    <div className="space-y-6">
+      {/* Current Status */}
+      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+        <h4 className="font-semibold text-green-900 mb-1">Form Embedding Enabled</h4>
+        <p className="text-sm text-green-800">
+          Your contact section is configured to display an embedded form.
+        </p>
+      </div>
+
+      {/* Form Provider Selection */}
+      <div className="space-y-3">
+        <Label htmlFor="formProvider" className="text-base font-semibold">
+          Select Form Provider
+        </Label>
+        <p className="text-sm text-gray-600">Choose which service you're using for your form.</p>
+        <div className="grid grid-cols-3 gap-3">
+          <Button
+            variant={formProvider === "gohighlevel" ? "default" : "outline"}
+            className={formProvider === "gohighlevel" ? "bg-[#6458AF] hover:bg-[#5347a0]" : ""}
+            onClick={() => setFormProvider("gohighlevel")}
+            data-testid="button-provider-gohighlevel"
+          >
+            Go High Level
+          </Button>
+          <Button
+            variant={formProvider === "formstack" ? "default" : "outline"}
+            className={formProvider === "formstack" ? "bg-[#6458AF] hover:bg-[#5347a0]" : ""}
+            onClick={() => setFormProvider("formstack")}
+            data-testid="button-provider-formstack"
+          >
+            Formstack
+          </Button>
+          <Button
+            variant={formProvider === "formspree" ? "default" : "outline"}
+            className={formProvider === "formspree" ? "bg-[#6458AF] hover:bg-[#5347a0]" : ""}
+            onClick={() => setFormProvider("formspree")}
+            data-testid="button-provider-formspree"
+          >
+            Formspree
+          </Button>
+        </div>
+      </div>
+
+      {/* Embed Code Input */}
+      <div className="space-y-3">
+        <Label htmlFor="formEmbedCode" className="text-base font-semibold">
+          Form Embed Code
+        </Label>
+        <p className="text-sm text-gray-600">
+          Paste the complete embed code from your form provider. This typically includes HTML with &lt;script&gt; or &lt;iframe&gt; tags.
+        </p>
+        <Textarea
+          id="formEmbedCode"
+          value={formEmbedCode}
+          onChange={(e) => setFormEmbedCode(e.target.value)}
+          placeholder="<script src='...'></script> or <iframe src='...'></iframe>"
+          className="min-h-[200px] font-mono text-sm"
+          data-testid="textarea-embed-code"
+        />
+      </div>
+
+      {/* Instructions */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <h5 className="font-semibold text-blue-900 mb-2">How to get your embed code:</h5>
+        <ul className="text-sm text-blue-800 space-y-1">
+          <li>• <strong>Go High Level:</strong> Go to Sites → Forms → Select your form → Click "Embed" → Copy the code</li>
+          <li>• <strong>Formstack:</strong> Open your form → Click "Share" → Select "Embed" → Copy the embed code</li>
+          <li>• <strong>Formspree:</strong> Create your form → Click "Integration" → Copy the HTML form code</li>
+        </ul>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex gap-3">
+        <Button
+          onClick={() => saveFormMutation.mutate()}
+          disabled={saveFormMutation.isPending || !formProvider || !formEmbedCode.trim()}
+          className="flex-1 bg-[#6458AF] hover:bg-[#5347a0]"
+          data-testid="button-save-form"
+        >
+          {saveFormMutation.isPending ? (
+            <>
+              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+              Saving...
+            </>
+          ) : (
+            "Save Form"
+          )}
+        </Button>
+        <Button
+          onClick={() => {
+            if (confirm("Are you sure you want to remove the form from your contact section?")) {
+              disableFormMutation.mutate();
+            }
+          }}
+          disabled={disableFormMutation.isPending}
+          variant="outline"
+          className="border-red-300 text-red-600 hover:bg-red-50"
+          data-testid="button-remove-form"
+        >
+          Remove Form
+        </Button>
       </div>
     </div>
   );

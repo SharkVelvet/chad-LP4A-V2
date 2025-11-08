@@ -336,6 +336,42 @@ export class DatabaseStorage implements IStorage {
     return updatedContent;
   }
 
+  async enableFormEmbed(websiteId: number): Promise<WebsiteContent> {
+    const [updatedContent] = await db
+      .update(websiteContent)
+      .set({ formEnabled: true, updatedAt: new Date() })
+      .where(eq(websiteContent.websiteId, websiteId))
+      .returning();
+    return updatedContent;
+  }
+
+  async saveFormEmbed(websiteId: number, formProvider: string, formEmbedCode: string): Promise<WebsiteContent> {
+    const [updatedContent] = await db
+      .update(websiteContent)
+      .set({ 
+        formProvider, 
+        formEmbedCode,
+        updatedAt: new Date() 
+      })
+      .where(eq(websiteContent.websiteId, websiteId))
+      .returning();
+    return updatedContent;
+  }
+
+  async disableFormEmbed(websiteId: number): Promise<WebsiteContent> {
+    const [updatedContent] = await db
+      .update(websiteContent)
+      .set({ 
+        formEnabled: false,
+        formProvider: null,
+        formEmbedCode: null,
+        updatedAt: new Date() 
+      })
+      .where(eq(websiteContent.websiteId, websiteId))
+      .returning();
+    return updatedContent;
+  }
+
   // Blog management
   async getAllBlogPosts(): Promise<BlogPost[]> {
     return await db.select().from(blogPosts).where(eq(blogPosts.isPublished, true)).orderBy(desc(blogPosts.publishedAt));

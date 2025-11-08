@@ -179,10 +179,20 @@ export default function Dashboard() {
                               <div className="flex items-center gap-1.5">
                                 <span className="text-gray-500 min-w-[85px]">Site Status:</span>
                                 <Badge 
-                                  variant={website.content?.isPublished ? "default" : "outline"} 
-                                  className={`text-xs h-5 ${website.content?.isPublished ? "bg-blue-600" : "bg-amber-100 text-amber-800 border-amber-300"}`}
+                                  className={`text-xs h-5 ${
+                                    website.content?.maintenanceMode 
+                                      ? "bg-orange-500 text-white" 
+                                      : website.content?.isPublished 
+                                        ? "bg-green-600 text-white" 
+                                        : "bg-gray-100 text-gray-700 border-gray-300"
+                                  }`}
                                 >
-                                  {website.content?.isPublished ? "Live to Public" : "Draft"}
+                                  {website.content?.maintenanceMode 
+                                    ? "🔧 Maintenance" 
+                                    : website.content?.isPublished 
+                                      ? "✓ Published" 
+                                      : "Draft"
+                                  }
                                 </Badge>
                               </div>
                             </div>

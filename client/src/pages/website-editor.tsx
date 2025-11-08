@@ -196,6 +196,28 @@ export default function WebsiteEditor() {
     },
   });
 
+  // Unpublish website mutation
+  const unpublishMutation = useMutation({
+    mutationFn: async () => {
+      const res = await apiRequest("POST", `/api/websites/${websiteId}/unpublish`, {});
+      return await res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      toast({
+        title: "Website Unpublished",
+        description: "Your website is now in draft mode and not visible to the public.",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to unpublish website. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   // Listen for edit messages from iframe
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -287,8 +309,8 @@ export default function WebsiteEditor() {
       {/* Main content area */}
       <div className="flex-1 flex overflow-hidden">
         {/* Left sidebar - Menu */}
-        <div className="w-64 bg-white border-r flex-shrink-0 overflow-y-auto">
-          <div className="p-4">
+        <div className="w-64 bg-white border-r flex-shrink-0 overflow-y-auto flex flex-col">
+          <div className="p-4 flex-1">
             <h2 className="text-xs font-semibold text-gray-500 uppercase mb-3">Editor Menu</h2>
             <div className="space-y-1">
               {/* Website menu item with submenu */}
@@ -363,6 +385,55 @@ export default function WebsiteEditor() {
                   </button>
                 );
               })}
+            </div>
+
+            {/* Website Visibility Widget - Always visible at bottom */}
+            <div className="p-4 border-t mt-auto">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <h4 className="font-semibold text-gray-900 text-sm mb-1">Website Status</h4>
+                <p className="text-xs text-gray-600 mb-3">
+                  {website?.content?.isPublished 
+                    ? "Live - Visible to the public"
+                    : "Draft - Not visible to the public"}
+                </p>
+                <div className="flex gap-2">
+                  {!website?.content?.isPublished ? (
+                    <Button
+                      onClick={() => publishMutation.mutate()}
+                      disabled={publishMutation.isPending}
+                      className="flex-1 bg-green-600 hover:bg-green-700"
+                      size="sm"
+                      data-testid="button-publish-website"
+                    >
+                      {publishMutation.isPending ? (
+                        <>
+                          <Loader2 className="h-3 w-3 mr-2 animate-spin" />
+                          Publishing...
+                        </>
+                      ) : (
+                        "Publish"
+                      )}
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => unpublishMutation.mutate()}
+                      disabled={unpublishMutation.isPending}
+                      className="flex-1 bg-amber-600 hover:bg-amber-700"
+                      size="sm"
+                      data-testid="button-unpublish-website"
+                    >
+                      {unpublishMutation.isPending ? (
+                        <>
+                          <Loader2 className="h-3 w-3 mr-2 animate-spin" />
+                          Unpublishing...
+                        </>
+                      ) : (
+                        "Set to Draft"
+                      )}
+                    </Button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>

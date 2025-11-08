@@ -318,6 +318,15 @@ export class DatabaseStorage implements IStorage {
     return publishedContent;
   }
 
+  async unpublishWebsiteContent(websiteId: number): Promise<WebsiteContent> {
+    const [unpublishedContent] = await db
+      .update(websiteContent)
+      .set({ isPublished: false, updatedAt: new Date() })
+      .where(eq(websiteContent.websiteId, websiteId))
+      .returning();
+    return unpublishedContent;
+  }
+
   // Blog management
   async getAllBlogPosts(): Promise<BlogPost[]> {
     return await db.select().from(blogPosts).where(eq(blogPosts.isPublished, true)).orderBy(desc(blogPosts.publishedAt));

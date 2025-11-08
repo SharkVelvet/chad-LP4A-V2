@@ -255,6 +255,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Unpublish website content
+  app.post("/api/websites/:id/unpublish", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const websiteId = parseInt(req.params.id);
+      const website = await storage.getWebsite(websiteId);
+      
+      if (!website || website.userId !== req.user.id) {
+        return res.status(404).json({ message: "Website not found" });
+      }
+
+      const unpublishedContent = await storage.unpublishWebsiteContent(websiteId);
+      res.json(unpublishedContent);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Domain routes
   // Check domain availability
   app.post("/api/domains/check-availability", async (req, res) => {

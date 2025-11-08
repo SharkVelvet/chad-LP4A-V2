@@ -29,6 +29,7 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
   const [searchResults, setSearchResults] = useState<DomainResult[]>([]);
   const [selectedDomain, setSelectedDomain] = useState<string | null>(null);
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
+  const [showUnavailableWarning, setShowUnavailableWarning] = useState(false);
   const [contactInfo, setContactInfo] = useState({
     firstName: "",
     lastName: "",
@@ -91,11 +92,9 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
     onSuccess: (results: DomainResult[]) => {
       setSearchResults(results);
       if (results.every((r) => !r.available)) {
-        toast({
-          title: "All Checked Domains Unavailable",
-          description: "Try a different name or variation.",
-          variant: "destructive",
-        });
+        setShowUnavailableWarning(true);
+      } else {
+        setShowUnavailableWarning(false);
       }
     },
     onError: (error: any) => {
@@ -161,6 +160,7 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
       });
       return;
     }
+    setShowUnavailableWarning(false);
     searchMutation.mutate(searchTerm);
   };
 
@@ -237,7 +237,41 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
             </div>
           </form>
 
-          {searchResults.length > 0 && (
+          {showUnavailableWarning && (
+            <div className="mt-6 flex items-center justify-center" data-testid="warning-domain-unavailable">
+              <Card className="border-red-200 bg-red-50 w-full">
+                <CardContent className="pt-6">
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    <div className="rounded-full bg-red-100 p-3">
+                      <XCircle className="h-12 w-12 text-red-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-red-900 mb-2">
+                        Sorry - Domain Not Available
+                      </h3>
+                      <p className="text-red-700 max-w-md">
+                        The domain name you searched for is not available at this time. Please try a different name or variation.
+                      </p>
+                    </div>
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setSearchTerm("");
+                        setSearchResults([]);
+                        setShowUnavailableWarning(false);
+                      }}
+                      className="border-red-300 text-red-700 hover:bg-red-100"
+                      data-testid="button-try-again"
+                    >
+                      Try Another Search
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {searchResults.length > 0 && !showUnavailableWarning && (
             <div className="mt-6 space-y-2">
               <h3 className="font-medium mb-3">Search Results</h3>
               {searchResults.map((result) => (

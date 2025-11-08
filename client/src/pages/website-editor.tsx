@@ -433,21 +433,23 @@ export default function WebsiteEditor() {
                   </div>
                 )}
 
-                {/* Domain Search and Purchase */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold mb-4">Search and Purchase Domain</h4>
-                  <DomainSearch
-                    websiteId={websiteId!}
-                    onDomainPurchased={(domain) => {
-                      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
-                      queryClient.invalidateQueries({ queryKey: ["/api/websites"] });
-                      toast({
-                        title: "Domain Purchased and Linked",
-                        description: `${domain} has been purchased and linked to this website.`,
-                      });
-                    }}
-                  />
-                </div>
+                {/* Domain Search and Purchase - Only show if no domain attached */}
+                {!website?.domain && (
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold mb-4">Search and Purchase Domain</h4>
+                    <DomainSearch
+                      websiteId={websiteId!}
+                      onDomainPurchased={(domain) => {
+                        queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+                        queryClient.invalidateQueries({ queryKey: ["/api/websites"] });
+                        toast({
+                          title: "Domain Purchased and Linked",
+                          description: `${domain} has been purchased and linked to this website.`,
+                        });
+                      }}
+                    />
+                  </div>
+                )}
 
                 {/* Connect Existing Domain - Collapsible */}
                 {!website?.domain && (

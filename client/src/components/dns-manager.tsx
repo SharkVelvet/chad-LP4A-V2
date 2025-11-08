@@ -91,10 +91,10 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
   const isPointingToWebsite = cnameRecord?.address.toLowerCase().includes(deploymentDomain.toLowerCase());
 
   const handleConfigureDns = () => {
-    // Get all existing records except @ CNAME
-    const otherRecords = dnsRecords.filter(r => !(r.type === "CNAME" && r.name === "@"));
+    // Get all existing records except @ CNAME and www CNAME
+    const otherRecords = dnsRecords.filter(r => !(r.type === "CNAME" && (r.name === "@" || r.name === "www")));
     
-    // Add the new CNAME record pointing to deployment domain
+    // Add the new CNAME records pointing to deployment domain (both root and www)
     const newRecords = [
       ...otherRecords.map(r => ({
         name: r.name,
@@ -104,6 +104,12 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
       })),
       {
         name: "@",
+        type: "CNAME",
+        address: deploymentDomain,
+        ttl: 1800,
+      },
+      {
+        name: "www",
         type: "CNAME",
         address: deploymentDomain,
         ttl: 1800,

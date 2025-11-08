@@ -47,6 +47,7 @@ export default function WebsiteEditor() {
   const [isEditOverlayOpen, setIsEditOverlayOpen] = useState(false);
   const [isIframeLoading, setIsIframeLoading] = useState(true);
   const [existingDomain, setExistingDomain] = useState("");
+  const [showExistingDomainSection, setShowExistingDomainSection] = useState(false);
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -432,35 +433,6 @@ export default function WebsiteEditor() {
                   </div>
                 )}
 
-                {/* Connect Existing Domain */}
-                {!website?.domain && (
-                  <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold mb-2">I Already Own My Domain Name</h4>
-                    <p className="text-sm text-gray-600 mb-4">Connect a domain you already own from another registrar.</p>
-                    <div className="flex gap-3">
-                      <div className="flex-1">
-                        <Input
-                          placeholder="yourdomain.com"
-                          value={existingDomain}
-                          onChange={(e) => setExistingDomain(e.target.value)}
-                          data-testid="input-existing-domain"
-                        />
-                      </div>
-                      <Button
-                        onClick={() => {
-                          if (existingDomain.trim()) {
-                            connectExistingDomainMutation.mutate(existingDomain.trim());
-                          }
-                        }}
-                        disabled={!existingDomain.trim() || connectExistingDomainMutation.isPending}
-                        data-testid="button-connect-existing-domain"
-                      >
-                        {connectExistingDomainMutation.isPending ? "Connecting..." : "Connect Domain"}
-                      </Button>
-                    </div>
-                  </div>
-                )}
-
                 {/* Domain Search and Purchase */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
                   <h4 className="text-lg font-semibold mb-4">Search and Purchase Domain</h4>
@@ -476,6 +448,48 @@ export default function WebsiteEditor() {
                     }}
                   />
                 </div>
+
+                {/* Connect Existing Domain - Collapsible */}
+                {!website?.domain && (
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <Button
+                      variant="outline"
+                      onClick={() => setShowExistingDomainSection(!showExistingDomainSection)}
+                      className="w-full justify-between"
+                      data-testid="button-toggle-existing-domain"
+                    >
+                      <span className="font-semibold">I Already Own My Domain Name</span>
+                      <ChevronDown className={`h-4 w-4 transition-transform ${showExistingDomainSection ? 'rotate-180' : ''}`} />
+                    </Button>
+                    
+                    {showExistingDomainSection && (
+                      <div className="mt-4 pt-4 border-t">
+                        <p className="text-sm text-gray-600 mb-4">Connect a domain you already own from another registrar.</p>
+                        <div className="flex gap-3">
+                          <div className="flex-1">
+                            <Input
+                              placeholder="yourdomain.com"
+                              value={existingDomain}
+                              onChange={(e) => setExistingDomain(e.target.value)}
+                              data-testid="input-existing-domain"
+                            />
+                          </div>
+                          <Button
+                            onClick={() => {
+                              if (existingDomain.trim()) {
+                                connectExistingDomainMutation.mutate(existingDomain.trim());
+                              }
+                            }}
+                            disabled={!existingDomain.trim() || connectExistingDomainMutation.isPending}
+                            data-testid="button-connect-existing-domain"
+                          >
+                            {connectExistingDomainMutation.isPending ? "Connecting..." : "Connect Domain"}
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* MX Record Manager */}
                 {website?.domain && (

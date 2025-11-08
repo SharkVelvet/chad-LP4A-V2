@@ -141,7 +141,7 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
         <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
           <div className="flex items-start gap-3">
             <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-            <div>
+            <div className="flex-1">
               <p className="font-semibold text-green-900 mb-1">✓ Domain is Connected!</p>
               <p className="text-sm text-green-700">
                 Your domain {domain} is pointing to your website. Visitors will soon be able to access your site at this domain.
@@ -149,6 +149,23 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
               <p className="text-xs text-green-600 mt-2">
                 Note: DNS changes can take up to 24-48 hours to fully propagate worldwide.
               </p>
+              <Button
+                onClick={handleConfigureDns}
+                disabled={setDnsMutation.isPending}
+                variant="outline"
+                size="sm"
+                className="mt-3"
+                data-testid="button-reconfigure-dns"
+              >
+                {setDnsMutation.isPending ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Updating...
+                  </>
+                ) : (
+                  "Update DNS Records (Fix www)"
+                )}
+              </Button>
             </div>
           </div>
         </div>

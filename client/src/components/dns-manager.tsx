@@ -115,7 +115,7 @@ export default function DnsManager({ domain, targetDomain }: DnsManagerProps) {
             <div>
               <p className="font-semibold text-green-900 mb-1">✓ Domain is Connected!</p>
               <p className="text-sm text-green-700">
-                Your domain {domain} is pointing to your website at {deploymentDomain}. Visitors can now access your site at this domain.
+                Your domain {domain} is pointing to your website. Visitors will soon be able to access your site at this domain.
               </p>
               <p className="text-xs text-green-600 mt-2">
                 Note: DNS changes can take up to 24-48 hours to fully propagate worldwide.

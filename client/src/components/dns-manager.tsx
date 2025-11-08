@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Globe, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import { Globe, CheckCircle2, Loader2, AlertCircle, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface DnsManagerProps {
   domain: string;
+  domainStatus?: string; // pending, propagating, active
   targetDomain?: string; // For CNAME record (e.g., your-repl.replit.app)
 }
 
@@ -21,9 +22,10 @@ type DnsRecord = {
   ttl: string;
 };
 
-export default function DnsManager({ domain, targetDomain }: DnsManagerProps) {
+export default function DnsManager({ domain, domainStatus = 'pending', targetDomain }: DnsManagerProps) {
   const { toast } = useToast();
   const [isConfiguring, setIsConfiguring] = useState(false);
+  const [currentStatus, setCurrentStatus] = useState(domainStatus);
   
   // Auto-detect target domain from environment or use provided one
   const deploymentDomain = targetDomain || window.location.hostname;
@@ -39,6 +41,27 @@ export default function DnsManager({ domain, targetDomain }: DnsManagerProps) {
       return res.json();
     },
   });
+
+  // Check DNS propagation status (poll every 30 seconds if propagating)
+  const { data: verificationData } = useQuery({
+    queryKey: [`/api/domains/${domain}/verify`],
+    queryFn: async () => {
+      const res = await fetch(`/api/domains/${domain}/verify`, {
+        credentials: "include",
+      });
+      if (!res.ok) return { isActive: false, status: currentStatus };
+      return res.json();
+    },
+    refetchInterval: currentStatus === 'propagating' ? 30000 : false, // Poll every 30s if propagating
+    enabled: !!domain && currentStatus !== 'active',
+  });
+
+  // Update local status when verification data changes
+  useEffect(() => {
+    if (verificationData?.status) {
+      setCurrentStatus(verificationData.status);
+    }
+  }, [verificationData]);
 
   // Set DNS records mutation
   const setDnsMutation = useMutation({

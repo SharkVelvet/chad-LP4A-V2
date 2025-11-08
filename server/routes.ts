@@ -470,14 +470,64 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Verify user owns a website with this domain
       const websites = await storage.getUserWebsites(req.user.id);
-      const ownsDomain = websites.some(w => w.domain === domain);
+      const website = websites.find(w => w.domain === domain);
       
-      if (!ownsDomain) {
+      if (!website) {
         return res.status(403).json({ message: "You don't own this domain" });
       }
 
       const success = await domainService.setDnsRecords(domain, records);
+      
+      // Update domain status to 'propagating' after DNS configuration
+      if (success) {
+        await storage.updateWebsite(website.id, { domainStatus: 'propagating' });
+      }
+      
       res.json({ success });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Check DNS propagation status
+  app.get("/api/domains/:domain/verify", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      
+      // Verify user owns a website with this domain
+      const websites = await storage.getUserWebsites(req.user.id);
+      const website = websites.find(w => w.domain === domain);
+      
+      if (!website) {
+        return res.status(403).json({ message: "You don't own this domain" });
+      }
+
+      // Use DNS lookup to check if domain resolves
+      const dns = await import('dns').then(m => m.promises);
+      let isActive = false;
+      
+      try {
+        // Try to resolve the domain - if it resolves, DNS has propagated
+        await dns.resolve(domain);
+        isActive = true;
+        
+        // Update status to active if it was propagating
+        if (website.domainStatus === 'propagating') {
+          await storage.updateWebsite(website.id, { domainStatus: 'active' });
+        }
+      } catch {
+        // Domain doesn't resolve yet, still propagating
+        isActive = false;
+      }
+
+      res.json({ 
+        isActive, 
+        status: isActive ? 'active' : website.domainStatus || 'pending' 
+      });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }

@@ -44,6 +44,7 @@ export const websites = pgTable("websites", {
   name: text("name").notNull(),
   domain: text("domain"),
   domainVerified: boolean("domain_verified").notNull().default(false),
+  domainStatus: text("domain_status").default("pending"), // pending, propagating, active
   domainPreferences: jsonb("domain_preferences").$type<string[]>(),
   subscriptionPlan: text("subscription_plan").notNull(),
   subscriptionStatus: text("subscription_status").notNull().default("active"),

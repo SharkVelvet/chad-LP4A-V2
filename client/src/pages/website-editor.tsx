@@ -172,6 +172,28 @@ export default function WebsiteEditor() {
     },
   });
 
+  // Publish website mutation
+  const publishMutation = useMutation({
+    mutationFn: async () => {
+      const res = await apiRequest("POST", `/api/websites/${websiteId}/publish`, {});
+      return await res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      toast({
+        title: "Website Published!",
+        description: "Your website is now live and visible to the public.",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to publish website. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   // Listen for edit messages from iframe
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -537,7 +559,7 @@ export default function WebsiteEditor() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="status">Status</Label>
+                  <Label htmlFor="status">Subscription Status</Label>
                   <Input
                     id="status"
                     value={website.siteStatus}
@@ -545,6 +567,49 @@ export default function WebsiteEditor() {
                     className="bg-gray-50"
                     data-testid="input-status"
                   />
+                </div>
+
+                {/* Publish/Unpublish Website */}
+                <div className="border border-gray-200 rounded-lg p-4 bg-blue-50">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-gray-900 mb-1">Website Visibility</h4>
+                      <p className="text-sm text-gray-600">
+                        {websiteContent?.isPublished 
+                          ? "Your website is live and visible to the public."
+                          : "Your website is in draft mode and not visible to the public."}
+                      </p>
+                    </div>
+                    <Button
+                      onClick={() => {
+                        if (websiteContent?.isPublished) {
+                          // Unpublish
+                          toast({
+                            title: "Cannot Unpublish",
+                            description: "Please contact support to unpublish your website.",
+                            variant: "destructive",
+                          });
+                        } else {
+                          // Publish
+                          publishMutation.mutate();
+                        }
+                      }}
+                      disabled={publishMutation.isPending}
+                      className={websiteContent?.isPublished ? "bg-amber-600 hover:bg-amber-700" : "bg-green-600 hover:bg-green-700"}
+                      data-testid="button-publish-website"
+                    >
+                      {publishMutation.isPending ? (
+                        <>
+                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                          Publishing...
+                        </>
+                      ) : websiteContent?.isPublished ? (
+                        "Website is Live"
+                      ) : (
+                        "Publish Website"
+                      )}
+                    </Button>
+                  </div>
                 </div>
                 
                 <div className="border-t pt-6 mt-6">

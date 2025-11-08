@@ -454,6 +454,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Set DNS records for a domain
+  app.post("/api/domains/:domain/dns", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      const { records } = req.body;
+
+      if (!records || !Array.isArray(records)) {
+        return res.status(400).json({ message: "Records array is required" });
+      }
+
+      // Verify user owns a website with this domain
+      const websites = await storage.getUserWebsites(req.user.id);
+      const ownsDomain = websites.some(w => w.domain === domain);
+      
+      if (!ownsDomain) {
+        return res.status(403).json({ message: "You don't own this domain" });
+      }
+
+      const success = await domainService.setDnsRecords(domain, records);
+      res.json({ success });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Update MX records for a domain
   app.post("/api/domains/:domain/mx-records", async (req, res) => {
     if (!req.isAuthenticated()) {

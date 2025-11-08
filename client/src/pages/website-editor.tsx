@@ -10,6 +10,7 @@ import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, Chevr
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import DomainSearch from "@/components/domain-search";
+import DnsManager from "@/components/dns-manager";
 
 type Website = {
   id: number;
@@ -490,55 +491,9 @@ export default function WebsiteEditor() {
                   </div>
                 )}
 
-                {/* DNS Setup Instructions */}
+                {/* DNS Management */}
                 {website?.domain && (
-                  <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold mb-2">Point Your Domain to This Website</h4>
-                    <p className="text-sm text-gray-600 mb-4">
-                      To display this website when someone visits {website.domain}, you need to update your domain's DNS records.
-                    </p>
-                    
-                    <div className="space-y-4">
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                        <h5 className="font-semibold text-blue-900 mb-3">DNS Configuration Steps:</h5>
-                        <ol className="list-decimal list-inside space-y-2 text-sm text-blue-800">
-                          <li>Log in to your Namecheap account (or your domain registrar)</li>
-                          <li>Go to your domain's DNS management page</li>
-                          <li>Add or update the following DNS records:</li>
-                        </ol>
-                        
-                        <div className="mt-4 bg-white border border-blue-300 rounded p-3">
-                          <p className="text-xs font-semibold text-gray-700 mb-2">Required DNS Records:</p>
-                          <div className="space-y-2 text-sm font-mono">
-                            <div className="flex justify-between items-center border-b pb-2">
-                              <div>
-                                <span className="text-gray-700">Type:</span> <span className="font-semibold">A Record</span>
-                              </div>
-                            </div>
-                            <div className="flex justify-between items-center border-b pb-2">
-                              <div>
-                                <span className="text-gray-700">Host:</span> <span className="font-semibold">@</span>
-                              </div>
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <div>
-                                <span className="text-gray-700">Value:</span> <span className="font-semibold text-green-600">[Your Website IP]</span>
-                              </div>
-                            </div>
-                          </div>
-                          <p className="text-xs text-gray-500 mt-3">
-                            Note: Contact support for your website's IP address
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                        <p className="text-sm text-amber-800">
-                          <strong>⏱️ Propagation Time:</strong> DNS changes can take 24-48 hours to fully propagate worldwide. Your website may not be immediately accessible at your custom domain.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  <DnsManager domain={website.domain} websiteIp="YOUR_WEBSITE_IP" />
                 )}
               </div>
             </div>

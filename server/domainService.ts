@@ -228,6 +228,18 @@ class DomainService {
     return results;
   }
 
+  private formatPhoneForNamecheap(phone: string, country: string): string {
+    // Remove all non-numeric characters
+    const cleaned = phone.replace(/\D/g, '');
+    
+    // USA-only app, always use country code +1
+    // If phone already starts with 1, remove it to avoid duplication
+    const phoneWithoutPrefix = cleaned.startsWith('1') ? cleaned.substring(1) : cleaned;
+    
+    // Return in Namecheap format: +1.PHONENUMBER
+    return `+1.${phoneWithoutPrefix}`;
+  }
+
   async registerDomain(
     domain: string,
     years: number,
@@ -247,6 +259,9 @@ class DomainService {
       throw new Error("Domain service not configured");
     }
 
+    // Format phone number for Namecheap (required format: +CountryCode.PhoneNumber)
+    const formattedPhone = this.formatPhoneForNamecheap(contactInfo.phone, contactInfo.country);
+
     const params = {
       DomainName: domain,
       Years: years.toString(),
@@ -258,7 +273,7 @@ class DomainService {
       RegistrantStateProvince: contactInfo.stateProvince,
       RegistrantPostalCode: contactInfo.postalCode,
       RegistrantCountry: contactInfo.country,
-      RegistrantPhone: contactInfo.phone,
+      RegistrantPhone: formattedPhone,
       RegistrantEmailAddress: contactInfo.email,
       
       TechFirstName: contactInfo.firstName,
@@ -268,7 +283,7 @@ class DomainService {
       TechStateProvince: contactInfo.stateProvince,
       TechPostalCode: contactInfo.postalCode,
       TechCountry: contactInfo.country,
-      TechPhone: contactInfo.phone,
+      TechPhone: formattedPhone,
       TechEmailAddress: contactInfo.email,
       
       AdminFirstName: contactInfo.firstName,
@@ -278,7 +293,7 @@ class DomainService {
       AdminStateProvince: contactInfo.stateProvince,
       AdminPostalCode: contactInfo.postalCode,
       AdminCountry: contactInfo.country,
-      AdminPhone: contactInfo.phone,
+      AdminPhone: formattedPhone,
       AdminEmailAddress: contactInfo.email,
       
       AuxBillingFirstName: contactInfo.firstName,
@@ -288,7 +303,7 @@ class DomainService {
       AuxBillingStateProvince: contactInfo.stateProvince,
       AuxBillingPostalCode: contactInfo.postalCode,
       AuxBillingCountry: contactInfo.country,
-      AuxBillingPhone: contactInfo.phone,
+      AuxBillingPhone: formattedPhone,
       AuxBillingEmailAddress: contactInfo.email,
       
       AddFreeWhoisguard: "yes",

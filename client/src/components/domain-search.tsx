@@ -360,9 +360,10 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
                 required
                 value={contactInfo.phone}
                 onChange={(e) => setContactInfo({ ...contactInfo, phone: e.target.value })}
-                placeholder="+1.5555555555"
+                placeholder="8434699528"
                 data-testid="input-contact-phone"
               />
+              <p className="text-xs text-gray-500 mt-1">Enter your 10-digit phone number (US country code will be added automatically)</p>
             </div>
 
             <div>

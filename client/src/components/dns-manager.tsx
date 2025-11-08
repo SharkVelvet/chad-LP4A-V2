@@ -198,6 +198,21 @@ export default function DnsManager({ domain, targetDomain }: DnsManagerProps) {
         )}
       </div>
 
+      {/* Email Verification Warning */}
+      <div className="mt-4 bg-red-50 border-2 border-red-300 rounded-lg p-4">
+        <div className="flex items-start gap-3">
+          <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="font-semibold text-red-900 mb-1">⚠️ Important: Verify Your Email Address</p>
+            <p className="text-sm text-red-800">
+              Namecheap has sent a verification email to the address you provided during domain registration. 
+              <strong> You must verify your email within 15 days</strong> or your domain will be suspended. 
+              Please check your inbox (and spam folder) for an email from Namecheap and click the verification link.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Info Note */}
       <div className="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-3">
         <p className="text-xs text-amber-800">

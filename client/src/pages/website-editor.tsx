@@ -46,6 +46,7 @@ export default function WebsiteEditor() {
   const [isWebsiteExpanded] = useState(true); // Always keep Website menu expanded
   const [isEditOverlayOpen, setIsEditOverlayOpen] = useState(false);
   const [isIframeLoading, setIsIframeLoading] = useState(true);
+  const [existingDomain, setExistingDomain] = useState("");
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -68,11 +69,6 @@ export default function WebsiteEditor() {
       return res.json();
     },
     enabled: !!websiteId,
-  });
-
-  // Fetch all user websites to see all domains
-  const { data: allWebsites = [] } = useQuery<Website[]>({
-    queryKey: ["/api/websites"],
   });
 
   // Fetch templates to get the slug
@@ -118,29 +114,6 @@ export default function WebsiteEditor() {
     }
   }, [website]);
 
-  // Link domain mutation
-  const linkDomainMutation = useMutation({
-    mutationFn: async (domain: string) => {
-      const res = await apiRequest("PUT", `/api/websites/${websiteId}`, { domain });
-      return await res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
-      queryClient.invalidateQueries({ queryKey: ["/api/websites"] });
-      toast({
-        title: "Domain Linked",
-        description: "The domain has been linked to this website.",
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to link domain. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
-
   // Save flexible content mutation (for any content ID)
   const saveFlexibleContentMutation = useMutation({
     mutationFn: async ({ contentId, value }: { contentId: string; value: string }) => {
@@ -170,6 +143,29 @@ export default function WebsiteEditor() {
       toast({
         title: "Error",
         description: "Failed to save changes. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Connect existing domain mutation
+  const connectExistingDomainMutation = useMutation({
+    mutationFn: async (domain: string) => {
+      const res = await apiRequest("PUT", `/api/websites/${websiteId}`, { domain });
+      return await res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      setExistingDomain("");
+      toast({
+        title: "Domain Connected",
+        description: "Your existing domain has been connected to this website.",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to connect domain. Please try again.",
         variant: "destructive",
       });
     },
@@ -406,92 +402,64 @@ export default function WebsiteEditor() {
               <div className="max-w-4xl space-y-8">
                 <div>
                   <h3 className="text-2xl font-bold mb-2">Domain Name</h3>
-                  <p className="text-sm text-gray-600 mb-6">Link a domain to this website.</p>
+                  <p className="text-sm text-gray-600 mb-6">Manage your website's domain.</p>
                 </div>
 
-                {/* Current Domain Section */}
-                {website?.domain && (
-                  <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
-                    <h4 className="text-lg font-semibold">Currently Linked Domain</h4>
-                    <div className="border border-gray-200 rounded-lg p-4 bg-green-50 border-green-200">
-                      <div className="flex items-center justify-between mb-3">
-                        <div>
-                          <p className="font-semibold text-lg">{website.domain}</p>
-                          <p className="text-xs text-gray-500">This domain is linked to this website</p>
-                        </div>
-                        <Badge variant="default" className="bg-green-600">
-                          Linked
-                        </Badge>
+                {/* Domain Status Message */}
+                {website?.domain ? (
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                    <div className="flex items-start gap-4">
+                      <Globe className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-lg font-semibold text-green-900 mb-2">
+                          You have this domain name setup for this webpage:
+                        </h4>
+                        <p className="text-2xl font-bold text-green-700">{website.domain}</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <div className="flex items-start gap-4">
+                      <Globe className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-lg font-semibold text-blue-900 mb-1">
+                          You have no domain names attached to this website
+                        </h4>
+                        <p className="text-sm text-blue-700">Please search below to find and purchase a domain, or connect a domain you already own.</p>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {/* Available Domains to Link */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold mb-4">Your Domains</h4>
-                  {allWebsites.filter(w => w.domain).length === 0 ? (
-                    <div className="text-center py-8 border border-dashed border-gray-300 rounded-lg">
-                      <Globe className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                      <p className="text-gray-600 mb-1">No domains available</p>
-                      <p className="text-sm text-gray-500">Purchase a domain by clicking "Search and Purchase Domain" below</p>
+                {/* Connect Existing Domain */}
+                {!website?.domain && (
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold mb-2">I Already Own My Domain Name</h4>
+                    <p className="text-sm text-gray-600 mb-4">Connect a domain you already own from another registrar.</p>
+                    <div className="flex gap-3">
+                      <div className="flex-1">
+                        <Input
+                          placeholder="yourdomain.com"
+                          value={existingDomain}
+                          onChange={(e) => setExistingDomain(e.target.value)}
+                          data-testid="input-existing-domain"
+                        />
+                      </div>
+                      <Button
+                        onClick={() => {
+                          if (existingDomain.trim()) {
+                            connectExistingDomainMutation.mutate(existingDomain.trim());
+                          }
+                        }}
+                        disabled={!existingDomain.trim() || connectExistingDomainMutation.isPending}
+                        data-testid="button-connect-existing-domain"
+                      >
+                        {connectExistingDomainMutation.isPending ? "Connecting..." : "Connect Domain"}
+                      </Button>
                     </div>
-                  ) : (
-                    <div className="space-y-3">
-                      {allWebsites.filter(w => w.domain).map((site) => {
-                        const isLinkedToCurrentSite = site.id === websiteId;
-                        
-                        return (
-                          <div 
-                            key={site.id} 
-                            className={`border rounded-lg p-4 ${
-                              isLinkedToCurrentSite 
-                                ? 'bg-green-50 border-green-200' 
-                                : 'bg-white border-gray-200'
-                            }`}
-                            data-testid={`domain-option-${site.id}`}
-                          >
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-3">
-                                <Globe className="h-5 w-5 text-gray-400" />
-                                <div>
-                                  <p className="font-semibold">{site.domain}</p>
-                                  {isLinkedToCurrentSite ? (
-                                    <p className="text-xs text-green-600">Currently linked to this site</p>
-                                  ) : (
-                                    <p className="text-xs text-gray-500">Linked to: {site.name}</p>
-                                  )}
-                                </div>
-                              </div>
-                              <div>
-                                {isLinkedToCurrentSite ? (
-                                  <Badge variant="default" className="bg-green-600">
-                                    Linked
-                                  </Badge>
-                                ) : (
-                                  <div className="flex items-center gap-2">
-                                    <Badge variant="secondary" className="bg-amber-100 text-amber-800 border-amber-300">
-                                      In Use
-                                    </Badge>
-                                    <Button
-                                      size="sm"
-                                      variant="outline"
-                                      onClick={() => linkDomainMutation.mutate(site.domain!)}
-                                      disabled={linkDomainMutation.isPending}
-                                      data-testid={`button-link-domain-${site.id}`}
-                                    >
-                                      {linkDomainMutation.isPending ? "Linking..." : "Link Here"}
-                                    </Button>
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
+                  </div>
+                )}
 
                 {/* Domain Search and Purchase */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -513,13 +481,6 @@ export default function WebsiteEditor() {
                 {website?.domain && (
                   <MxRecordManager domain={website.domain} />
                 )}
-
-                {/* Info Box */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <p className="text-sm text-blue-800">
-                    <strong>Note:</strong> You can purchase additional domains from the <strong>My Domains</strong> section in your main dashboard.
-                  </p>
-                </div>
               </div>
             </div>
           </div>

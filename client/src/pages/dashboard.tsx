@@ -53,14 +53,10 @@ type Template = {
   previewImage: string;
 };
 
-type MenuSection = "websites" | "domains";
-
 export default function Dashboard() {
   const { user, logoutMutation } = useAuth();
   const { toast } = useToast();
   const [, navigate] = useLocation();
-  const [activeSection, setActiveSection] = useState<MenuSection>("websites");
-  const [selectedWebsiteForDomain, setSelectedWebsiteForDomain] = useState<number | null>(null);
 
   // Fetch all user websites
   const { data: websites = [], isLoading: websitesLoading } = useQuery<Website[]>({
@@ -103,28 +99,11 @@ export default function Dashboard() {
             <h2 className="text-xs font-semibold text-gray-500 uppercase mb-3">Menu</h2>
             <div className="space-y-1">
               <button
-                onClick={() => setActiveSection("websites")}
-                className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                  activeSection === "websites"
-                    ? "bg-black text-white"
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
+                className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors bg-black text-white"
                 data-testid="menu-my-websites"
               >
                 <Laptop className="h-4 w-4" />
                 <span>My Websites</span>
-              </button>
-              <button
-                onClick={() => setActiveSection("domains")}
-                className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                  activeSection === "domains"
-                    ? "bg-black text-white"
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
-                data-testid="menu-my-domains"
-              >
-                <Globe className="h-4 w-4" />
-                <span>My Domains</span>
               </button>
             </div>
           </div>
@@ -133,8 +112,7 @@ export default function Dashboard() {
         {/* Main Content */}
         <div className="flex-1 overflow-y-auto">
           <div className="max-w-7xl mx-auto px-8 py-8">
-            {activeSection === "websites" && (
-              <div>
+            <div>
                 <div className="mb-6 flex items-center justify-between">
                   <div>
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">My Websites</h2>
@@ -241,135 +219,6 @@ export default function Dashboard() {
                   </div>
                 )}
               </div>
-            )}
-
-            {activeSection === "domains" && (
-              <div>
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Domain Name Management</h2>
-                  <p className="text-gray-600">Search for domains, view purchased domains, and manage DNS settings.</p>
-                </div>
-
-                {/* Domain Search Section */}
-                {websites.length > 0 && (
-                  <Card className="mb-6">
-                    <CardHeader>
-                      <CardTitle>Search for a Domain</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      {!selectedWebsiteForDomain ? (
-                        <div>
-                          <p className="text-sm text-gray-600 mb-4">Select which website you'd like to link this domain to:</p>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {websites.map((website) => (
-                              <div
-                                key={website.id}
-                                onClick={() => setSelectedWebsiteForDomain(website.id)}
-                                className="border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-black hover:bg-gray-50 transition-colors"
-                                data-testid={`select-website-${website.id}`}
-                              >
-                                <h4 className="font-semibold">{website.name}</h4>
-                                {website.domain && (
-                                  <p className="text-xs text-gray-500 mt-1">Current domain: {website.domain}</p>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ) : (
-                        <div>
-                          <div className="flex items-center justify-between mb-4">
-                            <div>
-                              <p className="text-sm text-gray-600">Purchasing domain for:</p>
-                              <p className="font-semibold">{websites.find(w => w.id === selectedWebsiteForDomain)?.name}</p>
-                            </div>
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              onClick={() => setSelectedWebsiteForDomain(null)}
-                            >
-                              Change Website
-                            </Button>
-                          </div>
-                          <DomainSearch
-                            websiteId={selectedWebsiteForDomain}
-                            onDomainPurchased={(domain) => {
-                              queryClient.invalidateQueries({ queryKey: ["/api/websites"] });
-                              setSelectedWebsiteForDomain(null);
-                              toast({
-                                title: "Domain Purchased",
-                                description: `${domain} has been purchased and linked to your website.`,
-                              });
-                            }}
-                          />
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-                )}
-
-                {websites.length === 0 && (
-                  <Card className="mb-6">
-                    <CardContent className="pt-6 text-center py-16">
-                      <Laptop className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-xl font-medium mb-2">Create a website first</h3>
-                      <p className="text-sm text-gray-600 mb-6 max-w-md mx-auto">
-                        You need to create at least one website before you can purchase domains.
-                      </p>
-                      <Button onClick={() => setActiveSection("websites")}>
-                        Create Website
-                      </Button>
-                    </CardContent>
-                  </Card>
-                )}
-
-                {/* Your Domains Section */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Your Domains</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {websites.filter(w => w.domain).length === 0 ? (
-                      <div className="text-center py-8 border border-dashed border-gray-300 rounded-lg">
-                        <Globe className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                        <p className="text-gray-600 mb-1">No domains yet</p>
-                        <p className="text-sm text-gray-500">Search and purchase a domain to get started</p>
-                      </div>
-                    ) : (
-                      <div className="space-y-4">
-                        {websites.filter(w => w.domain).map((website) => (
-                          <div key={website.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50" data-testid={`domain-card-${website.id}`}>
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-4">
-                                <Globe className="h-8 w-8 text-gray-400" />
-                                <div>
-                                  <h3 className="font-semibold text-lg">{website.domain}</h3>
-                                  <p className="text-sm text-gray-600">Linked to: {website.name}</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-3">
-                                <Badge variant={website.domainVerified ? "default" : "secondary"} className={website.domainVerified ? "bg-green-600" : ""}>
-                                  {website.domainVerified ? "Active" : "Pending"}
-                                </Badge>
-                                <Button 
-                                  variant="outline"
-                                  size="sm"
-                                  onClick={() => navigate(`/editor/${website.id}`)}
-                                  data-testid={`button-manage-${website.id}`}
-                                >
-                                  <Settings className="h-4 w-4 mr-1" />
-                                  Manage
-                                </Button>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              </div>
-            )}
           </div>
         </div>
       </div>

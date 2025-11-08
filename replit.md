@@ -81,6 +81,8 @@ Professional Landing Pages for Insurance Agents is a full-stack web application 
 - **Neon Database**: PostgreSQL hosting with serverless architecture
 - **Stripe**: Payment processing and subscription management
 - **SMTP Service**: Email delivery (configurable provider)
+- **Namecheap API**: Domain registration and DNS management
+- **DigitalOcean Proxy** (Optional): Static IP proxy for Namecheap API whitelisting ($4/month)
 
 ### Development Tools
 - **Vite**: Build tooling and development server
@@ -117,6 +119,23 @@ Professional Landing Pages for Insurance Agents is a full-stack web application 
 Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
+
+- **November 8, 2025**: Created DigitalOcean proxy solution for Namecheap static IP requirement
+  - Built lightweight Node.js proxy server for deployment on DigitalOcean ($4/month droplet)
+  - Updated domainService.ts to support optional proxy endpoint via NAMECHEAP_PROXY_URL environment variable
+  - Created complete deployment documentation in digitalocean-proxy/ folder
+  - Solves Replit's dynamic IP issue that breaks Namecheap API whitelist
+  - Proxy provides permanent static IP for Namecheap API access
+  - Includes PM2 process management configuration for auto-restart and reliability
+
+- **November 8, 2025**: Implemented FREE domain system with smart pricing
+  - Only .com and .net domains allowed (backend TLD validation added)
+  - Domains ≤$18 Namecheap cost = FREE for customers (absorbed by business)
+  - Premium domains >$18 = Namecheap cost + 40% markup via Stripe checkout
+  - Users must own active website subscription before searching/purchasing domains
+  - Removed dangerous pricing fallbacks that defaulted to FREE on errors
+  - All domain endpoints require active subscription verification
+  - UI shows clear "FREE" badges for eligible domains and "Premium" badges with pricing
 
 - **August 21, 2025**: Enhanced Template 9 with life and health insurance focus and improved testimonials section
   - Made agent photo 25% larger for better visual impact (384x384px circle)

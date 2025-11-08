@@ -233,7 +233,20 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getUserWebsites(userId: number): Promise<Website[]> {
-    return await db.select().from(websites).where(eq(websites.userId, userId));
+    const websitesData = await db.select().from(websites).where(eq(websites.userId, userId));
+    
+    // Fetch content for each website
+    const websitesWithContent = await Promise.all(
+      websitesData.map(async (website) => {
+        const content = await this.getWebsiteContent(website.id);
+        return {
+          ...website,
+          content
+        };
+      })
+    );
+    
+    return websitesWithContent as any;
   }
 
   async getWebsite(id: number): Promise<Website | undefined> {

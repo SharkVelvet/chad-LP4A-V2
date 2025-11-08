@@ -60,6 +60,7 @@ export interface IStorage {
   getWebsiteByLocationId(locationId: number): Promise<Website | undefined>;
   getUserWebsites(userId: number): Promise<Website[]>;
   getWebsite(id: number): Promise<Website | undefined>;
+  getWebsiteByDomain(domain: string): Promise<Website | undefined>;
   createWebsite(website: InsertWebsite): Promise<Website>;
   updateWebsite(websiteId: number, data: Partial<InsertWebsite>): Promise<Website>;
   updateWebsiteDomain(websiteId: number, domain: string): Promise<Website>;
@@ -251,6 +252,11 @@ export class DatabaseStorage implements IStorage {
 
   async getWebsite(id: number): Promise<Website | undefined> {
     const [website] = await db.select().from(websites).where(eq(websites.id, id));
+    return website || undefined;
+  }
+
+  async getWebsiteByDomain(domain: string): Promise<Website | undefined> {
+    const [website] = await db.select().from(websites).where(eq(websites.domain, domain));
     return website || undefined;
   }
 

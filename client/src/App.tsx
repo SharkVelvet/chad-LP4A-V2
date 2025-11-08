@@ -40,6 +40,7 @@ import WebsiteCheckout from "@/pages/website-checkout";
 import PaymentProcessing from "@/pages/payment-processing";
 import DomainPaymentSuccess from "@/pages/domain-payment-success";
 import WebsiteEditor from "@/pages/website-editor";
+import PublicWebsite from "@/pages/public-website";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -100,6 +101,24 @@ function Router() {
 }
 
 function App() {
+  // Check if we're on a custom domain (not the main Replit domain or localhost)
+  const hostname = window.location.hostname;
+  const isCustomDomain = !hostname.includes('replit.dev') && 
+                         !hostname.includes('localhost') && 
+                         !hostname.includes('127.0.0.1');
+
+  // If on a custom domain, show the public website instead of the main app
+  if (isCustomDomain) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <PublicWebsite />
+        </TooltipProvider>
+      </QueryClientProvider>
+    );
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>

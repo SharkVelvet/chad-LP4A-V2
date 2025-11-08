@@ -31,6 +31,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
   setupAuth(app);
   setupAdminAuth(app);
 
+  // Public API - Get website by custom domain (no authentication required)
+  app.get("/api/public/website-by-domain/:domain", async (req, res) => {
+    try {
+      const domain = req.params.domain;
+      const website = await storage.getWebsiteByDomain(domain);
+      
+      if (!website) {
+        return res.status(404).json({ message: "Website not found for this domain" });
+      }
+
+      // Get website content
+      const content = await storage.getWebsiteContent(website.id);
+      
+      // Get template information
+      const template = await storage.getTemplate(website.templateId);
+
+      res.json({ 
+        website,
+        content,
+        template
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Password validation endpoint
   app.post("/api/validate-password", async (req, res) => {
     const { password } = req.body;

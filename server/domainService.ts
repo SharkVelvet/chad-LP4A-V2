@@ -4,6 +4,8 @@ const NAMECHEAP_API_URL = process.env.NAMECHEAP_SANDBOX === "true"
   ? "https://api.sandbox.namecheap.com/xml.response"
   : "https://api.namecheap.com/xml.response";
 
+const NAMECHEAP_PROXY_URL = process.env.NAMECHEAP_PROXY_URL || "";
+
 const xmlParser = new XMLParser({
   ignoreAttributes: false,
   attributeNamePrefix: "@_",
@@ -23,6 +25,7 @@ class DomainService {
 
     console.log("🔧 Namecheap API Configuration:");
     console.log("   API URL:", NAMECHEAP_API_URL);
+    console.log("   Proxy URL:", NAMECHEAP_PROXY_URL || "Direct connection");
     console.log("   API User:", this.apiUser);
     console.log("   Username:", this.userName);
     console.log("   Client IP:", this.clientIp);
@@ -52,12 +55,33 @@ class DomainService {
     };
 
     const allParams = { ...baseParams, ...params };
-    const queryString = new URLSearchParams(allParams).toString();
-    const url = `${NAMECHEAP_API_URL}?${queryString}`;
 
     try {
-      const response = await fetch(url);
-      const xmlText = await response.text();
+      let xmlText: string;
+
+      if (NAMECHEAP_PROXY_URL) {
+        // Use proxy server (for static IP)
+        const response = await fetch(`${NAMECHEAP_PROXY_URL}/namecheap`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            url: NAMECHEAP_API_URL,
+            params: allParams
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Proxy request failed: ${response.statusText}`);
+        }
+
+        xmlText = await response.text();
+      } else {
+        // Direct connection to Namecheap
+        const queryString = new URLSearchParams(allParams).toString();
+        const url = `${NAMECHEAP_API_URL}?${queryString}`;
+        const response = await fetch(url);
+        xmlText = await response.text();
+      }
       
       const parsed = xmlParser.parse(xmlText);
       const apiResponse = parsed.ApiResponse;

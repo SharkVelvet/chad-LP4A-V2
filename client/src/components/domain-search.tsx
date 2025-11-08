@@ -175,6 +175,12 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
     return result?.price || 15.00;
   };
 
+  const isSelectedDomainFree = () => {
+    if (!selectedDomain) return false;
+    const result = searchResults.find(r => r.domain === selectedDomain);
+    return result?.isFree || false;
+  };
+
   const handleSubmitPurchase = (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedDomain) return;
@@ -421,10 +427,17 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
             <div className="pt-4 border-t">
               <div className="flex justify-between items-center mb-4">
                 <span className="font-medium">Total (1 year registration)</span>
-                <span className="text-xl font-bold">${getSelectedDomainPrice().toFixed(2)}</span>
+                {isSelectedDomainFree() ? (
+                  <div className="text-right">
+                    <span className="text-2xl font-bold text-green-600">FREE</span>
+                    <p className="text-xs text-gray-600">Included with your subscription</p>
+                  </div>
+                ) : (
+                  <span className="text-xl font-bold">${getSelectedDomainPrice().toFixed(2)}</span>
+                )}
               </div>
               <p className="text-xs text-gray-500 mb-4">
-                Free WHOIS privacy protection included. Domain will be registered through our partner registrar.
+                Free WHOIS privacy protection included. Professional Landing Pages for Insurance Agents partners with Namecheap for domain registration. You will receive domain-related emails directly from Namecheap, separate from your Landing Pages for Agents communications.
               </p>
               <Button
                 type="submit"
@@ -435,10 +448,10 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
                 {purchaseMutation.isPending ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Processing Purchase...
+                    Processing Registration...
                   </>
                 ) : (
-                  "Complete Purchase"
+                  isSelectedDomainFree() ? "Register FREE Domain" : "Complete Purchase"
                 )}
               </Button>
             </div>

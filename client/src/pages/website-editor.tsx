@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, ChevronRight, FileEdit, Palette, Loader2 } from "lucide-react";
+import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, ChevronRight, FileEdit, Palette, Loader2, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import DomainSearch from "@/components/domain-search";
@@ -39,7 +39,7 @@ type Template = {
   slug: string;
 };
 
-type MenuSection = "website" | "edit-content" | "colors" | "domain" | "settings" | "seo" | "analytics";
+type MenuSection = "website" | "edit-content" | "colors" | "forms" | "domain" | "settings" | "seo" | "analytics";
 
 export default function WebsiteEditor() {
   const [, navigate] = useLocation();
@@ -310,6 +310,7 @@ export default function WebsiteEditor() {
   const websiteSubItems = [
     { id: "edit-content" as MenuSection, label: "Edit Content", icon: FileEdit },
     { id: "colors" as MenuSection, label: "Colors", icon: Palette },
+    { id: "forms" as MenuSection, label: "Add / Edit Forms", icon: FileText },
   ];
 
   return (
@@ -539,6 +540,36 @@ export default function WebsiteEditor() {
                   <p className="text-sm text-blue-800">
                     Color customization coming soon! You'll be able to customize your website's color scheme, including primary colors, accent colors, and text colors.
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Forms panel */}
+          <div
+            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
+              activeSection === "forms" ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="h-full overflow-y-auto p-8">
+              <div className="max-w-4xl space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">Add / Edit Forms</h3>
+                  <p className="text-sm text-gray-600 mb-6">Create and manage contact forms, lead capture forms, and more for your website.</p>
+                </div>
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-blue-900 mb-2">Form Builder Coming Soon</h4>
+                  <p className="text-sm text-blue-800">
+                    You'll be able to create custom forms for your website including:
+                  </p>
+                  <ul className="mt-3 space-y-2 text-sm text-blue-800">
+                    <li>• Contact forms with custom fields</li>
+                    <li>• Lead capture forms</li>
+                    <li>• Quote request forms</li>
+                    <li>• Newsletter signup forms</li>
+                    <li>• Custom survey forms</li>
+                  </ul>
                 </div>
               </div>
             </div>

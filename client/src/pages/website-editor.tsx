@@ -493,7 +493,7 @@ export default function WebsiteEditor() {
 
                 {/* DNS Management */}
                 {website?.domain && (
-                  <DnsManager domain={website.domain} websiteIp="YOUR_WEBSITE_IP" />
+                  <DnsManager domain={website.domain} />
                 )}
               </div>
             </div>

@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 
 interface DnsManagerProps {
   domain: string;
-  websiteIp?: string;
+  targetDomain?: string; // For CNAME record (e.g., your-repl.replit.app)
 }
 
 type DnsRecord = {
@@ -21,9 +21,12 @@ type DnsRecord = {
   ttl: string;
 };
 
-export default function DnsManager({ domain, websiteIp = "YOUR_WEBSITE_IP" }: DnsManagerProps) {
+export default function DnsManager({ domain, targetDomain }: DnsManagerProps) {
   const { toast } = useToast();
   const [isConfiguring, setIsConfiguring] = useState(false);
+  
+  // Auto-detect target domain from environment or use provided one
+  const deploymentDomain = targetDomain || window.location.hostname;
 
   // Fetch current DNS records
   const { data: dnsRecords = [], isLoading, refetch } = useQuery<DnsRecord[]>({
@@ -60,15 +63,15 @@ export default function DnsManager({ domain, websiteIp = "YOUR_WEBSITE_IP" }: Dn
     },
   });
 
-  const hasARecord = dnsRecords.some(r => r.type === "A" && r.name === "@");
-  const aRecord = dnsRecords.find(r => r.type === "A" && r.name === "@");
-  const isPointingToWebsite = aRecord?.address === websiteIp;
+  const hasCnameRecord = dnsRecords.some(r => r.type === "CNAME" && r.name === "@");
+  const cnameRecord = dnsRecords.find(r => r.type === "CNAME" && r.name === "@");
+  const isPointingToWebsite = cnameRecord?.address.toLowerCase().includes(deploymentDomain.toLowerCase());
 
   const handleConfigureDns = () => {
-    // Get all existing non-@ A records to preserve them
-    const otherRecords = dnsRecords.filter(r => !(r.type === "A" && r.name === "@"));
+    // Get all existing records except @ CNAME
+    const otherRecords = dnsRecords.filter(r => !(r.type === "CNAME" && r.name === "@"));
     
-    // Add the new A record pointing to website
+    // Add the new CNAME record pointing to deployment domain
     const newRecords = [
       ...otherRecords.map(r => ({
         name: r.name,
@@ -78,8 +81,8 @@ export default function DnsManager({ domain, websiteIp = "YOUR_WEBSITE_IP" }: Dn
       })),
       {
         name: "@",
-        type: "A",
-        address: websiteIp,
+        type: "CNAME",
+        address: deploymentDomain,
         ttl: 1800,
       },
     ];
@@ -105,14 +108,14 @@ export default function DnsManager({ domain, websiteIp = "YOUR_WEBSITE_IP" }: Dn
       </p>
 
       {/* Status Display */}
-      {hasARecord && isPointingToWebsite ? (
+      {hasCnameRecord && isPointingToWebsite ? (
         <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
           <div className="flex items-start gap-3">
             <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div>
               <p className="font-semibold text-green-900 mb-1">✓ Domain is Connected!</p>
               <p className="text-sm text-green-700">
-                Your domain {domain} is pointing to your website. Visitors can now access your site at this domain.
+                Your domain {domain} is pointing to your website at {deploymentDomain}. Visitors can now access your site at this domain.
               </p>
               <p className="text-xs text-green-600 mt-2">
                 Note: DNS changes can take up to 24-48 hours to fully propagate worldwide.
@@ -127,7 +130,7 @@ export default function DnsManager({ domain, websiteIp = "YOUR_WEBSITE_IP" }: Dn
             <div className="flex-1">
               <p className="font-semibold text-blue-900 mb-1">Domain Not Connected</p>
               <p className="text-sm text-blue-700 mb-3">
-                Your domain is not currently pointing to this website. Click the button below to configure it automatically.
+                Your domain is not currently pointing to this website. Click the button below to configure it automatically to {deploymentDomain}.
               </p>
               <Button
                 onClick={handleConfigureDns}
@@ -172,7 +175,7 @@ export default function DnsManager({ domain, websiteIp = "YOUR_WEBSITE_IP" }: Dn
                   <span className="text-gray-400">→</span>
                   <span className="text-gray-900 font-medium">{record.address}</span>
                 </div>
-                {record.type === "A" && record.name === "@" && record.address === websiteIp && (
+                {record.type === "CNAME" && record.name === "@" && record.address.toLowerCase().includes(deploymentDomain.toLowerCase()) && (
                   <Badge className="bg-green-500">Active</Badge>
                 )}
               </div>

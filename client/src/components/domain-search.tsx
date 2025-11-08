@@ -237,41 +237,7 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
             </div>
           </form>
 
-          {showUnavailableWarning && (
-            <div className="mt-6 flex items-center justify-center" data-testid="warning-domain-unavailable">
-              <Card className="border-red-200 bg-red-50 w-full">
-                <CardContent className="pt-6">
-                  <div className="flex flex-col items-center text-center space-y-4">
-                    <div className="rounded-full bg-red-100 p-3">
-                      <XCircle className="h-12 w-12 text-red-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-red-900 mb-2">
-                        Sorry - Domain Not Available
-                      </h3>
-                      <p className="text-red-700 max-w-md">
-                        The domain name you searched for is not available at this time. Please try a different name or variation.
-                      </p>
-                    </div>
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setSearchTerm("");
-                        setSearchResults([]);
-                        setShowUnavailableWarning(false);
-                      }}
-                      className="border-red-300 text-red-700 hover:bg-red-100"
-                      data-testid="button-try-again"
-                    >
-                      Try Another Search
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-
-          {searchResults.length > 0 && !showUnavailableWarning && (
+          {searchResults.length > 0 && (
             <div className="mt-6 space-y-2">
               <h3 className="font-medium mb-3">Search Results</h3>
               {searchResults.map((result) => (
@@ -477,6 +443,36 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
               </Button>
             </div>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Domain Unavailable Warning Dialog */}
+      <Dialog open={showUnavailableWarning} onOpenChange={setShowUnavailableWarning}>
+        <DialogContent className="sm:max-w-md" data-testid="dialog-domain-unavailable">
+          <div className="flex flex-col items-center text-center space-y-4 py-4">
+            <div className="rounded-full bg-red-100 p-4">
+              <XCircle className="h-16 w-16 text-red-600" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-red-900 mb-3">
+                Sorry - Domain Not Available
+              </h3>
+              <p className="text-red-700 text-base">
+                The domain name you searched for is not available at this time. Please try a different name or variation.
+              </p>
+            </div>
+            <Button
+              onClick={() => {
+                setSearchTerm("");
+                setSearchResults([]);
+                setShowUnavailableWarning(false);
+              }}
+              className="w-full bg-red-600 hover:bg-red-700 text-white"
+              data-testid="button-try-again"
+            >
+              Try Another Search
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

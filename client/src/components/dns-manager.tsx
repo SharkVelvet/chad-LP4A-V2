@@ -162,24 +162,38 @@ export default function DnsManager({ domain, targetDomain }: DnsManagerProps) {
           <p className="text-sm text-gray-500 italic">No DNS records configured</p>
         ) : (
           <div className="space-y-2">
-            {dnsRecords.map((record, index) => (
-              <div
-                key={`${record.recordId}-${index}`}
-                className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded text-sm font-mono"
-              >
-                <div className="flex items-center gap-4">
-                  <Badge variant="secondary" className="font-mono">
-                    {record.type}
-                  </Badge>
-                  <span className="text-gray-600">{record.name || "@"}</span>
-                  <span className="text-gray-400">→</span>
-                  <span className="text-gray-900 font-medium">{record.address}</span>
+            {dnsRecords.map((record, index) => {
+              // Clean up URL records to show just the domain
+              let displayAddress = record.address;
+              if (record.type === "URL" && displayAddress.includes("://")) {
+                try {
+                  const url = new URL(displayAddress);
+                  displayAddress = url.hostname;
+                } catch {
+                  // If URL parsing fails, remove the protocol and query params manually
+                  displayAddress = displayAddress.replace(/^https?:\/\//, '').split('?')[0];
+                }
+              }
+              
+              return (
+                <div
+                  key={`${record.recordId}-${index}`}
+                  className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded text-sm"
+                >
+                  <div className="flex items-center gap-4">
+                    <Badge variant="secondary" className="font-mono">
+                      {record.type}
+                    </Badge>
+                    <span className="text-gray-600">{record.name || "@"}</span>
+                    <span className="text-gray-400">→</span>
+                    <span className="text-gray-900 font-medium">{displayAddress}</span>
+                  </div>
+                  {record.type === "CNAME" && record.name === "@" && record.address.toLowerCase().includes(deploymentDomain.toLowerCase()) && (
+                    <Badge className="bg-green-500">Active</Badge>
+                  )}
                 </div>
-                {record.type === "CNAME" && record.name === "@" && record.address.toLowerCase().includes(deploymentDomain.toLowerCase()) && (
-                  <Badge className="bg-green-500">Active</Badge>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

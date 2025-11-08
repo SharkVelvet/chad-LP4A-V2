@@ -28,6 +28,7 @@ type Website = {
     email: string | null;
     address: string | null;
     isPublished: boolean;
+    maintenanceMode: boolean;
     publishedAt: string | null;
   };
 };
@@ -218,6 +219,30 @@ export default function WebsiteEditor() {
     },
   });
 
+  // Maintenance mode mutation
+  const maintenanceMutation = useMutation({
+    mutationFn: async (enabled: boolean) => {
+      const res = await apiRequest("POST", `/api/websites/${websiteId}/maintenance`, { enabled });
+      return await res.json();
+    },
+    onSuccess: (_, enabled) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      toast({
+        title: enabled ? "Maintenance Mode Enabled" : "Maintenance Mode Disabled",
+        description: enabled 
+          ? "Visitors will see a maintenance message."
+          : "Your website is back to normal operation.",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to update maintenance mode. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   // Listen for edit messages from iframe
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -390,47 +415,78 @@ export default function WebsiteEditor() {
             {/* Website Visibility Widget - Always visible at bottom */}
             <div className="p-4 border-t mt-auto">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                <h4 className="font-semibold text-gray-900 text-sm mb-1">Website Status</h4>
-                <p className="text-xs text-gray-600 mb-3">
-                  {website?.content?.isPublished 
-                    ? "Live - Visible to the public"
-                    : "Draft - Not visible to the public"}
-                </p>
-                <div className="flex gap-2">
-                  {!website?.content?.isPublished ? (
-                    <Button
-                      onClick={() => publishMutation.mutate()}
-                      disabled={publishMutation.isPending}
-                      className="flex-1 bg-green-600 hover:bg-green-700"
-                      size="sm"
-                      data-testid="button-publish-website"
-                    >
-                      {publishMutation.isPending ? (
-                        <>
-                          <Loader2 className="h-3 w-3 mr-2 animate-spin" />
-                          Publishing...
-                        </>
-                      ) : (
-                        "Publish"
-                      )}
-                    </Button>
+                <h4 className="font-semibold text-gray-900 text-sm mb-2">Website Status</h4>
+                
+                {/* Current Status Badge */}
+                <div className="mb-3">
+                  {website?.content?.maintenanceMode ? (
+                    <Badge className="bg-orange-500 text-white">🔧 Maintenance Mode</Badge>
+                  ) : website?.content?.isPublished ? (
+                    <Badge className="bg-green-600 text-white">✓ Published</Badge>
                   ) : (
-                    <Button
-                      onClick={() => unpublishMutation.mutate()}
-                      disabled={unpublishMutation.isPending}
-                      className="flex-1 bg-amber-600 hover:bg-amber-700"
-                      size="sm"
-                      data-testid="button-unpublish-website"
-                    >
-                      {unpublishMutation.isPending ? (
-                        <>
-                          <Loader2 className="h-3 w-3 mr-2 animate-spin" />
-                          Unpublishing...
-                        </>
-                      ) : (
-                        "Set to Draft"
-                      )}
-                    </Button>
+                    <Badge variant="outline" className="border-gray-400 text-gray-700">📝 Draft</Badge>
+                  )}
+                </div>
+
+                {/* Status Actions */}
+                <div className="space-y-2">
+                  {/* Show different options based on current state */}
+                  {website?.content?.maintenanceMode ? (
+                    <>
+                      <Button
+                        onClick={() => maintenanceMutation.mutate(false)}
+                        disabled={maintenanceMutation.isPending}
+                        className="w-full bg-green-600 hover:bg-green-700"
+                        size="sm"
+                      >
+                        Exit Maintenance
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          maintenanceMutation.mutate(false);
+                          setTimeout(() => unpublishMutation.mutate(), 500);
+                        }}
+                        disabled={maintenanceMutation.isPending || unpublishMutation.isPending}
+                        variant="outline"
+                        className="w-full"
+                        size="sm"
+                      >
+                        Set to Draft
+                      </Button>
+                    </>
+                  ) : !website?.content?.isPublished ? (
+                    <>
+                      <Button
+                        onClick={() => publishMutation.mutate()}
+                        disabled={publishMutation.isPending}
+                        className="w-full bg-green-600 hover:bg-green-700"
+                        size="sm"
+                        data-testid="button-publish-website"
+                      >
+                        Publish Live
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        onClick={() => maintenanceMutation.mutate(true)}
+                        disabled={maintenanceMutation.isPending}
+                        className="w-full bg-orange-500 hover:bg-orange-600"
+                        size="sm"
+                      >
+                        Enable Maintenance
+                      </Button>
+                      <Button
+                        onClick={() => unpublishMutation.mutate()}
+                        disabled={unpublishMutation.isPending}
+                        variant="outline"
+                        className="w-full"
+                        size="sm"
+                        data-testid="button-unpublish-website"
+                      >
+                        Set to Draft
+                      </Button>
+                    </>
                   )}
                 </div>
               </div>

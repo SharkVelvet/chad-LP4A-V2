@@ -276,6 +276,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Set maintenance mode
+  app.post("/api/websites/:id/maintenance", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const websiteId = parseInt(req.params.id);
+      const { enabled } = req.body;
+      
+      const website = await storage.getWebsite(websiteId);
+      
+      if (!website || website.userId !== req.user.id) {
+        return res.status(404).json({ message: "Website not found" });
+      }
+
+      const updatedContent = await storage.setMaintenanceMode(websiteId, enabled);
+      res.json(updatedContent);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Domain routes
   // Check domain availability
   app.post("/api/domains/check-availability", async (req, res) => {

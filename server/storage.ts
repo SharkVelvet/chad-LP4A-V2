@@ -327,6 +327,15 @@ export class DatabaseStorage implements IStorage {
     return unpublishedContent;
   }
 
+  async setMaintenanceMode(websiteId: number, enabled: boolean): Promise<WebsiteContent> {
+    const [updatedContent] = await db
+      .update(websiteContent)
+      .set({ maintenanceMode: enabled, updatedAt: new Date() })
+      .where(eq(websiteContent.websiteId, websiteId))
+      .returning();
+    return updatedContent;
+  }
+
   // Blog management
   async getAllBlogPosts(): Promise<BlogPost[]> {
     return await db.select().from(blogPosts).where(eq(blogPosts.isPublished, true)).orderBy(desc(blogPosts.publishedAt));

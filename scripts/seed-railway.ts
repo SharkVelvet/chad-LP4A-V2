@@ -1,0 +1,83 @@
+import { neon } from '@neondatabase/serverless';
+
+const templates = [
+  {"id":1,"name":"Template 1","slug":"Template-1","description":"","category":"Financial","preview_image":"/attached_assets/template1-preview.png","is_active":true},
+  {"id":2,"name":"Template 2","slug":"Template-2","description":"","category":"Restaurant","preview_image":"/attached_assets/template2-preview.png","is_active":true},
+  {"id":3,"name":"Template 3","slug":"Template-3","description":"","category":"Retail","preview_image":"/attached_assets/template3-preview.png","is_active":true},
+  {"id":4,"name":"Template 4","slug":"Template-4","description":"Clean and professional template perfect for consulting firms, agencies, and corporate websites","category":"Business","preview_image":"/attached_assets/planright-cameron-snapshot_1751852578360.jpg","is_active":true},
+  {"id":5,"name":"Template 5","slug":"Template-5","description":"Stunning visual layout ideal for photographers, designers, and creative professionals","category":"Creative","preview_image":"/attached_assets/planright-template5-snapshot_1751853110220.png","is_active":true},
+  {"id":6,"name":"Template 6","slug":"Template-6","description":"Trustworthy and accessible design for medical practices, clinics, and healthcare providers","category":"Healthcare","preview_image":"/attached_assets/planright-jenny-snapshot_1751852549427.jpg","is_active":true},
+  {"id":7,"name":"Template 7","slug":"Template-7","description":"Modern and professional financial services template with clean sections, testimonials, and multiple content areas perfect for insurance agents and financial consultants","category":"Financial","preview_image":"/attached_assets/landing-temp7_1754876114698.jpg","is_active":true},
+  {"id":9,"name":"Template 8","slug":"Template-8","description":"Modern corporate design with clean sections, geometric accents, and professional layout perfect for insurance agencies","category":"Professional","preview_image":"/attached_assets/landing-122222_1754880004417.jpg","is_active":true},
+  {"id":10,"name":"Template 9","slug":"template-9","description":"Modern mobile-first design with app showcase, statistics section, and clean professional layout perfect for tech-savvy insurance agents","category":"Modern","preview_image":"/attached_assets/template-9-preview.png","is_active":true},
+  {"id":11,"name":"Template 10","slug":"Template-10","description":"Professional financial services template with corporate hero section","category":"Business","preview_image":"/template-11-preview.png","is_active":true},
+  {"id":12,"name":"Template 11","slug":"Template-11","description":"Modern insurance template with family-focused hero section","category":"Business","preview_image":"/attached_assets/lp-temp11_1755795377771.png","is_active":true},
+  {"id":13,"name":"Template 12","slug":"Template-12","description":"Elegant financial planning template with trust-building hero section","category":"Business","preview_image":"/attached_assets/lp-temp12_1755802688688.png","is_active":true},
+  {"id":14,"name":"Template 13","slug":"template-13","description":"Professional agent recruitment template with career opportunities, success statistics, and family-focused messaging perfect for insurance agencies looking to attract new talent","category":"Recruitment","preview_image":"/attached_assets/plr-recruiting-1_1758659740352.jpg","is_active":true},
+  {"id":15,"name":"Template 14","slug":"template-14","description":"Professional agent recruitment template with career opportunities, success statistics, and family-focused messaging perfect for insurance agencies looking to attract new talent","category":"Recruitment","preview_image":"/attached_assets/template-a4-snapshot_1760239824645.png","is_active":true},
+  {"id":16,"name":"Template 15","slug":"template-15","description":"Elite recruiting template designed for insurance agency leaders to attract top talent with professional design, comprehensive training highlights, and success-focused messaging.","category":"recruiting","preview_image":"/attached_assets/plr-template-15_1758677455891.png","is_active":true},
+  {"id":17,"name":"Template 16","slug":"template-16","description":"Modern business funding landing page with bold red, white, and black color scheme. Features hero section, stats, services showcase, and contact form.","category":"client","preview_image":"/template-16-preview.png","is_active":true},
+  {"id":18,"name":"Template 17","slug":"template-17","description":"Modern SaaS-style recruiting template with clean design and red accents","category":"recruiting","preview_image":"/template-previews/template17-preview.png","is_active":true},
+  {"id":19,"name":"Template 18","slug":"Template-18","description":"Modern video-style recruiting template with bold headlines and comprehensive new hire application form. Perfect for agencies looking to attract motivated professionals.","category":"recruiting","preview_image":"/attached_assets/generated_images/Insurance_agent_handshake_success_03a13dd0.png","is_active":true},
+  {"id":20,"name":"Template 19","slug":"Template-19","description":"Split-screen career transformation template showcasing team success with integrated new hire form. Ideal for highlighting career growth opportunities.","category":"recruiting","preview_image":"/attached_assets/generated_images/Insurance_team_career_growth_3995ce19.png","is_active":true},
+  {"id":21,"name":"Template 20","slug":"Template-20","description":"Minimalist professional template with clean design, elegant typography, and timeline-based career journey showcase. Features a streamlined application process.","category":"recruiting","preview_image":"/attached_assets/generated_images/Minimalist_professional_workspace_elegance_fccd05a1.png","is_active":true},
+  {"id":22,"name":"Template 21","slug":"Template-21","description":"Bold energetic template with vibrant sections, dynamic statistics, and engaging multi-column layout. Perfect for showcasing team culture and success stories.","category":"recruiting","preview_image":"/attached_assets/generated_images/Energetic_team_celebration_success_90d1a1d5.png","is_active":true}
+];
+
+async function seedDatabase(databaseUrl: string) {
+  console.log('🌱 Starting database seeding...');
+  
+  const sql = neon(databaseUrl);
+  
+  try {
+    // First, check if templates exist
+    const existingTemplates = await sql`SELECT COUNT(*) as count FROM templates`;
+    console.log(`📊 Found ${existingTemplates[0].count} existing templates`);
+    
+    if (existingTemplates[0].count > 0) {
+      console.log('⚠️  Templates already exist. Clearing them first...');
+      await sql`TRUNCATE TABLE templates CASCADE`;
+    }
+    
+    // Insert all templates
+    console.log(`📝 Inserting ${templates.length} templates...`);
+    
+    for (const template of templates) {
+      await sql`
+        INSERT INTO templates (id, name, slug, description, category, preview_image, is_active)
+        VALUES (${template.id}, ${template.name}, ${template.slug}, ${template.description}, ${template.category}, ${template.preview_image}, ${template.is_active})
+      `;
+      console.log(`  ✅ Inserted: ${template.name}`);
+    }
+    
+    // Reset the sequence so new templates get correct IDs
+    await sql`SELECT setval('templates_id_seq', (SELECT MAX(id) FROM templates))`;
+    
+    console.log('✨ Database seeded successfully!');
+    console.log(`📋 Total templates: ${templates.length}`);
+    
+  } catch (error) {
+    console.error('❌ Error seeding database:', error);
+    throw error;
+  }
+}
+
+// Get database URL from command line argument or environment variable
+const databaseUrl = process.argv[2] || process.env.RAILWAY_DATABASE_URL;
+
+if (!databaseUrl) {
+  console.error('❌ Error: Please provide database URL');
+  console.error('Usage: tsx scripts/seed-railway.ts <DATABASE_URL>');
+  console.error('   or: RAILWAY_DATABASE_URL=<url> tsx scripts/seed-railway.ts');
+  process.exit(1);
+}
+
+seedDatabase(databaseUrl)
+  .then(() => {
+    console.log('🎉 Done!');
+    process.exit(0);
+  })
+  .catch((error) => {
+    console.error('💥 Failed:', error);
+    process.exit(1);
+  });

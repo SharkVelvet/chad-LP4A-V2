@@ -513,14 +513,10 @@ export default function TemplatePreviewPage() {
           value: buttonUrl
         }, window.location.origin);
       } else {
-        // Check if this is a legacy field or new content ID
-        const isLegacyField = ['businessName', 'tagline', 'aboutUs', 'phone', 'email', 'address'].includes(editingElement.fieldName);
-        
-        // Send message to parent window with the edit
+        // Always use contentId (never field) to ensure iframe reload happens
         window.parent.postMessage({
           type: 'CONTENT_EDIT',
-          field: isLegacyField ? editingElement.fieldName : null,
-          contentId: !isLegacyField ? editingElement.fieldName : null,
+          contentId: editingElement.fieldName,
           value: editValue
         }, window.location.origin);
       }

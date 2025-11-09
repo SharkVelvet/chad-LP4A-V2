@@ -70,6 +70,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ valid: isValid });
   });
 
+  // Database seed endpoint (one-time use to populate templates)
+  app.post("/api/admin/seed-database", async (req, res) => {
+    try {
+      const { templateSeedData } = await import('./seed-data.js');
+      
+      // Check if templates already exist
+      const existingTemplates = await storage.getTemplates();
+      
+      if (existingTemplates && existingTemplates.length > 0) {
+        return res.status(400).json({ 
+          message: "Templates already exist. Database has already been seeded.",
+          count: existingTemplates.length 
+        });
+      }
+      
+      // Insert all templates
+      let inserted = 0;
+      for (const template of templateSeedData) {
+        await storage.createTemplate({
+          name: template.name,
+          slug: template.slug,
+          description: template.description,
+          category: template.category,
+          previewImage: template.preview_image,
+          isActive: template.is_active
+        });
+        inserted++;
+      }
+      
+      res.json({ 
+        success: true,
+        message: `Successfully seeded database with ${inserted} templates`,
+        count: inserted
+      });
+    } catch (error: any) {
+      res.status(500).json({ 
+        success: false,
+        message: `Error seeding database: ${error.message}` 
+      });
+    }
+  });
+
   // Facebook Pixel ID endpoint
   app.get("/api/facebook-pixel-id", async (req, res) => {
     const pixelId = process.env.FACEBOOK_PIXEL_ID || '';

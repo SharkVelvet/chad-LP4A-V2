@@ -14,6 +14,7 @@ import {
   type Location,
   type InsertLocation,
   type Template,
+  type InsertTemplate,
   type Website,
   type InsertWebsite,
   type WebsiteContent,
@@ -55,6 +56,8 @@ export interface IStorage {
   // Template management
   getAllTemplates(): Promise<Template[]>;
   getTemplate(id: number): Promise<Template | undefined>;
+  createTemplate(template: InsertTemplate): Promise<Template>;
+  createTemplatesBulk(templates: InsertTemplate[]): Promise<void>;
 
   // Website management
   getWebsiteByLocationId(locationId: number): Promise<Website | undefined>;
@@ -194,6 +197,16 @@ export class DatabaseStorage implements IStorage {
   async getTemplate(id: number): Promise<Template | undefined> {
     const [template] = await db.select().from(templates).where(eq(templates.id, id));
     return template || undefined;
+  }
+
+  async createTemplate(template: InsertTemplate): Promise<Template> {
+    const [newTemplate] = await db.insert(templates).values(template).returning();
+    return newTemplate;
+  }
+
+  async createTemplatesBulk(templateList: InsertTemplate[]): Promise<void> {
+    if (templateList.length === 0) return;
+    await db.insert(templates).values(templateList).onConflictDoNothing({ target: templates.slug });
   }
 
   // Website management

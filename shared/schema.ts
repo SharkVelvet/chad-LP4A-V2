@@ -219,6 +219,10 @@ export const insertLocationSchema = createInsertSchema(locations).omit({
   id: true,
 });
 
+export const insertTemplateSchema = createInsertSchema(templates).omit({
+  id: true,
+});
+
 export const insertWebsiteSchema = createInsertSchema(websites).omit({
   id: true,
   userId: true,
@@ -278,6 +282,7 @@ export type InsertUser = z.infer<typeof insertUserSchema>;
 export type Location = typeof locations.$inferSelect;
 export type InsertLocation = z.infer<typeof insertLocationSchema>;
 export type Template = typeof templates.$inferSelect;
+export type InsertTemplate = z.infer<typeof insertTemplateSchema>;
 export type Website = typeof websites.$inferSelect;
 export type InsertWebsite = z.infer<typeof insertWebsiteSchema>;
 export type WebsiteContent = typeof websiteContent.$inferSelect;

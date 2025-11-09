@@ -76,7 +76,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { templateSeedData } = await import('./seed-data.js');
       
       // Check if templates already exist
-      const existingTemplates = await storage.getTemplates();
+      const existingTemplates = await storage.getAllTemplates();
       
       if (existingTemplates && existingTemplates.length > 0) {
         return res.status(400).json({ 
@@ -85,24 +85,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      // Insert all templates
-      let inserted = 0;
-      for (const template of templateSeedData) {
-        await storage.createTemplate({
-          name: template.name,
-          slug: template.slug,
-          description: template.description,
-          category: template.category,
-          previewImage: template.preview_image,
-          isActive: template.is_active
-        });
-        inserted++;
-      }
+      // Map seed data to InsertTemplate format (remove id, convert property names)
+      const templatesToInsert = templateSeedData.map(t => ({
+        name: t.name,
+        slug: t.slug,
+        description: t.description,
+        category: t.category,
+        previewImage: t.preview_image,
+        isActive: t.is_active
+      }));
+      
+      // Bulk insert templates (with conflict handling)
+      await storage.createTemplatesBulk(templatesToInsert);
       
       res.json({ 
         success: true,
-        message: `Successfully seeded database with ${inserted} templates`,
-        count: inserted
+        message: `Successfully seeded database with ${templatesToInsert.length} templates`,
+        count: templatesToInsert.length
       });
     } catch (error: any) {
       res.status(500).json({ 

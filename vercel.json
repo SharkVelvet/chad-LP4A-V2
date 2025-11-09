@@ -21,12 +21,5 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "routes": [
-    {
-      "src": "/attached_assets/(.*)",
-      "dest": "/attached_assets/$1"
-    }
   ]
 }
-// Testing Vercel deployment

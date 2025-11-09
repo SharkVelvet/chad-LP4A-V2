@@ -101,10 +101,11 @@ function Router() {
 }
 
 function App() {
-  // Check if we're on a custom domain (not the main Replit domain or localhost)
+  // Check if we're on a custom domain (not the platform domain or localhost)
   const hostname = window.location.hostname;
   const isCustomDomain = !hostname.includes('replit.dev') && 
                          !hostname.includes('replit.app') && 
+                         !hostname.includes('vercel.app') && 
                          !hostname.includes('localhost') && 
                          !hostname.includes('127.0.0.1');
 

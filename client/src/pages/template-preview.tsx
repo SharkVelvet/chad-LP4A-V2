@@ -262,19 +262,25 @@ export default function TemplatePreviewPage() {
         const text = buttonElement.textContent || '';
         const url = (buttonElement as HTMLAnchorElement).href || '';
         
-        // Generate ID for the button
-        const tagName = buttonElement.tagName.toLowerCase();
-        const siblings = Array.from(buttonElement.parentElement?.children || []);
-        const index = siblings.indexOf(buttonElement);
-        let pathParts = [tagName, index.toString()];
-        let parent = buttonElement.parentElement;
-        while (parent && parent !== document.body) {
-          const parentSiblings = Array.from(parent.parentElement?.children || []);
-          const parentIndex = parentSiblings.indexOf(parent);
-          pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
-          parent = parent.parentElement;
+        // Check for existing content ID or field, prefer data-content-id
+        let contentId = buttonElement.getAttribute('data-content-id') || 
+                       buttonElement.getAttribute('data-field');
+        
+        // Auto-generate ID if none exists
+        if (!contentId) {
+          const tagName = buttonElement.tagName.toLowerCase();
+          const siblings = Array.from(buttonElement.parentElement?.children || []);
+          const index = siblings.indexOf(buttonElement);
+          let pathParts = [tagName, index.toString()];
+          let parent = buttonElement.parentElement;
+          while (parent && parent !== document.body) {
+            const parentSiblings = Array.from(parent.parentElement?.children || []);
+            const parentIndex = parentSiblings.indexOf(parent);
+            pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
+            parent = parent.parentElement;
+          }
+          contentId = `auto.${pathParts.join('.')}`;
         }
-        const contentId = `auto.${pathParts.join('.')}`;
         
         setEditingElement({
           type: 'button',
@@ -296,19 +302,25 @@ export default function TemplatePreviewPage() {
         const imgElement = target as HTMLImageElement;
         const src = imgElement.src || '';
         
-        // Generate ID for the image
-        const tagName = imgElement.tagName.toLowerCase();
-        const siblings = Array.from(imgElement.parentElement?.children || []);
-        const index = siblings.indexOf(imgElement);
-        let pathParts = [tagName, index.toString()];
-        let parent = imgElement.parentElement;
-        while (parent && parent !== document.body) {
-          const parentSiblings = Array.from(parent.parentElement?.children || []);
-          const parentIndex = parentSiblings.indexOf(parent);
-          pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
-          parent = parent.parentElement;
+        // Check for existing content ID or field, prefer data-content-id
+        let contentId = imgElement.getAttribute('data-content-id') || 
+                       imgElement.getAttribute('data-field');
+        
+        // Auto-generate ID if none exists
+        if (!contentId) {
+          const tagName = imgElement.tagName.toLowerCase();
+          const siblings = Array.from(imgElement.parentElement?.children || []);
+          const index = siblings.indexOf(imgElement);
+          let pathParts = [tagName, index.toString()];
+          let parent = imgElement.parentElement;
+          while (parent && parent !== document.body) {
+            const parentSiblings = Array.from(parent.parentElement?.children || []);
+            const parentIndex = parentSiblings.indexOf(parent);
+            pathParts.unshift(`${parent.tagName.toLowerCase()}-${parentIndex}`);
+            parent = parent.parentElement;
+          }
+          contentId = `auto.${pathParts.join('.')}`;
         }
-        const contentId = `auto.${pathParts.join('.')}`;
         
         setEditingElement({
           type: 'image',
@@ -379,8 +391,8 @@ export default function TemplatePreviewPage() {
         const contentId = contentIdElement?.getAttribute('data-content-id') || null;
         const legacyField = legacyFieldElement?.getAttribute('data-field') || null;
         
-        // Auto-generate content ID if none exists
-        let finalContentId = legacyField || contentId;
+        // Prefer data-content-id over data-field
+        let finalContentId = contentId || legacyField;
         if (!finalContentId) {
           const tagName = target.tagName.toLowerCase();
           const siblings = Array.from(target.parentElement?.children || []);

@@ -3883,7 +3883,7 @@ export default function TemplatePreview({ templateSlug, className = "", content,
         <div id="hero" className="relative bg-gradient-to-r from-purple-50 to-blue-50 px-4 sm:px-6 py-16 sm:py-20">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center" style={{ maxWidth: '1080px' }}>
             <div className="text-center lg:text-left">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6" data-field="tagline">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6" data-field="tagline" data-content-id="template-7.hero.tagline">
                 {content?.tagline || (
                   <>
                     Secure, Reliable, and 
@@ -3892,7 +3892,7 @@ export default function TemplatePreview({ templateSlug, className = "", content,
                   </>
                 )}
               </h1>
-              <p className="text-lg text-gray-600 mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0" data-field="aboutUs">
+              <p className="text-lg text-gray-600 mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0" data-field="aboutUs" data-content-id="template-7.hero.aboutUs">
                 {content?.aboutUs || "Providing comprehensive financial services and solutions designed to protect what matters most to you and your family."}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -3918,19 +3918,20 @@ export default function TemplatePreview({ templateSlug, className = "", content,
                       src="/attached_assets/lpages-business_1754875856664.jpg" 
                       alt="Professional headshot" 
                       className="w-full h-full object-cover"
+                      data-content-id="template-7.hero.agent.photo"
                     />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Your Name Here</h3>
-                    <p className="text-sm text-gray-600">Licensed Insurance Agent</p>
+                    <h3 className="font-semibold text-gray-900" data-content-id="template-7.hero.agent.name">Your Name Here</h3>
+                    <p className="text-sm text-gray-600" data-content-id="template-7.hero.agent.title">Licensed Insurance Agent</p>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-gray-600 mb-4" data-content-id="template-7.hero.agent.quote">
                   "I help families achieve financial security through personalized insurance solutions and expert guidance."
                 </p>
                 <div className="flex items-center text-sm text-gray-500">
                   <Phone className="w-4 h-4 mr-2" />
-                  <span data-field="phone">{content?.phone || "(555) 123-4567"}</span>
+                  <span data-field="phone" data-content-id="template-7.hero.agent.phone">{content?.phone || "(555) 123-4567"}</span>
                 </div>
               </div>
             </div>

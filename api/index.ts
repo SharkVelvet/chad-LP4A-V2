@@ -1,13 +1,17 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "../server/routes";
-import { log } from "../server/vite";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
 // Serve attached assets statically
-app.use('/attached_assets', express.static('attached_assets', {
+app.use('/attached_assets', express.static(path.join(__dirname, '../attached_assets'), {
   setHeaders: (res, path) => {
     if (path.endsWith('.png')) {
       res.set('Content-Type', 'image/png');
@@ -17,41 +21,13 @@ app.use('/attached_assets', express.static('attached_assets', {
   }
 }));
 
-app.use((req, res, next) => {
-  const start = Date.now();
-  const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
-
-  const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
-    capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
-  };
-
-  res.on("finish", () => {
-    const duration = Date.now() - start;
-    if (path.startsWith("/api")) {
-      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-      if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
-      }
-
-      if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
-      }
-
-      log(logLine);
-    }
-  });
-
-  next();
-});
-
 // Initialize routes
-registerRoutes(app).then(() => {
-  log('API routes registered and ready');
+let routesRegistered = false;
+const routesPromise = registerRoutes(app).then(() => {
+  routesRegistered = true;
+  console.log('API routes registered and ready');
 }).catch((error) => {
-  log(`Failed to register routes: ${error}`);
+  console.error(`Failed to register routes: ${error}`);
 });
 
 // Error handler
@@ -62,5 +38,18 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   console.error(err);
 });
 
+// Serve static files for SPA (catch-all route)
+app.use(express.static(path.join(__dirname, '../dist/public')));
+app.get('*', (_req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, '../dist/public/index.html'));
+});
+
 // Export for Vercel serverless
-export default app;
+export default async (req: Request, res: Response) => {
+  // Wait for routes to be registered
+  if (!routesRegistered) {
+    await routesPromise;
+  }
+  
+  return app(req, res);
+};

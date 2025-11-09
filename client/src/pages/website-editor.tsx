@@ -605,7 +605,7 @@ export default function WebsiteEditor() {
                 </div>
 
                 {website?.content?.formEnabled && websiteId && (
-                  <FormsConfig websiteId={websiteId} website={website} />
+                  <FormsConfig websiteId={websiteId.toString()} website={website} />
                 )}
               </div>
             </div>

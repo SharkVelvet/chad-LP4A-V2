@@ -74,7 +74,7 @@ app.use((req, res, next) => {
     }
 
     // Server configuration for deployment compatibility
-    const port = process.env.PORT || 5000;
+    const port = parseInt(process.env.PORT || "5000");
     const host = process.env.HOST || "0.0.0.0";
 
     server.listen(port, host, () => {

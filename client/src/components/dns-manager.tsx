@@ -5,119 +5,62 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Globe, CheckCircle2, Loader2, AlertCircle, Clock } from "lucide-react";
+import { Globe, CheckCircle2, Loader2, AlertCircle, Clock, Cloud } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface DnsManagerProps {
   domain: string;
   domainStatus?: string; // pending, propagating, active
-  targetDomain?: string; // For CNAME record (e.g., your-repl.replit.app)
+  targetDomain?: string; // Deployment domain (e.g., your-repl.replit.app)
 }
-
-type DnsRecord = {
-  recordId: string;
-  name: string;
-  type: string;
-  address: string;
-  ttl: string;
-};
 
 export default function DnsManager({ domain, domainStatus = 'pending', targetDomain }: DnsManagerProps) {
   const { toast } = useToast();
-  const [isConfiguring, setIsConfiguring] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(domainStatus);
   
   // Auto-detect target domain from environment or use provided one
-  const deploymentDomain = targetDomain || window.location.hostname;
+  const deploymentDomain = targetDomain || 'landing-pages-for-agents-v2-2-sharkvelvet.replit.app';
 
-  // Fetch current DNS records
-  const { data: dnsRecords = [], isLoading, refetch } = useQuery<DnsRecord[]>({
-    queryKey: [`/api/domains/${domain}/dns`],
+  // Check Cloudflare status
+  const { data: cloudflareStatus, isLoading, refetch } = useQuery({
+    queryKey: [`/api/domains/${domain}/cloudflare/status`],
     queryFn: async () => {
-      const res = await fetch(`/api/domains/${domain}/dns`, {
+      const res = await fetch(`/api/domains/${domain}/cloudflare/status`, {
         credentials: "include",
       });
-      if (!res.ok) throw new Error("Failed to fetch DNS records");
+      if (!res.ok) return { exists: false, active: false };
       return res.json();
     },
+    refetchInterval: domainStatus === 'propagating' ? 30000 : false, // Poll every 30s if propagating
   });
 
-  // Check DNS propagation status (poll every 30 seconds if propagating)
-  const { data: verificationData } = useQuery({
-    queryKey: [`/api/domains/${domain}/verify`],
-    queryFn: async () => {
-      const res = await fetch(`/api/domains/${domain}/verify`, {
-        credentials: "include",
+  // Setup Cloudflare mutation (if not already set up)
+  const setupCloudflare = useMutation({
+    mutationFn: async () => {
+      const res = await apiRequest("POST", `/api/domains/${domain}/cloudflare/setup`, {
+        replitDeploymentDomain: deploymentDomain
       });
-      if (!res.ok) return { isActive: false, status: currentStatus };
       return res.json();
     },
-    refetchInterval: currentStatus === 'propagating' ? 30000 : false, // Poll every 30s if propagating
-    enabled: !!domain && currentStatus !== 'active',
-  });
-
-  // Update local status when verification data changes
-  useEffect(() => {
-    if (verificationData?.status) {
-      setCurrentStatus(verificationData.status);
-    }
-  }, [verificationData]);
-
-  // Set DNS records mutation
-  const setDnsMutation = useMutation({
-    mutationFn: async (records: any[]) => {
-      const res = await apiRequest("POST", `/api/domains/${domain}/dns`, { records });
-      return res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [`/api/domains/${domain}/dns`] });
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: [`/api/domains/${domain}/cloudflare/status`] });
       toast({
-        title: "DNS Updated",
-        description: "Your domain is now pointing to your website. Changes may take 24-48 hours to fully propagate.",
+        title: "Cloudflare Setup Complete!",
+        description: `Your domain is now configured with SSL. DNS will propagate within 24 hours.`,
       });
-      setIsConfiguring(false);
+      refetch();
     },
     onError: (error: any) => {
       toast({
-        title: "DNS Update Failed",
-        description: error.message || "Failed to update DNS records. Please try again.",
+        title: "Setup Failed",
+        description: error.message || "Failed to set up Cloudflare. Please try again.",
         variant: "destructive",
       });
     },
   });
 
-  const hasCnameRecord = dnsRecords.some(r => r.type === "CNAME" && r.name === "@");
-  const cnameRecord = dnsRecords.find(r => r.type === "CNAME" && r.name === "@");
-  const isPointingToWebsite = cnameRecord?.address.toLowerCase().includes(deploymentDomain.toLowerCase());
-
-  const handleConfigureDns = () => {
-    // Get all existing records except @ CNAME and www CNAME
-    const otherRecords = dnsRecords.filter(r => !(r.type === "CNAME" && (r.name === "@" || r.name === "www")));
-    
-    // Add the new CNAME records pointing to deployment domain (both root and www)
-    const newRecords = [
-      ...otherRecords.map(r => ({
-        name: r.name,
-        type: r.type,
-        address: r.address,
-        ttl: parseInt(r.ttl) || 1800,
-      })),
-      {
-        name: "@",
-        type: "CNAME",
-        address: deploymentDomain,
-        ttl: 1800,
-      },
-      {
-        name: "www",
-        type: "CNAME",
-        address: deploymentDomain,
-        ttl: 1800,
-      },
-    ];
-
-    setDnsMutation.mutate(newRecords);
-  };
+  const isActive = cloudflareStatus?.active || domainStatus === 'active';
+  const exists = cloudflareStatus?.exists || domainStatus !== 'pending';
 
   if (isLoading) {
     return (
@@ -131,68 +74,85 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6">
-      <h4 className="text-lg font-semibold mb-2">Connect Your Domain to This Website</h4>
+      <h4 className="text-lg font-semibold mb-2">Domain Configuration</h4>
       <p className="text-sm text-gray-600 mb-4">
-        Configure your domain to display this website when visitors go to {domain}
+        Your domain {domain} is configured with Cloudflare for automatic SSL/HTTPS
       </p>
 
       {/* Status Display */}
-      {hasCnameRecord && isPointingToWebsite ? (
+      {isActive ? (
         <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
           <div className="flex items-start gap-3">
             <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <p className="font-semibold text-green-900 mb-1">✓ Domain is Connected!</p>
+              <p className="font-semibold text-green-900 mb-1">✓ Domain is Live with SSL!</p>
               <p className="text-sm text-green-700">
-                Your domain {domain} is pointing to your website. Visitors will soon be able to access your site at this domain.
+                Your domain {domain} is active and serving your website with HTTPS. Visitors can access your site securely.
               </p>
-              <p className="text-xs text-green-600 mt-2">
-                Note: DNS changes can take up to 24-48 hours to fully propagate worldwide.
+              <div className="mt-3 p-3 bg-white rounded border border-green-200">
+                <p className="text-xs font-semibold text-gray-700 mb-1">Cloudflare Nameservers:</p>
+                <div className="space-y-1">
+                  {cloudflareStatus?.nameservers?.map((ns: string, i: number) => (
+                    <p key={i} className="text-xs font-mono text-gray-900">{ns}</p>
+                  )) || <p className="text-xs text-gray-500 italic">Configured</p>}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : exists ? (
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+          <div className="flex items-start gap-3">
+            <Clock className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="font-semibold text-amber-900 mb-1">⏳ DNS Propagating</p>
+              <p className="text-sm text-amber-700">
+                Your domain is configured with Cloudflare and nameservers have been updated. 
+                DNS changes can take 15 minutes to 24 hours to fully propagate worldwide.
               </p>
-              <Button
-                onClick={handleConfigureDns}
-                disabled={setDnsMutation.isPending}
-                variant="outline"
-                size="sm"
-                className="mt-3"
-                data-testid="button-reconfigure-dns"
-              >
-                {setDnsMutation.isPending ? (
-                  <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Updating...
-                  </>
-                ) : (
-                  "Update DNS Records (Fix www)"
-                )}
-              </Button>
+              <div className="mt-3 p-3 bg-white rounded border border-amber-200">
+                <p className="text-xs font-semibold text-gray-700 mb-1">Cloudflare Nameservers:</p>
+                <div className="space-y-1">
+                  {cloudflareStatus?.nameservers?.map((ns: string, i: number) => (
+                    <p key={i} className="text-xs font-mono text-gray-900">{ns}</p>
+                  )) || (
+                    <>
+                      <p className="text-xs font-mono text-gray-900">venus.ns.cloudflare.com</p>
+                      <p className="text-xs font-mono text-gray-900">vicente.ns.cloudflare.com</p>
+                    </>
+                  )}
+                </div>
+              </div>
+              <p className="text-xs text-amber-600 mt-2">
+                Check back in 30 minutes. The status will automatically update when your domain is live.
+              </p>
             </div>
           </div>
         </div>
       ) : (
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
           <div className="flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+            <Cloud className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <p className="font-semibold text-blue-900 mb-1">Domain Not Connected</p>
+              <p className="font-semibold text-blue-900 mb-1">Setup Cloudflare SSL</p>
               <p className="text-sm text-blue-700 mb-3">
-                Your domain is not currently pointing to this website. Click the button below to configure it automatically to {deploymentDomain}.
+                Click below to configure your domain with Cloudflare for automatic SSL certificates and secure HTTPS access.
               </p>
               <Button
-                onClick={handleConfigureDns}
-                disabled={setDnsMutation.isPending}
+                onClick={() => setupCloudflare.mutate()}
+                disabled={setupCloudflare.isPending}
                 className="bg-blue-600 hover:bg-blue-700"
-                data-testid="button-configure-dns"
+                data-testid="button-setup-cloudflare"
               >
-                {setDnsMutation.isPending ? (
+                {setupCloudflare.isPending ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Configuring DNS...
+                    Setting up SSL...
                   </>
                 ) : (
                   <>
-                    <Globe className="h-4 w-4 mr-2" />
-                    Connect Domain to Website
+                    <Cloud className="h-4 w-4 mr-2" />
+                    Setup Cloudflare & SSL
                   </>
                 )}
               </Button>
@@ -200,49 +160,6 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
           </div>
         </div>
       )}
-
-      {/* Current DNS Records */}
-      <div className="mt-4">
-        <h5 className="text-sm font-semibold text-gray-700 mb-3">Current DNS Records:</h5>
-        {dnsRecords.length === 0 ? (
-          <p className="text-sm text-gray-500 italic">No DNS records configured</p>
-        ) : (
-          <div className="space-y-2">
-            {dnsRecords.map((record, index) => {
-              // Clean up URL records to show just the domain
-              let displayAddress = record.address;
-              if (record.type === "URL" && displayAddress.includes("://")) {
-                try {
-                  const url = new URL(displayAddress);
-                  displayAddress = url.hostname;
-                } catch {
-                  // If URL parsing fails, remove the protocol and query params manually
-                  displayAddress = displayAddress.replace(/^https?:\/\//, '').split('?')[0];
-                }
-              }
-              
-              return (
-                <div
-                  key={`${record.recordId}-${index}`}
-                  className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded text-sm"
-                >
-                  <div className="flex items-center gap-4">
-                    <Badge variant="secondary" className="font-mono">
-                      {record.type}
-                    </Badge>
-                    <span className="text-gray-600">{record.name || "@"}</span>
-                    <span className="text-gray-400">→</span>
-                    <span className="text-gray-900 font-medium">{displayAddress}</span>
-                  </div>
-                  {record.type === "CNAME" && record.name === "@" && record.address.toLowerCase().includes(deploymentDomain.toLowerCase()) && (
-                    <Badge className="bg-green-500">Active</Badge>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
 
       {/* Email Verification Warning */}
       <div className="mt-4 bg-red-50 border-2 border-red-300 rounded-lg p-4">

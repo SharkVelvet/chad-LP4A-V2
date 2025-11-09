@@ -86,7 +86,7 @@ export default function TemplatePreviewPage() {
   // Prepare content data for template - pass ENTIRE content object including flexible content
   const fullContent = website?.content || {};
   
-  // Extract legacy fields for backwards compatibility
+  // Extract legacy fields for backwards compatibility (these are database columns)
   const contentData = {
     businessName: fullContent.businessName || null,
     tagline: fullContent.tagline || null,
@@ -96,14 +96,10 @@ export default function TemplatePreviewPage() {
     address: fullContent.address || null,
   };
   
-  // Separate flexible content (exclude ONLY system metadata fields, not user-editable fields)
-  const systemFields = ['isPublished', 'maintenanceMode', 'publishedAt', 'formEnabled', 'formProvider', 'formEmbedCode'];
-  const flexibleContent: Record<string, string> = {};
-  Object.keys(fullContent).forEach(key => {
-    if (!systemFields.includes(key) && typeof fullContent[key] === 'string') {
-      flexibleContent[key] = fullContent[key];
-    }
-  });
+  // Extract flexible content from the nested content JSONB field
+  // The backend stores flexible content in website_content.content (JSONB)
+  // which comes back as fullContent.content
+  const flexibleContent: Record<string, string> = (fullContent.content as Record<string, string>) || {};
 
   // Track template preview view
   useEffect(() => {

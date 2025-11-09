@@ -1289,13 +1289,25 @@ export default function WebsiteEditor() {
         {/* Edit mode content - website preview with editing enabled */}
         <div className="absolute top-14 left-0 right-0 bottom-0 bg-gray-100">
           {template ? (
-            <iframe
-              key={`edit-${websiteId}`}
-              src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&editMode=true&hideNav=true`}
-              className="w-full h-full border-0"
-              title="Edit Website"
-              data-testid="iframe-edit-mode"
-            />
+            <>
+              <iframe
+                key={`edit-${websiteId}`}
+                src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&editMode=true&hideNav=true`}
+                className="w-full h-full border-0"
+                title="Edit Website"
+                data-testid="iframe-edit-mode"
+              />
+              {/* Saving overlay - shows immediately when save is clicked */}
+              {(saveFlexibleContentMutation.isPending || saveContentMutation.isPending) && (
+                <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-16 h-16 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
+                    <p className="text-lg font-medium text-gray-900">Saving changes...</p>
+                    <p className="text-sm text-gray-600">Please wait while we update your website</p>
+                  </div>
+                </div>
+              )}
+            </>
           ) : (
             <div className="w-full h-full flex items-center justify-center">
               <div className="flex flex-col items-center gap-4">

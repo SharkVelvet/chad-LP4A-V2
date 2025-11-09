@@ -1,0 +1,51 @@
+Node.js v18.20.5
+🔧 Namecheap API Configuration:
+   API URL: https://api.namecheap.com/xml.response
+   Proxy URL: Direct connection
+   API User: 
+   Username: 
+   Client IP: 
+   API Key: NOT SET
+   Sandbox Mode: undefined
+Namecheap API credentials not configured. Domain features will be disabled.
+⚠️ Cloudflare API credentials not configured
+node:internal/errors:496
+    ErrorCaptureStackTrace(err);
+    ^
+TypeError [ERR_INVALID_ARG_TYPE]: The "paths[0]" argument must be of type string. Received undefined
+    at __node_internal_captureLargerStackTrace (node:internal/errors:496:5)
+    at new NodeError (node:internal/errors:405:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.resolve (node:path:1097:7)
+    at <anonymous> (/app/vite.config.ts:21:17)
+    at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:337:24)
+    at async file:///app/server/production.js:8:1 {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+Node.js v18.20.5
+Node.js v18.20.5
+}
+🔧 Namecheap API Configuration:
+   API URL: https://api.namecheap.com/xml.response
+   Proxy URL: Direct connection
+   API User: 
+   Username: 
+   Client IP: 
+   API Key: NOT SET
+   Sandbox Mode: undefined
+Namecheap API credentials not configured. Domain features will be disabled.
+⚠️ Cloudflare API credentials not configured
+node:internal/errors:496
+    ErrorCaptureStackTrace(err);
+    ^
+TypeError [ERR_INVALID_ARG_TYPE]: The "paths[0]" argument must be of type string. Received undefined
+    at __node_internal_captureLargerStackTrace (node:internal/errors:496:5)
+    at new NodeError (node:internal/errors:405:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.resolve (node:path:1097:7)
+    at <anonymous> (/app/vite.config.ts:21:17)
+    at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:337:24)
+    at async file:///app/server/production.js:8:1 {
+  code: 'ERR_INVALID_ARG_TYPE'

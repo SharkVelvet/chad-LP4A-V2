@@ -120,6 +120,17 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+- **November 9, 2025**: Implemented Cloudflare integration for custom domain SSL/HTTPS support
+  - Created cloudflareService.ts for zone and DNS management via Cloudflare API
+  - Added idempotent DNS record creation (handles duplicates gracefully)
+  - Integrated custom domain routing: visitors to customer domains see their website, not the platform
+  - Added public website viewer that detects domain and displays correct template/content
+  - Database schema updated with cloudflare_zone_id and cloudflare_nameservers fields
+  - Multi-tenant architecture: one Replit deployment serves unlimited customer domains
+  - Automatic SSL certificates via Cloudflare's free tier
+  - Requires CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID environment variables
+  - Full documentation in CLOUDFLARE_SETUP.md
+
 - **November 8, 2025**: Created DigitalOcean proxy solution for Namecheap static IP requirement
   - Built lightweight Node.js proxy server for deployment on DigitalOcean ($4/month droplet)
   - Updated domainService.ts to support optional proxy endpoint via NAMECHEAP_PROXY_URL environment variable

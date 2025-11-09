@@ -12,7 +12,7 @@ import {
   insertCustomSolutionInquirySchema,
   insertAnalyticsEventSchema,
   insertSeoDataSchema
-} from "@shared/schema";
+} from "../shared/schema.js";
 import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sendCustomSolutionInquiry, sendContactFormSubmission } from "./email.js";
 import { validatePassword } from "./passwords.js";
 import { domainService } from "./domainService.js";

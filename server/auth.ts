@@ -5,7 +5,7 @@ import session from "express-session";
 import { scrypt, randomBytes, timingSafeEqual } from "crypto";
 import { promisify } from "util";
 import { storage } from "./storage.js";
-import { User as SelectUser } from "@shared/schema";
+import { User as SelectUser } from "../shared/schema.js";
 import { generateOTP, getOTPExpiry, sendOTPEmail } from "./emailService.js";
 
 declare global {

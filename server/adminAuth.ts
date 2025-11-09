@@ -5,7 +5,7 @@ import session from "express-session";
 import { scrypt, randomBytes, timingSafeEqual } from "crypto";
 import { promisify } from "util";
 import { storage } from "./storage.js";
-import { AdminUser as SelectAdminUser } from "@shared/schema";
+import { AdminUser as SelectAdminUser } from "../shared/schema.js";
 
 declare global {
   namespace Express {

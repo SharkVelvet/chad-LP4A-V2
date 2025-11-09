@@ -106,6 +106,7 @@ function App() {
   const isCustomDomain = !hostname.includes('replit.dev') && 
                          !hostname.includes('replit.app') && 
                          !hostname.includes('vercel.app') && 
+                         !hostname.includes('railway.app') && 
                          !hostname.includes('localhost') && 
                          !hostname.includes('127.0.0.1');
 

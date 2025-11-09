@@ -329,13 +329,14 @@ class DomainService {
       throw new Error("Domain service not configured");
     }
 
-    const params: Record<string, string> = {
-      DomainName: domain,
-    };
+    const sld = domain.split(".")[0];
+    const tld = domain.split(".").slice(1).join(".");
 
-    nameservers.forEach((ns, index) => {
-      params[`Nameserver${index + 1}`] = ns;
-    });
+    const params: Record<string, string> = {
+      SLD: sld,
+      TLD: tld,
+      Nameservers: nameservers.join(","),
+    };
 
     await this.makeRequest("namecheap.domains.dns.setCustom", params);
     return true;

@@ -210,17 +210,30 @@ export default function TemplatePreview({ templateSlug, className = "", content,
   // Apply flexible content to elements with data-content-id
   useEffect(() => {
     const applyContent = () => {
+      console.log('[Template Preview] Applying flexible content:', Object.keys(flexibleContent).length, 'items');
+      console.log('[Template Preview] Flexible content keys:', Object.keys(flexibleContent));
+      
+      let appliedCount = 0;
+      let notFoundCount = 0;
+      
       Object.keys(flexibleContent).forEach((contentId) => {
         const element = document.querySelector(`[data-content-id="${contentId}"]`);
         if (element) {
           const savedValue = flexibleContent[contentId];
+          console.log('[Template Preview] Applying content to:', contentId, 'value:', savedValue?.substring(0, 50));
           if (element.tagName === 'IMG') {
             (element as HTMLImageElement).src = savedValue;
           } else {
             element.textContent = savedValue;
           }
+          appliedCount++;
+        } else {
+          console.log('[Template Preview] Element not found for:', contentId);
+          notFoundCount++;
         }
       });
+      
+      console.log('[Template Preview] Applied:', appliedCount, 'Not found:', notFoundCount);
     };
 
     // Apply content after a short delay to ensure DOM is ready

@@ -96,10 +96,11 @@ export default function TemplatePreviewPage() {
     address: fullContent.address || null,
   };
   
-  // Separate flexible content (everything that's not a legacy field)
+  // Separate flexible content (exclude ONLY system metadata fields, not user-editable fields)
+  const systemFields = ['isPublished', 'maintenanceMode', 'publishedAt', 'formEnabled', 'formProvider', 'formEmbedCode'];
   const flexibleContent: Record<string, string> = {};
   Object.keys(fullContent).forEach(key => {
-    if (!['businessName', 'tagline', 'aboutUs', 'phone', 'email', 'address', 'isPublished', 'maintenanceMode', 'publishedAt', 'formEnabled', 'formProvider', 'formEmbedCode'].includes(key)) {
+    if (!systemFields.includes(key) && typeof fullContent[key] === 'string') {
       flexibleContent[key] = fullContent[key];
     }
   });

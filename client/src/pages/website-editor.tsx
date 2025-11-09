@@ -53,6 +53,7 @@ export default function WebsiteEditor() {
   const [isWebsiteExpanded] = useState(true); // Always keep Website menu expanded
   const [isEditOverlayOpen, setIsEditOverlayOpen] = useState(false);
   const [isIframeLoading, setIsIframeLoading] = useState(true);
+  const [isReloadingContent, setIsReloadingContent] = useState(false);
   const [existingDomain, setExistingDomain] = useState("");
   const [showExistingDomainSection, setShowExistingDomainSection] = useState(false);
   const { toast } = useToast();
@@ -132,6 +133,9 @@ export default function WebsiteEditor() {
       // Refetch website data
       await queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
       
+      // Set reloading state to keep overlay visible
+      setIsReloadingContent(true);
+      
       // Force iframe to reload to show updated content
       const iframe = document.querySelector('iframe[data-testid="iframe-edit-mode"]') as HTMLIFrameElement;
       console.log('[Website Editor] Found iframe:', !!iframe);
@@ -153,6 +157,7 @@ export default function WebsiteEditor() {
         description: "Failed to save changes. Please try again.",
         variant: "destructive",
       });
+      setIsReloadingContent(false);
     },
   });
 
@@ -1296,9 +1301,10 @@ export default function WebsiteEditor() {
                 className="w-full h-full border-0"
                 title="Edit Website"
                 data-testid="iframe-edit-mode"
+                onLoad={() => setIsReloadingContent(false)}
               />
-              {/* Saving overlay - shows immediately when save is clicked */}
-              {(saveFlexibleContentMutation.isPending || saveContentMutation.isPending) && (
+              {/* Saving overlay - shows immediately when save is clicked and stays until reload completes */}
+              {(saveFlexibleContentMutation.isPending || saveContentMutation.isPending || isReloadingContent) && (
                 <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50">
                   <div className="flex flex-col items-center gap-4">
                     <div className="w-16 h-16 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>

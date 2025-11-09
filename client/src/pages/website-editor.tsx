@@ -95,10 +95,6 @@ export default function WebsiteEditor() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
-      toast({
-        title: "Changes saved",
-        description: "Your website content has been updated.",
-      });
     },
     onError: () => {
       toast({
@@ -145,11 +141,6 @@ export default function WebsiteEditor() {
         const currentSrc = iframe.src;
         iframe.src = currentSrc;
       }
-      
-      toast({
-        title: "Changes saved",
-        description: "Your website content has been updated.",
-      });
     },
     onError: () => {
       toast({
@@ -613,8 +604,8 @@ export default function WebsiteEditor() {
                   )}
                 </div>
 
-                {website?.content?.formEnabled && (
-                  <FormsConfig websiteId={websiteId!} website={website} />
+                {website?.content?.formEnabled && websiteId && (
+                  <FormsConfig websiteId={websiteId} website={website} />
                 )}
               </div>
             </div>

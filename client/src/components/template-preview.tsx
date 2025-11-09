@@ -1,5 +1,11 @@
+import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy, Edit2 } from "lucide-react";
 import temp1Image from "@assets/temp1-pr.jpg";
 import temp2Image from "@assets/temp2-pr.jpg";
 import temp3Image from "@assets/temp3-pr.jpg";
@@ -26,9 +32,132 @@ interface TemplatePreviewProps {
   editMode?: boolean;
 }
 
+function EditModeOverlay() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [editingContent, setEditingContent] = useState<{
+    contentId: string;
+    value: string;
+    isImage: boolean;
+  } | null>(null);
+  const [editValue, setEditValue] = useState("");
+
+  useEffect(() => {
+    const elements = document.querySelectorAll('[data-content-id]');
+    
+    const handleClick = (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const target = e.currentTarget as HTMLElement;
+      const contentId = target.getAttribute('data-content-id');
+      
+      if (!contentId) return;
+      
+      const isImage = target.tagName === 'IMG';
+      const value = isImage 
+        ? (target as HTMLImageElement).src 
+        : target.textContent || '';
+      
+      setEditingContent({ contentId, value, isImage });
+      setEditValue(value);
+      setIsOpen(true);
+    };
+
+    const handleMouseEnter = (e: Event) => {
+      const target = e.currentTarget as HTMLElement;
+      target.style.outline = '2px solid #6458AF';
+      target.style.outlineOffset = '2px';
+      target.style.cursor = 'pointer';
+    };
+
+    const handleMouseLeave = (e: Event) => {
+      const target = e.currentTarget as HTMLElement;
+      target.style.outline = 'none';
+    };
+
+    elements.forEach((el) => {
+      el.addEventListener('click', handleClick);
+      el.addEventListener('mouseenter', handleMouseEnter);
+      el.addEventListener('mouseleave', handleMouseLeave);
+    });
+
+    return () => {
+      elements.forEach((el) => {
+        el.removeEventListener('click', handleClick);
+        el.removeEventListener('mouseenter', handleMouseEnter);
+        el.removeEventListener('mouseleave', handleMouseLeave);
+      });
+    };
+  }, []);
+
+  const handleSave = () => {
+    if (editingContent) {
+      window.parent.postMessage({
+        type: 'CONTENT_EDIT',
+        contentId: editingContent.contentId,
+        value: editValue
+      }, '*');
+      
+      setIsOpen(false);
+      setEditingContent(null);
+      setEditValue("");
+    }
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent className="sm:max-w-[600px]">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <Edit2 className="h-5 w-5" />
+            Edit Content
+          </DialogTitle>
+          <DialogDescription>
+            Make changes to this content. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="py-4">
+          {editingContent?.isImage ? (
+            <div className="space-y-4">
+              <Label>Image URL</Label>
+              <Input
+                value={editValue}
+                onChange={(e) => setEditValue(e.target.value)}
+                placeholder="Enter image URL"
+              />
+              <p className="text-xs text-gray-500">
+                Paste a URL to an image or upload to a hosting service first.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <Label>Text Content</Label>
+              <Textarea
+                value={editValue}
+                onChange={(e) => setEditValue(e.target.value)}
+                rows={6}
+                placeholder="Enter your content here"
+                className="resize-none"
+              />
+            </div>
+          )}
+        </div>
+
+        <DialogFooter>
+          <Button variant="outline" onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={handleSave} className="bg-[#6458AF] hover:bg-[#5347a0]">
+            Save Changes
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 export default function TemplatePreview({ templateSlug, className = "", content, editMode = false }: TemplatePreviewProps) {
-  
-  
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
@@ -36,6 +165,8 @@ export default function TemplatePreview({ templateSlug, className = "", content,
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const templateContent = () => {
 
   if (templateSlug === "Template-8") {
     return (
@@ -6050,5 +6181,15 @@ export default function TemplatePreview({ templateSlug, className = "", content,
     <div className={`bg-gray-100 rounded-lg p-8 ${className}`}>
       <div className="text-center text-gray-500">Template Preview</div>
     </div>
+  );
+  };
+
+  const renderedTemplate = templateContent();
+  
+  return (
+    <>
+      {renderedTemplate}
+      {editMode && <EditModeOverlay key={templateSlug} />}
+    </>
   );
 }

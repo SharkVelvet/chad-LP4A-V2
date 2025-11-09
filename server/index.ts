@@ -79,6 +79,7 @@ app.use((req, res, next) => {
 
     server.listen(port, host, () => {
       log(`serving on ${host}:${port} (NODE_ENV: ${process.env.NODE_ENV})`);
+      log(`API routes registered and ready`);
     });
 
     // Handle server startup errors

@@ -29,6 +29,7 @@ interface TemplatePreviewProps {
     email: string | null;
     address: string | null;
   };
+  flexibleContent?: Record<string, string>;
   editMode?: boolean;
 }
 
@@ -42,16 +43,56 @@ function EditModeOverlay() {
   const [editValue, setEditValue] = useState("");
 
   useEffect(() => {
-    const elements = document.querySelectorAll('[data-content-id]');
+    // Find ALL editable elements (text content and images)
+    const textSelectors = 'h1, h2, h3, h4, h5, h6, p, span, a, button, li, td, th, label, div';
+    const allElements = document.querySelectorAll(textSelectors);
+    const editableElements: HTMLElement[] = [];
+    
+    allElements.forEach((el) => {
+      const element = el as HTMLElement;
+      
+      // Skip navigation, headers, and structural elements
+      if (element.closest('nav, header[class*="sticky"], [class*="z-50"]')) return;
+      
+      // Only include elements with direct text content (not just child text)
+      const hasDirectText = Array.from(element.childNodes).some(
+        node => node.nodeType === Node.TEXT_NODE && node.textContent?.trim()
+      );
+      
+      if (hasDirectText || element.tagName === 'IMG') {
+        editableElements.push(element);
+      }
+    });
     
     const handleClick = (e: Event) => {
       e.preventDefault();
       e.stopPropagation();
       
       const target = e.currentTarget as HTMLElement;
-      const contentId = target.getAttribute('data-content-id');
       
-      if (!contentId) return;
+      // Get or generate content ID
+      let contentId = target.getAttribute('data-content-id');
+      if (!contentId) {
+        // Auto-generate content ID based on DOM path
+        const getPath = (el: HTMLElement): string => {
+          const parts: string[] = [];
+          let current: HTMLElement | null = el;
+          
+          while (current && current !== document.body) {
+            const parent = current.parentElement;
+            if (parent) {
+              const siblings = Array.from(parent.children);
+              const index = siblings.indexOf(current);
+              parts.unshift(`${current.tagName.toLowerCase()}-${index}`);
+            }
+            current = parent;
+          }
+          
+          return `auto.${parts.join('.')}`;
+        };
+        
+        contentId = getPath(target);
+      }
       
       const isImage = target.tagName === 'IMG';
       const value = isImage 
@@ -75,14 +116,14 @@ function EditModeOverlay() {
       target.style.outline = 'none';
     };
 
-    elements.forEach((el) => {
+    editableElements.forEach((el) => {
       el.addEventListener('click', handleClick);
       el.addEventListener('mouseenter', handleMouseEnter);
       el.addEventListener('mouseleave', handleMouseLeave);
     });
 
     return () => {
-      elements.forEach((el) => {
+      editableElements.forEach((el) => {
         el.removeEventListener('click', handleClick);
         el.removeEventListener('mouseenter', handleMouseEnter);
         el.removeEventListener('mouseleave', handleMouseLeave);
@@ -157,7 +198,7 @@ function EditModeOverlay() {
   );
 }
 
-export default function TemplatePreview({ templateSlug, className = "", content, editMode = false }: TemplatePreviewProps) {
+export default function TemplatePreview({ templateSlug, className = "", content, flexibleContent = {}, editMode = false }: TemplatePreviewProps) {
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
@@ -165,6 +206,27 @@ export default function TemplatePreview({ templateSlug, className = "", content,
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Apply flexible content to elements with data-content-id
+  useEffect(() => {
+    const applyContent = () => {
+      Object.keys(flexibleContent).forEach((contentId) => {
+        const element = document.querySelector(`[data-content-id="${contentId}"]`);
+        if (element) {
+          const savedValue = flexibleContent[contentId];
+          if (element.tagName === 'IMG') {
+            (element as HTMLImageElement).src = savedValue;
+          } else {
+            element.textContent = savedValue;
+          }
+        }
+      });
+    };
+
+    // Apply content after a short delay to ensure DOM is ready
+    const timer = setTimeout(applyContent, 100);
+    return () => clearTimeout(timer);
+  }, [flexibleContent, templateSlug]);
 
   const templateContent = () => {
 

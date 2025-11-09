@@ -83,15 +83,26 @@ export default function TemplatePreviewPage() {
 
   const template = templates?.find(t => t.slug === templateSlug);
   
-  // Prepare content data for template
-  const contentData = website?.content || {
-    businessName: null,
-    tagline: null,
-    aboutUs: null,
-    phone: null,
-    email: null,
-    address: null,
+  // Prepare content data for template - pass ENTIRE content object including flexible content
+  const fullContent = website?.content || {};
+  
+  // Extract legacy fields for backwards compatibility
+  const contentData = {
+    businessName: fullContent.businessName || null,
+    tagline: fullContent.tagline || null,
+    aboutUs: fullContent.aboutUs || null,
+    phone: fullContent.phone || null,
+    email: fullContent.email || null,
+    address: fullContent.address || null,
   };
+  
+  // Separate flexible content (everything that's not a legacy field)
+  const flexibleContent: Record<string, string> = {};
+  Object.keys(fullContent).forEach(key => {
+    if (!['businessName', 'tagline', 'aboutUs', 'phone', 'email', 'address', 'isPublished', 'maintenanceMode', 'publishedAt', 'formEnabled', 'formProvider', 'formEmbedCode'].includes(key)) {
+      flexibleContent[key] = fullContent[key];
+    }
+  });
 
   // Track template preview view
   useEffect(() => {
@@ -653,7 +664,7 @@ export default function TemplatePreviewPage() {
         ) : template.slug === "template-15" || template.slug === "Template-15" ? (
           <Template15 className="w-full" content={contentData} editMode={editMode} />
         ) : ["Template-1", "Template-2", "Template-3", "Template-4", "Template-5", "Template-6", "Template-7", "Template-8", "template-9", "Template-10", "Template-11", "Template-12"].includes(template.slug) ? (
-          <TemplatePreview templateSlug={template.slug} className="w-full" content={contentData} editMode={editMode} />
+          <TemplatePreview templateSlug={template.slug} className="w-full" content={contentData} flexibleContent={flexibleContent} editMode={editMode} />
         ) : (
           <div className="w-full min-h-screen bg-white">
             <img

@@ -46,6 +46,8 @@ export const websites = pgTable("websites", {
   domainVerified: boolean("domain_verified").notNull().default(false),
   domainStatus: text("domain_status").default("pending"), // pending, propagating, active
   domainPreferences: jsonb("domain_preferences").$type<string[]>(),
+  cloudflareZoneId: text("cloudflare_zone_id"),
+  cloudflareNameservers: jsonb("cloudflare_nameservers").$type<string[]>(),
   subscriptionPlan: text("subscription_plan").notNull(),
   subscriptionStatus: text("subscription_status").notNull().default("active"),
   primaryColor: text("primary_color").default("#000000"),

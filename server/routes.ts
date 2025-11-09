@@ -16,6 +16,7 @@ import {
 import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sendCustomSolutionInquiry, sendContactFormSubmission } from "./email";
 import { validatePassword } from "./passwords";
 import { domainService } from "./domainService";
+import { cloudflareService } from "./cloudflareService";
 
 // Initialize Stripe only if the secret key is available
 let stripe: Stripe | null = null;
@@ -667,6 +668,76 @@ export async function registerRoutes(app: Express): Promise<Server> {
         isActive, 
         status: isActive ? 'active' : website.domainStatus || 'pending' 
       });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Cloudflare integration routes
+  app.post("/api/domains/:domain/cloudflare/setup", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      const { replitDeploymentDomain } = req.body;
+
+      if (!replitDeploymentDomain) {
+        return res.status(400).json({ message: "Replit deployment domain is required" });
+      }
+
+      // Verify user owns a website with this domain
+      const websites = await storage.getUserWebsites(req.user.id);
+      const website = websites.find(w => w.domain === domain);
+      
+      if (!website) {
+        return res.status(403).json({ message: "You don't own this domain" });
+      }
+
+      // Setup domain in Cloudflare
+      const result = await cloudflareService.setupDomainForReplit(domain, replitDeploymentDomain);
+
+      // Update Namecheap nameservers to point to Cloudflare
+      await domainService.setNameservers(domain, result.nameservers);
+
+      // Update website with Cloudflare information and status
+      await storage.updateWebsite(website.id, { 
+        domainStatus: 'propagating',
+        cloudflareZoneId: result.zone.id,
+        cloudflareNameservers: result.nameservers
+      } as any);
+
+      res.json({
+        success: true,
+        zone: result.zone,
+        nameservers: result.nameservers,
+        dnsRecords: result.dnsRecords
+      });
+    } catch (error: any) {
+      console.error('Cloudflare setup error:', error.message);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.get("/api/domains/:domain/cloudflare/status", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      
+      // Verify user owns a website with this domain
+      const websites = await storage.getUserWebsites(req.user.id);
+      const website = websites.find(w => w.domain === domain);
+      
+      if (!website) {
+        return res.status(403).json({ message: "You don't own this domain" });
+      }
+
+      const status = await cloudflareService.getZoneStatus(domain);
+      res.json(status);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }

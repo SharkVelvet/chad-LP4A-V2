@@ -1,9 +1,9 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import express from "express";
-import { storage } from "./storage";
-import { setupAuth } from "./auth";
-import { setupAdminAuth, isAdminAuthenticated } from "./adminAuth";
+import { storage } from "./storage.js";
+import { setupAuth } from "./auth.js";
+import { setupAdminAuth, isAdminAuthenticated } from "./adminAuth.js";
 import Stripe from "stripe";
 import { 
   insertWebsiteSchema, 
@@ -13,10 +13,10 @@ import {
   insertAnalyticsEventSchema,
   insertSeoDataSchema
 } from "@shared/schema";
-import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sendCustomSolutionInquiry, sendContactFormSubmission } from "./email";
-import { validatePassword } from "./passwords";
-import { domainService } from "./domainService";
-import { cloudflareService } from "./cloudflareService";
+import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sendCustomSolutionInquiry, sendContactFormSubmission } from "./email.js";
+import { validatePassword } from "./passwords.js";
+import { domainService } from "./domainService.js";
+import { cloudflareService } from "./cloudflareService.js";
 
 // Initialize Stripe only if the secret key is available
 let stripe: Stripe | null = null;

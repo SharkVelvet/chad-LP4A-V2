@@ -70,6 +70,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ valid: isValid });
   });
 
+  // Database migration endpoint (create tables)
+  app.post("/api/admin/migrate-database", async (req, res) => {
+    try {
+      const { execSync } = await import('child_process');
+      
+      // Run drizzle push to create tables
+      execSync('npm run db:push -- --force', { 
+        stdio: 'inherit',
+        env: process.env 
+      });
+      
+      res.json({ 
+        success: true,
+        message: "Database tables created successfully"
+      });
+    } catch (error: any) {
+      res.status(500).json({ 
+        success: false,
+        message: `Error migrating database: ${error.message}` 
+      });
+    }
+  });
+
   // Database seed endpoint (one-time use to populate templates)
   app.post("/api/admin/seed-database", async (req, res) => {
     try {

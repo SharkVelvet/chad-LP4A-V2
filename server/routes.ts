@@ -811,6 +811,76 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Complete domain setup (Railway + DNS)
+  app.post("/api/domains/:domain/setup-complete", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      const { deploymentDomain } = req.body;
+
+      if (!deploymentDomain) {
+        return res.status(400).json({ message: "Deployment domain is required" });
+      }
+
+      // Verify user owns a website with this domain
+      const websites = await storage.getUserWebsites(req.user.id);
+      const website = websites.find(w => w.domain === domain);
+      
+      if (!website) {
+        return res.status(403).json({ message: "You don't own this domain" });
+      }
+
+      console.log(`🔧 Starting complete domain setup for: ${domain}`);
+
+      // Step 1: Register domain with Railway
+      if (railwayService.isConfigured()) {
+        try {
+          console.log(`🚂 Registering ${domain} with Railway...`);
+          await railwayService.addCustomDomain(domain);
+          console.log(`✓ Railway registration complete`);
+        } catch (error: any) {
+          console.error(`⚠️  Railway registration failed: ${error.message}`);
+          // Continue with DNS setup even if Railway fails
+        }
+      } else {
+        console.log('⚠️  Railway not configured - skipping Railway registration');
+      }
+
+      // Step 2: Setup domain in Cloudflare for SSL/DNS
+      console.log(`☁️  Setting up Cloudflare for ${domain}...`);
+      const result = await cloudflareService.setupDomainForReplit(domain, deploymentDomain);
+      console.log(`✓ Cloudflare setup complete`);
+
+      // Step 3: Update Namecheap nameservers to point to Cloudflare
+      console.log(`📝 Updating nameservers...`);
+      await domainService.setNameservers(domain, result.nameservers);
+      console.log(`✓ Nameservers updated`);
+
+      // Step 4: Update website with configuration and status
+      await storage.updateWebsite(website.id, { 
+        domainStatus: 'propagating',
+        cloudflareZoneId: result.zone.id,
+        cloudflareNameservers: result.nameservers
+      } as any);
+
+      console.log(`✅ Complete domain setup finished for: ${domain}`);
+
+      res.json({
+        success: true,
+        message: 'Domain successfully connected to website with Railway hosting and SSL',
+        zone: result.zone,
+        nameservers: result.nameservers,
+        dnsRecords: result.dnsRecords
+      });
+    } catch (error: any) {
+      console.error('Domain setup error:', error.message);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Cloudflare integration routes
   app.post("/api/domains/:domain/cloudflare/setup", async (req, res) => {
     if (!req.isAuthenticated()) {

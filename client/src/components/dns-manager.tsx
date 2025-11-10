@@ -34,26 +34,26 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
     refetchInterval: domainStatus === 'propagating' ? 30000 : false, // Poll every 30s if propagating
   });
 
-  // Setup Cloudflare mutation (if not already set up)
-  const setupCloudflare = useMutation({
+  // Setup domain with Railway + DNS mutation
+  const setupDomain = useMutation({
     mutationFn: async () => {
-      const res = await apiRequest("POST", `/api/domains/${domain}/cloudflare/setup`, {
-        replitDeploymentDomain: deploymentDomain
+      const res = await apiRequest("POST", `/api/domains/${domain}/setup-complete`, {
+        deploymentDomain: 'chad-lp4a-v2-production.up.railway.app'
       });
       return res.json();
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [`/api/domains/${domain}/cloudflare/status`] });
       toast({
-        title: "Cloudflare Setup Complete!",
-        description: `Your domain is now configured with SSL. DNS will propagate within 24 hours.`,
+        title: "Domain Connected!",
+        description: `${domain} is now connected to your website with automatic SSL. DNS will propagate within 24 hours.`,
       });
       refetch();
     },
     onError: (error: any) => {
       toast({
-        title: "Setup Failed",
-        description: error.message || "Failed to set up Cloudflare. Please try again.",
+        title: "Connection Failed",
+        description: error.message || "Failed to connect domain. Please try again.",
         variant: "destructive",
       });
     },
@@ -127,20 +127,32 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
           </div>
         </div>
       ) : (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
           <div className="flex items-start gap-3">
-            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+            <Cloud className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <p className="font-semibold text-green-900 mb-1">✓ Domain Connected to Website</p>
-              <p className="text-sm text-green-700">
-                Your domain <strong>{domain}</strong> has been successfully connected to this website and automatically configured with Railway for SSL/HTTPS access. DNS propagation typically takes 15 minutes to 24 hours.
+              <p className="font-semibold text-blue-900 mb-1">Domain Setup Required</p>
+              <p className="text-sm text-blue-700 mb-3">
+                Click the button below to connect <strong>{domain}</strong> to your website. This will automatically configure Railway hosting and DNS settings for SSL/HTTPS access.
               </p>
-              <div className="mt-3 p-3 bg-white rounded border border-green-200">
-                <p className="text-xs font-semibold text-gray-700 mb-1">Hosting Configuration:</p>
-                <p className="text-xs text-gray-900">✓ Railway hosting with automatic SSL certificates</p>
-                <p className="text-xs text-gray-900">✓ DNS configured via Cloudflare</p>
-                <p className="text-xs text-gray-900">✓ HTTPS enabled</p>
-              </div>
+              <Button
+                onClick={() => setupDomain.mutate()}
+                disabled={setupDomain.isPending}
+                className="bg-blue-600 hover:bg-blue-700"
+                data-testid="button-connect-domain"
+              >
+                {setupDomain.isPending ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Connecting Domain...
+                  </>
+                ) : (
+                  <>
+                    <Globe className="h-4 w-4 mr-2" />
+                    Connect Domain to Website
+                  </>
+                )}
+              </Button>
             </div>
           </div>
         </div>

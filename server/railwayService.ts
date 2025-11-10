@@ -104,21 +104,34 @@ class RailwayService {
       throw new Error(`Railway GraphQL error: ${result.errors[0]?.message}`);
     }
 
-    // Find the service instance that matches our serviceId
+    // Get service instances from the environment
     const instances = result.data?.environment?.serviceInstances?.edges || [];
     
-    console.log(`📊 Railway returned ${instances.length} service instances`);
-    instances.forEach((edge: any, i: number) => {
-      console.log(`   Instance ${i}: serviceId=${edge.node.serviceId}, id=${edge.node.id}`);
-    });
-    console.log(`🔍 Looking for serviceId: ${this.config!.serviceId}`);
+    if (instances.length === 0) {
+      throw new Error(`No service instances found in environment ${this.config.environmentId}`);
+    }
     
-    const targetInstance = instances.find(
-      (edge: any) => edge.node.serviceId === this.config!.serviceId
-    );
+    console.log(`📊 Railway returned ${instances.length} service instances`);
+    
+    // If there's only one service (common case), use it
+    // Otherwise, try to find the matching serviceId
+    let targetInstance;
+    if (instances.length === 1) {
+      targetInstance = instances[0];
+      console.log(`✓ Using the only service instance: ${targetInstance.node.id}`);
+    } else {
+      instances.forEach((edge: any, i: number) => {
+        console.log(`   Instance ${i}: serviceId=${edge.node.serviceId}, id=${edge.node.id}`);
+      });
+      console.log(`🔍 Looking for serviceId: ${this.config!.serviceId}`);
+      
+      targetInstance = instances.find(
+        (edge: any) => edge.node.serviceId === this.config!.serviceId
+      );
 
-    if (!targetInstance) {
-      throw new Error(`Could not find serviceEnvironmentId for service ${this.config.serviceId} in environment ${this.config.environmentId}. Found ${instances.length} instances in environment.`);
+      if (!targetInstance) {
+        throw new Error(`Could not find serviceEnvironmentId for service ${this.config.serviceId} in environment ${this.config.environmentId}. Found ${instances.length} instances.`);
+      }
     }
 
     this.config.serviceEnvironmentId = targetInstance.node.id;

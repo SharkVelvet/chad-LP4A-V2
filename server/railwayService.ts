@@ -18,6 +18,7 @@ interface RailwayDomainResponse {
 
 interface RailwayConfig {
   apiToken: string;
+  projectId: string;
   serviceId: string;
   environmentId: string;
   serviceEnvironmentId?: string;
@@ -32,12 +33,14 @@ class RailwayService {
    */
   constructor() {
     const apiToken = process.env.RAILWAY_API_TOKEN;
+    const projectId = process.env.RAILWAY_PROJECT_ID;
     const serviceId = process.env.RAILWAY_SERVICE_ID;
     const environmentId = process.env.RAILWAY_ENVIRONMENT_ID;
 
-    if (apiToken && serviceId && environmentId) {
+    if (apiToken && projectId && serviceId && environmentId) {
       this.config = {
         apiToken,
+        projectId,
         serviceId,
         environmentId,
       };
@@ -182,6 +185,7 @@ class RailwayService {
     const variables = {
       input: {
         domain,
+        projectId: this.config.projectId,
         serviceEnvironmentId,
       },
     };

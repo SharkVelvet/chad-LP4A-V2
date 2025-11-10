@@ -106,12 +106,19 @@ class RailwayService {
 
     // Find the service instance that matches our serviceId
     const instances = result.data?.environment?.serviceInstances?.edges || [];
+    
+    console.log(`📊 Railway returned ${instances.length} service instances`);
+    instances.forEach((edge: any, i: number) => {
+      console.log(`   Instance ${i}: serviceId=${edge.node.serviceId}, id=${edge.node.id}`);
+    });
+    console.log(`🔍 Looking for serviceId: ${this.config!.serviceId}`);
+    
     const targetInstance = instances.find(
       (edge: any) => edge.node.serviceId === this.config!.serviceId
     );
 
     if (!targetInstance) {
-      throw new Error(`Could not find serviceEnvironmentId for service ${this.config.serviceId} in environment ${this.config.environmentId}`);
+      throw new Error(`Could not find serviceEnvironmentId for service ${this.config.serviceId} in environment ${this.config.environmentId}. Found ${instances.length} instances in environment.`);
     }
 
     this.config.serviceEnvironmentId = targetInstance.node.id;

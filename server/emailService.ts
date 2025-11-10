@@ -54,17 +54,22 @@ async function getUncachableGmailClient() {
 
 function getSMTPTransporter() {
   const user = process.env.GMAIL_USER;
-  const pass = process.env.GMAIL_APP_PASSWORD;
+  const clientId = process.env.GMAIL_OAUTH_CLIENT_ID;
+  const clientSecret = process.env.GMAIL_OAUTH_CLIENT_SECRET;
+  const refreshToken = process.env.GMAIL_OAUTH_REFRESH_TOKEN;
 
-  if (!user || !pass) {
-    throw new Error('GMAIL_USER and GMAIL_APP_PASSWORD environment variables required for non-Replit environments');
+  if (!user || !clientId || !clientSecret || !refreshToken) {
+    throw new Error('Gmail OAuth credentials required: GMAIL_USER, GMAIL_OAUTH_CLIENT_ID, GMAIL_OAUTH_CLIENT_SECRET, GMAIL_OAUTH_REFRESH_TOKEN');
   }
 
   return nodemailer.createTransport({
     service: 'gmail',
     auth: {
+      type: 'OAuth2',
       user,
-      pass
+      clientId,
+      clientSecret,
+      refreshToken
     }
   });
 }
@@ -130,9 +135,14 @@ If you didn't request this code, please ignore this email.
 Landing Pages for Agents
     `;
 
-    // Prioritize SMTP if credentials are available (Railway, production)
-    // Fall back to Replit connector only if SMTP credentials are not set
-    if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
+    // Prioritize OAuth SMTP if credentials are available (Railway, production)
+    // Fall back to Replit connector only if OAuth credentials are not set
+    const hasOAuthCreds = process.env.GMAIL_USER && 
+                          process.env.GMAIL_OAUTH_CLIENT_ID && 
+                          process.env.GMAIL_OAUTH_CLIENT_SECRET && 
+                          process.env.GMAIL_OAUTH_REFRESH_TOKEN;
+
+    if (hasOAuthCreds) {
       const transporter = getSMTPTransporter();
 
       await transporter.sendMail({

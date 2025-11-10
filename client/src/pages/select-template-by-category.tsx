@@ -71,14 +71,16 @@ export default function SelectTemplateByCategory() {
 
   // Filter templates based on category
   // Templates 1-12 are for clients, 13-15 are for hiring
-  const templates = allTemplates.filter(template => {
-    if (category === 'get-clients') {
-      return template.id >= 1 && template.id <= 12;
-    } else if (category === 'hire-agents') {
-      return template.id >= 13 && template.id <= 15;
-    }
-    return false;
-  });
+  const templates = allTemplates
+    .filter(template => {
+      if (category === 'get-clients') {
+        return template.id >= 1 && template.id <= 12;
+      } else if (category === 'hire-agents') {
+        return template.id >= 13 && template.id <= 15;
+      }
+      return false;
+    })
+    .sort((a, b) => a.id - b.id); // Sort by ID in ascending order
 
   if (isLoading) {
     return (
@@ -152,7 +154,7 @@ export default function SelectTemplateByCategory() {
                 }}
                 data-testid={`template-card-${template.id}`}
               >
-                <div className="relative overflow-hidden bg-white border-b" style={{ height: '400px' }}>
+                <div className="relative overflow-hidden bg-white border-b aspect-video">
                   <img
                     src={template.previewImage}
                     alt={template.name}

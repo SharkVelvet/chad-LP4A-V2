@@ -3,7 +3,8 @@
  * Migrate a specific website from local database to Railway production database
  */
 
-import { Pool } from 'pg';
+import pkg from 'pg';
+const { Pool } = pkg;
 import { drizzle } from 'drizzle-orm/node-postgres';
 import * as schema from '../shared/schema.js';
 import { eq } from 'drizzle-orm';

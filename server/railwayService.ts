@@ -20,6 +20,7 @@ interface RailwayConfig {
   apiToken: string;
   serviceId: string;
   environmentId: string;
+  serviceEnvironmentId?: string;
 }
 
 class RailwayService {
@@ -47,6 +48,79 @@ class RailwayService {
   }
 
   /**
+   * Get the serviceEnvironmentId (required by Railway's new API schema)
+   */
+  private async getServiceEnvironmentId(): Promise<string> {
+    if (!this.config) {
+      throw new Error('Railway API not configured');
+    }
+
+    // Return cached value if available
+    if (this.config.serviceEnvironmentId) {
+      return this.config.serviceEnvironmentId;
+    }
+
+    console.log('🔍 Fetching serviceEnvironmentId from Railway...');
+
+    const query = `
+      query service($id: String!) {
+        service(id: $id) {
+          serviceInstances {
+            edges {
+              node {
+                environmentId
+                serviceId
+                id
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const variables = {
+      id: this.config.serviceId,
+    };
+
+    const response = await fetch(this.apiUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${this.config.apiToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        variables,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Railway API error: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (result.errors) {
+      throw new Error(`Railway GraphQL error: ${result.errors[0]?.message}`);
+    }
+
+    // Find the service instance that matches our environmentId
+    const instances = result.data?.service?.serviceInstances?.edges || [];
+    const targetInstance = instances.find(
+      (edge: any) => edge.node.environmentId === this.config!.environmentId
+    );
+
+    if (!targetInstance) {
+      throw new Error(`Could not find serviceEnvironmentId for service ${this.config.serviceId} in environment ${this.config.environmentId}`);
+    }
+
+    this.config.serviceEnvironmentId = targetInstance.node.id;
+    console.log(`✓ Found serviceEnvironmentId: ${this.config.serviceEnvironmentId}`);
+
+    return this.config.serviceEnvironmentId;
+  }
+
+  /**
    * Check if Railway API is configured
    */
   isConfigured(): boolean {
@@ -64,6 +138,9 @@ class RailwayService {
     }
 
     console.log(`🚂 Adding custom domain to Railway: ${domain}`);
+
+    // Get the serviceEnvironmentId (required by Railway's new API schema)
+    const serviceEnvironmentId = await this.getServiceEnvironmentId();
 
     const mutation = `
       mutation customDomainCreate($input: CustomDomainCreateInput!) {
@@ -85,8 +162,7 @@ class RailwayService {
     const variables = {
       input: {
         domain,
-        environmentId: this.config.environmentId,
-        serviceId: this.config.serviceId,
+        serviceEnvironmentId,
       },
     };
 

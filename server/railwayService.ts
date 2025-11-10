@@ -162,9 +162,6 @@ class RailwayService {
 
     console.log(`🚂 Adding custom domain to Railway: ${domain}`);
 
-    // Get the serviceEnvironmentId (required by Railway's new API schema)
-    const serviceEnvironmentId = await this.getServiceEnvironmentId();
-
     const mutation = `
       mutation customDomainCreate($input: CustomDomainCreateInput!) {
         customDomainCreate(input: $input) {
@@ -186,7 +183,8 @@ class RailwayService {
       input: {
         domain,
         projectId: this.config.projectId,
-        serviceEnvironmentId,
+        serviceId: this.config.serviceId,
+        environmentId: this.config.environmentId,
       },
     };
 

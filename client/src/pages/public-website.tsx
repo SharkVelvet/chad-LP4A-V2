@@ -83,8 +83,8 @@ export default function PublicWebsite() {
   const TemplateComponent = () => {
     try {
       // Import the template dynamically based on the slug
-      const templates: Record<string, any> = import.meta.glob('../templates/*.tsx', { eager: true });
-      const templatePath = `../templates/${template.slug}.tsx`;
+      const templates: Record<string, any> = import.meta.glob('../components/templates/*.tsx', { eager: true });
+      const templatePath = `../components/templates/${template.slug}.tsx`;
       const TemplateModule = templates[templatePath];
       
       if (!TemplateModule || !TemplateModule.default) {

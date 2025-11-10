@@ -59,6 +59,27 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
     },
   });
 
+  // Retry Railway registration only (for testing)
+  const retryRailway = useMutation({
+    mutationFn: async () => {
+      const res = await apiRequest("POST", `/api/domains/${domain}/retry-railway`, {});
+      return res.json();
+    },
+    onSuccess: (data) => {
+      toast({
+        title: "Railway Registration Success!",
+        description: `Domain ${domain} successfully registered with Railway.`,
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Railway Registration Failed",
+        description: error.message || "Failed to register with Railway.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const isActive = cloudflareStatus?.active || domainStatus === 'active';
   const exists = cloudflareStatus?.exists || domainStatus !== 'pending';
 
@@ -179,6 +200,31 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
           <strong>Note:</strong> Your website is hosted on Railway with automatic SSL certificates. DNS configuration is managed through our platform.
         </p>
       </div>
+
+      {/* Debug: Test Railway Registration */}
+      {exists && (
+        <div className="mt-4 bg-purple-50 border border-purple-200 rounded-lg p-3">
+          <p className="text-xs font-semibold text-purple-900 mb-2">🔧 Developer Test</p>
+          <p className="text-xs text-purple-700 mb-3">
+            Test the automated Railway domain registration. This will attempt to register {domain} with Railway's hosting platform.
+          </p>
+          <Button
+            onClick={() => retryRailway.mutate()}
+            disabled={retryRailway.isPending}
+            className="bg-purple-600 hover:bg-purple-700 text-xs h-8"
+            data-testid="button-test-railway"
+          >
+            {retryRailway.isPending ? (
+              <>
+                <Loader2 className="h-3 w-3 mr-2 animate-spin" />
+                Testing...
+              </>
+            ) : (
+              'Test Railway Registration'
+            )}
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

@@ -811,6 +811,50 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Retry Railway registration only (for testing/debugging)
+  app.post("/api/domains/:domain/retry-railway", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+
+      // Verify user owns a website with this domain
+      const websites = await storage.getUserWebsites(req.user.id);
+      const website = websites.find(w => w.domain === domain);
+      
+      if (!website) {
+        return res.status(403).json({ message: "You don't own this domain" });
+      }
+
+      if (!railwayService.isConfigured()) {
+        return res.status(500).json({ message: "Railway API not configured" });
+      }
+
+      console.log(`🔄 Retrying Railway registration for: ${domain}`);
+      
+      try {
+        const result = await railwayService.addCustomDomain(domain);
+        console.log(`✅ Railway registration successful for ${domain}`);
+        
+        res.json({
+          success: true,
+          message: `Railway registration successful for ${domain}`,
+          railwayDomain: result
+        });
+      } catch (error: any) {
+        console.error(`❌ Railway registration failed: ${error.message}`);
+        res.status(500).json({ 
+          success: false,
+          message: error.message 
+        });
+      }
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Complete domain setup (Railway + DNS)
   app.post("/api/domains/:domain/setup-complete", async (req, res) => {
     if (!req.isAuthenticated()) {

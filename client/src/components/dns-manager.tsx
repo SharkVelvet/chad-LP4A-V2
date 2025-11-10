@@ -127,14 +127,20 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
           </div>
         </div>
       ) : (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
           <div className="flex items-start gap-3">
-            <Cloud className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <p className="font-semibold text-blue-900 mb-1">Domain Setup Required</p>
-              <p className="text-sm text-blue-700 mb-3">
-                Your domain needs to be configured for SSL certificates and secure HTTPS access. Contact support for assistance.
+              <p className="font-semibold text-green-900 mb-1">✓ Domain Connected to Website</p>
+              <p className="text-sm text-green-700">
+                Your domain <strong>{domain}</strong> has been successfully connected to this website and automatically configured with Railway for SSL/HTTPS access. DNS propagation typically takes 15 minutes to 24 hours.
               </p>
+              <div className="mt-3 p-3 bg-white rounded border border-green-200">
+                <p className="text-xs font-semibold text-gray-700 mb-1">Hosting Configuration:</p>
+                <p className="text-xs text-gray-900">✓ Railway hosting with automatic SSL certificates</p>
+                <p className="text-xs text-gray-900">✓ DNS configured via Cloudflare</p>
+                <p className="text-xs text-gray-900">✓ HTTPS enabled</p>
+              </div>
             </div>
           </div>
         </div>

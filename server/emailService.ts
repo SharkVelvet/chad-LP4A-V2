@@ -1,6 +1,11 @@
 import { google } from 'googleapis';
+import nodemailer from 'nodemailer';
 
 let connectionSettings: any;
+
+function isReplitEnvironment(): boolean {
+  return !!process.env.REPLIT_CONNECTORS_HOSTNAME;
+}
 
 async function getAccessToken() {
   if (connectionSettings && connectionSettings.settings.expires_at && new Date(connectionSettings.settings.expires_at).getTime() > Date.now()) {
@@ -47,6 +52,23 @@ async function getUncachableGmailClient() {
   return google.gmail({ version: 'v1', auth: oauth2Client });
 }
 
+function getSMTPTransporter() {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+
+  if (!user || !pass) {
+    throw new Error('GMAIL_USER and GMAIL_APP_PASSWORD environment variables required for non-Replit environments');
+  }
+
+  return nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user,
+      pass
+    }
+  });
+}
+
 export function generateOTP(): string {
   // Generate 7-digit OTP
   return Math.floor(1000000 + Math.random() * 9000000).toString();
@@ -61,8 +83,6 @@ export function getOTPExpiry(): Date {
 
 export async function sendOTPEmail(to: string, otpCode: string, type: 'signup' | 'login'): Promise<void> {
   try {
-    const gmail = await getUncachableGmailClient();
-
     const subject = type === 'signup' 
       ? 'Verify Your Email - Landing Pages for Agents' 
       : 'Login Verification Code - Landing Pages for Agents';
@@ -110,31 +130,45 @@ If you didn't request this code, please ignore this email.
 Landing Pages for Agents
     `;
 
-    // Create email message
-    const message = [
-      `To: ${to}`,
-      `Subject: ${subject}`,
-      'MIME-Version: 1.0',
-      'Content-Type: text/html; charset=utf-8',
-      '',
-      htmlContent
-    ].join('\n');
+    if (isReplitEnvironment()) {
+      const gmail = await getUncachableGmailClient();
 
-    // Encode message in base64url format
-    const encodedMessage = Buffer.from(message)
-      .toString('base64')
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_')
-      .replace(/=+$/, '');
+      const message = [
+        `To: ${to}`,
+        `Subject: ${subject}`,
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset=utf-8',
+        '',
+        htmlContent
+      ].join('\n');
 
-    await gmail.users.messages.send({
-      userId: 'me',
-      requestBody: {
-        raw: encodedMessage,
-      },
-    });
+      const encodedMessage = Buffer.from(message)
+        .toString('base64')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
 
-    console.log(`OTP email sent to ${to}`);
+      await gmail.users.messages.send({
+        userId: 'me',
+        requestBody: {
+          raw: encodedMessage,
+        },
+      });
+
+      console.log(`[Replit Gmail API] OTP email sent to ${to}`);
+    } else {
+      const transporter = getSMTPTransporter();
+
+      await transporter.sendMail({
+        from: process.env.GMAIL_USER,
+        to,
+        subject,
+        text: textContent,
+        html: htmlContent
+      });
+
+      console.log(`[SMTP] OTP email sent to ${to}`);
+    }
   } catch (error) {
     console.error('Error sending OTP email:', error);
     throw new Error('Failed to send verification email');

@@ -303,7 +303,7 @@ export default function WebsiteSetup() {
             variant="ghost" 
             size="sm" 
             className="px-4 py-2 text-gray-400 hover:text-gray-200 text-sm"
-            onClick={() => navigate('/template-selection')}
+            onClick={() => navigate('/choose-purpose')}
           >
             Go Back
           </Button>

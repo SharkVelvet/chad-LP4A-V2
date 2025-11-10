@@ -30,7 +30,7 @@ export default function PlanrightHome() {
       if (result.valid) {
         // Store authentication in localStorage
         localStorage.setItem("planright_authenticated", "true");
-        setLocation("/template-selection");
+        setLocation("/choose-purpose");
       } else {
         toast({
           title: "Access Denied",

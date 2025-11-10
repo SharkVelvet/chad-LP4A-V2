@@ -575,7 +575,7 @@ export default function Ideas() {
             <Button
               size="lg"
               className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white"
-              onClick={() => navigate('/template-selection')}
+              onClick={() => navigate('/choose-purpose')}
             >
               Choose Your Template
             </Button>
@@ -619,7 +619,7 @@ export default function Ideas() {
                 <Button
                   onClick={() => {
                     setShowPreview(false);
-                    navigate('/template-selection');
+                    navigate('/choose-purpose');
                   }}
                   className="bg-red-600 hover:bg-red-700 text-white px-8"
                 >

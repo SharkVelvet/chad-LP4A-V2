@@ -113,7 +113,7 @@ export default function Step5Success() {
 
           {/* Action Button */}
           <Button 
-            onClick={() => navigate('/template-selection')}
+            onClick={() => navigate('/choose-purpose')}
             size="lg"
             className="w-full sm:w-auto px-8 text-white"
             style={{ backgroundColor: '#6458AF' }} 

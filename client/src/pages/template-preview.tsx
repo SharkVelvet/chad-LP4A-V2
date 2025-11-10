@@ -583,7 +583,7 @@ export default function TemplatePreviewPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Template not found</h1>
-          <Button onClick={() => navigate('/template-selection')}>
+          <Button onClick={() => navigate('/choose-purpose')}>
             Back to Templates
           </Button>
         </div>

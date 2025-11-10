@@ -90,7 +90,7 @@ export default function InternalOne() {
 
             {/* Menu Items in Middle */}
             <nav className="hidden md:flex items-center space-x-8">
-              <a onClick={() => setLocation('/template-selection')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
+              <a onClick={() => setLocation('/choose-purpose')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
               <a onClick={() => setLocation('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Websites</a>
               <a onClick={() => setLocation('/other-services')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Other Services</a>
               <a onClick={() => setLocation('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
@@ -147,12 +147,12 @@ export default function InternalOne() {
             </div>
             <nav className="p-6 space-y-6">
               <a 
-                href="/template-selection" 
+                href="/choose-purpose" 
                 className="block text-lg text-gray-700 hover:text-gray-900 transition-colors py-2"
                 onClick={(e) => {
                   e.preventDefault();
                   setIsMobileMenuOpen(false);
-                  setLocation('/template-selection');
+                  setLocation('/choose-purpose');
                 }}
               >
                 View Templates
@@ -319,7 +319,7 @@ export default function InternalOne() {
           <Button 
             className="px-8 py-3 text-sm font-medium hover:opacity-90 transition-opacity rounded-full"
             style={{ backgroundColor: 'white', color: '#6458AF' }}
-            onClick={() => setLocation('/template-selection')}
+            onClick={() => setLocation('/choose-purpose')}
           >
             Get Started
           </Button>
@@ -404,7 +404,7 @@ export default function InternalOne() {
                     <Button 
                       className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                       style={{ backgroundColor: '#6458AF' }}
-                      onClick={() => setLocation('/template-selection')}
+                      onClick={() => setLocation('/choose-purpose')}
                     >
                       Start your page — $18/mo
                     </Button>
@@ -464,7 +464,7 @@ export default function InternalOne() {
                   <Button 
                     className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                     style={{ backgroundColor: '#6458AF' }}
-                    onClick={() => setLocation('/template-selection')}
+                    onClick={() => setLocation('/choose-purpose')}
                   >
                     Get Started
                   </Button>
@@ -563,7 +563,7 @@ export default function InternalOne() {
                 <Button 
                   className="px-8 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity rounded-full"
                   style={{ backgroundColor: '#6458AF' }}
-                  onClick={() => setLocation('/template-selection')}
+                  onClick={() => setLocation('/choose-purpose')}
                 >
                   Get Started
                 </Button>
@@ -592,7 +592,7 @@ export default function InternalOne() {
             <div>
               <h4 className="font-semibold mb-4">About LP4A</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a onClick={() => setLocation('/template-selection')} className="hover:text-white transition-colors cursor-pointer">View Templates</a></li>
+                <li><a onClick={() => setLocation('/choose-purpose')} className="hover:text-white transition-colors cursor-pointer">View Templates</a></li>
                 <li><a onClick={() => setLocation('/custom-websites')} className="hover:text-white transition-colors cursor-pointer">Custom Websites</a></li>
                 <li><a onClick={() => setLocation('/other-services')} className="hover:text-white transition-colors cursor-pointer">Other Services</a></li>
                 <li><a onClick={() => setLocation('/pricing')} className="hover:text-white transition-colors cursor-pointer">Pricing</a></li>

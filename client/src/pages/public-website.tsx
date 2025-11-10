@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
 
 export default function PublicWebsite() {
-  const hostname = window.location.hostname;
+  // Strip www. prefix to normalize domain lookups
+  const hostname = window.location.hostname.replace(/^www\./, '');
   
   const { data, isLoading, error } = useQuery({
     queryKey: ['/api/public/website-by-domain', hostname],

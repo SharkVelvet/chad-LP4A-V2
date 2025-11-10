@@ -18,7 +18,6 @@ import { validatePassword } from "./passwords.js";
 import { domainService } from "./domainService.js";
 import { cloudflareService } from "./cloudflareService.js";
 import { railwayService } from "./railwayService.js";
-import { awsService } from "./awsService.js";
 
 // Initialize Stripe only if the secret key is available
 let stripe: Stripe | null = null;
@@ -992,110 +991,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const status = await cloudflareService.getZoneStatus(domain);
       res.json(status);
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  });
-
-  // AWS CloudFront + Route53 integration routes
-  app.post("/api/domains/:domain/aws/setup", async (req, res) => {
-    if (!req.isAuthenticated()) {
-      return res.sendStatus(401);
-    }
-
-    try {
-      const { domain } = req.params;
-      const { cloudfrontDomain } = req.body;
-
-      if (!cloudfrontDomain) {
-        return res.status(400).json({ message: "CloudFront domain is required" });
-      }
-
-      // Verify user owns a website with this domain
-      const websites = await storage.getUserWebsites(req.user.id);
-      const website = websites.find(w => w.domain === domain);
-      
-      if (!website) {
-        return res.status(403).json({ message: "You don't own this domain" });
-      }
-
-      console.log(`\n🚀 Setting up AWS for domain: ${domain}`);
-      
-      // Setup domain in AWS (Route53 + ACM)
-      const result = await awsService.setupCustomDomain(domain, cloudfrontDomain);
-
-      // Update Namecheap nameservers to point to Route53
-      console.log(`Updating Namecheap nameservers for ${domain}...`);
-      await domainService.setNameservers(domain, result.nameservers);
-
-      // Update website with AWS information and status
-      await storage.updateWebsite(website.id, { 
-        domainStatus: 'propagating',
-        route53ZoneId: result.zoneId,
-        route53Nameservers: result.nameservers,
-        acmCertificateArn: result.certificateArn,
-        awsCertificateStatus: result.status
-      } as any);
-
-      console.log(`✅ AWS setup complete for ${domain}`);
-
-      res.json({
-        success: true,
-        zoneId: result.zoneId,
-        nameservers: result.nameservers,
-        certificateArn: result.certificateArn,
-        certificateStatus: result.status,
-        message: 'Domain setup with AWS Route53 and ACM SSL certificate. Nameservers updated at Namecheap. Wait 5-30 minutes for DNS propagation.'
-      });
-    } catch (error: any) {
-      console.error('AWS setup error:', error.message);
-      res.status(500).json({ message: error.message });
-    }
-  });
-
-  app.get("/api/domains/:domain/aws/status", async (req, res) => {
-    if (!req.isAuthenticated()) {
-      return res.sendStatus(401);
-    }
-
-    try {
-      const { domain } = req.params;
-      
-      // Verify user owns a website with this domain
-      const websites = await storage.getUserWebsites(req.user.id);
-      const website = websites.find(w => w.domain === domain);
-      
-      if (!website) {
-        return res.status(403).json({ message: "You don't own this domain" });
-      }
-
-      const status = await awsService.getDomainStatus(domain);
-      
-      // If we have a certificate ARN stored, check its status
-      let certificateStatus = status.certificateStatus;
-      if (website.acmCertificateArn) {
-        const certStatus = await awsService.checkCertificateStatus(website.acmCertificateArn);
-        certificateStatus = certStatus.status;
-        
-        // Update the database if status changed
-        if (certStatus.status !== website.awsCertificateStatus) {
-          await storage.updateWebsite(website.id, {
-            awsCertificateStatus: certStatus.status
-          } as any);
-        }
-      }
-
-      res.json({
-        ...status,
-        certificateStatus,
-        websiteData: {
-          zoneId: website.route53ZoneId,
-          nameservers: website.route53Nameservers,
-          certificateArn: website.acmCertificateArn,
-          certificateStatus: website.awsCertificateStatus
-        }
-      });
-    } catch (error: any) {
-      console.error('AWS status error:', error.message);
       res.status(500).json({ message: error.message });
     }
   });

@@ -134,6 +134,53 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Create admin user endpoint (one-time use)
+  app.post("/api/admin/create-admin-user", async (req, res) => {
+    try {
+      const bcrypt = await import('bcryptjs');
+      
+      // Check if admin user already exists
+      const existingUser = await storage.getUserByEmail('chad@fotype.com');
+      
+      if (existingUser) {
+        return res.status(400).json({ 
+          message: "Admin user already exists",
+          username: existingUser.username,
+          email: existingUser.email
+        });
+      }
+      
+      // Create admin user
+      const hashedPassword = await bcrypt.default.hash('password', 10);
+      const user = await storage.createUser({
+        username: 'testtwo',
+        email: 'chad@fotype.com',
+        password: hashedPassword,
+        role: 'admin'
+      });
+      
+      res.json({ 
+        success: true,
+        message: "Admin user created successfully",
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          role: user.role
+        },
+        credentials: {
+          username: 'testtwo',
+          password: 'password'
+        }
+      });
+    } catch (error: any) {
+      res.status(500).json({ 
+        success: false,
+        message: `Error creating admin user: ${error.message}` 
+      });
+    }
+  });
+
   // Facebook Pixel ID endpoint
   app.get("/api/facebook-pixel-id", async (req, res) => {
     const pixelId = process.env.FACEBOOK_PIXEL_ID || '';

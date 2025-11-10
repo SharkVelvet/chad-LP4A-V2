@@ -59,6 +59,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Email config debug endpoint
+  app.get("/api/debug/email-config", async (req, res) => {
+    res.json({
+      isReplitEnvironment: !!process.env.REPLIT_CONNECTORS_HOSTNAME,
+      hasGmailUser: !!process.env.GMAIL_USER,
+      hasGmailAppPassword: !!process.env.GMAIL_APP_PASSWORD,
+      gmailUserValue: process.env.GMAIL_USER ? process.env.GMAIL_USER.substring(0, 3) + '***' : 'not set',
+      nodeEnv: process.env.NODE_ENV
+    });
+  });
+
   // Password validation endpoint
   app.post("/api/validate-password", async (req, res) => {
     const { password } = req.body;

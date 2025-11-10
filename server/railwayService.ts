@@ -190,6 +190,8 @@ class RailwayService {
       },
     };
 
+    console.log('🔍 Railway mutation input:', JSON.stringify(variables.input, null, 2));
+
     try {
       const response = await fetch(this.apiUrl, {
         method: 'POST',

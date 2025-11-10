@@ -59,7 +59,8 @@ app.use((req, res, next) => {
       // List of platform domains - requests to these go to the SPA
       const platformDomains = [
         'localhost',
-        'landing-pages-for-agents-v2-2-sharkvelvet.replit.app',
+        'replit.app',
+        'replit.dev',
         'chad-lp4a-v2-production.up.railway.app'
       ];
 

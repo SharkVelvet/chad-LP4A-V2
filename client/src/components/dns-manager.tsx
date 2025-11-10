@@ -76,7 +76,7 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
     <div className="bg-white border border-gray-200 rounded-lg p-6">
       <h4 className="text-lg font-semibold mb-2">Domain Configuration</h4>
       <p className="text-sm text-gray-600 mb-4">
-        Your domain {domain} is configured with Cloudflare for automatic SSL/HTTPS
+        Your domain {domain} is configured and deployed on Railway with automatic SSL/HTTPS
       </p>
 
       {/* Status Display */}
@@ -90,11 +90,11 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
                 Your domain {domain} is active and serving your website with HTTPS. Visitors can access your site securely.
               </p>
               <div className="mt-3 p-3 bg-white rounded border border-green-200">
-                <p className="text-xs font-semibold text-gray-700 mb-1">Cloudflare Nameservers:</p>
+                <p className="text-xs font-semibold text-gray-700 mb-1">DNS Configuration:</p>
                 <div className="space-y-1">
                   {cloudflareStatus?.nameservers?.map((ns: string, i: number) => (
                     <p key={i} className="text-xs font-mono text-gray-900">{ns}</p>
-                  )) || <p className="text-xs text-gray-500 italic">Configured</p>}
+                  )) || <p className="text-xs text-gray-500 italic">Managed automatically via Railway</p>}
                 </div>
               </div>
             </div>
@@ -107,19 +107,16 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
             <div className="flex-1">
               <p className="font-semibold text-amber-900 mb-1">⏳ DNS Propagating</p>
               <p className="text-sm text-amber-700">
-                Your domain is configured with Cloudflare and nameservers have been updated. 
+                Your domain is configured and DNS records have been updated. 
                 DNS changes can take 15 minutes to 24 hours to fully propagate worldwide.
               </p>
               <div className="mt-3 p-3 bg-white rounded border border-amber-200">
-                <p className="text-xs font-semibold text-gray-700 mb-1">Cloudflare Nameservers:</p>
+                <p className="text-xs font-semibold text-gray-700 mb-1">DNS Records:</p>
                 <div className="space-y-1">
                   {cloudflareStatus?.nameservers?.map((ns: string, i: number) => (
                     <p key={i} className="text-xs font-mono text-gray-900">{ns}</p>
                   )) || (
-                    <>
-                      <p className="text-xs font-mono text-gray-900">venus.ns.cloudflare.com</p>
-                      <p className="text-xs font-mono text-gray-900">vicente.ns.cloudflare.com</p>
-                    </>
+                    <p className="text-xs font-mono text-gray-900">CNAME → chad-lp4a-v2-production.up.railway.app</p>
                   )}
                 </div>
               </div>
@@ -134,28 +131,10 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
           <div className="flex items-start gap-3">
             <Cloud className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <p className="font-semibold text-blue-900 mb-1">Setup Cloudflare SSL</p>
+              <p className="font-semibold text-blue-900 mb-1">Domain Setup Required</p>
               <p className="text-sm text-blue-700 mb-3">
-                Click below to configure your domain with Cloudflare for automatic SSL certificates and secure HTTPS access.
+                Your domain needs to be configured for SSL certificates and secure HTTPS access. Contact support for assistance.
               </p>
-              <Button
-                onClick={() => setupCloudflare.mutate()}
-                disabled={setupCloudflare.isPending}
-                className="bg-blue-600 hover:bg-blue-700"
-                data-testid="button-setup-cloudflare"
-              >
-                {setupCloudflare.isPending ? (
-                  <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Setting up SSL...
-                  </>
-                ) : (
-                  <>
-                    <Cloud className="h-4 w-4 mr-2" />
-                    Setup Cloudflare & SSL
-                  </>
-                )}
-              </Button>
             </div>
           </div>
         </div>
@@ -179,7 +158,7 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
       {/* Info Note */}
       <div className="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-3">
         <p className="text-xs text-amber-800">
-          <strong>Note:</strong> All DNS configuration is managed automatically through our platform. You don't need to log into Namecheap or any other registrar.
+          <strong>Note:</strong> Your website is hosted on Railway with automatic SSL certificates. DNS configuration is managed through our platform.
         </p>
       </div>
     </div>

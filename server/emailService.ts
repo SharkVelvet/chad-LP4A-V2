@@ -130,7 +130,21 @@ If you didn't request this code, please ignore this email.
 Landing Pages for Agents
     `;
 
-    if (isReplitEnvironment()) {
+    // Prioritize SMTP if credentials are available (Railway, production)
+    // Fall back to Replit connector only if SMTP credentials are not set
+    if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
+      const transporter = getSMTPTransporter();
+
+      await transporter.sendMail({
+        from: process.env.GMAIL_USER,
+        to,
+        subject,
+        text: textContent,
+        html: htmlContent
+      });
+
+      console.log(`[SMTP] OTP email sent to ${to}`);
+    } else if (isReplitEnvironment()) {
       const gmail = await getUncachableGmailClient();
 
       const message = [
@@ -157,17 +171,7 @@ Landing Pages for Agents
 
       console.log(`[Replit Gmail API] OTP email sent to ${to}`);
     } else {
-      const transporter = getSMTPTransporter();
-
-      await transporter.sendMail({
-        from: process.env.GMAIL_USER,
-        to,
-        subject,
-        text: textContent,
-        html: htmlContent
-      });
-
-      console.log(`[SMTP] OTP email sent to ${to}`);
+      throw new Error('No email service configured. Please set GMAIL_USER and GMAIL_APP_PASSWORD or use Replit connector.');
     }
   } catch (error) {
     console.error('Error sending OTP email:', error);

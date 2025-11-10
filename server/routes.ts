@@ -137,8 +137,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create admin user endpoint (one-time use)
   app.post("/api/admin/create-admin-user", async (req, res) => {
     try {
-      const bcrypt = await import('bcryptjs');
-      
       // Check if admin user already exists
       const existingUser = await storage.getUserByEmail('chad@fotype.com');
       
@@ -150,27 +148,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      // Create admin user
-      const hashedPassword = await bcrypt.default.hash('password', 10);
+      // Create admin user (passwordless - uses email OTP)
       const user = await storage.createUser({
-        username: 'testtwo',
+        username: 'chad',
         email: 'chad@fotype.com',
-        password: hashedPassword,
+        password: '', // Empty password for OTP-based authentication
         role: 'admin'
       });
       
       res.json({ 
         success: true,
-        message: "Admin user created successfully",
+        message: "Admin user created successfully. Use email OTP to login.",
         user: {
           id: user.id,
           username: user.username,
           email: user.email,
           role: user.role
         },
-        credentials: {
-          username: 'testtwo',
-          password: 'password'
+        loginInstructions: {
+          url: "https://chad-lp4a-v2-production.up.railway.app/login",
+          email: "chad@fotype.com",
+          method: "Enter your email and you'll receive a verification code"
         }
       });
     } catch (error: any) {

@@ -1,0 +1,185 @@
+/**
+ * Railway API Service
+ * Handles automatic custom domain registration via Railway GraphQL API
+ */
+
+interface RailwayDomainResponse {
+  domain: string;
+  id: string;
+  status?: {
+    dnsRecords?: Array<{
+      fqdn: string;
+      recordType: string;
+      requiredValue: string;
+      status: string;
+    }>;
+  };
+}
+
+interface RailwayConfig {
+  apiToken: string;
+  serviceId: string;
+  environmentId: string;
+}
+
+class RailwayService {
+  private apiUrl = 'https://backboard.railway.com/graphql/v2';
+  private config: RailwayConfig | null = null;
+
+  /**
+   * Initialize Railway service with credentials from environment
+   */
+  constructor() {
+    const apiToken = process.env.RAILWAY_API_TOKEN;
+    const serviceId = process.env.RAILWAY_SERVICE_ID;
+    const environmentId = process.env.RAILWAY_ENVIRONMENT_ID;
+
+    if (apiToken && serviceId && environmentId) {
+      this.config = {
+        apiToken,
+        serviceId,
+        environmentId,
+      };
+      console.log('✓ Railway API configured');
+    } else {
+      console.log('⚠️  Railway API credentials not configured (optional)');
+    }
+  }
+
+  /**
+   * Check if Railway API is configured
+   */
+  isConfigured(): boolean {
+    return this.config !== null;
+  }
+
+  /**
+   * Add a custom domain to Railway service
+   * @param domain - The domain to add (e.g., "example.com")
+   * @returns Railway domain configuration
+   */
+  async addCustomDomain(domain: string): Promise<RailwayDomainResponse> {
+    if (!this.config) {
+      throw new Error('Railway API not configured. Please set RAILWAY_API_TOKEN, RAILWAY_SERVICE_ID, and RAILWAY_ENVIRONMENT_ID environment variables.');
+    }
+
+    console.log(`🚂 Adding custom domain to Railway: ${domain}`);
+
+    const mutation = `
+      mutation customDomainCreate($input: CustomDomainCreateInput!) {
+        customDomainCreate(input: $input) {
+          domain
+          id
+          status {
+            dnsRecords {
+              fqdn
+              recordType
+              requiredValue
+              status
+            }
+          }
+        }
+      }
+    `;
+
+    const variables = {
+      input: {
+        domain,
+        environmentId: this.config.environmentId,
+        serviceId: this.config.serviceId,
+      },
+    };
+
+    try {
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.config.apiToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: mutation,
+          variables,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Railway API error: ${response.status} - ${errorText}`);
+      }
+
+      const result = await response.json();
+
+      if (result.errors) {
+        // Check if domain already exists error
+        const errorMessage = result.errors[0]?.message || 'Unknown error';
+        if (errorMessage.includes('already exists') || errorMessage.includes('duplicate')) {
+          console.log(`✓ Domain ${domain} already exists in Railway (OK)`);
+          return {
+            domain,
+            id: 'existing',
+            status: undefined,
+          };
+        }
+        throw new Error(`Railway GraphQL error: ${errorMessage}`);
+      }
+
+      const domainData = result.data.customDomainCreate;
+      console.log(`✓ Domain ${domain} added to Railway successfully`);
+      
+      return domainData;
+    } catch (error: any) {
+      console.error('Railway API error:', error.message);
+      throw error;
+    }
+  }
+
+  /**
+   * Remove a custom domain from Railway service
+   * @param domainId - The Railway domain ID
+   */
+  async removeCustomDomain(domainId: string): Promise<void> {
+    if (!this.config) {
+      throw new Error('Railway API not configured');
+    }
+
+    console.log(`🚂 Removing custom domain from Railway: ${domainId}`);
+
+    const mutation = `
+      mutation customDomainDelete($id: String!) {
+        customDomainDelete(id: $id)
+      }
+    `;
+
+    const variables = {
+      id: domainId,
+    };
+
+    const response = await fetch(this.apiUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${this.config.apiToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: mutation,
+        variables,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Railway API error: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (result.errors) {
+      throw new Error(`Railway GraphQL error: ${result.errors[0]?.message}`);
+    }
+
+    console.log(`✓ Domain removed from Railway successfully`);
+  }
+}
+
+// Export singleton instance
+export const railwayService = new RailwayService();

@@ -17,6 +17,7 @@ import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sen
 import { validatePassword } from "./passwords.js";
 import { domainService } from "./domainService.js";
 import { cloudflareService } from "./cloudflareService.js";
+import { railwayService } from "./railwayService.js";
 
 // Initialize Stripe only if the secret key is available
 let stripe: Stripe | null = null;
@@ -293,6 +294,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const updateData = insertWebsiteSchema.partial().parse(req.body);
+      
+      // If domain is being added/updated, automatically register it with Railway
+      if (updateData.domain && updateData.domain !== website.domain) {
+        if (railwayService.isConfigured()) {
+          try {
+            console.log(`🚂 Auto-registering domain with Railway: ${updateData.domain}`);
+            await railwayService.addCustomDomain(updateData.domain);
+            console.log(`✓ Domain ${updateData.domain} registered with Railway`);
+          } catch (error: any) {
+            console.error(`⚠️  Railway domain registration failed: ${error.message}`);
+            // Continue anyway - domain saved to DB, admin can manually add to Railway
+          }
+        } else {
+          console.log('⚠️  Railway not configured - domain saved but not registered with Railway');
+        }
+      }
+      
       const updatedWebsite = await storage.updateWebsite(websiteId, updateData);
       
       res.json(updatedWebsite);
@@ -618,6 +636,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const result = await domainService.registerDomain(domain, parseInt(years) || 1, parsedContactInfo);
 
       if (result.success && websiteId) {
+        // Automatically register domain with Railway
+        if (railwayService.isConfigured()) {
+          try {
+            console.log(`🚂 Auto-registering purchased domain with Railway: ${domain}`);
+            await railwayService.addCustomDomain(domain);
+            console.log(`✓ Domain ${domain} registered with Railway`);
+          } catch (error: any) {
+            console.error(`⚠️  Railway domain registration failed: ${error.message}`);
+          }
+        }
+        
         // Update website with the purchased domain
         await storage.updateWebsite(parseInt(websiteId), { domain, domainVerified: false } as any);
       }
@@ -1281,6 +1310,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const result = await domainService.registerDomain(domain, years, contactInfo);
         
         if (result.success) {
+          // Automatically register domain with Railway
+          if (railwayService.isConfigured()) {
+            try {
+              console.log(`🚂 Auto-registering free domain with Railway: ${domain}`);
+              await railwayService.addCustomDomain(domain);
+              console.log(`✓ Domain ${domain} registered with Railway`);
+            } catch (error: any) {
+              console.error(`⚠️  Railway domain registration failed: ${error.message}`);
+            }
+          }
+          
           // Update website with the purchased domain
           await storage.updateWebsite(websiteId, { domain, domainVerified: false } as any);
           return res.json({ 

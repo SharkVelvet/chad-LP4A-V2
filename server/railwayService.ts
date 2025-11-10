@@ -62,15 +62,15 @@ class RailwayService {
 
     console.log('🔍 Fetching serviceEnvironmentId from Railway...');
 
+    // Query to get serviceInstance ID from environment and service
     const query = `
-      query service($id: String!) {
-        service(id: $id) {
+      query environment($id: String!) {
+        environment(id: $id) {
           serviceInstances {
             edges {
               node {
-                environmentId
-                serviceId
                 id
+                serviceId
               }
             }
           }
@@ -79,7 +79,7 @@ class RailwayService {
     `;
 
     const variables = {
-      id: this.config.serviceId,
+      id: this.config.environmentId,
     };
 
     const response = await fetch(this.apiUrl, {
@@ -104,10 +104,10 @@ class RailwayService {
       throw new Error(`Railway GraphQL error: ${result.errors[0]?.message}`);
     }
 
-    // Find the service instance that matches our environmentId
-    const instances = result.data?.service?.serviceInstances?.edges || [];
+    // Find the service instance that matches our serviceId
+    const instances = result.data?.environment?.serviceInstances?.edges || [];
     const targetInstance = instances.find(
-      (edge: any) => edge.node.environmentId === this.config!.environmentId
+      (edge: any) => edge.node.serviceId === this.config!.serviceId
     );
 
     if (!targetInstance) {

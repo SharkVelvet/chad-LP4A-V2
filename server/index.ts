@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { storage } from "./storage";
 
 const app = express();
 app.use(express.json({ limit: '10mb' }));
@@ -50,6 +51,76 @@ app.use((req, res, next) => {
 (async () => {
   try {
     const server = await registerRoutes(app);
+
+    // Custom domain handler - MUST come before Vite/static serving
+    app.use(async (req: Request, res: Response, next: NextFunction) => {
+      const hostname = req.hostname || req.get('host')?.split(':')[0];
+      
+      // List of platform domains - requests to these go to the SPA
+      const platformDomains = [
+        'localhost',
+        'landing-pages-for-agents-v2-2-sharkvelvet.replit.app',
+        'chad-lp4a-v2-production.up.railway.app'
+      ];
+
+      // If this is a platform domain or an API request, skip custom domain handling
+      if (!hostname || 
+          platformDomains.some(d => hostname.includes(d)) || 
+          req.path.startsWith('/api/') ||
+          req.path.startsWith('/attached_assets/')) {
+        return next();
+      }
+
+      // This is a custom domain - serve the public website
+      try {
+        const website = await storage.getWebsiteByDomain(hostname);
+        
+        if (!website) {
+          return res.status(404).send(`
+            <!DOCTYPE html>
+            <html>
+              <head><title>Website Not Found</title></head>
+              <body style="font-family: system-ui; padding: 40px; text-align: center;">
+                <h1>Website Not Found</h1>
+                <p>No website is configured for domain: ${hostname}</p>
+              </body>
+            </html>
+          `);
+        }
+
+        // Get website content and template
+        const content = await storage.getWebsiteContent(website.id);
+        const template = await storage.getTemplate(website.templateId);
+
+        // Serve the public website HTML
+        res.send(`
+          <!DOCTYPE html>
+          <html lang="en">
+            <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>${website.businessName || 'Website'}</title>
+              <style>
+                body { margin: 0; font-family: system-ui; }
+              </style>
+            </head>
+            <body>
+              <div id="root"></div>
+              <script>
+                window.__WEBSITE_DATA__ = ${JSON.stringify({ website, content, template })};
+              </script>
+              <script type="module">
+                // Load the public viewer component
+                import { createRoot } from '/src/main.tsx';
+              </script>
+            </body>
+          </html>
+        `);
+      } catch (error) {
+        console.error('Custom domain error:', error);
+        return next();
+      }
+    });
 
     app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
       const status = err.status || err.statusCode || 500;

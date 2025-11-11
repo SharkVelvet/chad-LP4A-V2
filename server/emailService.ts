@@ -52,7 +52,7 @@ async function getUncachableGmailClient() {
   return google.gmail({ version: 'v1', auth: oauth2Client });
 }
 
-function getSMTPTransporter() {
+async function getGmailClientFromOAuth() {
   const user = process.env.GMAIL_USER;
   const clientId = process.env.GMAIL_OAUTH_CLIENT_ID;
   const clientSecret = process.env.GMAIL_OAUTH_CLIENT_SECRET;
@@ -62,16 +62,17 @@ function getSMTPTransporter() {
     throw new Error('Gmail OAuth credentials required: GMAIL_USER, GMAIL_OAUTH_CLIENT_ID, GMAIL_OAUTH_CLIENT_SECRET, GMAIL_OAUTH_REFRESH_TOKEN');
   }
 
-  return nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      type: 'OAuth2',
-      user,
-      clientId,
-      clientSecret,
-      refreshToken
-    }
+  const oauth2Client = new google.auth.OAuth2(
+    clientId,
+    clientSecret,
+    'https://developers.google.com/oauthplayground'
+  );
+
+  oauth2Client.setCredentials({
+    refresh_token: refreshToken
   });
+
+  return google.gmail({ version: 'v1', auth: oauth2Client });
 }
 
 export function generateOTP(): string {
@@ -151,17 +152,33 @@ Landing Pages for Agents
     });
 
     if (hasOAuthCreds) {
-      const transporter = getSMTPTransporter();
+      console.log('[EMAIL] Using Gmail API with OAuth (Railway production)');
+      const gmail = await getGmailClientFromOAuth();
 
-      await transporter.sendMail({
-        from: process.env.GMAIL_USER,
-        to,
-        subject,
-        text: textContent,
-        html: htmlContent
+      const message = [
+        `To: ${to}`,
+        `From: ${process.env.GMAIL_USER}`,
+        `Subject: ${subject}`,
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset=utf-8',
+        '',
+        htmlContent
+      ].join('\n');
+
+      const encodedMessage = Buffer.from(message)
+        .toString('base64')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+
+      await gmail.users.messages.send({
+        userId: 'me',
+        requestBody: {
+          raw: encodedMessage,
+        },
       });
 
-      console.log(`[SMTP] OTP email sent to ${to}`);
+      console.log(`[Gmail API OAuth] OTP email sent to ${to}`);
     } else if (isReplitEnvironment()) {
       const gmail = await getUncachableGmailClient();
 

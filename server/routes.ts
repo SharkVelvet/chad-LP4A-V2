@@ -65,6 +65,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       isReplitEnvironment: !!process.env.REPLIT_CONNECTORS_HOSTNAME,
       hasGmailUser: !!process.env.GMAIL_USER,
       hasGmailAppPassword: !!process.env.GMAIL_APP_PASSWORD,
+      hasOAuthClientId: !!process.env.GMAIL_OAUTH_CLIENT_ID,
+      hasOAuthClientSecret: !!process.env.GMAIL_OAUTH_CLIENT_SECRET,
+      hasOAuthRefreshToken: !!process.env.GMAIL_OAUTH_REFRESH_TOKEN,
       gmailUserValue: process.env.GMAIL_USER ? process.env.GMAIL_USER.substring(0, 3) + '***' : 'not set',
       nodeEnv: process.env.NODE_ENV
     });

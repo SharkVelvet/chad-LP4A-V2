@@ -122,13 +122,16 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
-- **November 12, 2025**: Implemented universal image and background editing system
+- **November 12, 2025**: Completed universal image and background editing system across all client acquisition templates (1-12)
   - Created EditableImage and EditableBackground components for stable image editing
-  - All images now support visual editing via explicit data-content-id attributes
-  - Background images (CSS background-image) now fully editable with gradient overlay support
+  - All 76 media elements (74 images + 2 hero backgrounds) now use explicit data-content-id attributes
+  - Background images (CSS background-image) fully editable with gradient overlay and style prop support
   - Updated EditModeOverlay to detect data-content-type="image" and data-content-type="background"
-  - Template1 refactored: 6 images (1 hero, 1 hero background, 4 gallery) now use editable media components
+  - Fixed EditModeOverlay to filter out auto-generated IDs inside background containers (prevents click cycling)
+  - Fixed Templates 4 and 8 hero backgrounds: converted from inline styles to EditableBackground component
+  - All templates (1-12) converted: T1(11), T2(10), T3(11), T4(9), T5(7), T6(12), T7(2), T8(3), T9(2), T10(8), T11(6), T12(2)
   - Prevents auto-generated ID changes that broke edit persistence
+  - Architect approved PASS verdict - ready for Railway production deployment
   - Architecture: Component-driven approach ensures maintainability across all 15 templates
 
 - **November 12, 2025**: Completed Templates 13-15 dynamic content refactoring for visual editing

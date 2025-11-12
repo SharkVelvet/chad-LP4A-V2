@@ -100,6 +100,15 @@ export default function TemplatePreviewPage() {
   // The backend stores flexible content in page_content.content (JSONB)
   // which comes back as fullContent.content
   const flexibleContent: Record<string, string> = (fullContent.content as Record<string, string>) || {};
+  
+  console.log('[TemplatePreview] Component rendered with:', {
+    hasPage: !!page,
+    hasContent: !!page?.content,
+    contentKeys: page?.content ? Object.keys(page.content) : [],
+    hasFlexible: !!fullContent.content,
+    flexibleKeys: Object.keys(flexibleContent),
+    sampleValue: flexibleContent['hero-headline']?.substring(0, 50)
+  });
 
   // Track template preview view
   useEffect(() => {
@@ -172,6 +181,12 @@ export default function TemplatePreviewPage() {
       // The flexible content is in page.content.content (JSONB field after rename)
       const flexibleContent = (page.content.content as Record<string, string>) || {};
       const elements = document.querySelectorAll('[data-content-id]');
+      
+      console.log('[DOM Hydration] Starting hydration with:', {
+        flexibleKeys: Object.keys(flexibleContent),
+        elementsFound: elements.length,
+        sampleContent: flexibleContent['hero-headline']?.substring(0, 50)
+      });
       
       elements.forEach((element) => {
         const contentId = element.getAttribute('data-content-id');

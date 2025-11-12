@@ -143,16 +143,7 @@ Landing Pages for Agents
                           process.env.GMAIL_OAUTH_CLIENT_SECRET && 
                           process.env.GMAIL_OAUTH_REFRESH_TOKEN;
 
-    console.log('[EMAIL DEBUG] OAuth credentials check:', {
-      hasGmailUser: !!process.env.GMAIL_USER,
-      hasClientId: !!process.env.GMAIL_OAUTH_CLIENT_ID,
-      hasClientSecret: !!process.env.GMAIL_OAUTH_CLIENT_SECRET,
-      hasRefreshToken: !!process.env.GMAIL_OAUTH_REFRESH_TOKEN,
-      hasOAuthCreds
-    });
-
     if (hasOAuthCreds) {
-      console.log('[EMAIL] Using Gmail API with OAuth (Railway production)');
       const gmail = await getGmailClientFromOAuth();
 
       const message = [

@@ -59,10 +59,12 @@ Professional Landing Pages for Insurance Agents is a full-stack web application 
 - Image and media asset management
 
 ### Email Automation
+- **Replit Development**: Gmail API via Replit connector (automatic OAuth)
+- **Railway Production**: Gmail API via OAuth 2.0 credentials (bypasses SMTP port blocking)
+- OTP verification codes for passwordless authentication
 - Customer notification system
-- Receipt generation and delivery
-- SMTP configuration for email delivery
 - Template-based email formatting
+- Required credentials: GMAIL_USER, GMAIL_OAUTH_CLIENT_ID, GMAIL_OAUTH_CLIENT_SECRET, GMAIL_OAUTH_REFRESH_TOKEN
 
 ## Data Flow
 
@@ -119,6 +121,20 @@ Professional Landing Pages for Insurance Agents is a full-stack web application 
 Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
+
+- **November 12, 2025**: Fixed Railway production email service with Gmail API OAuth
+  - Railway blocks SMTP ports (587/465), causing connection timeouts
+  - Implemented Gmail API REST endpoint using OAuth 2.0 (uses HTTPS port 443)
+  - Created getGmailClientFromOAuth() function for production environments
+  - Replit uses Gmail connector, Railway uses OAuth credentials
+  - Email service now works in both development and production
+  - Required Railway environment variables: GMAIL_USER, GMAIL_OAUTH_CLIENT_ID, GMAIL_OAUTH_CLIENT_SECRET, GMAIL_OAUTH_REFRESH_TOKEN
+
+- **November 11-12, 2025**: Unified database architecture
+  - Eliminated dual-database setup (dev/prod sync issues)
+  - Replit now uses Railway production database directly (DATABASE_URL)
+  - Single source of truth for all data (templates, users, websites)
+  - Fixed Template 13 discrepancies between environments
 
 - **November 9, 2025**: Implemented Cloudflare integration for custom domain SSL/HTTPS support
   - Created cloudflareService.ts for zone and DNS management via Cloudflare API

@@ -122,6 +122,17 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+- **November 12, 2025**: Completed Templates 13-15 dynamic content refactoring for visual editing
+  - Created shared EditModeOverlay component with auto-generated content-id fallback for reusability
+  - Template13: 20 explicit dynamic fields (hero, stats, testimonials, contact) - architect approved
+  - Template14: 19 explicit dynamic fields (header, hero, agent profile, contact) - architect approved
+  - Template15: 18 explicit dynamic fields (header, hero, stats, contact) - architect approved
+  - All agent recruitment templates (13-15) now support visual editing via TemplatePreview editor
+  - Fixed Template13 slug matching bug ("Template13" vs "template-13") for proper editor loading
+  - Each template uses getValue() helper with proper fallback chain (flexibleContent → content → default)
+  - All templates scoped via rootRef for isolated overlay targeting
+  - Verified working on 2bitsofinsurance.com (Template13)
+
 - **November 12, 2025**: Fixed Railway production email service with Gmail API OAuth
   - Railway blocks SMTP ports (587/465), causing connection timeouts
   - Implemented Gmail API REST endpoint using OAuth 2.0 (uses HTTPS port 443)

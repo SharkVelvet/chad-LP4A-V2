@@ -6,8 +6,8 @@ import { setupAuth } from "./auth.js";
 import { setupAdminAuth, isAdminAuthenticated } from "./adminAuth.js";
 import Stripe from "stripe";
 import { 
-  insertWebsiteSchema, 
-  insertWebsiteContentSchema,
+  insertPageSchema, 
+  insertPageContentSchema,
   insertBlogPostSchema,
   insertCustomSolutionInquirySchema,
   insertAnalyticsEventSchema,
@@ -33,24 +33,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
   setupAuth(app);
   setupAdminAuth(app);
 
-  // Public API - Get website by custom domain (no authentication required)
-  app.get("/api/public/website-by-domain/:domain", async (req, res) => {
+  // Public API - Get page by custom domain (no authentication required)
+  app.get("/api/public/page-by-domain/:domain", async (req, res) => {
     try {
       const domain = req.params.domain;
-      const website = await storage.getWebsiteByDomain(domain);
+      const page = await storage.getPageByDomain(domain);
       
-      if (!website) {
-        return res.status(404).json({ message: "Website not found for this domain" });
+      if (!page) {
+        return res.status(404).json({ message: "Page not found for this domain" });
       }
 
-      // Get website content
-      const content = await storage.getWebsiteContent(website.id);
+      // Get page content
+      const content = await storage.getPageContent(page.id);
       
       // Get template information
-      const template = await storage.getTemplate(website.templateId);
+      const template = await storage.getTemplate(page.templateId);
 
       res.json({ 
-        website,
+        page,
         content,
         template
       });
@@ -220,55 +220,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Website routes - multi-website support
-  // Get all websites for current user
-  app.get("/api/websites", async (req, res) => {
+  // Page routes - multi-page support
+  // Get all pages for current user
+  app.get("/api/pages", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const websites = await storage.getUserWebsites(req.user.id);
-      res.json(websites);
+      const pages = await storage.getUserPages(req.user.id);
+      res.json(pages);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
 
-  // Get a specific website by ID
-  app.get("/api/websites/:id", async (req, res) => {
+  // Get a specific page by ID
+  app.get("/api/pages/:id", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const website = await storage.getWebsite(parseInt(req.params.id));
-      if (!website) {
-        return res.status(404).json({ message: "Website not found" });
+      const page = await storage.getPage(parseInt(req.params.id));
+      if (!page) {
+        return res.status(404).json({ message: "Page not found" });
       }
 
       // Verify ownership
-      if (website.userId !== req.user.id) {
+      if (page.userId !== req.user.id) {
         return res.status(403).json({ message: "Forbidden" });
       }
 
-      const content = await storage.getWebsiteContent(website.id);
-      res.json({ ...website, content });
+      const content = await storage.getPageContent(page.id);
+      res.json({ ...page, content });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
 
-  // Create a new website
-  app.post("/api/websites", async (req, res) => {
+  // Create a new page
+  app.post("/api/pages", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const { templateId, name, subscriptionPlan, domainPreferences } = insertWebsiteSchema.parse(req.body);
+      const { templateId, name, subscriptionPlan, domainPreferences } = insertPageSchema.parse(req.body);
 
-      const website = await storage.createWebsite({
+      const page = await storage.createPage({
         userId: req.user.id,
         templateId,
         name,
@@ -277,8 +277,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } as any);
 
       // Create default content
-      await storage.createWebsiteContent({
-        websiteId: website.id,
+      await storage.createPageContent({
+        pageId: page.id,
         businessName: "",
         tagline: "",
         aboutUs: "",
@@ -287,30 +287,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
         address: "",
       });
 
-      res.status(201).json(website);
+      res.status(201).json(page);
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }
   });
 
-  // Update website settings
-  app.put("/api/websites/:id", async (req, res) => {
+  // Update page settings
+  app.put("/api/pages/:id", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const websiteId = parseInt(req.params.id);
-      const website = await storage.getWebsite(websiteId);
+      const pageId = parseInt(req.params.id);
+      const page = await storage.getPage(pageId);
       
-      if (!website || website.userId !== req.user.id) {
-        return res.status(404).json({ message: "Website not found" });
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
       }
 
-      const updateData = insertWebsiteSchema.partial().parse(req.body);
+      const updateData = insertPageSchema.partial().parse(req.body);
       
       // If domain is being added/updated, automatically register it with Railway
-      if (updateData.domain && updateData.domain !== website.domain) {
+      if (updateData.domain && updateData.domain !== page.domain) {
         if (railwayService.isConfigured()) {
           try {
             console.log(`🚂 Auto-registering domain with Railway: ${updateData.domain}`);
@@ -325,51 +325,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
       
-      const updatedWebsite = await storage.updateWebsite(websiteId, updateData);
+      const updatedPage = await storage.updatePage(pageId, updateData);
       
-      res.json(updatedWebsite);
+      res.json(updatedPage);
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }
   });
 
-  // Delete a website
-  app.delete("/api/websites/:id", async (req, res) => {
+  // Delete a page
+  app.delete("/api/pages/:id", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const websiteId = parseInt(req.params.id);
-      const website = await storage.getWebsite(websiteId);
+      const pageId = parseInt(req.params.id);
+      const page = await storage.getPage(pageId);
       
-      if (!website || website.userId !== req.user.id) {
-        return res.status(404).json({ message: "Website not found" });
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
       }
 
-      await storage.deleteWebsite(websiteId);
+      await storage.deletePage(pageId);
       res.sendStatus(204);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
 
-  // Website content routes
-  app.put("/api/websites/:id/content", async (req, res) => {
+  // Page content routes
+  app.put("/api/pages/:id/content", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const websiteId = parseInt(req.params.id);
-      const website = await storage.getWebsite(websiteId);
+      const pageId = parseInt(req.params.id);
+      const page = await storage.getPage(pageId);
       
-      if (!website || website.userId !== req.user.id) {
-        return res.status(404).json({ message: "Website not found" });
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
       }
 
-      const contentData = insertWebsiteContentSchema.partial().parse(req.body);
-      const updatedContent = await storage.updateWebsiteContent(websiteId, contentData);
+      const contentData = insertPageContentSchema.partial().parse(req.body);
+      const updatedContent = await storage.updatePageContent(pageId, contentData);
       
       res.json(updatedContent);
     } catch (error: any) {
@@ -378,23 +378,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update flexible content by ID
-  app.patch("/api/websites/:id/content/:contentId", async (req, res) => {
+  app.patch("/api/pages/:id/content/:contentId", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const websiteId = parseInt(req.params.id);
+      const pageId = parseInt(req.params.id);
       const contentId = req.params.contentId;
       const { value } = req.body;
 
-      const website = await storage.getWebsite(websiteId);
+      const page = await storage.getPage(pageId);
       
-      if (!website || website.userId !== req.user.id) {
-        return res.status(404).json({ message: "Website not found" });
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
       }
 
-      const updatedContent = await storage.updateFlexibleContent(websiteId, contentId, value);
+      const updatedContent = await storage.updateFlexibleContent(pageId, contentId, value);
       
       res.json(updatedContent);
     } catch (error: any) {
@@ -402,42 +402,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Publish website content
-  app.post("/api/websites/:id/publish", async (req, res) => {
+  // Publish page content
+  app.post("/api/pages/:id/publish", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const websiteId = parseInt(req.params.id);
-      const website = await storage.getWebsite(websiteId);
+      const pageId = parseInt(req.params.id);
+      const page = await storage.getPage(pageId);
       
-      if (!website || website.userId !== req.user.id) {
-        return res.status(404).json({ message: "Website not found" });
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
       }
 
-      const publishedContent = await storage.publishWebsiteContent(websiteId);
+      const publishedContent = await storage.publishPageContent(pageId);
       res.json(publishedContent);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
 
-  // Unpublish website content
-  app.post("/api/websites/:id/unpublish", async (req, res) => {
+  // Unpublish page content
+  app.post("/api/pages/:id/unpublish", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const websiteId = parseInt(req.params.id);
-      const website = await storage.getWebsite(websiteId);
+      const pageId = parseInt(req.params.id);
+      const page = await storage.getPage(pageId);
       
-      if (!website || website.userId !== req.user.id) {
-        return res.status(404).json({ message: "Website not found" });
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
       }
 
-      const unpublishedContent = await storage.unpublishWebsiteContent(websiteId);
+      const unpublishedContent = await storage.unpublishPageContent(pageId);
       res.json(unpublishedContent);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
@@ -445,22 +445,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Set maintenance mode
-  app.post("/api/websites/:id/maintenance", async (req, res) => {
+  app.post("/api/pages/:id/maintenance", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const websiteId = parseInt(req.params.id);
+      const pageId = parseInt(req.params.id);
       const { enabled } = req.body;
       
-      const website = await storage.getWebsite(websiteId);
+      const page = await storage.getPage(pageId);
       
-      if (!website || website.userId !== req.user.id) {
-        return res.status(404).json({ message: "Website not found" });
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
       }
 
-      const updatedContent = await storage.setMaintenanceMode(websiteId, enabled);
+      const updatedContent = await storage.setMaintenanceMode(pageId, enabled);
       res.json(updatedContent);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
@@ -468,20 +468,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Enable form embedding
-  app.post("/api/websites/:id/enable-form", async (req, res) => {
+  app.post("/api/pages/:id/enable-form", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const websiteId = parseInt(req.params.id);
-      const website = await storage.getWebsite(websiteId);
+      const pageId = parseInt(req.params.id);
+      const page = await storage.getPage(pageId);
       
-      if (!website || website.userId !== req.user.id) {
-        return res.status(404).json({ message: "Website not found" });
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
       }
 
-      const updatedContent = await storage.enableFormEmbed(websiteId);
+      const updatedContent = await storage.enableFormEmbed(pageId);
       res.json(updatedContent);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
@@ -489,26 +489,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Save form embed configuration
-  app.post("/api/websites/:id/save-form", async (req, res) => {
+  app.post("/api/pages/:id/save-form", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const websiteId = parseInt(req.params.id);
+      const pageId = parseInt(req.params.id);
       const { formProvider, formEmbedCode } = req.body;
       
       if (!formProvider || !formEmbedCode) {
         return res.status(400).json({ message: "Form provider and embed code are required" });
       }
 
-      const website = await storage.getWebsite(websiteId);
+      const page = await storage.getPage(pageId);
       
-      if (!website || website.userId !== req.user.id) {
-        return res.status(404).json({ message: "Website not found" });
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
       }
 
-      const updatedContent = await storage.saveFormEmbed(websiteId, formProvider, formEmbedCode);
+      const updatedContent = await storage.saveFormEmbed(pageId, formProvider, formEmbedCode);
       res.json(updatedContent);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
@@ -516,20 +516,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Disable form embedding
-  app.post("/api/websites/:id/disable-form", async (req, res) => {
+  app.post("/api/pages/:id/disable-form", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);
     }
 
     try {
-      const websiteId = parseInt(req.params.id);
-      const website = await storage.getWebsite(websiteId);
+      const pageId = parseInt(req.params.id);
+      const page = await storage.getPage(pageId);
       
-      if (!website || website.userId !== req.user.id) {
-        return res.status(404).json({ message: "Website not found" });
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
       }
 
-      const updatedContent = await storage.disableFormEmbed(websiteId);
+      const updatedContent = await storage.disableFormEmbed(pageId);
       res.json(updatedContent);
     } catch (error: any) {
       res.status(500).json({ message: error.message });
@@ -544,26 +544,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     try {
-      const { domains, websiteId } = req.body;
+      const { domains, pageId } = req.body;
       
       if (!domains || !Array.isArray(domains) || domains.length === 0) {
         return res.status(400).json({ message: "Domains array is required" });
       }
       
-      if (!websiteId) {
-        return res.status(400).json({ message: "Website ID is required" });
+      if (!pageId) {
+        return res.status(400).json({ message: "Page ID is required" });
       }
 
-      // Verify the user owns an active paid website
-      const website = await storage.getWebsite(websiteId);
-      if (!website) {
-        return res.status(404).json({ message: "Website not found" });
+      // Verify the user owns an active paid page
+      const page = await storage.getPage(pageId);
+      if (!page) {
+        return res.status(404).json({ message: "Page not found" });
       }
-      if (website.userId !== req.user.id) {
-        return res.status(403).json({ message: "You do not own this website" });
+      if (page.userId !== req.user.id) {
+        return res.status(403).json({ message: "You do not own this page" });
       }
-      if (website.subscriptionStatus !== 'active') {
-        return res.status(403).json({ message: "You must have an active website subscription to search for domains" });
+      if (page.subscriptionStatus !== 'active') {
+        return res.status(403).json({ message: "You must have an active page subscription to search for domains" });
       }
 
       const results = await domainService.checkAvailability(domains);
@@ -580,26 +580,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     try {
-      const { domains, websiteId } = req.body;
+      const { domains, pageId } = req.body;
       
       if (!domains || !Array.isArray(domains) || domains.length === 0) {
         return res.status(400).json({ message: "Domains array is required" });
       }
       
-      if (!websiteId) {
-        return res.status(400).json({ message: "Website ID is required" });
+      if (!pageId) {
+        return res.status(400).json({ message: "Page ID is required" });
       }
 
-      // Verify the user owns an active paid website
-      const website = await storage.getWebsite(websiteId);
-      if (!website) {
-        return res.status(404).json({ message: "Website not found" });
+      // Verify the user owns an active paid page
+      const page = await storage.getPage(pageId);
+      if (!page) {
+        return res.status(404).json({ message: "Page not found" });
       }
-      if (website.userId !== req.user.id) {
-        return res.status(403).json({ message: "You do not own this website" });
+      if (page.userId !== req.user.id) {
+        return res.status(403).json({ message: "You do not own this page" });
       }
-      if (website.subscriptionStatus !== 'active') {
-        return res.status(403).json({ message: "You must have an active website subscription to view domain pricing" });
+      if (page.subscriptionStatus !== 'active') {
+        return res.status(403).json({ message: "You must have an active page subscription to view domain pricing" });
       }
 
       const pricing = await domainService.getPricing(domains);
@@ -634,7 +634,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Extract domain purchase details from session metadata
-      const { domain, years, websiteId, contactInfo } = session.metadata as any;
+      const { domain, years, pageId, contactInfo } = session.metadata as any;
       const parsedContactInfo = JSON.parse(contactInfo || '{}');
       
       if (!domain || !parsedContactInfo) {
@@ -649,7 +649,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Now register the domain with Namecheap (payment already collected)
       const result = await domainService.registerDomain(domain, parseInt(years) || 1, parsedContactInfo);
 
-      if (result.success && websiteId) {
+      if (result.success && pageId) {
         // Automatically register domain with Railway
         if (railwayService.isConfigured()) {
           try {
@@ -661,8 +661,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         }
         
-        // Update website with the purchased domain
-        await storage.updateWebsite(parseInt(websiteId), { domain, domainVerified: false } as any);
+        // Update page with the purchased domain
+        await storage.updatePage(parseInt(pageId), { domain, domainVerified: false } as any);
       }
 
       res.json(result);
@@ -731,9 +731,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { domain } = req.params;
       
-      // Verify user owns a website with this domain
-      const websites = await storage.getUserWebsites(req.user.id);
-      const ownsDomain = websites.some(w => w.domain === domain);
+      // Verify user owns a page with this domain
+      const pages = await storage.getUserPages(req.user.id);
+      const ownsDomain = pages.some(w => w.domain === domain);
       
       if (!ownsDomain) {
         return res.status(403).json({ message: "You don't own this domain" });
@@ -760,11 +760,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Records array is required" });
       }
 
-      // Verify user owns a website with this domain
-      const websites = await storage.getUserWebsites(req.user.id);
-      const website = websites.find(w => w.domain === domain);
+      // Verify user owns a page with this domain
+      const pages = await storage.getUserPages(req.user.id);
+      const page = pages.find(w => w.domain === domain);
       
-      if (!website) {
+      if (!page) {
         return res.status(403).json({ message: "You don't own this domain" });
       }
 
@@ -772,7 +772,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Update domain status to 'propagating' after DNS configuration
       if (success) {
-        await storage.updateWebsite(website.id, { domainStatus: 'propagating' });
+        await storage.updatePage(page.id, { domainStatus: 'propagating' });
       }
       
       res.json({ success });
@@ -790,11 +790,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { domain } = req.params;
       
-      // Verify user owns a website with this domain
-      const websites = await storage.getUserWebsites(req.user.id);
-      const website = websites.find(w => w.domain === domain);
+      // Verify user owns a page with this domain
+      const pages = await storage.getUserPages(req.user.id);
+      const page = pages.find(w => w.domain === domain);
       
-      if (!website) {
+      if (!page) {
         return res.status(403).json({ message: "You don't own this domain" });
       }
 
@@ -808,8 +808,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         isActive = true;
         
         // Update status to active if it was propagating
-        if (website.domainStatus === 'propagating') {
-          await storage.updateWebsite(website.id, { domainStatus: 'active' });
+        if (page.domainStatus === 'propagating') {
+          await storage.updatePage(page.id, { domainStatus: 'active' });
         }
       } catch {
         // Domain doesn't resolve yet, still propagating
@@ -818,7 +818,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       res.json({ 
         isActive, 
-        status: isActive ? 'active' : website.domainStatus || 'pending' 
+        status: isActive ? 'active' : page.domainStatus || 'pending' 
       });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
@@ -834,11 +834,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { domain } = req.params;
 
-      // Verify user owns a website with this domain
-      const websites = await storage.getUserWebsites(req.user.id);
-      const website = websites.find(w => w.domain === domain);
+      // Verify user owns a page with this domain
+      const pages = await storage.getUserPages(req.user.id);
+      const page = pages.find(w => w.domain === domain);
       
-      if (!website) {
+      if (!page) {
         return res.status(403).json({ message: "You don't own this domain" });
       }
 
@@ -883,11 +883,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Deployment domain is required" });
       }
 
-      // Verify user owns a website with this domain
-      const websites = await storage.getUserWebsites(req.user.id);
-      const website = websites.find(w => w.domain === domain);
+      // Verify user owns a page with this domain
+      const pages = await storage.getUserPages(req.user.id);
+      const page = pages.find(w => w.domain === domain);
       
-      if (!website) {
+      if (!page) {
         return res.status(403).json({ message: "You don't own this domain" });
       }
 
@@ -917,8 +917,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       await domainService.setNameservers(domain, result.nameservers);
       console.log(`✓ Nameservers updated`);
 
-      // Step 4: Update website with configuration and status
-      await storage.updateWebsite(website.id, { 
+      // Step 4: Update page with configuration and status
+      await storage.updatePage(page.id, { 
         domainStatus: 'propagating',
         cloudflareZoneId: result.zone.id,
         cloudflareNameservers: result.nameservers
@@ -928,7 +928,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       res.json({
         success: true,
-        message: 'Domain successfully connected to website with Railway hosting and SSL',
+        message: 'Domain successfully connected to page with Railway hosting and SSL',
         zone: result.zone,
         nameservers: result.nameservers,
         dnsRecords: result.dnsRecords
@@ -953,11 +953,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Replit deployment domain is required" });
       }
 
-      // Verify user owns a website with this domain
-      const websites = await storage.getUserWebsites(req.user.id);
-      const website = websites.find(w => w.domain === domain);
+      // Verify user owns a page with this domain
+      const pages = await storage.getUserPages(req.user.id);
+      const page = pages.find(w => w.domain === domain);
       
-      if (!website) {
+      if (!page) {
         return res.status(403).json({ message: "You don't own this domain" });
       }
 
@@ -967,8 +967,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Update Namecheap nameservers to point to Cloudflare
       await domainService.setNameservers(domain, result.nameservers);
 
-      // Update website with Cloudflare information and status
-      await storage.updateWebsite(website.id, { 
+      // Update page with Cloudflare information and status
+      await storage.updatePage(page.id, { 
         domainStatus: 'propagating',
         cloudflareZoneId: result.zone.id,
         cloudflareNameservers: result.nameservers
@@ -994,11 +994,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { domain } = req.params;
       
-      // Verify user owns a website with this domain
-      const websites = await storage.getUserWebsites(req.user.id);
-      const website = websites.find(w => w.domain === domain);
+      // Verify user owns a page with this domain
+      const pages = await storage.getUserPages(req.user.id);
+      const page = pages.find(w => w.domain === domain);
       
-      if (!website) {
+      if (!page) {
         return res.status(403).json({ message: "You don't own this domain" });
       }
 
@@ -1023,9 +1023,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "MX records array is required" });
       }
 
-      // Verify user owns a website with this domain
-      const websites = await storage.getUserWebsites(req.user.id);
-      const ownsDomain = websites.some(w => w.domain === domain);
+      // Verify user owns a page with this domain
+      const pages = await storage.getUserPages(req.user.id);
+      const ownsDomain = pages.some(w => w.domain === domain);
       
       if (!ownsDomain) {
         return res.status(403).json({ message: "You don't own this domain" });
@@ -1061,9 +1061,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Mail server is required" });
       }
 
-      // Verify user owns a website with this domain
-      const websites = await storage.getUserWebsites(req.user.id);
-      const ownsDomain = websites.some(w => w.domain === domain);
+      // Verify user owns a page with this domain
+      const pages = await storage.getUserPages(req.user.id);
+      const ownsDomain = pages.some(w => w.domain === domain);
       
       if (!ownsDomain) {
         return res.status(403).json({ message: "You don't own this domain" });
@@ -1322,7 +1322,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Create Stripe Checkout Session for website purchase
+  // Create Stripe Checkout Session for page purchase
   app.post('/api/create-checkout-session', async (req, res) => {
     const { templateId } = req.body;
     
@@ -1371,7 +1371,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             price_data: {
               currency: 'usd',
               product_data: {
-                name: 'Website Setup - First Month',
+                name: 'Page Setup - First Month',
                 description: '$38 first month, then $18/month thereafter',
               },
               unit_amount: 3800, // $38 in cents
@@ -1396,7 +1396,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Create Stripe Checkout Session for domain purchase
   app.post('/api/create-domain-checkout-session', async (req, res) => {
-    const { domain, years = 1, websiteId, contactInfo } = req.body;
+    const { domain, years = 1, pageId, contactInfo } = req.body;
     
     if (!req.isAuthenticated()) {
       return res.status(401).json({ error: 'Authentication required' });
@@ -1404,20 +1404,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     
     const user = req.user as any;
     
-    if (!domain || !contactInfo || !websiteId) {
-      return res.status(400).json({ error: 'Domain, contact information, and website are required' });
+    if (!domain || !contactInfo || !pageId) {
+      return res.status(400).json({ error: 'Domain, contact information, and page are required' });
     }
 
-    // Verify the user owns a website and it's been paid for
-    const website = await storage.getWebsite(websiteId);
-    if (!website) {
-      return res.status(404).json({ error: 'Website not found' });
+    // Verify the user owns a page and it's been paid for
+    const page = await storage.getPage(pageId);
+    if (!page) {
+      return res.status(404).json({ error: 'Page not found' });
     }
-    if (website.userId !== user.id) {
-      return res.status(403).json({ error: 'You do not own this website' });
+    if (page.userId !== user.id) {
+      return res.status(403).json({ error: 'You do not own this page' });
     }
-    if (website.subscriptionStatus !== 'active') {
-      return res.status(403).json({ error: 'You must have an active website subscription before purchasing a domain' });
+    if (page.subscriptionStatus !== 'active') {
+      return res.status(403).json({ error: 'You must have an active page subscription before purchasing a domain' });
     }
 
     if (!stripe) {
@@ -1449,8 +1449,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
             }
           }
           
-          // Update website with the purchased domain
-          await storage.updateWebsite(websiteId, { domain, domainVerified: false } as any);
+          // Update page with the purchased domain
+          await storage.updatePage(pageId, { domain, domainVerified: false } as any);
           return res.json({ 
             success: true, 
             isFree: true,
@@ -1509,7 +1509,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           domain,
           years: years.toString(),
           userId: user.id.toString(),
-          websiteId: websiteId?.toString() || '',
+          pageId: pageId?.toString() || '',
           contactInfo: JSON.stringify(contactInfo),
         },
       });

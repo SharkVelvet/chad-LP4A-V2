@@ -36,7 +36,7 @@ export const templates = pgTable("templates", {
   isActive: boolean("is_active").notNull().default(true),
 });
 
-export const websites = pgTable("websites", {
+export const pages = pgTable("pages", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").notNull().references(() => users.id),
   locationId: integer("location_id").references(() => locations.id),
@@ -60,9 +60,9 @@ export const websites = pgTable("websites", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-export const websiteContent = pgTable("website_content", {
+export const pageContent = pgTable("page_content", {
   id: serial("id").primaryKey(),
-  websiteId: integer("website_id").notNull().references(() => websites.id),
+  pageId: integer("page_id").notNull().references(() => pages.id),
   businessName: text("business_name"),
   tagline: text("tagline"),
   aboutUs: text("about_us"),
@@ -84,7 +84,7 @@ export const websiteContent = pgTable("website_content", {
 
 export const formSubmissions = pgTable("form_submissions", {
   id: serial("id").primaryKey(),
-  websiteId: integer("website_id").notNull().references(() => websites.id),
+  pageId: integer("page_id").notNull().references(() => pages.id),
   name: text("name").notNull(),
   email: text("email").notNull(),
   subject: text("subject"),
@@ -165,7 +165,7 @@ export const adminUsers = pgTable("admin_users", {
 // Relations
 export const locationsRelations = relations(locations, ({ many }) => ({
   users: many(users),
-  websites: many(websites),
+  pages: many(pages),
 }));
 
 export const usersRelations = relations(users, ({ one, many }) => ({
@@ -173,41 +173,41 @@ export const usersRelations = relations(users, ({ one, many }) => ({
     fields: [users.locationId],
     references: [locations.id],
   }),
-  websites: many(websites),
+  pages: many(pages),
 }));
 
 export const templatesRelations = relations(templates, ({ many }) => ({
-  websites: many(websites),
+  pages: many(pages),
 }));
 
-export const websitesRelations = relations(websites, ({ one, many }) => ({
+export const pagesRelations = relations(pages, ({ one, many }) => ({
   user: one(users, {
-    fields: [websites.userId],
+    fields: [pages.userId],
     references: [users.id],
   }),
   location: one(locations, {
-    fields: [websites.locationId],
+    fields: [pages.locationId],
     references: [locations.id],
   }),
   template: one(templates, {
-    fields: [websites.templateId],
+    fields: [pages.templateId],
     references: [templates.id],
   }),
-  content: one(websiteContent),
+  content: one(pageContent),
   formSubmissions: many(formSubmissions),
 }));
 
-export const websiteContentRelations = relations(websiteContent, ({ one }) => ({
-  website: one(websites, {
-    fields: [websiteContent.websiteId],
-    references: [websites.id],
+export const pageContentRelations = relations(pageContent, ({ one }) => ({
+  page: one(pages, {
+    fields: [pageContent.pageId],
+    references: [pages.id],
   }),
 }));
 
 export const formSubmissionsRelations = relations(formSubmissions, ({ one }) => ({
-  website: one(websites, {
-    fields: [formSubmissions.websiteId],
-    references: [websites.id],
+  page: one(pages, {
+    fields: [formSubmissions.pageId],
+    references: [pages.id],
   }),
 }));
 
@@ -227,7 +227,7 @@ export const insertTemplateSchema = createInsertSchema(templates).omit({
   id: true,
 });
 
-export const insertWebsiteSchema = createInsertSchema(websites).omit({
+export const insertPageSchema = createInsertSchema(pages).omit({
   id: true,
   userId: true,
   locationId: true,
@@ -242,7 +242,7 @@ export const insertWebsiteSchema = createInsertSchema(websites).omit({
   domainPreferences: z.array(z.string()).optional(),
 });
 
-export const insertWebsiteContentSchema = createInsertSchema(websiteContent).omit({
+export const insertPageContentSchema = createInsertSchema(pageContent).omit({
   id: true,
   updatedAt: true,
   publishedAt: true,
@@ -287,10 +287,10 @@ export type Location = typeof locations.$inferSelect;
 export type InsertLocation = z.infer<typeof insertLocationSchema>;
 export type Template = typeof templates.$inferSelect;
 export type InsertTemplate = z.infer<typeof insertTemplateSchema>;
-export type Website = typeof websites.$inferSelect;
-export type InsertWebsite = z.infer<typeof insertWebsiteSchema>;
-export type WebsiteContent = typeof websiteContent.$inferSelect;
-export type InsertWebsiteContent = z.infer<typeof insertWebsiteContentSchema>;
+export type Page = typeof pages.$inferSelect;
+export type InsertPage = z.infer<typeof insertPageSchema>;
+export type PageContent = typeof pageContent.$inferSelect;
+export type InsertPageContent = z.infer<typeof insertPageContentSchema>;
 export type FormSubmission = typeof formSubmissions.$inferSelect;
 export type InsertFormSubmission = z.infer<typeof insertFormSubmissionSchema>;
 export type BlogPost = typeof blogPosts.$inferSelect;

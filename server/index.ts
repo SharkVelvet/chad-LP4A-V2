@@ -72,35 +72,35 @@ app.use((req, res, next) => {
         return next();
       }
 
-      // This is a custom domain - serve the public website
+      // This is a custom domain - serve the public page
       try {
-        const website = await storage.getWebsiteByDomain(hostname);
+        const page = await storage.getPageByDomain(hostname);
         
-        if (!website) {
+        if (!page) {
           return res.status(404).send(`
             <!DOCTYPE html>
             <html>
-              <head><title>Website Not Found</title></head>
+              <head><title>Page Not Found</title></head>
               <body style="font-family: system-ui; padding: 40px; text-align: center;">
-                <h1>Website Not Found</h1>
-                <p>No website is configured for domain: ${hostname}</p>
+                <h1>Page Not Found</h1>
+                <p>No page is configured for domain: ${hostname}</p>
               </body>
             </html>
           `);
         }
 
-        // Get website content and template
-        const content = await storage.getWebsiteContent(website.id);
-        const template = await storage.getTemplate(website.templateId);
+        // Get page content and template
+        const content = await storage.getPageContent(page.id);
+        const template = await storage.getTemplate(page.templateId);
 
-        // Serve the public website HTML
+        // Serve the public page HTML
         res.send(`
           <!DOCTYPE html>
           <html lang="en">
             <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>${website.businessName || 'Website'}</title>
+              <title>${page.businessName || 'Page'}</title>
               <style>
                 body { margin: 0; font-family: system-ui; }
               </style>
@@ -108,11 +108,11 @@ app.use((req, res, next) => {
             <body>
               <div id="root"></div>
               <script>
-                window.__WEBSITE_DATA__ = ${JSON.stringify({ website, content, template })};
+                window.__PAGE_DATA__ = ${JSON.stringify({ page, content, template })};
               </script>
               <script type="module">
                 // Load the public viewer component
-                import { createRoot } from '/src/main.tsx';
+                import { createRoot} from '/src/main.tsx';
               </script>
             </body>
           </html>

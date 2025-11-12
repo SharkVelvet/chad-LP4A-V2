@@ -2,8 +2,8 @@ import {
   users, 
   locations, 
   templates, 
-  websites, 
-  websiteContent,
+  pages, 
+  pageContent,
   blogPosts,
   customSolutionInquiries,
   analyticsEvents,
@@ -15,10 +15,10 @@ import {
   type InsertLocation,
   type Template,
   type InsertTemplate,
-  type Website,
-  type InsertWebsite,
-  type WebsiteContent,
-  type InsertWebsiteContent,
+  type Page,
+  type InsertPage,
+  type PageContent,
+  type InsertPageContent,
   type BlogPost,
   type InsertBlogPost,
   type CustomSolutionInquiry,
@@ -59,22 +59,22 @@ export interface IStorage {
   createTemplate(template: InsertTemplate): Promise<Template>;
   createTemplatesBulk(templates: InsertTemplate[]): Promise<void>;
 
-  // Website management
-  getWebsiteByLocationId(locationId: number): Promise<Website | undefined>;
-  getUserWebsites(userId: number): Promise<Website[]>;
-  getWebsite(id: number): Promise<Website | undefined>;
-  getWebsiteByDomain(domain: string): Promise<Website | undefined>;
-  createWebsite(website: InsertWebsite): Promise<Website>;
-  updateWebsite(websiteId: number, data: Partial<InsertWebsite>): Promise<Website>;
-  updateWebsiteDomain(websiteId: number, domain: string): Promise<Website>;
-  deleteWebsite(websiteId: number): Promise<void>;
+  // Page management
+  getPageByLocationId(locationId: number): Promise<Page | undefined>;
+  getUserPages(userId: number): Promise<Page[]>;
+  getPage(id: number): Promise<Page | undefined>;
+  getPageByDomain(domain: string): Promise<Page | undefined>;
+  createPage(page: InsertPage): Promise<Page>;
+  updatePage(pageId: number, data: Partial<InsertPage>): Promise<Page>;
+  updatePageDomain(pageId: number, domain: string): Promise<Page>;
+  deletePage(pageId: number): Promise<void>;
 
-  // Website content management
-  getWebsiteContent(websiteId: number): Promise<WebsiteContent | undefined>;
-  createWebsiteContent(content: InsertWebsiteContent): Promise<WebsiteContent>;
-  updateWebsiteContent(websiteId: number, content: Partial<InsertWebsiteContent>): Promise<WebsiteContent>;
-  updateFlexibleContent(websiteId: number, contentId: string, value: string): Promise<WebsiteContent>;
-  publishWebsiteContent(websiteId: number): Promise<WebsiteContent>;
+  // Page content management
+  getPageContent(pageId: number): Promise<PageContent | undefined>;
+  createPageContent(content: InsertPageContent): Promise<PageContent>;
+  updatePageContent(pageId: number, content: Partial<InsertPageContent>): Promise<PageContent>;
+  updateFlexibleContent(pageId: number, contentId: string, value: string): Promise<PageContent>;
+  publishPageContent(pageId: number): Promise<PageContent>;
 
   // Blog management
   getAllBlogPosts(): Promise<BlogPost[]>;
@@ -209,93 +209,93 @@ export class DatabaseStorage implements IStorage {
     await db.insert(templates).values(templateList).onConflictDoNothing({ target: templates.slug });
   }
 
-  // Website management
-  async getWebsiteByLocationId(locationId: number): Promise<Website | undefined> {
-    const [website] = await db.select().from(websites).where(eq(websites.locationId, locationId));
-    return website || undefined;
+  // Page management
+  async getPageByLocationId(locationId: number): Promise<Page | undefined> {
+    const [page] = await db.select().from(pages).where(eq(pages.locationId, locationId));
+    return page || undefined;
   }
 
-  async createWebsite(website: InsertWebsite): Promise<Website> {
-    const websiteData = {
-      userId: website.userId,
-      locationId: website.locationId || null,
-      templateId: website.templateId,
-      name: website.name,
-      subscriptionPlan: website.subscriptionPlan,
-      subscriptionStatus: website.subscriptionStatus || 'active',
-      domain: website.domain || null,
-      domainVerified: website.domainVerified || false,
-      domainPreferences: website.domainPreferences || null,
-      primaryColor: website.primaryColor || '#000000',
-      isActive: website.isActive !== undefined ? website.isActive : true
+  async createPage(page: InsertPage): Promise<Page> {
+    const pageData = {
+      userId: page.userId,
+      locationId: page.locationId || null,
+      templateId: page.templateId,
+      name: page.name,
+      subscriptionPlan: page.subscriptionPlan,
+      subscriptionStatus: page.subscriptionStatus || 'active',
+      domain: page.domain || null,
+      domainVerified: page.domainVerified || false,
+      domainPreferences: page.domainPreferences || null,
+      primaryColor: page.primaryColor || '#000000',
+      isActive: page.isActive !== undefined ? page.isActive : true
     } as any;
     
-    const [newWebsite] = await db
-      .insert(websites)
-      .values(websiteData)
+    const [newPage] = await db
+      .insert(pages)
+      .values(pageData)
       .returning();
-    return newWebsite;
+    return newPage;
   }
 
-  async updateWebsiteDomain(websiteId: number, domain: string): Promise<Website> {
-    const [website] = await db
-      .update(websites)
+  async updatePageDomain(pageId: number, domain: string): Promise<Page> {
+    const [page] = await db
+      .update(pages)
       .set({ domain })
-      .where(eq(websites.id, websiteId))
+      .where(eq(pages.id, pageId))
       .returning();
-    return website;
+    return page;
   }
 
-  async getUserWebsites(userId: number): Promise<Website[]> {
-    const websitesData = await db.select().from(websites).where(eq(websites.userId, userId));
+  async getUserPages(userId: number): Promise<Page[]> {
+    const pagesData = await db.select().from(pages).where(eq(pages.userId, userId));
     
-    // Fetch content for each website
-    const websitesWithContent = await Promise.all(
-      websitesData.map(async (website) => {
-        const content = await this.getWebsiteContent(website.id);
+    // Fetch content for each page
+    const pagesWithContent = await Promise.all(
+      pagesData.map(async (page) => {
+        const content = await this.getPageContent(page.id);
         return {
-          ...website,
+          ...page,
           content
         };
       })
     );
     
-    return websitesWithContent as any;
+    return pagesWithContent as any;
   }
 
-  async getWebsite(id: number): Promise<Website | undefined> {
-    const [website] = await db.select().from(websites).where(eq(websites.id, id));
-    return website || undefined;
+  async getPage(id: number): Promise<Page | undefined> {
+    const [page] = await db.select().from(pages).where(eq(pages.id, id));
+    return page || undefined;
   }
 
-  async getWebsiteByDomain(domain: string): Promise<Website | undefined> {
-    const [website] = await db.select().from(websites).where(eq(websites.domain, domain));
-    return website || undefined;
+  async getPageByDomain(domain: string): Promise<Page | undefined> {
+    const [page] = await db.select().from(pages).where(eq(pages.domain, domain));
+    return page || undefined;
   }
 
-  async updateWebsite(websiteId: number, data: Partial<InsertWebsite>): Promise<Website> {
+  async updatePage(pageId: number, data: Partial<InsertPage>): Promise<Page> {
     const updateData = { ...data, updatedAt: new Date() } as any;
-    const [website] = await db
-      .update(websites)
+    const [page] = await db
+      .update(pages)
       .set(updateData)
-      .where(eq(websites.id, websiteId))
+      .where(eq(pages.id, pageId))
       .returning();
-    return website;
+    return page;
   }
 
-  async deleteWebsite(websiteId: number): Promise<void> {
-    await db.delete(websites).where(eq(websites.id, websiteId));
+  async deletePage(pageId: number): Promise<void> {
+    await db.delete(pages).where(eq(pages.id, pageId));
   }
 
-  // Website content management
-  async getWebsiteContent(websiteId: number): Promise<WebsiteContent | undefined> {
-    const [content] = await db.select().from(websiteContent).where(eq(websiteContent.websiteId, websiteId));
+  // Page content management
+  async getPageContent(pageId: number): Promise<PageContent | undefined> {
+    const [content] = await db.select().from(pageContent).where(eq(pageContent.pageId, pageId));
     return content || undefined;
   }
 
-  async createWebsiteContent(content: InsertWebsiteContent): Promise<WebsiteContent> {
+  async createPageContent(content: InsertPageContent): Promise<PageContent> {
     const contentData = {
-      websiteId: content.websiteId,
+      pageId: content.pageId,
       businessName: content.businessName || null,
       tagline: content.tagline || null,
       aboutUs: content.aboutUs || null,
@@ -308,25 +308,25 @@ export class DatabaseStorage implements IStorage {
     };
     
     const [newContent] = await db
-      .insert(websiteContent)
+      .insert(pageContent)
       .values(contentData)
       .returning();
     return newContent;
   }
 
-  async updateWebsiteContent(websiteId: number, content: Partial<InsertWebsiteContent>): Promise<WebsiteContent> {
+  async updatePageContent(pageId: number, content: Partial<InsertPageContent>): Promise<PageContent> {
     const updateData = { ...content, updatedAt: new Date() } as any;
     const [updatedContent] = await db
-      .update(websiteContent)
+      .update(pageContent)
       .set(updateData)
-      .where(eq(websiteContent.websiteId, websiteId))
+      .where(eq(pageContent.pageId, pageId))
       .returning();
     return updatedContent;
   }
 
-  async updateFlexibleContent(websiteId: number, contentId: string, value: string): Promise<WebsiteContent> {
+  async updateFlexibleContent(pageId: number, contentId: string, value: string): Promise<PageContent> {
     // Get current content
-    const currentContent = await this.getWebsiteContent(websiteId);
+    const currentContent = await this.getPageContent(pageId);
     const flexibleContent = (currentContent?.content as Record<string, string>) || {};
     
     // Update the specific content ID
@@ -334,72 +334,72 @@ export class DatabaseStorage implements IStorage {
     
     // Save back to database
     const [updatedContent] = await db
-      .update(websiteContent)
+      .update(pageContent)
       .set({ content: flexibleContent, updatedAt: new Date() })
-      .where(eq(websiteContent.websiteId, websiteId))
+      .where(eq(pageContent.pageId, pageId))
       .returning();
     return updatedContent;
   }
 
-  async publishWebsiteContent(websiteId: number): Promise<WebsiteContent> {
+  async publishPageContent(pageId: number): Promise<PageContent> {
     const [publishedContent] = await db
-      .update(websiteContent)
+      .update(pageContent)
       .set({ isPublished: true, publishedAt: new Date(), updatedAt: new Date() })
-      .where(eq(websiteContent.websiteId, websiteId))
+      .where(eq(pageContent.pageId, pageId))
       .returning();
     return publishedContent;
   }
 
-  async unpublishWebsiteContent(websiteId: number): Promise<WebsiteContent> {
+  async unpublishPageContent(pageId: number): Promise<PageContent> {
     const [unpublishedContent] = await db
-      .update(websiteContent)
+      .update(pageContent)
       .set({ isPublished: false, updatedAt: new Date() })
-      .where(eq(websiteContent.websiteId, websiteId))
+      .where(eq(pageContent.pageId, pageId))
       .returning();
     return unpublishedContent;
   }
 
-  async setMaintenanceMode(websiteId: number, enabled: boolean): Promise<WebsiteContent> {
+  async setMaintenanceMode(pageId: number, enabled: boolean): Promise<PageContent> {
     const [updatedContent] = await db
-      .update(websiteContent)
+      .update(pageContent)
       .set({ maintenanceMode: enabled, updatedAt: new Date() })
-      .where(eq(websiteContent.websiteId, websiteId))
+      .where(eq(pageContent.pageId, pageId))
       .returning();
     return updatedContent;
   }
 
-  async enableFormEmbed(websiteId: number): Promise<WebsiteContent> {
+  async enableFormEmbed(pageId: number): Promise<PageContent> {
     const [updatedContent] = await db
-      .update(websiteContent)
+      .update(pageContent)
       .set({ formEnabled: true, updatedAt: new Date() })
-      .where(eq(websiteContent.websiteId, websiteId))
+      .where(eq(pageContent.pageId, pageId))
       .returning();
     return updatedContent;
   }
 
-  async saveFormEmbed(websiteId: number, formProvider: string, formEmbedCode: string): Promise<WebsiteContent> {
+  async saveFormEmbed(pageId: number, formProvider: string, formEmbedCode: string): Promise<PageContent> {
     const [updatedContent] = await db
-      .update(websiteContent)
+      .update(pageContent)
       .set({ 
         formProvider, 
         formEmbedCode,
         updatedAt: new Date() 
       })
-      .where(eq(websiteContent.websiteId, websiteId))
+      .where(eq(pageContent.pageId, pageId))
       .returning();
     return updatedContent;
   }
 
-  async disableFormEmbed(websiteId: number): Promise<WebsiteContent> {
+  async disableFormEmbed(pageId: number): Promise<PageContent> {
     const [updatedContent] = await db
-      .update(websiteContent)
+      .update(pageContent)
       .set({ 
         formEnabled: false,
         formProvider: null,
         formEmbedCode: null,
         updatedAt: new Date() 
       })
-      .where(eq(websiteContent.websiteId, websiteId))
+      .where(eq(pageContent.pageId, pageId))
       .returning();
     return updatedContent;
   }

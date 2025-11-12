@@ -132,14 +132,15 @@ export default function WebsiteEditor() {
       // Set reloading state to keep overlay visible
       setIsReloadingContent(true);
       
-      // Force iframe to reload to show updated content
+      // Force iframe to reload to show updated content with cache busting
       const iframe = document.querySelector('iframe[data-testid="iframe-edit-mode"]') as HTMLIFrameElement;
       console.log('[Page Editor] Found iframe:', !!iframe);
       if (iframe) {
         console.log('[Page Editor] Reloading iframe to show updated content');
-        // Force reload by setting src to itself
-        const currentSrc = iframe.src;
-        iframe.src = currentSrc;
+        // Add cache-busting timestamp to force fresh reload
+        const url = new URL(iframe.src);
+        url.searchParams.set('_refresh', Date.now().toString());
+        iframe.src = url.toString();
       }
     },
     onError: () => {

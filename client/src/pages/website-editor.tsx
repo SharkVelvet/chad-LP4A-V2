@@ -1378,17 +1378,22 @@ function FormsConfig({ pageId, page }: { pageId: string; page: Page | null | und
       <div className="bg-green-50 border border-green-200 rounded-lg p-4">
         <h4 className="font-semibold text-green-900 mb-1">Form Embedding Enabled</h4>
         <p className="text-sm text-green-800">
-          Your contact section is configured to display an embedded form.
+          Your contact section is configured to display an embedded form in a 2-column layout.
         </p>
       </div>
 
-      {/* Form Provider Selection */}
+      {/* Step 1: Form Provider Selection */}
       <div className="space-y-3">
-        <Label htmlFor="formProvider" className="text-base font-semibold">
-          Select Form Provider
-        </Label>
-        <p className="text-sm text-gray-600">Choose which service you're using for your form.</p>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[#6458AF] text-white font-bold text-sm">
+            1
+          </div>
+          <Label htmlFor="formProvider" className="text-base font-semibold">
+            Select Form Provider
+          </Label>
+        </div>
+        <p className="text-sm text-gray-600 ml-11">Choose which service you're using for your form.</p>
+        <div className="grid grid-cols-3 gap-3 ml-11">
           <Button
             variant={formProvider === "gohighlevel" ? "default" : "outline"}
             className={formProvider === "gohighlevel" ? "bg-[#6458AF] hover:bg-[#5347a0]" : ""}
@@ -1416,20 +1421,31 @@ function FormsConfig({ pageId, page }: { pageId: string; page: Page | null | und
         </div>
       </div>
 
-      {/* Embed Code Input */}
+      {/* Step 2: Embed Code Input */}
       <div className="space-y-3">
-        <Label htmlFor="formEmbedCode" className="text-base font-semibold">
-          Form Embed Code
-        </Label>
-        <p className="text-sm text-gray-600">
+        <div className="flex items-center gap-3">
+          <div className={`flex items-center justify-center w-8 h-8 rounded-full font-bold text-sm ${formProvider ? 'bg-[#6458AF] text-white' : 'bg-gray-300 text-gray-600'}`}>
+            2
+          </div>
+          <Label htmlFor="formEmbedCode" className="text-base font-semibold">
+            Paste Your Form Embed Code
+          </Label>
+        </div>
+        {!formProvider && (
+          <p className="text-sm text-orange-600 font-medium ml-11">
+            ⚠️ Please select a form provider above first
+          </p>
+        )}
+        <p className="text-sm text-gray-600 ml-11">
           Paste the complete embed code from your form provider. This typically includes HTML with &lt;script&gt; or &lt;iframe&gt; tags.
         </p>
         <Textarea
           id="formEmbedCode"
           value={formEmbedCode}
           onChange={(e) => setFormEmbedCode(e.target.value)}
-          placeholder="<script src='...'></script> or <iframe src='...'></iframe>"
-          className="min-h-[200px] font-mono text-sm"
+          placeholder={formProvider ? "<script src='...'></script> or <iframe src='...'></iframe>" : "Select a form provider above to enable this field"}
+          className={`min-h-[200px] font-mono text-sm ml-11 ${!formProvider ? 'bg-gray-50 cursor-not-allowed' : ''}`}
+          disabled={!formProvider}
           data-testid="textarea-embed-code"
         />
       </div>

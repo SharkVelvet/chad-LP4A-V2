@@ -253,6 +253,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const content = await storage.getPageContent(page.id);
+      console.log('[API Response] Sending page with content:', {
+        pageId: page.id,
+        hasContent: !!content,
+        contentKeys: content ? Object.keys(content) : [],
+        contentContentKeys: content?.content ? Object.keys(content.content) : []
+      });
       res.json({ ...page, content });
     } catch (error: any) {
       res.status(500).json({ message: error.message });

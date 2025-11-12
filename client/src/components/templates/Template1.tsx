@@ -192,11 +192,11 @@ export default function Template1({ className = "", content, flexibleContent = {
       <div id="services" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-              Financial <span className="text-red-600">Services & Products</span>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4" data-content-id="services-heading">
+              {getValue('services-heading', 'Financial Services & Products')}
             </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto text-sm sm:text-base">
-              Comprehensive solutions designed to protect your assets, grow your wealth, and secure your financial future.
+            <p className="text-gray-600 max-w-3xl mx-auto text-sm sm:text-base" data-content-id="services-subheading">
+              {getValue('services-subheading', 'Comprehensive solutions designed to protect your assets, grow your wealth, and secure your financial future.')}
             </p>
           </div>
           
@@ -207,10 +207,12 @@ export default function Template1({ className = "", content, flexibleContent = {
                 <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                   <Shield className="w-6 h-6 text-red-600" />
                 </div>
-                <h3 className="text-xl font-bold">Life Insurance</h3>
+                <h3 className="text-xl font-bold" data-content-id="service-life-title">
+                  {getValue('service-life-title', 'Life Insurance')}
+                </h3>
               </div>
-              <p className="text-gray-600 text-sm mb-4">
-                Protect your loved ones and ensure financial security with customized life insurance policies.
+              <p className="text-gray-600 text-sm mb-4" data-content-id="service-life-description">
+                {getValue('service-life-description', 'Protect your loved ones and ensure financial security with customized life insurance policies.')}
               </p>
               <ul className="space-y-2 text-sm text-gray-700 mb-6">
                 <li className="flex items-center">
@@ -237,10 +239,12 @@ export default function Template1({ className = "", content, flexibleContent = {
                 <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                   <TrendingUp className="w-6 h-6 text-red-600" />
                 </div>
-                <h3 className="text-xl font-bold">Investment Planning</h3>
+                <h3 className="text-xl font-bold" data-content-id="service-investment-title">
+                  {getValue('service-investment-title', 'Investment Planning')}
+                </h3>
               </div>
-              <p className="text-gray-600 text-sm mb-4">
-                Strategic investment solutions to help grow your wealth and achieve long-term financial goals.
+              <p className="text-gray-600 text-sm mb-4" data-content-id="service-investment-description">
+                {getValue('service-investment-description', 'Strategic investment solutions to help grow your wealth and achieve long-term financial goals.')}
               </p>
               <ul className="space-y-2 text-sm text-gray-700 mb-6">
                 <li className="flex items-center">
@@ -267,10 +271,12 @@ export default function Template1({ className = "", content, flexibleContent = {
                 <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                   <Home className="w-6 h-6 text-red-600" />
                 </div>
-                <h3 className="text-xl font-bold">Retirement Planning</h3>
+                <h3 className="text-xl font-bold" data-content-id="service-retirement-title">
+                  {getValue('service-retirement-title', 'Retirement Planning')}
+                </h3>
               </div>
-              <p className="text-gray-600 text-sm mb-4">
-                Comprehensive retirement strategies to ensure financial independence during your golden years.
+              <p className="text-gray-600 text-sm mb-4" data-content-id="service-retirement-description">
+                {getValue('service-retirement-description', 'Comprehensive retirement strategies to ensure financial independence during your golden years.')}
               </p>
               <ul className="space-y-2 text-sm text-gray-700 mb-6">
                 <li className="flex items-center">
@@ -297,10 +303,12 @@ export default function Template1({ className = "", content, flexibleContent = {
                 <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                   <GraduationCap className="w-6 h-6 text-red-600" />
                 </div>
-                <h3 className="text-xl font-bold">Education Planning</h3>
+                <h3 className="text-xl font-bold" data-content-id="service-education-title">
+                  {getValue('service-education-title', 'Education Planning')}
+                </h3>
               </div>
-              <p className="text-gray-600 text-sm mb-4">
-                Strategic education funding solutions to help prepare for future academic expenses.
+              <p className="text-gray-600 text-sm mb-4" data-content-id="service-education-description">
+                {getValue('service-education-description', 'Strategic education funding solutions to help prepare for future academic expenses.')}
               </p>
               <ul className="space-y-2 text-sm text-gray-700 mb-6">
                 <li className="flex items-center">
@@ -327,10 +335,12 @@ export default function Template1({ className = "", content, flexibleContent = {
                 <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                   <Heart className="w-6 h-6 text-red-600" />
                 </div>
-                <h3 className="text-xl font-bold">Health Insurance</h3>
+                <h3 className="text-xl font-bold" data-content-id="service-health-title">
+                  {getValue('service-health-title', 'Health Insurance')}
+                </h3>
               </div>
-              <p className="text-gray-600 text-sm mb-4">
-                Comprehensive health coverage options to protect your well-being and financial health.
+              <p className="text-gray-600 text-sm mb-4" data-content-id="service-health-description">
+                {getValue('service-health-description', 'Comprehensive health coverage options to protect your well-being and financial health.')}
               </p>
               <ul className="space-y-2 text-sm text-gray-700 mb-6">
                 <li className="flex items-center">
@@ -357,10 +367,12 @@ export default function Template1({ className = "", content, flexibleContent = {
                 <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                   <FileText className="w-6 h-6 text-red-600" />
                 </div>
-                <h3 className="text-xl font-bold">Estate Planning</h3>
+                <h3 className="text-xl font-bold" data-content-id="service-estate-title">
+                  {getValue('service-estate-title', 'Estate Planning')}
+                </h3>
               </div>
-              <p className="text-gray-600 text-sm mb-4">
-                Comprehensive estate strategies to protect your assets and secure your legacy.
+              <p className="text-gray-600 text-sm mb-4" data-content-id="service-estate-description">
+                {getValue('service-estate-description', 'Comprehensive estate strategies to protect your assets and secure your legacy.')}
               </p>
               <ul className="space-y-2 text-sm text-gray-700 mb-6">
                 <li className="flex items-center">

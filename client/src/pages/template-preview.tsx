@@ -170,10 +170,7 @@ export default function TemplatePreviewPage() {
     // Then apply saved content to all elements with IDs
     if (page?.content) {
       // The flexible content is in page.content.content (JSONB field after rename)
-      console.log('[DOM Hydration] page.content:', page.content);
-      console.log('[DOM Hydration] page.content.content:', page.content.content);
       const flexibleContent = (page.content.content as Record<string, string>) || {};
-      console.log('[DOM Hydration] flexibleContent keys:', Object.keys(flexibleContent));
       const elements = document.querySelectorAll('[data-content-id]');
       
       elements.forEach((element) => {

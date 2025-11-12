@@ -69,7 +69,7 @@ export default function WebsiteEditor() {
 
   // Fetch page data
   const { data: page, isLoading: pageLoading } = useQuery<Page>({
-    queryKey: ["/api/pages", pageId],
+    queryKey: ["/api/pages", String(pageId)],
     queryFn: async () => {
       const res = await fetch(`/api/pages/${pageId}`, {
         credentials: "include",
@@ -94,7 +94,7 @@ export default function WebsiteEditor() {
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
     },
     onError: () => {
       toast({
@@ -127,7 +127,7 @@ export default function WebsiteEditor() {
     },
     onSuccess: async () => {
       // Refetch page data
-      await queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
+      await queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
       
       // Set reloading state to keep overlay visible
       setIsReloadingContent(true);
@@ -159,7 +159,7 @@ export default function WebsiteEditor() {
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
       setExistingDomain("");
       toast({
         title: "Domain Connected",
@@ -182,7 +182,7 @@ export default function WebsiteEditor() {
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
       toast({
         title: "Page Published!",
         description: "Your page is now live and visible to the public.",
@@ -204,7 +204,7 @@ export default function WebsiteEditor() {
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
       toast({
         title: "Page Unpublished",
         description: "Your page is now in draft mode and not visible to the public.",
@@ -226,7 +226,7 @@ export default function WebsiteEditor() {
       return await res.json();
     },
     onSuccess: (_, enabled) => {
-      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
       toast({
         title: enabled ? "Maintenance Mode Enabled" : "Maintenance Mode Disabled",
         description: enabled 
@@ -576,7 +576,7 @@ export default function WebsiteEditor() {
                           const endpoint = checked ? "enable-form" : "disable-form";
                           const res = await apiRequest("POST", `/api/pages/${pageId}/${endpoint}`, {});
                           await res.json();
-                          queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
+                          queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
                           toast({
                             title: checked ? "Forms Enabled" : "Forms Disabled",
                             description: checked 
@@ -658,7 +658,7 @@ export default function WebsiteEditor() {
                     <DomainSearch
                       websiteId={pageId!}
                       onDomainPurchased={(domain) => {
-                        queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
+                        queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
                         queryClient.invalidateQueries({ queryKey: ["/api/pages"] });
                         toast({
                           title: "Domain Purchased and Linked",
@@ -1329,7 +1329,7 @@ function FormsConfig({ pageId, page }: { pageId: string; page: Page | null | und
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
       toast({
         title: "Form Saved",
         description: "Your form embed code has been saved successfully.",
@@ -1350,7 +1350,7 @@ function FormsConfig({ pageId, page }: { pageId: string; page: Page | null | und
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
       toast({
         title: "Form Disabled",
         description: "The form has been removed from your contact section.",

@@ -405,7 +405,9 @@ export default function Template1({ className = "", content, flexibleContent = {
       {/* Why We Serve Section */}
       <div id="why-we-serve" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Why We Serve</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center" data-content-id="why-we-serve-heading">
+            {getValue('why-we-serve-heading', 'Why We Serve')}
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
@@ -459,7 +461,9 @@ export default function Template1({ className = "", content, flexibleContent = {
       {/* Client Testimonials */}
       <div id="testimonials" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Client Testimonials</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center" data-content-id="testimonials-heading">
+            {getValue('testimonials-heading', 'Client Testimonials')}
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
@@ -507,8 +511,12 @@ export default function Template1({ className = "", content, flexibleContent = {
       {/* Contact Us Section */}
       <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12">Contact Us</h2>
-          <p className="text-lg text-gray-600 mb-12">Ready to take control of your financial future? Let's discuss your goals and create a personalized plan.</p>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12" data-content-id="contact-heading">
+            {getValue('contact-heading', 'Contact Us')}
+          </h2>
+          <p className="text-lg text-gray-600 mb-12" data-content-id="contact-subheading">
+            {getValue('contact-subheading', "Ready to take control of your financial future? Let's discuss your goals and create a personalized plan.")}
+          </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="flex flex-col items-center">

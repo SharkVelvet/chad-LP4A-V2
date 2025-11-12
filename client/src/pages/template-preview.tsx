@@ -169,8 +169,8 @@ export default function TemplatePreviewPage() {
     
     // Then apply saved content to all elements with IDs
     if (page?.content) {
-      // The flexible content is in page.content (JSONB field)
-      const flexibleContent = page.content as Record<string, string> || {};
+      // The flexible content is in page.content.content (JSONB field after rename)
+      const flexibleContent = (page.content.content as Record<string, string>) || {};
       const elements = document.querySelectorAll('[data-content-id]');
       
       elements.forEach((element) => {

@@ -211,12 +211,14 @@ export default function AdminClientUsers() {
                         <SelectValue placeholder="None - user will choose later" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">None</SelectItem>
-                        {templates.map((template) => (
-                          <SelectItem key={template.id} value={template.id.toString()}>
-                            Template {template.id} - {template.name}
-                          </SelectItem>
-                        ))}
+                        <SelectItem value="none">None - user will choose later</SelectItem>
+                        {templates
+                          .sort((a, b) => a.id - b.id)
+                          .map((template) => (
+                            <SelectItem key={template.id} value={template.id.toString()}>
+                              {template.id} - {template.name}
+                            </SelectItem>
+                          ))}
                       </SelectContent>
                     </Select>
                     <p className="text-xs text-gray-500">

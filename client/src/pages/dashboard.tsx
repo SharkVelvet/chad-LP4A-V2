@@ -56,10 +56,10 @@ type Template = {
 export default function Dashboard() {
   const { user, logoutMutation } = useAuth();
   const { toast } = useToast();
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
 
   // Fetch all user pages
-  const { data: pages = [], isLoading: pagesLoading } = useQuery<Page[]>({
+  const { data: pages = [], isLoading: pagesLoading, refetch: refetchPages } = useQuery<Page[]>({
     queryKey: ["/api/pages"],
     refetchOnMount: true,
     staleTime: 0,
@@ -69,6 +69,14 @@ export default function Dashboard() {
   const { data: templates = [] } = useQuery<Template[]>({
     queryKey: ["/api/templates"],
   });
+
+  // Force refetch when user returns to dashboard (from editor)
+  useEffect(() => {
+    if (location === '/dashboard') {
+      console.log('[Dashboard] Route detected, refetching pages...');
+      refetchPages();
+    }
+  }, [location, refetchPages]);
 
   if (pagesLoading) {
     return (

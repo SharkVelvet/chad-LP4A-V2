@@ -273,17 +273,21 @@ export default function Template2({ className = "", content, flexibleContent = {
         {/* Financial Services & Products */}
         <div id="services" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Financial Services & Products</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center" data-content-id="services-heading">
+              {getValue('services-heading', 'Financial Services & Products')}
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <Shield className="w-6 h-6 text-red-600" />
                   </div>
-                  <h3 className="text-xl font-bold">Financial Planning</h3>
+                  <h3 className="text-xl font-bold" data-content-id="service-financial-title">
+                    {getValue('service-financial-title', 'Financial Planning')}
+                  </h3>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">
-                  Comprehensive financial planning services to secure your future and optimize your wealth management strategy.
+                <p className="text-gray-600 text-sm mb-4" data-content-id="service-financial-description">
+                  {getValue('service-financial-description', 'Comprehensive financial planning services to secure your future and optimize your wealth management strategy.')}
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center">
@@ -311,10 +315,12 @@ export default function Template2({ className = "", content, flexibleContent = {
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <TrendingUp className="w-6 h-6 text-red-600" />
                   </div>
-                  <h3 className="text-xl font-bold">Investment Planning</h3>
+                  <h3 className="text-xl font-bold" data-content-id="service-investment-title">
+                    {getValue('service-investment-title', 'Investment Planning')}
+                  </h3>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">
-                  Strategic investment solutions to help grow your wealth and achieve long-term financial goals.
+                <p className="text-gray-600 text-sm mb-4" data-content-id="service-investment-description">
+                  {getValue('service-investment-description', 'Strategic investment solutions to help grow your wealth and achieve long-term financial goals.')}
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center">
@@ -342,10 +348,12 @@ export default function Template2({ className = "", content, flexibleContent = {
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <Home className="w-6 h-6 text-red-600" />
                   </div>
-                  <h3 className="text-xl font-bold">Retirement Planning</h3>
+                  <h3 className="text-xl font-bold" data-content-id="service-retirement-title">
+                    {getValue('service-retirement-title', 'Retirement Planning')}
+                  </h3>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">
-                  Comprehensive retirement strategies to ensure financial independence during your golden years.
+                <p className="text-gray-600 text-sm mb-4" data-content-id="service-retirement-description">
+                  {getValue('service-retirement-description', 'Comprehensive retirement strategies to ensure financial independence during your golden years.')}
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center">
@@ -373,10 +381,12 @@ export default function Template2({ className = "", content, flexibleContent = {
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <GraduationCap className="w-6 h-6 text-red-600" />
                   </div>
-                  <h3 className="text-xl font-bold">Education Planning</h3>
+                  <h3 className="text-xl font-bold" data-content-id="service-education-title">
+                    {getValue('service-education-title', 'Education Planning')}
+                  </h3>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">
-                  Strategic savings plans to fund educational goals for you or your children's future success.
+                <p className="text-gray-600 text-sm mb-4" data-content-id="service-education-description">
+                  {getValue('service-education-description', 'Strategic savings plans to fund educational goals for you or your children\'s future success.')}
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center">
@@ -404,10 +414,12 @@ export default function Template2({ className = "", content, flexibleContent = {
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <Heart className="w-6 h-6 text-red-600" />
                   </div>
-                  <h3 className="text-xl font-bold">Insurance Solutions</h3>
+                  <h3 className="text-xl font-bold" data-content-id="service-insurance-title">
+                    {getValue('service-insurance-title', 'Insurance Solutions')}
+                  </h3>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">
-                  Comprehensive insurance coverage to protect your family and assets against unforeseen circumstances.
+                <p className="text-gray-600 text-sm mb-4" data-content-id="service-insurance-description">
+                  {getValue('service-insurance-description', 'Comprehensive insurance coverage to protect your family and assets against unforeseen circumstances.')}
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center">
@@ -435,10 +447,12 @@ export default function Template2({ className = "", content, flexibleContent = {
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <FileText className="w-6 h-6 text-red-600" />
                   </div>
-                  <h3 className="text-xl font-bold">Business Services</h3>
+                  <h3 className="text-xl font-bold" data-content-id="service-business-title">
+                    {getValue('service-business-title', 'Business Services')}
+                  </h3>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">
-                  Specialized financial services designed to help businesses grow and optimize their financial operations.
+                <p className="text-gray-600 text-sm mb-4" data-content-id="service-business-description">
+                  {getValue('service-business-description', 'Specialized financial services designed to help businesses grow and optimize their financial operations.')}
                 </p>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center">
@@ -467,7 +481,9 @@ export default function Template2({ className = "", content, flexibleContent = {
         {/* Why We Serve Section */}
         <div id="why-we-serve" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Why We Serve</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center" data-content-id="why-we-serve-heading">
+              {getValue('why-we-serve-heading', 'Why We Serve')}
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
                 {
@@ -505,7 +521,9 @@ export default function Template2({ className = "", content, flexibleContent = {
         {/* Client Testimonials */}
         <div id="testimonials" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Client Testimonials</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center" data-content-id="testimonials-heading">
+              {getValue('testimonials-heading', 'Client Testimonials')}
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
                 {

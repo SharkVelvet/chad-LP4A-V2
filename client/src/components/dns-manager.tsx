@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Globe, CheckCircle2, Loader2, AlertCircle, Clock, Cloud } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/use-auth";
 
 interface DnsManagerProps {
   domain: string;
@@ -16,7 +17,11 @@ interface DnsManagerProps {
 
 export default function DnsManager({ domain, domainStatus = 'pending', targetDomain }: DnsManagerProps) {
   const { toast } = useToast();
+  const { user } = useAuth();
   const [currentStatus, setCurrentStatus] = useState(domainStatus);
+  
+  // Check if user is super admin
+  const isSuperAdmin = user?.role === 'super_admin';
   
   // Auto-detect target domain from environment or use provided one
   const deploymentDomain = targetDomain || 'landing-pages-for-agents-v2-2-sharkvelvet.replit.app';
@@ -201,26 +206,26 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
         </p>
       </div>
 
-      {/* Debug: Test Railway Registration */}
-      {exists && (
+      {/* Super Admin: Retry Railway Registration */}
+      {exists && isSuperAdmin && (
         <div className="mt-4 bg-purple-50 border border-purple-200 rounded-lg p-3">
-          <p className="text-xs font-semibold text-purple-900 mb-2">🔧 Developer Test</p>
+          <p className="text-xs font-semibold text-purple-900 mb-2">🔧 Super Admin Tools</p>
           <p className="text-xs text-purple-700 mb-3">
-            Test the automated Railway domain registration. This will attempt to register {domain} with Railway's hosting platform.
+            Manually retry Railway domain registration for this customer's domain. Use this if the automated registration failed during initial setup.
           </p>
           <Button
             onClick={() => retryRailway.mutate()}
             disabled={retryRailway.isPending}
             className="bg-purple-600 hover:bg-purple-700 text-xs h-8"
-            data-testid="button-test-railway"
+            data-testid="button-retry-railway-admin"
           >
             {retryRailway.isPending ? (
               <>
                 <Loader2 className="h-3 w-3 mr-2 animate-spin" />
-                Testing...
+                Retrying...
               </>
             ) : (
-              'Test Railway Registration'
+              'Retry Railway Registration'
             )}
           </Button>
         </div>

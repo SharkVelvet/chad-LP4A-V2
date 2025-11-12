@@ -304,7 +304,8 @@ export class DatabaseStorage implements IStorage {
       address: content.address || null,
       heroImage: content.heroImage || null,
       logo: content.logo || null,
-      galleryImages: content.galleryImages || null
+      galleryImages: content.galleryImages || null,
+      content: content.content || {}  // Initialize flexible content field
     };
     
     const [newContent] = await db

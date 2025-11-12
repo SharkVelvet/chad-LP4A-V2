@@ -158,7 +158,8 @@ export default function Dashboard() {
                           <div className="relative w-full bg-white border-b" style={{ height: '200px', overflow: 'hidden' }}>
                             {template ? (
                               <iframe
-                                src={`/template-preview?template=${template.slug}&pageId=${page.id}&hideNav=true&editMode=false&_t=${Date.now()}`}
+                                key={`preview-${page.id}-${page.updatedAt}`}
+                                src={`/template-preview?template=${template.slug}&pageId=${page.id}&hideNav=true&editMode=false&_t=${new Date(page.updatedAt).getTime()}`}
                                 className="absolute top-0 left-0 w-full h-full border-0 pointer-events-none"
                                 style={{ 
                                   transform: 'scale(0.25)', 

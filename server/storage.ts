@@ -190,6 +190,57 @@ export class DatabaseStorage implements IStorage {
     return result;
   }
 
+  async createUserWithOptionalWebsite(userData: { 
+    firstName: string; 
+    lastName: string; 
+    email: string; 
+    templateId?: number 
+  }): Promise<{ user: User; websiteCreated: boolean }> {
+    // Wrap in transaction to prevent orphaned accounts if website creation fails
+    return await db.transaction(async (tx) => {
+      // Create user with OTP-based auth (empty password is standard for OTP users)
+      const [newUser] = await tx
+        .insert(users)
+        .values({
+          username: userData.email, // Use email as username
+          email: userData.email,
+          password: '', // Empty password - user will authenticate via OTP (matches existing OTP flow)
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          role: 'user',
+          emailVerified: true, // Admin-created users are pre-verified
+        })
+        .returning();
+
+      let websiteCreated = false;
+
+      if (userData.templateId) {
+        const [page] = await tx
+          .insert(pages)
+          .values({
+            userId: newUser.id,
+            templateId: userData.templateId,
+            name: `${userData.firstName}'s Website`,
+            subscriptionPlan: 'premium',
+            subscriptionStatus: 'active',
+            domainVerified: false,
+          })
+          .returning();
+
+        await tx
+          .insert(pageContent)
+          .values({
+            pageId: page.id,
+            businessName: `${userData.firstName} ${userData.lastName}`,
+          });
+
+        websiteCreated = true;
+      }
+
+      return { user: newUser, websiteCreated };
+    });
+  }
+
   // Location management
   async getLocation(id: number): Promise<Location | undefined> {
     const [location] = await db.select().from(locations).where(eq(locations.id, id));

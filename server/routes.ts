@@ -1915,6 +1915,61 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Super Admin: Create a new user with optional template/website
+  app.post("/api/admin/create-user", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      // Validate request body with Zod
+      const createUserRequestSchema = z.object({
+        firstName: z.string().min(1, "First name is required"),
+        lastName: z.string().min(1, "Last name is required"),
+        email: z.string().email("Invalid email address"),
+        templateId: z.string().optional().transform((val) => {
+          if (!val || val === '') return undefined;
+          const parsed = parseInt(val, 10);
+          if (isNaN(parsed)) throw new Error("templateId must be a valid number");
+          return parsed;
+        }),
+      });
+
+      const validationResult = createUserRequestSchema.safeParse(req.body);
+      if (!validationResult.success) {
+        return res.status(400).json({ 
+          error: "Validation failed", 
+          details: validationResult.error.errors 
+        });
+      }
+
+      const { firstName, lastName, email, templateId } = validationResult.data;
+
+      // Check if user already exists
+      const existingUser = await storage.getUserByEmail(email);
+      if (existingUser) {
+        return res.status(400).json({ error: "User with this email already exists" });
+      }
+
+      const result = await storage.createUserWithOptionalWebsite({
+        firstName,
+        lastName,
+        email,
+        templateId,
+      });
+
+      res.json({
+        success: true,
+        user: result.user,
+        websiteCreated: result.websiteCreated,
+      });
+    } catch (error: any) {
+      console.error('Error creating user:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

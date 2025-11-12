@@ -322,6 +322,13 @@ export class DatabaseStorage implements IStorage {
       .set(updateData)
       .where(eq(pageContent.pageId, pageId))
       .returning();
+    
+    // Also bump the parent page's updatedAt so dashboard previews refresh
+    await db
+      .update(pages)
+      .set({ updatedAt: new Date() })
+      .where(eq(pages.id, pageId));
+    
     return updatedContent;
   }
 
@@ -339,6 +346,13 @@ export class DatabaseStorage implements IStorage {
       .set({ content: flexibleContent, updatedAt: new Date() })
       .where(eq(pageContent.pageId, pageId))
       .returning();
+    
+    // Also bump the parent page's updatedAt so dashboard previews refresh
+    await db
+      .update(pages)
+      .set({ updatedAt: new Date() })
+      .where(eq(pages.id, pageId));
+    
     return updatedContent;
   }
 

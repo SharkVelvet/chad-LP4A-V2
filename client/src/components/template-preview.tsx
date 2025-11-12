@@ -5823,7 +5823,7 @@ export default function TemplatePreview({ templateSlug, className = "", content,
               </nav>
             </div>
             
-            {/* Agent Name and Website */}
+            {/* Agent Name and Page URL */}
             <div className="text-center mb-6">
               <h3 className="text-3xl font-bold text-red-600 mb-2">Doug Welms</h3>
               <p className="text-gray-300 mb-4">dougwelmsinsurance.com</p>

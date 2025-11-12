@@ -13,7 +13,7 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 import DomainSearch from "@/components/domain-search";
 import DnsManager from "@/components/dns-manager";
 
-type Website = {
+type Page = {
   id: number;
   userId: number;
   templateId: number;
@@ -43,14 +43,14 @@ type Template = {
   slug: string;
 };
 
-type MenuSection = "website" | "edit-content" | "colors" | "forms" | "domain" | "settings" | "seo" | "analytics";
+type MenuSection = "page" | "edit-content" | "colors" | "forms" | "domain" | "settings" | "seo" | "analytics";
 
 export default function WebsiteEditor() {
   const [, navigate] = useLocation();
-  const [, params] = useRoute("/editor/:websiteId");
-  const websiteId = params?.websiteId ? parseInt(params.websiteId) : null;
-  const [activeSection, setActiveSection] = useState<MenuSection>("website");
-  const [isWebsiteExpanded] = useState(true); // Always keep Website menu expanded
+  const [, params] = useRoute("/editor/:pageId");
+  const pageId = params?.pageId ? parseInt(params.pageId) : null;
+  const [activeSection, setActiveSection] = useState<MenuSection>("page");
+  const [isPageExpanded] = useState(true); // Always keep Page menu expanded
   const [isEditOverlayOpen, setIsEditOverlayOpen] = useState(false);
   const [isIframeLoading, setIsIframeLoading] = useState(true);
   const [isReloadingContent, setIsReloadingContent] = useState(false);
@@ -67,17 +67,17 @@ export default function WebsiteEditor() {
     address: "",
   });
 
-  // Fetch website data
-  const { data: website, isLoading } = useQuery<Website>({
-    queryKey: ["/api/websites", websiteId],
+  // Fetch page data
+  const { data: page, isLoading: pageLoading } = useQuery<Page>({
+    queryKey: ["/api/pages", pageId],
     queryFn: async () => {
-      const res = await fetch(`/api/websites/${websiteId}`, {
+      const res = await fetch(`/api/pages/${pageId}`, {
         credentials: "include",
       });
-      if (!res.ok) throw new Error("Failed to fetch website");
+      if (!res.ok) throw new Error("Failed to fetch page");
       return res.json();
     },
-    enabled: !!websiteId,
+    enabled: !!pageId,
   });
 
   // Fetch templates to get the slug
@@ -85,16 +85,16 @@ export default function WebsiteEditor() {
     queryKey: ["/api/templates"],
   });
 
-  const template = templates?.find(t => t.id === website?.templateId);
+  const template = templates?.find(t => t.id === page?.templateId);
 
   // Save content mutation (defined early so it can be used in effects)
   const saveContentMutation = useMutation({
     mutationFn: async (content: typeof formData) => {
-      const res = await apiRequest("PUT", `/api/websites/${websiteId}/content`, content);
+      const res = await apiRequest("PUT", `/api/pages/${pageId}/content`, content);
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
     },
     onError: () => {
       toast({
@@ -107,36 +107,36 @@ export default function WebsiteEditor() {
 
   // Populate form with existing data
   useEffect(() => {
-    if (website?.content) {
+    if (page?.content) {
       setFormData({
-        businessName: website.content.businessName || "",
-        tagline: website.content.tagline || "",
-        aboutUs: website.content.aboutUs || "",
-        phone: website.content.phone || "",
-        email: website.content.email || "",
-        address: website.content.address || "",
+        businessName: page.content.businessName || "",
+        tagline: page.content.tagline || "",
+        aboutUs: page.content.aboutUs || "",
+        phone: page.content.phone || "",
+        email: page.content.email || "",
+        address: page.content.address || "",
       });
     }
-  }, [website]);
+  }, [page]);
 
   // Save flexible content mutation (for any content ID)
   const saveFlexibleContentMutation = useMutation({
     mutationFn: async ({ contentId, value }: { contentId: string; value: string }) => {
-      const res = await apiRequest("PATCH", `/api/websites/${websiteId}/content/${encodeURIComponent(contentId)}`, { value });
+      const res = await apiRequest("PATCH", `/api/pages/${pageId}/content/${encodeURIComponent(contentId)}`, { value });
       return await res.json();
     },
     onSuccess: async () => {
-      // Refetch website data
-      await queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      // Refetch page data
+      await queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
       
       // Set reloading state to keep overlay visible
       setIsReloadingContent(true);
       
       // Force iframe to reload to show updated content
       const iframe = document.querySelector('iframe[data-testid="iframe-edit-mode"]') as HTMLIFrameElement;
-      console.log('[Website Editor] Found iframe:', !!iframe);
+      console.log('[Page Editor] Found iframe:', !!iframe);
       if (iframe) {
-        console.log('[Website Editor] Reloading iframe to show updated content');
+        console.log('[Page Editor] Reloading iframe to show updated content');
         // Force reload by setting src to itself
         const currentSrc = iframe.src;
         iframe.src = currentSrc;
@@ -155,15 +155,15 @@ export default function WebsiteEditor() {
   // Connect existing domain mutation
   const connectExistingDomainMutation = useMutation({
     mutationFn: async (domain: string) => {
-      const res = await apiRequest("PUT", `/api/websites/${websiteId}`, { domain });
+      const res = await apiRequest("PUT", `/api/pages/${pageId}`, { domain });
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
       setExistingDomain("");
       toast({
         title: "Domain Connected",
-        description: "Your existing domain has been connected to this website.",
+        description: "Your existing domain has been connected to this page.",
       });
     },
     onError: () => {
@@ -175,45 +175,45 @@ export default function WebsiteEditor() {
     },
   });
 
-  // Publish website mutation
+  // Publish page mutation
   const publishMutation = useMutation({
     mutationFn: async () => {
-      const res = await apiRequest("POST", `/api/websites/${websiteId}/publish`, {});
+      const res = await apiRequest("POST", `/api/pages/${pageId}/publish`, {});
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
       toast({
-        title: "Website Published!",
-        description: "Your website is now live and visible to the public.",
+        title: "Page Published!",
+        description: "Your page is now live and visible to the public.",
       });
     },
     onError: () => {
       toast({
         title: "Error",
-        description: "Failed to publish website. Please try again.",
+        description: "Failed to publish page. Please try again.",
         variant: "destructive",
       });
     },
   });
 
-  // Unpublish website mutation
+  // Unpublish page mutation
   const unpublishMutation = useMutation({
     mutationFn: async () => {
-      const res = await apiRequest("POST", `/api/websites/${websiteId}/unpublish`, {});
+      const res = await apiRequest("POST", `/api/pages/${pageId}/unpublish`, {});
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
       toast({
-        title: "Website Unpublished",
-        description: "Your website is now in draft mode and not visible to the public.",
+        title: "Page Unpublished",
+        description: "Your page is now in draft mode and not visible to the public.",
       });
     },
     onError: () => {
       toast({
         title: "Error",
-        description: "Failed to unpublish website. Please try again.",
+        description: "Failed to unpublish page. Please try again.",
         variant: "destructive",
       });
     },
@@ -222,16 +222,16 @@ export default function WebsiteEditor() {
   // Maintenance mode mutation
   const maintenanceMutation = useMutation({
     mutationFn: async (enabled: boolean) => {
-      const res = await apiRequest("POST", `/api/websites/${websiteId}/maintenance`, { enabled });
+      const res = await apiRequest("POST", `/api/pages/${pageId}/maintenance`, { enabled });
       return await res.json();
     },
     onSuccess: (_, enabled) => {
-      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
       toast({
         title: enabled ? "Maintenance Mode Enabled" : "Maintenance Mode Disabled",
         description: enabled 
           ? "Visitors will see a maintenance message."
-          : "Your website is back to normal operation.",
+          : "Your page is back to normal operation.",
       });
     },
     onError: () => {
@@ -251,11 +251,11 @@ export default function WebsiteEditor() {
       if (event.data.type === 'CONTENT_EDIT') {
         const { field, value, contentId } = event.data;
         
-        console.log('[Website Editor] Received content edit:', { field, contentId, valueLength: value?.length });
+        console.log('[Page Editor] Received content edit:', { field, contentId, valueLength: value?.length });
         
         // Use flexible content ID if provided, otherwise fall back to legacy field
         if (contentId) {
-          console.log('[Website Editor] Saving flexible content:', contentId);
+          console.log('[Page Editor] Saving flexible content:', contentId);
           saveFlexibleContentMutation.mutate({ contentId, value });
         } else if (field) {
           // Legacy support - save using old method
@@ -281,11 +281,11 @@ export default function WebsiteEditor() {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  if (!websiteId) {
-    return <div>Invalid website ID</div>;
+  if (!pageId) {
+    return <div>Invalid page ID</div>;
   }
 
-  if (isLoading) {
+  if (pageLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
@@ -296,8 +296,8 @@ export default function WebsiteEditor() {
     );
   }
 
-  if (!website) {
-    return <div>Website not found</div>;
+  if (!page) {
+    return <div>Page not found</div>;
   }
 
   const menuItems = [
@@ -307,7 +307,7 @@ export default function WebsiteEditor() {
     { id: "domain" as MenuSection, label: "Domain Name", icon: Globe },
   ];
 
-  const websiteSubItems = [
+  const pageSubItems = [
     { id: "edit-content" as MenuSection, label: "Edit Content", icon: FileEdit },
     { id: "colors" as MenuSection, label: "Colors", icon: Palette },
     { id: "forms" as MenuSection, label: "Add / Edit Forms", icon: FileText },
@@ -328,7 +328,7 @@ export default function WebsiteEditor() {
             ← Back to Dashboard
           </Button>
           <span className="text-sm text-gray-500">|</span>
-          <h1 className="text-sm font-semibold">{website.name}</h1>
+          <h1 className="text-sm font-semibold">{page.name}</h1>
         </div>
       </div>
 
@@ -339,28 +339,28 @@ export default function WebsiteEditor() {
           <div className="p-4 flex-1">
             <h2 className="text-xs font-semibold text-gray-500 uppercase mb-3">Editor Menu</h2>
             <div className="space-y-1">
-              {/* Website menu item with submenu */}
+              {/* Page menu item with submenu */}
               <div>
                 <button
                   onClick={() => {
-                    setActiveSection("website");
+                    setActiveSection("page");
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    activeSection === "website" || activeSection === "edit-content" || activeSection === "colors"
+                    activeSection === "page" || activeSection === "edit-content" || activeSection === "colors"
                       ? "border-2 border-black text-black bg-white"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
-                  data-testid="menu-website"
+                  data-testid="menu-page"
                 >
                   <Globe className="h-4 w-4" />
-                  <span className="flex-1 text-left">Website</span>
+                  <span className="flex-1 text-left">Page</span>
                   <ChevronDown className="h-4 w-4" />
                 </button>
                 
-                {/* Website submenu - Always visible */}
+                {/* Page submenu - Always visible */}
                 {true && (
                   <div className="mt-1 ml-4 space-y-1">
-                    {websiteSubItems.map((item) => {
+                    {pageSubItems.map((item) => {
                       const Icon = item.icon;
                       const isActive = activeSection === item.id;
                       return (
@@ -413,16 +413,16 @@ export default function WebsiteEditor() {
               })}
             </div>
 
-            {/* Website Visibility Widget - Always visible at bottom */}
+            {/* Page Visibility Widget - Always visible at bottom */}
             <div className="p-4 border-t mt-auto">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                <h4 className="font-semibold text-gray-900 text-sm mb-2">Website Status</h4>
+                <h4 className="font-semibold text-gray-900 text-sm mb-2">Page Status</h4>
                 
                 {/* Current Status Badge */}
                 <div className="mb-3">
-                  {website?.content?.maintenanceMode ? (
+                  {page?.content?.maintenanceMode ? (
                     <Badge className="bg-orange-500 text-white">🔧 Maintenance Mode</Badge>
-                  ) : website?.content?.isPublished ? (
+                  ) : page?.content?.isPublished ? (
                     <Badge className="bg-green-600 text-white">✓ Published</Badge>
                   ) : (
                     <Badge variant="outline" className="border-gray-400 text-gray-700">📝 Draft</Badge>
@@ -432,7 +432,7 @@ export default function WebsiteEditor() {
                 {/* Status Actions */}
                 <div className="space-y-2">
                   {/* Show different options based on current state */}
-                  {website?.content?.maintenanceMode ? (
+                  {page?.content?.maintenanceMode ? (
                     <>
                       <Button
                         onClick={() => maintenanceMutation.mutate(false)}
@@ -455,14 +455,14 @@ export default function WebsiteEditor() {
                         Set to Draft
                       </Button>
                     </>
-                  ) : !website?.content?.isPublished ? (
+                  ) : !page?.content?.isPublished ? (
                     <>
                       <Button
                         onClick={() => publishMutation.mutate()}
                         disabled={publishMutation.isPending}
                         className="w-full bg-green-600 hover:bg-green-700"
                         size="sm"
-                        data-testid="button-publish-website"
+                        data-testid="button-publish-page"
                       >
                         Publish Live
                       </Button>
@@ -483,7 +483,7 @@ export default function WebsiteEditor() {
                         variant="outline"
                         className="w-full"
                         size="sm"
-                        data-testid="button-unpublish-website"
+                        data-testid="button-unpublish-page"
                       >
                         Set to Draft
                       </Button>
@@ -497,27 +497,27 @@ export default function WebsiteEditor() {
 
         {/* Main content area with sliding panels */}
         <div className="flex-1 relative overflow-hidden">
-          {/* Website preview panel */}
+          {/* Page preview panel */}
           <div
             className={`absolute inset-0 transition-transform duration-300 ease-in-out ${
-              activeSection === "website" ? "translate-x-0" : "translate-x-full"
+              activeSection === "page" ? "translate-x-0" : "translate-x-full"
             }`}
           >
             {!template || isIframeLoading ? (
               <div className="w-full h-full flex items-center justify-center bg-white">
                 <div className="flex flex-col items-center gap-4">
                   <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
-                  <p className="text-sm text-gray-600">Loading website...</p>
+                  <p className="text-sm text-gray-600">Loading page...</p>
                 </div>
               </div>
             ) : null}
             {template && (
               <iframe
-                key={`preview-${websiteId}`}
-                src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true&editMode=false`}
+                key={`preview-${pageId}`}
+                src={`/template-preview?template=${template.slug}&websiteId=${pageId}&hideNav=true&editMode=false`}
                 className={`w-full h-full border-0 ${isIframeLoading ? 'invisible' : 'visible'}`}
-                title="Website Preview"
-                data-testid="iframe-website-preview"
+                title="Page Preview"
+                data-testid="iframe-page-preview"
                 onLoad={() => setIsIframeLoading(false)}
               />
             )}
@@ -533,12 +533,12 @@ export default function WebsiteEditor() {
               <div className="max-w-2xl space-y-6">
                 <div>
                   <h3 className="text-2xl font-bold mb-2">Colors</h3>
-                  <p className="text-sm text-gray-600 mb-6">Customize your website colors and branding.</p>
+                  <p className="text-sm text-gray-600 mb-6">Customize your page colors and branding.</p>
                 </div>
                 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                   <p className="text-sm text-blue-800">
-                    Color customization coming soon! You'll be able to customize your website's color scheme, including primary colors, accent colors, and text colors.
+                    Color customization coming soon! You'll be able to customize your page's color scheme, including primary colors, accent colors, and text colors.
                   </p>
                 </div>
               </div>
@@ -563,20 +563,20 @@ export default function WebsiteEditor() {
                     <div className="flex-1">
                       <h4 className="font-semibold text-gray-900 mb-1">Enable Form in Contact Section</h4>
                       <p className="text-sm text-gray-600">
-                        {website?.content?.formEnabled 
+                        {page?.content?.formEnabled 
                           ? "Form embedding is active. Configure your embed code below."
                           : "Turn on to embed a form from Go High Level, Formstack, or Formspree."
                         }
                       </p>
                     </div>
                     <Switch
-                      checked={website?.content?.formEnabled || false}
+                      checked={page?.content?.formEnabled || false}
                       onCheckedChange={async (checked) => {
                         try {
                           const endpoint = checked ? "enable-form" : "disable-form";
-                          const res = await apiRequest("POST", `/api/websites/${websiteId}/${endpoint}`, {});
+                          const res = await apiRequest("POST", `/api/pages/${pageId}/${endpoint}`, {});
                           await res.json();
-                          queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+                          queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
                           toast({
                             title: checked ? "Forms Enabled" : "Forms Disabled",
                             description: checked 
@@ -595,17 +595,17 @@ export default function WebsiteEditor() {
                     />
                   </div>
 
-                  {website?.content?.formEnabled && (
+                  {page?.content?.formEnabled && (
                     <div className="pt-4 border-t">
                       <p className="text-xs text-gray-500 mb-4">
-                        Note: Only one form per website is allowed. The form will be displayed in your contact section.
+                        Note: Only one form per page is allowed. The form will be displayed in your contact section.
                       </p>
                     </div>
                   )}
                 </div>
 
-                {website?.content?.formEnabled && websiteId && (
-                  <FormsConfig websiteId={websiteId.toString()} website={website} />
+                {page?.content?.formEnabled && pageId && (
+                  <FormsConfig pageId={pageId.toString()} page={page} />
                 )}
               </div>
             </div>
@@ -621,19 +621,19 @@ export default function WebsiteEditor() {
               <div className="max-w-4xl space-y-8">
                 <div>
                   <h3 className="text-2xl font-bold mb-2">Domain Name</h3>
-                  <p className="text-sm text-gray-600 mb-6">Manage your website's domain.</p>
+                  <p className="text-sm text-gray-600 mb-6">Manage your page's domain.</p>
                 </div>
 
                 {/* Domain Status Message */}
-                {website?.domain ? (
+                {page?.domain ? (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                     <div className="flex items-start gap-4">
                       <Globe className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="text-lg font-semibold text-green-900 mb-2">
-                          You have this domain name setup for this webpage:
+                          You have this domain name setup for this page:
                         </h4>
-                        <p className="text-2xl font-bold text-green-700">{website.domain}</p>
+                        <p className="text-2xl font-bold text-green-700">{page.domain}</p>
                       </div>
                     </div>
                   </div>
@@ -643,7 +643,7 @@ export default function WebsiteEditor() {
                       <Globe className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="text-lg font-semibold text-blue-900 mb-1">
-                          You have no domain names attached to this website
+                          You have no domain names attached to this page
                         </h4>
                         <p className="text-sm text-blue-700">Please search below to find and purchase a domain, or connect a domain you already own.</p>
                       </div>
@@ -652,17 +652,17 @@ export default function WebsiteEditor() {
                 )}
 
                 {/* Domain Search and Purchase - Only show if no domain attached */}
-                {!website?.domain && (
+                {!page?.domain && (
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <h4 className="text-lg font-semibold mb-4">Search and Purchase Domain</h4>
                     <DomainSearch
-                      websiteId={websiteId!}
+                      websiteId={pageId!}
                       onDomainPurchased={(domain) => {
-                        queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
-                        queryClient.invalidateQueries({ queryKey: ["/api/websites"] });
+                        queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
+                        queryClient.invalidateQueries({ queryKey: ["/api/pages"] });
                         toast({
                           title: "Domain Purchased and Linked",
-                          description: `${domain} has been purchased and linked to this website.`,
+                          description: `${domain} has been purchased and linked to this page.`,
                         });
                       }}
                     />
@@ -670,7 +670,7 @@ export default function WebsiteEditor() {
                 )}
 
                 {/* Connect Existing Domain - Collapsible */}
-                {!website?.domain && (
+                {!page?.domain && (
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <Button
                       variant="outline"
@@ -712,8 +712,8 @@ export default function WebsiteEditor() {
                 )}
 
                 {/* DNS Management */}
-                {website?.domain && (
-                  <DnsManager domain={website.domain} />
+                {page?.domain && (
+                  <DnsManager domain={page.domain} />
                 )}
               </div>
             </div>
@@ -730,15 +730,15 @@ export default function WebsiteEditor() {
               
               <div className="max-w-2xl space-y-6">
                 <div>
-                  <h3 className="text-2xl font-bold mb-2">Website Settings</h3>
-                  <p className="text-sm text-gray-600 mb-6">Manage your website configuration and preferences.</p>
+                  <h3 className="text-2xl font-bold mb-2">Page Settings</h3>
+                  <p className="text-sm text-gray-600 mb-6">Manage your page configuration and preferences.</p>
                 </div>
                 
                 <div>
                   <Label htmlFor="siteName">Site Name</Label>
                   <Input
                     id="siteName"
-                    value={website.name}
+                    value={page.name}
                     disabled
                     className="bg-gray-50"
                     data-testid="input-site-name"
@@ -748,7 +748,7 @@ export default function WebsiteEditor() {
                   <Label htmlFor="domain">Domain</Label>
                   <Input
                     id="domain"
-                    value={website.domain || "Not set"}
+                    value={page.domain || "Not set"}
                     disabled
                     className="bg-gray-50"
                     data-testid="input-domain"
@@ -758,31 +758,31 @@ export default function WebsiteEditor() {
                   <Label htmlFor="status">Subscription Status</Label>
                   <Input
                     id="status"
-                    value={website.siteStatus}
+                    value={page.siteStatus}
                     disabled
                     className="bg-gray-50"
                     data-testid="input-status"
                   />
                 </div>
 
-                {/* Publish/Unpublish Website */}
+                {/* Publish/Unpublish Page */}
                 <div className="border border-gray-200 rounded-lg p-4 bg-blue-50">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <h4 className="font-semibold text-gray-900 mb-1">Website Visibility</h4>
+                      <h4 className="font-semibold text-gray-900 mb-1">Page Visibility</h4>
                       <p className="text-sm text-gray-600">
-                        {website?.content?.isPublished 
-                          ? "Your website is live and visible to the public."
-                          : "Your website is in draft mode and not visible to the public."}
+                        {page?.content?.isPublished 
+                          ? "Your page is live and visible to the public."
+                          : "Your page is in draft mode and not visible to the public."}
                       </p>
                     </div>
                     <Button
                       onClick={() => {
-                        if (website?.content?.isPublished) {
+                        if (page?.content?.isPublished) {
                           // Unpublish
                           toast({
                             title: "Cannot Unpublish",
-                            description: "Please contact support to unpublish your website.",
+                            description: "Please contact support to unpublish your page.",
                             variant: "destructive",
                           });
                         } else {
@@ -791,18 +791,18 @@ export default function WebsiteEditor() {
                         }
                       }}
                       disabled={publishMutation.isPending}
-                      className={website?.content?.isPublished ? "bg-amber-600 hover:bg-amber-700" : "bg-green-600 hover:bg-green-700"}
-                      data-testid="button-publish-website"
+                      className={page?.content?.isPublished ? "bg-amber-600 hover:bg-amber-700" : "bg-green-600 hover:bg-green-700"}
+                      data-testid="button-publish-page"
                     >
                       {publishMutation.isPending ? (
                         <>
                           <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                           Publishing...
                         </>
-                      ) : website?.content?.isPublished ? (
-                        "Website is Live"
+                      ) : page?.content?.isPublished ? (
+                        "Page is Live"
                       ) : (
-                        "Publish Website"
+                        "Publish Page"
                       )}
                     </Button>
                   </div>
@@ -852,126 +852,114 @@ export default function WebsiteEditor() {
               <div className="max-w-3xl space-y-6">
                 <div>
                   <h3 className="text-2xl font-bold mb-2">SEO Settings</h3>
-                  <p className="text-sm text-gray-600 mb-6">Optimize your website for search engines and social media.</p>
+                  <p className="text-sm text-gray-600 mb-6">Optimize your page for search engines and social media.</p>
                 </div>
 
                 {/* Basic SEO */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
-                  <h4 className="text-lg font-semibold">Essential SEO Tags</h4>
-                  
                   <div>
-                    <Label htmlFor="metaTitle">Meta Title *</Label>
-                    <Input
-                      id="metaTitle"
-                      placeholder="Best Insurance Services | Your Business Name"
-                      maxLength={60}
-                      data-testid="input-meta-title"
-                    />
-                    <p className="text-xs text-gray-500 mt-1">
-                      Keep under 60 characters. Include your primary keyword near the beginning.
-                    </p>
-                  </div>
+                    <h4 className="text-lg font-semibold mb-4">Basic SEO</h4>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="pageTitle">Page Title</Label>
+                        <Input
+                          id="pageTitle"
+                          placeholder="Your Business Name - Short Description"
+                          className="mt-2"
+                          data-testid="input-page-title"
+                        />
+                        <p className="text-xs text-gray-500 mt-1">
+                          Recommended: 50-60 characters. This appears in search results and browser tabs.
+                        </p>
+                      </div>
 
-                  <div>
-                    <Label htmlFor="metaDescription">Meta Description *</Label>
-                    <Textarea
-                      id="metaDescription"
-                      placeholder="Discover comprehensive insurance solutions tailored to protect what matters most. Get a free quote today and secure your future."
-                      maxLength={160}
-                      rows={3}
-                      data-testid="input-meta-description"
-                    />
-                    <p className="text-xs text-gray-500 mt-1">
-                      Keep 150-160 characters. Include a call-to-action and secondary keywords.
-                    </p>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="canonicalUrl">Canonical URL</Label>
-                    <Input
-                      id="canonicalUrl"
-                      placeholder="https://yourdomain.com/page-name"
-                      data-testid="input-canonical-url"
-                    />
-                    <p className="text-xs text-gray-500 mt-1">
-                      The "master" URL version to avoid duplicate content issues.
-                    </p>
+                      <div>
+                        <Label htmlFor="metaDescription">Meta Description</Label>
+                        <Textarea
+                          id="metaDescription"
+                          placeholder="A compelling description of what your page offers..."
+                          className="mt-2 min-h-[100px]"
+                          data-testid="textarea-meta-description"
+                        />
+                        <p className="text-xs text-gray-500 mt-1">
+                          Recommended: 150-160 characters. This appears below your title in search results.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Social Media Tags */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
-                  <h4 className="text-lg font-semibold">Social Media Preview</h4>
-                  <p className="text-sm text-gray-600">Control how your site appears when shared on social media.</p>
+                {/* Social Media Preview */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold mb-4">Social Media Sharing (Open Graph)</h4>
                   
-                  <div>
-                    <Label htmlFor="ogTitle">Open Graph Title (Facebook, LinkedIn)</Label>
-                    <Input
-                      id="ogTitle"
-                      placeholder="Your Page Title for Social Media"
-                      data-testid="input-og-title"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="ogDescription">Open Graph Description</Label>
-                    <Textarea
-                      id="ogDescription"
-                      placeholder="Compelling description for social media shares"
-                      rows={2}
-                      data-testid="input-og-description"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="ogImage">Open Graph Image URL</Label>
-                    <Input
-                      id="ogImage"
-                      placeholder="https://yourdomain.com/social-image.jpg"
-                      data-testid="input-og-image"
-                    />
-                    <p className="text-xs text-gray-500 mt-1">
-                      Recommended size: 1200x630px for best results across platforms.
-                    </p>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="twitterCard">Twitter Card Type</Label>
-                    <select 
-                      id="twitterCard" 
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                      data-testid="select-twitter-card"
-                    >
-                      <option value="summary_large_image">Summary with Large Image</option>
-                      <option value="summary">Summary</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Indexing Settings */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
-                  <h4 className="text-lg font-semibold">Indexing & Crawling</h4>
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-2">
-                      <input 
-                        type="checkbox" 
-                        id="allowIndexing" 
-                        defaultChecked
-                        className="h-4 w-4 rounded border-gray-300"
-                        data-testid="checkbox-allow-indexing"
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="ogTitle">Social Title</Label>
+                      <Input
+                        id="ogTitle"
+                        placeholder="How your page appears when shared on social media"
+                        className="mt-2"
+                        data-testid="input-og-title"
                       />
-                      <Label htmlFor="allowIndexing" className="font-normal cursor-pointer">
+                      <p className="text-xs text-gray-500 mt-1">
+                        Optional - defaults to Page Title if not set
+                      </p>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="ogDescription">Social Description</Label>
+                      <Textarea
+                        id="ogDescription"
+                        placeholder="Description for social media sharing..."
+                        className="mt-2 min-h-[80px]"
+                        data-testid="textarea-og-description"
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Optional - defaults to Meta Description if not set
+                      </p>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="ogImage">Social Share Image (URL)</Label>
+                      <Input
+                        id="ogImage"
+                        placeholder="https://example.com/your-image.jpg"
+                        className="mt-2"
+                        data-testid="input-og-image"
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Recommended: 1200x630px. This image appears when your page is shared on social media.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Advanced SEO */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold mb-4">Advanced Settings</h4>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        id="indexPage"
+                        className="mt-1"
+                        defaultChecked
+                        data-testid="checkbox-index-page"
+                      />
+                      <Label htmlFor="indexPage" className="font-normal cursor-pointer">
                         Allow search engines to index this page
                       </Label>
                     </div>
-
-                    <div className="flex items-center space-x-2">
-                      <input 
-                        type="checkbox" 
-                        id="followLinks" 
+                    
+                    <div className="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        id="followLinks"
+                        className="mt-1"
                         defaultChecked
-                        className="h-4 w-4 rounded border-gray-300"
                         data-testid="checkbox-follow-links"
                       />
                       <Label htmlFor="followLinks" className="font-normal cursor-pointer">
@@ -1017,7 +1005,7 @@ export default function WebsiteEditor() {
               <div className="max-w-6xl space-y-6">
                 <div>
                   <h3 className="text-2xl font-bold mb-2">Analytics Dashboard</h3>
-                  <p className="text-sm text-gray-600 mb-6">Track your website performance and visitor data.</p>
+                  <p className="text-sm text-gray-600 mb-6">Track your page performance and visitor data.</p>
                 </div>
 
                 {/* Overview Stats */}
@@ -1282,15 +1270,15 @@ export default function WebsiteEditor() {
           </div>
         </div>
 
-        {/* Edit mode content - website preview with editing enabled */}
+        {/* Edit mode content - page preview with editing enabled */}
         <div className="absolute top-14 left-0 right-0 bottom-0 bg-gray-100">
           {template ? (
             <>
               <iframe
-                key={`edit-${websiteId}`}
-                src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&editMode=true&hideNav=true`}
+                key={`edit-${pageId}`}
+                src={`/template-preview?template=${template.slug}&websiteId=${pageId}&editMode=true&hideNav=true`}
                 className="w-full h-full border-0"
-                title="Edit Website"
+                title="Edit Page"
                 data-testid="iframe-edit-mode"
                 onLoad={() => setIsReloadingContent(false)}
               />
@@ -1300,7 +1288,7 @@ export default function WebsiteEditor() {
                   <div className="flex flex-col items-center gap-4">
                     <div className="w-16 h-16 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
                     <p className="text-lg font-medium text-gray-900">Saving changes...</p>
-                    <p className="text-sm text-gray-600">Please wait while we update your website</p>
+                    <p className="text-sm text-gray-600">Please wait while we update your page</p>
                   </div>
                 </div>
               )}
@@ -1320,10 +1308,10 @@ export default function WebsiteEditor() {
 }
 
 // FormsConfig component for managing form embed settings
-function FormsConfig({ websiteId, website }: { websiteId: string; website: Website | null | undefined }) {
+function FormsConfig({ pageId, page }: { pageId: string; page: Page | null | undefined }) {
   const { toast } = useToast();
-  const [formProvider, setFormProvider] = useState<string>(website?.content?.formProvider || "");
-  const [formEmbedCode, setFormEmbedCode] = useState<string>(website?.content?.formEmbedCode || "");
+  const [formProvider, setFormProvider] = useState<string>(page?.content?.formProvider || "");
+  const [formEmbedCode, setFormEmbedCode] = useState<string>(page?.content?.formEmbedCode || "");
 
   const saveFormMutation = useMutation({
     mutationFn: async () => {
@@ -1334,14 +1322,14 @@ function FormsConfig({ websiteId, website }: { websiteId: string; website: Websi
         throw new Error("Please enter the embed code");
       }
       
-      const res = await apiRequest("POST", `/api/websites/${websiteId}/save-form`, {
+      const res = await apiRequest("POST", `/api/pages/${pageId}/save-form`, {
         formProvider,
         formEmbedCode,
       });
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
       toast({
         title: "Form Saved",
         description: "Your form embed code has been saved successfully.",
@@ -1358,11 +1346,11 @@ function FormsConfig({ websiteId, website }: { websiteId: string; website: Websi
 
   const disableFormMutation = useMutation({
     mutationFn: async () => {
-      const res = await apiRequest("POST", `/api/websites/${websiteId}/disable-form`, {});
+      const res = await apiRequest("POST", `/api/pages/${pageId}/disable-form`, {});
       return await res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
       toast({
         title: "Form Disabled",
         description: "The form has been removed from your contact section.",
@@ -1454,31 +1442,26 @@ function FormsConfig({ websiteId, website }: { websiteId: string; website: Websi
         <Button
           onClick={() => saveFormMutation.mutate()}
           disabled={saveFormMutation.isPending || !formProvider || !formEmbedCode.trim()}
-          className="flex-1 bg-[#6458AF] hover:bg-[#5347a0]"
+          className="bg-[#6458AF] hover:bg-[#5347A0]"
           data-testid="button-save-form"
         >
-          {saveFormMutation.isPending ? (
-            <>
-              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              Saving...
-            </>
-          ) : (
-            "Save Form"
-          )}
+          {saveFormMutation.isPending ? "Saving..." : "Save Form Configuration"}
         </Button>
         <Button
-          onClick={() => {
-            if (confirm("Are you sure you want to remove the form from your contact section?")) {
-              disableFormMutation.mutate();
-            }
-          }}
-          disabled={disableFormMutation.isPending}
           variant="outline"
-          className="border-red-300 text-red-600 hover:bg-red-50"
-          data-testid="button-remove-form"
+          onClick={() => disableFormMutation.mutate()}
+          disabled={disableFormMutation.isPending}
+          data-testid="button-disable-form"
         >
-          Remove Form
+          {disableFormMutation.isPending ? "Disabling..." : "Disable Form"}
         </Button>
+      </div>
+
+      {/* Preview Note */}
+      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <p className="text-sm text-yellow-800">
+          <strong>Note:</strong> After saving, refresh your page to see the form appear in the contact section.
+        </p>
       </div>
     </div>
   );

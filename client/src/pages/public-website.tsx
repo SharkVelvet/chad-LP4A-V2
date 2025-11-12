@@ -7,11 +7,11 @@ export default function PublicWebsite() {
   const hostname = window.location.hostname.replace(/^www\./, '');
   
   const { data, isLoading, error } = useQuery({
-    queryKey: ['/api/public/website-by-domain', hostname],
+    queryKey: ['/api/public/page-by-domain', hostname],
     queryFn: async () => {
-      const response = await fetch(`/api/public/website-by-domain/${hostname}`);
+      const response = await fetch(`/api/public/page-by-domain/${hostname}`);
       if (!response.ok) {
-        throw new Error('Website not found');
+        throw new Error('Page not found');
       }
       return response.json();
     }
@@ -19,7 +19,7 @@ export default function PublicWebsite() {
 
   useEffect(() => {
     if (data?.content) {
-      document.title = data.content.businessName || "Website";
+      document.title = data.content.businessName || "Page";
     }
   }, [data]);
 
@@ -35,16 +35,16 @@ export default function PublicWebsite() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Website Not Found</h1>
-          <p className="text-gray-600">This domain is not connected to a website.</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Page Not Found</h1>
+          <p className="text-gray-600">This domain is not connected to a page.</p>
         </div>
       </div>
     );
   }
 
-  const { website, content, template } = data;
+  const { page, content, template } = data;
 
-  // Check if website is in maintenance mode
+  // Check if page is in maintenance mode
   if (content?.maintenanceMode) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -68,13 +68,13 @@ export default function PublicWebsite() {
     );
   }
 
-  // Check if website is published
+  // Check if page is published
   if (!content?.isPublished) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center max-w-md px-4">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Coming Soon</h1>
-          <p className="text-gray-600">This website is not yet published.</p>
+          <p className="text-gray-600">This page is not yet published.</p>
         </div>
       </div>
     );
@@ -100,13 +100,13 @@ export default function PublicWebsite() {
       }
 
       const Template = TemplateModule.default;
-      return <Template content={content} websiteData={website} />;
+      return <Template content={content} pageData={page} />;
     } catch (error) {
       console.error("Error loading template:", error);
       return (
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Error Loading Website</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Error Loading Page</h1>
             <p className="text-gray-600">Failed to load the template.</p>
           </div>
         </div>

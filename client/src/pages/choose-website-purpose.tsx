@@ -20,7 +20,7 @@ export default function ChooseWebsitePurpose() {
       <nav className="bg-white shadow-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <h1 className="text-xl font-semibold text-gray-900">Create New Website</h1>
+            <h1 className="text-xl font-semibold text-gray-900">Create New Page</h1>
             <Button variant="ghost" size="sm" onClick={() => setLocation('/dashboard')} data-testid="button-back">
               Back to Dashboard
             </Button>
@@ -35,12 +35,12 @@ export default function ChooseWebsitePurpose() {
             <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
             <div>
               <h3 className="text-base font-semibold text-blue-900 mb-1">
-                {hasExistingWebsites ? 'Adding Another Website' : 'New Website Pricing'}
+                {hasExistingWebsites ? 'Adding Another Page' : 'New Page Pricing'}
               </h3>
               <p className="text-sm text-blue-800">
                 {hasExistingWebsites 
-                  ? 'Each additional website is $38 for the first month, then $18/month thereafter. You\'ll be charged when you select your template.'
-                  : 'Your first website is $38 for the first month, then $18/month. You\'ll complete payment after selecting your template.'}
+                  ? 'Each additional page is $38 for the first month, then $18/month thereafter. You\'ll be charged when you select your template.'
+                  : 'Your first page is $38 for the first month, then $18/month. You\'ll complete payment after selecting your template.'}
               </p>
             </div>
           </div>
@@ -48,7 +48,7 @@ export default function ChooseWebsitePurpose() {
 
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Pick what you would like to use your website for
+            Pick what you would like to use your page for
           </h2>
           <p className="text-lg text-gray-600">
             Choose the option that best fits your needs
@@ -68,7 +68,7 @@ export default function ChooseWebsitePurpose() {
               </div>
               <CardTitle className="text-2xl">Get More Clients</CardTitle>
               <CardDescription className="text-base mt-2">
-                Create a professional website to attract and convert more clients for your insurance business
+                Create a professional page to attract and convert more clients for your insurance business
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
@@ -90,7 +90,7 @@ export default function ChooseWebsitePurpose() {
               </div>
               <CardTitle className="text-2xl">Hire Agents</CardTitle>
               <CardDescription className="text-base mt-2">
-                Build a recruitment website to attract talented insurance agents to join your team
+                Build a recruitment page to attract talented insurance agents to join your team
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">

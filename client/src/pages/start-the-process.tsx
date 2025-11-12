@@ -73,7 +73,7 @@ export default function StartTheProcess() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Select Your Domain</h3>
-                    <p className="text-gray-600">Choose your preferred domain name (URL address) for your website - We take care of this for you</p>
+                    <p className="text-gray-600">Choose your preferred domain name (URL address) for your page - We take care of this for you</p>
                   </div>
                 </div>
               </CardContent>
@@ -101,7 +101,7 @@ export default function StartTheProcess() {
                 <CardTitle className="text-xl font-bold text-white">
                   Ready to Get Started?
                 </CardTitle>
-                <p className="text-purple-100 mt-2">Begin building your professional website now. It only takes a few minutes to have your landing page ready!</p>
+                <p className="text-purple-100 mt-2">Begin building your professional page now. It only takes a few minutes to have your landing page ready!</p>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -150,7 +150,7 @@ export default function StartTheProcess() {
               <h4 className="font-semibold mb-4">About LP4A</h4>
               <ul className="space-y-2 text-gray-400">
                 <li><a onClick={() => setLocation('/choose-purpose')} className="hover:text-white transition-colors cursor-pointer">View Templates</a></li>
-                <li><a onClick={() => setLocation('/custom-websites')} className="hover:text-white transition-colors cursor-pointer">Custom Websites</a></li>
+                <li><a onClick={() => setLocation('/custom-websites')} className="hover:text-white transition-colors cursor-pointer">Custom Pages</a></li>
                 <li><a onClick={() => setLocation('/other-services')} className="hover:text-white transition-colors cursor-pointer">Other Services</a></li>
                 <li><a onClick={() => setLocation('/pricing')} className="hover:text-white transition-colors cursor-pointer">Pricing</a></li>
               </ul>

@@ -21,10 +21,10 @@ export default function WebsiteCheckout() {
 
   const selectedTemplate = templates.find(t => t.id.toString() === templateId);
 
-  // Check if user already has websites
-  const { data: websites } = useQuery({ queryKey: ['/api/websites'] });
-  const hasExistingWebsites = websites && Array.isArray(websites) && websites.length > 0;
-  const websiteCount = Array.isArray(websites) ? websites.length : 0;
+  // Check if user already has pages
+  const { data: pages } = useQuery({ queryKey: ['/api/pages'] });
+  const hasExistingPages = pages && Array.isArray(pages) && pages.length > 0;
+  const pageCount = Array.isArray(pages) ? pages.length : 0;
 
   useEffect(() => {
     // Set page title
@@ -94,7 +94,7 @@ export default function WebsiteCheckout() {
             <Card>
               <CardHeader>
                 <CardTitle>Order Summary</CardTitle>
-                <CardDescription>Review your website purchase</CardDescription>
+                <CardDescription>Review your page purchase</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {selectedTemplate && (
@@ -113,15 +113,15 @@ export default function WebsiteCheckout() {
                     <span>Monthly thereafter</span>
                     <span>$18.00/month</span>
                   </div>
-                  {hasExistingWebsites && (
+                  {hasExistingPages && (
                     <div className="pt-3 mt-3 border-t">
                       <p className="text-sm text-gray-600 mb-2">After first month:</p>
                       <div className="flex justify-between">
                         <span className="text-sm font-medium">Your new monthly total</span>
-                        <span className="font-semibold text-lg">${18 * (websiteCount + 1)}/month</span>
+                        <span className="font-semibold text-lg">${18 * (pageCount + 1)}/month</span>
                       </div>
                       <p className="text-xs text-gray-500 mt-1">
-                        ({websiteCount} existing {websiteCount === 1 ? 'site' : 'sites'} + 1 new site)
+                        ({pageCount} existing {pageCount === 1 ? 'page' : 'pages'} + 1 new page)
                       </p>
                     </div>
                   )}

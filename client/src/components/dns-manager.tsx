@@ -46,7 +46,7 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
       queryClient.invalidateQueries({ queryKey: [`/api/domains/${domain}/cloudflare/status`] });
       toast({
         title: "Domain Connected!",
-        description: `${domain} is now connected to your website with automatic SSL. DNS will propagate within 24 hours.`,
+        description: `${domain} is now connected to your page with automatic SSL. DNS will propagate within 24 hours.`,
       });
       refetch();
     },
@@ -108,7 +108,7 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
             <div className="flex-1">
               <p className="font-semibold text-green-900 mb-1">✓ Domain is Live with SSL!</p>
               <p className="text-sm text-green-700">
-                Your domain {domain} is active and serving your website with HTTPS. Visitors can access your site securely.
+                Your domain {domain} is active and serving your page with HTTPS. Visitors can access your site securely.
               </p>
               <div className="mt-3 p-3 bg-white rounded border border-green-200">
                 <p className="text-xs font-semibold text-gray-700 mb-1">DNS Configuration:</p>
@@ -154,7 +154,7 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
             <div className="flex-1">
               <p className="font-semibold text-blue-900 mb-1">Domain Setup Required</p>
               <p className="text-sm text-blue-700 mb-3">
-                Click the button below to connect <strong>{domain}</strong> to your website. This will automatically configure Railway hosting and DNS settings for SSL/HTTPS access.
+                Click the button below to connect <strong>{domain}</strong> to your page. This will automatically configure Railway hosting and DNS settings for SSL/HTTPS access.
               </p>
               <Button
                 onClick={() => setupDomain.mutate()}
@@ -170,7 +170,7 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
                 ) : (
                   <>
                     <Globe className="h-4 w-4 mr-2" />
-                    Connect Domain to Website
+                    Connect Domain to Page
                   </>
                 )}
               </Button>
@@ -197,7 +197,7 @@ export default function DnsManager({ domain, domainStatus = 'pending', targetDom
       {/* Info Note */}
       <div className="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-3">
         <p className="text-xs text-amber-800">
-          <strong>Note:</strong> Your website is hosted on Railway with automatic SSL certificates. DNS configuration is managed through our platform.
+          <strong>Note:</strong> Your page is hosted on Railway with automatic SSL certificates. DNS configuration is managed through our platform.
         </p>
       </div>
 

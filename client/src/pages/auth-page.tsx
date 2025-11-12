@@ -216,7 +216,7 @@ export default function AuthPage() {
       <div className="flex-1 bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center p-8">
         <div className="text-center text-white max-w-md">
           <div className="mb-8">
-            <h2 className="text-4xl font-bold mb-4">Build Your Professional Website</h2>
+            <h2 className="text-4xl font-bold mb-4">Build Your Professional Page</h2>
             <p className="text-xl text-blue-100">
               Choose from professional templates and create a stunning online presence in minutes.
             </p>

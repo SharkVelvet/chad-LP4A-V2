@@ -285,7 +285,7 @@ export default function RecruitAgents() {
             <Badge className="mb-4" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Agency Owners</Badge>
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
               Recruit Top Agents With a Professional<br />
-              <span style={{ color: '#6458AF' }}>Agency Website</span>
+              <span style={{ color: '#6458AF' }}>Agency Page</span>
             </h1>
             
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
@@ -423,7 +423,7 @@ export default function RecruitAgents() {
                   <li style={{ fontSize: '15px' }}>• Display client testimonials and agent success metrics</li>
                 </ul>
                 <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-400">
-                  <p className="text-sm text-green-800 font-medium">First impressions matter. A professional website immediately separates you from agencies that rely only on social media or job board listings.</p>
+                  <p className="text-sm text-green-800 font-medium">First impressions matter. A professional page immediately separates you from agencies that rely only on social media or job board listings.</p>
                 </div>
               </CardContent>
             </Card>
@@ -444,7 +444,7 @@ export default function RecruitAgents() {
                     <rect x="30" y="30" width="140" height="20" fill="#dc3545" rx="4"/>
                     <text x="100" y="43" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold">JOB BOARD REQUIREMENTS</text>
                     <rect x="30" y="60" width="20" height="15" fill="#28a745" rx="2"/>
-                    <text x="55" y="70" fontSize="9" fill="#333">✓ Business Website</text>
+                    <text x="55" y="70" fontSize="9" fill="#333">✓ Business Page</text>
                     <rect x="30" y="80" width="20" height="15" fill="#28a745" rx="2"/>
                     <text x="55" y="90" fontSize="9" fill="#333">✓ Professional Email</text>
                     <rect x="30" y="100" width="20" height="15" fill="#ffc107" rx="2"/>
@@ -458,16 +458,16 @@ export default function RecruitAgents() {
                 <CardTitle className="text-xl mb-3">Job Board Compliance</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-gray-700 font-medium">Most premium job boards require a professional business website and email address.</p>
+                <p className="text-gray-700 font-medium">Most premium job boards require a professional business page and email address.</p>
                 <ul className="space-y-2 text-sm text-gray-600">
                   <li style={{ fontSize: '15px' }}>• Indeed, LinkedIn, and ZipRecruiter verify business legitimacy</li>
                   <li style={{ fontSize: '15px' }}>• Professional email domains (not Gmail/Yahoo) required for posting</li>
-                  <li style={{ fontSize: '15px' }}>• Business website validates your agency's credibility</li>
+                  <li style={{ fontSize: '15px' }}>• Business page validates your agency's credibility</li>
                   <li style={{ fontSize: '15px' }}>• Compliance unlocks access to higher-quality candidate pools</li>
                   <li style={{ fontSize: '15px' }}>• Avoid having job posts rejected or flagged as spam</li>
                 </ul>
                 <div className="bg-orange-50 p-3 rounded-lg border-l-4 border-orange-400">
-                  <p className="text-sm text-orange-800 font-medium">Without a professional website, you're limited to lower-tier job boards that attract less qualified candidates.</p>
+                  <p className="text-sm text-orange-800 font-medium">Without a professional page, you're limited to lower-tier job boards that attract less qualified candidates.</p>
                 </div>
               </CardContent>
             </Card>

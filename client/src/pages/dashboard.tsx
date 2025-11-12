@@ -12,7 +12,7 @@ import { Plus, Settings, Globe, Eye, Laptop, Link as LinkIcon } from "lucide-rea
 import { useToast } from "@/hooks/use-toast";
 import DomainSearch from "@/components/domain-search";
 
-type Website = {
+type Page = {
   id: number;
   userId: number;
   templateId: number;
@@ -25,12 +25,12 @@ type Website = {
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
-  content?: WebsiteContent;
+  content?: PageContent;
 };
 
-type WebsiteContent = {
+type PageContent = {
   id: number;
-  websiteId: number;
+  pageId: number;
   businessName: string | null;
   tagline: string | null;
   aboutUs: string | null;
@@ -58,9 +58,9 @@ export default function Dashboard() {
   const { toast } = useToast();
   const [, navigate] = useLocation();
 
-  // Fetch all user websites
-  const { data: websites = [], isLoading: websitesLoading } = useQuery<Website[]>({
-    queryKey: ["/api/websites"],
+  // Fetch all user pages
+  const { data: pages = [], isLoading: pagesLoading } = useQuery<Page[]>({
+    queryKey: ["/api/pages"],
   });
 
   // Fetch templates
@@ -68,7 +68,7 @@ export default function Dashboard() {
     queryKey: ["/api/templates"],
   });
 
-  if (websitesLoading) {
+  if (pagesLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full" data-testid="loading-spinner" />
@@ -100,10 +100,10 @@ export default function Dashboard() {
             <div className="space-y-1">
               <button
                 className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors bg-black text-white"
-                data-testid="menu-my-websites"
+                data-testid="menu-my-pages"
               >
                 <Laptop className="h-4 w-4" />
-                <span>My Websites</span>
+                <span>My Pages</span>
               </button>
             </div>
           </div>
@@ -115,81 +115,82 @@ export default function Dashboard() {
             <div>
                 <div className="mb-6 flex items-center justify-between">
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">My Websites</h2>
-                    <p className="text-gray-600">Manage and edit your websites</p>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">My Pages</h2>
+                    <p className="text-gray-600">Manage and edit your pages</p>
                   </div>
                   <Button 
                     size="lg" 
                     className="bg-black text-white hover:bg-gray-800"
                     onClick={() => window.location.href = '/choose-purpose'}
-                    data-testid="button-create-website"
+                    data-testid="button-create-page"
                   >
                     <Plus className="h-5 w-5 mr-2" />
-                    Create New Website
+                    Create New Page
                   </Button>
                 </div>
                 
-                {/* Website Cards Grid */}
-                {websites.length === 0 ? (
+                {/* Page Cards Grid */}
+                {pages.length === 0 ? (
                   <Card>
                     <CardContent className="pt-6 text-center py-16">
                       <Globe className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-xl font-medium mb-2">No websites yet</h3>
-                      <p className="text-gray-600 mb-6">Create your first website to get started</p>
+                      <h3 className="text-xl font-medium mb-2">No pages yet</h3>
+                      <p className="text-gray-600 mb-6">Create your first page to get started</p>
                       <Button 
                         size="lg"
                         onClick={() => window.location.href = '/choose-purpose'}
                       >
                         <Plus className="h-5 w-5 mr-2" />
-                        Create Your First Website
+                        Create Your First Page
                       </Button>
                     </CardContent>
                   </Card>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {websites.map((website) => {
-                      const template = templates.find(t => t.id === website.templateId);
+                    {pages.map((page) => {
+                      const template = templates.find(t => t.id === page.templateId);
+                      // Display domain as title if connected, otherwise show page name
+                      const displayTitle = page.domain || page.name;
+                      const displaySubtext = page.domain ? page.name : (page.domain || `Preview: https://preview.yoursite.com/${page.id}`);
+                      
                       return (
-                        <Card key={website.id} className="overflow-hidden group hover:shadow-lg transition-shadow" data-testid={`website-card-${website.id}`}>
+                        <Card key={page.id} className="overflow-hidden group hover:shadow-lg transition-shadow" data-testid={`page-card-${page.id}`}>
                           <div className="relative w-full bg-white border-b" style={{ height: '200px', overflow: 'hidden' }}>
                             <img
                               src={template?.previewImage || '/placeholder.jpg'}
-                              alt={website.name}
+                              alt={page.name}
                               className="absolute top-0 left-0 w-full h-auto min-h-full object-cover object-top"
                               style={{ maxWidth: '100%' }}
                             />
                           </div>
                           <CardHeader className="pb-3">
-                            <CardTitle className="text-base truncate mb-2">{website.name}</CardTitle>
+                            <CardTitle className="text-base truncate mb-2">{displayTitle}</CardTitle>
                             <p className="text-xs text-gray-600 truncate mb-3">
-                              {website.domain 
-                                ? `https://${website.domain}` 
-                                : `Preview: https://preview.yoursite.com/${website.id}`
-                              }
+                              {displaySubtext}
                             </p>
                             <div className="space-y-2 text-xs">
                               <div className="flex items-center gap-1.5">
                                 <span className="text-gray-500 min-w-[85px]">Start Date:</span>
-                                <span className="text-gray-700">{new Date(website.createdAt).toLocaleDateString()}</span>
+                                <span className="text-gray-700">{new Date(page.createdAt).toLocaleDateString()}</span>
                               </div>
                               <div className="flex items-center gap-1.5">
                                 <span className="text-gray-500 min-w-[85px]">Last Modified:</span>
-                                <span className="text-gray-700">{new Date(website.updatedAt).toLocaleDateString()}</span>
+                                <span className="text-gray-700">{new Date(page.updatedAt).toLocaleDateString()}</span>
                               </div>
                               <div className="flex items-center gap-1.5">
                                 <span className="text-gray-500 min-w-[85px]">Site Status:</span>
                                 <Badge 
                                   className={`text-xs h-5 ${
-                                    website.content?.maintenanceMode 
+                                    page.content?.maintenanceMode 
                                       ? "bg-orange-500 text-white" 
-                                      : website.content?.isPublished 
+                                      : page.content?.isPublished 
                                         ? "bg-green-600 text-white" 
                                         : "bg-gray-100 text-gray-700 border-gray-300"
                                   }`}
                                 >
-                                  {website.content?.maintenanceMode 
+                                  {page.content?.maintenanceMode 
                                     ? "🔧 Maintenance" 
-                                    : website.content?.isPublished 
+                                    : page.content?.isPublished 
                                       ? "✓ Published" 
                                       : "Draft"
                                   }
@@ -201,22 +202,22 @@ export default function Dashboard() {
                             <div className="flex gap-1.5">
                               <Button 
                                 onClick={() => {
-                                  navigate(`/editor/${website.id}`);
+                                  navigate(`/editor/${page.id}`);
                                 }}
                                 variant="outline"
                                 size="sm"
                                 className="hover:bg-black hover:text-white"
-                                data-testid={`button-edit-${website.id}`}
+                                data-testid={`button-edit-${page.id}`}
                               >
                                 <Settings className="h-4 w-4 mr-1" />
-                                Edit Site
+                                Edit Page
                               </Button>
                               <Button 
-                                onClick={() => window.open(`/template-preview?websiteId=${website.id}`, '_blank')}
+                                onClick={() => window.open(`/template-preview?pageId=${page.id}`, '_blank')}
                                 variant="outline"
                                 size="sm"
                                 className="hover:bg-black hover:text-white"
-                                data-testid={`button-preview-${website.id}`}
+                                data-testid={`button-preview-${page.id}`}
                               >
                                 <Eye className="h-4 w-4 mr-1" />
                                 Preview

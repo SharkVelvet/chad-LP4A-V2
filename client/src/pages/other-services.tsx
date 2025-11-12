@@ -35,7 +35,7 @@ export default function OtherServices() {
             {/* Menu Items in Middle */}
             <nav className="hidden md:flex items-center space-x-8">
               <a onClick={() => setLocation('/choose-purpose')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
-              <a onClick={() => setLocation('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Websites</a>
+              <a onClick={() => setLocation('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Pages</a>
               <a onClick={() => setLocation('/other-services')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Other Services</a>
               <a onClick={() => setLocation('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
             </nav>
@@ -110,7 +110,7 @@ export default function OtherServices() {
                   setLocation('/custom-websites');
                 }}
               >
-                Custom Websites
+                Custom Pages
               </a>
               <a 
                 href="/other-services" 
@@ -157,7 +157,7 @@ export default function OtherServices() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">Other Services</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Need more than just a website? We offer professional logo design and print materials to complete your brand identity.
+              Need more than just a page? We offer professional logo design and print materials to complete your brand identity.
             </p>
           </div>
         </div>
@@ -335,7 +335,7 @@ export default function OtherServices() {
             <h4 className="font-semibold mb-4">About LP4A</h4>
             <ul className="space-y-2 text-gray-400">
               <li><a onClick={() => setLocation('/choose-purpose')} className="hover:text-white transition-colors cursor-pointer">View Templates</a></li>
-              <li><a onClick={() => setLocation('/custom-websites')} className="hover:text-white transition-colors cursor-pointer">Custom Websites</a></li>
+              <li><a onClick={() => setLocation('/custom-websites')} className="hover:text-white transition-colors cursor-pointer">Custom Pages</a></li>
               <li><a onClick={() => setLocation('/other-services')} className="hover:text-white transition-colors cursor-pointer">Other Services</a></li>
               <li><a onClick={() => setLocation('/pricing')} className="hover:text-white transition-colors cursor-pointer">Pricing</a></li>
             </ul>

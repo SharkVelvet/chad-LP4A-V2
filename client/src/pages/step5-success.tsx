@@ -48,7 +48,7 @@ export default function Step5Success() {
           </h1>
           
           <h2 className="text-xl text-gray-700 mb-8">
-            Your Website Setup Has Been Started!
+            Your Page Setup Has Been Started!
           </h2>
 
           {/* Success Message */}
@@ -74,16 +74,16 @@ export default function Step5Success() {
               <div className="flex items-start space-x-3">
                 <Calendar className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#6458AF' }} />
                 <div>
-                  <p className="font-medium text-gray-800">Website Development</p>
-                  <p className="text-sm text-gray-600">Our team will start building your website using your selected template and requirements</p>
+                  <p className="font-medium text-gray-800">Page Development</p>
+                  <p className="text-sm text-gray-600">Our team will start building your page using your selected template and requirements</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-3">
                 <Globe className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#6458AF' }} />
                 <div>
-                  <p className="font-medium text-gray-800">Website Delivery</p>
-                  <p className="text-sm text-gray-600">Your website will be ready within 1-2 business days</p>
+                  <p className="font-medium text-gray-800">Page Delivery</p>
+                  <p className="text-sm text-gray-600">Your page will be ready within 1-2 business days</p>
                 </div>
               </div>
             </div>
@@ -98,7 +98,7 @@ export default function Step5Success() {
                 <span className="font-medium" style={{ color: '#6458AF' }}>Complete ✓</span>
               </div>
               <div className="flex justify-between">
-                <span>Website Development</span>
+                <span>Page Development</span>
                 <span className="font-medium" style={{ color: '#6458AF' }}>Starting Now</span>
               </div>
 
@@ -120,7 +120,7 @@ export default function Step5Success() {
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
           >
-            Start Another Website
+            Start Another Page
           </Button>
         </CardContent>
       </Card>

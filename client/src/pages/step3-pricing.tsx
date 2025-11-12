@@ -64,7 +64,7 @@ export default function Step3Pricing() {
 
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Pricing & Service Agreement</h2>
-          <p className="text-gray-600">Review our pricing structure and what's included in your 12-month website plan.</p>
+          <p className="text-gray-600">Review our pricing structure and what's included in your 12-month page plan.</p>
         </div>
 
         {/* Pricing Overview */}
@@ -81,7 +81,7 @@ export default function Step3Pricing() {
                 <h3 className="text-xl font-bold text-purple-900 mb-2">Monthly Subscription</h3>
                 <div className="text-3xl font-bold mb-2" style={{ color: '#6458AF' }}>$18</div>
                 <p className="text-sm text-purple-700">
-                  Per month for professional website hosting and maintenance
+                  Per month for professional page hosting and maintenance
                 </p>
               </div>
               
@@ -161,11 +161,11 @@ export default function Step3Pricing() {
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
-                    Website hosting and maintenance
+                    Page hosting and maintenance
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
-                    24/7 website uptime monitoring
+                    24/7 page uptime monitoring
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 mr-2" style={{ color: '#6458AF' }} />
@@ -214,10 +214,10 @@ export default function Step3Pricing() {
                   htmlFor="agreement"
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
                 >
-                  I agree to the 12-month website service contract and pricing structure
+                  I agree to the 12-month page service contract and pricing structure
                 </label>
                 <p className="text-xs text-gray-500">
-                  By checking this box, I understand and agree to pay $38 today for website setup, 
+                  By checking this box, I understand and agree to pay $38 today for page setup, 
                   and authorize automatic monthly charges of $18 for the next 11 months for hosting and domain services.
                 </p>
               </div>
@@ -267,7 +267,7 @@ export default function Step3Pricing() {
             Continue to Payment
           </Button>
           <p className="text-xs text-gray-500 mt-2">
-            Next: Enter payment information to complete your website setup
+            Next: Enter payment information to complete your page setup
           </p>
         </div>
         

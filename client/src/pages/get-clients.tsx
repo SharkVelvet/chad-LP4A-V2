@@ -242,7 +242,7 @@ export default function GetClients() {
             <Badge className="mb-4" style={{ backgroundColor: '#f0eeff', color: '#6458AF' }}>For Insurance Agents</Badge>
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
               Get More Clients With a Professional<br />
-              <span style={{ color: '#6458AF' }}>Insurance Agent Website</span>
+              <span style={{ color: '#6458AF' }}>Insurance Agent Page</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Live in 24 hours. Mobile-friendly, SEO-optimized landing pages designed to turn visitors into leads.
@@ -531,7 +531,7 @@ export default function GetClients() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Stop losing clients to competitors with better websites.
+            Stop losing clients to competitors with better pages.
           </h2>
           <p className="text-xl text-gray-600 mb-8">
             Get online now and start converting visitors into clients.

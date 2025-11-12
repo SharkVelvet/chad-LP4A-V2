@@ -141,7 +141,7 @@ export default function CustomSolutions() {
             {/* Menu Items in Middle */}
             <nav className="hidden md:flex items-center space-x-8">
               <a onClick={() => setLocation('/choose-purpose')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
-              <a onClick={() => setLocation('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Websites</a>
+              <a onClick={() => setLocation('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Pages</a>
               <a onClick={() => setLocation('/other-services')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Other Services</a>
               <a onClick={() => setLocation('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
             </nav>
@@ -478,12 +478,12 @@ export default function CustomSolutions() {
                       <FormLabel>Example Sites You Like</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Share URLs of websites you admire or that inspire your project (one per line)"
+                          placeholder="Share URLs of pages you admire or that inspire your project (one per line)"
                           className="min-h-[80px]"
                           {...field}
                         />
                       </FormControl>
-                      <p className="text-sm text-gray-500">Enter each website URL on a separate line</p>
+                      <p className="text-sm text-gray-500">Enter each page URL on a separate line</p>
                       <FormMessage />
                     </FormItem>
                   )}

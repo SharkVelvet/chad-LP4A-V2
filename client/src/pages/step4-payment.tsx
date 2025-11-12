@@ -86,14 +86,14 @@ export default function Step4Payment() {
 
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Complete Your Payment</h2>
-          <p className="text-gray-600">Secure payment to start your website setup and subscription.</p>
+          <p className="text-gray-600">Secure payment to start your page setup and subscription.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Payment Form */}
           <div>
             <SubscriptionForm 
-              plan="planright-website"
+              plan="planright-page"
               onSuccess={handlePaymentSuccess}
               isLoading={isProcessing}
               onDiscountChange={(discount, code) => {
@@ -116,12 +116,12 @@ export default function Step4Payment() {
                 <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
                   <div className="flex items-center mb-2">
                     <Check className="h-4 w-4 mr-2" style={{ color: '#6458AF' }} />
-                    <span className="font-medium text-purple-900">Landing Pages for Agents Website Service</span>
+                    <span className="font-medium text-purple-900">Landing Pages for Agents Page Service</span>
                   </div>
                   <ul className="text-sm text-purple-700 space-y-1 ml-6">
-                    <li>Professional website template</li>
+                    <li>Professional page template</li>
                     <li>Custom domain setup</li>
-                    <li>Website hosting</li>
+                    <li>Page hosting</li>
                     <li>Content management</li>
                   </ul>
                 </div>

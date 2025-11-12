@@ -23,7 +23,7 @@ type Template = {
   isActive: boolean;
 };
 
-type Website = {
+type Page = {
   id: number;
   name: string;
   templateId: number;
@@ -41,7 +41,7 @@ export default function TemplatePreviewPage() {
   const [, navigate] = useLocation();
   const params = new URLSearchParams(window.location.search);
   const templateSlug = params.get('template');
-  const websiteId = params.get('websiteId');
+  const pageId = params.get('pageId');
   const hideNav = params.get('hideNav') === 'true';
   const editMode = params.get('editMode') === 'true';
   const siteType = params.get('type') || localStorage.getItem('selectedSiteType') || 'single-page';
@@ -66,17 +66,17 @@ export default function TemplatePreviewPage() {
     queryKey: ["/api/templates"],
   });
 
-  // Fetch website content if websiteId is provided
-  const { data: website } = useQuery<Website>({
-    queryKey: ["/api/websites", websiteId],
+  // Fetch page content if pageId is provided
+  const { data: page } = useQuery<Page>({
+    queryKey: ["/api/pages", pageId],
     queryFn: async () => {
-      const res = await fetch(`/api/websites/${websiteId}`, {
+      const res = await fetch(`/api/pages/${pageId}`, {
         credentials: "include",
       });
-      if (!res.ok) throw new Error("Failed to fetch website");
+      if (!res.ok) throw new Error("Failed to fetch page");
       return res.json();
     },
-    enabled: !!websiteId,
+    enabled: !!pageId,
     staleTime: 0,
     refetchOnMount: true,
   });
@@ -84,7 +84,7 @@ export default function TemplatePreviewPage() {
   const template = templates?.find(t => t.slug === templateSlug);
   
   // Prepare content data for template - pass ENTIRE content object including flexible content
-  const fullContent = website?.content || {};
+  const fullContent = page?.content || {};
   
   // Extract legacy fields for backwards compatibility (these are database columns)
   const contentData = {
@@ -97,7 +97,7 @@ export default function TemplatePreviewPage() {
   };
   
   // Extract flexible content from the nested content JSONB field
-  // The backend stores flexible content in website_content.content (JSONB)
+  // The backend stores flexible content in page_content.content (JSONB)
   // which comes back as fullContent.content
   const flexibleContent: Record<string, string> = (fullContent.content as Record<string, string>) || {};
 
@@ -114,16 +114,16 @@ export default function TemplatePreviewPage() {
       if (event.origin !== window.location.origin) return;
       
       if (event.data.type === 'RELOAD_CONTENT') {
-        // Refetch website content
-        if (websiteId) {
-          queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+        // Refetch page content
+        if (pageId) {
+          queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
         }
       }
     };
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [websiteId]);
+  }, [pageId]);
 
   // Auto-generate IDs and apply saved content
   useEffect(() => {
@@ -168,9 +168,9 @@ export default function TemplatePreviewPage() {
     });
     
     // Then apply saved content to all elements with IDs
-    if (website?.content) {
-      // The flexible content is in website.content (JSONB field)
-      const flexibleContent = website.content as Record<string, string> || {};
+    if (page?.content) {
+      // The flexible content is in page.content (JSONB field)
+      const flexibleContent = page.content as Record<string, string> || {};
       const elements = document.querySelectorAll('[data-content-id]');
       
       elements.forEach((element) => {
@@ -217,7 +217,7 @@ export default function TemplatePreviewPage() {
         }
       });
     }
-  }, [website?.content]);
+  }, [page?.content]);
 
   // Listen for reload message from parent
   useEffect(() => {
@@ -226,14 +226,14 @@ export default function TemplatePreviewPage() {
       
       if (event.data.type === 'RELOAD_CONTENT') {
         console.log('[Template Preview] Received RELOAD_CONTENT message, invalidating queries');
-        // Refetch website data to get updated content
-        queryClient.invalidateQueries({ queryKey: ["/api/websites", websiteId] });
+        // Refetch page data to get updated content
+        queryClient.invalidateQueries({ queryKey: ["/api/pages", pageId] });
       }
     };
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [websiteId]);
+  }, [pageId]);
 
   // Add click handlers for edit mode
   useEffect(() => {
@@ -608,7 +608,7 @@ export default function TemplatePreviewPage() {
       // Close the preview window
       window.close();
     } else {
-      // Fallback: navigate to website setup
+      // Fallback: navigate to page setup
       localStorage.setItem('selectedTemplate', template.slug);
       navigate('/website-setup');
     }
@@ -626,8 +626,8 @@ export default function TemplatePreviewPage() {
 
   return (
     <div className="bg-gray-50">
-      {/* Sticky Banner - Only show when NOT viewing from dashboard (no websiteId) and not hiding nav */}
-      {!websiteId && !hideNav && (
+      {/* Sticky Banner - Only show when NOT viewing from dashboard (no pageId) and not hiding nav */}
+      {!pageId && !hideNav && (
         <div className="sticky top-0 z-50 bg-white border-b shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex items-center justify-between">

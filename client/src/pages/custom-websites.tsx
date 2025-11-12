@@ -10,7 +10,7 @@ export default function CustomWebsites() {
 
   // Set page title
   useEffect(() => {
-    document.title = 'Custom Websites - Professional Landing Pages for Insurance Agents';
+    document.title = 'Custom Pages - Professional Landing Pages for Insurance Agents';
   }, []);
 
   return (
@@ -34,7 +34,7 @@ export default function CustomWebsites() {
             {/* Menu Items in Middle */}
             <nav className="hidden md:flex items-center space-x-8">
               <a onClick={() => setLocation('/choose-purpose')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
-              <a onClick={() => setLocation('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Websites</a>
+              <a onClick={() => setLocation('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Pages</a>
               <a onClick={() => setLocation('/other-services')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Other Services</a>
               <a onClick={() => setLocation('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
             </nav>
@@ -109,7 +109,7 @@ export default function CustomWebsites() {
                   setLocation('/custom-websites');
                 }}
               >
-                Custom Websites
+                Custom Pages
               </a>
               <a 
                 href="/other-services" 
@@ -150,12 +150,12 @@ export default function CustomWebsites() {
         </div>
       </>
 
-      {/* Custom Website Design Section */}
+      {/* Custom Page Design Section */}
       <div className="relative z-10 bg-gradient-to-b from-gray-50 to-white">
         {/* Page Title */}
         <div className="pt-10 pb-8 lg:py-10">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">Custom Website Design</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">Custom Page Design</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Don't see a template that you like? Want something a little more? Our team is happy to help you build a custom solution tailored specifically for your insurance agency.
             </p>
@@ -185,7 +185,7 @@ export default function CustomWebsites() {
             <div>
               <div className="mb-12">
                 <h2 className="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
-                <p className="text-lg text-gray-600">Our custom website design process is simple and collaborative. We work closely with you to create a website that perfectly represents your brand.</p>
+                <p className="text-lg text-gray-600">Our custom page design process is simple and collaborative. We work closely with you to create a page that perfectly represents your brand.</p>
               </div>
 
               <div className="space-y-8">
@@ -219,7 +219,7 @@ export default function CustomWebsites() {
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">2. We design from scratch</h3>
                     <p className="text-gray-600 mb-3">
-                      Our designers create a completely custom website built specifically for your insurance agency, with unique layouts and features.
+                      Our designers create a completely custom page built specifically for your insurance agency, with unique layouts and features.
                     </p>
                     <div className="w-16 h-1 rounded-full bg-orange-400"></div>
                   </div>
@@ -237,7 +237,7 @@ export default function CustomWebsites() {
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">3. Stand out completely</h3>
                     <p className="text-gray-600 mb-3">
-                      Launch a one-of-a-kind website that perfectly represents your brand and sets you apart from every other insurance agent.
+                      Launch a one-of-a-kind page that perfectly represents your brand and sets you apart from every other insurance agent.
                     </p>
                     <div className="w-16 h-1 rounded-full bg-pink-400"></div>
                   </div>
@@ -252,7 +252,7 @@ export default function CustomWebsites() {
                   style={{ backgroundColor: '#6458AF' }}
                   onClick={() => setLocation('/services')}
                 >
-                  Get Custom Website Quote
+                  Get Custom Page Quote
                 </Button>
               </div>
             </div>
@@ -281,7 +281,7 @@ export default function CustomWebsites() {
             <h4 className="font-semibold mb-4">About LP4A</h4>
             <ul className="space-y-2 text-gray-400">
               <li><a onClick={() => setLocation('/choose-purpose')} className="hover:text-white transition-colors cursor-pointer">View Templates</a></li>
-              <li><a onClick={() => setLocation('/custom-websites')} className="hover:text-white transition-colors cursor-pointer">Custom Websites</a></li>
+              <li><a onClick={() => setLocation('/custom-websites')} className="hover:text-white transition-colors cursor-pointer">Custom Pages</a></li>
               <li><a onClick={() => setLocation('/other-services')} className="hover:text-white transition-colors cursor-pointer">Other Services</a></li>
               <li><a onClick={() => setLocation('/pricing')} className="hover:text-white transition-colors cursor-pointer">Pricing</a></li>
             </ul>

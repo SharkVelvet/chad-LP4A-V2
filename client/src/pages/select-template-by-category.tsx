@@ -40,7 +40,7 @@ export default function SelectTemplateByCategory() {
     mutationFn: async (templateId: number) => {
       const res = await apiRequest("POST", "/api/websites", {
         templateId,
-        name: `My Website`,
+        name: `My Page`,
         subscriptionPlan: "basic",
         domainPreferences: [],
       });
@@ -53,7 +53,7 @@ export default function SelectTemplateByCategory() {
     onError: () => {
       toast({
         title: "Error",
-        description: "Failed to create website. Please try again.",
+        description: "Failed to create page. Please try again.",
         variant: "destructive",
       });
     },
@@ -96,7 +96,7 @@ export default function SelectTemplateByCategory() {
           <div className="text-center">
             <div className="animate-spin w-12 h-12 border-4 border-t-transparent rounded-full mx-auto mb-4" style={{ borderColor: '#6458AF', borderTopColor: 'transparent' }} />
             <h2 className="text-2xl font-semibold text-gray-900 mb-2">Loading Templates</h2>
-            <p className="text-gray-600">Preparing your professional website templates...</p>
+            <p className="text-gray-600">Preparing your professional page templates...</p>
           </div>
         </div>
       </div>
@@ -268,7 +268,7 @@ export default function SelectTemplateByCategory() {
           <DialogHeaderComponent>
             <DialogTitle>Complete Your Purchase</DialogTitle>
             <DialogDescription>
-              Add this website to your subscription
+              Add this page to your subscription
             </DialogDescription>
           </DialogHeaderComponent>
 

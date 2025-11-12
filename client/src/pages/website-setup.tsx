@@ -134,7 +134,7 @@ export default function WebsiteSetup() {
 
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Tell Us About Your Business</h2>
-          <p className="text-gray-600">Please provide your contact information and preferences for your website.</p>
+          <p className="text-gray-600">Please provide your contact information and preferences for your page.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -232,7 +232,7 @@ export default function WebsiteSetup() {
             <CardHeader>
               <CardTitle>Domain Name Preferences</CardTitle>
               <p className="text-gray-600">
-                Please list 3 domain name options you would like us to try to purchase. This will be the URL people will go to view your website (e.g., yourbusiness.com). We'll secure the first available option from your list.
+                Please list 3 domain name options you would like us to try to purchase. This will be the URL people will go to view your page (e.g., yourbusiness.com). We'll secure the first available option from your list.
               </p>
             </CardHeader>
             <CardContent className="space-y-4">

@@ -569,7 +569,7 @@ export default function Ideas() {
             Ready to create your own splash page?
           </h3>
           <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
-            Start building your professional website today with our easy-to-use templates and customization tools.
+            Start building your professional page today with our easy-to-use templates and customization tools.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button

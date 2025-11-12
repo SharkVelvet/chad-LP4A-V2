@@ -29,7 +29,7 @@ export default function PaymentProcessing() {
       
       const res = await apiRequest("POST", "/api/websites", {
         templateId: parseInt(templateId),
-        name: selectedTemplate?.name || "My Website",
+        name: selectedTemplate?.name || "My Page",
         subscriptionPlan: "basic",
         domainPreferences: [],
       });
@@ -39,15 +39,15 @@ export default function PaymentProcessing() {
       queryClient.invalidateQueries({ queryKey: ["/api/websites"] });
       toast({
         title: "Success!",
-        description: "Your website has been created successfully.",
+        description: "Your page has been created successfully.",
       });
       // Redirect to editor
       setLocation(`/editor/${newWebsite.id}`);
     },
     onError: (error: any) => {
       toast({
-        title: "Error Creating Website",
-        description: error.message || "Failed to create website. Please contact support.",
+        title: "Error Creating Page",
+        description: error.message || "Failed to create page. Please contact support.",
         variant: "destructive",
       });
       // Redirect to dashboard on error
@@ -84,11 +84,11 @@ export default function PaymentProcessing() {
       <div className="text-center max-w-md px-4">
         <div className="animate-spin w-16 h-16 border-4 border-[#6458AF] border-t-transparent rounded-full mx-auto mb-6" />
         <h1 className="text-2xl font-bold text-gray-900 mb-3">
-          {createWebsiteMutation.isPending ? "Creating Your Website" : "Processing Payment"}
+          {createWebsiteMutation.isPending ? "Creating Your Page" : "Processing Payment"}
         </h1>
         <p className="text-gray-600 mb-6">
           {createWebsiteMutation.isPending 
-            ? "Setting up your professional website. This will only take a moment..."
+            ? "Setting up your professional page. This will only take a moment..."
             : "Verifying your payment and setting up your account..."}
         </p>
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">

@@ -55,7 +55,7 @@ export default function PlanrightHome() {
         {/* Main Explanation Section */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Quick Website Pages for Insurance Agents
+            Quick Pages for Insurance Agents
           </h1>
           <p className="text-xl text-gray-600 mb-4 max-w-2xl mx-auto">
             Create your professional Agent splash page in just a few simple steps
@@ -91,7 +91,7 @@ export default function PlanrightHome() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Select Your Domain</h3>
-                    <p className="text-gray-600">Choose your preferred domain name (URL address) for your website - We take care of this for you</p>
+                    <p className="text-gray-600">Choose your preferred domain name (URL address) for your page - We take care of this for you</p>
                   </div>
                 </div>
               </CardContent>
@@ -119,7 +119,7 @@ export default function PlanrightHome() {
                 <CardTitle className="text-xl font-bold text-white">
                   Ready to Get Started?
                 </CardTitle>
-                <p className="text-red-100 mt-2">Enter your access password to begin building your website. <span className="font-bold">If you need an access code simply ask your manager or email admin@fotype.com</span></p>
+                <p className="text-red-100 mt-2">Enter your access password to begin building your page. <span className="font-bold">If you need an access code simply ask your manager or email admin@fotype.com</span></p>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">

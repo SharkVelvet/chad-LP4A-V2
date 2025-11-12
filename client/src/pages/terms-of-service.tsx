@@ -32,7 +32,7 @@ export default function TermsOfService() {
             {/* Menu Items in Middle */}
             <nav className="hidden md:flex items-center space-x-8">
               <a onClick={() => setLocation('/choose-purpose')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">View Templates</a>
-              <a onClick={() => setLocation('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Websites</a>
+              <a onClick={() => setLocation('/custom-websites')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Custom Pages</a>
               <a onClick={() => setLocation('/other-services')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Other Services</a>
               <a onClick={() => setLocation('/pricing')} className="text-sm text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer">Pricing</a>
             </nav>
@@ -76,7 +76,7 @@ export default function TermsOfService() {
                 By accessing or using LandingPagesForAgents.com ("the Site") and any of our products or services, you agree to be bound by these Terms of Service ("Terms") and our Privacy Policy. If you do not agree with any part of these Terms, you should not use our Site or services.
               </p>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Landing Pages for Agents provides website templates, design services, and related marketing tools for insurance agents and agencies. Our services include pre-designed templates, hosting, domain setup, business email, and optional custom website development.
+                Landing Pages for Agents provides page templates, design services, and related marketing tools for insurance agents and agencies. Our services include pre-designed templates, hosting, domain setup, business email, and optional custom page development.
               </p>
               <p className="text-gray-700 leading-relaxed mb-4">
                 All content appearing on our sample templates is placeholder or "filler" content, intended only as an example. It is the client's sole responsibility to replace all placeholder content with accurate, truthful, and compliant information relevant to their business, services, and licensing.
@@ -107,7 +107,7 @@ export default function TermsOfService() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Intellectual Property and Limitations of Liability</h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                All website designs, templates, and materials created by Landing Pages for Agents remain our intellectual property unless otherwise agreed upon in writing. Clients are granted a limited, non-exclusive, non-transferable license to use their purchased site or template for their own business operations.
+                All page designs, templates, and materials created by Landing Pages for Agents remain our intellectual property unless otherwise agreed upon in writing. Clients are granted a limited, non-exclusive, non-transferable license to use their purchased site or template for their own business operations.
               </p>
               <p className="text-gray-700 leading-relaxed mb-4">
                 We may utilize third-party services such as Stripe, hosting providers, and domain registrars to support our platform, and we are not responsible for any interruptions, data loss, or errors caused by such third parties.
@@ -166,7 +166,7 @@ export default function TermsOfService() {
               <h4 className="font-semibold mb-4">About LP4A</h4>
               <ul className="space-y-2 text-gray-400">
                 <li><a onClick={() => setLocation('/choose-purpose')} className="hover:text-white transition-colors cursor-pointer">View Templates</a></li>
-                <li><a onClick={() => setLocation('/custom-websites')} className="hover:text-white transition-colors cursor-pointer">Custom Websites</a></li>
+                <li><a onClick={() => setLocation('/custom-websites')} className="hover:text-white transition-colors cursor-pointer">Custom Pages</a></li>
                 <li><a onClick={() => setLocation('/other-services')} className="hover:text-white transition-colors cursor-pointer">Other Services</a></li>
                 <li><a onClick={() => setLocation('/pricing')} className="hover:text-white transition-colors cursor-pointer">Pricing</a></li>
               </ul>

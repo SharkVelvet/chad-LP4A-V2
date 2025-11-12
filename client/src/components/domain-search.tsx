@@ -11,7 +11,7 @@ import { Search, CheckCircle2, XCircle, ShoppingCart, Loader2 } from "lucide-rea
 import { useToast } from "@/hooks/use-toast";
 
 interface DomainSearchProps {
-  websiteId: number;
+  pageId: number;
   onDomainPurchased: (domain: string) => void;
 }
 
@@ -23,7 +23,7 @@ type DomainResult = {
   isPremium?: boolean;
 };
 
-export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSearchProps) {
+export default function DomainSearch({ pageId, onDomainPurchased }: DomainSearchProps) {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<DomainResult[]>([]);
@@ -66,13 +66,13 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
       }
 
       // Check availability
-      const availabilityRes = await apiRequest("POST", "/api/domains/check-availability", { domains: domainsToCheck, websiteId });
+      const availabilityRes = await apiRequest("POST", "/api/domains/check-availability", { domains: domainsToCheck, pageId });
       const availabilityResults: DomainResult[] = await availabilityRes.json();
 
       // Get pricing for available domains
       const availableDomains = availabilityResults.filter(r => r.available).map(r => r.domain);
       if (availableDomains.length > 0) {
-        const pricingRes = await apiRequest("POST", "/api/domains/pricing", { domains: availableDomains, websiteId });
+        const pricingRes = await apiRequest("POST", "/api/domains/pricing", { domains: availableDomains, pageId });
         const pricingResults: { domain: string; price: number; currency: string; isFree?: boolean; isPremium?: boolean }[] = await pricingRes.json();
 
         // Merge pricing into availability results
@@ -111,7 +111,7 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
       const res = await apiRequest("POST", "/api/create-domain-checkout-session", {
         domain: data.domain,
         years: 1,
-        websiteId,
+        pageId,
         contactInfo: data.contactInfo,
       });
       return res.json();
@@ -209,7 +209,7 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
       <Card>
         <CardHeader>
           <CardTitle>Search for a Domain</CardTitle>
-          <CardDescription>Find and register the perfect domain for your website</CardDescription>
+          <CardDescription>Find and register the perfect domain for your page</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSearch} className="space-y-4">
@@ -238,7 +238,7 @@ export default function DomainSearch({ websiteId, onDomainPurchased }: DomainSea
                 </Button>
               </div>
               <p className="text-xs text-gray-500 mt-1">
-                Enter a domain name (e.g., "mybusiness"). <span className="font-semibold text-green-600">FREE .com and .net domains included with your website!</span> Only .com and .net extensions are available.
+                Enter a domain name (e.g., "mybusiness"). <span className="font-semibold text-green-600">FREE .com and .net domains included with your page!</span> Only .com and .net extensions are available.
               </p>
             </div>
           </form>

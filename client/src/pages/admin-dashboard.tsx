@@ -206,7 +206,7 @@ export default function AdminDashboard() {
               <Card>
                 <CardHeader>
                   <CardTitle>Recent Form Submissions</CardTitle>
-                  <CardDescription>Latest inquiries from your website</CardDescription>
+                  <CardDescription>Latest inquiries from your page</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
@@ -232,7 +232,7 @@ export default function AdminDashboard() {
             <Card>
               <CardHeader>
                 <CardTitle>Form Submissions</CardTitle>
-                <CardDescription>Manage custom website inquiries</CardDescription>
+                <CardDescription>Manage custom page inquiries</CardDescription>
               </CardHeader>
               <CardContent>
                 {submissionsLoading ? (

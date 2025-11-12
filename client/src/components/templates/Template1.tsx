@@ -457,10 +457,12 @@ export default function Template1({ className = "", content, flexibleContent = {
             ].map((item, i) => (
               <div key={i} className="group">
                 <div className="relative overflow-hidden rounded-lg mb-4">
-                  <img 
-                    src={item.image} 
+                  <EditableImage
+                    contentId={`service-image-${i + 1}`}
+                    src={item.image}
                     alt={item.title}
                     className="w-full h-64 object-cover transition-transform group-hover:scale-105"
+                    getValue={getValue}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-opacity"></div>
                 </div>
@@ -499,10 +501,12 @@ export default function Template1({ className = "", content, flexibleContent = {
               <div key={i} className="bg-gray-50 p-6 rounded-lg">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 rounded-full mr-4 overflow-hidden">
-                    <img 
-                      src={testimonial.image} 
+                    <EditableImage
+                      contentId={`testimonial-image-${i + 1}`}
+                      src={testimonial.image}
                       alt={testimonial.name}
                       className="w-full h-full object-cover"
+                      getValue={getValue}
                     />
                   </div>
                   <div>

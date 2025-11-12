@@ -30,11 +30,18 @@ export default function EditModeOverlay({ rootRef }: EditModeOverlayProps) {
       const element = el as HTMLElement;
       if (element.closest('nav')) return;
       
+      // Skip elements inside background containers (unless they have explicit content-id)
+      const parentBackground = element.parentElement?.closest('[data-content-type="background"]');
+      const hasExplicitId = element.getAttribute('data-content-id');
+      if (parentBackground && element.getAttribute('data-content-type') !== 'background' && !hasExplicitId) {
+        return;
+      }
+      
       const hasDirectText = Array.from(element.childNodes).some(
         node => node.nodeType === Node.TEXT_NODE && node.textContent?.trim()
       );
       
-      if (hasDirectText || element.tagName === 'IMG' || element.getAttribute('data-content-id')) {
+      if (hasDirectText || element.tagName === 'IMG' || hasExplicitId) {
         editableElements.push(element);
       }
     });

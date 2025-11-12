@@ -515,7 +515,7 @@ export default function WebsiteEditor() {
             {template && (
               <iframe
                 key={`preview-${pageId}`}
-                src={`/template-preview?template=${template.slug}&websiteId=${pageId}&hideNav=true&editMode=false`}
+                src={`/template-preview?template=${template.slug}&pageId=${pageId}&hideNav=true&editMode=false`}
                 className={`w-full h-full border-0 ${isIframeLoading ? 'invisible' : 'visible'}`}
                 title="Page Preview"
                 data-testid="iframe-page-preview"
@@ -657,7 +657,7 @@ export default function WebsiteEditor() {
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <h4 className="text-lg font-semibold mb-4">Search and Purchase Domain</h4>
                     <DomainSearch
-                      websiteId={pageId!}
+                      pageId={pageId!}
                       onDomainPurchased={(domain) => {
                         queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
                         queryClient.invalidateQueries({ queryKey: ["/api/pages"] });
@@ -1277,7 +1277,7 @@ export default function WebsiteEditor() {
             <>
               <iframe
                 key={`edit-${pageId}`}
-                src={`/template-preview?template=${template.slug}&websiteId=${pageId}&editMode=true&hideNav=true`}
+                src={`/template-preview?template=${template.slug}&pageId=${pageId}&editMode=true&hideNav=true`}
                 className="w-full h-full border-0"
                 title="Edit Page"
                 data-testid="iframe-edit-mode"

@@ -68,14 +68,6 @@ export default function TemplatePreviewPage() {
   // Prepare content data for template - pass ENTIRE content object including flexible content
   const fullContent = page?.content || {};
   
-  // DEBUG: Log what we're receiving
-  if (pageId && page) {
-    console.log('[DATA CHECK] Full page object:', JSON.stringify(page, null, 2));
-    console.log('[DATA CHECK] page.content exists?', !!page.content);
-    console.log('[DATA CHECK] page.content.content exists?', !!(page.content as any)?.content);
-    console.log('[DATA CHECK] page.content.content keys:', Object.keys((page.content as any)?.content || {}));
-  }
-  
   // Extract legacy fields for backwards compatibility (these are database columns)
   const contentData = {
     businessName: fullContent.businessName || null,

@@ -12,29 +12,11 @@ import { useEffect, useState } from "react";
 import { trackTemplateView, trackTemplateSelection } from "@/lib/facebook-pixel";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { queryClient } from "@/lib/queryClient";
+import type { Template, Page, PageContent } from "@shared/schema";
 
-type Template = {
-  id: number;
-  name: string;
-  slug: string;
-  description: string;
-  category: string;
-  previewImage: string;
-  isActive: boolean;
-};
-
-type Page = {
-  id: number;
-  name: string;
-  templateId: number;
-  content?: {
-    businessName: string | null;
-    tagline: string | null;
-    aboutUs: string | null;
-    phone: string | null;
-    email: string | null;
-    address: string | null;
-  };
+// Extend Page type to include the joined content
+type PageWithContent = Page & {
+  content?: PageContent;
 };
 
 export default function TemplatePreviewPage() {
@@ -67,7 +49,7 @@ export default function TemplatePreviewPage() {
   });
 
   // Fetch page content if pageId is provided
-  const { data: page } = useQuery<Page>({
+  const { data: page } = useQuery<PageWithContent>({
     queryKey: ["/api/pages", pageId],
     queryFn: async () => {
       const res = await fetch(`/api/pages/${pageId}`, {
@@ -100,15 +82,6 @@ export default function TemplatePreviewPage() {
   // The backend stores flexible content in page_content.content (JSONB)
   // which comes back as fullContent.content
   const flexibleContent: Record<string, string> = (fullContent.content as Record<string, string>) || {};
-  
-  console.log('[TemplatePreview] Component rendered with:', {
-    hasPage: !!page,
-    hasContent: !!page?.content,
-    contentKeys: page?.content ? Object.keys(page.content) : [],
-    hasFlexible: !!fullContent.content,
-    flexibleKeys: Object.keys(flexibleContent),
-    sampleValue: flexibleContent['hero-headline']?.substring(0, 50)
-  });
 
   // Track template preview view
   useEffect(() => {
@@ -181,12 +154,6 @@ export default function TemplatePreviewPage() {
       // The flexible content is in page.content.content (JSONB field after rename)
       const flexibleContent = (page.content.content as Record<string, string>) || {};
       const elements = document.querySelectorAll('[data-content-id]');
-      
-      console.log('[DOM Hydration] Starting hydration with:', {
-        flexibleKeys: Object.keys(flexibleContent),
-        elementsFound: elements.length,
-        sampleContent: flexibleContent['hero-headline']?.substring(0, 50)
-      });
       
       elements.forEach((element) => {
         const contentId = element.getAttribute('data-content-id');

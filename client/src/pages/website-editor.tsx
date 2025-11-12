@@ -95,6 +95,7 @@ export default function WebsiteEditor() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages"] });
     },
     onError: () => {
       toast({
@@ -128,6 +129,7 @@ export default function WebsiteEditor() {
     onSuccess: async () => {
       // Refetch page data
       await queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
+      await queryClient.invalidateQueries({ queryKey: ["/api/pages"] });
       
       // Set reloading state to keep overlay visible
       setIsReloadingContent(true);

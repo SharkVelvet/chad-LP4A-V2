@@ -122,6 +122,15 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+- **November 12, 2025**: Implemented universal image and background editing system
+  - Created EditableImage and EditableBackground components for stable image editing
+  - All images now support visual editing via explicit data-content-id attributes
+  - Background images (CSS background-image) now fully editable with gradient overlay support
+  - Updated EditModeOverlay to detect data-content-type="image" and data-content-type="background"
+  - Template1 refactored: 6 images (1 hero, 1 hero background, 4 gallery) now use editable media components
+  - Prevents auto-generated ID changes that broke edit persistence
+  - Architecture: Component-driven approach ensures maintainability across all 15 templates
+
 - **November 12, 2025**: Completed Templates 13-15 dynamic content refactoring for visual editing
   - Created shared EditModeOverlay component with auto-generated content-id fallback for reusability
   - Template13: 20 explicit dynamic fields (hero, stats, testimonials, contact) - architect approved

@@ -325,7 +325,11 @@ export default function WebsiteEditor() {
             variant="ghost"
             size="sm"
             className="hover:bg-black hover:text-white"
-            onClick={() => navigate("/dashboard")}
+            onClick={() => {
+              // Invalidate dashboard queries so it refetches fresh data
+              queryClient.invalidateQueries({ queryKey: ["/api/pages"] });
+              navigate("/dashboard");
+            }}
             data-testid="button-back-to-dashboard"
           >
             ← Back to Dashboard

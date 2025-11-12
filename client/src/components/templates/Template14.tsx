@@ -1,12 +1,27 @@
 import { CheckCircle, Target, Users, GraduationCap, TrendingUp, Award, Users2, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X, Star, ArrowRight, Clock, Zap } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import EditModeOverlay from "./edit-mode-overlay";
 
 interface Template14Props {
   className?: string;
+  content?: {
+    businessName?: string | null;
+    tagline?: string | null;
+    phone?: string | null;
+    email?: string | null;
+    address?: string | null;
+  };
+  flexibleContent?: Record<string, string>;
+  editMode?: boolean;
 }
 
-export default function Template14({ className = "" }: Template14Props) {
+export default function Template14({ className = "", content, flexibleContent, editMode }: Template14Props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  const getValue = (key: string, defaultValue: string) => {
+    return flexibleContent?.[key] || defaultValue;
+  };
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
@@ -22,7 +37,9 @@ export default function Template14({ className = "" }: Template14Props) {
   };
 
   return (
-    <div className={`bg-white ${className}`}>
+    <div ref={rootRef} className={`bg-white ${className}`}>
+      {editMode && <EditModeOverlay rootRef={rootRef} />}
+      
       {/* Header - Matching mockup design */}
       <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,8 +49,12 @@ export default function Template14({ className = "" }: Template14Props) {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="cursor-pointer"
             >
-              <div className="text-xl font-bold text-gray-900">Delta Life Insurance</div>
-              <div className="text-xs text-gray-600">A Premier Insurance Agency</div>
+              <div className="text-xl font-bold text-gray-900" data-content-id="business-name">
+                {getValue('business-name', content?.businessName || 'Delta Life Insurance')}
+              </div>
+              <div className="text-xs text-gray-600" data-content-id="business-tagline">
+                {getValue('business-tagline', content?.tagline || 'A Premier Insurance Agency')}
+              </div>
             </div>
 
             {/* Desktop Navigation */}
@@ -90,11 +111,11 @@ export default function Template14({ className = "" }: Template14Props) {
           <div className="bg-red-700 flex items-center min-h-[75vh] lg:min-h-0 py-8 lg:py-0">
             <div className="w-full px-4 sm:px-6 lg:pl-8 xl:pl-[max(3.5rem,calc((100vw-80rem)/2+1.5rem))]">
               <div className="max-w-lg text-center lg:text-left">
-                <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white mb-6">
-                  Begin building the career of your dreams!
+                <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white mb-6" data-content-id="hero-headline">
+                  {getValue('hero-headline', 'Begin building the career of your dreams!')}
                 </h1>
-                <p className="text-white opacity-90 text-lg mb-8 leading-relaxed">
-                  Join Mandy at Delta Life Insurance to maximize your earning potential faster and more efficiently!
+                <p className="text-white opacity-90 text-lg mb-8 leading-relaxed" data-content-id="hero-subheadline">
+                  {getValue('hero-subheadline', 'Join Mandy at Delta Life Insurance to maximize your earning potential faster and more efficiently!')}
                 </p>
                 <div className="flex justify-center lg:justify-start">
                   <button 
@@ -111,14 +132,19 @@ export default function Template14({ className = "" }: Template14Props) {
           {/* Right Image */}
           <div className="relative bg-gray-100 h-full min-h-[50vh] lg:min-h-0">
             <img 
-              src="/attached_assets/template-14-hero_1760239504716.jpg" 
-              alt="Mandy Johnson - Delta Life Insurance Professional" 
+              src={getValue('hero-image', '/attached_assets/template-14-hero_1760239504716.jpg')}
+              alt="Insurance Professional" 
               className="absolute inset-0 w-full h-full object-cover object-center"
+              data-content-id="hero-image"
             />
             {/* Badge */}
             <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg px-4 py-3">
-              <h4 className="font-bold text-gray-900 text-sm">Mandy Johnson</h4>
-              <p className="text-gray-600 text-xs">Licensed Agent 15+ years</p>
+              <h4 className="font-bold text-gray-900 text-sm" data-content-id="agent-name-badge">
+                {getValue('agent-name-badge', 'Mandy Johnson')}
+              </h4>
+              <p className="text-gray-600 text-xs" data-content-id="agent-subtitle-badge">
+                {getValue('agent-subtitle-badge', 'Licensed Agent 15+ years')}
+              </p>
             </div>
           </div>
         </div>
@@ -135,11 +161,11 @@ export default function Template14({ className = "" }: Template14Props) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                   {/* Left side - Stats */}
                   <div className="bg-red-600 text-white p-6 rounded-2xl">
-                    <h3 className="text-xl font-bold mb-4">
-                      Stop dreaming about financial freedom and start living it!
+                    <h3 className="text-xl font-bold mb-4" data-content-id="agent-card-headline">
+                      {getValue('agent-card-headline', 'Stop dreaming about financial freedom and start living it!')}
                     </h3>
-                    <p className="text-red-100 text-sm mb-4">
-                      Mandy's proven system has helped hundreds escape their 9-5 jobs to build six-figure incomes working just part-time in insurance.
+                    <p className="text-red-100 text-sm mb-4" data-content-id="agent-card-description">
+                      {getValue('agent-card-description', "Mandy's proven system has helped hundreds escape their 9-5 jobs to build six-figure incomes working just part-time in insurance.")}
                     </p>
                   </div>
                   
@@ -147,13 +173,18 @@ export default function Template14({ className = "" }: Template14Props) {
                   <div className="text-center">
                     <div className="relative inline-block mb-4">
                       <img 
-                        src="/attached_assets/template-14-2_1760239529912.jpg" 
-                        alt="Mandy Johnson" 
+                        src={getValue('agent-profile-image', '/attached_assets/template-14-2_1760239529912.jpg')}
+                        alt="Insurance Agent" 
                         className="w-64 h-64 rounded-2xl object-cover mx-auto"
+                        data-content-id="agent-profile-image"
                       />
                     </div>
-                    <h4 className="font-bold text-gray-900 text-lg">Mandy Johnson</h4>
-                    <p className="text-gray-600 text-sm">Licensed Agent 15+ years</p>
+                    <h4 className="font-bold text-gray-900 text-lg" data-content-id="agent-profile-name">
+                      {getValue('agent-profile-name', 'Mandy Johnson')}
+                    </h4>
+                    <p className="text-gray-600 text-sm" data-content-id="agent-profile-subtitle">
+                      {getValue('agent-profile-subtitle', 'Licensed Agent 15+ years')}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -161,17 +192,21 @@ export default function Template14({ className = "" }: Template14Props) {
 
             {/* Right Content */}
             <div className="lg:pl-8">
-              <div className="text-sm text-gray-600 mb-6 font-medium">
-                Stop trading time for money
+              <div className="text-sm text-gray-600 mb-6 font-medium" data-content-id="hero-eyebrow">
+                {getValue('hero-eyebrow', 'Stop trading time for money')}
               </div>
               
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Your Dreams Are Waiting at 
-                <span className="text-red-600"> Delta Life Insurance!</span>
+                <span data-content-id="hero-main-title">
+                  {getValue('hero-main-title', 'Your Dreams Are Waiting at')}
+                </span>
+                <span className="text-red-600" data-content-id="hero-title-highlight">
+                  {getValue('hero-title-highlight', ' Delta Life Insurance!')}
+                </span>
               </h1>
               
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Tired of the 9-5 grind? Ready to build unlimited income on your own terms? Join Mandy Johnson's elite insurance team and transform your financial future. We'll show you exactly how to escape the corporate trap and build the wealth you've always dreamed of.
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed" data-content-id="hero-description">
+                {getValue('hero-description', "Tired of the 9-5 grind? Ready to build unlimited income on your own terms? Join Mandy Johnson's elite insurance team and transform your financial future. We'll show you exactly how to escape the corporate trap and build the wealth you've always dreamed of.")}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
@@ -605,7 +640,9 @@ export default function Template14({ className = "" }: Template14Props) {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Call Us</h3>
-                  <p className="text-gray-600">(555) 123-4567</p>
+                  <p className="text-gray-600" data-content-id="contact-phone">
+                    {getValue('contact-phone', content?.phone || '(555) 123-4567')}
+                  </p>
                 </div>
               </div>
 
@@ -618,7 +655,9 @@ export default function Template14({ className = "" }: Template14Props) {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Email</h3>
-                  <p className="text-gray-600">partners@deltalife.com</p>
+                  <p className="text-gray-600" data-content-id="contact-email">
+                    {getValue('contact-email', content?.email || 'partners@deltalife.com')}
+                  </p>
                 </div>
               </div>
 
@@ -630,9 +669,8 @@ export default function Template14({ className = "" }: Template14Props) {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Office</h3>
-                  <p className="text-gray-600">
-                    123 Business Center Dr<br />
-                    Your City, ST 12345
+                  <p className="text-gray-600" data-content-id="contact-address">
+                    {getValue('contact-address', content?.address || '123 Business Center Dr\nYour City, ST 12345')}
                   </p>
                 </div>
               </div>

@@ -1,12 +1,27 @@
 import { CheckCircle, Target, Users, DollarSign, TrendingUp, Award, Shield, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X, Star, ArrowRight, Clock, Zap } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import EditModeOverlay from "./edit-mode-overlay";
 
 interface Template15Props {
   className?: string;
+  content?: {
+    businessName?: string | null;
+    tagline?: string | null;
+    phone?: string | null;
+    email?: string | null;
+    address?: string | null;
+  };
+  flexibleContent?: Record<string, string>;
+  editMode?: boolean;
 }
 
-export default function Template15({ className = "" }: Template15Props) {
+export default function Template15({ className = "", content, flexibleContent, editMode }: Template15Props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  const getValue = (key: string, defaultValue: string) => {
+    return flexibleContent?.[key] || defaultValue;
+  };
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
@@ -22,7 +37,9 @@ export default function Template15({ className = "" }: Template15Props) {
   };
 
   return (
-    <div className={`bg-white ${className}`}>
+    <div ref={rootRef} className={`bg-white ${className}`}>
+      {editMode && <EditModeOverlay rootRef={rootRef} />}
+      
       {/* Header */}
       <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,8 +49,12 @@ export default function Template15({ className = "" }: Template15Props) {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="cursor-pointer"
             >
-              <div className="text-xl font-bold text-gray-900">Elite Insurance Group</div>
-              <div className="text-xs text-red-600">Building Tomorrow's Leaders</div>
+              <div className="text-xl font-bold text-gray-900" data-content-id="business-name">
+                {getValue('business-name', content?.businessName || 'Elite Insurance Group')}
+              </div>
+              <div className="text-xs text-red-600" data-content-id="business-tagline">
+                {getValue('business-tagline', content?.tagline || "Building Tomorrow's Leaders")}
+              </div>
             </div>
 
             {/* Desktop Navigation */}
@@ -91,9 +112,10 @@ export default function Template15({ className = "" }: Template15Props) {
           <div className="absolute inset-0 bg-gradient-to-br from-red-900 via-red-800 to-red-700"></div>
           {/* Professional jacket background image */}
           <img 
-            src="/attached_assets/plr-jacket_1758677120512.jpg"
+            src={getValue('hero-background-image', '/attached_assets/plr-jacket_1758677120512.jpg')}
             alt="Professional background"
             className="absolute inset-0 w-full h-full object-cover opacity-20 md:opacity-30"
+            data-content-id="hero-background-image"
             onLoad={() => console.log('Background image loaded successfully')}
             onError={() => console.log('Background image failed to load')}
           />
@@ -105,16 +127,22 @@ export default function Template15({ className = "" }: Template15Props) {
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center bg-red-800 bg-opacity-70 px-4 py-2 rounded-full text-sm mb-8">
             <Star className="w-4 h-4 mr-2 text-yellow-400" />
-            <span>Join the Top 1% of Insurance Professionals</span>
+            <span data-content-id="hero-badge-text">
+              {getValue('hero-badge-text', 'Join the Top 1% of Insurance Professionals')}
+            </span>
           </div>
           
           <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-8">
-            Turn Your Passion Into
-            <span className="text-red-300"> Unlimited Income</span>
+            <span data-content-id="hero-main-title">
+              {getValue('hero-main-title', 'Turn Your Passion Into')}
+            </span>
+            <span className="text-red-300" data-content-id="hero-title-highlight">
+              {getValue('hero-title-highlight', ' Unlimited Income')}
+            </span>
           </h1>
           
-          <p className="text-xl lg:text-2xl text-red-100 mb-12 leading-relaxed max-w-3xl mx-auto">
-            Build a thriving insurance career with Elite Insurance Group. We provide world-class training, unlimited earning potential, and the support system you need to achieve financial freedom.
+          <p className="text-xl lg:text-2xl text-red-100 mb-12 leading-relaxed max-w-3xl mx-auto" data-content-id="hero-description">
+            {getValue('hero-description', 'Build a thriving insurance career with Elite Insurance Group. We provide world-class training, unlimited earning potential, and the support system you need to achieve financial freedom.')}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -139,20 +167,36 @@ export default function Template15({ className = "" }: Template15Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-red-600 mb-2">500+</div>
-              <div className="text-gray-600">Successful Agents</div>
+              <div className="text-4xl font-bold text-red-600 mb-2" data-content-id="stat1-value">
+                {getValue('stat1-value', '500+')}
+              </div>
+              <div className="text-gray-600" data-content-id="stat1-label">
+                {getValue('stat1-label', 'Successful Agents')}
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-red-600 mb-2">$2M+</div>
-              <div className="text-gray-600">Average Annual Revenue</div>
+              <div className="text-4xl font-bold text-red-600 mb-2" data-content-id="stat2-value">
+                {getValue('stat2-value', '$2M+')}
+              </div>
+              <div className="text-gray-600" data-content-id="stat2-label">
+                {getValue('stat2-label', 'Average Annual Revenue')}
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-red-600 mb-2">95%</div>
-              <div className="text-gray-600">Agent Retention Rate</div>
+              <div className="text-4xl font-bold text-red-600 mb-2" data-content-id="stat3-value">
+                {getValue('stat3-value', '95%')}
+              </div>
+              <div className="text-gray-600" data-content-id="stat3-label">
+                {getValue('stat3-label', 'Agent Retention Rate')}
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-red-600 mb-2">15</div>
-              <div className="text-gray-600">Years of Excellence</div>
+              <div className="text-4xl font-bold text-red-600 mb-2" data-content-id="stat4-value">
+                {getValue('stat4-value', '15')}
+              </div>
+              <div className="text-gray-600" data-content-id="stat4-label">
+                {getValue('stat4-label', 'Years of Excellence')}
+              </div>
             </div>
           </div>
         </div>
@@ -548,9 +592,15 @@ export default function Template15({ className = "" }: Template15Props) {
             <div>
               <h3 className="font-semibold mb-4">Contact</h3>
               <div className="space-y-2 text-gray-300 text-sm">
-                <p>(555) 789-0123</p>
-                <p>careers@eliteinsurance.com</p>
-                <p>456 Success Drive<br />Elite City, ST 54321</p>
+                <p data-content-id="contact-phone">
+                  {getValue('contact-phone', content?.phone || '(555) 789-0123')}
+                </p>
+                <p data-content-id="contact-email">
+                  {getValue('contact-email', content?.email || 'careers@eliteinsurance.com')}
+                </p>
+                <p data-content-id="contact-address">
+                  {getValue('contact-address', content?.address || '456 Success Drive\nElite City, ST 54321')}
+                </p>
               </div>
             </div>
           </div>

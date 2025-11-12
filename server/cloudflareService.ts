@@ -56,7 +56,9 @@ class CloudflareService {
       );
 
       if (!response.data.success) {
-        throw new Error(`Cloudflare error: ${JSON.stringify(response.data.errors)}`);
+        const errorDetails = JSON.stringify(response.data.errors);
+        console.error(`❌ Cloudflare API error:`, response.data.errors);
+        throw new Error(`Cloudflare error: ${errorDetails}`);
       }
 
       const zone = response.data.result;
@@ -69,8 +71,22 @@ class CloudflareService {
         name_servers: zone.name_servers
       };
     } catch (error: any) {
-      console.error('Error adding Cloudflare zone:', error.response?.data || error.message);
-      throw new Error(`Failed to add domain to Cloudflare: ${error.message}`);
+      const errorData = error.response?.data;
+      const errorMessage = errorData?.errors?.[0]?.message || error.message;
+      const errorCode = errorData?.errors?.[0]?.code || 'unknown';
+      
+      console.error('❌ Error adding Cloudflare zone:', {
+        domain,
+        errorCode,
+        errorMessage,
+        fullError: errorData
+      });
+      
+      if (errorCode === 1061 || errorMessage.includes('already exists')) {
+        throw new Error(`Domain ${domain} already exists in Cloudflare. Please remove it first or contact support.`);
+      }
+      
+      throw new Error(`Failed to add domain to Cloudflare: ${errorMessage} (Code: ${errorCode})`);
     }
   }
 

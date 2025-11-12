@@ -156,12 +156,26 @@ export default function Dashboard() {
                       return (
                         <Card key={page.id} className="overflow-hidden group hover:shadow-lg transition-shadow" data-testid={`page-card-${page.id}`}>
                           <div className="relative w-full bg-white border-b" style={{ height: '200px', overflow: 'hidden' }}>
-                            <img
-                              src={template?.previewImage || '/placeholder.jpg'}
-                              alt={page.name}
-                              className="absolute top-0 left-0 w-full h-auto min-h-full object-cover object-top"
-                              style={{ maxWidth: '100%' }}
-                            />
+                            {template ? (
+                              <iframe
+                                src={`/template-preview?template=${template.slug}&pageId=${page.id}&hideNav=true&editMode=false&_t=${Date.now()}`}
+                                className="absolute top-0 left-0 w-full h-full border-0 pointer-events-none"
+                                style={{ 
+                                  transform: 'scale(0.25)', 
+                                  transformOrigin: 'top left',
+                                  width: '400%',
+                                  height: '400%'
+                                }}
+                                title={`Preview of ${page.name}`}
+                              />
+                            ) : (
+                              <img
+                                src="/placeholder.jpg"
+                                alt={page.name}
+                                className="absolute top-0 left-0 w-full h-auto min-h-full object-cover object-top"
+                                style={{ maxWidth: '100%' }}
+                              />
+                            )}
                           </div>
                           <CardHeader className="pb-3">
                             <CardTitle className="text-base truncate mb-2">{displayTitle}</CardTitle>

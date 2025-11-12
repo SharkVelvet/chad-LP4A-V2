@@ -31,6 +31,31 @@ type PageWithContent = Page & {
   content?: PageContent;
 };
 
+// Helper function to canonicalize template slug for backward compatibility
+// Handles legacy formats: "Template-1", "template-1", "Template1" -> "template1"
+function canonicalizeTemplateSlug(slug: string): string {
+  return slug.toLowerCase().replace(/-/g, '');
+}
+
+// Component map for all templates
+const templateComponentMap: Record<string, React.ComponentType<any>> = {
+  template1: Template1,
+  template2: Template2,
+  template3: Template3,
+  template4: Template4,
+  template5: Template5,
+  template6: Template6,
+  template7: Template7,
+  template8: Template8,
+  template9: Template9,
+  template10: Template10,
+  template11: Template11,
+  template12: Template12,
+  template13: Template13,
+  template14: Template14,
+  template15: Template15,
+};
+
 export default function TemplatePreviewPage() {
   const [, navigate] = useLocation();
   const params = new URLSearchParams(window.location.search);
@@ -656,23 +681,47 @@ export default function TemplatePreviewPage() {
         style={{ scrollBehavior: 'smooth' }}
         data-edit-mode={editMode}
       >
-        {template.slug === "template-13" || template.slug === "Template-13" || template.slug === "Template13" ? (
-          <Template13 className="w-full" content={contentData} flexibleContent={flexibleContent} editMode={editMode} />
-        ) : template.slug === "template-14" || template.slug === "Template-14" || template.slug === "Template14" ? (
-          <Template14 className="w-full" content={contentData} flexibleContent={flexibleContent} editMode={editMode} />
-        ) : template.slug === "template-15" || template.slug === "Template-15" || template.slug === "Template15" ? (
-          <Template15 className="w-full" content={contentData} flexibleContent={flexibleContent} editMode={editMode} />
-        ) : ["Template-1", "Template-2", "Template-3", "Template-4", "Template-5", "Template-6", "Template-7", "Template-8", "template-9", "Template-10", "Template-11", "Template-12"].includes(template.slug) ? (
-          <TemplatePreview templateSlug={template.slug} className="w-full" content={contentData} flexibleContent={flexibleContent} editMode={editMode} />
-        ) : (
-          <div className="w-full min-h-screen bg-white">
-            <img
-              src={template.previewImage}
-              alt={`${template.name} preview`}
-              className="w-full h-auto"
-            />
-          </div>
-        )}
+        {(() => {
+          // Canonicalize slug for component lookup (handles Template-1, template-1, Template1 -> template1)
+          const canonicalSlug = canonicalizeTemplateSlug(template.slug);
+          const TemplateComponent = templateComponentMap[canonicalSlug];
+          
+          // Render extracted component if found
+          if (TemplateComponent) {
+            return (
+              <TemplateComponent 
+                className="w-full" 
+                content={contentData} 
+                flexibleContent={flexibleContent} 
+                editMode={editMode} 
+              />
+            );
+          }
+          
+          // Fallback to legacy TemplatePreview for old inline templates (if any remain)
+          if (["Template-1", "Template-2", "Template-3", "Template-4", "Template-5", "Template-6", "Template-7", "Template-8", "template-9", "Template-10", "Template-11", "Template-12"].includes(template.slug)) {
+            return (
+              <TemplatePreview 
+                templateSlug={template.slug} 
+                className="w-full" 
+                content={contentData} 
+                flexibleContent={flexibleContent} 
+                editMode={editMode} 
+              />
+            );
+          }
+          
+          // Final fallback: show static preview image for unknown templates
+          return (
+            <div className="w-full min-h-screen bg-white">
+              <img
+                src={template.previewImage}
+                alt={`${template.name} preview`}
+                className="w-full h-auto"
+              />
+            </div>
+          );
+        })()}
       </div>
       
       {/* Edit Mode CSS */}

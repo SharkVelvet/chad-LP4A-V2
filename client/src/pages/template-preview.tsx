@@ -662,11 +662,11 @@ export default function TemplatePreviewPage() {
         style={{ scrollBehavior: 'smooth' }}
         data-edit-mode={editMode}
       >
-        {template.slug === "template-13" || template.slug === "Template-13" ? (
+        {template.slug === "template-13" || template.slug === "Template-13" || template.slug === "Template13" ? (
           <Template13 className="w-full" content={contentData} flexibleContent={flexibleContent} editMode={editMode} />
-        ) : template.slug === "template-14" || template.slug === "Template-14" ? (
+        ) : template.slug === "template-14" || template.slug === "Template-14" || template.slug === "Template14" ? (
           <Template14 className="w-full" content={contentData} flexibleContent={flexibleContent} editMode={editMode} />
-        ) : template.slug === "template-15" || template.slug === "Template-15" ? (
+        ) : template.slug === "template-15" || template.slug === "Template-15" || template.slug === "Template15" ? (
           <Template15 className="w-full" content={contentData} flexibleContent={flexibleContent} editMode={editMode} />
         ) : ["Template-1", "Template-2", "Template-3", "Template-4", "Template-5", "Template-6", "Template-7", "Template-8", "template-9", "Template-10", "Template-11", "Template-12"].includes(template.slug) ? (
           <TemplatePreview templateSlug={template.slug} className="w-full" content={contentData} flexibleContent={flexibleContent} editMode={editMode} />

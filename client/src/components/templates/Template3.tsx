@@ -76,17 +76,16 @@ export default function Template3({ className = "", content, flexibleContent = {
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
                   <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full text-red-700 text-xs font-medium border-2 border-white shadow-md whitespace-nowrap">
                     <span className="w-2 h-2 bg-red-600 rounded-full mr-2"></span>
-                    Sarah Johnson, CFP
+                    <span data-content-id="agent-badge">{getValue('agent-badge', `${content?.businessName || 'Sarah Johnson'}, CFP`)}</span>
                   </div>
                 </div>
               </div>
               
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-gray-900 mb-6">
-                Strategic Financial
-                <span className="block text-red-600">Planning & Advisory</span>
+              <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-gray-900 mb-6" data-content-id="hero-heading">
+                {getValue('hero-heading', 'Strategic Financial Planning & Advisory')}
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                Comprehensive financial solutions and procurement expertise to help your business thrive in today's competitive marketplace.
+              <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto" data-content-id="hero-description">
+                {getValue('hero-description', "Comprehensive financial solutions and procurement expertise to help your business thrive in today's competitive marketplace.")}
               </p>
             </div>
             
@@ -95,24 +94,24 @@ export default function Template3({ className = "", content, flexibleContent = {
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Clock className="w-8 h-8 text-red-600" />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">15+</div>
-                <div className="text-gray-600">Years Experience</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2" data-content-id="stat-1-value">{getValue('stat-1-value', '15+')}</div>
+                <div className="text-gray-600" data-content-id="stat-1-label">{getValue('stat-1-label', 'Years Experience')}</div>
               </div>
               
               <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-red-600" />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">500+</div>
-                <div className="text-gray-600">Satisfied Clients</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2" data-content-id="stat-2-value">{getValue('stat-2-value', '500+')}</div>
+                <div className="text-gray-600" data-content-id="stat-2-label">{getValue('stat-2-label', 'Satisfied Clients')}</div>
               </div>
               
               <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Award className="w-8 h-8 text-red-600" />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">CFP</div>
-                <div className="text-gray-600">Certified Planner</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2" data-content-id="stat-3-value">{getValue('stat-3-value', 'CFP')}</div>
+                <div className="text-gray-600" data-content-id="stat-3-label">{getValue('stat-3-label', 'Certified Planner')}</div>
               </div>
             </div>
             
@@ -139,20 +138,22 @@ export default function Template3({ className = "", content, flexibleContent = {
         <div id="about" className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full text-red-600 text-sm font-medium mb-4">
-                Meet Our Expert
+              <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full text-red-600 text-sm font-medium mb-4" data-content-id="about-badge">
+                {getValue('about-badge', 'Meet Our Expert')}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">About Sarah Johnson</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                With over 15 years of experience in financial services and procurement, Sarah Johnson has established herself as a leading expert in strategic financial planning and business optimization.
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6" data-content-id="about-heading">
+                {getValue('about-heading', `About ${content?.businessName || 'Sarah Johnson'}`)}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-content-id="about-intro">
+                {getValue('about-intro', 'With over 15 years of experience in financial services and procurement, Sarah Johnson has established herself as a leading expert in strategic financial planning and business optimization.')}
               </p>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
                 <div className="space-y-4 sm:space-y-6">
-                  <p className="text-lg text-gray-700 leading-relaxed">
-                    Her comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
+                  <p className="text-lg text-gray-700 leading-relaxed" data-content-id="about-paragraph">
+                    {getValue('about-paragraph', 'Her comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.')}
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -160,32 +161,48 @@ export default function Template3({ className = "", content, flexibleContent = {
                       <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
                         <Clock className="w-6 h-6 text-red-600" />
                       </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">15+ Years Experience</h3>
-                      <p className="text-sm text-gray-600">Proven track record in financial planning</p>
+                      <h3 className="font-semibold text-gray-900 mb-2" data-content-id="achievement-1-title">
+                        {getValue('achievement-1-title', '15+ Years Experience')}
+                      </h3>
+                      <p className="text-sm text-gray-600" data-content-id="achievement-1-description">
+                        {getValue('achievement-1-description', 'Proven track record in financial planning')}
+                      </p>
                     </div>
                     
                     <div className="bg-gray-50 rounded-2xl p-6 hover:bg-red-50 transition-colors">
                       <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
                         <Users className="w-6 h-6 text-red-600" />
                       </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">500+ Clients Served</h3>
-                      <p className="text-sm text-gray-600">Trusted by individuals and businesses</p>
+                      <h3 className="font-semibold text-gray-900 mb-2" data-content-id="achievement-2-title">
+                        {getValue('achievement-2-title', '500+ Clients Served')}
+                      </h3>
+                      <p className="text-sm text-gray-600" data-content-id="achievement-2-description">
+                        {getValue('achievement-2-description', 'Trusted by individuals and businesses')}
+                      </p>
                     </div>
                     
                     <div className="bg-gray-50 rounded-2xl p-6 hover:bg-red-50 transition-colors">
                       <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
                         <Award className="w-6 h-6 text-red-600" />
                       </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Industry Recognition</h3>
-                      <p className="text-sm text-gray-600">Award-winning financial expertise</p>
+                      <h3 className="font-semibold text-gray-900 mb-2" data-content-id="achievement-3-title">
+                        {getValue('achievement-3-title', 'Industry Recognition')}
+                      </h3>
+                      <p className="text-sm text-gray-600" data-content-id="achievement-3-description">
+                        {getValue('achievement-3-description', 'Award-winning financial expertise')}
+                      </p>
                     </div>
                     
                     <div className="bg-gray-50 rounded-2xl p-6 hover:bg-red-50 transition-colors">
                       <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
                         <Shield className="w-6 h-6 text-red-600" />
                       </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">CFP Certified</h3>
-                      <p className="text-sm text-gray-600">Certified Financial Planner professional</p>
+                      <h3 className="font-semibold text-gray-900 mb-2" data-content-id="achievement-4-title">
+                        {getValue('achievement-4-title', 'CFP Certified')}
+                      </h3>
+                      <p className="text-sm text-gray-600" data-content-id="achievement-4-description">
+                        {getValue('achievement-4-description', 'Certified Financial Planner professional')}
+                      </p>
                     </div>
                   </div>
                 </div>

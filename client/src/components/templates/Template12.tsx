@@ -107,24 +107,21 @@ export default function Template12({ className = "", content, flexibleContent = 
 
           {/* Agent Name Typography */}
           <div className="absolute top-20 left-8 z-10">
-            <h1 className="text-8xl lg:text-9xl font-light tracking-wider text-white drop-shadow-lg">
-              Doug
+            <h1 className="text-8xl lg:text-9xl font-light tracking-wider text-white drop-shadow-lg" data-content-id="hero-heading">
+              {getValue('hero-heading', content?.businessName || 'Doug Welms')}
             </h1>
-            <h1 className="text-8xl lg:text-9xl font-bold tracking-wider text-white -mt-4 drop-shadow-lg">
-              Welms
-            </h1>
-            <div className="mt-4 text-base text-gray-50 tracking-[0.3em] font-extralight drop-shadow-lg">
-              COMPREHENSIVE INSURANCE SOLUTIONS
+            <div className="mt-4 text-base text-gray-50 tracking-[0.3em] font-extralight drop-shadow-lg" data-content-id="hero-subtitle">
+              {getValue('hero-subtitle', 'COMPREHENSIVE INSURANCE SOLUTIONS')}
             </div>
-            <div className="mt-2 text-sm text-gray-200 font-extralight drop-shadow-md">
-              New York, NY 10001
+            <div className="mt-2 text-sm text-gray-200 font-extralight drop-shadow-md" data-content-id="hero-location">
+              {getValue('hero-location', content?.address || 'New York, NY 10001')}
             </div>
           </div>
 
           {/* Tagline */}
           <div className="absolute bottom-20 left-8 right-8 z-10">
-            <p className="text-lg font-light text-gray-100 max-w-md leading-relaxed drop-shadow-lg">
-              A better <span className="italic">life insurance plan</span>.
+            <p className="text-lg font-light text-gray-100 max-w-md leading-relaxed drop-shadow-lg" data-content-id="hero-tagline">
+              {getValue('hero-tagline', 'A better life insurance plan.')}
             </p>
           </div>
         </div>
@@ -132,14 +129,16 @@ export default function Template12({ className = "", content, flexibleContent = 
         {/* Services Section */}
         <div id="about" className="bg-slate-800 text-white py-20">
           <div className="max-w-6xl mx-auto px-8">
-            <h2 className="text-4xl lg:text-5xl mb-16 text-center text-white">
-              <span className="font-light">Comprehensive protection,</span> <span className="font-semibold italic">personalized solutions</span>
+            <h2 className="text-4xl lg:text-5xl mb-16 text-center text-white" data-content-id="services-heading">
+              {getValue('services-heading', 'Comprehensive protection, personalized solutions')}
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-gray-600">
               {/* Health Insurance */}
               <div className="pt-8 md:pt-0 md:pr-6 md:border-l md:border-gray-600 md:pl-6">
-                <h3 className="text-2xl font-bold mb-8 text-white tracking-wide">Health Insurance</h3>
+                <h3 className="text-2xl font-bold mb-8 text-white tracking-wide" data-content-id="health-insurance-title">
+                  {getValue('health-insurance-title', 'Health Insurance')}
+                </h3>
                 <ul className="space-y-4 text-white">
                   <li className="flex items-center">
                     <span className="text-red-400 mr-3">✓</span>
@@ -166,7 +165,9 @@ export default function Template12({ className = "", content, flexibleContent = 
 
               {/* Life Insurance */}
               <div className="pt-8 md:pt-0 md:px-6">
-                <h3 className="text-2xl font-bold mb-8 text-white tracking-wide">Life Insurance</h3>
+                <h3 className="text-2xl font-bold mb-8 text-white tracking-wide" data-content-id="life-insurance-title">
+                  {getValue('life-insurance-title', 'Life Insurance')}
+                </h3>
                 <ul className="space-y-4 text-white">
                   <li className="flex items-center">
                     <span className="text-red-400 mr-3">✓</span>
@@ -193,7 +194,9 @@ export default function Template12({ className = "", content, flexibleContent = 
 
               {/* Annuities */}
               <div className="pt-8 md:pt-0 md:pl-6">
-                <h3 className="text-2xl font-bold mb-8 text-white tracking-wide">Annuities</h3>
+                <h3 className="text-2xl font-bold mb-8 text-white tracking-wide" data-content-id="annuities-title">
+                  {getValue('annuities-title', 'Annuities')}
+                </h3>
                 <ul className="space-y-4 text-white">
                   <li className="flex items-center">
                     <span className="text-red-400 mr-3">✓</span>
@@ -239,11 +242,11 @@ export default function Template12({ className = "", content, flexibleContent = 
           {/* Right Side - Life Insurance Content */}
           <div className="bg-gray-100 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
             <div className="max-w-md">
-              <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight">
-                Life Insurance <span className="italic">protection</span>
+              <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight" data-content-id="life-insurance-section-heading">
+                {getValue('life-insurance-section-heading', 'Life Insurance protection')}
               </h2>
-              <p className="text-gray-700 mb-4 leading-relaxed font-medium">
-                Secure your family's future with comprehensive life insurance coverage. From term to whole life policies, we help you find the right protection to ensure your loved ones are financially secure.
+              <p className="text-gray-700 mb-4 leading-relaxed font-medium" data-content-id="life-insurance-section-description">
+                {getValue('life-insurance-section-description', "Secure your family's future with comprehensive life insurance coverage. From term to whole life policies, we help you find the right protection to ensure your loved ones are financially secure.")}
               </p>
               <button 
                 onClick={() => {
@@ -262,11 +265,11 @@ export default function Template12({ className = "", content, flexibleContent = 
           {/* Left Side - Health Insurance Content */}
           <div className="bg-gray-100 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
             <div className="max-w-md">
-              <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight">
-                Health Insurance <span className="italic">coverage</span>
+              <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight" data-content-id="health-insurance-section-heading">
+                {getValue('health-insurance-section-heading', 'Health Insurance coverage')}
               </h2>
-              <p className="text-gray-700 mb-4 leading-relaxed font-medium">
-                Access quality healthcare without the financial burden. Our health insurance plans provide comprehensive medical coverage, prescription benefits, and preventive care to keep you and your family healthy.
+              <p className="text-gray-700 mb-4 leading-relaxed font-medium" data-content-id="health-insurance-section-description">
+                {getValue('health-insurance-section-description', 'Access quality healthcare without the financial burden. Our health insurance plans provide comprehensive medical coverage, prescription benefits, and preventive care to keep you and your family healthy.')}
               </p>
               <button 
                 onClick={() => {
@@ -311,11 +314,11 @@ export default function Template12({ className = "", content, flexibleContent = 
           {/* Right Side - Annuities Content */}
           <div className="bg-gray-100 flex items-center justify-center py-20 px-8 lg:py-28 lg:px-12">
             <div className="max-w-md">
-              <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight">
-                Annuities for <span className="italic">retirement</span>
+              <h2 className="text-3xl lg:text-4xl font-medium mb-4 text-gray-900 leading-tight" data-content-id="annuities-section-heading">
+                {getValue('annuities-section-heading', 'Annuities for retirement')}
               </h2>
-              <p className="text-gray-700 mb-4 leading-relaxed font-medium">
-                Build a secure retirement with guaranteed income streams. Our annuity products offer tax-deferred growth and reliable payments to ensure your golden years are truly golden.
+              <p className="text-gray-700 mb-4 leading-relaxed font-medium" data-content-id="annuities-section-description">
+                {getValue('annuities-section-description', 'Build a secure retirement with guaranteed income streams. Our annuity products offer tax-deferred growth and reliable payments to ensure your golden years are truly golden.')}
               </p>
               <button 
                 onClick={() => {
@@ -332,8 +335,8 @@ export default function Template12({ className = "", content, flexibleContent = 
         {/* Quote Section */}
         <div className="bg-slate-800 text-white py-20">
           <div className="max-w-4xl mx-auto px-8 text-center">
-            <blockquote className="text-2xl lg:text-3xl font-light leading-relaxed mb-8 italic">
-              "Where the legacy of the past meets the inclusive innovation of the present."
+            <blockquote className="text-2xl lg:text-3xl font-light leading-relaxed mb-8 italic" data-content-id="quote-text">
+              {getValue('quote-text', '"Where the legacy of the past meets the inclusive innovation of the present."')}
             </blockquote>
             <cite className="text-red-300 text-sm tracking-wide font-light">
               — Doug Welms, Founder

@@ -75,19 +75,15 @@ export default function Template2({ className = "", content, flexibleContent = {
               <div className="flex items-center py-12 sm:py-20 px-4 sm:px-6 pr-2">
                 <div className="w-full">
                   <div className="mb-6">
-                    <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-medium">
-                      Financial Excellence Since 2008
+                    <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-medium" data-content-id="hero-badge">
+                      {getValue('hero-badge', 'Financial Excellence Since 2008')}
                     </span>
                   </div>
-                  <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
-                    Financial
-                    <br />
-                    <span className="text-red-600">Excellence</span>
-                    <br />
-                    Delivered
+                  <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight" data-content-id="hero-heading">
+                    {getValue('hero-heading', 'Financial Excellence Delivered')}
                   </h1>
-                  <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg">
-                    Specializing in comprehensive insurance solutions including health coverage, life insurance, Medicare planning, and Medicaid assistance with over 15 years of expertise.
+                  <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg" data-content-id="hero-description">
+                    {getValue('hero-description', 'Specializing in comprehensive insurance solutions including health coverage, life insurance, Medicare planning, and Medicaid assistance with over 15 years of expertise.')}
                   </p>
                   
 
@@ -126,22 +122,32 @@ export default function Template2({ className = "", content, flexibleContent = {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Jake Smith</h3>
-                      <p className="text-red-600 font-semibold mb-6">Licensed Insurance Agent</p>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2" data-content-id="agent-name">
+                        {getValue('agent-name', content?.businessName || 'Jake Smith')}
+                      </h3>
+                      <p className="text-red-600 font-semibold mb-6" data-content-id="agent-title">
+                        {getValue('agent-title', 'Licensed Insurance Agent')}
+                      </p>
                       
                       {/* Credentials */}
                       <div className="space-y-3">
                         <div className="flex items-center justify-center bg-gray-50 px-4 py-2 rounded-lg">
                           <Shield className="w-4 h-4 text-red-600 mr-2" />
-                          <span className="text-sm font-medium">Licensed Insurance Agent</span>
+                          <span className="text-sm font-medium" data-content-id="credential-1">
+                            {getValue('credential-1', 'Licensed Insurance Agent')}
+                          </span>
                         </div>
                         <div className="flex items-center justify-center bg-gray-50 px-4 py-2 rounded-lg">
                           <Award className="w-4 h-4 text-red-600 mr-2" />
-                          <span className="text-sm font-medium">15+ Years Experience</span>
+                          <span className="text-sm font-medium" data-content-id="credential-2">
+                            {getValue('credential-2', '15+ Years Experience')}
+                          </span>
                         </div>
                         <div className="flex items-center justify-center bg-gray-50 px-4 py-2 rounded-lg">
                           <Star className="w-4 h-4 text-red-600 mr-2" />
-                          <span className="text-sm font-medium">5.0 Client Rating</span>
+                          <span className="text-sm font-medium" data-content-id="credential-3">
+                            {getValue('credential-3', '5.0 Client Rating')}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -164,49 +170,67 @@ export default function Template2({ className = "", content, flexibleContent = {
         <div id="about" className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">About John Smith</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
+              <h2 className="text-4xl font-bold text-gray-900 mb-4" data-content-id="about-heading">
+                {getValue('about-heading', `About ${content?.businessName || 'John Smith'}`)}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-content-id="about-intro">
+                {getValue('about-intro', 'With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.')}
               </p>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed" data-content-id="about-paragraph">
+                  {getValue('about-paragraph', 'His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.')}
                 </p>
                 
                 <div className="grid grid-cols-2 gap-6 mb-8">
                   <div className="bg-white p-6 rounded-xl shadow-sm">
                     <div className="flex items-center mb-3">
                       <Clock className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">15+ Years</span>
+                      <span className="font-semibold text-gray-900" data-content-id="stat-1-value">
+                        {getValue('stat-1-value', '15+ Years')}
+                      </span>
                     </div>
-                    <p className="text-sm text-gray-600">Experience in Financial Planning</p>
+                    <p className="text-sm text-gray-600" data-content-id="stat-1-label">
+                      {getValue('stat-1-label', 'Experience in Financial Planning')}
+                    </p>
                   </div>
                   
                   <div className="bg-white p-6 rounded-xl shadow-sm">
                     <div className="flex items-center mb-3">
                       <Users className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">500+ Clients</span>
+                      <span className="font-semibold text-gray-900" data-content-id="stat-2-value">
+                        {getValue('stat-2-value', '500+ Clients')}
+                      </span>
                     </div>
-                    <p className="text-sm text-gray-600">Successfully Served</p>
+                    <p className="text-sm text-gray-600" data-content-id="stat-2-label">
+                      {getValue('stat-2-label', 'Successfully Served')}
+                    </p>
                   </div>
                   
                   <div className="bg-white p-6 rounded-xl shadow-sm">
                     <div className="flex items-center mb-3">
                       <Award className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">Award Winner</span>
+                      <span className="font-semibold text-gray-900" data-content-id="stat-3-value">
+                        {getValue('stat-3-value', 'Award Winner')}
+                      </span>
                     </div>
-                    <p className="text-sm text-gray-600">Industry Recognition</p>
+                    <p className="text-sm text-gray-600" data-content-id="stat-3-label">
+                      {getValue('stat-3-label', 'Industry Recognition')}
+                    </p>
                   </div>
                   
                   <div className="bg-white p-6 rounded-xl shadow-sm">
                     <div className="flex items-center mb-3">
                       <Shield className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">CFP Certified</span>
+                      <span className="font-semibold text-gray-900" data-content-id="stat-4-value">
+                        {getValue('stat-4-value', 'CFP Certified')}
+                      </span>
                     </div>
-                    <p className="text-sm text-gray-600">Financial Planner</p>
+                    <p className="text-sm text-gray-600" data-content-id="stat-4-label">
+                      {getValue('stat-4-label', 'Financial Planner')}
+                    </p>
                   </div>
                 </div>
                 

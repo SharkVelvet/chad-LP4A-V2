@@ -61,12 +61,11 @@ export default function Template10({ className = "", content, flexibleContent = 
         {/* Hero Section */}
         <div className="bg-red-900 text-white py-20">
           <div className="max-w-4xl mx-auto px-8 text-center">
-            <div className="text-xs font-normal tracking-[0.3em] mb-8 text-red-200">YOUR CERTIFIED GUIDE TO</div>
-            <h1 className="text-6xl lg:text-7xl font-extralight mb-4 leading-tight text-white">
-              LIFE INSURANCE
-            </h1>
-            <h1 className="text-6xl lg:text-7xl font-extralight mb-8 leading-tight text-white">
-              AS A WAY OF LIFE
+            <div className="text-xs font-normal tracking-[0.3em] mb-8 text-red-200" data-content-id="hero-badge">
+              {getValue('hero-badge', 'YOUR CERTIFIED GUIDE TO')}
+            </div>
+            <h1 className="text-6xl lg:text-7xl font-extralight mb-4 leading-tight text-white" data-content-id="hero-heading">
+              {getValue('hero-heading', 'LIFE INSURANCE AS A WAY OF LIFE')}
             </h1>
           </div>
         </div>
@@ -88,31 +87,39 @@ export default function Template10({ className = "", content, flexibleContent = 
         <div className="bg-red-900 text-white py-20">
           <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-extralight mb-4 tracking-wide text-white">WORK WITH CAROLINE SMITH</h2>
+              <h2 className="text-3xl lg:text-4xl font-extralight mb-4 tracking-wide text-white" data-content-id="services-heading">
+                {getValue('services-heading', `WORK WITH ${content?.businessName || 'CAROLINE SMITH'}`)}
+              </h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {/* Term Life Insurance */}
               <div className="text-center">
-                <h3 className="text-xl font-normal mb-6 tracking-wide text-white">TERM LIFE INSURANCE</h3>
-                <p className="text-red-200 mb-8 leading-relaxed font-normal">
-                  The ideal choice if you want affordable coverage that is tailored to your family's protection needs and budget.
+                <h3 className="text-xl font-normal mb-6 tracking-wide text-white" data-content-id="service-1-title">
+                  {getValue('service-1-title', 'TERM LIFE INSURANCE')}
+                </h3>
+                <p className="text-red-200 mb-8 leading-relaxed font-normal" data-content-id="service-1-description">
+                  {getValue('service-1-description', "The ideal choice if you want affordable coverage that is tailored to your family's protection needs and budget.")}
                 </p>
               </div>
 
               {/* Whole Life Insurance */}
               <div className="text-center">
-                <h3 className="text-xl font-normal mb-6 tracking-wide text-white">WHOLE LIFE INSURANCE</h3>
-                <p className="text-red-200 mb-8 leading-relaxed font-normal">
-                  Build cash value while protecting your family through permanent coverage with guaranteed premiums and benefits.
+                <h3 className="text-xl font-normal mb-6 tracking-wide text-white" data-content-id="service-2-title">
+                  {getValue('service-2-title', 'WHOLE LIFE INSURANCE')}
+                </h3>
+                <p className="text-red-200 mb-8 leading-relaxed font-normal" data-content-id="service-2-description">
+                  {getValue('service-2-description', 'Build cash value while protecting your family through permanent coverage with guaranteed premiums and benefits.')}
                 </p>
               </div>
 
               {/* Universal Life */}
               <div className="text-center">
-                <h3 className="text-xl font-normal mb-6 tracking-wide text-white">UNIVERSAL LIFE</h3>
-                <p className="text-red-200 mb-8 leading-relaxed font-normal">
-                  Begin your legacy planning with flexible premiums and the potential for cash value growth through investment options.
+                <h3 className="text-xl font-normal mb-6 tracking-wide text-white" data-content-id="service-3-title">
+                  {getValue('service-3-title', 'UNIVERSAL LIFE')}
+                </h3>
+                <p className="text-red-200 mb-8 leading-relaxed font-normal" data-content-id="service-3-description">
+                  {getValue('service-3-description', 'Begin your legacy planning with flexible premiums and the potential for cash value growth through investment options.')}
                 </p>
               </div>
             </div>
@@ -123,7 +130,9 @@ export default function Template10({ className = "", content, flexibleContent = 
         <div className="bg-white py-20">
           <div className="max-w-6xl mx-auto px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-extralight mb-4 tracking-wide text-gray-900">CLIENT STORIES</h2>
+              <h2 className="text-4xl lg:text-5xl font-extralight mb-4 tracking-wide text-gray-900" data-content-id="testimonials-heading">
+                {getValue('testimonials-heading', 'CLIENT STORIES')}
+              </h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -198,23 +207,26 @@ export default function Template10({ className = "", content, flexibleContent = 
 
               {/* Right Side - Content */}
               <div>
-                <h2 className="text-4xl lg:text-5xl font-extralight mb-8 leading-tight text-white">
-                  PROTECTING YOUR FAMILY'S<br/>
-                  FUTURE
+                <h2 className="text-4xl lg:text-5xl font-extralight mb-8 leading-tight text-white" data-content-id="family-protection-heading">
+                  {getValue('family-protection-heading', "PROTECTING YOUR FAMILY'S FUTURE")}
                 </h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h4 className="text-sm font-normal tracking-wide mb-4 text-red-200">START YOUR PROTECTION</h4>
-                    <p className="text-red-200 font-normal leading-relaxed mb-6">
-                      Begin securing your family's future by exploring any of my free resources and protection strategies. Life insurance should feel like peace of mind.
+                    <h4 className="text-sm font-normal tracking-wide mb-4 text-red-200" data-content-id="protection-section-1-title">
+                      {getValue('protection-section-1-title', 'START YOUR PROTECTION')}
+                    </h4>
+                    <p className="text-red-200 font-normal leading-relaxed mb-6" data-content-id="protection-section-1-description">
+                      {getValue('protection-section-1-description', "Begin securing your family's future by exploring any of my free resources and protection strategies. Life insurance should feel like peace of mind.")}
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="text-sm font-normal tracking-wide mb-4 text-red-200">ADDRESS SPECIFIC NEEDS</h4>
-                    <p className="text-red-200 font-normal leading-relaxed mb-6">
-                      If health concerns, age, or other factors have complicated your insurance options, a personalized assessment might be right for you.
+                    <h4 className="text-sm font-normal tracking-wide mb-4 text-red-200" data-content-id="protection-section-2-title">
+                      {getValue('protection-section-2-title', 'ADDRESS SPECIFIC NEEDS')}
+                    </h4>
+                    <p className="text-red-200 font-normal leading-relaxed mb-6" data-content-id="protection-section-2-description">
+                      {getValue('protection-section-2-description', 'If health concerns, age, or other factors have complicated your insurance options, a personalized assessment might be right for you.')}
                     </p>
                   </div>
                 </div>

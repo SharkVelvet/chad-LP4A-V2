@@ -72,12 +72,14 @@ export default function Template8({ className = "", content, flexibleContent = {
           <div className="absolute inset-0 bg-black/30"></div>
           
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-light text-white mb-4 leading-tight">
-              Cameron Smith
+            <h1 className="text-4xl md:text-6xl font-light text-white mb-4 leading-tight" data-content-id="hero-heading">
+              {getValue('hero-heading', content?.businessName || 'Cameron Smith')}
             </h1>
-            <p className="text-xl md:text-2xl text-white mb-2">Licensed Insurance Agent</p>
-            <p className="text-lg text-gray-200 mb-8 max-w-3xl mx-auto">
-              Specializing in health insurance, life insurance, Medicare planning, and Medicaid assistance for comprehensive family protection.
+            <p className="text-xl md:text-2xl text-white mb-2" data-content-id="hero-subtitle">
+              {getValue('hero-subtitle', 'Licensed Insurance Agent')}
+            </p>
+            <p className="text-lg text-gray-200 mb-8 max-w-3xl mx-auto" data-content-id="hero-description">
+              {getValue('hero-description', 'Specializing in health insurance, life insurance, Medicare planning, and Medicaid assistance for comprehensive family protection.')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -101,26 +103,33 @@ export default function Template8({ className = "", content, flexibleContent = {
         <div id="about" className="py-16 px-4">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                About Cameron Smith<br />
-                Insurance expertise you can trust
+              <h2 className="text-3xl font-bold text-gray-900 mb-6" data-content-id="about-heading">
+                {getValue('about-heading', `About ${content?.businessName || 'Cameron Smith'}`)}
               </h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                With over 15 years of experience in insurance services, Cameron Smith has established herself as a leading expert in health insurance, Medicare planning, and comprehensive family protection.
+              <p className="text-gray-600 mb-6 leading-relaxed" data-content-id="about-paragraph-1">
+                {getValue('about-paragraph-1', 'With over 15 years of experience in insurance services, Cameron Smith has established herself as a leading expert in health insurance, Medicare planning, and comprehensive family protection.')}
               </p>
-              <p className="text-gray-600 leading-relaxed">
-                Her comprehensive approach combines extensive insurance knowledge with personalized service to deliver exceptional coverage solutions for individuals and families across all life stages.
+              <p className="text-gray-600 leading-relaxed" data-content-id="about-paragraph-2">
+                {getValue('about-paragraph-2', 'Her comprehensive approach combines extensive insurance knowledge with personalized service to deliver exceptional coverage solutions for individuals and families across all life stages.')}
               </p>
               
               {/* Stats */}
               <div className="grid grid-cols-2 gap-4 mt-8">
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-red-600">15+</div>
-                  <div className="text-sm text-gray-600">Years Experience</div>
+                  <div className="text-2xl font-bold text-red-600" data-content-id="stat-1-value">
+                    {getValue('stat-1-value', '15+')}
+                  </div>
+                  <div className="text-sm text-gray-600" data-content-id="stat-1-label">
+                    {getValue('stat-1-label', 'Years Experience')}
+                  </div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-red-600">500+</div>
-                  <div className="text-sm text-gray-600">Clients Served</div>
+                  <div className="text-2xl font-bold text-red-600" data-content-id="stat-2-value">
+                    {getValue('stat-2-value', '500+')}
+                  </div>
+                  <div className="text-sm text-gray-600" data-content-id="stat-2-label">
+                    {getValue('stat-2-label', 'Clients Served')}
+                  </div>
                 </div>
               </div>
             </div>
@@ -159,9 +168,11 @@ export default function Template8({ className = "", content, flexibleContent = {
         {/* Services Section */}
         <div id="services" className="py-16 bg-gray-50 px-4">
           <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Financial Services & Products</h2>
-            <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
-              Comprehensive solutions designed to protect your assets, grow your wealth, and secure your financial future.
+            <h2 className="text-3xl font-bold text-gray-900 mb-4" data-content-id="services-heading">
+              {getValue('services-heading', 'Financial Services & Products')}
+            </h2>
+            <p className="text-gray-600 mb-12 max-w-2xl mx-auto" data-content-id="services-description">
+              {getValue('services-description', 'Comprehensive solutions designed to protect your assets, grow your wealth, and secure your financial future.')}
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -169,9 +180,11 @@ export default function Template8({ className = "", content, flexibleContent = {
                 <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Heart className="w-12 h-12 text-red-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Life Insurance</h3>
-                <p className="text-gray-600 mb-4">
-                  Protect your loved ones and ensure financial security with customized life insurance policies.
+                <h3 className="text-xl font-semibold mb-3" data-content-id="service-1-title">
+                  {getValue('service-1-title', 'Life Insurance')}
+                </h3>
+                <p className="text-gray-600 mb-4" data-content-id="service-1-description">
+                  {getValue('service-1-description', 'Protect your loved ones and ensure financial security with customized life insurance policies.')}
                 </p>
                 <ul className="text-sm text-gray-500 space-y-1">
                   <li>• Term Life Insurance</li>
@@ -291,9 +304,11 @@ export default function Template8({ className = "", content, flexibleContent = {
         <div id="testimonials" className="py-16 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Client Testimonials</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Hear what our clients say about our services
+              <h2 className="text-3xl font-bold text-gray-900 mb-4" data-content-id="testimonials-heading">
+                {getValue('testimonials-heading', 'Client Testimonials')}
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto" data-content-id="testimonials-description">
+                {getValue('testimonials-description', 'Hear what our clients say about our services')}
               </p>
             </div>
             

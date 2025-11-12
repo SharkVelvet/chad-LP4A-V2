@@ -69,11 +69,13 @@ export default function Template4({ className = "", content, flexibleContent = {
           <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-white">Cameron Smith</span>
+                <span className="text-white" data-content-id="hero-heading">{getValue('hero-heading', content?.businessName || 'Cameron Smith')}</span>
               </h1>
-              <p className="text-xl lg:text-2xl mb-4 text-white">Licensed Insurance Agent</p>
-              <p className="text-lg text-white mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                Specializing in health insurance, life insurance, Medicare planning, and Medicaid assistance for comprehensive family protection.
+              <p className="text-xl lg:text-2xl mb-4 text-white" data-content-id="hero-subtitle">
+                {getValue('hero-subtitle', 'Licensed Insurance Agent')}
+              </p>
+              <p className="text-lg text-white mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0" data-content-id="hero-description">
+                {getValue('hero-description', 'Specializing in health insurance, life insurance, Medicare planning, and Medicaid assistance for comprehensive family protection.')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button className="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transition-all">
@@ -108,47 +110,67 @@ export default function Template4({ className = "", content, flexibleContent = {
         <div className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-slate-900 mb-4">About Cameron Smith</h2>
-              <p className="text-xl text-gray-600">Insurance expertise you can trust</p>
+              <h2 className="text-4xl font-bold text-slate-900 mb-4" data-content-id="about-heading">
+                {getValue('about-heading', `About ${content?.businessName || 'Cameron Smith'}`)}
+              </h2>
+              <p className="text-xl text-gray-600" data-content-id="about-subtitle">
+                {getValue('about-subtitle', 'Insurance expertise you can trust')}
+              </p>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  With over 15 years of experience in insurance services, Cameron Smith has established herself as a leading expert in health insurance, Medicare planning, and comprehensive family protection.
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed" data-content-id="about-paragraph-1">
+                  {getValue('about-paragraph-1', 'With over 15 years of experience in insurance services, Cameron Smith has established herself as a leading expert in health insurance, Medicare planning, and comprehensive family protection.')}
                 </p>
-                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                  Her comprehensive approach combines extensive insurance knowledge with personalized service to deliver exceptional coverage solutions for individuals and families across all life stages.
+                <p className="text-lg text-gray-700 mb-8 leading-relaxed" data-content-id="about-paragraph-2">
+                  {getValue('about-paragraph-2', 'Her comprehensive approach combines extensive insurance knowledge with personalized service to deliver exceptional coverage solutions for individuals and families across all life stages.')}
                 </p>
                 
                 <div className="grid grid-cols-2 gap-6">
                   <div className="bg-white p-6 rounded-xl shadow-sm">
                     <div className="flex items-center mb-3">
                       <Clock className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">15+ Years</span>
+                      <span className="font-semibold text-gray-900" data-content-id="stat-1-value">
+                        {getValue('stat-1-value', '15+ Years')}
+                      </span>
                     </div>
-                    <p className="text-sm text-gray-600">Experience</p>
+                    <p className="text-sm text-gray-600" data-content-id="stat-1-label">
+                      {getValue('stat-1-label', 'Experience')}
+                    </p>
                   </div>
                   <div className="bg-white p-6 rounded-xl shadow-sm">
                     <div className="flex items-center mb-3">
                       <Users className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">500+ Clients</span>
+                      <span className="font-semibold text-gray-900" data-content-id="stat-2-value">
+                        {getValue('stat-2-value', '500+ Clients')}
+                      </span>
                     </div>
-                    <p className="text-sm text-gray-600">Served</p>
+                    <p className="text-sm text-gray-600" data-content-id="stat-2-label">
+                      {getValue('stat-2-label', 'Served')}
+                    </p>
                   </div>
                   <div className="bg-white p-6 rounded-xl shadow-sm">
                     <div className="flex items-center mb-3">
                       <Award className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">CFP Certified</span>
+                      <span className="font-semibold text-gray-900" data-content-id="stat-3-value">
+                        {getValue('stat-3-value', 'CFP Certified')}
+                      </span>
                     </div>
-                    <p className="text-sm text-gray-600">Financial Planner</p>
+                    <p className="text-sm text-gray-600" data-content-id="stat-3-label">
+                      {getValue('stat-3-label', 'Financial Planner')}
+                    </p>
                   </div>
                   <div className="bg-white p-6 rounded-xl shadow-sm">
                     <div className="flex items-center mb-3">
                       <Star className="w-6 h-6 text-red-600 mr-3" />
-                      <span className="font-semibold text-gray-900">Award-Winning</span>
+                      <span className="font-semibold text-gray-900" data-content-id="stat-4-value">
+                        {getValue('stat-4-value', 'Award-Winning')}
+                      </span>
                     </div>
-                    <p className="text-sm text-gray-600">Service</p>
+                    <p className="text-sm text-gray-600" data-content-id="stat-4-label">
+                      {getValue('stat-4-label', 'Service')}
+                    </p>
                   </div>
                 </div>
               </div>

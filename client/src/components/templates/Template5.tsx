@@ -63,20 +63,18 @@ export default function Template5({ className = "", content, flexibleContent = {
           <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="mb-6">
-                <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-medium tracking-wide">
-                  Financial Excellence Since 2008
+                <span className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-medium tracking-wide" data-content-id="hero-badge">
+                  {getValue('hero-badge', 'Financial Excellence Since 2008')}
                 </span>
               </div>
-              <h1 className="text-5xl lg:text-6xl font-light mb-6 leading-tight">
-                <span className="text-red-600 font-bold">John</span>
-                <br />
-                Smith
-                <br />
-                <span className="text-gray-600 font-bold">Financial</span>
+              <h1 className="text-5xl lg:text-6xl font-light mb-6 leading-tight" data-content-id="hero-heading">
+                {getValue('hero-heading', content?.businessName || 'John Smith Financial')}
               </h1>
-              <p className="text-xl text-red-600 mb-4 font-semibold">Licensed Insurance Agent</p>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Specializing in health insurance, life insurance, Medicare planning, and Medicaid assistance to protect your family's future.
+              <p className="text-xl text-red-600 mb-4 font-semibold" data-content-id="hero-subtitle">
+                {getValue('hero-subtitle', 'Licensed Insurance Agent')}
+              </p>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed" data-content-id="hero-description">
+                {getValue('hero-description', "Specializing in health insurance, life insurance, Medicare planning, and Medicaid assistance to protect your family's future.")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button className="bg-red-600 text-white px-8 py-4 rounded-sm hover:bg-red-700 transition-colors font-medium">
@@ -108,30 +106,38 @@ export default function Template5({ className = "", content, flexibleContent = {
         <div className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-light mb-4">
-                About <span className="text-red-600 font-bold">John Smith</span>
+              <h2 className="text-4xl font-light mb-4" data-content-id="about-heading">
+                {getValue('about-heading', `About ${content?.businessName || 'John Smith'}`)}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Financial expertise you can trust for your business and personal financial goals.
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-content-id="about-subtitle">
+                {getValue('about-subtitle', 'Financial expertise you can trust for your business and personal financial goals.')}
               </p>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed" data-content-id="about-paragraph-1">
+                  {getValue('about-paragraph-1', 'With over 15 years of experience in financial services and procurement, John Smith has established himself as a leading expert in strategic financial planning and business optimization.')}
                 </p>
-                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                  His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.
+                <p className="text-lg text-gray-700 mb-8 leading-relaxed" data-content-id="about-paragraph-2">
+                  {getValue('about-paragraph-2', 'His comprehensive approach combines traditional financial wisdom with innovative procurement strategies to deliver exceptional results for clients across various industries.')}
                 </p>
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center p-6 bg-red-50 rounded-lg">
-                    <div className="text-3xl font-bold text-red-600 mb-2">500+</div>
-                    <p className="text-gray-600">Clients Served</p>
+                    <div className="text-3xl font-bold text-red-600 mb-2" data-content-id="stat-1-value">
+                      {getValue('stat-1-value', '500+')}
+                    </div>
+                    <p className="text-gray-600" data-content-id="stat-1-label">
+                      {getValue('stat-1-label', 'Clients Served')}
+                    </p>
                   </div>
                   <div className="text-center p-6 bg-gray-50 rounded-lg">
-                    <div className="text-3xl font-bold text-red-600 mb-2">15+</div>
-                    <p className="text-gray-600">Years Experience</p>
+                    <div className="text-3xl font-bold text-red-600 mb-2" data-content-id="stat-2-value">
+                      {getValue('stat-2-value', '15+')}
+                    </div>
+                    <p className="text-gray-600" data-content-id="stat-2-label">
+                      {getValue('stat-2-label', 'Years Experience')}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -155,10 +161,12 @@ export default function Template5({ className = "", content, flexibleContent = {
         <div className="py-20 bg-gray-50">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-light mb-4">
-                Financial <span className="text-red-600 font-bold">Services & Products</span>
+              <h2 className="text-4xl font-light mb-4" data-content-id="services-heading">
+                {getValue('services-heading', 'Financial Services & Products')}
               </h2>
-              <p className="text-xl text-gray-600">Comprehensive solutions designed to protect your assets, grow your wealth, and secure your financial future.</p>
+              <p className="text-xl text-gray-600" data-content-id="services-description">
+                {getValue('services-description', 'Comprehensive solutions designed to protect your assets, grow your wealth, and secure your financial future.')}
+              </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -166,8 +174,12 @@ export default function Template5({ className = "", content, flexibleContent = {
                 <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
                   <Shield className="w-8 h-8 text-red-600" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4">Life Insurance</h3>
-                <p className="text-gray-600 mb-6">Protect your loved ones and ensure financial security with customized life insurance policies.</p>
+                <h3 className="text-2xl font-bold mb-4" data-content-id="service-1-title">
+                  {getValue('service-1-title', 'Life Insurance')}
+                </h3>
+                <p className="text-gray-600 mb-6" data-content-id="service-1-description">
+                  {getValue('service-1-description', 'Protect your loved ones and ensure financial security with customized life insurance policies.')}
+                </p>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Term Life Insurance</li>
                   <li className="flex items-center"><CheckCircle className="w-5 h-5 text-red-500 mr-2" />Whole Life Insurance</li>

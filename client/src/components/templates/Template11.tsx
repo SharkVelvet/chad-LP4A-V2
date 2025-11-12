@@ -72,12 +72,11 @@ export default function Template11({ className = "", content, flexibleContent = 
           </div>
           
           <div className="relative z-10 max-w-6xl mx-auto px-8 h-full flex flex-col justify-center items-center text-center pt-20">
-            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Protecting your family's<br/>
-              financial future.
+            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight" data-content-id="hero-heading">
+              {getValue('hero-heading', "Protecting your family's financial future.")}
             </h1>
-            <p className="text-xl text-white opacity-90 mb-8 max-w-2xl">
-              Get comprehensive and personalized life insurance coverage tailored specifically for your family's needs and budget.
+            <p className="text-xl text-white opacity-90 mb-8 max-w-2xl" data-content-id="hero-description">
+              {getValue('hero-description', "Get comprehensive and personalized life insurance coverage tailored specifically for your family's needs and budget.")}
             </p>
           </div>
         </div>
@@ -87,26 +86,36 @@ export default function Template11({ className = "", content, flexibleContent = 
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-8">Meet Luke Smith</h2>
-                <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  With over 15 years of experience in life insurance, health insurance, and annuities, Luke has helped thousands of families secure their financial future. As a licensed insurance professional, he specializes in creating customized protection strategies and retirement solutions that fit your unique needs and budget.
+                <h2 className="text-4xl font-bold text-gray-900 mb-8" data-content-id="about-heading">
+                  {getValue('about-heading', `Meet ${content?.businessName || 'Luke Smith'}`)}
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8" data-content-id="about-paragraph">
+                  {getValue('about-paragraph', 'With over 15 years of experience in life insurance, health insurance, and annuities, Luke has helped thousands of families secure their financial future. As a licensed insurance professional, he specializes in creating customized protection strategies and retirement solutions that fit your unique needs and budget.')}
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center">
                     <span className="text-red-600 mr-3">✓</span>
-                    <span className="text-gray-700">Licensed Life & Health Insurance Agent</span>
+                    <span className="text-gray-700" data-content-id="credential-1">
+                      {getValue('credential-1', 'Licensed Life & Health Insurance Agent')}
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-red-600 mr-3">✓</span>
-                    <span className="text-gray-700">Certified Annuity Specialist</span>
+                    <span className="text-gray-700" data-content-id="credential-2">
+                      {getValue('credential-2', 'Certified Annuity Specialist')}
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-red-600 mr-3">✓</span>
-                    <span className="text-gray-700">15+ Years Insurance Experience</span>
+                    <span className="text-gray-700" data-content-id="credential-3">
+                      {getValue('credential-3', '15+ Years Insurance Experience')}
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-red-600 mr-3">✓</span>
-                    <span className="text-gray-700">Specializes in Family Protection & Retirement Planning</span>
+                    <span className="text-gray-700" data-content-id="credential-4">
+                      {getValue('credential-4', 'Specializes in Family Protection & Retirement Planning')}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -126,12 +135,14 @@ export default function Template11({ className = "", content, flexibleContent = 
         {/* Our Approach Section */}
         <div className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-8 text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-8">Our comprehensive approach</h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto">
-              We provide a complete insurance portfolio including life insurance (term, whole, and universal life), health insurance plans for individuals and families, and annuities for retirement planning. Our holistic approach ensures you have comprehensive protection today and guaranteed income for tomorrow, all tailored to your family's specific needs and budget.
+            <h2 className="text-4xl font-bold text-gray-900 mb-8" data-content-id="approach-heading">
+              {getValue('approach-heading', 'Our comprehensive approach')}
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto" data-content-id="approach-description">
+              {getValue('approach-description', "We provide a complete insurance portfolio including life insurance (term, whole, and universal life), health insurance plans for individuals and families, and annuities for retirement planning. Our holistic approach ensures you have comprehensive protection today and guaranteed income for tomorrow, all tailored to your family's specific needs and budget.")}
             </p>
-            <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all">
-              Get Your Insurance Quote
+            <button className="bg-red-600 text-white px-8 py-3 hover:bg-red-700 transition-all" data-content-id="approach-cta-button">
+              {getValue('approach-cta-button', 'Get Your Insurance Quote')}
             </button>
           </div>
         </div>
@@ -144,12 +155,11 @@ export default function Template11({ className = "", content, flexibleContent = 
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  Life Insurance<br/>
-                  Protection
+                <h2 className="text-4xl font-bold text-gray-900 mb-6" data-content-id="life-insurance-heading">
+                  {getValue('life-insurance-heading', 'Life Insurance Protection')}
                 </h2>
-                <p className="text-gray-600 leading-relaxed mb-8">
-                  Comprehensive life insurance coverage to protect your family's financial future. Choose from term life for affordable temporary coverage, whole life for permanent protection with cash value, or universal life for flexible premiums and death benefits.
+                <p className="text-gray-600 leading-relaxed mb-8" data-content-id="life-insurance-description">
+                  {getValue('life-insurance-description', "Comprehensive life insurance coverage to protect your family's financial future. Choose from term life for affordable temporary coverage, whole life for permanent protection with cash value, or universal life for flexible premiums and death benefits.")}
                 </p>
                 <div className="space-y-3 mb-8">
                   <div className="flex items-center">
@@ -192,12 +202,11 @@ export default function Template11({ className = "", content, flexibleContent = 
                 />
               </div>
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  Health Insurance<br/>
-                  Coverage
+                <h2 className="text-4xl font-bold text-gray-900 mb-6" data-content-id="health-insurance-heading">
+                  {getValue('health-insurance-heading', 'Health Insurance Coverage')}
                 </h2>
-                <p className="text-gray-600 leading-relaxed mb-8">
-                  Quality health insurance plans to keep you and your family covered with comprehensive medical benefits. From individual plans to family coverage and Medicare supplements, we'll find the right health insurance solution for your needs.
+                <p className="text-gray-600 leading-relaxed mb-8" data-content-id="health-insurance-description">
+                  {getValue('health-insurance-description', "Quality health insurance plans to keep you and your family covered with comprehensive medical benefits. From individual plans to family coverage and Medicare supplements, we'll find the right health insurance solution for your needs.")}
                 </p>
                 <div className="space-y-3 mb-8">
                   <div className="flex items-center">

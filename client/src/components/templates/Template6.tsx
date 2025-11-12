@@ -65,13 +65,11 @@ export default function Template6({ className = "", content, flexibleContent = {
           <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="space-y-6">
-                <h1 className="text-6xl lg:text-7xl font-light text-gray-900 leading-tight">
-                  Elegant
-                  <span className="block text-red-600 font-normal">financial</span>
-                  <span className="block">solutions</span>
+                <h1 className="text-6xl lg:text-7xl font-light text-gray-900 leading-tight" data-content-id="hero-heading">
+                  {getValue('hero-heading', 'Elegant financial solutions')}
                 </h1>
-                <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
-                  There are many variations of financial strategies available, but the majority focus on comprehensive wealth management and strategic business optimization for long-term success.
+                <p className="text-xl text-gray-600 leading-relaxed max-w-lg" data-content-id="hero-description">
+                  {getValue('hero-description', 'There are many variations of financial strategies available, but the majority focus on comprehensive wealth management and strategic business optimization for long-term success.')}
                 </p>
               </div>
               
@@ -99,9 +97,15 @@ export default function Template6({ className = "", content, flexibleContent = {
                   className="w-full h-96 object-cover"
                 />
                 <div className="p-6 bg-white">
-                  <h3 className="text-xl font-bold text-gray-900">Jake Smith</h3>
-                  <p className="text-red-600 font-medium">Licensed Insurance Agent</p>
-                  <p className="text-gray-600 mt-2">15+ years of excellence in insurance solutions</p>
+                  <h3 className="text-xl font-bold text-gray-900" data-content-id="agent-name">
+                    {getValue('agent-name', content?.businessName || 'Jake Smith')}
+                  </h3>
+                  <p className="text-red-600 font-medium" data-content-id="agent-title">
+                    {getValue('agent-title', 'Licensed Insurance Agent')}
+                  </p>
+                  <p className="text-gray-600 mt-2" data-content-id="agent-tagline">
+                    {getValue('agent-tagline', '15+ years of excellence in insurance solutions')}
+                  </p>
                 </div>
               </div>
             </div>
@@ -112,12 +116,11 @@ export default function Template6({ className = "", content, flexibleContent = {
         <div className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
-              <h2 className="text-5xl font-light text-gray-900 mb-6">
-                We handle <span className="text-red-600 font-normal">everything</span>
+              <h2 className="text-5xl font-light text-gray-900 mb-6" data-content-id="services-heading">
+                {getValue('services-heading', 'We handle everything')}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor 
-                incididunt soluta nobis assumenda labore quod maxime.
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-content-id="services-description">
+                {getValue('services-description', 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt soluta nobis assumenda labore quod maxime.')}
               </p>
             </div>
             
@@ -189,29 +192,40 @@ export default function Template6({ className = "", content, flexibleContent = {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
-                <h2 className="text-5xl font-light text-gray-900 leading-tight">
-                  We Connect People <br/>
-                  With Their <span className="text-red-600 font-normal">Dreams</span>
+                <h2 className="text-5xl font-light text-gray-900 leading-tight" data-content-id="about-heading">
+                  {getValue('about-heading', 'We Connect People With Their Dreams')}
                 </h2>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  Specializing in comprehensive insurance solutions that protect what matters most - your health, your family, and your future. From Medicare guidance to life insurance protection.
+                <p className="text-xl text-gray-600 leading-relaxed" data-content-id="about-description-1">
+                  {getValue('about-description-1', 'Specializing in comprehensive insurance solutions that protect what matters most - your health, your family, and your future. From Medicare guidance to life insurance protection.')}
                 </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  With over 15 years of experience helping clients navigate complex insurance decisions, I provide personalized guidance for health insurance enrollment, Medicaid applications, Medicare planning, and life insurance coverage that fits your unique needs and budget.
+                <p className="text-lg text-gray-600 leading-relaxed" data-content-id="about-description-2">
+                  {getValue('about-description-2', 'With over 15 years of experience helping clients navigate complex insurance decisions, I provide personalized guidance for health insurance enrollment, Medicaid applications, Medicare planning, and life insurance coverage that fits your unique needs and budget.')}
                 </p>
                 
                 <div className="grid grid-cols-3 gap-8">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-red-600">500+</div>
-                    <div className="text-gray-600">Families Protected</div>
+                    <div className="text-3xl font-bold text-red-600" data-content-id="stat-1-value">
+                      {getValue('stat-1-value', '500+')}
+                    </div>
+                    <div className="text-gray-600" data-content-id="stat-1-label">
+                      {getValue('stat-1-label', 'Families Protected')}
+                    </div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-red-600">$2,400+</div>
-                    <div className="text-gray-600">Average Annual Savings</div>
+                    <div className="text-3xl font-bold text-red-600" data-content-id="stat-2-value">
+                      {getValue('stat-2-value', '$2,400+')}
+                    </div>
+                    <div className="text-gray-600" data-content-id="stat-2-label">
+                      {getValue('stat-2-label', 'Average Annual Savings')}
+                    </div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-red-600">15+</div>
-                    <div className="text-gray-600">Years Experience</div>
+                    <div className="text-3xl font-bold text-red-600" data-content-id="stat-3-value">
+                      {getValue('stat-3-value', '15+')}
+                    </div>
+                    <div className="text-gray-600" data-content-id="stat-3-label">
+                      {getValue('stat-3-label', 'Years Experience')}
+                    </div>
                   </div>
                 </div>
               </div>

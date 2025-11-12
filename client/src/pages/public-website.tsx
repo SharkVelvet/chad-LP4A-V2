@@ -9,12 +9,18 @@ export default function PublicWebsite() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['/api/public/page-by-domain', hostname],
     queryFn: async () => {
-      const response = await fetch(`/api/public/page-by-domain/${hostname}`);
+      const response = await fetch(`/api/public/page-by-domain/${hostname}`, {
+        cache: 'no-store'
+      });
       if (!response.ok) {
         throw new Error('Page not found');
       }
       return response.json();
-    }
+    },
+    staleTime: 0,
+    gcTime: 0,
+    refetchOnMount: true,
+    refetchOnWindowFocus: true
   });
 
   useEffect(() => {

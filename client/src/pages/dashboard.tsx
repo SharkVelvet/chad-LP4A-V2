@@ -61,6 +61,8 @@ export default function Dashboard() {
   // Fetch all user pages
   const { data: pages = [], isLoading: pagesLoading } = useQuery<Page[]>({
     queryKey: ["/api/pages"],
+    refetchOnMount: true,
+    staleTime: 0,
   });
 
   // Fetch templates

@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage } from "./editable-media";
 
 interface Template12Props {
   className?: string;
@@ -96,10 +97,12 @@ export default function Template12({ className = "", content, flexibleContent = 
         <div className="relative h-[80vh] text-white overflow-hidden">
           {/* Full-Width Professional Portrait Background */}
           <div className="absolute inset-0">
-            <img 
+            <EditableImage 
+              contentId="hero-image"
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
               alt="Doug Welms - Professional Insurance Agent" 
               className="w-full h-full object-cover object-center"
+              getValue={getValue}
             />
             {/* Dark overlay for text readability */}
             <div className="absolute inset-0 bg-black bg-opacity-40"></div>

@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage, EditableBackground } from "./editable-media";
 
 interface Template8Props {
   className?: string;
@@ -64,10 +65,14 @@ export default function Template8({ className = "", content, flexibleContent = {
         </div>
 
         {/* Hero Section with Corporate Building Background */}
-        <div className="relative bg-cover bg-center bg-no-repeat flex items-center justify-center text-center px-4" style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(/attached_assets/landingpages-background8_1755688587564.jpg)`,
-          height: '60vh'
-        }}>
+        <EditableBackground
+          contentId="hero-background"
+          backgroundUrl="/attached_assets/landingpages-background8_1755688587564.jpg"
+          gradient="linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4))"
+          className="relative bg-cover bg-center bg-no-repeat flex items-center justify-center text-center px-4"
+          getValue={getValue}
+          style={{ height: '60vh' }}
+        >
           {/* Overlay for text readability */}
           <div className="absolute inset-0 bg-black/30"></div>
           
@@ -97,7 +102,7 @@ export default function Template8({ className = "", content, flexibleContent = {
               </button>
             </div>
           </div>
-        </div>
+        </EditableBackground>
 
         {/* About Section */}
         <div id="about" className="py-16 px-4">
@@ -141,10 +146,12 @@ export default function Template8({ className = "", content, flexibleContent = {
               <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
                 {/* Professional headshot - full width square */}
                 <div className="w-full">
-                  <img 
+                  <EditableImage 
+                    contentId="about-professional-image"
                     src="/attached_assets/landing-pages-8_1754879037993.jpg" 
                     alt="Insurance Professional" 
                     className="w-full h-64 object-cover object-top"
+                    getValue={getValue}
                   />
                 </div>
                 
@@ -233,10 +240,12 @@ export default function Template8({ className = "", content, flexibleContent = {
             <div className="relative order-2 lg:order-1">
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-red-600 transform -rotate-45"></div>
               <div className="relative z-10">
-                <img 
+                <EditableImage 
+                  contentId="professional-guidance-image"
                   src="/attached_assets/landing-pages-8_1754878927424.jpg" 
                   alt="Insurance Professional" 
                   className="w-full h-96 object-cover rounded-lg shadow-lg"
+                  getValue={getValue}
                 />
               </div>
             </div>

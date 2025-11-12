@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage } from "./editable-media";
 
 interface Template6Props {
   className?: string;
@@ -91,10 +92,12 @@ export default function Template6({ className = "", content, flexibleContent = {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-red-100 to-gray-100 rounded-3xl transform rotate-3"></div>
               <div className="relative z-10 bg-white rounded-3xl shadow-2xl overflow-hidden">
-                <img 
-                  src={jennyImage} 
-                  alt="Jake Smith" 
+                <EditableImage
+                  contentId="hero-agent-image"
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Jake Smith"
                   className="w-full h-96 object-cover"
+                  getValue={getValue}
                 />
                 <div className="p-6 bg-white">
                   <h3 className="text-xl font-bold text-gray-900" data-content-id="agent-name">
@@ -127,10 +130,12 @@ export default function Template6({ className = "", content, flexibleContent = {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="text-center group">
                 <div className="relative mb-8">
-                  <img 
+                  <EditableImage
+                    contentId="service-financial-appraisal"
                     src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
                     alt="Financial Appraisal"
                     className="w-32 h-32 mx-auto rounded-2xl object-cover shadow-lg group-hover:shadow-xl transition-shadow"
+                    getValue={getValue}
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Financial Appraisal</h3>
@@ -141,10 +146,12 @@ export default function Template6({ className = "", content, flexibleContent = {
               
               <div className="text-center group">
                 <div className="relative mb-8">
-                  <img 
+                  <EditableImage
+                    contentId="service-price-negotiation"
                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
                     alt="Price Negotiation"
                     className="w-32 h-32 mx-auto rounded-2xl object-cover shadow-lg group-hover:shadow-xl transition-shadow"
+                    getValue={getValue}
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Price Negotiation</h3>
@@ -155,10 +162,12 @@ export default function Template6({ className = "", content, flexibleContent = {
               
               <div className="text-center group">
                 <div className="relative mb-8">
-                  <img 
+                  <EditableImage
+                    contentId="service-paperwork-handling"
                     src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
                     alt="Paperwork Handling"
                     className="w-32 h-32 mx-auto rounded-2xl object-cover shadow-lg group-hover:shadow-xl transition-shadow"
+                    getValue={getValue}
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Paperwork Handling</h3>
@@ -231,10 +240,12 @@ export default function Template6({ className = "", content, flexibleContent = {
               </div>
               
               <div className="relative">
-                <img 
-                  src={jennyImage}
+                <EditableImage
+                  contentId="about-agent-image"
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                   alt="Jake Smith"
                   className="w-full h-96 object-cover rounded-3xl shadow-2xl"
+                  getValue={getValue}
                 />
               </div>
             </div>
@@ -262,10 +273,12 @@ export default function Template6({ className = "", content, flexibleContent = {
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl overflow-hidden">
                   <div className="relative h-96">
-                    <img 
+                    <EditableImage
+                      contentId="featured-life-insurance"
                       src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                       alt="Life Insurance"
                       className="w-full h-full object-cover"
+                      getValue={getValue}
                     />
                   </div>
                   <div className="p-12 flex flex-col justify-center">
@@ -326,10 +339,12 @@ export default function Template6({ className = "", content, flexibleContent = {
                   </p>
                 </div>
                 <div className="relative h-96">
-                  <img 
+                  <EditableImage
+                    contentId="featured-health-insurance"
                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                     alt="Health Insurance"
                     className="w-full h-full object-cover"
+                    getValue={getValue}
                   />
                 </div>
               </div>
@@ -341,10 +356,12 @@ export default function Template6({ className = "", content, flexibleContent = {
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl overflow-hidden">
                   <div className="relative h-96">
-                    <img 
+                    <EditableImage
+                      contentId="featured-medicare-planning"
                       src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                       alt="Medicare Planning"
                       className="w-full h-full object-cover"
+                      getValue={getValue}
                     />
                   </div>
                   <div className="p-12 flex flex-col justify-center">
@@ -428,10 +445,12 @@ export default function Template6({ className = "", content, flexibleContent = {
                   "Jenny's expertise in financial planning transformed our business operations and significantly improved our bottom line. Her attention to detail and strategic approach is unmatched."
                 </p>
                 <div className="flex items-center">
-                  <img 
+                  <EditableImage
+                    contentId="testimonial-robert-jensen"
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                     alt="Robert Jensen"
                     className="w-16 h-16 rounded-full object-cover mr-4"
+                    getValue={getValue}
                   />
                   <div>
                     <h6 className="font-bold text-gray-900">Robert Jensen</h6>
@@ -446,10 +465,12 @@ export default function Template6({ className = "", content, flexibleContent = {
                   "Working with Jake has been exceptional. His comprehensive approach to financial planning and dedication to client success makes him stand out in the industry. Highly recommended."
                 </p>
                 <div className="flex items-center">
-                  <img 
+                  <EditableImage
+                    contentId="testimonial-jerry-johnston"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                     alt="Jerry Johnston"
                     className="w-16 h-16 rounded-full object-cover mr-4"
+                    getValue={getValue}
                   />
                   <div>
                     <h6 className="font-bold text-gray-900">Jerry Johnston</h6>
@@ -464,10 +485,12 @@ export default function Template6({ className = "", content, flexibleContent = {
                   "Jake's professional expertise and personalized service exceeded our expectations. He helped us navigate complex financial decisions with confidence and clarity."
                 </p>
                 <div className="flex items-center">
-                  <img 
+                  <EditableImage
+                    contentId="testimonial-marcus-anderson"
                     src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                     alt="Marcus Anderson"
                     className="w-16 h-16 rounded-full object-cover mr-4"
+                    getValue={getValue}
                   />
                   <div>
                     <h6 className="font-bold text-gray-900">Marcus Anderson</h6>

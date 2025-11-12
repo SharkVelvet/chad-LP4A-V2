@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage } from "./editable-media";
 
 interface Template3Props {
   className?: string;
@@ -68,10 +69,12 @@ export default function Template3({ className = "", content, flexibleContent = {
             <div className="text-center mb-16">
               {/* Profile Picture with Floating Badge */}
               <div className="relative inline-block mb-8">
-                <img 
+                <EditableImage 
+                  contentId="hero-profile-image"
                   src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
                   alt="Sarah Johnson" 
                   className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg mx-auto"
+                  getValue={getValue}
                 />
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
                   <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full text-red-700 text-xs font-medium border-2 border-white shadow-md whitespace-nowrap">
@@ -211,27 +214,35 @@ export default function Template3({ className = "", content, flexibleContent = {
               <div className="relative">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-4">
-                    <img 
+                    <EditableImage 
+                      contentId="about-gallery-1"
                       src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                       alt="Professional consultation" 
                       className="w-full h-48 object-cover rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                      getValue={getValue}
                     />
-                    <img 
+                    <EditableImage 
+                      contentId="about-gallery-2"
                       src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                       alt="Business meeting" 
                       className="w-full h-32 object-cover rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                      getValue={getValue}
                     />
                   </div>
                   <div className="space-y-4 pt-8">
-                    <img 
+                    <EditableImage 
+                      contentId="about-gallery-3"
                       src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                       alt="Financial planning session" 
                       className="w-full h-32 object-cover rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                      getValue={getValue}
                     />
-                    <img 
+                    <EditableImage 
+                      contentId="about-gallery-4"
                       src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                       alt="Strategic analysis" 
                       className="w-full h-48 object-cover rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                      getValue={getValue}
                     />
                   </div>
                 </div>
@@ -267,10 +278,12 @@ export default function Template3({ className = "", content, flexibleContent = {
               ].map((item, index) => (
                 <div key={index} className="text-center">
                   <div className="w-full h-48 bg-gray-200 rounded-lg mb-6 overflow-hidden">
-                    <img 
+                    <EditableImage 
+                      contentId={`why-serve-${index + 1}`}
                       src={item.image} 
                       alt={item.title}
                       className="w-full h-full object-cover"
+                      getValue={getValue}
                     />
                   </div>
                   <h3 className="text-xl font-bold mb-4">{item.title}</h3>
@@ -306,10 +319,12 @@ export default function Template3({ className = "", content, flexibleContent = {
                 <div key={i} className="bg-gray-50 p-6 rounded-lg">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 rounded-full mr-4 overflow-hidden">
-                      <img 
+                      <EditableImage 
+                        contentId={`testimonial-${i + 1}`}
                         src={testimonial.image} 
                         alt={testimonial.name}
                         className="w-full h-full object-cover"
+                        getValue={getValue}
                       />
                     </div>
                     <div>

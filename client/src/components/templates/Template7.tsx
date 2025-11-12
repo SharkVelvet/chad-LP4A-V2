@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage } from "./editable-media";
 
 interface Template7Props {
   className?: string;
@@ -96,11 +97,12 @@ export default function Template7({ className = "", content, flexibleContent = {
               <div className="bg-white p-6 rounded-lg shadow-lg border max-w-md mx-auto lg:ml-auto">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 rounded-full mr-4 overflow-hidden">
-                    <img 
-                      src="/attached_assets/lpages-business_1754875856664.jpg" 
-                      alt="Professional headshot" 
+                    <EditableImage
+                      contentId="template-7.hero.agent.photo"
+                      src="/attached_assets/lpages-business_1754875856664.jpg"
+                      alt="Professional headshot"
                       className="w-full h-full object-cover"
-                      data-content-id="template-7.hero.agent.photo"
+                      getValue={getValue}
                     />
                   </div>
                   <div>

@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage } from "./editable-media";
 
 interface Template9Props {
   className?: string;
@@ -114,10 +115,12 @@ export default function Template9({ className = "", content, flexibleContent = {
                 <div className="relative">
                   {/* Main Agent Photo */}
                   <div className="w-96 h-96 rounded-full overflow-hidden shadow-2xl border-8 border-white">
-                    <img 
+                    <EditableImage 
+                      contentId="template-9.hero.agent-photo"
                       src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80" 
                       alt="Professional Insurance Agent" 
                       className="w-full h-full object-cover"
+                      getValue={getValue}
                     />
                   </div>
                   

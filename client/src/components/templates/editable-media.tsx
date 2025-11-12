@@ -32,6 +32,7 @@ interface EditableBackgroundProps {
   children: React.ReactNode;
   className?: string;
   gradient?: string;
+  style?: React.CSSProperties;
   getValue?: (key: string, defaultValue: string) => string;
 }
 
@@ -41,6 +42,7 @@ export function EditableBackground({
   children, 
   className = "",
   gradient,
+  style = {},
   getValue 
 }: EditableBackgroundProps) {
   const bgUrl = getValue ? getValue(contentId, backgroundUrl) : backgroundUrl;
@@ -55,7 +57,7 @@ export function EditableBackground({
       data-content-type="background"
       data-background-url={bgUrl}
       className={className}
-      style={{ backgroundImage: backgroundImageValue }}
+      style={{ ...style, backgroundImage: backgroundImageValue }}
     >
       {children}
     </div>

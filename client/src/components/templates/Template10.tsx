@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage } from "./editable-media";
 
 interface Template10Props {
   className?: string;
@@ -74,10 +75,12 @@ export default function Template10({ className = "", content, flexibleContent = 
         <div className="bg-red-900">
           <div className="max-w-6xl mx-auto">
             <div className="relative h-96 lg:h-[500px] overflow-hidden">
-              <img 
+              <EditableImage
+                contentId="hero-office-image"
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
                 alt="Fun collaborative office environment with people" 
                 className="w-full h-full object-cover"
+                getValue={getValue}
               />
             </div>
           </div>
@@ -139,10 +142,12 @@ export default function Template10({ className = "", content, flexibleContent = 
               {/* Testimonial 1 */}
               <div className="text-center">
                 <div className="mb-6">
-                  <img 
+                  <EditableImage
+                    contentId="testimonial-1-image"
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
                     alt="Sarah Johnson" 
                     className="w-16 h-16 rounded-full mx-auto object-cover"
+                    getValue={getValue}
                   />
                 </div>
                 <blockquote className="text-gray-600 font-normal leading-relaxed mb-6">
@@ -155,10 +160,12 @@ export default function Template10({ className = "", content, flexibleContent = 
               {/* Testimonial 2 */}
               <div className="text-center">
                 <div className="mb-6">
-                  <img 
+                  <EditableImage
+                    contentId="testimonial-2-image"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
                     alt="Michael Chen" 
                     className="w-16 h-16 rounded-full mx-auto object-cover"
+                    getValue={getValue}
                   />
                 </div>
                 <blockquote className="text-gray-600 font-normal leading-relaxed mb-6">
@@ -171,10 +178,12 @@ export default function Template10({ className = "", content, flexibleContent = 
               {/* Testimonial 3 */}
               <div className="text-center">
                 <div className="mb-6">
-                  <img 
+                  <EditableImage
+                    contentId="testimonial-3-image"
                     src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
                     alt="Emily Rodriguez" 
                     className="w-16 h-16 rounded-full mx-auto object-cover"
+                    getValue={getValue}
                   />
                 </div>
                 <blockquote className="text-gray-600 font-normal leading-relaxed mb-6">
@@ -197,10 +206,12 @@ export default function Template10({ className = "", content, flexibleContent = 
                   LIFE<br/>INSURANCE
                 </div>
                 <div className="mt-16">
-                  <img 
+                  <EditableImage
+                    contentId="family-protection-image"
                     src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                     alt="Happy family protected by life insurance" 
                     className="w-full h-80 object-cover rounded-sm"
+                    getValue={getValue}
                   />
                 </div>
               </div>
@@ -269,10 +280,12 @@ export default function Template10({ className = "", content, flexibleContent = 
                   HEALTH<br/>INSURANCE
                 </div>
                 <div className="mt-16">
-                  <img 
+                  <EditableImage
+                    contentId="health-insurance-image"
                     src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                     alt="Medical professional in healthcare setting" 
                     className="w-full h-80 object-cover rounded-sm"
+                    getValue={getValue}
                   />
                 </div>
               </div>
@@ -290,10 +303,12 @@ export default function Template10({ className = "", content, flexibleContent = 
                   RETIREMENT<br/>PLANNING
                 </div>
                 <div className="mt-16">
-                  <img 
+                  <EditableImage
+                    contentId="retirement-annuities-image"
                     src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                     alt="Retirement planning and annuities" 
                     className="w-full h-80 object-cover rounded-sm"
+                    getValue={getValue}
                   />
                 </div>
               </div>

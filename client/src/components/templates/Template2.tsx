@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage } from "./editable-media";
 
 interface Template2Props {
   className?: string;
@@ -116,10 +117,12 @@ export default function Template2({ className = "", content, flexibleContent = {
                   <div className="relative bg-white rounded-3xl p-10 shadow-2xl max-w-md">
                     <div className="text-center">
                       <div className="w-32 h-32 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl mx-auto mb-6 overflow-hidden">
-                        <img 
-                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                          alt="John Smith" 
+                        <EditableImage
+                          contentId="hero-profile-image"
+                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                          alt="John Smith"
                           className="w-full h-full object-cover"
+                          getValue={getValue}
                         />
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900 mb-2" data-content-id="agent-name">
@@ -243,25 +246,33 @@ export default function Template2({ className = "", content, flexibleContent = {
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                  alt="Professional consultation" 
+                <EditableImage
+                  contentId="about-gallery-1"
+                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                  alt="Professional consultation"
                   className="w-full h-64 object-cover rounded-xl shadow-lg"
+                  getValue={getValue}
                 />
-                <img 
-                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                  alt="Financial planning session" 
+                <EditableImage
+                  contentId="about-gallery-2"
+                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                  alt="Financial planning session"
                   className="w-full h-64 object-cover rounded-xl shadow-lg mt-8"
+                  getValue={getValue}
                 />
-                <img 
-                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                  alt="Business meeting" 
+                <EditableImage
+                  contentId="about-gallery-3"
+                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                  alt="Business meeting"
                   className="w-full h-64 object-cover rounded-xl shadow-lg -mt-8"
+                  getValue={getValue}
                 />
-                <img 
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                  alt="Strategic analysis" 
+                <EditableImage
+                  contentId="about-gallery-4"
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                  alt="Strategic analysis"
                   className="w-full h-64 object-cover rounded-xl shadow-lg"
+                  getValue={getValue}
                 />
               </div>
             </div>
@@ -504,10 +515,12 @@ export default function Template2({ className = "", content, flexibleContent = {
               ].map((item, index) => (
                 <div key={index} className="text-center">
                   <div className="w-full h-48 bg-gray-200 rounded-lg mb-6 overflow-hidden">
-                    <img 
-                      src={item.image} 
+                    <EditableImage
+                      contentId={`why-we-serve-image-${index + 1}`}
+                      src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover"
+                      getValue={getValue}
                     />
                   </div>
                   <h3 className="text-xl font-bold mb-4">{item.title}</h3>
@@ -545,10 +558,12 @@ export default function Template2({ className = "", content, flexibleContent = {
                 <div key={i} className="bg-gray-50 p-6 rounded-lg">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 rounded-full mr-4 overflow-hidden">
-                      <img 
-                        src={testimonial.image} 
+                      <EditableImage
+                        contentId={`testimonial-image-${i + 1}`}
+                        src={testimonial.image}
                         alt={testimonial.name}
                         className="w-full h-full object-cover"
+                        getValue={getValue}
                       />
                     </div>
                     <div>

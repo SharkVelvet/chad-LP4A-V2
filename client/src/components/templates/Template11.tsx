@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage } from "./editable-media";
 
 interface Template11Props {
   className?: string;
@@ -63,10 +64,12 @@ export default function Template11({ className = "", content, flexibleContent = 
         {/* Hero Section */}
         <div className="relative h-96 md:h-[500px] overflow-hidden" style={{background: `linear-gradient(to right, #f9fafb, #f9fafb)`}}>
           <div className="absolute inset-0">
-            <img 
+            <EditableImage 
+              contentId="hero-image"
               src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
               alt="Family portrait with parents and children" 
               className="w-full h-full object-cover opacity-70"
+              getValue={getValue}
             />
             <div className="absolute inset-0 bg-black bg-opacity-60"></div>
           </div>
@@ -121,10 +124,12 @@ export default function Template11({ className = "", content, flexibleContent = 
               </div>
               <div className="lg:order-first">
                 <div className="text-center">
-                  <img 
+                  <EditableImage 
+                    contentId="about-agent-image"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                     alt="Luke Smith - Life Insurance Professional" 
                     className="w-full max-w-lg mx-auto rounded-lg shadow-lg"
+                    getValue={getValue}
                   />
                 </div>
               </div>
@@ -180,10 +185,12 @@ export default function Template11({ className = "", content, flexibleContent = 
                 </button>
               </div>
               <div>
-                <img 
+                <EditableImage 
+                  contentId="life-insurance-image"
                   src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                   alt="Family life insurance protection" 
                   className="w-full h-96 object-cover rounded-lg"
+                  getValue={getValue}
                 />
               </div>
             </div>
@@ -195,10 +202,12 @@ export default function Template11({ className = "", content, flexibleContent = 
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <img 
+                <EditableImage 
+                  contentId="health-insurance-image"
                   src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                   alt="Older couple with healthcare professional" 
                   className="w-full h-96 object-cover rounded-lg"
+                  getValue={getValue}
                 />
               </div>
               <div>
@@ -261,10 +270,12 @@ export default function Template11({ className = "", content, flexibleContent = 
                 </button>
               </div>
               <div>
-                <img 
+                <EditableImage 
+                  contentId="annuities-image"
                   src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                   alt="Retirement annuity planning" 
                   className="w-full h-96 object-cover rounded-lg"
+                  getValue={getValue}
                 />
               </div>
             </div>

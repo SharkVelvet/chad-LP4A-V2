@@ -1,6 +1,9 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage } from "./editable-media";
+import temp1Image from "@assets/temp1-pr.jpg";
+import temp2Image from "@assets/temp2-pr.jpg";
 
 interface Template5Props {
   className?: string;
@@ -93,10 +96,12 @@ export default function Template5({ className = "", content, flexibleContent = {
                   <div className="text-xs">Excellence</div>
                 </div>
               </div>
-              <img 
+              <EditableImage
+                contentId="hero-image"
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
                 alt="John Smith"
                 className="relative z-10 w-full h-96 object-cover rounded-2xl shadow-xl"
+                getValue={getValue}
               />
             </div>
           </div>
@@ -142,15 +147,19 @@ export default function Template5({ className = "", content, flexibleContent = {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <img 
+                <EditableImage
+                  contentId="about-image-1"
                   src={temp1Image}
                   alt="Financial workspace"
                   className="w-full h-48 object-cover rounded-lg shadow-md"
+                  getValue={getValue}
                 />
-                <img 
+                <EditableImage
+                  contentId="about-image-2"
                   src={temp2Image}
                   alt="Professional meeting"
                   className="w-full h-48 object-cover rounded-lg shadow-md"
+                  getValue={getValue}
                 />
               </div>
             </div>
@@ -330,10 +339,12 @@ export default function Template5({ className = "", content, flexibleContent = {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-6">
-                  <img 
+                  <EditableImage
+                    contentId="testimonial-1"
                     src="https://images.unsplash.com/photo-1494790108755-2616b9dc1d05?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                     alt="Sarah Johnson"
                     className="w-16 h-16 rounded-full object-cover mr-4"
+                    getValue={getValue}
                   />
                   <div>
                     <h4 className="font-bold text-gray-900">Sarah Johnson</h4>
@@ -345,10 +356,12 @@ export default function Template5({ className = "", content, flexibleContent = {
               
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-6">
-                  <img 
+                  <EditableImage
+                    contentId="testimonial-2"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                     alt="Michael Chen"
                     className="w-16 h-16 rounded-full object-cover mr-4"
+                    getValue={getValue}
                   />
                   <div>
                     <h4 className="font-bold text-gray-900">Michael Chen</h4>
@@ -360,10 +373,12 @@ export default function Template5({ className = "", content, flexibleContent = {
               
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-6">
-                  <img 
+                  <EditableImage
+                    contentId="testimonial-3"
                     src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                     alt="Emily Rodriguez"
                     className="w-16 h-16 rounded-full object-cover mr-4"
+                    getValue={getValue}
                   />
                   <div>
                     <h4 className="font-bold text-gray-900">Emily Rodriguez</h4>

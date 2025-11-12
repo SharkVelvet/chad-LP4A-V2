@@ -1,6 +1,9 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage, EditableBackground } from "./editable-media";
+import template4Image from "@assets/planright-w4_1751851299514.jpg";
+import parkBackgroundImage from "@assets/planright-park-back_1751851568156.jpg";
 
 interface Template4Props {
   className?: string;
@@ -59,12 +62,12 @@ export default function Template4({ className = "", content, flexibleContent = {
         </div>
 
         {/* Modern Hero with Background Image */}
-        <div className="relative text-white py-24" style={{
-          backgroundImage: `url(${parkBackgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}>
+        <EditableBackground
+          contentId="hero-background"
+          backgroundUrl={parkBackgroundImage}
+          className="relative text-white py-24 bg-cover bg-center bg-no-repeat"
+          getValue={getValue}
+        >
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
           <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-center lg:text-left">
@@ -89,10 +92,12 @@ export default function Template4({ className = "", content, flexibleContent = {
             <div className="flex justify-center">
               <div className="relative z-20">
                 <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
-                  <img 
+                  <EditableImage 
+                    contentId="hero-profile-image"
                     src={template4Image} 
                     alt="Cameron Smith" 
                     className="w-full h-full object-cover"
+                    getValue={getValue}
                   />
                 </div>
                 <div className="absolute -top-4 -left-4 bg-red-600 text-white px-4 py-2 rounded-xl shadow-lg transform rotate-12">
@@ -104,7 +109,7 @@ export default function Template4({ className = "", content, flexibleContent = {
               </div>
             </div>
           </div>
-        </div>
+        </EditableBackground>
 
         {/* About Section */}
         <div className="py-20 bg-gray-50">
@@ -176,25 +181,33 @@ export default function Template4({ className = "", content, flexibleContent = {
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                <img 
+                <EditableImage 
+                  contentId="about-gallery-1"
                   src={template4Image} 
                   alt="Cameron Smith Professional" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
+                  getValue={getValue}
                 />
-                <img 
+                <EditableImage 
+                  contentId="about-gallery-2"
                   src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                   alt="Female business professional" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
+                  getValue={getValue}
                 />
-                <img 
+                <EditableImage 
+                  contentId="about-gallery-3"
                   src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                   alt="Female business consultant" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
+                  getValue={getValue}
                 />
-                <img 
+                <EditableImage 
+                  contentId="about-gallery-4"
                   src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                   alt="Professional woman working" 
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
+                  getValue={getValue}
                 />
               </div>
             </div>
@@ -364,10 +377,12 @@ export default function Template4({ className = "", content, flexibleContent = {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-gray-50 p-8 rounded-xl">
                 <div className="flex items-center mb-6">
-                  <img 
+                  <EditableImage 
+                    contentId="testimonial-image-1"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                     alt="David Johnson"
                     className="w-16 h-16 rounded-full object-cover mr-4"
+                    getValue={getValue}
                   />
                   <div>
                     <h4 className="font-bold text-gray-900">David Johnson</h4>
@@ -379,10 +394,12 @@ export default function Template4({ className = "", content, flexibleContent = {
               
               <div className="bg-gray-50 p-8 rounded-xl">
                 <div className="flex items-center mb-6">
-                  <img 
+                  <EditableImage 
+                    contentId="testimonial-image-2"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                     alt="Michael Chen"
                     className="w-16 h-16 rounded-full object-cover mr-4"
+                    getValue={getValue}
                   />
                   <div>
                     <h4 className="font-bold text-gray-900">Michael Chen</h4>
@@ -394,10 +411,12 @@ export default function Template4({ className = "", content, flexibleContent = {
               
               <div className="bg-gray-50 p-8 rounded-xl">
                 <div className="flex items-center mb-6">
-                  <img 
+                  <EditableImage 
+                    contentId="testimonial-image-3"
                     src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                     alt="Carlos Rodriguez"
                     className="w-16 h-16 rounded-full object-cover mr-4"
+                    getValue={getValue}
                   />
                   <div>
                     <h4 className="font-bold text-gray-900">Carlos Rodriguez</h4>

@@ -253,6 +253,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const content = await storage.getPageContent(page.id);
+      
+      // DEBUG: Log the full response to see what's being sent
+      console.log('[DEBUG] Page response:', JSON.stringify({ ...page, content }, null, 2));
+      
       res.json({ ...page, content });
     } catch (error: any) {
       res.status(500).json({ message: error.message });

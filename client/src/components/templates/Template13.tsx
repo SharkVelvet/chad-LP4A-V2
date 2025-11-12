@@ -1,12 +1,189 @@
-import { CheckCircle, Target, Users, GraduationCap, TrendingUp, Award, Users2, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { CheckCircle, Target, Users, GraduationCap, TrendingUp, Award, Users2, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X, Edit2 } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface Template13Props {
   className?: string;
+  content?: {
+    businessName: string | null;
+    tagline: string | null;
+    aboutUs: string | null;
+    phone: string | null;
+    email: string | null;
+    address: string | null;
+  };
+  flexibleContent?: Record<string, string>;
+  editMode?: boolean;
 }
 
-export default function Template13({ className = "" }: Template13Props) {
+function EditModeOverlay({ rootRef }: { rootRef: React.RefObject<HTMLDivElement> }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [editingContent, setEditingContent] = useState<{
+    contentId: string;
+    value: string;
+    isImage: boolean;
+  } | null>(null);
+  const [editValue, setEditValue] = useState("");
+
+  useEffect(() => {
+    if (!rootRef.current) return;
+    
+    const textSelectors = 'h1, h2, h3, h4, h5, h6, p, span, a, button, li, td, th, label, div, img';
+    const allElements = rootRef.current.querySelectorAll(textSelectors);
+    const editableElements: HTMLElement[] = [];
+    
+    allElements.forEach((el) => {
+      const element = el as HTMLElement;
+      if (element.closest('nav')) return;
+      
+      const hasDirectText = Array.from(element.childNodes).some(
+        node => node.nodeType === Node.TEXT_NODE && node.textContent?.trim()
+      );
+      
+      if (hasDirectText || element.tagName === 'IMG') {
+        editableElements.push(element);
+      }
+    });
+    
+    const handleClick = (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const target = e.currentTarget as HTMLElement;
+      let contentId = target.getAttribute('data-content-id');
+      if (!contentId) {
+        const getPath = (el: HTMLElement): string => {
+          const parts: string[] = [];
+          let current: HTMLElement | null = el;
+          
+          while (current && current !== document.body) {
+            const parent = current.parentElement;
+            if (parent) {
+              const siblings = Array.from(parent.children);
+              const index = siblings.indexOf(current);
+              parts.unshift(`${current.tagName.toLowerCase()}-${index}`);
+            }
+            current = parent;
+          }
+          
+          return `auto.${parts.join('.')}`;
+        };
+        
+        contentId = getPath(target);
+      }
+      
+      const isImage = target.tagName === 'IMG';
+      const value = isImage 
+        ? (target as HTMLImageElement).src 
+        : target.textContent || '';
+      
+      setEditingContent({ contentId, value, isImage });
+      setEditValue(value);
+      setIsOpen(true);
+    };
+
+    const handleMouseEnter = (e: Event) => {
+      const target = e.currentTarget as HTMLElement;
+      target.style.outline = '2px solid #6458AF';
+      target.style.outlineOffset = '2px';
+      target.style.cursor = 'pointer';
+    };
+
+    const handleMouseLeave = (e: Event) => {
+      const target = e.currentTarget as HTMLElement;
+      target.style.outline = 'none';
+    };
+
+    editableElements.forEach((el) => {
+      el.addEventListener('click', handleClick);
+      el.addEventListener('mouseenter', handleMouseEnter);
+      el.addEventListener('mouseleave', handleMouseLeave);
+    });
+
+    return () => {
+      editableElements.forEach((el) => {
+        el.removeEventListener('click', handleClick);
+        el.removeEventListener('mouseenter', handleMouseEnter);
+        el.removeEventListener('mouseleave', handleMouseLeave);
+      });
+    };
+  }, []);
+
+  const handleSave = () => {
+    if (editingContent) {
+      window.parent.postMessage({
+        type: 'CONTENT_EDIT',
+        contentId: editingContent.contentId,
+        value: editValue
+      }, '*');
+      
+      setIsOpen(false);
+      setEditingContent(null);
+      setEditValue("");
+    }
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent className="sm:max-w-[600px]">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <Edit2 className="h-5 w-5" />
+            Edit Content
+          </DialogTitle>
+          <DialogDescription>
+            Make changes to this content. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="py-4">
+          {editingContent?.isImage ? (
+            <div className="space-y-4">
+              <Label>Image URL</Label>
+              <Input
+                value={editValue}
+                onChange={(e) => setEditValue(e.target.value)}
+                placeholder="Enter image URL"
+              />
+              <p className="text-xs text-gray-500">
+                Paste a URL to an image or upload to a hosting service first.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <Label>Text Content</Label>
+              <Textarea
+                value={editValue}
+                onChange={(e) => setEditValue(e.target.value)}
+                rows={6}
+                placeholder="Enter your text here..."
+              />
+            </div>
+          )}
+        </div>
+
+        <DialogFooter>
+          <Button variant="outline" onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={handleSave} className="bg-[#6458AF] hover:bg-[#53479E]">
+            Save Changes
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export default function Template13({ className = "", content, flexibleContent = {}, editMode = false }: Template13Props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  
+  const getValue = (key: string, defaultValue: string) => flexibleContent[key] ?? defaultValue;
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
@@ -22,16 +199,22 @@ export default function Template13({ className = "" }: Template13Props) {
   };
 
   return (
-    <div className={`bg-white ${className}`}>
-      {/* Sticky Header */}
-      <div className="bg-white border-b px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-sm">
-        <div 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="cursor-pointer"
-        >
-          <div className="text-2xl font-bold text-gray-900">Delta Life Insurance</div>
-          <div className="text-sm text-gray-600">A Premier Agency</div>
-        </div>
+    <>
+      {editMode && <EditModeOverlay rootRef={rootRef} />}
+      <div ref={rootRef} className={`bg-white ${className}`}>
+        {/* Sticky Header */}
+        <div className="bg-white border-b px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-sm">
+          <div 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="cursor-pointer"
+          >
+            <div className="text-2xl font-bold text-gray-900" data-content-id="business-name">
+              {getValue('business-name', content?.businessName || 'Delta Life Insurance')}
+            </div>
+            <div className="text-sm text-gray-600" data-content-id="business-tagline">
+              {getValue('business-tagline', content?.tagline || 'A Premier Agency')}
+            </div>
+          </div>
         <div className="flex items-center space-x-8">
           <div className="hidden md:flex space-x-8 text-gray-700">
             <a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className="hover:text-gray-900 cursor-pointer">Solutions</a>
@@ -73,8 +256,8 @@ export default function Template13({ className = "" }: Template13Props) {
         }`}>
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
             <div>
-              <div className="text-xl font-bold text-gray-900">Delta Life Insurance</div>
-              <div className="text-sm text-gray-600">A Premier Agency</div>
+              <div className="text-xl font-bold text-gray-900">{getValue('business-name', content?.businessName || 'Delta Life Insurance')}</div>
+              <div className="text-sm text-gray-600">{getValue('business-tagline', content?.tagline || 'A Premier Agency')}</div>
             </div>
             <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-600">
               <X className="h-6 w-6" />
@@ -142,13 +325,11 @@ export default function Template13({ className = "" }: Template13Props) {
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Content exactly as in screenshot */}
           <div>
-            <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              The Career Path You<br />
-              Have Always Wanted is<br />
-              Right Here!
+            <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight" data-content-id="hero-headline">
+              {getValue('hero-headline', 'The Career Path You Have Always Wanted is Right Here!')}
             </h1>
-            <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              Join Houston's premier insurance team and accelerate your career as an independent agent. At Delta Life, we provide the training, leads, support, and earning potential you need to thrive in the insurance industry—without the risk of going it alone.
+            <p className="text-gray-600 text-lg leading-relaxed mb-8" data-content-id="hero-subheadline">
+              {getValue('hero-subheadline', "Join Houston's premier insurance team and accelerate your career as an independent agent. At Delta Life, we provide the training, leads, support, and earning potential you need to thrive in the insurance industry—without the risk of going it alone.")}
             </p>
             
             <div className="flex gap-4">
@@ -170,9 +351,10 @@ export default function Template13({ className = "" }: Template13Props) {
           {/* Right side - Image exactly as in screenshot */}
           <div className="relative">
             <img 
-              src="/attached_assets/plr-hiring1_1758661521233.jpg" 
-              alt="Father and child spending quality time together" 
+              src={getValue('image-hero', '/attached_assets/plr-hiring1_1758661521233.jpg')}
+              alt="Hero image" 
               className="w-full h-auto rounded-lg"
+              data-content-id="image-hero"
             />
           </div>
         </div>
@@ -183,26 +365,26 @@ export default function Template13({ className = "" }: Template13Props) {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div>
-              <div className="text-6xl font-bold text-red-600 mb-4">78%</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Agent Success Rate</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Our proven mentorship and ongoing support programs ensure agents thrive and maintain long-lasting, profitable careers.
+              <div className="text-6xl font-bold text-red-600 mb-4" data-content-id="stat1-value">{getValue('stat1-value', '78%')}</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3" data-content-id="stat1-label">{getValue('stat1-label', 'Agent Success Rate')}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed" data-content-id="stat1-description">
+                {getValue('stat1-description', 'Our proven mentorship and ongoing support programs ensure agents thrive and maintain long-lasting, profitable careers.')}
               </p>
             </div>
             
             <div>
-              <div className="text-6xl font-bold text-red-600 mb-4">67%</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Revenue Growth in Year One</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                New agents experience substantial earnings increases through our advanced training programs and exclusive lead systems.
+              <div className="text-6xl font-bold text-red-600 mb-4" data-content-id="stat2-value">{getValue('stat2-value', '67%')}</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3" data-content-id="stat2-label">{getValue('stat2-label', 'Revenue Growth in Year One')}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed" data-content-id="stat2-description">
+                {getValue('stat2-description', 'New agents experience substantial earnings increases through our advanced training programs and exclusive lead systems.')}
               </p>
             </div>
             
             <div>
-              <div className="text-6xl font-bold text-red-600 mb-4">85%</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Market Penetration</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Wide-reaching market presence spanning numerous states with diverse product offerings and industry-leading commission structures.
+              <div className="text-6xl font-bold text-red-600 mb-4" data-content-id="stat3-value">{getValue('stat3-value', '85%')}</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3" data-content-id="stat3-label">{getValue('stat3-label', 'Market Penetration')}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed" data-content-id="stat3-description">
+                {getValue('stat3-description', 'Wide-reaching market presence spanning numerous states with diverse product offerings and industry-leading commission structures.')}
               </p>
             </div>
           </div>
@@ -313,9 +495,11 @@ export default function Template13({ className = "" }: Template13Props) {
         <div className="max-w-6xl mx-auto">
           {/* Main heading and description */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Mandy</h2>
-            <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto">
-              The leader behind Delta Life's success and your future mentor in building an exceptional insurance career.
+            <h2 className="text-4xl font-bold text-gray-900 mb-6" data-content-id="agent-section-heading">
+              {getValue('agent-section-heading', 'Meet Mandy')}
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto" data-content-id="agent-section-subheading">
+              {getValue('agent-section-subheading', "The leader behind Delta Life's success and your future mentor in building an exceptional insurance career.")}
             </p>
           </div>
 
@@ -323,19 +507,24 @@ export default function Template13({ className = "" }: Template13Props) {
             {/* Left side - Photo */}
             <div className="text-center">
               <img 
-                src="/attached_assets/plr-hiring4_1758661521235.jpg" 
-                alt="Mandy Johnson, Licensed Agent" 
+                src={getValue('image-agent', '/attached_assets/plr-hiring4_1758661521235.jpg')}
+                alt="Licensed Agent" 
                 className="w-[90%] h-auto mx-auto rounded-lg"
+                data-content-id="image-agent"
               />
             </div>
             
             {/* Right side - Bio and achievements */}
             <div>
-              <h3 className="text-3xl font-bold text-red-600 mb-2">Mandy Johnson</h3>
-              <p className="text-gray-600 mb-6">Licensed Agent 15+ years</p>
+              <h3 className="text-3xl font-bold text-red-600 mb-2" data-content-id="agent-name">
+                {getValue('agent-name', 'Mandy Johnson')}
+              </h3>
+              <p className="text-gray-600 mb-6" data-content-id="agent-subtitle">
+                {getValue('agent-subtitle', 'Licensed Agent 15+ years')}
+              </p>
               
-              <p className="text-gray-700 leading-relaxed mb-8">
-                With over 15 years in the insurance industry, Mandy has built Delta Life into Houston's most successful independent marketing organization. Starting as a new agent herself, she understands the challenges you face and has developed the proven systems that have launched hundreds of successful insurance careers. Her passion for mentoring agents and building lasting relationships has made her one of the most respected leaders in the industry.
+              <p className="text-gray-700 leading-relaxed mb-8" data-content-id="agent-bio">
+                {getValue('agent-bio', "With over 15 years in the insurance industry, Mandy has built Delta Life into Houston's most successful independent marketing organization. Starting as a new agent herself, she understands the challenges you face and has developed the proven systems that have launched hundreds of successful insurance careers. Her passion for mentoring agents and building lasting relationships has made her one of the most respected leaders in the industry.")}
               </p>
 
               <div>
@@ -471,7 +660,9 @@ export default function Template13({ className = "" }: Template13Props) {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Call Us</h3>
-                  <p className="text-gray-600">(555) 123-4567</p>
+                  <p className="text-gray-600" data-content-id="contact-phone">
+                    {getValue('contact-phone', content?.phone || '(555) 123-4567')}
+                  </p>
                 </div>
               </div>
 
@@ -484,7 +675,9 @@ export default function Template13({ className = "" }: Template13Props) {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Email</h3>
-                  <p className="text-gray-600">partners@deltalife.com</p>
+                  <p className="text-gray-600" data-content-id="contact-email">
+                    {getValue('contact-email', content?.email || 'partners@deltalife.com')}
+                  </p>
                 </div>
               </div>
 
@@ -496,9 +689,8 @@ export default function Template13({ className = "" }: Template13Props) {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Office</h3>
-                  <p className="text-gray-600">
-                    123 Business Center Dr<br />
-                    Your City, ST 12345
+                  <p className="text-gray-600" data-content-id="contact-address">
+                    {getValue('contact-address', content?.address || '123 Business Center Dr\nYour City, ST 12345')}
                   </p>
                 </div>
               </div>
@@ -613,6 +805,7 @@ export default function Template13({ className = "" }: Template13Props) {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

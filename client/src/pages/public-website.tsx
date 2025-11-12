@@ -107,7 +107,14 @@ export default function PublicWebsite() {
 
       const Template = TemplateModule.default;
       const flexibleContent = (content?.content as Record<string, string>) || {};
-      return <Template content={content} flexibleContent={flexibleContent} pageData={page} />;
+      // Merge page fields (formEnabled, formProvider, formEmbedCode) with content
+      const mergedContent = {
+        ...content,
+        formEnabled: page?.formEnabled,
+        formProvider: page?.formProvider,
+        formEmbedCode: page?.formEmbedCode
+      };
+      return <Template content={mergedContent} flexibleContent={flexibleContent} pageData={page} />;
     } catch (error) {
       console.error("Error loading template:", error);
       return (

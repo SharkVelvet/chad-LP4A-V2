@@ -15,6 +15,8 @@ export const users = pgTable("users", {
   username: text("username").notNull().unique(),
   email: text("email").notNull().unique(),
   password: text("password").notNull(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
   locationId: integer("location_id").references(() => locations.id),
   role: text("role").notNull().default("customer"),
   stripeCustomerId: text("stripe_customer_id"),

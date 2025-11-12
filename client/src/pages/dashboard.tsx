@@ -107,6 +107,20 @@ export default function Dashboard() {
                 <Laptop className="h-4 w-4" />
                 <span>My Pages</span>
               </button>
+
+              {/* Super Admin Menu */}
+              {user?.role === 'super_admin' && (
+                <button
+                  onClick={() => navigate('/admin/client-users')}
+                  className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-gray-100 text-gray-700"
+                  data-testid="menu-client-users"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                  <span>Client Users</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

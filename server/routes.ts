@@ -1865,6 +1865,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Super Admin: Get all client users (customers and admins, excluding super admins)
+  app.get("/api/admin/client-users", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      const clients = await storage.getAllClientUsers();
+      res.json(clients);
+    } catch (error: any) {
+      console.error('Error fetching client users:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Super Admin: Impersonate a user (cannot impersonate other super admins)
+  app.post("/api/admin/impersonate/:userId", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      const targetUserId = parseInt(req.params.userId);
+      const targetUser = await storage.getUser(targetUserId);
+
+      if (!targetUser) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Prevent impersonating other super admins
+      if (targetUser.role === 'super_admin') {
+        return res.status(403).json({ error: "Cannot impersonate other super admins" });
+      }
+
+      // Log the user in as the target user
+      req.login(targetUser, (err) => {
+        if (err) {
+          console.error('Impersonation login error:', err);
+          return res.status(500).json({ error: "Failed to impersonate user" });
+        }
+        res.json({ success: true, user: targetUser });
+      });
+    } catch (error: any) {
+      console.error('Error impersonating user:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

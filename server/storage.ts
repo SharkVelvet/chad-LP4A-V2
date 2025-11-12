@@ -46,6 +46,7 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   updateUser(userId: number, data: Partial<User>): Promise<User>;
   updateUserStripeInfo(userId: number, customerId: string, subscriptionId: string): Promise<User>;
+  getAllClientUsers(): Promise<any[]>;
 
   // Location management
   getLocation(id: number): Promise<Location | undefined>;
@@ -164,6 +165,29 @@ export class DatabaseStorage implements IStorage {
       .where(eq(users.id, userId))
       .returning();
     return user;
+  }
+
+  async getAllClientUsers(): Promise<any[]> {
+    const result = await db
+      .select({
+        id: users.id,
+        firstName: users.firstName,
+        lastName: users.lastName,
+        email: users.email,
+        role: users.role,
+        stripeCustomerId: users.stripeCustomerId,
+        stripeSubscriptionId: users.stripeSubscriptionId,
+        createdAt: users.createdAt,
+        templateId: pages.templateId,
+        templateName: templates.name,
+        subscriptionStatus: pages.subscriptionStatus,
+      })
+      .from(users)
+      .leftJoin(pages, eq(users.id, pages.userId))
+      .leftJoin(templates, eq(pages.templateId, templates.id))
+      .orderBy(desc(users.createdAt));
+
+    return result;
   }
 
   // Location management

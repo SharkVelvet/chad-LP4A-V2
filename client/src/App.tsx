@@ -34,6 +34,7 @@ import Contact from "@/pages/contact";
 import AdminSetup from "@/pages/admin-setup";
 import AdminLogin from "@/pages/admin-login";
 import AdminDashboard from "@/pages/admin-dashboard";
+import AdminClientUsers from "@/pages/admin-client-users";
 import ChooseWebsitePurpose from "@/pages/choose-website-purpose";
 import SelectTemplateByCategory from "@/pages/select-template-by-category";
 import WebsiteCheckout from "@/pages/website-checkout";
@@ -92,6 +93,7 @@ function Router() {
         <Route path="/admin/setup" component={AdminSetup} />
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin/dashboard" component={AdminDashboard} />
+        <ProtectedRoute path="/admin/client-users" component={AdminClientUsers} />
         <Route path="/old-home" component={HomePage} />
         <Route path="/" component={InternalOne} />
         <Route component={NotFound} />

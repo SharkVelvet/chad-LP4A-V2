@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
 import { EditableImage, EditableBackground } from "./editable-media";
+import { FormEmbed } from "./form-embed";
 import temp1Image from "@assets/temp1-pr.jpg";
 import temp2Image from "@assets/temp2-pr.jpg";
 import temp3Image from "@assets/temp3-pr.jpg";
@@ -18,6 +19,9 @@ interface Template1Props {
     phone?: string | null;
     email?: string | null;
     address?: string | null;
+    formEnabled?: boolean;
+    formProvider?: string | null;
+    formEmbedCode?: string | null;
   };
   flexibleContent?: Record<string, string>;
   editMode?: boolean;
@@ -528,63 +532,130 @@ export default function Template1({ className = "", content, flexibleContent = {
 
       {/* Contact Us Section */}
       <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12" data-content-id="contact-heading">
+        <div className={content?.formEnabled ? "max-w-7xl mx-auto" : "max-w-4xl mx-auto text-center"}>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center" data-content-id="contact-heading">
             {getValue('contact-heading', 'Contact Us')}
           </h2>
-          <p className="text-lg text-gray-600 mb-12" data-content-id="contact-subheading">
-            {getValue('contact-subheading', "Ready to take control of your financial future? Let's discuss your goals and create a personalized plan.")}
-          </p>
+          {!content?.formEnabled && (
+            <p className="text-lg text-gray-600 mb-12 text-center" data-content-id="contact-subheading">
+              {getValue('contact-subheading', "Ready to take control of your financial future? Let's discuss your goals and create a personalized plan.")}
+            </p>
+          )}
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
-                <MapPin className="w-8 h-8 text-white" />
+          {/* Two column layout when form is enabled */}
+          {content?.formEnabled ? (
+            <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8">
+              {/* Left Column - Contact Info (30%) */}
+              <div className="space-y-8">
+                <div className="flex flex-col items-start">
+                  <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                    <MapPin className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Address</h4>
+                  <p className="text-gray-600 text-sm" data-content-id="contact-address">
+                    {getValue('contact-address', content?.address || '123 Financial District\nBusiness Center, Suite 456\nNew York, NY 10001')}
+                  </p>
+                </div>
+                
+                <div className="flex flex-col items-start">
+                  <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                    <Phone className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Phone</h4>
+                  <p className="text-gray-600 text-sm" data-content-id="contact-phone">
+                    {getValue('contact-phone', content?.phone || '(555) 123-PLAN')}<br/>Mon - Fri: 9:00 AM - 6:00 PM
+                  </p>
+                </div>
+                
+                <div className="flex flex-col items-start">
+                  <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                    <Mail className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Email</h4>
+                  <p className="text-gray-600 text-sm" data-content-id="contact-email">
+                    {getValue('contact-email', content?.email || 'john@planright.com')}
+                  </p>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-bold mb-4">Follow Us</h3>
+                  <div className="flex space-x-3">
+                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Facebook className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Twitter className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Linkedin className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                      <Instagram className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Address</h4>
-              <p className="text-gray-600" data-content-id="contact-address">
-                {getValue('contact-address', content?.address || '123 Financial District\nBusiness Center, Suite 456\nNew York, NY 10001')}
-              </p>
+              
+              {/* Right Column - Form Embed (70%) */}
+              <div className="bg-white rounded-lg shadow-lg p-6 min-h-[600px]">
+                {content?.formEmbedCode && (
+                  <FormEmbed embedCode={content.formEmbedCode} className="w-full h-full" />
+                )}
+              </div>
             </div>
-            
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
-                <Phone className="w-8 h-8 text-white" />
+          ) : (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                    <MapPin className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Address</h4>
+                  <p className="text-gray-600" data-content-id="contact-address">
+                    {getValue('contact-address', content?.address || '123 Financial District\nBusiness Center, Suite 456\nNew York, NY 10001')}
+                  </p>
+                </div>
+                
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                    <Phone className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Phone</h4>
+                  <p className="text-gray-600" data-content-id="contact-phone">
+                    {getValue('contact-phone', content?.phone || '(555) 123-PLAN')}<br/>Mon - Fri: 9:00 AM - 6:00 PM
+                  </p>
+                </div>
+                
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                    <Mail className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Email</h4>
+                  <p className="text-gray-600" data-content-id="contact-email">
+                    {getValue('contact-email', content?.email || 'john@planright.com')}
+                  </p>
+                </div>
               </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Phone</h4>
-              <p className="text-gray-600" data-content-id="contact-phone">
-                {getValue('contact-phone', content?.phone || '(555) 123-PLAN')}<br/>Mon - Fri: 9:00 AM - 6:00 PM
-              </p>
-            </div>
-            
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-4">
-                <Mail className="w-8 h-8 text-white" />
+              
+              <div>
+                <h3 className="text-xl font-bold mb-6">Follow Us</h3>
+                <div className="flex justify-center space-x-4">
+                  <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                    <Facebook className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                    <Twitter className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                    <Linkedin className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
+                    <Instagram className="w-6 h-6 text-white" />
+                  </div>
+                </div>
               </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Email</h4>
-              <p className="text-gray-600" data-content-id="contact-email">
-                {getValue('contact-email', content?.email || 'john@planright.com')}
-              </p>
-            </div>
-          </div>
-          
-          <div>
-            <h3 className="text-xl font-bold mb-6">Follow Us</h3>
-            <div className="flex justify-center space-x-4">
-              <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                <Facebook className="w-6 h-6 text-white" />
-              </div>
-              <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                <Twitter className="w-6 h-6 text-white" />
-              </div>
-              <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                <Linkedin className="w-6 h-6 text-white" />
-              </div>
-              <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors cursor-pointer">
-                <Instagram className="w-6 h-6 text-white" />
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
 

@@ -514,7 +514,7 @@ export default function WebsiteEditor() {
             {template && (
               <iframe
                 key={`preview-${websiteId}`}
-                src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true`}
+                src={`/template-preview?template=${template.slug}&websiteId=${websiteId}&hideNav=true&editMode=true`}
                 className={`w-full h-full border-0 ${isIframeLoading ? 'invisible' : 'visible'}`}
                 title="Website Preview"
                 data-testid="iframe-website-preview"

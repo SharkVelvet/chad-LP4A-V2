@@ -26,7 +26,7 @@ export default function Template1({ className = "", content, flexibleContent = {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const getValue = (key: string, defaultValue: string) => {
-    return flexibleContent?.[key] || defaultValue;
+    return flexibleContent?.[key] || (content as any)?.[key] || defaultValue;
   };
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {

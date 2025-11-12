@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star } from "lucide-react";
 import EditModeOverlay from "./edit-mode-overlay";
+import { EditableImage, EditableBackground } from "./editable-media";
 import temp1Image from "@assets/temp1-pr.jpg";
 import temp2Image from "@assets/temp2-pr.jpg";
 import temp3Image from "@assets/temp3-pr.jpg";
@@ -73,9 +74,13 @@ export default function Template1({ className = "", content, flexibleContent = {
       </div>
 
       {/* Hero Section with Business Background */}
-      <div id="hero" className="relative min-h-[80vh] bg-cover bg-center bg-no-repeat flex items-center" style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${template1HeroImg})`
-      }}>
+      <EditableBackground
+        contentId="hero-background"
+        backgroundUrl={template1HeroImg}
+        gradient="linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7))"
+        className="relative min-h-[80vh] bg-cover bg-center bg-no-repeat flex items-center"
+        getValue={getValue}
+      >
         <div className="relative w-full py-12 sm:py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center w-full">
             <div className="text-white text-center lg:text-left">
@@ -100,18 +105,19 @@ export default function Template1({ className = "", content, flexibleContent = {
             <div className="flex justify-center">
               <div className="relative">
                 <div className="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
-                  <img 
-                    src={getValue('hero-image', jakeImage)}
-                    alt="Agent" 
+                  <EditableImage
+                    contentId="hero-image"
+                    src={jakeImage}
+                    alt="Agent"
                     className="w-full h-full object-cover"
-                    data-content-id="hero-image"
+                    getValue={getValue}
                   />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </EditableBackground>
 
       {/* About Section */}
       <div id="about" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
@@ -156,31 +162,39 @@ export default function Template1({ className = "", content, flexibleContent = {
             </div>
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <div className="w-full h-32 sm:h-48 rounded-lg shadow-sm overflow-hidden">
-                <img 
-                  src={temp1Image} 
-                  alt="Financial workspace with laptop and documents" 
+                <EditableImage
+                  contentId="about-image-1"
+                  src={temp1Image}
+                  alt="Financial workspace with laptop and documents"
                   className="w-full h-full object-cover"
+                  getValue={getValue}
                 />
               </div>
               <div className="w-full h-32 sm:h-48 rounded-lg shadow-sm overflow-hidden">
-                <img 
-                  src={temp2Image} 
-                  alt="Professional business meeting and handshake" 
+                <EditableImage
+                  contentId="about-image-2"
+                  src={temp2Image}
+                  alt="Professional business meeting and handshake"
                   className="w-full h-full object-cover"
+                  getValue={getValue}
                 />
               </div>
               <div className="w-full h-32 sm:h-48 rounded-lg shadow-sm overflow-hidden">
-                <img 
-                  src={temp3Image} 
-                  alt="Professional businesswoman with tablet outdoors" 
+                <EditableImage
+                  contentId="about-image-3"
+                  src={temp3Image}
+                  alt="Professional businesswoman with tablet outdoors"
                   className="w-full h-full object-cover"
+                  getValue={getValue}
                 />
               </div>
               <div className="w-full h-32 sm:h-48 rounded-lg shadow-sm overflow-hidden">
-                <img 
-                  src={temp4Image} 
-                  alt="Modern office building architecture" 
+                <EditableImage
+                  contentId="about-image-4"
+                  src={temp4Image}
+                  alt="Modern office building architecture"
                   className="w-full h-full object-cover"
+                  getValue={getValue}
                 />
               </div>
             </div>

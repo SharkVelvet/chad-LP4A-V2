@@ -66,10 +66,17 @@ export default function EditModeOverlay({ rootRef }: EditModeOverlayProps) {
         contentId = getPath(target);
       }
       
-      const isImage = target.tagName === 'IMG';
-      const value = isImage 
-        ? (target as HTMLImageElement).src 
-        : target.textContent || '';
+      const contentType = target.getAttribute('data-content-type');
+      const isImage = contentType === 'image' || contentType === 'background' || target.tagName === 'IMG';
+      
+      let value = '';
+      if (contentType === 'background') {
+        value = target.getAttribute('data-background-url') || '';
+      } else if (target.tagName === 'IMG') {
+        value = (target as HTMLImageElement).src;
+      } else {
+        value = target.textContent || '';
+      }
       
       setEditingContent({ contentId, value, isImage });
       setEditValue(value);

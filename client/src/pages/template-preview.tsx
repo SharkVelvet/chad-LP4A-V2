@@ -232,7 +232,7 @@ export default function TemplatePreviewPage() {
         }
       });
     }
-  }, [page?.content]);
+  }, [page?.content, page?.content?.updatedAt, template]);
 
   // Listen for reload message from parent
   useEffect(() => {

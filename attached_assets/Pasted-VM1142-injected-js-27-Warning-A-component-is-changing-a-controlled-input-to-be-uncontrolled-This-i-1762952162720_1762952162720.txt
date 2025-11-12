@@ -1,0 +1,163 @@
+VM1142 injected.js:27 Warning: A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components
+    at input
+    at _c (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/src/components/ui/input.tsx:20:11)
+    at div
+    at div
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-KYDO7B72.js?v=9d8dd053:42:13
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-HNTUM6XM.js?v=9d8dd053:59:7
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-EVLBUYTV.js?v=9d8dd053:79:13
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-EVLBUYTV.js?v=9d8dd053:56:13
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-KYDO7B72.js?v=9d8dd053:42:13
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-LSKBN7RY.js?v=9d8dd053:57:5
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-dialog.js?v=9d8dd053:233:13
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-dialog.js?v=9d8dd053:156:58
+    at Presence (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WAXV5JEB.js?v=9d8dd053:24:11)
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-dialog.js?v=9d8dd053:147:64
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-EVLBUYTV.js?v=9d8dd053:79:13
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-EVLBUYTV.js?v=9d8dd053:56:13
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-KYDO7B72.js?v=9d8dd053:42:13
+    at https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-HNTUM6XM.js?v=9d8dd053:258:22
+    at Presence (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WAXV5JEB.js?v=9d8dd053:24:11)
+    at Provider (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-5SZQWSWC.js?v=9d8dd053:48:15)
+    at DialogPortal (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-dialog.js?v=9d8dd053:109:11)
+    at _c3 (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/src/components/ui/dialog.tsx:52:12)
+    at Provider (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-5SZQWSWC.js?v=9d8dd053:48:15)
+    at Dialog (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-dialog.js?v=9d8dd053:50:5)
+    at div
+    at TemplatePreviewPage (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/src/pages/template-preview.tsx?t=1762952001562:34:24)
+    at Route (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=9d8dd053:323:16)
+    at Switch (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=9d8dd053:379:17)
+    at Router (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/src/App.tsx?t=1762952001562&v=GJp76JcYnihuliyCzfpKa:75:3)
+    at Provider (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-5SZQWSWC.js?v=9d8dd053:48:15)
+    at TooltipProvider (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=9d8dd053:59:5)
+    at AuthProvider (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/src/hooks/use-auth.tsx:26:32)
+    at QueryClientProvider (https://e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=9d8dd053:2805:3)
+    at App
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+(anonymous) @ VM1142 injected.js:27
+printWarning @ VM1165 chunk-RPCDYKBN.js:521
+error @ VM1165 chunk-RPCDYKBN.js:505
+updateWrapper @ VM1165 chunk-RPCDYKBN.js:1972
+updateProperties @ VM1165 chunk-RPCDYKBN.js:7762
+commitUpdate @ VM1165 chunk-RPCDYKBN.js:8419
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17763
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17737
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17896
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17737
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17813
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17896
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17896
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17737
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17896
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17896
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17896
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17896
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17699
+recursivelyTraverseMutationEffects @ VM1165 chunk-RPCDYKBN.js:17685
+commitMutationEffectsOnFiber @ VM1165 chunk-RPCDYKBN.js:17794
+commitMutationEffects @ VM1165 chunk-RPCDYKBN.js:17663
+commitRootImpl @ VM1165 chunk-RPCDYKBN.js:19347
+commitRoot @ VM1165 chunk-RPCDYKBN.js:19277
+performSyncWorkOnRoot @ VM1165 chunk-RPCDYKBN.js:18895
+flushSyncCallbacks @ VM1165 chunk-RPCDYKBN.js:9119
+(anonymous) @ VM1165 chunk-RPCDYKBN.js:18627Understand this error
+injected.js:27 [Page Editor] Received content edit: {field: undefined, contentId: 'hero-headline', valueLength: 59}
+injected.js:27 [Page Editor] Saving flexible content: hero-headline
+injected.js:27 [Page Editor] Found iframe: true
+injected.js:27 [Page Editor] Reloading iframe to show updated content
+injected.js:27 [TemplatePreview] Component rendered with: {hasPage: false, hasContent: false, contentKeys: Array(0), hasFlexible: false, flexibleKeys: Array(0), …}
+injected.js:27 [TemplatePreview] Component rendered with: {hasPage: false, hasContent: false, contentKeys: Array(0), hasFlexible: false, flexibleKeys: Array(0), …}

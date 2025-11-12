@@ -106,7 +106,8 @@ export default function PublicWebsite() {
       }
 
       const Template = TemplateModule.default;
-      return <Template content={content} pageData={page} />;
+      const flexibleContent = (content?.content as Record<string, string>) || {};
+      return <Template content={content} flexibleContent={flexibleContent} pageData={page} />;
     } catch (error) {
       console.error("Error loading template:", error);
       return (

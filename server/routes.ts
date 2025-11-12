@@ -36,6 +36,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Public API - Get page by custom domain (no authentication required)
   app.get("/api/public/page-by-domain/:domain", async (req, res) => {
     try {
+      // Set cache-control headers to bypass Cloudflare cache for dynamic content
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+      
       const domain = req.params.domain;
       const page = await storage.getPageByDomain(domain);
       

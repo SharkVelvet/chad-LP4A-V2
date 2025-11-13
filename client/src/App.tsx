@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "./lib/protected-route";
 import { PasswordProtectedRoute } from "./lib/password-protected-route";
+import { ImpersonationBanner } from "@/components/impersonation-banner";
 import { useAnalytics } from "@/hooks/use-analytics";
 import { useEffect } from "react";
 import AuthPage from "@/pages/auth-page";
@@ -60,6 +61,7 @@ function Router() {
 
   return (
     <>
+      <ImpersonationBanner />
       <ScrollToTop />
       <Switch>
         <Route path="/auth" component={AuthPage} />

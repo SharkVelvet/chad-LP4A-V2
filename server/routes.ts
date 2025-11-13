@@ -1902,6 +1902,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(403).json({ error: "Cannot impersonate other super admins" });
       }
 
+      // Store original admin info in session before impersonating
+      req.session.originalAdminId = req.user.id;
+      req.session.isImpersonating = true;
+
       // Log the user in as the target user
       req.login(targetUser, (err) => {
         if (err) {
@@ -1913,6 +1917,66 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Error impersonating user:', error);
       res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Stop impersonating and return to admin account
+  app.post("/api/admin/stop-impersonating", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    try {
+      const originalAdminId = req.session.originalAdminId;
+      
+      if (!originalAdminId || !req.session.isImpersonating) {
+        return res.status(400).json({ error: "Not currently impersonating" });
+      }
+
+      // Get the original admin user
+      const adminUser = await storage.getUser(originalAdminId);
+      
+      if (!adminUser) {
+        return res.status(404).json({ error: "Original admin user not found" });
+      }
+
+      // Clear impersonation flags
+      delete req.session.originalAdminId;
+      delete req.session.isImpersonating;
+
+      // Log back in as the admin
+      req.login(adminUser, (err) => {
+        if (err) {
+          console.error('Error returning to admin account:', err);
+          return res.status(500).json({ error: "Failed to return to admin account" });
+        }
+        res.json({ success: true, user: adminUser });
+      });
+    } catch (error: any) {
+      console.error('Error stopping impersonation:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get impersonation status
+  app.get("/api/admin/impersonation-status", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.json({ isImpersonating: false });
+    }
+
+    const isImpersonating = req.session.isImpersonating === true;
+    
+    if (isImpersonating) {
+      res.json({
+        isImpersonating: true,
+        impersonatedUser: {
+          id: req.user.id,
+          username: req.user.username,
+          firstName: req.user.firstName,
+          lastName: req.user.lastName,
+          email: req.user.email,
+        }
+      });
+    } else {
+      res.json({ isImpersonating: false });
     }
   });
 

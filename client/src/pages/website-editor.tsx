@@ -19,6 +19,7 @@ type Page = {
   templateId: number;
   name: string;
   domain: string | null;
+  cloudflareZoneId: string | null;
   subscriptionStatus: string;
   siteStatus: string;
   content?: {
@@ -56,6 +57,7 @@ export default function WebsiteEditor() {
   const [isReloadingContent, setIsReloadingContent] = useState(false);
   const [existingDomain, setExistingDomain] = useState("");
   const [showExistingDomainSection, setShowExistingDomainSection] = useState(false);
+  const [domainValidationError, setDomainValidationError] = useState("");
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -692,26 +694,72 @@ export default function WebsiteEditor() {
                     {showExistingDomainSection && (
                       <div className="mt-4 pt-4 border-t">
                         <p className="text-sm text-gray-600 mb-4">Connect a domain you already own from another registrar.</p>
-                        <div className="flex gap-3 mb-4">
-                          <div className="flex-1">
-                            <Input
-                              placeholder="yourdomain.com"
-                              value={existingDomain}
-                              onChange={(e) => setExistingDomain(e.target.value)}
-                              data-testid="input-existing-domain"
-                            />
+                        <div className="space-y-3">
+                          <div className="flex gap-3">
+                            <div className="flex-1">
+                              <Input
+                                placeholder="yourdomain.com"
+                                value={existingDomain}
+                                onChange={(e) => {
+                                  const value = e.target.value;
+                                  setExistingDomain(value);
+                                  setDomainValidationError("");
+                                }}
+                                data-testid="input-existing-domain"
+                                className={domainValidationError ? "border-red-500" : ""}
+                              />
+                              {domainValidationError && (
+                                <p className="text-sm text-red-600 mt-1">{domainValidationError}</p>
+                              )}
+                              <p className="text-xs text-gray-500 mt-1">
+                                Only enter the domain name (e.g., yourdomain.com). Do not include http://, https://, or trailing slashes.
+                              </p>
+                            </div>
+                            <Button
+                              onClick={() => {
+                                const trimmed = existingDomain.trim();
+                                
+                                // Sanitize: remove http://, https://, and trailing slashes
+                                let sanitized = trimmed
+                                  .replace(/^https?:\/\//i, '')
+                                  .replace(/\/+$/g, '');
+                                
+                                // Validate domain format - require at least one dot and valid TLD
+                                const domainRegex = /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)+$/i;
+                                
+                                if (!sanitized) {
+                                  setDomainValidationError("Please enter a domain name");
+                                  return;
+                                }
+                                
+                                if (!sanitized.includes('.')) {
+                                  setDomainValidationError("Please enter a valid domain name with a TLD (e.g., yourdomain.com)");
+                                  return;
+                                }
+                                
+                                if (!domainRegex.test(sanitized)) {
+                                  setDomainValidationError("Invalid domain format. Only letters, numbers, hyphens, and dots are allowed.");
+                                  return;
+                                }
+                                
+                                if (sanitized.length > 253) {
+                                  setDomainValidationError("Domain name is too long");
+                                  return;
+                                }
+                                
+                                // Update the input with sanitized value
+                                setExistingDomain(sanitized);
+                                setDomainValidationError("");
+                                
+                                // Submit the sanitized domain
+                                connectExistingDomainMutation.mutate(sanitized);
+                              }}
+                              disabled={!existingDomain.trim() || connectExistingDomainMutation.isPending}
+                              data-testid="button-connect-existing-domain"
+                            >
+                              {connectExistingDomainMutation.isPending ? "Connecting..." : "Connect Domain"}
+                            </Button>
                           </div>
-                          <Button
-                            onClick={() => {
-                              if (existingDomain.trim()) {
-                                connectExistingDomainMutation.mutate(existingDomain.trim());
-                              }
-                            }}
-                            disabled={!existingDomain.trim() || connectExistingDomainMutation.isPending}
-                            data-testid="button-connect-existing-domain"
-                          >
-                            {connectExistingDomainMutation.isPending ? "Connecting..." : "Connect Domain"}
-                          </Button>
                         </div>
                         
                         {/* DNS Setup Instructions */}
@@ -767,9 +815,68 @@ export default function WebsiteEditor() {
                   </div>
                 )}
 
-                {/* DNS Management */}
-                {page?.domain && (
+                {/* DNS Management - Only show for purchased domains or skip this entirely for manual domains */}
+                {/* For manually-connected domains, users configure DNS at their own registrar */}
+                {page?.domain && page?.cloudflareZoneId && (
                   <DnsManager domain={page.domain} />
+                )}
+                
+                {/* Manual Domain DNS Instructions - Show when domain is connected but NOT purchased */}
+                {page?.domain && !page?.cloudflareZoneId && (
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold mb-4">🌐 Your Custom Domain: {page.domain}</h4>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Your domain has been connected to this page. Configure DNS at your domain registrar to make it live.
+                    </p>
+                    
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <h5 className="font-semibold text-blue-900 mb-3">📋 DNS Setup Instructions</h5>
+                      <p className="text-sm text-blue-800 mb-3">
+                        Add these DNS records at your domain registrar (GoDaddy, Namecheap, etc.):
+                      </p>
+                      
+                      {/* WWW subdomain CNAME */}
+                      <div className="bg-white border border-blue-200 rounded p-3 mb-2">
+                        <p className="text-xs font-semibold text-gray-700 mb-2">For www.{page.domain}:</p>
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                          <div className="font-semibold text-gray-700">Record Type:</div>
+                          <div className="font-mono text-gray-900">CNAME</div>
+                          
+                          <div className="font-semibold text-gray-700">Name/Host:</div>
+                          <div className="font-mono text-gray-900">www</div>
+                          
+                          <div className="font-semibold text-gray-700">Points to:</div>
+                          <div className="font-mono text-gray-900">chad-lp4a-v2-production.up.railway.app</div>
+                        </div>
+                      </div>
+                      
+                      {/* Root domain instructions */}
+                      <div className="bg-white border border-blue-200 rounded p-3 mb-3">
+                        <p className="text-xs font-semibold text-gray-700 mb-2">For {page.domain} (root/apex domain):</p>
+                        <p className="text-xs text-gray-600 mb-2">
+                          Most registrars require an A record or ALIAS record for the root domain. Choose one option:
+                        </p>
+                        <div className="space-y-2">
+                          <div className="pl-3">
+                            <p className="text-xs font-semibold text-gray-700">Option 1 (Recommended): URL Redirect</p>
+                            <p className="text-xs text-gray-600">Set up a redirect from {page.domain} → www.{page.domain} in your registrar's settings</p>
+                          </div>
+                          <div className="pl-3">
+                            <p className="text-xs font-semibold text-gray-700">Option 2: ALIAS/ANAME Record</p>
+                            <p className="text-xs text-gray-600">If your registrar supports ALIAS or ANAME records, point @ to chad-lp4a-v2-production.up.railway.app</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <ul className="text-xs text-blue-700 space-y-1">
+                        <li>• Log in to your domain registrar (GoDaddy, Namecheap, etc.)</li>
+                        <li>• Go to DNS Management or DNS Settings</li>
+                        <li>• Remove any existing A or AAAA records for @ and www to avoid conflicts</li>
+                        <li>• Add the DNS records as shown above</li>
+                        <li>• DNS changes typically take 5-30 minutes, but can take up to 24 hours</li>
+                      </ul>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>

@@ -597,7 +597,7 @@ export default function Template1({ className = "", content, flexibleContent = {
               </div>
               
               {/* Right Column - Form Embed (70%) */}
-              <div className="bg-white rounded-lg shadow-lg p-6 min-h-[600px]">
+              <div className="w-full">
                 {content?.formEmbedCode && (
                   <FormEmbed embedCode={content.formEmbedCode} className="w-full h-full" />
                 )}

@@ -601,13 +601,13 @@ export default function AdminClientUsers() {
                                   <div className="flex-1">
                                     <Label className="text-sm font-semibold text-gray-700">Billing Status</Label>
                                     <p className="text-xs text-gray-500 mt-1">
-                                      {client.billingStatus === 'current' ? 'Billing is current' : 'Payment past due'}
+                                      Turn Toggle to On if account is suspended for Past Due Payment
                                     </p>
                                   </div>
                                   <Switch
-                                    checked={client.billingStatus === 'current'}
+                                    checked={client.billingStatus === 'past_due'}
                                     onCheckedChange={(checked) => {
-                                      if (!checked) {
+                                      if (checked) {
                                         setPastDueConfirmation({
                                           open: true,
                                           userId: client.id,
@@ -628,9 +628,13 @@ export default function AdminClientUsers() {
 
                             <Card className="bg-white shadow-sm">
                               <CardContent className="p-4">
-                                <Label className="text-sm font-semibold text-gray-700">Pages</Label>
-                                <p className="text-2xl font-bold mt-2" style={{ color: '#6458AF' }}>{client.pageCount}</p>
-                                <p className="text-xs text-gray-500 mt-1">Total in dashboard</p>
+                                <div className="flex items-start justify-between gap-3">
+                                  <div className="flex-1">
+                                    <Label className="text-sm font-semibold text-gray-700">Pages</Label>
+                                    <p className="text-xs text-gray-500 mt-1">Total in dashboard</p>
+                                  </div>
+                                  <p className="text-2xl font-bold" style={{ color: '#6458AF' }}>{client.pageCount}</p>
+                                </div>
                               </CardContent>
                             </Card>
 

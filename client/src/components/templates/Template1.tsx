@@ -532,7 +532,7 @@ export default function Template1({ className = "", content, flexibleContent = {
 
       {/* Contact Us Section */}
       <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
-        <div className={content?.formEnabled ? "max-w-7xl mx-auto" : "max-w-4xl mx-auto text-center"}>
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center" data-content-id="contact-heading">
             {getValue('contact-heading', 'Contact Us')}
           </h2>

@@ -507,7 +507,10 @@ export default function AdminClientUsers() {
                 ) : (
                   clients.map((client) => (
                     <Fragment key={client.id}>
-                    <TableRow data-testid={`client-row-${client.id}`}>
+                    <TableRow 
+                      data-testid={`client-row-${client.id}`}
+                      className={client.billingStatus === 'past_due' ? 'border-l-4 border-l-red-600' : ''}
+                    >
                       <TableCell className="font-medium">
                         {client.firstName || <span className="text-gray-400 italic">Not set</span>}
                       </TableCell>

@@ -1929,7 +1929,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         lastName: z.string().min(1, "Last name is required"),
         email: z.string().email("Invalid email address"),
         templateId: z.string().optional().transform((val) => {
-          if (!val || val === '') return undefined;
+          if (!val || val === '' || val === 'none') return undefined;
           const parsed = parseInt(val, 10);
           if (isNaN(parsed)) throw new Error("templateId must be a valid number");
           return parsed;

@@ -692,7 +692,7 @@ export default function WebsiteEditor() {
                     {showExistingDomainSection && (
                       <div className="mt-4 pt-4 border-t">
                         <p className="text-sm text-gray-600 mb-4">Connect a domain you already own from another registrar.</p>
-                        <div className="flex gap-3">
+                        <div className="flex gap-3 mb-4">
                           <div className="flex-1">
                             <Input
                               placeholder="yourdomain.com"
@@ -712,6 +712,32 @@ export default function WebsiteEditor() {
                           >
                             {connectExistingDomainMutation.isPending ? "Connecting..." : "Connect Domain"}
                           </Button>
+                        </div>
+                        
+                        {/* DNS Setup Instructions */}
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                          <h5 className="font-semibold text-blue-900 mb-3">📋 DNS Setup Instructions</h5>
+                          <p className="text-sm text-blue-800 mb-3">
+                            After clicking "Connect Domain", you'll need to add a DNS record at your domain registrar:
+                          </p>
+                          <div className="bg-white border border-blue-200 rounded p-3 mb-3">
+                            <div className="grid grid-cols-2 gap-2 text-sm">
+                              <div className="font-semibold text-gray-700">Record Type:</div>
+                              <div className="font-mono text-gray-900">CNAME</div>
+                              
+                              <div className="font-semibold text-gray-700">Name/Host:</div>
+                              <div className="font-mono text-gray-900">@ or www</div>
+                              
+                              <div className="font-semibold text-gray-700">Points to:</div>
+                              <div className="font-mono text-gray-900">chad-lp4a-v2-production.up.railway.app</div>
+                            </div>
+                          </div>
+                          <ul className="text-xs text-blue-700 space-y-1">
+                            <li>• Log in to your domain registrar (GoDaddy, Namecheap, etc.)</li>
+                            <li>• Go to DNS Management or DNS Settings</li>
+                            <li>• Add the CNAME record shown above</li>
+                            <li>• DNS changes can take 5 minutes to 24 hours to propagate</li>
+                          </ul>
                         </div>
                       </div>
                     )}

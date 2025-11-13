@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Users, UserCircle, Loader2, UserPlus, Upload, FileSpreadsheet, CheckCircle, XCircle, Settings } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Switch } from "@/components/ui/switch";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
@@ -506,7 +506,7 @@ export default function AdminClientUsers() {
                   </TableRow>
                 ) : (
                   clients.map((client) => (
-                    <React.Fragment key={client.id}>
+                    <Fragment key={client.id}>
                     <TableRow data-testid={`client-row-${client.id}`}>
                       <TableCell className="font-medium">
                         {client.firstName || <span className="text-gray-400 italic">Not set</span>}
@@ -640,7 +640,7 @@ export default function AdminClientUsers() {
                         </TableCell>
                       </TableRow>
                     )}
-                    </React.Fragment>
+                    </Fragment>
                   ))
                 )}
               </TableBody>

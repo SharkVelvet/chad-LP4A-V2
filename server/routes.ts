@@ -1,6 +1,8 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import express from "express";
+import multer from "multer";
+import * as XLSX from "xlsx";
 import { storage } from "./storage.js";
 import { setupAuth } from "./auth.js";
 import { setupAdminAuth, isAdminAuthenticated } from "./adminAuth.js";
@@ -19,6 +21,12 @@ import { validatePassword } from "./passwords.js";
 import { domainService } from "./domainService.js";
 import { cloudflareService } from "./cloudflareService.js";
 import { railwayService } from "./railwayService.js";
+
+// Configure multer for file uploads
+const upload = multer({ 
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
+});
 
 // Initialize Stripe only if the secret key is available
 let stripe: Stripe | null = null;
@@ -2048,6 +2056,105 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error: any) {
       console.error('Error creating user:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Super Admin: Bulk upload users from Excel file
+  app.post("/api/admin/bulk-upload-users", upload.single('file'), async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+      }
+
+      // Parse Excel file
+      const workbook = XLSX.read(req.file.buffer, { type: 'buffer' });
+      const sheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[sheetName];
+      const data = XLSX.utils.sheet_to_json(worksheet);
+
+      if (!data || data.length === 0) {
+        return res.status(400).json({ error: "Excel file is empty" });
+      }
+
+      const results = {
+        total: data.length,
+        successful: 0,
+        failed: 0,
+        errors: [] as Array<{ row: number; email: string; error: string }>,
+      };
+
+      // Process each row
+      for (let i = 0; i < data.length; i++) {
+        const row: any = data[i];
+        const rowNumber = i + 2; // +2 because Excel is 1-indexed and row 1 is header
+
+        try {
+          // Extract data from row (case-insensitive column names)
+          const email = row['Email'] || row['email'] || row['EMAIL'];
+          const firstName = row['First Name'] || row['first name'] || row['FIRST NAME'] || row['FirstName'] || '';
+          const lastName = row['Last Name'] || row['last name'] || row['LAST NAME'] || row['LastName'] || '';
+          const templateValue = row['Template'] || row['template'] || row['TEMPLATE'] || '';
+
+          // Validate email is present
+          if (!email || typeof email !== 'string' || !email.includes('@')) {
+            results.failed++;
+            results.errors.push({
+              row: rowNumber,
+              email: email || 'N/A',
+              error: 'Invalid or missing email address',
+            });
+            continue;
+          }
+
+          // Check if user already exists
+          const existingUser = await storage.getUserByEmail(email);
+          if (existingUser) {
+            results.failed++;
+            results.errors.push({
+              row: rowNumber,
+              email,
+              error: 'User with this email already exists',
+            });
+            continue;
+          }
+
+          // Parse template ID
+          let templateId: number | undefined = undefined;
+          if (templateValue) {
+            const parsedTemplate = parseInt(String(templateValue), 10);
+            if (!isNaN(parsedTemplate) && parsedTemplate > 0) {
+              templateId = parsedTemplate;
+            }
+          }
+
+          // Create user
+          await storage.createUserWithOptionalWebsite({
+            firstName: String(firstName).trim() || email.split('@')[0],
+            lastName: String(lastName).trim() || '',
+            email: String(email).trim(),
+            templateId,
+          });
+
+          results.successful++;
+        } catch (error: any) {
+          results.failed++;
+          results.errors.push({
+            row: rowNumber,
+            email: row['Email'] || row['email'] || 'N/A',
+            error: error.message || 'Unknown error',
+          });
+        }
+      }
+
+      res.json(results);
+    } catch (error: any) {
+      console.error('Error processing bulk upload:', error);
       res.status(500).json({ error: error.message });
     }
   });

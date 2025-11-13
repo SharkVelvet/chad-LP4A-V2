@@ -9,10 +9,11 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Users, UserCircle, Loader2, UserPlus } from "lucide-react";
+import { Users, UserCircle, Loader2, UserPlus, Upload, FileSpreadsheet, CheckCircle, XCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { useState } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 type ClientUser = {
   id: number;
@@ -34,11 +35,21 @@ type Template = {
   category: string;
 };
 
+type BulkUploadResult = {
+  total: number;
+  successful: number;
+  failed: number;
+  errors: Array<{ row: number; email: string; error: string }>;
+};
+
 export default function AdminClientUsers() {
   const { user } = useAuth();
   const { toast } = useToast();
   const [, navigate] = useLocation();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isBulkUploadOpen, setIsBulkUploadOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [uploadResults, setUploadResults] = useState<BulkUploadResult | null>(null);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -109,6 +120,43 @@ export default function AdminClientUsers() {
     },
   });
 
+  const bulkUploadMutation = useMutation({
+    mutationFn: async (file: File) => {
+      const formData = new FormData();
+      formData.append('file', file);
+      
+      const res = await fetch('/api/admin/bulk-upload-users', {
+        method: 'POST',
+        body: formData,
+        credentials: 'include',
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.error || 'Upload failed');
+      }
+      
+      return res.json();
+    },
+    onSuccess: (data: BulkUploadResult) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/client-users"] });
+      setUploadResults(data);
+      setSelectedFile(null);
+      
+      toast({
+        title: "Bulk Upload Complete",
+        description: `Successfully created ${data.successful} users. ${data.failed} failed.`,
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Bulk Upload Failed",
+        description: error.message || "Could not upload file.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.email || !formData.firstName || !formData.lastName) {
@@ -151,13 +199,148 @@ export default function AdminClientUsers() {
             <p className="text-gray-600">Manage and support your customer accounts</p>
           </div>
 
-          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger asChild>
-              <Button data-testid="button-add-user">
-                <UserPlus className="h-4 w-4 mr-2" />
-                Add User
-              </Button>
-            </DialogTrigger>
+          <div className="flex gap-2">
+            <Dialog open={isBulkUploadOpen} onOpenChange={(open) => {
+              setIsBulkUploadOpen(open);
+              if (!open) {
+                setSelectedFile(null);
+                setUploadResults(null);
+              }
+            }}>
+              <DialogTrigger asChild>
+                <Button variant="outline" data-testid="button-bulk-upload">
+                  <Upload className="h-4 w-4 mr-2" />
+                  Bulk Upload
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[600px]">
+                <DialogHeader>
+                  <DialogTitle>Bulk Upload Users</DialogTitle>
+                  <DialogDescription>
+                    Upload an Excel file (.xlsx or .xls) with user data. Only Email is required.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
+                  <div className="space-y-2">
+                    <Label>Excel File Columns</Label>
+                    <div className="bg-gray-50 p-3 rounded text-sm">
+                      <div className="font-semibold mb-2">Expected columns:</div>
+                      <ul className="list-disc list-inside space-y-1 text-gray-700">
+                        <li><strong>Email</strong> (required)</li>
+                        <li>First Name (optional)</li>
+                        <li>Last Name (optional)</li>
+                        <li>Template (optional - template ID number)</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="file-upload">Upload File</Label>
+                    <Input
+                      id="file-upload"
+                      type="file"
+                      accept=".xlsx,.xls"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          setSelectedFile(file);
+                          setUploadResults(null);
+                        }
+                      }}
+                      data-testid="input-bulk-upload-file"
+                    />
+                    {selectedFile && (
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <FileSpreadsheet className="h-4 w-4" />
+                        {selectedFile.name}
+                      </div>
+                    )}
+                  </div>
+
+                  {uploadResults && (
+                    <div className="space-y-3">
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="bg-blue-50 p-3 rounded">
+                          <div className="text-sm text-gray-600">Total</div>
+                          <div className="text-2xl font-bold">{uploadResults.total}</div>
+                        </div>
+                        <div className="bg-green-50 p-3 rounded">
+                          <div className="text-sm text-gray-600 flex items-center gap-1">
+                            <CheckCircle className="h-3 w-3" />
+                            Successful
+                          </div>
+                          <div className="text-2xl font-bold text-green-600">{uploadResults.successful}</div>
+                        </div>
+                        <div className="bg-red-50 p-3 rounded">
+                          <div className="text-sm text-gray-600 flex items-center gap-1">
+                            <XCircle className="h-3 w-3" />
+                            Failed
+                          </div>
+                          <div className="text-2xl font-bold text-red-600">{uploadResults.failed}</div>
+                        </div>
+                      </div>
+
+                      {uploadResults.errors.length > 0 && (
+                        <div className="space-y-2">
+                          <div className="font-semibold text-sm">Errors:</div>
+                          <div className="max-h-40 overflow-y-auto space-y-2">
+                            {uploadResults.errors.map((error, idx) => (
+                              <Alert key={idx} variant="destructive">
+                                <AlertDescription className="text-sm">
+                                  <strong>Row {error.row}:</strong> {error.email} - {error.error}
+                                </AlertDescription>
+                              </Alert>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+                <DialogFooter>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      setIsBulkUploadOpen(false);
+                      setSelectedFile(null);
+                      setUploadResults(null);
+                    }}
+                  >
+                    Close
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      if (selectedFile) {
+                        bulkUploadMutation.mutate(selectedFile);
+                      }
+                    }}
+                    disabled={!selectedFile || bulkUploadMutation.isPending}
+                    data-testid="button-upload"
+                  >
+                    {bulkUploadMutation.isPending ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Uploading...
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="h-4 w-4 mr-2" />
+                        Upload Users
+                      </>
+                    )}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <DialogTrigger asChild>
+                <Button data-testid="button-add-user">
+                  <UserPlus className="h-4 w-4 mr-2" />
+                  Add User
+                </Button>
+              </DialogTrigger>
             <DialogContent className="sm:max-w-[500px]">
               <DialogHeader>
                 <DialogTitle>Add New User</DialogTitle>

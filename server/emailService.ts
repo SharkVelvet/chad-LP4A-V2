@@ -207,7 +207,7 @@ Landing Pages for Agents
 
 export async function sendAccountSuspensionEmail(to: string, firstName: string | null): Promise<void> {
   try {
-    const subject = 'Account Suspended - Payment Required';
+    const subject = 'Account Suspended';
 
     const htmlContent = `
       <!DOCTYPE html>
@@ -226,7 +226,7 @@ export async function sendAccountSuspensionEmail(to: string, firstName: string |
         <body>
           <div class="container">
             <div class="header">
-              <h1>⚠️ Account Suspended</h1>
+              <h1>⚠️ Payment Required</h1>
             </div>
             <div class="content">
               <h2>Hello${firstName ? ` ${firstName}` : ''},</h2>

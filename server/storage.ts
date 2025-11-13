@@ -175,6 +175,9 @@ export class DatabaseStorage implements IStorage {
         lastName: users.lastName,
         email: users.email,
         role: users.role,
+        status: users.status,
+        billingStatus: users.billingStatus,
+        lastLoginAt: users.lastLoginAt,
         stripeCustomerId: users.stripeCustomerId,
         stripeSubscriptionId: users.stripeSubscriptionId,
         createdAt: users.createdAt,
@@ -187,7 +190,21 @@ export class DatabaseStorage implements IStorage {
       .leftJoin(templates, eq(pages.templateId, templates.id))
       .orderBy(desc(users.createdAt));
 
-    return result;
+    const usersWithPageCount = await Promise.all(
+      result.map(async (user) => {
+        const userPages = await db
+          .select()
+          .from(pages)
+          .where(eq(pages.userId, user.id));
+        
+        return {
+          ...user,
+          pageCount: userPages.length,
+        };
+      })
+    );
+
+    return usersWithPageCount;
   }
 
   async createUserWithOptionalWebsite(userData: { 

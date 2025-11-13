@@ -189,6 +189,7 @@ export function setupAuth(app: Express) {
         otpCode: null,
         otpExpiry: null,
         otpAttempts: 0,
+        lastLoginAt: new Date(),
       });
 
       // Log the user in

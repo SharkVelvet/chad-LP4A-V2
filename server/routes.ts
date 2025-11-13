@@ -2159,6 +2159,89 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Super Admin: Update user status
+  app.patch("/api/admin/users/:userId/status", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      const userId = parseInt(req.params.userId);
+      
+      const updateStatusSchema = z.object({
+        status: z.enum(['active', 'inactive']),
+      });
+
+      const validationResult = updateStatusSchema.safeParse(req.body);
+      if (!validationResult.success) {
+        return res.status(400).json({ 
+          error: "Validation failed", 
+          details: validationResult.error.errors 
+        });
+      }
+
+      const { status } = validationResult.data;
+      const updatedUser = await storage.updateUser(userId, { status });
+      res.json({ success: true, user: updatedUser });
+    } catch (error: any) {
+      console.error('Error updating user status:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Super Admin: Update user billing status
+  app.patch("/api/admin/users/:userId/billing-status", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      const userId = parseInt(req.params.userId);
+      
+      const updateBillingStatusSchema = z.object({
+        billingStatus: z.enum(['current', 'past_due']),
+      });
+
+      const validationResult = updateBillingStatusSchema.safeParse(req.body);
+      if (!validationResult.success) {
+        return res.status(400).json({ 
+          error: "Validation failed", 
+          details: validationResult.error.errors 
+        });
+      }
+
+      const { billingStatus } = validationResult.data;
+      
+      // Get user info before updating
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Update billing status
+      const updatedUser = await storage.updateUser(userId, { billingStatus });
+
+      // Send email notification if set to past_due
+      if (billingStatus === 'past_due') {
+        const { sendAccountSuspensionEmail } = await import('./emailService.js');
+        try {
+          await sendAccountSuspensionEmail(user.email, user.firstName);
+          console.log(`Account suspension email sent to ${user.email}`);
+        } catch (emailError) {
+          console.error('Failed to send suspension email:', emailError);
+          // Don't fail the request if email fails
+        }
+      }
+
+      res.json({ success: true, user: updatedUser });
+    } catch (error: any) {
+      console.error('Error updating user billing status:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

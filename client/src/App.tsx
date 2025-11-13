@@ -43,6 +43,7 @@ import PaymentProcessing from "@/pages/payment-processing";
 import DomainPaymentSuccess from "@/pages/domain-payment-success";
 import WebsiteEditor from "@/pages/website-editor";
 import PublicWebsite from "@/pages/public-website";
+import AccountSuspended from "@/pages/account-suspended";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -96,6 +97,7 @@ function Router() {
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin/dashboard" component={AdminDashboard} />
         <ProtectedRoute path="/admin/client-users" component={AdminClientUsers} />
+        <Route path="/account-suspended" component={AccountSuspended} />
         <Route path="/old-home" component={HomePage} />
         <Route path="/" component={InternalOne} />
         <Route component={NotFound} />

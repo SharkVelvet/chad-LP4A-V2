@@ -9,11 +9,13 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Users, UserCircle, Loader2, UserPlus, Upload, FileSpreadsheet, CheckCircle, XCircle } from "lucide-react";
+import { Users, UserCircle, Loader2, UserPlus, Upload, FileSpreadsheet, CheckCircle, XCircle, Settings } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { useState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Switch } from "@/components/ui/switch";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 type ClientUser = {
   id: number;
@@ -21,10 +23,14 @@ type ClientUser = {
   lastName: string | null;
   email: string;
   role: string;
+  status: string;
+  billingStatus: string;
+  lastLoginAt: string | null;
   stripeCustomerId: string | null;
   stripeSubscriptionId: string | null;
   subscriptionStatus: string | null;
   templateName: string | null;
+  pageCount: number;
   createdAt: string;
 };
 
@@ -50,6 +56,12 @@ export default function AdminClientUsers() {
   const [isBulkUploadOpen, setIsBulkUploadOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadResults, setUploadResults] = useState<BulkUploadResult | null>(null);
+  const [expandedRowId, setExpandedRowId] = useState<number | null>(null);
+  const [pastDueConfirmation, setPastDueConfirmation] = useState<{ open: boolean; userId: number; userEmail: string }>({
+    open: false,
+    userId: 0,
+    userEmail: '',
+  });
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -152,6 +164,48 @@ export default function AdminClientUsers() {
       toast({
         title: "Bulk Upload Failed",
         description: error.message || "Could not upload file.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const updateStatusMutation = useMutation({
+    mutationFn: async ({ userId, status }: { userId: number; status: string }) => {
+      const res = await apiRequest("PATCH", `/api/admin/users/${userId}/status`, { status });
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/client-users"] });
+      toast({
+        title: "Status Updated",
+        description: "User status has been updated successfully.",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Update Failed",
+        description: error.message || "Could not update status.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const updateBillingStatusMutation = useMutation({
+    mutationFn: async ({ userId, billingStatus }: { userId: number; billingStatus: string }) => {
+      const res = await apiRequest("PATCH", `/api/admin/users/${userId}/billing-status`, { billingStatus });
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/client-users"] });
+      toast({
+        title: "Billing Status Updated",
+        description: "User has been notified via email about their account status.",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Update Failed",
+        description: error.message || "Could not update billing status.",
         variant: "destructive",
       });
     },
@@ -452,7 +506,8 @@ export default function AdminClientUsers() {
                   </TableRow>
                 ) : (
                   clients.map((client) => (
-                    <TableRow key={client.id} data-testid={`client-row-${client.id}`}>
+                    <React.Fragment key={client.id}>
+                    <TableRow data-testid={`client-row-${client.id}`}>
                       <TableCell className="font-medium">
                         {client.firstName || <span className="text-gray-400 italic">Not set</span>}
                       </TableCell>
@@ -478,31 +533,114 @@ export default function AdminClientUsers() {
                         {client.templateName || <span className="text-gray-400 italic">No template</span>}
                       </TableCell>
                       <TableCell>
-                        {client.role === 'super_admin' ? (
-                          <Badge variant="secondary">Super Admin</Badge>
-                        ) : (
+                        <div className="flex items-center gap-2">
                           <Button
                             size="sm"
-                            variant="outline"
-                            onClick={() => impersonateMutation.mutate(client.id)}
-                            disabled={impersonateMutation.isPending}
-                            data-testid={`button-impersonate-${client.id}`}
+                            variant="ghost"
+                            onClick={() => setExpandedRowId(expandedRowId === client.id ? null : client.id)}
+                            data-testid={`button-settings-${client.id}`}
                           >
-                            {impersonateMutation.isPending ? (
-                              <>
-                                <Loader2 className="h-3 w-3 mr-2 animate-spin" />
-                                Impersonating...
-                              </>
-                            ) : (
-                              <>
-                                <UserCircle className="h-3 w-3 mr-2" />
-                                Impersonate
-                              </>
-                            )}
+                            <Settings className="h-4 w-4" />
                           </Button>
-                        )}
+                          {client.role === 'super_admin' ? (
+                            <Badge variant="secondary">Super Admin</Badge>
+                          ) : (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => impersonateMutation.mutate(client.id)}
+                              disabled={impersonateMutation.isPending}
+                              data-testid={`button-impersonate-${client.id}`}
+                            >
+                              {impersonateMutation.isPending ? (
+                                <>
+                                  <Loader2 className="h-3 w-3 mr-2 animate-spin" />
+                                  Impersonating...
+                                </>
+                              ) : (
+                                <>
+                                  <UserCircle className="h-3 w-3 mr-2" />
+                                  Impersonate
+                                </>
+                              )}
+                            </Button>
+                          )}
+                        </div>
                       </TableCell>
                     </TableRow>
+                    {expandedRowId === client.id && (
+                      <TableRow>
+                        <TableCell colSpan={6} className="bg-gray-50 p-6">
+                          <div className="grid grid-cols-2 gap-6">
+                            <div className="space-y-4">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <Label className="text-sm font-medium">Account Status</Label>
+                                  <p className="text-xs text-gray-500 mt-1">
+                                    {client.status === 'active' ? 'Account is active' : 'Account is inactive'}
+                                  </p>
+                                </div>
+                                <Switch
+                                  checked={client.status === 'active'}
+                                  onCheckedChange={(checked) => {
+                                    updateStatusMutation.mutate({
+                                      userId: client.id,
+                                      status: checked ? 'active' : 'inactive',
+                                    });
+                                  }}
+                                  data-testid={`switch-status-${client.id}`}
+                                />
+                              </div>
+
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <Label className="text-sm font-medium">Billing Status</Label>
+                                  <p className="text-xs text-gray-500 mt-1">
+                                    {client.billingStatus === 'current' ? 'Billing is current' : 'Payment past due'}
+                                  </p>
+                                </div>
+                                <Switch
+                                  checked={client.billingStatus === 'current'}
+                                  onCheckedChange={(checked) => {
+                                    if (!checked) {
+                                      setPastDueConfirmation({
+                                        open: true,
+                                        userId: client.id,
+                                        userEmail: client.email,
+                                      });
+                                    } else {
+                                      updateBillingStatusMutation.mutate({
+                                        userId: client.id,
+                                        billingStatus: 'current',
+                                      });
+                                    }
+                                  }}
+                                  data-testid={`switch-billing-${client.id}`}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="space-y-4">
+                              <div>
+                                <Label className="text-sm font-medium">Pages</Label>
+                                <p className="text-lg font-semibold mt-1">{client.pageCount}</p>
+                                <p className="text-xs text-gray-500">Total pages in dashboard</p>
+                              </div>
+
+                              <div>
+                                <Label className="text-sm font-medium">Last Login</Label>
+                                <p className="text-sm mt-1">
+                                  {client.lastLoginAt 
+                                    ? new Date(client.lastLoginAt).toLocaleString() 
+                                    : 'Never logged in'}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    )}
+                    </React.Fragment>
                   ))
                 )}
               </TableBody>
@@ -510,6 +648,44 @@ export default function AdminClientUsers() {
           </CardContent>
         </Card>
       </div>
+
+      <AlertDialog open={pastDueConfirmation.open} onOpenChange={(open) => setPastDueConfirmation({ ...pastDueConfirmation, open })}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Mark Account as Past Due?</AlertDialogTitle>
+            <AlertDialogDescription className="space-y-2">
+              <p>
+                You are about to mark this account as <strong>Past Due</strong>:
+              </p>
+              <p className="font-medium">{pastDueConfirmation.userEmail}</p>
+              <p className="text-yellow-600 font-medium">
+                ⚠️ This will send an email notification to the user about their account suspension.
+              </p>
+              <p>
+                All of their pages will be redirected to a suspension notice until billing is resolved.
+              </p>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setPastDueConfirmation({ open: false, userId: 0, userEmail: '' })}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                updateBillingStatusMutation.mutate({
+                  userId: pastDueConfirmation.userId,
+                  billingStatus: 'past_due',
+                });
+                setPastDueConfirmation({ open: false, userId: 0, userEmail: '' });
+              }}
+              className="bg-red-600 hover:bg-red-700"
+              data-testid="confirm-past-due"
+            >
+              Confirm & Send Email
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

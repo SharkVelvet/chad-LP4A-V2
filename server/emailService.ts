@@ -204,3 +204,123 @@ Landing Pages for Agents
     throw new Error('Failed to send verification email');
   }
 }
+
+export async function sendAccountSuspensionEmail(to: string, firstName: string | null): Promise<void> {
+  try {
+    const subject = 'Account Suspended - Payment Required';
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background-color: #d32f2f; color: white; padding: 20px; text-align: center; }
+            .content { background-color: #f9f9f9; padding: 30px; border-radius: 5px; margin-top: 20px; }
+            .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; }
+            .cta-button { display: inline-block; background-color: #000; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+            .footer { text-align: center; margin-top: 20px; color: #666; font-size: 12px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>⚠️ Account Suspended</h1>
+            </div>
+            <div class="content">
+              <h2>Hello${firstName ? ` ${firstName}` : ''},</h2>
+              <p>Your Landing Pages for Agents account has been temporarily suspended due to an outstanding payment.</p>
+              
+              <div class="warning">
+                <strong>Action Required:</strong> Your account and all associated landing pages are currently inaccessible until your payment is processed.
+              </div>
+
+              <p><strong>What this means:</strong></p>
+              <ul>
+                <li>All your landing pages are currently offline</li>
+                <li>Your custom domains will show a suspension notice</li>
+                <li>You cannot access your dashboard</li>
+              </ul>
+
+              <p><strong>How to resolve this:</strong></p>
+              <p>Please contact us immediately at <a href="https://LandingPagesforAgents.com">LandingPagesforAgents.com</a> to update your payment information and restore your account.</p>
+
+              <a href="https://LandingPagesforAgents.com" class="cta-button">Contact Support</a>
+
+              <p style="margin-top: 30px;">We're here to help get your account back up and running as quickly as possible.</p>
+            </div>
+            <div class="footer">
+              <p>&copy; ${new Date().getFullYear()} Landing Pages for Agents. All rights reserved.</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `;
+
+    const hasOAuthCreds = process.env.GMAIL_USER && 
+                          process.env.GMAIL_OAUTH_CLIENT_ID && 
+                          process.env.GMAIL_OAUTH_CLIENT_SECRET && 
+                          process.env.GMAIL_OAUTH_REFRESH_TOKEN;
+
+    if (hasOAuthCreds) {
+      const gmail = await getGmailClientFromOAuth();
+
+      const message = [
+        `To: ${to}`,
+        `From: ${process.env.GMAIL_USER}`,
+        `Subject: ${subject}`,
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset=utf-8',
+        '',
+        htmlContent
+      ].join('\n');
+
+      const encodedMessage = Buffer.from(message)
+        .toString('base64')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+
+      await gmail.users.messages.send({
+        userId: 'me',
+        requestBody: {
+          raw: encodedMessage,
+        },
+      });
+
+      console.log(`[Gmail API OAuth] Account suspension email sent to ${to}`);
+    } else if (isReplitEnvironment()) {
+      const gmail = await getUncachableGmailClient();
+
+      const message = [
+        `To: ${to}`,
+        `Subject: ${subject}`,
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset=utf-8',
+        '',
+        htmlContent
+      ].join('\n');
+
+      const encodedMessage = Buffer.from(message)
+        .toString('base64')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+
+      await gmail.users.messages.send({
+        userId: 'me',
+        requestBody: {
+          raw: encodedMessage,
+        },
+      });
+
+      console.log(`[Replit Gmail API] Account suspension email sent to ${to}`);
+    } else {
+      throw new Error('No email service configured.');
+    }
+  } catch (error) {
+    console.error('Error sending account suspension email:', error);
+    throw new Error('Failed to send account suspension email');
+  }
+}

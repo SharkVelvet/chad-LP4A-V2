@@ -1903,8 +1903,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Store original admin info in session before impersonating
-      req.session.originalAdminId = req.user.id;
-      req.session.isImpersonating = true;
+      const originalAdminId = req.user.id;
 
       // Log the user in as the target user
       req.login(targetUser, (err) => {
@@ -1912,7 +1911,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
           console.error('Impersonation login error:', err);
           return res.status(500).json({ error: "Failed to impersonate user" });
         }
-        res.json({ success: true, user: targetUser });
+        
+        // Set impersonation flags AFTER login
+        req.session.originalAdminId = originalAdminId;
+        req.session.isImpersonating = true;
+        
+        // Save session explicitly
+        req.session.save((saveErr) => {
+          if (saveErr) {
+            console.error('Session save error:', saveErr);
+          }
+          res.json({ success: true, user: targetUser });
+        });
       });
     } catch (error: any) {
       console.error('Error impersonating user:', error);
@@ -1938,17 +1948,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ error: "Original admin user not found" });
       }
 
-      // Clear impersonation flags
-      delete req.session.originalAdminId;
-      delete req.session.isImpersonating;
-
       // Log back in as the admin
       req.login(adminUser, (err) => {
         if (err) {
           console.error('Error returning to admin account:', err);
           return res.status(500).json({ error: "Failed to return to admin account" });
         }
-        res.json({ success: true, user: adminUser });
+        
+        // Clear impersonation flags AFTER login
+        delete req.session.originalAdminId;
+        delete req.session.isImpersonating;
+        
+        // Save session explicitly
+        req.session.save((saveErr) => {
+          if (saveErr) {
+            console.error('Session save error:', saveErr);
+          }
+          res.json({ success: true, user: adminUser });
+        });
       });
     } catch (error: any) {
       console.error('Error stopping impersonation:', error);

@@ -18,9 +18,9 @@ interface ImpersonationStatus {
 export function ImpersonationBanner() {
   const [, setLocation] = useLocation();
   
-  const { data: status } = useQuery<ImpersonationStatus>({
+  const { data: status, isLoading } = useQuery<ImpersonationStatus>({
     queryKey: ["/api/admin/impersonation-status"],
-    refetchInterval: 5000,
+    refetchInterval: 3000,
   });
 
   const stopImpersonatingMutation = useMutation({
@@ -35,8 +35,8 @@ export function ImpersonationBanner() {
     },
   });
 
-  if (!status?.isImpersonating || !status.impersonatedUser) {
-    return null;
+  if (isLoading || !status?.isImpersonating || !status.impersonatedUser) {
+    return <></>;
   }
 
   const userName = status.impersonatedUser.firstName && status.impersonatedUser.lastName

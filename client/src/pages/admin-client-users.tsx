@@ -570,72 +570,80 @@ export default function AdminClientUsers() {
                     </TableRow>
                     {expandedRowId === client.id && (
                       <TableRow>
-                        <TableCell colSpan={6} className="bg-gray-50 p-6">
-                          <div className="grid grid-cols-2 gap-6">
-                            <div className="space-y-4">
-                              <div className="flex items-center justify-between">
-                                <div>
-                                  <Label className="text-sm font-medium">Account Status</Label>
-                                  <p className="text-xs text-gray-500 mt-1">
-                                    {client.status === 'active' ? 'Account is active' : 'Account is inactive'}
-                                  </p>
-                                </div>
-                                <Switch
-                                  checked={client.status === 'active'}
-                                  onCheckedChange={(checked) => {
-                                    updateStatusMutation.mutate({
-                                      userId: client.id,
-                                      status: checked ? 'active' : 'inactive',
-                                    });
-                                  }}
-                                  data-testid={`switch-status-${client.id}`}
-                                />
-                              </div>
-
-                              <div className="flex items-center justify-between">
-                                <div>
-                                  <Label className="text-sm font-medium">Billing Status</Label>
-                                  <p className="text-xs text-gray-500 mt-1">
-                                    {client.billingStatus === 'current' ? 'Billing is current' : 'Payment past due'}
-                                  </p>
-                                </div>
-                                <Switch
-                                  checked={client.billingStatus === 'current'}
-                                  onCheckedChange={(checked) => {
-                                    if (!checked) {
-                                      setPastDueConfirmation({
-                                        open: true,
+                        <TableCell colSpan={6} className="bg-gray-50/50 p-6">
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <Card className="bg-white shadow-sm">
+                              <CardContent className="p-4">
+                                <div className="flex items-start justify-between gap-3">
+                                  <div className="flex-1">
+                                    <Label className="text-sm font-semibold text-gray-700">Account Status</Label>
+                                    <p className="text-xs text-gray-500 mt-1">
+                                      {client.status === 'active' ? 'Account is active' : 'Account is inactive'}
+                                    </p>
+                                  </div>
+                                  <Switch
+                                    checked={client.status === 'active'}
+                                    onCheckedChange={(checked) => {
+                                      updateStatusMutation.mutate({
                                         userId: client.id,
-                                        userEmail: client.email,
+                                        status: checked ? 'active' : 'inactive',
                                       });
-                                    } else {
-                                      updateBillingStatusMutation.mutate({
-                                        userId: client.id,
-                                        billingStatus: 'current',
-                                      });
-                                    }
-                                  }}
-                                  data-testid={`switch-billing-${client.id}`}
-                                />
-                              </div>
-                            </div>
+                                    }}
+                                    data-testid={`switch-status-${client.id}`}
+                                  />
+                                </div>
+                              </CardContent>
+                            </Card>
 
-                            <div className="space-y-4">
-                              <div>
-                                <Label className="text-sm font-medium">Pages</Label>
-                                <p className="text-lg font-semibold mt-1">{client.pageCount}</p>
-                                <p className="text-xs text-gray-500">Total pages in dashboard</p>
-                              </div>
+                            <Card className="bg-white shadow-sm">
+                              <CardContent className="p-4">
+                                <div className="flex items-start justify-between gap-3">
+                                  <div className="flex-1">
+                                    <Label className="text-sm font-semibold text-gray-700">Billing Status</Label>
+                                    <p className="text-xs text-gray-500 mt-1">
+                                      {client.billingStatus === 'current' ? 'Billing is current' : 'Payment past due'}
+                                    </p>
+                                  </div>
+                                  <Switch
+                                    checked={client.billingStatus === 'current'}
+                                    onCheckedChange={(checked) => {
+                                      if (!checked) {
+                                        setPastDueConfirmation({
+                                          open: true,
+                                          userId: client.id,
+                                          userEmail: client.email,
+                                        });
+                                      } else {
+                                        updateBillingStatusMutation.mutate({
+                                          userId: client.id,
+                                          billingStatus: 'current',
+                                        });
+                                      }
+                                    }}
+                                    data-testid={`switch-billing-${client.id}`}
+                                  />
+                                </div>
+                              </CardContent>
+                            </Card>
 
-                              <div>
-                                <Label className="text-sm font-medium">Last Login</Label>
-                                <p className="text-sm mt-1">
+                            <Card className="bg-white shadow-sm">
+                              <CardContent className="p-4">
+                                <Label className="text-sm font-semibold text-gray-700">Pages</Label>
+                                <p className="text-2xl font-bold mt-2" style={{ color: '#6458AF' }}>{client.pageCount}</p>
+                                <p className="text-xs text-gray-500 mt-1">Total in dashboard</p>
+                              </CardContent>
+                            </Card>
+
+                            <Card className="bg-white shadow-sm">
+                              <CardContent className="p-4">
+                                <Label className="text-sm font-semibold text-gray-700">Last Login</Label>
+                                <p className="text-sm font-medium mt-2 text-gray-900">
                                   {client.lastLoginAt 
                                     ? new Date(client.lastLoginAt).toLocaleString() 
                                     : 'Never logged in'}
                                 </p>
-                              </div>
-                            </div>
+                              </CardContent>
+                            </Card>
                           </div>
                         </TableCell>
                       </TableRow>

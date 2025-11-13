@@ -113,9 +113,9 @@ export default function TemplatePreviewPage() {
     phone: fullContent.phone || null,
     email: fullContent.email || null,
     address: fullContent.address || null,
-    formEnabled: page?.formEnabled || false,
-    formProvider: page?.formProvider || null,
-    formEmbedCode: page?.formEmbedCode || null,
+    formEnabled: fullContent.formEnabled || false,
+    formProvider: fullContent.formProvider || null,
+    formEmbedCode: fullContent.formEmbedCode || null,
   };
   
   // Extract flexible content from the nested content JSONB field

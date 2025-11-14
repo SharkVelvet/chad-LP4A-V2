@@ -7,42 +7,45 @@ interface SectionVisibilityOverlayProps {
   onToggleSection: (sectionId: string) => void;
 }
 
+interface SectionPosition {
+  id: string;
+  topPosition: number;
+}
+
 export default function SectionVisibilityOverlay({ 
   rootRef, 
   hiddenSections,
   onToggleSection 
 }: SectionVisibilityOverlayProps) {
-  const [sections, setSections] = useState<Array<{ id: string; element: HTMLElement; rect: DOMRect }>>([]);
+  const [sections, setSections] = useState<SectionPosition[]>([]);
   const throttleTimeoutRef = useRef<NodeJS.Timeout>();
 
   const detectSections = useCallback(() => {
     if (!rootRef.current) return;
 
-    // First try data-section-id attributes (preferred)
-    let sectionElements = rootRef.current?.querySelectorAll('[data-section-id]');
+    const iframeRect = rootRef.current.getBoundingClientRect();
+    const scrollTop = rootRef.current.parentElement?.scrollTop || 0;
+
+    let sectionElements = rootRef.current.querySelectorAll('[data-section-id]');
     
-    // Fallback to legacy ID-based detection if no data-section-id elements found
     if (!sectionElements || sectionElements.length === 0) {
-      sectionElements = rootRef.current?.querySelectorAll('[id]');
+      sectionElements = rootRef.current.querySelectorAll('[id]');
     }
     
-    const detectedSections: Array<{ id: string; element: HTMLElement; rect: DOMRect }> = [];
+    const detectedSections: SectionPosition[] = [];
+    const validSectionIds = ['hero', 'about', 'services', 'solutions', 'training', 'support', 'opportunity', 'benefits', 'success', 'life-insurance', 'health-insurance', 'annuities', 'family-protection', 'retirement-planning', 'quotes', 'contact', 'career-support'];
 
     sectionElements?.forEach((el) => {
       const element = el as HTMLElement;
-      
-      // Prefer data-section-id, fallback to id attribute
       const sectionId = element.getAttribute('data-section-id') || element.id;
-      
-      // For ID-based detection, only include section-like IDs
-      const validSectionIds = ['hero', 'about', 'services', 'solutions', 'training', 'support', 'opportunity', 'benefits', 'success', 'life-insurance', 'health-insurance', 'annuities', 'family-protection', 'retirement-planning', 'quotes', 'contact', 'career-support'];
       
       const isDataSectionId = element.hasAttribute('data-section-id');
       const isValidId = element.id && validSectionIds.includes(element.id);
       
       if (sectionId && (isDataSectionId || isValidId)) {
         const rect = element.getBoundingClientRect();
-        detectedSections.push({ id: sectionId, element, rect });
+        const topPosition = rect.top - iframeRect.top + scrollTop + 20;
+        detectedSections.push({ id: sectionId, topPosition });
       }
     });
 
@@ -86,18 +89,14 @@ export default function SectionVisibilityOverlay({
   }, [rootRef, hiddenSections, detectSections, handleScroll]);
 
   return (
-    <div className="pointer-events-none">
-      {sections.map(({ id, rect }) => {
+    <div className="pointer-events-none absolute inset-0 z-[60]">
+      {sections.map(({ id, topPosition }) => {
         const isHidden = hiddenSections.includes(id);
-        const iframeRect = rootRef.current?.getBoundingClientRect();
-        
-        if (!iframeRect) return null;
-
-        const topPosition = rect.top - iframeRect.top + (rootRef.current?.parentElement?.scrollTop || 0);
 
         return (
           <button
             key={id}
+            type="button"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -108,13 +107,16 @@ export default function SectionVisibilityOverlay({
               e.preventDefault();
               e.stopPropagation();
             }}
-            className={`pointer-events-auto absolute left-2 z-[60] flex items-center gap-2 px-3 py-2 rounded-lg shadow-lg transition-colors ${
+            onMouseEnter={(e) => {
+              e.stopPropagation();
+            }}
+            className={`pointer-events-auto absolute left-2 flex items-center gap-2 px-3 py-2 rounded-lg shadow-lg transition-colors ${
               isHidden 
                 ? 'bg-gray-600 text-white hover:bg-gray-700' 
                 : 'bg-green-600 text-white hover:bg-green-700'
             }`}
             style={{
-              top: `${topPosition + 20}px`,
+              top: `${topPosition}px`,
             }}
             title={isHidden ? `Show "${id}" section` : `Hide "${id}" section`}
             data-testid={`toggle-section-${id}`}

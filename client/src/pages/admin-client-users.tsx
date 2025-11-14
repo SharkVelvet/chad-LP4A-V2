@@ -101,7 +101,7 @@ export default function AdminClientUsers() {
       return res.json();
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["/api/admin/client-users"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/client-users"], exact: false });
       const message = data.websiteCreated 
         ? "User and website created successfully. They can now log in using OTP."
         : "User created successfully. They can now log in using OTP.";
@@ -164,7 +164,7 @@ export default function AdminClientUsers() {
       return res.json();
     },
     onSuccess: (data: BulkUploadResult) => {
-      queryClient.invalidateQueries({ queryKey: ["/api/admin/client-users"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/client-users"], exact: false });
       setUploadResults(data);
       setSelectedFile(null);
       
@@ -188,7 +188,7 @@ export default function AdminClientUsers() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/admin/client-users"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/client-users"], exact: false });
       toast({
         title: "Status Updated",
         description: "User status has been updated successfully.",
@@ -209,7 +209,7 @@ export default function AdminClientUsers() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/admin/client-users"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/client-users"], exact: false });
       toast({
         title: "Billing Status Updated",
         description: "User has been notified via email about their account status.",
@@ -229,9 +229,10 @@ export default function AdminClientUsers() {
       // Toggle direction if same column
       setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
     } else {
-      // Set new column with default desc direction
+      // Set new column - use ascending for name/email, descending for dates/status
       setSortBy(column);
-      setSortDir('desc');
+      const nameColumns = ['firstName', 'lastName', 'email', 'templateName'];
+      setSortDir(nameColumns.includes(column) ? 'asc' : 'desc');
     }
   };
 

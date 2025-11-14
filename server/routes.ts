@@ -723,7 +723,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
               }
             ];
             
-            await domainService.setDNSRecords(domain, dnsRecords);
+            await domainService.setDnsRecords(domain, dnsRecords);
             console.log(`✓ DNS configured automatically for ${domain}`);
             
             // Mark domain as verified and auto-configured
@@ -1019,7 +1019,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       ];
       
-      await domainService.setDNSRecords(domain, dnsRecords);
+      await domainService.setDnsRecords(domain, dnsRecords);
       console.log(`✓ DNS records configured`);
 
       // Step 3: Mark domain as verified and auto-configured

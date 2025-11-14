@@ -2094,6 +2094,106 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Super Admin: Migrate existing domains from Cloudflare to Railway direct DNS
+  app.post("/api/admin/migrate-domains-from-cloudflare", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      const deploymentDomain = req.body.deploymentDomain || 'chad-lp4a-v2-production.up.railway.app';
+      
+      // Get all pages with domains
+      const allUsers = await storage.getAllUsers();
+      const results = {
+        total: 0,
+        successful: 0,
+        failed: 0,
+        skipped: 0,
+        details: [] as Array<{ domain: string; status: string; error?: string; message?: string }>,
+      };
+
+      for (const user of allUsers) {
+        const pages = await storage.getUserPages(user.id);
+        
+        for (const page of pages) {
+          if (!page.domain) continue;
+          
+          const domain = page.domain;
+          results.total++;
+          
+          try {
+            console.log(`🔄 Migrating ${domain} from Cloudflare to Railway...`);
+            
+            // Step 1: Clear Cloudflare metadata
+            await storage.updatePage(page.id, { 
+              cloudflareZoneId: null,
+              cloudflareNameservers: null,
+              domainStatus: 'migrating'
+            } as any);
+            
+            // Step 2: Register with Railway (both root and www)
+            if (railwayService.isConfigured()) {
+              try {
+                await railwayService.addCustomDomain(domain);
+                await railwayService.addCustomDomain(`www.${domain}`);
+                console.log(`  ✓ Registered with Railway`);
+              } catch (error: any) {
+                if (!error.message.includes('already exists')) {
+                  throw error;
+                }
+                console.log(`  ℹ Already registered with Railway`);
+              }
+            }
+            
+            // Step 3: Set DNS records via Namecheap to point to Railway
+            const dnsRecords = [
+              { name: '@', type: 'A', address: '75.2.60.5', ttl: 300 },
+              { name: '@', type: 'A', address: '99.83.190.102', ttl: 300 },
+              { name: 'www', type: 'CNAME', address: deploymentDomain, ttl: 300 }
+            ];
+            
+            await domainService.setDnsRecords(domain, dnsRecords);
+            console.log(`  ✓ DNS records updated to point to Railway`);
+            
+            // Step 4: Update page status
+            await storage.updatePage(page.id, { 
+              domainStatus: 'propagating'
+            } as any);
+            
+            results.successful++;
+            results.details.push({ 
+              domain, 
+              status: 'success',
+              message: 'Migrated to Railway DNS. SSL will be generated within 5-10 minutes after DNS propagates.'
+            });
+            
+            console.log(`  ✅ Migration complete for ${domain}`);
+            
+          } catch (error: any) {
+            console.error(`  ❌ Migration failed for ${domain}:`, error.message);
+            results.failed++;
+            results.details.push({ domain, status: 'failed', error: error.message });
+          }
+        }
+      }
+
+      res.json({
+        ...results,
+        instructions: [
+          'Domains have been migrated from Cloudflare to Railway direct DNS',
+          'Railway will automatically generate SSL certificates within 5-10 minutes',
+          'DNS propagation may take up to 24 hours',
+          'Check Railway dashboard to verify SSL certificate status'
+        ]
+      });
+    } catch (error: any) {
+      console.error('Error migrating domains:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   // Super Admin: Bulk upload users from Excel file
   app.post("/api/admin/bulk-upload-users", upload.single('file'), async (req, res) => {
     if (!req.isAuthenticated()) return res.sendStatus(401);

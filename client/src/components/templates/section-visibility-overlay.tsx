@@ -33,7 +33,7 @@ export default function SectionVisibilityOverlay({
     }
     
     const detectedSections: SectionPosition[] = [];
-    const validSectionIds = ['hero', 'about', 'services', 'solutions', 'training', 'support', 'opportunity', 'benefits', 'success', 'life-insurance', 'health-insurance', 'annuities', 'family-protection', 'retirement-planning', 'quotes', 'contact', 'career-support'];
+    const validSectionIds = ['hero', 'stats', 'cta', 'apply-form', 'about', 'services', 'solutions', 'training', 'support', 'opportunity', 'benefits', 'success', 'life-insurance', 'health-insurance', 'annuities', 'family-protection', 'retirement-planning', 'quotes', 'contact', 'career-support'];
 
     sectionElements?.forEach((el) => {
       const element = el as HTMLElement;
@@ -52,41 +52,29 @@ export default function SectionVisibilityOverlay({
     setSections(detectedSections);
   }, [rootRef]);
 
-  // Throttled scroll handler
-  const handleScroll = useCallback(() => {
-    if (throttleTimeoutRef.current) return;
-    
-    throttleTimeoutRef.current = setTimeout(() => {
-      detectSections();
-      throttleTimeoutRef.current = undefined;
-    }, 100);
-  }, [detectSections]);
-
   useEffect(() => {
     if (!rootRef.current) return;
 
     detectSections();
 
-    const observer = new ResizeObserver(() => {
-      detectSections();
-    });
+    const handleResize = () => {
+      if (throttleTimeoutRef.current) {
+        clearTimeout(throttleTimeoutRef.current);
+      }
+      throttleTimeoutRef.current = setTimeout(() => {
+        detectSections();
+      }, 500);
+    };
 
-    if (rootRef.current) {
-      observer.observe(rootRef.current);
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', detectSections);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', detectSections);
+      window.removeEventListener('resize', handleResize);
       if (throttleTimeoutRef.current) {
         clearTimeout(throttleTimeoutRef.current);
       }
     };
-  }, [rootRef, hiddenSections, detectSections, handleScroll]);
+  }, [rootRef, hiddenSections, detectSections]);
 
   return (
     <div className="pointer-events-none absolute inset-0 z-[60]">

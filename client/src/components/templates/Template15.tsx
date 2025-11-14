@@ -107,7 +107,8 @@ export default function Template15({ className = "", content, flexibleContent, h
       </header>
 
       {/* Hero Section */}
-      <section className="relative text-white py-32 overflow-hidden">
+      {(!isSectionHidden('hero') || editMode) && (
+      <section data-section-id="hero" className="relative text-white py-32 overflow-hidden" style={isSectionHidden('hero') && editMode ? { opacity: 0.5 } : {}}>
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           {/* Base gradient background */}
@@ -163,9 +164,11 @@ export default function Template15({ className = "", content, flexibleContent, h
           </div>
         </div>
       </section>
+      )}
 
       {/* Stats Section */}
-      <section className="py-16 bg-red-50">
+      {(!isSectionHidden('stats') || editMode) && (
+      <section data-section-id="stats" className="py-16 bg-red-50" style={isSectionHidden('stats') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
@@ -203,10 +206,11 @@ export default function Template15({ className = "", content, flexibleContent, h
           </div>
         </div>
       </section>
+      )}
 
       {/* Opportunity Section */}
       {(!isSectionHidden('opportunity') || editMode) && (
-      <section id="opportunity" className="py-20" style={isSectionHidden('opportunity') && editMode ? { opacity: 0.5 } : {}}>
+      <section data-section-id="opportunity" id="opportunity" className="py-20" style={isSectionHidden('opportunity') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">The Opportunity of a Lifetime</h2>
@@ -252,7 +256,7 @@ export default function Template15({ className = "", content, flexibleContent, h
 
       {/* Benefits Section */}
       {(!isSectionHidden('benefits') || editMode) && (
-      <section id="benefits" className="py-20 bg-gray-50" style={isSectionHidden('benefits') && editMode ? { opacity: 0.5 } : {}}>
+      <section data-section-id="benefits" id="benefits" className="py-20 bg-gray-50" style={isSectionHidden('benefits') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -322,7 +326,7 @@ export default function Template15({ className = "", content, flexibleContent, h
 
       {/* Training Section */}
       {(!isSectionHidden('training') || editMode) && (
-      <section id="training" className="py-20" style={isSectionHidden('training') && editMode ? { opacity: 0.5 } : {}}>
+      <section data-section-id="training" id="training" className="py-20" style={isSectionHidden('training') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">World-Class Training Program</h2>
@@ -370,7 +374,7 @@ export default function Template15({ className = "", content, flexibleContent, h
 
       {/* Success Stories */}
       {(!isSectionHidden('success') || editMode) && (
-      <section id="success" className="py-20 bg-red-50" style={isSectionHidden('success') && editMode ? { opacity: 0.5 } : {}}>
+      <section data-section-id="success" id="success" className="py-20 bg-red-50" style={isSectionHidden('success') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Success Stories</h2>
@@ -431,7 +435,7 @@ export default function Template15({ className = "", content, flexibleContent, h
       )}
 
       {/* CTA Section */}
-      <section className="py-20 bg-red-600 text-white">
+      <section data-section-id="cta" className="py-20 bg-red-600 text-white" style={isSectionHidden('cta') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Life?</h2>
           <p className="text-xl text-red-100 mb-8 leading-relaxed">
@@ -445,9 +449,11 @@ export default function Template15({ className = "", content, flexibleContent, h
           </button>
         </div>
       </section>
+      )}
 
       {/* Application Form Section */}
-      <section id="apply-form" className="py-20 bg-gray-50">
+      {(!isSectionHidden('apply-form') || editMode) && (
+      <section data-section-id="apply-form" id="apply-form" className="py-20 bg-gray-50" style={isSectionHidden('apply-form') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left side - Info */}
           <div>
@@ -576,6 +582,7 @@ export default function Template15({ className = "", content, flexibleContent, h
           </div>
         </div>
       </section>
+      )}
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">

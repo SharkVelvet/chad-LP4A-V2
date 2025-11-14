@@ -923,89 +923,127 @@ export default function WebsiteEditor() {
                   <DnsManager domain={page.domain} />
                 )}
                 
-                {/* Manual Domain DNS Instructions - Show when domain is connected but NOT purchased */}
+                {/* Domain Configuration - Show when domain is connected but NOT purchased via Cloudflare */}
                 {page?.domain && !page?.cloudflareZoneId && (
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <h4 className="text-lg font-semibold mb-4">🌐 Your Custom Domain: {page.domain}</h4>
-                    <p className="text-sm text-gray-600 mb-4">
-                      Your domain has been connected to this page. Configure DNS at your domain registrar to make it live.
-                    </p>
-
-                    {/* Auto-Configure DNS Button */}
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
-                      <h5 className="font-semibold text-green-900 mb-2">✨ Automatic DNS Configuration</h5>
-                      <p className="text-sm text-green-700 mb-3">
-                        If you purchased this domain through our platform, click below to automatically configure all DNS settings and connect to Railway.
-                      </p>
-                      <Button
-                        onClick={() => {
-                          autoConfigureDomainMutation.mutate();
-                        }}
-                        disabled={autoConfigureDomainMutation.isPending}
-                        className="bg-green-600 hover:bg-green-700"
-                        data-testid="button-auto-configure-dns"
-                      >
-                        {autoConfigureDomainMutation.isPending ? (
-                          <>
-                            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                            Configuring DNS...
-                          </>
-                        ) : (
-                          <>
-                            <Globe className="h-4 w-4 mr-2" />
-                            Auto-Configure DNS & Connect
-                          </>
-                        )}
-                      </Button>
-                    </div>
                     
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                      <h5 className="font-semibold text-blue-900 mb-3">📋 DNS Setup Instructions</h5>
-                      <p className="text-sm text-blue-800 mb-3">
-                        Add these DNS records at your domain registrar (GoDaddy, Namecheap, etc.):
-                      </p>
-                      
-                      {/* WWW subdomain CNAME */}
-                      <div className="bg-white border border-blue-200 rounded p-3 mb-2">
-                        <p className="text-xs font-semibold text-gray-700 mb-2">For www.{page.domain}:</p>
-                        <div className="grid grid-cols-2 gap-2 text-sm">
-                          <div className="font-semibold text-gray-700">Record Type:</div>
-                          <div className="font-mono text-gray-900">CNAME</div>
-                          
-                          <div className="font-semibold text-gray-700">Name/Host:</div>
-                          <div className="font-mono text-gray-900">www</div>
-                          
-                          <div className="font-semibold text-gray-700">Points to:</div>
-                          <div className="font-mono text-gray-900">chad-lp4a-v2-production.up.railway.app</div>
+                    {/* Success Message - Show for auto-configured domains */}
+                    {page?.domainStatus === 'auto_configured' ? (
+                      <div className="bg-green-50 border border-green-200 rounded-lg p-6" data-testid="alert-domain-auto-configured">
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0">
+                            <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
+                              <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <h5 className="text-lg font-semibold text-green-900 mb-2">
+                              ✨ Your Domain is Being Set Up Automatically!
+                            </h5>
+                            <p className="text-sm text-green-800 mb-3">
+                              Great news! Your domain <strong>{page.domain}</strong> has been automatically configured and connected to your website. DNS changes are now propagating across the internet.
+                            </p>
+                            <div className="bg-white border border-green-200 rounded-lg p-4 mb-3">
+                              <h6 className="font-semibold text-green-900 mb-2">⏱️ When will my site be live?</h6>
+                              <ul className="text-sm text-green-700 space-y-1">
+                                <li>• <strong>Usually:</strong> 15-30 minutes</li>
+                                <li>• <strong>Sometimes:</strong> Up to 2 hours</li>
+                                <li>• <strong>Rarely:</strong> Up to 48 hours for full global propagation</li>
+                              </ul>
+                            </div>
+                            <p className="text-xs text-green-600">
+                              💡 No action needed from you - everything has been configured automatically! Your site will be live at {page.domain} once DNS propagation completes.
+                            </p>
+                          </div>
                         </div>
                       </div>
-                      
-                      {/* Root domain instructions */}
-                      <div className="bg-white border border-blue-200 rounded p-3 mb-3">
-                        <p className="text-xs font-semibold text-gray-700 mb-2">For {page.domain} (root/apex domain):</p>
-                        <p className="text-xs text-gray-600 mb-2">
-                          Most registrars require an A record or ALIAS record for the root domain. Choose one option:
+                    ) : (
+                      <>
+                        <p className="text-sm text-gray-600 mb-4">
+                          Your domain has been connected to this page. Configure DNS at your domain registrar to make it live.
                         </p>
-                        <div className="space-y-2">
-                          <div className="pl-3">
-                            <p className="text-xs font-semibold text-gray-700">Option 1 (Recommended): URL Redirect</p>
-                            <p className="text-xs text-gray-600">Set up a redirect from {page.domain} → www.{page.domain} in your registrar's settings</p>
-                          </div>
-                          <div className="pl-3">
-                            <p className="text-xs font-semibold text-gray-700">Option 2: ALIAS/ANAME Record</p>
-                            <p className="text-xs text-gray-600">If your registrar supports ALIAS or ANAME records, point @ to chad-lp4a-v2-production.up.railway.app</p>
-                          </div>
+
+                        {/* Auto-Configure DNS Button - For legacy/manual domains */}
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                          <h5 className="font-semibold text-green-900 mb-2">✨ Automatic DNS Configuration</h5>
+                          <p className="text-sm text-green-700 mb-3">
+                            If you purchased this domain through our platform, click below to automatically configure all DNS settings and connect to Railway.
+                          </p>
+                          <Button
+                            onClick={() => {
+                              autoConfigureDomainMutation.mutate();
+                            }}
+                            disabled={autoConfigureDomainMutation.isPending}
+                            className="bg-green-600 hover:bg-green-700"
+                            data-testid="button-auto-configure-dns"
+                          >
+                            {autoConfigureDomainMutation.isPending ? (
+                              <>
+                                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                Configuring DNS...
+                              </>
+                            ) : (
+                              <>
+                                <Globe className="h-4 w-4 mr-2" />
+                                Auto-Configure DNS & Connect
+                              </>
+                            )}
+                          </Button>
                         </div>
-                      </div>
-                      
-                      <ul className="text-xs text-blue-700 space-y-1">
-                        <li>• Log in to your domain registrar (GoDaddy, Namecheap, etc.)</li>
-                        <li>• Go to DNS Management or DNS Settings</li>
-                        <li>• Remove any existing A or AAAA records for @ and www to avoid conflicts</li>
-                        <li>• Add the DNS records as shown above</li>
-                        <li>• DNS changes typically take 5-30 minutes, but can take up to 24 hours</li>
-                      </ul>
-                    </div>
+                        
+                        {/* Manual DNS Instructions */}
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                          <h5 className="font-semibold text-blue-900 mb-3">📋 DNS Setup Instructions</h5>
+                          <p className="text-sm text-blue-800 mb-3">
+                            Add these DNS records at your domain registrar (GoDaddy, Namecheap, etc.):
+                          </p>
+                          
+                          {/* WWW subdomain CNAME */}
+                          <div className="bg-white border border-blue-200 rounded p-3 mb-2">
+                            <p className="text-xs font-semibold text-gray-700 mb-2">For www.{page.domain}:</p>
+                            <div className="grid grid-cols-2 gap-2 text-sm">
+                              <div className="font-semibold text-gray-700">Record Type:</div>
+                              <div className="font-mono text-gray-900">CNAME</div>
+                              
+                              <div className="font-semibold text-gray-700">Name/Host:</div>
+                              <div className="font-mono text-gray-900">www</div>
+                              
+                              <div className="font-semibold text-gray-700">Points to:</div>
+                              <div className="font-mono text-gray-900">chad-lp4a-v2-production.up.railway.app</div>
+                            </div>
+                          </div>
+                          
+                          {/* Root domain instructions */}
+                          <div className="bg-white border border-blue-200 rounded p-3 mb-3">
+                            <p className="text-xs font-semibold text-gray-700 mb-2">For {page.domain} (root/apex domain):</p>
+                            <p className="text-xs text-gray-600 mb-2">
+                              Most registrars require an A record or ALIAS record for the root domain. Choose one option:
+                            </p>
+                            <div className="space-y-2">
+                              <div className="pl-3">
+                                <p className="text-xs font-semibold text-gray-700">Option 1 (Recommended): URL Redirect</p>
+                                <p className="text-xs text-gray-600">Set up a redirect from {page.domain} → www.{page.domain} in your registrar's settings</p>
+                              </div>
+                              <div className="pl-3">
+                                <p className="text-xs font-semibold text-gray-700">Option 2: ALIAS/ANAME Record</p>
+                                <p className="text-xs text-gray-600">If your registrar supports ALIAS or ANAME records, point @ to chad-lp4a-v2-production.up.railway.app</p>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <ul className="text-xs text-blue-700 space-y-1">
+                            <li>• Log in to your domain registrar (GoDaddy, Namecheap, etc.)</li>
+                            <li>• Go to DNS Management or DNS Settings</li>
+                            <li>• Remove any existing A or AAAA records for @ and www to avoid conflicts</li>
+                            <li>• Add the DNS records as shown above</li>
+                            <li>• DNS changes typically take 5-30 minutes, but can take up to 24 hours</li>
+                          </ul>
+                        </div>
+                      </>
+                    )}
                   </div>
                 )}
               </div>

@@ -726,8 +726,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
             await domainService.setDNSRecords(domain, dnsRecords);
             console.log(`✓ DNS configured automatically for ${domain}`);
             
-            // Mark domain as verified since we auto-configured it
-            await storage.updatePage(parseInt(pageId), { domain, domainVerified: true } as any);
+            // Mark domain as verified and auto-configured
+            await storage.updatePage(parseInt(pageId), { 
+              domain, 
+              domainVerified: true,
+              domainStatus: 'auto_configured'
+            } as any);
           } catch (error: any) {
             console.error(`⚠️  Railway/DNS setup failed: ${error.message}`);
             // Still update with domain even if auto-config failed
@@ -997,9 +1001,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       await domainService.setDNSRecords(domain, dnsRecords);
       console.log(`✓ DNS records configured`);
 
-      // Step 3: Mark domain as verified
-      await storage.updatePage(page.id, { domainVerified: true } as any);
-      console.log(`✓ Domain marked as verified`);
+      // Step 3: Mark domain as verified and auto-configured
+      await storage.updatePage(page.id, { 
+        domainVerified: true,
+        domainStatus: 'auto_configured'
+      } as any);
+      console.log(`✓ Domain marked as verified and auto-configured`);
 
       res.json({ 
         success: true, 

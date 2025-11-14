@@ -305,7 +305,8 @@ export default function Template14({ className = "", content, flexibleContent, h
       </section>
 
       {/* About Section - Why Top Agents Choose Delta Life */}
-      <section id="about" className="py-16 bg-white">
+      {(!isSectionHidden('about') || editMode) && (
+      <section id="about" data-section-id="about" className="py-16 bg-white" style={isSectionHidden('about') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main heading and description */}
           <div className="text-center mb-16">
@@ -316,7 +317,8 @@ export default function Template14({ className = "", content, flexibleContent, h
           </div>
 
           {/* Training Programs Section */}
-          <div id="training" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          {(!isSectionHidden('training') || editMode) && (
+          <div id="training" data-section-id="training" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16" style={isSectionHidden('training') && editMode ? { opacity: 0.5 } : {}}>
             {/* Left side - Image */}
             <div>
               <img 
@@ -357,9 +359,11 @@ export default function Template14({ className = "", content, flexibleContent, h
               </div>
             </div>
           </div>
+          )}
 
           {/* Advanced Resources Section */}
-          <div id="solutions" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {(!isSectionHidden('solutions') || editMode) && (
+          <div id="solutions" data-section-id="solutions" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" style={isSectionHidden('solutions') && editMode ? { opacity: 0.5 } : {}}>
             {/* Left side - Resources */}
             <div>
               <h3 className="text-3xl font-bold text-red-600 mb-6">Build Wealth While You Sleep</h3>
@@ -400,11 +404,14 @@ export default function Template14({ className = "", content, flexibleContent, h
               />
             </div>
           </div>
+          )}
         </div>
       </section>
+      )}
 
       {/* Career Support Section */}
-      <section id="solutions" className="py-16 bg-white">
+      {(!isSectionHidden('career-support') || editMode) && (
+      <section id="career-support" data-section-id="career-support" className="py-16 bg-white" style={isSectionHidden('career-support') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Image */}
@@ -459,9 +466,11 @@ export default function Template14({ className = "", content, flexibleContent, h
           </div>
         </div>
       </section>
+      )}
 
       {/* How It Works Section - Matching mockup with red background */}
-      <section id="support" className="py-16 bg-red-600 text-white">
+      {(!isSectionHidden('support') || editMode) && (
+      <section id="support" data-section-id="support" className="py-16 bg-red-600 text-white" style={isSectionHidden('support') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* How it works label */}
           <div className="mb-8">
@@ -551,6 +560,7 @@ export default function Template14({ className = "", content, flexibleContent, h
           </div>
         </div>
       </section>
+      )}
 
       {/* 3 Steps to Maximize Section - Matching Template 13 */}
       <section className="py-16 bg-white">

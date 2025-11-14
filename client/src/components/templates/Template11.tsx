@@ -86,7 +86,8 @@ export default function Template11({ className = "", content, flexibleContent = 
         </div>
 
         {/* Meet Your Agent Section */}
-        <div id="about" className="py-20 bg-gray-50">
+        {(!isSectionHidden('about') || editMode) && (
+        <div id="about" data-section-id="about" className="py-20 bg-gray-50" style={isSectionHidden('about') && editMode ? { opacity: 0.5 } : {}}>
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
@@ -137,6 +138,7 @@ export default function Template11({ className = "", content, flexibleContent = 
             </div>
           </div>
         </div>
+        )}
 
         {/* Our Approach Section */}
         <div className="py-20 bg-white">
@@ -157,7 +159,8 @@ export default function Template11({ className = "", content, flexibleContent = 
 
 
         {/* Life Insurance Section */}
-        <div id="life-insurance" className="py-20 bg-white">
+        {(!isSectionHidden('life-insurance') || editMode) && (
+        <div id="life-insurance" data-section-id="life-insurance" className="py-20 bg-white" style={isSectionHidden('life-insurance') && editMode ? { opacity: 0.5 } : {}}>
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
@@ -197,9 +200,11 @@ export default function Template11({ className = "", content, flexibleContent = 
             </div>
           </div>
         </div>
+        )}
 
         {/* Health Insurance Section */}
-        <div id="health-insurance" className="py-20 bg-gray-50">
+        {(!isSectionHidden('health-insurance') || editMode) && (
+        <div id="health-insurance" data-section-id="health-insurance" className="py-20 bg-gray-50" style={isSectionHidden('health-insurance') && editMode ? { opacity: 0.5 } : {}}>
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
@@ -239,9 +244,11 @@ export default function Template11({ className = "", content, flexibleContent = 
             </div>
           </div>
         </div>
+        )}
 
         {/* Annuities Section */}
-        <div id="annuities" className="py-20 bg-white">
+        {(!isSectionHidden('annuities') || editMode) && (
+        <div id="annuities" data-section-id="annuities" className="py-20 bg-white" style={isSectionHidden('annuities') && editMode ? { opacity: 0.5 } : {}}>
           <div className="max-w-6xl mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
@@ -282,6 +289,7 @@ export default function Template11({ className = "", content, flexibleContent = 
             </div>
           </div>
         </div>
+        )}
 
         {/* Insurance Services Section */}
         <div className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">

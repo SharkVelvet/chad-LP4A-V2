@@ -970,12 +970,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       console.log(`🚀 Auto-configuring DNS for ${domain}...`);
 
-      // Step 1: Register with Railway
+      // Step 1: Register with Railway (skip if already registered)
       if (railwayService.isConfigured()) {
         const wwwDomain = `www.${domain}`;
         console.log(`🚂 Registering with Railway: ${domain} and ${wwwDomain}`);
-        await railwayService.addCustomDomain(domain);
-        await railwayService.addCustomDomain(wwwDomain);
+        
+        try {
+          await railwayService.addCustomDomain(domain);
+          console.log(`✓ ${domain} registered with Railway`);
+        } catch (error: any) {
+          if (error.message?.includes('not available') || error.message?.includes('already exists')) {
+            console.log(`ℹ️  ${domain} already registered with Railway, skipping...`);
+          } else {
+            throw error;
+          }
+        }
+        
+        try {
+          await railwayService.addCustomDomain(wwwDomain);
+          console.log(`✓ ${wwwDomain} registered with Railway`);
+        } catch (error: any) {
+          if (error.message?.includes('not available') || error.message?.includes('already exists')) {
+            console.log(`ℹ️  ${wwwDomain} already registered with Railway, skipping...`);
+          } else {
+            throw error;
+          }
+        }
+        
         console.log(`✓ Railway registration complete`);
       }
 

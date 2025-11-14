@@ -34,6 +34,9 @@ export default function EditModeOverlay({ rootRef }: EditModeOverlayProps) {
       if (element.getAttribute('data-visibility-control') === 'true' || 
           element.closest('[data-visibility-control="true"]')) return;
       
+      // Skip anything inside a button that's inside a visibility control strip
+      if (element.closest('button')?.closest('[data-visibility-control="true"]')) return;
+      
       // Skip elements inside background containers (unless they have explicit content-id)
       const parentBackground = element.parentElement?.closest('[data-content-type="background"]');
       const hasExplicitId = element.getAttribute('data-content-id');
@@ -51,9 +54,15 @@ export default function EditModeOverlay({ rootRef }: EditModeOverlayProps) {
     });
 
     const handleClick = (e: Event) => {
+      const target = e.currentTarget as HTMLElement;
+      
+      // Don't handle clicks from visibility control elements
+      if (target.closest('[data-visibility-control="true"]')) {
+        return;
+      }
+      
       e.preventDefault();
       e.stopPropagation();
-      const target = e.currentTarget as HTMLElement;
       
       let contentId = target.getAttribute('data-content-id');
       if (!contentId) {

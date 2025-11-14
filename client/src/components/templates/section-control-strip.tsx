@@ -16,8 +16,9 @@ export default function SectionControlStrip({
 }: SectionControlStripProps) {
   return (
     <div 
-      className="bg-gray-200 border-b border-gray-300 py-3 px-6 flex items-center justify-between"
+      className="bg-gray-200 border-b border-gray-300 py-3 px-6 flex items-center justify-between relative z-[9999]"
       data-visibility-control="true"
+      style={{ pointerEvents: 'auto' }}
     >
       <div className="flex items-center gap-3">
         <span className="text-sm font-medium text-gray-700">

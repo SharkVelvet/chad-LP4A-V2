@@ -15,7 +15,10 @@ export default function SectionControlStrip({
   onToggle 
 }: SectionControlStripProps) {
   return (
-    <div className="bg-gray-200 border-b border-gray-300 py-3 px-6 flex items-center justify-between">
+    <div 
+      className="bg-gray-200 border-b border-gray-300 py-3 px-6 flex items-center justify-between"
+      data-visibility-control="true"
+    >
       <div className="flex items-center gap-3">
         <span className="text-sm font-medium text-gray-700">
           {sectionLabel}
@@ -27,9 +30,14 @@ export default function SectionControlStrip({
       <Button
         size="sm"
         variant={isHidden ? "default" : "outline"}
-        onClick={() => onToggle(sectionId)}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onToggle(sectionId);
+        }}
         className="gap-2"
         data-testid={`button-toggle-${sectionId}`}
+        data-visibility-control="true"
       >
         {isHidden ? (
           <>

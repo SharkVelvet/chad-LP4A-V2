@@ -34,7 +34,6 @@ export default function SectionControlStrip({
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          e.stopImmediatePropagation(); // Prevent ALL other listeners on this element from firing
           onToggle(sectionId);
         }}
         className="gap-2 [&_*]:pointer-events-none"

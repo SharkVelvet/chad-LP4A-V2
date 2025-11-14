@@ -1,4 +1,4 @@
-import { CheckCircle, Target, Users, DollarSign, TrendingUp, Award, Shield, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X, Star, ArrowRight, Clock, Zap } from "lucide-react";
+import { CheckCircle, Target, Users, DollarSign, TrendingUp, Award, Shield, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X, Star, ArrowRight, Clock, Zap, Eye, EyeOff } from "lucide-react";
 import { useState, useRef } from "react";
 import EditModeOverlay from "./edit-mode-overlay";
 
@@ -14,9 +14,10 @@ interface Template15Props {
   flexibleContent?: Record<string, string>;
   hiddenSections?: string[];
   editMode?: boolean;
+  onToggleSectionVisibility?: (sectionId: string) => void;
 }
 
-export default function Template15({ className = "", content, flexibleContent, hiddenSections = [], editMode }: Template15Props) {
+export default function Template15({ className = "", content, flexibleContent, hiddenSections = [], editMode, onToggleSectionVisibility }: Template15Props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -25,6 +26,36 @@ export default function Template15({ className = "", content, flexibleContent, h
   };
 
   const isSectionHidden = (sectionId: string) => hiddenSections.includes(sectionId);
+
+  const SectionVisibilityButton = ({ sectionId, sectionName }: { sectionId: string; sectionName: string }) => {
+    if (!editMode || !onToggleSectionVisibility) return null;
+    
+    const isHidden = isSectionHidden(sectionId);
+    
+    return (
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onToggleSectionVisibility(sectionId);
+        }}
+        className="absolute top-4 right-4 z-10 flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-300 rounded-lg shadow-lg hover:bg-gray-50 transition-colors"
+        title={isHidden ? `Show ${sectionName}` : `Hide ${sectionName}`}
+        data-testid={`toggle-section-${sectionId}`}
+      >
+        {isHidden ? (
+          <>
+            <EyeOff className="w-4 h-4 text-gray-600" />
+            <span className="text-sm font-medium text-gray-700">Hidden</span>
+          </>
+        ) : (
+          <>
+            <Eye className="w-4 h-4 text-green-600" />
+            <span className="text-sm font-medium text-gray-700">Visible</span>
+          </>
+        )}
+      </button>
+    );
+  };
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
@@ -207,7 +238,8 @@ export default function Template15({ className = "", content, flexibleContent, h
 
       {/* Opportunity Section */}
       {(!isSectionHidden('opportunity') || editMode) && (
-      <section id="opportunity" className="py-20" style={isSectionHidden('opportunity') && editMode ? { opacity: 0.5, position: 'relative' } : {}}>
+      <section id="opportunity" className="py-20 relative" style={isSectionHidden('opportunity') && editMode ? { opacity: 0.5 } : {}}>
+        <SectionVisibilityButton sectionId="opportunity" sectionName="Opportunity" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">The Opportunity of a Lifetime</h2>
@@ -253,7 +285,8 @@ export default function Template15({ className = "", content, flexibleContent, h
 
       {/* Benefits Section */}
       {(!isSectionHidden('benefits') || editMode) && (
-      <section id="benefits" className="py-20 bg-gray-50" style={isSectionHidden('benefits') && editMode ? { opacity: 0.5, position: 'relative' } : {}}>
+      <section id="benefits" className="py-20 bg-gray-50 relative" style={isSectionHidden('benefits') && editMode ? { opacity: 0.5 } : {}}>
+        <SectionVisibilityButton sectionId="benefits" sectionName="Benefits" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -323,7 +356,8 @@ export default function Template15({ className = "", content, flexibleContent, h
 
       {/* Training Section */}
       {(!isSectionHidden('training') || editMode) && (
-      <section id="training" className="py-20" style={isSectionHidden('training') && editMode ? { opacity: 0.5, position: 'relative' } : {}}>
+      <section id="training" className="py-20 relative" style={isSectionHidden('training') && editMode ? { opacity: 0.5 } : {}}>
+        <SectionVisibilityButton sectionId="training" sectionName="Training" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">World-Class Training Program</h2>
@@ -371,7 +405,8 @@ export default function Template15({ className = "", content, flexibleContent, h
 
       {/* Success Stories */}
       {(!isSectionHidden('success') || editMode) && (
-      <section id="success" className="py-20 bg-red-50" style={isSectionHidden('success') && editMode ? { opacity: 0.5, position: 'relative' } : {}}>
+      <section id="success" className="py-20 bg-red-50 relative" style={isSectionHidden('success') && editMode ? { opacity: 0.5 } : {}}>
+        <SectionVisibilityButton sectionId="success" sectionName="Success Stories" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Success Stories</h2>

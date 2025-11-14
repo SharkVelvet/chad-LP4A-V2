@@ -150,6 +150,17 @@ export default function TemplatePreviewPage() {
     return () => window.removeEventListener('message', handleMessage);
   }, [pageId]);
 
+  // Toggle section visibility handler
+  const handleToggleSectionVisibility = (sectionId: string) => {
+    // Send message to parent window if in iframe
+    if (isInIframe && window.parent) {
+      window.parent.postMessage({
+        type: 'toggleSectionVisibility',
+        sectionId
+      }, window.location.origin);
+    }
+  };
+
   // Auto-generate IDs and apply saved content
   useEffect(() => {
     // First, auto-generate IDs for ALL elements with text content
@@ -700,7 +711,8 @@ export default function TemplatePreviewPage() {
                 content={contentData} 
                 flexibleContent={flexibleContent} 
                 hiddenSections={hiddenSections}
-                editMode={editMode} 
+                editMode={editMode}
+                onToggleSectionVisibility={handleToggleSectionVisibility}
               />
             );
           }

@@ -138,6 +138,30 @@ export default function WebsiteEditor() {
     }
   }, [page]);
 
+  // Listen for section visibility toggles from iframe
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      // Validate origin for security
+      if (event.origin !== window.location.origin) return;
+      
+      if (event.data.type === 'toggleSectionVisibility' && typeof event.data.sectionId === 'string') {
+        const sectionId = event.data.sectionId;
+        // Use functional state update to avoid stale closure
+        setHiddenSections(prev => {
+          const newHiddenSections = prev.includes(sectionId)
+            ? prev.filter(id => id !== sectionId)
+            : [...prev, sectionId];
+          // Save to backend
+          saveHiddenSectionsMutation.mutate(newHiddenSections);
+          return newHiddenSections;
+        });
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [saveHiddenSectionsMutation]);
+
   // Save flexible content mutation (for any content ID)
   const saveFlexibleContentMutation = useMutation({
     mutationFn: async ({ contentId, value }: { contentId: string; value: string }) => {
@@ -354,7 +378,6 @@ export default function WebsiteEditor() {
   const pageSubItems = [
     { id: "edit-content" as MenuSection, label: "Edit Content", icon: FileEdit },
     { id: "colors" as MenuSection, label: "Colors", icon: Palette },
-    { id: "sections" as MenuSection, label: "Show / Hide Sections", icon: Eye },
     { id: "forms" as MenuSection, label: "Add / Edit Forms", icon: FileText },
   ];
 
@@ -395,7 +418,7 @@ export default function WebsiteEditor() {
                     setActiveSection("page");
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    activeSection === "page" || activeSection === "edit-content" || activeSection === "colors" || activeSection === "sections" || activeSection === "forms"
+                    activeSection === "page" || activeSection === "edit-content" || activeSection === "colors" || activeSection === "forms"
                       ? "border-2 border-black text-black bg-white"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
@@ -588,58 +611,6 @@ export default function WebsiteEditor() {
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                   <p className="text-sm text-blue-800">
                     Color customization coming soon! You'll be able to customize your page's color scheme, including primary colors, accent colors, and text colors.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Sections panel */}
-          <div
-            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
-              activeSection === "sections" ? "translate-x-0" : "translate-x-full"
-            }`}
-          >
-            <div className="h-full overflow-y-auto p-8">
-              <div className="max-w-2xl space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">Show / Hide Sections</h3>
-                  <p className="text-sm text-gray-600 mb-6">Toggle visibility of sections on your page. Hidden sections won't appear to visitors.</p>
-                </div>
-                
-                <div className="bg-white border border-gray-200 rounded-lg divide-y">
-                  {["opportunity", "benefits", "training", "success"].map((sectionId) => {
-                    const isHidden = hiddenSections.includes(sectionId);
-                    return (
-                      <div key={sectionId} className="p-4 flex items-center justify-between hover:bg-gray-50">
-                        <div className="flex items-center gap-3">
-                          <Eye className={`h-5 w-5 ${isHidden ? 'text-gray-400' : 'text-green-600'}`} />
-                          <div>
-                            <h4 className="font-semibold text-gray-900 capitalize">{sectionId.replace('-', ' ')}</h4>
-                            <p className="text-sm text-gray-600">
-                              {isHidden ? 'Hidden from visitors' : 'Visible to visitors'}
-                            </p>
-                          </div>
-                        </div>
-                        <Switch
-                          checked={!isHidden}
-                          onCheckedChange={(checked) => {
-                            const newHiddenSections = checked
-                              ? hiddenSections.filter(id => id !== sectionId)
-                              : [...hiddenSections, sectionId];
-                            setHiddenSections(newHiddenSections);
-                            saveHiddenSectionsMutation.mutate(newHiddenSections);
-                          }}
-                          data-testid={`switch-section-${sectionId}`}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <p className="text-sm text-blue-800">
-                    💡 <strong>Tip:</strong> Hidden sections are still editable in Edit Content mode, so you can prepare content before showing it to visitors.
                   </p>
                 </div>
               </div>

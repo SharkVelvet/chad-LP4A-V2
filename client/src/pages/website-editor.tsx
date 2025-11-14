@@ -599,8 +599,8 @@ export default function WebsiteEditor() {
             ) : null}
             {template && (
               <iframe
-                key={`preview-${pageId}-${page.updatedAt}`}
-                src={`/template-preview?template=${template.slug}&pageId=${pageId}&hideNav=true&editMode=false&_t=${new Date(page.updatedAt).getTime()}`}
+                key={`preview-${pageId}`}
+                src={`/template-preview?template=${template.slug}&pageId=${pageId}&hideNav=true&editMode=false`}
                 className={`w-full h-full border-0 ${isIframeLoading ? 'invisible' : 'visible'}`}
                 title="Page Preview"
                 data-testid="iframe-page-preview"

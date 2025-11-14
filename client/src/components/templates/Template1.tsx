@@ -1,8 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star } from "lucide-react";
-import EditModeOverlay from "./edit-mode-overlay";
+import { useTemplateEditor } from "./use-template-editor";
 import { EditableImage, EditableBackground } from "./editable-media";
 import { FormEmbed } from "./form-embed";
+import SectionControlStrip from "./section-control-strip";
+import { getTemplateSections } from "./template-sections";
 import temp1Image from "@assets/temp1-pr.jpg";
 import temp2Image from "@assets/temp2-pr.jpg";
 import temp3Image from "@assets/temp3-pr.jpg";
@@ -24,14 +26,43 @@ interface Template1Props {
     formEmbedCode?: string | null;
   };
   flexibleContent?: Record<string, string>;
+  hiddenSections?: string[];
   editMode?: boolean;
 }
 
-export default function Template1({ className = "", content, flexibleContent = {}, editMode = false }: Template1Props) {
-  const rootRef = useRef<HTMLDivElement>(null);
+export default function Template1({ className = "", content, flexibleContent = {}, hiddenSections: initialHiddenSections, editMode = false }: Template1Props) {
+  const [hiddenSections, setHiddenSections] = useState<string[]>(initialHiddenSections || []);
+  const { rootRef, isSectionHidden, overlays } = useTemplateEditor({ editMode, hiddenSections });
+
+  // Listen for hidden sections updates from parent window
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return;
+      
+      if (event.data.type === 'updateHiddenSections' && Array.isArray(event.data.hiddenSections)) {
+        setHiddenSections(event.data.hiddenSections);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   const getValue = (key: string, defaultValue: string) => {
     return flexibleContent?.[key] || (content as any)?.[key] || defaultValue;
+  };
+
+  const handleToggleSection = (sectionId: string) => {
+    // Send message to parent window to toggle section visibility
+    window.parent.postMessage({ 
+      type: 'toggleSectionVisibility', 
+      sectionId 
+    }, window.location.origin);
+  };
+
+  const getSectionLabel = (sectionId: string) => {
+    const section = getTemplateSections('template-1').find(s => s.id === sectionId);
+    return section?.label || sectionId;
   };
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
@@ -44,7 +75,7 @@ export default function Template1({ className = "", content, flexibleContent = {
 
   return (
     <div ref={rootRef} className={`bg-white border rounded-lg overflow-hidden ${className}`} style={{ scrollBehavior: 'smooth' }}>
-      {editMode && <EditModeOverlay rootRef={rootRef} />}
+      {overlays}
       
       {/* Header */}
       <div className="bg-white border-b px-4 sm:px-6 py-4 flex items-center justify-between shadow-sm sticky top-0 z-50 backdrop-blur-sm">
@@ -78,13 +109,24 @@ export default function Template1({ className = "", content, flexibleContent = {
       </div>
 
       {/* Hero Section with Business Background */}
-      <EditableBackground
-        contentId="hero-background"
-        backgroundUrl={template1HeroImg}
-        gradient="linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7))"
-        className="relative min-h-[80vh] bg-cover bg-center bg-no-repeat flex items-center"
-        getValue={getValue}
-      >
+      {(!isSectionHidden('hero') || editMode) && (
+      <>
+        {editMode && (
+          <SectionControlStrip
+            sectionId="hero"
+            sectionLabel={getSectionLabel('hero')}
+            isHidden={isSectionHidden('hero')}
+            onToggle={handleToggleSection}
+          />
+        )}
+        <div data-section-id="hero" style={isSectionHidden('hero') && editMode ? { opacity: 0.5 } : {}}>
+          <EditableBackground
+            contentId="hero-background"
+            backgroundUrl={template1HeroImg}
+            gradient="linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7))"
+            className="relative min-h-[80vh] bg-cover bg-center bg-no-repeat flex items-center"
+            getValue={getValue}
+          >
         <div className="relative w-full py-12 sm:py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center w-full">
             <div className="text-white text-center lg:text-left">
@@ -122,9 +164,23 @@ export default function Template1({ className = "", content, flexibleContent = {
           </div>
         </div>
       </EditableBackground>
+        </div>
+      </>
+      )}
 
       {/* About Section */}
-      <div id="about" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
+      {(!isSectionHidden('about') || editMode) && (
+      <>
+        {editMode && (
+          <SectionControlStrip
+            sectionId="about"
+            sectionLabel={getSectionLabel('about')}
+            isHidden={isSectionHidden('about')}
+            onToggle={handleToggleSection}
+          />
+        )}
+        <div data-section-id="about" style={isSectionHidden('about') && editMode ? { opacity: 0.5 } : {}}>
+          <div id="about" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center" data-content-id="about-heading">
             {getValue('about-heading', `About ${content?.businessName || 'Jake Smith'}`)}
@@ -205,9 +261,23 @@ export default function Template1({ className = "", content, flexibleContent = {
           </div>
         </div>
       </div>
+        </div>
+      </>
+      )}
 
       {/* Financial Services & Products */}
-      <div id="services" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
+      {(!isSectionHidden('services') || editMode) && (
+      <>
+        {editMode && (
+          <SectionControlStrip
+            sectionId="services"
+            sectionLabel={getSectionLabel('services')}
+            isHidden={isSectionHidden('services')}
+            onToggle={handleToggleSection}
+          />
+        )}
+        <div data-section-id="services" style={isSectionHidden('services') && editMode ? { opacity: 0.5 } : {}}>
+          <div id="services" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold mb-4" data-content-id="services-heading">
@@ -419,9 +489,23 @@ export default function Template1({ className = "", content, flexibleContent = {
           </div>
         </div>
       </div>
+        </div>
+      </>
+      )}
 
       {/* Why We Serve Section */}
-      <div id="why-we-serve" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
+      {(!isSectionHidden('why-we-serve') || editMode) && (
+      <>
+        {editMode && (
+          <SectionControlStrip
+            sectionId="why-we-serve"
+            sectionLabel={getSectionLabel('why-we-serve')}
+            isHidden={isSectionHidden('why-we-serve')}
+            onToggle={handleToggleSection}
+          />
+        )}
+        <div data-section-id="why-we-serve" style={isSectionHidden('why-we-serve') && editMode ? { opacity: 0.5 } : {}}>
+          <div id="why-we-serve" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center" data-content-id="why-we-serve-heading">
             {getValue('why-we-serve-heading', 'Why We Serve')}
@@ -477,9 +561,23 @@ export default function Template1({ className = "", content, flexibleContent = {
           </div>
         </div>
       </div>
+        </div>
+      </>
+      )}
 
       {/* Client Testimonials */}
-      <div id="testimonials" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
+      {(!isSectionHidden('testimonials') || editMode) && (
+      <>
+        {editMode && (
+          <SectionControlStrip
+            sectionId="testimonials"
+            sectionLabel={getSectionLabel('testimonials')}
+            isHidden={isSectionHidden('testimonials')}
+            onToggle={handleToggleSection}
+          />
+        )}
+        <div data-section-id="testimonials" style={isSectionHidden('testimonials') && editMode ? { opacity: 0.5 } : {}}>
+          <div id="testimonials" className="px-4 sm:px-6 py-12 sm:py-16 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center" data-content-id="testimonials-heading">
             {getValue('testimonials-heading', 'Client Testimonials')}
@@ -529,9 +627,23 @@ export default function Template1({ className = "", content, flexibleContent = {
           </div>
         </div>
       </div>
+        </div>
+      </>
+      )}
 
       {/* Contact Us Section */}
-      <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
+      {(!isSectionHidden('contact') || editMode) && (
+      <>
+        {editMode && (
+          <SectionControlStrip
+            sectionId="contact"
+            sectionLabel={getSectionLabel('contact')}
+            isHidden={isSectionHidden('contact')}
+            onToggle={handleToggleSection}
+          />
+        )}
+        <div data-section-id="contact" style={isSectionHidden('contact') && editMode ? { opacity: 0.5 } : {}}>
+          <div id="contact" className="px-4 sm:px-6 py-12 sm:py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center" data-content-id="contact-heading">
             {getValue('contact-heading', 'Contact Us')}
@@ -658,9 +770,23 @@ export default function Template1({ className = "", content, flexibleContent = {
           )}
         </div>
       </div>
+        </div>
+      </>
+      )}
 
       {/* Footer */}
-      <div className="bg-gray-900 text-white px-4 sm:px-6 py-12 sm:py-16 border-t border-gray-700">
+      {(!isSectionHidden('footer') || editMode) && (
+      <>
+        {editMode && (
+          <SectionControlStrip
+            sectionId="footer"
+            sectionLabel={getSectionLabel('footer')}
+            isHidden={isSectionHidden('footer')}
+            onToggle={handleToggleSection}
+          />
+        )}
+        <div data-section-id="footer" style={isSectionHidden('footer') && editMode ? { opacity: 0.5 } : {}}>
+          <div className="bg-gray-900 text-white px-4 sm:px-6 py-12 sm:py-16 border-t border-gray-700">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
           <div>
             <div className="font-bold text-xl mb-4">
@@ -706,7 +832,10 @@ export default function Template1({ className = "", content, flexibleContent = {
         <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
           © 2025 Your Insurance Group. All rights reserved. | Privacy Policy | Terms of Service
         </div>
+        </div>
       </div>
+      </>
+      )}
     </div>
   );
 }

@@ -7,6 +7,16 @@ export interface TemplateSection {
 }
 
 export const templateSections: Record<string, TemplateSection[]> = {
+  'template-1': [
+    { id: 'hero', label: 'Hero Section' },
+    { id: 'about', label: 'About Section' },
+    { id: 'services', label: 'Services Section' },
+    { id: 'why-we-serve', label: 'Why We Serve Section' },
+    { id: 'testimonials', label: 'Testimonials Section' },
+    { id: 'contact', label: 'Contact Section' },
+    { id: 'footer', label: 'Footer Section' },
+  ],
+  
   'template-15': [
     { id: 'hero', label: 'Hero Section' },
     { id: 'stats', label: 'Statistics Section' },

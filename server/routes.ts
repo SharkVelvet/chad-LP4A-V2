@@ -327,9 +327,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (updateData.domain && updateData.domain !== page.domain) {
         if (railwayService.isConfigured()) {
           try {
-            console.log(`🚂 Auto-registering domain with Railway: ${updateData.domain}`);
-            await railwayService.addCustomDomain(updateData.domain);
-            console.log(`✓ Domain ${updateData.domain} registered with Railway`);
+            const domain = updateData.domain;
+            const wwwDomain = `www.${domain}`;
+            
+            console.log(`🚂 Auto-registering domains with Railway: ${domain} and ${wwwDomain}`);
+            
+            // Register both root and www subdomain for full coverage
+            await railwayService.addCustomDomain(domain);
+            await railwayService.addCustomDomain(wwwDomain);
+            
+            console.log(`✓ Domains ${domain} and ${wwwDomain} registered with Railway`);
           } catch (error: any) {
             console.error(`⚠️  Railway domain registration failed: ${error.message}`);
             // Continue anyway - domain saved to DB, admin can manually add to Railway
@@ -664,12 +671,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const result = await domainService.registerDomain(domain, parseInt(years) || 1, parsedContactInfo);
 
       if (result.success && pageId) {
-        // Automatically register domain with Railway
+        // Automatically register domain with Railway (both root and www)
         if (railwayService.isConfigured()) {
           try {
-            console.log(`🚂 Auto-registering purchased domain with Railway: ${domain}`);
+            const wwwDomain = `www.${domain}`;
+            console.log(`🚂 Auto-registering purchased domains with Railway: ${domain} and ${wwwDomain}`);
             await railwayService.addCustomDomain(domain);
-            console.log(`✓ Domain ${domain} registered with Railway`);
+            await railwayService.addCustomDomain(wwwDomain);
+            console.log(`✓ Domains ${domain} and ${wwwDomain} registered with Railway`);
           } catch (error: any) {
             console.error(`⚠️  Railway domain registration failed: ${error.message}`);
           }
@@ -907,12 +916,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       console.log(`🔧 Starting complete domain setup for: ${domain}`);
 
-      // Step 1: Register domain with Railway
+      // Step 1: Register domain with Railway (both root and www)
       if (railwayService.isConfigured()) {
         try {
-          console.log(`🚂 Registering ${domain} with Railway...`);
+          const wwwDomain = `www.${domain}`;
+          console.log(`🚂 Registering ${domain} and ${wwwDomain} with Railway...`);
           await railwayService.addCustomDomain(domain);
-          console.log(`✓ Railway registration complete`);
+          await railwayService.addCustomDomain(wwwDomain);
+          console.log(`✓ Railway registration complete for both domains`);
         } catch (error: any) {
           console.error(`⚠️  Railway registration failed: ${error.message}`);
           // Continue with DNS setup even if Railway fails
@@ -2062,6 +2073,65 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error: any) {
       console.error('Error creating user:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Super Admin: Register all existing domains with Railway
+  app.post("/api/admin/register-domains-railway", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      if (!railwayService.isConfigured()) {
+        return res.status(500).json({ error: "Railway API not configured" });
+      }
+
+      // Get all pages with domains
+      const allUsers = await storage.getAllUsers();
+      const results = {
+        total: 0,
+        successful: 0,
+        failed: 0,
+        details: [] as Array<{ domain: string; status: string; error?: string }>,
+      };
+
+      for (const user of allUsers) {
+        const pages = await storage.getUserPages(user.id);
+        
+        for (const page of pages) {
+          if (page.domain) {
+            results.total += 2; // root and www
+            
+            // Register root domain
+            try {
+              await railwayService.addCustomDomain(page.domain);
+              results.successful++;
+              results.details.push({ domain: page.domain, status: 'success' });
+            } catch (error: any) {
+              results.failed++;
+              results.details.push({ domain: page.domain, status: 'failed', error: error.message });
+            }
+            
+            // Register www subdomain
+            try {
+              const wwwDomain = `www.${page.domain}`;
+              await railwayService.addCustomDomain(wwwDomain);
+              results.successful++;
+              results.details.push({ domain: wwwDomain, status: 'success' });
+            } catch (error: any) {
+              results.failed++;
+              results.details.push({ domain: `www.${page.domain}`, status: 'failed', error: error.message });
+            }
+          }
+        }
+      }
+
+      res.json(results);
+    } catch (error: any) {
+      console.error('Error registering domains with Railway:', error);
       res.status(500).json({ error: error.message });
     }
   });

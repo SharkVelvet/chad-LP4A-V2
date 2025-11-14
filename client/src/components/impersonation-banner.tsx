@@ -16,10 +16,11 @@ interface ImpersonationStatus {
 }
 
 export function ImpersonationBanner() {
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
   
-  // Hide banner in iframe (preview mode)
+  // Hide banner in iframe (preview mode) or on template preview routes
   const isInIframe = window.self !== window.top;
+  const isPreviewRoute = location.includes('/template-preview');
   
   const { data: status } = useQuery<ImpersonationStatus>({
     queryKey: ["/api/admin/impersonation-status"],
@@ -41,8 +42,8 @@ export function ImpersonationBanner() {
 
   const isImpersonating = status?.isImpersonating && status.impersonatedUser;
   
-  // Don't show in iframe or if not impersonating
-  if (!isImpersonating || isInIframe || !status?.impersonatedUser) {
+  // Don't show in iframe, preview routes, or if not impersonating
+  if (!isImpersonating || isInIframe || isPreviewRoute || !status?.impersonatedUser) {
     return null;
   }
 

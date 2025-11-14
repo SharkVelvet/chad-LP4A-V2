@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Users, UserCircle, Loader2, UserPlus, Upload, FileSpreadsheet, CheckCircle, XCircle, Settings } from "lucide-react";
+import { Users, UserCircle, Loader2, UserPlus, Upload, FileSpreadsheet, CheckCircle, XCircle, Settings, ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { useState, Fragment } from "react";
@@ -57,6 +57,8 @@ export default function AdminClientUsers() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadResults, setUploadResults] = useState<BulkUploadResult | null>(null);
   const [expandedRowId, setExpandedRowId] = useState<number | null>(null);
+  const [sortBy, setSortBy] = useState<string>('createdAt');
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
   const [pastDueConfirmation, setPastDueConfirmation] = useState<{ open: boolean; userId: number; userEmail: string }>({
     open: false,
     userId: 0,
@@ -75,7 +77,18 @@ export default function AdminClientUsers() {
   }
 
   const { data: clients = [], isLoading } = useQuery<ClientUser[]>({
-    queryKey: ["/api/admin/client-users"],
+    queryKey: ["/api/admin/client-users", { sortBy, sortDir }],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (sortBy) params.append('sortBy', sortBy);
+      if (sortDir) params.append('sortDir', sortDir);
+      
+      const res = await fetch(`/api/admin/client-users?${params.toString()}`, {
+        credentials: 'include',
+      });
+      if (!res.ok) throw new Error('Failed to fetch clients');
+      return res.json();
+    },
   });
 
   const { data: templates = [] } = useQuery<Template[]>({
@@ -210,6 +223,28 @@ export default function AdminClientUsers() {
       });
     },
   });
+
+  const handleSort = (column: string) => {
+    if (sortBy === column) {
+      // Toggle direction if same column
+      setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
+    } else {
+      // Set new column with default desc direction
+      setSortBy(column);
+      setSortDir('desc');
+    }
+  };
+
+  const getSortIcon = (column: string) => {
+    if (sortBy !== column) {
+      return <ArrowUpDown className="h-4 w-4 ml-1 opacity-40" />;
+    }
+    return sortDir === 'asc' ? (
+      <ArrowUp className="h-4 w-4 ml-1" />
+    ) : (
+      <ArrowDown className="h-4 w-4 ml-1" />
+    );
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -489,11 +524,56 @@ export default function AdminClientUsers() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>First Name</TableHead>
-                  <TableHead>Last Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Stripe Subscription</TableHead>
-                  <TableHead>Template</TableHead>
+                  <TableHead>
+                    <button 
+                      onClick={() => handleSort('firstName')}
+                      className="flex items-center hover:text-gray-900 transition-colors font-medium"
+                      data-testid="sort-firstName"
+                    >
+                      First Name
+                      {getSortIcon('firstName')}
+                    </button>
+                  </TableHead>
+                  <TableHead>
+                    <button 
+                      onClick={() => handleSort('lastName')}
+                      className="flex items-center hover:text-gray-900 transition-colors font-medium"
+                      data-testid="sort-lastName"
+                    >
+                      Last Name
+                      {getSortIcon('lastName')}
+                    </button>
+                  </TableHead>
+                  <TableHead>
+                    <button 
+                      onClick={() => handleSort('email')}
+                      className="flex items-center hover:text-gray-900 transition-colors font-medium"
+                      data-testid="sort-email"
+                    >
+                      Email
+                      {getSortIcon('email')}
+                    </button>
+                  </TableHead>
+                  <TableHead>
+                    <button 
+                      onClick={() => handleSort('subscriptionStatus')}
+                      className="flex items-center hover:text-gray-900 transition-colors font-medium"
+                      data-testid="sort-subscription"
+                    >
+                      Stripe Subscription
+                      {getSortIcon('subscriptionStatus')}
+                    </button>
+                  </TableHead>
+                  <TableHead>
+                    <button 
+                      onClick={() => handleSort('templateName')}
+                      className="flex items-center hover:text-gray-900 transition-colors font-medium"
+                      data-testid="sort-template"
+                    >
+                      Template
+                      {getSortIcon('templateName')}
+                    </button>
+                  </TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>

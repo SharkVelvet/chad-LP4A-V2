@@ -1,5 +1,5 @@
 import { CheckCircle, Target, Users, DollarSign, TrendingUp, Award, Shield, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X, Star, ArrowRight, Clock, Zap } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTemplateEditor } from "./use-template-editor";
 import SectionControlStrip from "./section-control-strip";
 import { getTemplateSections } from "./template-sections";
@@ -18,9 +18,24 @@ interface Template15Props {
   editMode?: boolean;
 }
 
-export default function Template15({ className = "", content, flexibleContent, hiddenSections, editMode }: Template15Props) {
+export default function Template15({ className = "", content, flexibleContent, hiddenSections: initialHiddenSections, editMode }: Template15Props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hiddenSections, setHiddenSections] = useState<string[]>(initialHiddenSections || []);
   const { rootRef, isSectionHidden, overlays } = useTemplateEditor({ editMode, hiddenSections });
+
+  // Listen for hidden sections updates from parent window
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return;
+      
+      if (event.data.type === 'updateHiddenSections' && Array.isArray(event.data.hiddenSections)) {
+        setHiddenSections(event.data.hiddenSections);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   const getValue = (key: string, defaultValue: string) => {
     return flexibleContent?.[key] || defaultValue;

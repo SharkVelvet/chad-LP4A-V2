@@ -220,6 +220,20 @@ export default function WebsiteEditor() {
     return () => window.removeEventListener('message', handleMessage);
   }, [saveHiddenSectionsMutation]);
 
+  // Send updated hidden sections to iframe when they change
+  useEffect(() => {
+    const iframes = document.querySelectorAll('iframe[data-testid="iframe-edit-mode"], iframe[data-testid="iframe-page-preview"]');
+    iframes.forEach(iframe => {
+      const iframeWindow = (iframe as HTMLIFrameElement).contentWindow;
+      if (iframeWindow) {
+        iframeWindow.postMessage({
+          type: 'updateHiddenSections',
+          hiddenSections
+        }, window.location.origin);
+      }
+    });
+  }, [hiddenSections]);
+
   // Connect existing domain mutation
   const connectExistingDomainMutation = useMutation({
     mutationFn: async (domain: string) => {

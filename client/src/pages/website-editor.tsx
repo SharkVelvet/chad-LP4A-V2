@@ -257,6 +257,31 @@ export default function WebsiteEditor() {
     },
   });
 
+  // Auto-configure DNS for purchased domain
+  const autoConfigureDomainMutation = useMutation({
+    mutationFn: async () => {
+      if (!page?.domain) {
+        throw new Error("No domain found");
+      }
+      const res = await apiRequest("POST", `/api/domains/${page.domain}/auto-configure`, {});
+      return await res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
+      toast({
+        title: "DNS Configured Successfully!",
+        description: "Your domain has been automatically configured and connected to Railway. It should be live within 15-30 minutes.",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Auto-Configuration Failed",
+        description: error.message || "Failed to auto-configure DNS. You may need to configure it manually.",
+        variant: "destructive",
+      });
+    },
+  });
+
   // Publish page mutation
   const publishMutation = useMutation({
     mutationFn: async () => {
@@ -905,6 +930,34 @@ export default function WebsiteEditor() {
                     <p className="text-sm text-gray-600 mb-4">
                       Your domain has been connected to this page. Configure DNS at your domain registrar to make it live.
                     </p>
+
+                    {/* Auto-Configure DNS Button */}
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                      <h5 className="font-semibold text-green-900 mb-2">✨ Automatic DNS Configuration</h5>
+                      <p className="text-sm text-green-700 mb-3">
+                        If you purchased this domain through our platform, click below to automatically configure all DNS settings and connect to Railway.
+                      </p>
+                      <Button
+                        onClick={() => {
+                          autoConfigureDomainMutation.mutate();
+                        }}
+                        disabled={autoConfigureDomainMutation.isPending}
+                        className="bg-green-600 hover:bg-green-700"
+                        data-testid="button-auto-configure-dns"
+                      >
+                        {autoConfigureDomainMutation.isPending ? (
+                          <>
+                            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                            Configuring DNS...
+                          </>
+                        ) : (
+                          <>
+                            <Globe className="h-4 w-4 mr-2" />
+                            Auto-Configure DNS & Connect
+                          </>
+                        )}
+                      </Button>
+                    </div>
                     
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                       <h5 className="font-semibold text-blue-900 mb-3">📋 DNS Setup Instructions</h5>

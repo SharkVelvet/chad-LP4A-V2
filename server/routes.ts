@@ -944,6 +944,73 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Complete domain setup (Railway + DNS)
+  // Auto-configure DNS for purchased domain
+  app.post("/api/domains/:domain/auto-configure", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      
+      // Find the page with this domain
+      const page = await storage.getPageByDomain(domain);
+      if (!page) {
+        return res.status(404).json({ message: "Page not found for this domain" });
+      }
+      
+      // Verify user owns this page
+      if (page.userId !== req.user.id) {
+        return res.status(403).json({ message: "You do not own this domain" });
+      }
+
+      console.log(`🚀 Auto-configuring DNS for ${domain}...`);
+
+      // Step 1: Register with Railway
+      if (railwayService.isConfigured()) {
+        const wwwDomain = `www.${domain}`;
+        console.log(`🚂 Registering with Railway: ${domain} and ${wwwDomain}`);
+        await railwayService.addCustomDomain(domain);
+        await railwayService.addCustomDomain(wwwDomain);
+        console.log(`✓ Railway registration complete`);
+      }
+
+      // Step 2: Configure DNS records
+      console.log(`🌐 Configuring DNS records for ${domain}...`);
+      const railwayDomain = `chad-lp4a-v2-production.up.railway.app`;
+      
+      const dnsRecords = [
+        {
+          RecordType: "CNAME",
+          HostName: "www",
+          Address: railwayDomain,
+          TTL: "300"
+        },
+        {
+          RecordType: "ALIAS",
+          HostName: "@",
+          Address: railwayDomain,
+          TTL: "300"
+        }
+      ];
+      
+      await domainService.setDNSRecords(domain, dnsRecords);
+      console.log(`✓ DNS records configured`);
+
+      // Step 3: Mark domain as verified
+      await storage.updatePage(page.id, { domainVerified: true } as any);
+      console.log(`✓ Domain marked as verified`);
+
+      res.json({ 
+        success: true, 
+        message: "Domain automatically configured and connected to Railway" 
+      });
+    } catch (error: any) {
+      console.error("Auto-configure error:", error);
+      res.status(500).json({ message: error.message || "Failed to auto-configure domain" });
+    }
+  });
+
   app.post("/api/domains/:domain/setup-complete", async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.sendStatus(401);

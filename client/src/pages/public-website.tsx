@@ -114,7 +114,13 @@ export default function PublicWebsite() {
         formProvider: page?.formProvider,
         formEmbedCode: page?.formEmbedCode
       };
-      return <Template content={mergedContent} flexibleContent={flexibleContent} pageData={page} />;
+      return <Template 
+        content={mergedContent} 
+        flexibleContent={flexibleContent} 
+        pageData={page} 
+        editMode={false}
+        hiddenSections={content?.hiddenSections || []}
+      />;
     } catch (error) {
       console.error("Error loading template:", error);
       return (

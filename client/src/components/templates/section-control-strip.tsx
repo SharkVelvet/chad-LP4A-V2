@@ -36,19 +36,19 @@ export default function SectionControlStrip({
           e.stopPropagation();
           onToggle(sectionId);
         }}
-        className="gap-2"
+        className="gap-2 [&_*]:pointer-events-none"
         data-testid={`button-toggle-${sectionId}`}
         data-visibility-control="true"
       >
         {isHidden ? (
           <>
-            <Eye className="h-4 w-4" />
-            Show Section
+            <Eye className="h-4 w-4" data-visibility-control="true" />
+            <span data-visibility-control="true">Show Section</span>
           </>
         ) : (
           <>
-            <EyeOff className="h-4 w-4" />
-            Hide Section
+            <EyeOff className="h-4 w-4" data-visibility-control="true" />
+            <span data-visibility-control="true">Hide Section</span>
           </>
         )}
       </Button>

@@ -31,7 +31,7 @@ import {
   type InsertAdminUser,
 } from "../shared/schema.js";
 import { db } from "./db.js";
-import { eq, and, desc } from "drizzle-orm";
+import { eq, and, desc, asc, sql } from "drizzle-orm";
 import session from "express-session";
 import connectPg from "connect-pg-simple";
 import { pool } from "./db.js";
@@ -46,7 +46,7 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   updateUser(userId: number, data: Partial<User>): Promise<User>;
   updateUserStripeInfo(userId: number, customerId: string, subscriptionId: string): Promise<User>;
-  getAllClientUsers(): Promise<any[]>;
+  getAllClientUsers(sortBy?: string, sortDir?: 'asc' | 'desc'): Promise<any[]>;
 
   // Location management
   getLocation(id: number): Promise<Location | undefined>;
@@ -167,7 +167,21 @@ export class DatabaseStorage implements IStorage {
     return user;
   }
 
-  async getAllClientUsers(): Promise<any[]> {
+  async getAllClientUsers(sortBy: string = 'createdAt', sortDir: 'asc' | 'desc' = 'desc'): Promise<any[]> {
+    // Map of allowed sort columns to their database columns
+    const sortColumnMap: Record<string, any> = {
+      firstName: users.firstName,
+      lastName: users.lastName,
+      email: users.email,
+      createdAt: users.createdAt,
+      subscriptionStatus: pages.subscriptionStatus,
+      templateName: templates.name,
+    };
+
+    // Default to createdAt if invalid sort column
+    const sortColumn = sortColumnMap[sortBy] || users.createdAt;
+    const orderFn = sortDir === 'asc' ? asc : desc;
+
     const result = await db
       .select({
         id: users.id,
@@ -188,7 +202,7 @@ export class DatabaseStorage implements IStorage {
       .from(users)
       .leftJoin(pages, eq(users.id, pages.userId))
       .leftJoin(templates, eq(pages.templateId, templates.id))
-      .orderBy(desc(users.createdAt));
+      .orderBy(orderFn(sortColumn));
 
     const usersWithPageCount = await Promise.all(
       result.map(async (user) => {

@@ -1882,7 +1882,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     try {
-      const clients = await storage.getAllClientUsers();
+      const sortBy = req.query.sortBy as string | undefined;
+      const sortDir = req.query.sortDir as 'asc' | 'desc' | undefined;
+      
+      // Validate sortDir
+      const validSortDir = sortDir === 'asc' || sortDir === 'desc' ? sortDir : undefined;
+      
+      const clients = await storage.getAllClientUsers(sortBy, validSortDir);
       res.json(clients);
     } catch (error: any) {
       console.error('Error fetching client users:', error);

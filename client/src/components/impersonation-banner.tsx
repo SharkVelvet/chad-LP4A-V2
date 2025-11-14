@@ -18,6 +18,9 @@ interface ImpersonationStatus {
 export function ImpersonationBanner() {
   const [, setLocation] = useLocation();
   
+  // Hide banner in iframe (preview mode)
+  const isInIframe = window.self !== window.top;
+  
   const { data: status } = useQuery<ImpersonationStatus>({
     queryKey: ["/api/admin/impersonation-status"],
     refetchInterval: 3000,
@@ -38,7 +41,8 @@ export function ImpersonationBanner() {
 
   const isImpersonating = status?.isImpersonating && status.impersonatedUser;
   
-  if (!isImpersonating) {
+  // Don't show in iframe or if not impersonating
+  if (!isImpersonating || isInIframe || !status?.impersonatedUser) {
     return null;
   }
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
 interface SectionVisibilityOverlayProps {
@@ -13,69 +13,82 @@ export default function SectionVisibilityOverlay({
   onToggleSection 
 }: SectionVisibilityOverlayProps) {
   const [sections, setSections] = useState<Array<{ id: string; element: HTMLElement; rect: DOMRect }>>([]);
-  const [, setTrigger] = useState(0);
+  const throttleTimeoutRef = useRef<NodeJS.Timeout>();
+
+  const detectSections = useCallback(() => {
+    if (!rootRef.current) return;
+
+    // First try data-section-id attributes (preferred)
+    let sectionElements = rootRef.current?.querySelectorAll('[data-section-id]');
+    
+    // Fallback to legacy ID-based detection if no data-section-id elements found
+    if (!sectionElements || sectionElements.length === 0) {
+      sectionElements = rootRef.current?.querySelectorAll('[id]');
+    }
+    
+    const detectedSections: Array<{ id: string; element: HTMLElement; rect: DOMRect }> = [];
+
+    sectionElements?.forEach((el) => {
+      const element = el as HTMLElement;
+      
+      // Prefer data-section-id, fallback to id attribute
+      const sectionId = element.getAttribute('data-section-id') || element.id;
+      
+      // For ID-based detection, only include section-like IDs
+      const validSectionIds = ['hero', 'about', 'services', 'solutions', 'training', 'support', 'opportunity', 'benefits', 'success', 'life-insurance', 'health-insurance', 'annuities', 'family-protection', 'retirement-planning', 'quotes', 'contact', 'career-support'];
+      
+      const isDataSectionId = element.hasAttribute('data-section-id');
+      const isValidId = element.id && validSectionIds.includes(element.id);
+      
+      if (sectionId && (isDataSectionId || isValidId)) {
+        const rect = element.getBoundingClientRect();
+        detectedSections.push({ id: sectionId, element, rect });
+      }
+    });
+
+    setSections(detectedSections);
+  }, [rootRef]);
+
+  // Throttled scroll handler
+  const handleScroll = useCallback(() => {
+    if (throttleTimeoutRef.current) return;
+    
+    throttleTimeoutRef.current = setTimeout(() => {
+      detectSections();
+      throttleTimeoutRef.current = undefined;
+    }, 100);
+  }, [detectSections]);
 
   useEffect(() => {
     if (!rootRef.current) return;
-
-    const detectSections = () => {
-      // First try data-section-id attributes (preferred)
-      let sectionElements = rootRef.current?.querySelectorAll('[data-section-id]');
-      
-      // Fallback to legacy ID-based detection if no data-section-id elements found
-      if (!sectionElements || sectionElements.length === 0) {
-        sectionElements = rootRef.current?.querySelectorAll('[id]');
-      }
-      
-      const detectedSections: Array<{ id: string; element: HTMLElement; rect: DOMRect }> = [];
-
-      sectionElements?.forEach((el) => {
-        const element = el as HTMLElement;
-        
-        // Prefer data-section-id, fallback to id attribute
-        const sectionId = element.getAttribute('data-section-id') || element.id;
-        
-        // For ID-based detection, only include section-like IDs
-        const validSectionIds = ['hero', 'about', 'services', 'solutions', 'training', 'support', 'opportunity', 'benefits', 'success', 'life-insurance', 'health-insurance', 'annuities', 'family-protection', 'retirement-planning', 'quotes', 'contact'];
-        
-        const isDataSectionId = element.hasAttribute('data-section-id');
-        const isValidId = element.id && validSectionIds.includes(element.id);
-        
-        if (sectionId && (isDataSectionId || isValidId)) {
-          const rect = element.getBoundingClientRect();
-          detectedSections.push({ id: sectionId, element, rect });
-        }
-      });
-
-      setSections(detectedSections);
-    };
 
     detectSections();
 
     const observer = new ResizeObserver(() => {
       detectSections();
-      setTrigger(prev => prev + 1);
     });
 
     if (rootRef.current) {
       observer.observe(rootRef.current);
     }
 
-    window.addEventListener('scroll', detectSections);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', detectSections);
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', detectSections);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', detectSections);
+      if (throttleTimeoutRef.current) {
+        clearTimeout(throttleTimeoutRef.current);
+      }
     };
-  }, [rootRef, hiddenSections]);
+  }, [rootRef, hiddenSections, detectSections, handleScroll]);
 
   return (
-    <>
-      {sections.map(({ id, element }) => {
+    <div className="pointer-events-none">
+      {sections.map(({ id, rect }) => {
         const isHidden = hiddenSections.includes(id);
-        const rect = element.getBoundingClientRect();
         const iframeRect = rootRef.current?.getBoundingClientRect();
         
         if (!iframeRect) return null;
@@ -88,9 +101,14 @@ export default function SectionVisibilityOverlay({
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
+              e.nativeEvent.stopImmediatePropagation();
               onToggleSection(id);
             }}
-            className={`absolute left-2 z-50 flex items-center gap-2 px-3 py-2 rounded-lg shadow-lg transition-all hover:scale-105 ${
+            onMouseDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            className={`pointer-events-auto absolute left-2 z-[60] flex items-center gap-2 px-3 py-2 rounded-lg shadow-lg transition-colors ${
               isHidden 
                 ? 'bg-gray-600 text-white hover:bg-gray-700' 
                 : 'bg-green-600 text-white hover:bg-green-700'
@@ -115,6 +133,6 @@ export default function SectionVisibilityOverlay({
           </button>
         );
       })}
-    </>
+    </div>
   );
 }

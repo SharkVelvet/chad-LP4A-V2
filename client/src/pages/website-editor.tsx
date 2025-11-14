@@ -138,30 +138,6 @@ export default function WebsiteEditor() {
     }
   }, [page]);
 
-  // Listen for section visibility toggles from iframe
-  useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
-      // Validate origin for security
-      if (event.origin !== window.location.origin) return;
-      
-      if (event.data.type === 'toggleSectionVisibility' && typeof event.data.sectionId === 'string') {
-        const sectionId = event.data.sectionId;
-        // Use functional state update to avoid stale closure
-        setHiddenSections(prev => {
-          const newHiddenSections = prev.includes(sectionId)
-            ? prev.filter(id => id !== sectionId)
-            : [...prev, sectionId];
-          // Save to backend
-          saveHiddenSectionsMutation.mutate(newHiddenSections);
-          return newHiddenSections;
-        });
-      }
-    };
-
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, [saveHiddenSectionsMutation]);
-
   // Save flexible content mutation (for any content ID)
   const saveFlexibleContentMutation = useMutation({
     mutationFn: async ({ contentId, value }: { contentId: string; value: string }) => {
@@ -219,6 +195,30 @@ export default function WebsiteEditor() {
       });
     },
   });
+
+  // Listen for section visibility toggles from iframe
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      // Validate origin for security
+      if (event.origin !== window.location.origin) return;
+      
+      if (event.data.type === 'toggleSectionVisibility' && typeof event.data.sectionId === 'string') {
+        const sectionId = event.data.sectionId;
+        // Use functional state update to avoid stale closure
+        setHiddenSections(prev => {
+          const newHiddenSections = prev.includes(sectionId)
+            ? prev.filter(id => id !== sectionId)
+            : [...prev, sectionId];
+          // Save to backend
+          saveHiddenSectionsMutation.mutate(newHiddenSections);
+          return newHiddenSections;
+        });
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [saveHiddenSectionsMutation]);
 
   // Connect existing domain mutation
   const connectExistingDomainMutation = useMutation({

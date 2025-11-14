@@ -85,6 +85,7 @@ export default function SectionVisibilityOverlay({
           <button
             key={id}
             type="button"
+            data-visibility-control="true"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -98,13 +99,14 @@ export default function SectionVisibilityOverlay({
             onMouseEnter={(e) => {
               e.stopPropagation();
             }}
-            className={`pointer-events-auto absolute left-2 flex items-center gap-2 px-3 py-2 rounded-lg shadow-lg transition-colors ${
+            className={`pointer-events-auto absolute left-2 flex items-center gap-2 px-3 py-2 rounded-lg shadow-lg ${
               isHidden 
                 ? 'bg-gray-600 text-white hover:bg-gray-700' 
                 : 'bg-green-600 text-white hover:bg-green-700'
             }`}
             style={{
               top: `${topPosition}px`,
+              minWidth: '110px',
             }}
             title={isHidden ? `Show "${id}" section` : `Hide "${id}" section`}
             data-testid={`toggle-section-${id}`}

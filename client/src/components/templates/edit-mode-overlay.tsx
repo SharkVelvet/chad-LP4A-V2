@@ -30,6 +30,9 @@ export default function EditModeOverlay({ rootRef }: EditModeOverlayProps) {
       const element = el as HTMLElement;
       if (element.closest('nav')) return;
       
+      // Skip visibility control buttons
+      if (element.getAttribute('data-visibility-control') === 'true') return;
+      
       // Skip elements inside background containers (unless they have explicit content-id)
       const parentBackground = element.parentElement?.closest('[data-content-type="background"]');
       const hasExplicitId = element.getAttribute('data-content-id');

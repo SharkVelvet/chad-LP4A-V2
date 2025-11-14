@@ -14,12 +14,11 @@ interface Template15Props {
   flexibleContent?: Record<string, string>;
   hiddenSections?: string[];
   editMode?: boolean;
-  onToggleSectionVisibility?: (sectionId: string) => void;
 }
 
-export default function Template15({ className = "", content, flexibleContent, hiddenSections, editMode, onToggleSectionVisibility }: Template15Props) {
+export default function Template15({ className = "", content, flexibleContent, hiddenSections, editMode }: Template15Props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { rootRef, isSectionHidden, overlays } = useTemplateEditor({ editMode, hiddenSections, onToggleSectionVisibility });
+  const { rootRef, isSectionHidden, overlays } = useTemplateEditor({ editMode, hiddenSections });
 
   const getValue = (key: string, defaultValue: string) => {
     return flexibleContent?.[key] || defaultValue;

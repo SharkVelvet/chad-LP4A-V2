@@ -6,12 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, ChevronRight, FileEdit, Palette, Loader2, FileText, Eye } from "lucide-react";
+import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, ChevronRight, FileEdit, Palette, Loader2, FileText, Eye, EyeOff } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import DomainSearch from "@/components/domain-search";
 import DnsManager from "@/components/dns-manager";
+import { getTemplateSections } from "@/components/templates/template-sections";
 
 type Page = {
   id: number;
@@ -196,29 +197,17 @@ export default function WebsiteEditor() {
     },
   });
 
-  // Listen for section visibility toggles from iframe
-  useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
-      // Validate origin for security
-      if (event.origin !== window.location.origin) return;
-      
-      if (event.data.type === 'toggleSectionVisibility' && typeof event.data.sectionId === 'string') {
-        const sectionId = event.data.sectionId;
-        // Use functional state update to avoid stale closure
-        setHiddenSections(prev => {
-          const newHiddenSections = prev.includes(sectionId)
-            ? prev.filter(id => id !== sectionId)
-            : [...prev, sectionId];
-          // Save to backend
-          saveHiddenSectionsMutation.mutate(newHiddenSections);
-          return newHiddenSections;
-        });
-      }
-    };
-
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, [saveHiddenSectionsMutation]);
+  // Handle section visibility toggle
+  const handleToggleSection = (sectionId: string) => {
+    setHiddenSections(prev => {
+      const newHiddenSections = prev.includes(sectionId)
+        ? prev.filter(id => id !== sectionId)
+        : [...prev, sectionId];
+      // Save to backend
+      saveHiddenSectionsMutation.mutate(newHiddenSections);
+      return newHiddenSections;
+    });
+  };
 
   // Connect existing domain mutation
   const connectExistingDomainMutation = useMutation({
@@ -1502,37 +1491,97 @@ export default function WebsiteEditor() {
           </div>
         </div>
 
-        {/* Edit mode content - page preview with editing enabled */}
-        <div className="absolute top-14 left-0 right-0 bottom-0 bg-gray-100">
-          {template ? (
-            <>
-              <iframe
-                key={`edit-${pageId}`}
-                src={`/template-preview?template=${template.slug}&pageId=${pageId}&editMode=true&hideNav=true`}
-                className="w-full h-full border-0"
-                title="Edit Page"
-                data-testid="iframe-edit-mode"
-                onLoad={() => setIsReloadingContent(false)}
-              />
-              {/* Saving overlay - shows immediately when save is clicked and stays until reload completes */}
-              {(saveFlexibleContentMutation.isPending || saveContentMutation.isPending || isReloadingContent) && (
-                <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50">
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="w-16 h-16 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
-                    <p className="text-lg font-medium text-gray-900">Saving changes...</p>
-                    <p className="text-sm text-gray-600">Please wait while we update your page</p>
-                  </div>
+        {/* Edit mode content - two column layout: sidebar + iframe */}
+        <div className="absolute top-14 left-0 right-0 bottom-0 bg-gray-100 flex">
+          {/* Left Sidebar - Section Visibility Controls */}
+          <div className="w-80 bg-white border-r border-gray-200 flex flex-col">
+            <div className="p-4 border-b border-gray-200">
+              <h3 className="font-semibold text-gray-900">Section Visibility</h3>
+              <p className="text-xs text-gray-600 mt-1">Show or hide sections on your page</p>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-4">
+              {template ? (
+                <>
+                  {getTemplateSections(template.slug).length > 0 ? (
+                    <div className="space-y-3">
+                      {getTemplateSections(template.slug).map(section => {
+                        const isHidden = hiddenSections.includes(section.id);
+                        return (
+                          <div 
+                            key={section.id}
+                            className="flex items-center justify-between p-3 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 transition-colors"
+                          >
+                            <div className="flex items-center gap-3 flex-1">
+                              {isHidden ? (
+                                <EyeOff className="h-4 w-4 text-gray-400" />
+                              ) : (
+                                <Eye className="h-4 w-4 text-green-600" />
+                              )}
+                              <div className="flex-1">
+                                <p className="text-sm font-medium text-gray-900">{section.label}</p>
+                                <p className="text-xs text-gray-500">
+                                  {isHidden ? 'Hidden from visitors' : 'Visible to visitors'}
+                                </p>
+                              </div>
+                            </div>
+                            <Switch
+                              checked={!isHidden}
+                              onCheckedChange={() => handleToggleSection(section.id)}
+                              data-testid={`toggle-section-${section.id}`}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <p className="text-sm text-blue-800">
+                        This template doesn't support section visibility controls yet.
+                      </p>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="flex items-center justify-center py-8">
+                  <div className="w-8 h-8 border-2 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
                 </div>
               )}
-            </>
-          ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
-                <p className="text-sm text-gray-600">Loading editor...</p>
-              </div>
             </div>
-          )}
+          </div>
+
+          {/* Right Pane - iframe preview */}
+          <div className="flex-1 relative">
+            {template ? (
+              <>
+                <iframe
+                  key={`edit-${pageId}`}
+                  src={`/template-preview?template=${template.slug}&pageId=${pageId}&editMode=true&hideNav=true`}
+                  className="w-full h-full border-0"
+                  title="Edit Page"
+                  data-testid="iframe-edit-mode"
+                  onLoad={() => setIsReloadingContent(false)}
+                />
+                {/* Saving overlay - shows immediately when save is clicked and stays until reload completes */}
+                {(saveFlexibleContentMutation.isPending || saveContentMutation.isPending || isReloadingContent) && (
+                  <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50">
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="w-16 h-16 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
+                      <p className="text-lg font-medium text-gray-900">Saving changes...</p>
+                      <p className="text-sm text-gray-600">Please wait while we update your page</p>
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-12 h-12 border-4 border-[#6458AF] border-t-transparent rounded-full animate-spin"></div>
+                  <p className="text-sm text-gray-600">Loading editor...</p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

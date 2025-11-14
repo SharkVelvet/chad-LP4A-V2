@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, ChevronRight, FileEdit, Palette, Loader2, FileText } from "lucide-react";
+import { Settings, Globe, BarChart3, Search, Save, ArrowLeft, ChevronDown, ChevronRight, FileEdit, Palette, Loader2, FileText, Eye } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -44,7 +44,7 @@ type Template = {
   slug: string;
 };
 
-type MenuSection = "page" | "edit-content" | "colors" | "forms" | "domain" | "settings" | "seo" | "analytics";
+type MenuSection = "page" | "edit-content" | "colors" | "sections" | "forms" | "domain" | "settings" | "seo" | "analytics";
 
 export default function WebsiteEditor() {
   const [, navigate] = useLocation();
@@ -68,6 +68,8 @@ export default function WebsiteEditor() {
     email: "",
     address: "",
   });
+
+  const [hiddenSections, setHiddenSections] = useState<string[]>([]);
 
   // Check if currently impersonating to adjust layout
   const { data: impersonationStatus } = useQuery<{ isImpersonating: boolean }>({
@@ -127,6 +129,12 @@ export default function WebsiteEditor() {
         email: page.content.email || "",
         address: page.content.address || "",
       });
+      
+      // Load hidden sections from page content
+      const pageHiddenSections = (page.content as any)?.hiddenSections as string[];
+      if (pageHiddenSections) {
+        setHiddenSections(pageHiddenSections);
+      }
     }
   }, [page]);
 
@@ -162,6 +170,29 @@ export default function WebsiteEditor() {
         variant: "destructive",
       });
       setIsReloadingContent(false);
+    },
+  });
+
+  // Save hidden sections mutation
+  const saveHiddenSectionsMutation = useMutation({
+    mutationFn: async (sections: string[]) => {
+      const res = await apiRequest("PATCH", `/api/pages/${pageId}/hidden-sections`, { hiddenSections: sections });
+      return await res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
+      queryClient.invalidateQueries({ queryKey: ["/api/pages"] });
+      toast({
+        title: "Sections Updated",
+        description: "Section visibility has been saved.",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to save section visibility. Please try again.",
+        variant: "destructive",
+      });
     },
   });
 
@@ -323,6 +354,7 @@ export default function WebsiteEditor() {
   const pageSubItems = [
     { id: "edit-content" as MenuSection, label: "Edit Content", icon: FileEdit },
     { id: "colors" as MenuSection, label: "Colors", icon: Palette },
+    { id: "sections" as MenuSection, label: "Show / Hide Sections", icon: Eye },
     { id: "forms" as MenuSection, label: "Add / Edit Forms", icon: FileText },
   ];
 
@@ -363,7 +395,7 @@ export default function WebsiteEditor() {
                     setActiveSection("page");
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    activeSection === "page" || activeSection === "edit-content" || activeSection === "colors"
+                    activeSection === "page" || activeSection === "edit-content" || activeSection === "colors" || activeSection === "sections" || activeSection === "forms"
                       ? "border-2 border-black text-black bg-white"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
@@ -556,6 +588,58 @@ export default function WebsiteEditor() {
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                   <p className="text-sm text-blue-800">
                     Color customization coming soon! You'll be able to customize your page's color scheme, including primary colors, accent colors, and text colors.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Sections panel */}
+          <div
+            className={`absolute inset-0 bg-white transition-transform duration-300 ease-in-out ${
+              activeSection === "sections" ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="h-full overflow-y-auto p-8">
+              <div className="max-w-2xl space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">Show / Hide Sections</h3>
+                  <p className="text-sm text-gray-600 mb-6">Toggle visibility of sections on your page. Hidden sections won't appear to visitors.</p>
+                </div>
+                
+                <div className="bg-white border border-gray-200 rounded-lg divide-y">
+                  {["opportunity", "benefits", "training", "success"].map((sectionId) => {
+                    const isHidden = hiddenSections.includes(sectionId);
+                    return (
+                      <div key={sectionId} className="p-4 flex items-center justify-between hover:bg-gray-50">
+                        <div className="flex items-center gap-3">
+                          <Eye className={`h-5 w-5 ${isHidden ? 'text-gray-400' : 'text-green-600'}`} />
+                          <div>
+                            <h4 className="font-semibold text-gray-900 capitalize">{sectionId.replace('-', ' ')}</h4>
+                            <p className="text-sm text-gray-600">
+                              {isHidden ? 'Hidden from visitors' : 'Visible to visitors'}
+                            </p>
+                          </div>
+                        </div>
+                        <Switch
+                          checked={!isHidden}
+                          onCheckedChange={(checked) => {
+                            const newHiddenSections = checked
+                              ? hiddenSections.filter(id => id !== sectionId)
+                              : [...hiddenSections, sectionId];
+                            setHiddenSections(newHiddenSections);
+                            saveHiddenSectionsMutation.mutate(newHiddenSections);
+                          }}
+                          data-testid={`switch-section-${sectionId}`}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <p className="text-sm text-blue-800">
+                    💡 <strong>Tip:</strong> Hidden sections are still editable in Edit Content mode, so you can prepare content before showing it to visitors.
                   </p>
                 </div>
               </div>

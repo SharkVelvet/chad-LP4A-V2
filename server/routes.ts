@@ -422,6 +422,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update hidden sections
+  app.patch("/api/pages/:id/hidden-sections", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const pageId = parseInt(req.params.id);
+      const { hiddenSections } = req.body;
+
+      const page = await storage.getPage(pageId);
+      
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
+      }
+
+      const updatedContent = await storage.updatePageContent(pageId, { hiddenSections });
+      
+      res.json(updatedContent);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
   // Publish page content
   app.post("/api/pages/:id/publish", async (req, res) => {
     if (!req.isAuthenticated()) {

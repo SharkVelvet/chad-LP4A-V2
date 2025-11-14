@@ -252,7 +252,8 @@ export default function Template15({ className = "", content, flexibleContent, h
       )}
 
       {/* Benefits Section */}
-      <section id="benefits" className="py-20 bg-gray-50">
+      {(!isSectionHidden('benefits') || editMode) && (
+      <section id="benefits" className="py-20 bg-gray-50" style={isSectionHidden('benefits') && editMode ? { opacity: 0.5, position: 'relative' } : {}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -318,9 +319,11 @@ export default function Template15({ className = "", content, flexibleContent, h
           </div>
         </div>
       </section>
+      )}
 
       {/* Training Section */}
-      <section id="training" className="py-20">
+      {(!isSectionHidden('training') || editMode) && (
+      <section id="training" className="py-20" style={isSectionHidden('training') && editMode ? { opacity: 0.5, position: 'relative' } : {}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">World-Class Training Program</h2>
@@ -364,9 +367,11 @@ export default function Template15({ className = "", content, flexibleContent, h
           </div>
         </div>
       </section>
+      )}
 
       {/* Success Stories */}
-      <section id="success" className="py-20 bg-red-50">
+      {(!isSectionHidden('success') || editMode) && (
+      <section id="success" className="py-20 bg-red-50" style={isSectionHidden('success') && editMode ? { opacity: 0.5, position: 'relative' } : {}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Success Stories</h2>
@@ -424,6 +429,7 @@ export default function Template15({ className = "", content, flexibleContent, h
           </div>
         </div>
       </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-20 bg-red-600 text-white">

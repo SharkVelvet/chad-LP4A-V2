@@ -36,11 +36,14 @@ export function ImpersonationBanner() {
     },
   });
 
+  if (!status) {
+    return null;
+  }
+
   const isInIframe = window.self !== window.top;
   const isPreviewRoute = location.includes('/template-preview');
-  const isImpersonating = status?.isImpersonating && status?.impersonatedUser;
   
-  if (!isImpersonating || isInIframe || isPreviewRoute) {
+  if (!status.isImpersonating || !status.impersonatedUser || isInIframe || isPreviewRoute) {
     return null;
   }
 

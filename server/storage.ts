@@ -375,8 +375,16 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getPageByDomain(domain: string): Promise<Page | undefined> {
-    const [page] = await db.select().from(pages).where(eq(pages.domain, domain));
-    return page || undefined;
+    // Normalize domain by removing www. prefix for lookup
+    const normalizedDomain = domain.replace(/^www\./, '');
+    
+    // Try exact match first, then try normalized version
+    const [exactMatch] = await db.select().from(pages).where(eq(pages.domain, domain));
+    if (exactMatch) return exactMatch;
+    
+    // Try without www prefix
+    const [normalizedMatch] = await db.select().from(pages).where(eq(pages.domain, normalizedDomain));
+    return normalizedMatch || undefined;
   }
 
   async updatePage(pageId: number, data: Partial<InsertPage>): Promise<Page> {

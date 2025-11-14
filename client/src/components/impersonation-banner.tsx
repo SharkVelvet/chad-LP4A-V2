@@ -18,10 +18,6 @@ interface ImpersonationStatus {
 export function ImpersonationBanner() {
   const [location, setLocation] = useLocation();
   
-  // Hide banner in iframe (preview mode) or on template preview routes
-  const isInIframe = window.self !== window.top;
-  const isPreviewRoute = location.includes('/template-preview');
-  
   const { data: status } = useQuery<ImpersonationStatus>({
     queryKey: ["/api/admin/impersonation-status"],
     refetchInterval: 3000,
@@ -40,10 +36,11 @@ export function ImpersonationBanner() {
     },
   });
 
-  const isImpersonating = status?.isImpersonating && status.impersonatedUser;
+  const isInIframe = window.self !== window.top;
+  const isPreviewRoute = location.includes('/template-preview');
+  const isImpersonating = status?.isImpersonating && status?.impersonatedUser;
   
-  // Don't show in iframe, preview routes, or if not impersonating
-  if (!isImpersonating || isInIframe || isPreviewRoute || !status?.impersonatedUser) {
+  if (!isImpersonating || isInIframe || isPreviewRoute) {
     return null;
   }
 
@@ -53,8 +50,8 @@ export function ImpersonationBanner() {
 
   return (
     <div 
-      className="bg-red-600 text-white px-4 py-3 flex items-center justify-between shadow-md" 
-      style={{ position: 'sticky', top: 0, zIndex: 9999 }}
+      className="fixed top-0 left-0 right-0 bg-red-600 text-white px-4 py-3 flex items-center justify-between shadow-lg"
+      style={{ zIndex: 999999 }}
       data-testid="impersonation-banner"
     >
       <div className="flex items-center gap-2">

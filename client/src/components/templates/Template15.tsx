@@ -435,6 +435,7 @@ export default function Template15({ className = "", content, flexibleContent, h
       )}
 
       {/* CTA Section */}
+      {(!isSectionHidden('cta') || editMode) && (
       <section data-section-id="cta" className="py-20 bg-red-600 text-white" style={isSectionHidden('cta') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Life?</h2>

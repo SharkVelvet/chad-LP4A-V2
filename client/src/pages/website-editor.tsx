@@ -69,6 +69,14 @@ export default function WebsiteEditor() {
     address: "",
   });
 
+  // Check if currently impersonating to adjust layout
+  const { data: impersonationStatus } = useQuery<{ isImpersonating: boolean }>({
+    queryKey: ["/api/admin/impersonation-status"],
+    staleTime: 1000,
+  });
+
+  const impersonationBannerHeight = impersonationStatus?.isImpersonating ? 52 : 0;
+
   // Fetch page data
   const { data: page, isLoading: pageLoading } = useQuery<Page>({
     queryKey: ["/api/pages", String(pageId)],
@@ -1397,9 +1405,15 @@ export default function WebsiteEditor() {
 
       {/* Full-screen Edit Overlay - slides up from bottom */}
       <div
-        className={`fixed inset-0 bg-white z-50 transition-transform duration-500 ease-in-out ${
+        className={`fixed bg-white z-50 transition-transform duration-500 ease-in-out ${
           isEditOverlayOpen ? "translate-y-0" : "translate-y-full"
         }`}
+        style={{
+          top: `${impersonationBannerHeight}px`,
+          left: 0,
+          right: 0,
+          bottom: 0
+        }}
       >
         {/* Edit mode header */}
         <div className="absolute top-0 left-0 right-0 bg-white border-b h-14 flex items-center justify-between px-4 z-10">

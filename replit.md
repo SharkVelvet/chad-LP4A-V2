@@ -34,8 +34,8 @@ Preferred communication style: Simple, everyday language.
 - **Payment Processing**: Stripe integration for subscription billing, customer management, and secure payment forms.
 - **Content Management**: Dynamic website content editing, business information collection, domain preference, and media asset management.
 - **Email Automation**: Gmail API integration (via Replit connector or OAuth 2.0 for production) for OTP verification and customer notifications.
-- **Domain Management**: Cloudflare integration for custom domain SSL/HTTPS, DNS management, and multi-tenant architecture support. Namecheap API integration for domain search and purchase, including a "FREE" domain system for eligible domains.
-- **Deployment**: Replit integration for development, Vite/ESBuild for production builds, Node.js production server, and environment variable configuration.
+- **Domain Management**: Railway automatic SSL certificate provisioning for custom domains (Squarespace-like experience), Namecheap API integration for domain registration, DNS management, and automated DNS configuration. Supports "FREE" domain system for eligible .com/.net domains.
+- **Deployment**: Railway hosting with automatic SSL certificate generation and renewal, Vite/ESBuild for production builds, Node.js production server, and environment variable configuration.
 - **User Management**: Manual user creation for super admins with optional free website provisioning.
 - **Visual Editing**: Universal image and background editing system, and dynamic content refactoring for visual editing across various templates.
 
@@ -46,7 +46,7 @@ Preferred communication style: Simple, everyday language.
 - **Stripe**: Payment processing and subscription management.
 - **Gmail API**: Email delivery for OTP and notifications.
 - **Namecheap API**: Domain registration and DNS management.
-- **Cloudflare API**: DNS and SSL management for custom domains.
+- **Railway API**: Automatic SSL certificate provisioning and custom domain hosting.
 - **DigitalOcean**: Optional proxy for Namecheap API static IP whitelisting.
 
 ### Development & UI Libraries

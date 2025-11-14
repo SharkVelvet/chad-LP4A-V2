@@ -54,15 +54,18 @@ export default function EditModeOverlay({ rootRef }: EditModeOverlayProps) {
     });
 
     const handleClick = (e: Event) => {
-      const target = e.currentTarget as HTMLElement;
+      // Check the actual clicked element, not the element with the listener
+      const clickedElement = e.target as HTMLElement;
       
       // Don't handle clicks from visibility control elements
-      if (target.closest('[data-visibility-control="true"]')) {
+      if (clickedElement.closest('[data-visibility-control="true"]')) {
         return;
       }
       
       e.preventDefault();
       e.stopPropagation();
+      
+      const target = e.currentTarget as HTMLElement;
       
       let contentId = target.getAttribute('data-content-id');
       if (!contentId) {

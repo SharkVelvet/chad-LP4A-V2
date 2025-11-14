@@ -702,13 +702,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
             await railwayService.addCustomDomain(domain);
             await railwayService.addCustomDomain(wwwDomain);
             console.log(`✓ Domains ${domain} and ${wwwDomain} registered with Railway`);
+            
+            // Automatically configure DNS records to point to Railway
+            console.log(`🌐 Auto-configuring DNS for ${domain}...`);
+            const railwayDomain = `chad-lp4a-v2-production.up.railway.app`;
+            
+            // Set up DNS records
+            const dnsRecords = [
+              {
+                RecordType: "CNAME",
+                HostName: "www",
+                Address: railwayDomain,
+                TTL: "300"
+              },
+              {
+                RecordType: "ALIAS",
+                HostName: "@",
+                Address: railwayDomain,
+                TTL: "300"
+              }
+            ];
+            
+            await domainService.setDNSRecords(domain, dnsRecords);
+            console.log(`✓ DNS configured automatically for ${domain}`);
+            
+            // Mark domain as verified since we auto-configured it
+            await storage.updatePage(parseInt(pageId), { domain, domainVerified: true } as any);
           } catch (error: any) {
-            console.error(`⚠️  Railway domain registration failed: ${error.message}`);
+            console.error(`⚠️  Railway/DNS setup failed: ${error.message}`);
+            // Still update with domain even if auto-config failed
+            await storage.updatePage(parseInt(pageId), { domain, domainVerified: false } as any);
           }
+        } else {
+          // Update page with the purchased domain
+          await storage.updatePage(parseInt(pageId), { domain, domainVerified: false } as any);
         }
-        
-        // Update page with the purchased domain
-        await storage.updatePage(parseInt(pageId), { domain, domainVerified: false } as any);
       }
 
       res.json(result);

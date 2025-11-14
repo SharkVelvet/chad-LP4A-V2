@@ -284,6 +284,11 @@ export default function TemplatePreviewPage() {
         return;
       }
       
+      // Ignore clicks on visibility control buttons (section hide/show toggles)
+      if (target.closest('[data-visibility-control]')) {
+        return;
+      }
+      
       // Check if clicking on a button or link
       const button = target.closest('button, a[href]') as HTMLElement;
       if (button) {

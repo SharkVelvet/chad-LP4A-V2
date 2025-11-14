@@ -22,7 +22,7 @@ export default function EditModeOverlay({ rootRef }: EditModeOverlayProps) {
   useEffect(() => {
     if (!rootRef.current) return;
     
-    const textSelectors = 'h1, h2, h3, h4, h5, h6, p, span, a, button, li, td, th, label, div, img';
+    const textSelectors = 'h1, h2, h3, h4, h5, h6, p, span, a, li, td, th, label, div, img';
     const allElements = rootRef.current.querySelectorAll(textSelectors);
     const editableElements: HTMLElement[] = [];
     

@@ -986,50 +986,94 @@ export default function WebsiteEditor() {
                         {/* Manual DNS Instructions */}
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                           <h5 className="font-semibold text-blue-900 mb-3">📋 DNS Setup Instructions</h5>
-                          <p className="text-sm text-blue-800 mb-3">
-                            Add these DNS records at your domain registrar (GoDaddy, Namecheap, etc.):
+                          <p className="text-sm text-blue-800 mb-4">
+                            Follow these steps at your domain registrar (GoDaddy, Dreamhost, Namecheap, etc.) to connect your domain:
                           </p>
                           
-                          {/* WWW subdomain CNAME */}
-                          <div className="bg-white border border-blue-200 rounded p-3 mb-2">
-                            <p className="text-xs font-semibold text-gray-700 mb-2">For www.{page.domain}:</p>
-                            <div className="grid grid-cols-2 gap-2 text-sm">
-                              <div className="font-semibold text-gray-700">Record Type:</div>
-                              <div className="font-mono text-gray-900">CNAME</div>
-                              
-                              <div className="font-semibold text-gray-700">Name/Host:</div>
-                              <div className="font-mono text-gray-900">www</div>
-                              
-                              <div className="font-semibold text-gray-700">Points to:</div>
-                              <div className="font-mono text-gray-900">chad-lp4a-v2-production.up.railway.app</div>
-                            </div>
-                          </div>
-                          
-                          {/* Root domain instructions */}
-                          <div className="bg-white border border-blue-200 rounded p-3 mb-3">
-                            <p className="text-xs font-semibold text-gray-700 mb-2">For {page.domain} (root/apex domain):</p>
-                            <p className="text-xs text-gray-600 mb-2">
-                              Most registrars require an A record or ALIAS record for the root domain. Choose one option:
-                            </p>
-                            <div className="space-y-2">
-                              <div className="pl-3">
-                                <p className="text-xs font-semibold text-gray-700">Option 1 (Recommended): URL Redirect</p>
-                                <p className="text-xs text-gray-600">Set up a redirect from {page.domain} → www.{page.domain} in your registrar's settings</p>
+                          {/* Step 1: WWW subdomain */}
+                          <div className="bg-white border border-blue-200 rounded p-4 mb-3">
+                            <p className="text-sm font-bold text-blue-900 mb-2">Step 1: Set up www.{page.domain}</p>
+                            <p className="text-xs text-gray-600 mb-3">Add this CNAME record for the www subdomain:</p>
+                            <div className="bg-gray-50 border border-gray-200 rounded p-3 space-y-2">
+                              <div className="flex justify-between">
+                                <span className="text-xs font-semibold text-gray-700">Record Type:</span>
+                                <span className="text-xs font-mono text-gray-900">CNAME</span>
                               </div>
-                              <div className="pl-3">
-                                <p className="text-xs font-semibold text-gray-700">Option 2: ALIAS/ANAME Record</p>
-                                <p className="text-xs text-gray-600">If your registrar supports ALIAS or ANAME records, point @ to chad-lp4a-v2-production.up.railway.app</p>
+                              <div className="flex justify-between">
+                                <span className="text-xs font-semibold text-gray-700">Name/Host:</span>
+                                <span className="text-xs font-mono text-gray-900">www</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-xs font-semibold text-gray-700">Points to:</span>
+                                <span className="text-xs font-mono text-blue-600 break-all">chad-lp4a-v2-production.up.railway.app</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-xs font-semibold text-gray-700">TTL:</span>
+                                <span className="text-xs font-mono text-gray-900">Automatic (or 300)</span>
                               </div>
                             </div>
                           </div>
                           
-                          <ul className="text-xs text-blue-700 space-y-1">
-                            <li>• Log in to your domain registrar (GoDaddy, Namecheap, etc.)</li>
-                            <li>• Go to DNS Management or DNS Settings</li>
-                            <li>• Remove any existing A or AAAA records for @ and www to avoid conflicts</li>
-                            <li>• Add the DNS records as shown above</li>
-                            <li>• DNS changes typically take 5-30 minutes, but can take up to 24 hours</li>
-                          </ul>
+                          {/* Step 2: Root domain */}
+                          <div className="bg-white border border-blue-200 rounded p-4 mb-3">
+                            <p className="text-sm font-bold text-blue-900 mb-2">Step 2: Set up {page.domain} (without www)</p>
+                            <p className="text-xs text-gray-600 mb-3">Choose ONE of these options:</p>
+                            
+                            <div className="space-y-3">
+                              {/* Option 1 */}
+                              <div className="border-l-4 border-green-500 pl-3">
+                                <p className="text-xs font-bold text-green-700 mb-1">✅ Option 1: URL Redirect (RECOMMENDED)</p>
+                                <p className="text-xs text-gray-600 mb-2">
+                                  In your registrar's control panel, set up a <strong>301 Permanent Redirect</strong> from:
+                                </p>
+                                <div className="bg-gray-50 rounded p-2 mb-2">
+                                  <p className="text-xs font-mono">{page.domain} → www.{page.domain}</p>
+                                </div>
+                                <p className="text-xs text-gray-500">
+                                  This is the easiest option and works with all registrars. Look for "Forwarding", "Redirect", or "Domain Forwarding" in your registrar's settings.
+                                </p>
+                              </div>
+                              
+                              {/* Option 2 */}
+                              <div className="border-l-4 border-blue-500 pl-3">
+                                <p className="text-xs font-bold text-blue-700 mb-1">Option 2: ALIAS/ANAME Record</p>
+                                <p className="text-xs text-gray-600 mb-2">
+                                  If your registrar supports ALIAS or ANAME records, add this record:
+                                </p>
+                                <div className="bg-gray-50 border border-gray-200 rounded p-2">
+                                  <div className="space-y-1">
+                                    <div className="flex justify-between text-xs">
+                                      <span className="font-semibold text-gray-700">Record Type:</span>
+                                      <span className="font-mono">ALIAS or ANAME</span>
+                                    </div>
+                                    <div className="flex justify-between text-xs">
+                                      <span className="font-semibold text-gray-700">Name/Host:</span>
+                                      <span className="font-mono">@ (or leave blank)</span>
+                                    </div>
+                                    <div className="flex justify-between text-xs">
+                                      <span className="font-semibold text-gray-700">Points to:</span>
+                                      <span className="font-mono text-blue-600 break-all">chad-lp4a-v2-production.up.railway.app</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <p className="text-xs text-gray-500 mt-2">
+                                  Note: Not all registrars support ALIAS/ANAME records. If this option isn't available, use Option 1 instead.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Important Notes */}
+                          <div className="bg-yellow-50 border border-yellow-200 rounded p-3">
+                            <p className="text-xs font-semibold text-yellow-900 mb-2">⚠️ Important:</p>
+                            <ul className="text-xs text-yellow-800 space-y-1">
+                              <li>• Remove any existing A or AAAA records for @ and www to avoid conflicts</li>
+                              <li>• Save your changes in your registrar's control panel</li>
+                              <li>• DNS changes typically take 15-30 minutes, but can take up to 48 hours</li>
+                              <li>• Both www.{page.domain} and {page.domain} will work once DNS propagates</li>
+                              <li>• Your site will automatically have HTTPS/SSL enabled by Railway</li>
+                            </ul>
+                          </div>
                         </div>
                       </>
                     )}

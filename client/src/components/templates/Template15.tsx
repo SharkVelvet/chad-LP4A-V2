@@ -12,16 +12,19 @@ interface Template15Props {
     address?: string | null;
   };
   flexibleContent?: Record<string, string>;
+  hiddenSections?: string[];
   editMode?: boolean;
 }
 
-export default function Template15({ className = "", content, flexibleContent, editMode }: Template15Props) {
+export default function Template15({ className = "", content, flexibleContent, hiddenSections = [], editMode }: Template15Props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
   const getValue = (key: string, defaultValue: string) => {
     return flexibleContent?.[key] || defaultValue;
   };
+
+  const isSectionHidden = (sectionId: string) => hiddenSections.includes(sectionId);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
@@ -203,7 +206,8 @@ export default function Template15({ className = "", content, flexibleContent, e
       </section>
 
       {/* Opportunity Section */}
-      <section id="opportunity" className="py-20">
+      {(!isSectionHidden('opportunity') || editMode) && (
+      <section id="opportunity" className="py-20" style={isSectionHidden('opportunity') && editMode ? { opacity: 0.5, position: 'relative' } : {}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">The Opportunity of a Lifetime</h2>
@@ -245,6 +249,7 @@ export default function Template15({ className = "", content, flexibleContent, e
           </div>
         </div>
       </section>
+      )}
 
       {/* Benefits Section */}
       <section id="benefits" className="py-20 bg-gray-50">

@@ -121,7 +121,10 @@ export default function TemplatePreviewPage() {
   // Extract flexible content from the nested content JSONB field
   // The backend stores flexible content in page_content.content (JSONB)
   // which comes back as fullContent.content
-  const flexibleContent: Record<string, string> = (fullContent.content as Record<string, string>) || {};
+  const flexibleContent: Record<string, string> = (fullContent?.content as Record<string, string>) || {};
+  
+  // Extract hidden sections array with null safety
+  const hiddenSections: string[] = (fullContent?.hiddenSections as string[]) ?? [];
 
   // Track template preview view
   useEffect(() => {
@@ -696,6 +699,7 @@ export default function TemplatePreviewPage() {
                 className="w-full" 
                 content={contentData} 
                 flexibleContent={flexibleContent} 
+                hiddenSections={hiddenSections}
                 editMode={editMode} 
               />
             );
@@ -709,6 +713,7 @@ export default function TemplatePreviewPage() {
                 className="w-full" 
                 content={contentData} 
                 flexibleContent={flexibleContent} 
+                hiddenSections={hiddenSections}
                 editMode={editMode} 
               />
             );

@@ -99,14 +99,16 @@ export default function SectionVisibilityOverlay({
             onMouseEnter={(e) => {
               e.stopPropagation();
             }}
-            className={`pointer-events-auto absolute left-2 flex items-center gap-2 px-3 py-2 rounded-lg shadow-lg ${
+            className={`pointer-events-auto absolute left-2 flex items-center gap-2 px-3 py-2 rounded-lg shadow-lg select-none ${
               isHidden 
                 ? 'bg-gray-600 text-white hover:bg-gray-700' 
                 : 'bg-green-600 text-white hover:bg-green-700'
             }`}
             style={{
               top: `${topPosition}px`,
-              minWidth: '110px',
+              width: '120px',
+              height: '40px',
+              willChange: 'auto',
             }}
             title={isHidden ? `Show "${id}" section` : `Hide "${id}" section`}
             data-testid={`toggle-section-${id}`}

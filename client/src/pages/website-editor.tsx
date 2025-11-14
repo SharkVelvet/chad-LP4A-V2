@@ -737,17 +737,34 @@ export default function WebsiteEditor() {
 
                 {/* Domain Status Message */}
                 {page?.domain ? (
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                    <div className="flex items-start gap-4">
-                      <Globe className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
-                      <div>
-                        <h4 className="text-lg font-semibold text-green-900 mb-2">
-                          You have this domain name setup for this page:
-                        </h4>
-                        <p className="text-2xl font-bold text-green-700">{page.domain}</p>
+                  page?.domainVerified ? (
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                      <div className="flex items-start gap-4">
+                        <Globe className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+                        <div>
+                          <h4 className="text-lg font-semibold text-green-900 mb-2">
+                            ✅ You have this domain name setup for this page:
+                          </h4>
+                          <p className="text-2xl font-bold text-green-700">{page.domain}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                      <div className="flex items-start gap-4">
+                        <Globe className="h-6 w-6 text-yellow-600 flex-shrink-0 mt-1" />
+                        <div>
+                          <h4 className="text-lg font-semibold text-yellow-900 mb-2">
+                            ⏳ You are setting up this domain for this page:
+                          </h4>
+                          <p className="text-2xl font-bold text-yellow-700">{page.domain}</p>
+                          <p className="text-sm text-yellow-600 mt-2">
+                            DNS configuration is in progress. Your site will be live once DNS propagation completes.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )
                 ) : (
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                     <div className="flex items-start gap-4">
@@ -963,36 +980,8 @@ export default function WebsiteEditor() {
                     ) : (
                       <>
                         <p className="text-sm text-gray-600 mb-4">
-                          Your domain has been connected to this page. Configure DNS at your domain registrar to make it live.
+                          Your domain has been connected to this page. Follow the DNS setup instructions below to make it live.
                         </p>
-
-                        {/* Auto-Configure DNS Button - For legacy/manual domains */}
-                        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
-                          <h5 className="font-semibold text-green-900 mb-2">✨ Automatic DNS Configuration</h5>
-                          <p className="text-sm text-green-700 mb-3">
-                            If you purchased this domain through our platform, click below to automatically configure all DNS settings and connect to Railway.
-                          </p>
-                          <Button
-                            onClick={() => {
-                              autoConfigureDomainMutation.mutate();
-                            }}
-                            disabled={autoConfigureDomainMutation.isPending}
-                            className="bg-green-600 hover:bg-green-700"
-                            data-testid="button-auto-configure-dns"
-                          >
-                            {autoConfigureDomainMutation.isPending ? (
-                              <>
-                                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                                Configuring DNS...
-                              </>
-                            ) : (
-                              <>
-                                <Globe className="h-4 w-4 mr-2" />
-                                Auto-Configure DNS & Connect
-                              </>
-                            )}
-                          </Button>
-                        </div>
                         
                         {/* Manual DNS Instructions */}
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">

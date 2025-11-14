@@ -1,7 +1,6 @@
 import { CheckCircle, Target, Users, DollarSign, TrendingUp, Award, Shield, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X, Star, ArrowRight, Clock, Zap } from "lucide-react";
-import { useState, useRef } from "react";
-import EditModeOverlay from "./edit-mode-overlay";
-import SectionVisibilityOverlay from "./section-visibility-overlay";
+import { useState } from "react";
+import { useTemplateEditor } from "./use-template-editor";
 
 interface Template15Props {
   className?: string;
@@ -18,15 +17,13 @@ interface Template15Props {
   onToggleSectionVisibility?: (sectionId: string) => void;
 }
 
-export default function Template15({ className = "", content, flexibleContent, hiddenSections = [], editMode, onToggleSectionVisibility }: Template15Props) {
+export default function Template15({ className = "", content, flexibleContent, hiddenSections, editMode, onToggleSectionVisibility }: Template15Props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const rootRef = useRef<HTMLDivElement>(null);
+  const { rootRef, isSectionHidden, overlays } = useTemplateEditor({ editMode, hiddenSections, onToggleSectionVisibility });
 
   const getValue = (key: string, defaultValue: string) => {
     return flexibleContent?.[key] || defaultValue;
   };
-
-  const isSectionHidden = (sectionId: string) => hiddenSections.includes(sectionId);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
@@ -43,14 +40,7 @@ export default function Template15({ className = "", content, flexibleContent, h
 
   return (
     <div ref={rootRef} className={`bg-white ${className}`}>
-      {editMode && <EditModeOverlay rootRef={rootRef} />}
-      {editMode && onToggleSectionVisibility && (
-        <SectionVisibilityOverlay 
-          rootRef={rootRef} 
-          hiddenSections={hiddenSections} 
-          onToggleSection={onToggleSectionVisibility} 
-        />
-      )}
+      {overlays}
       
       {/* Header */}
       <header className="bg-white border-b border-gray-100 sticky top-0 z-50">

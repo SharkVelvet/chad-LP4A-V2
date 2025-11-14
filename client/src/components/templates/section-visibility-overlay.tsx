@@ -19,16 +19,31 @@ export default function SectionVisibilityOverlay({
     if (!rootRef.current) return;
 
     const detectSections = () => {
-      const sectionElements = rootRef.current?.querySelectorAll('section[id], div[id^="section-"]');
+      // First try data-section-id attributes (preferred)
+      let sectionElements = rootRef.current?.querySelectorAll('[data-section-id]');
+      
+      // Fallback to legacy ID-based detection if no data-section-id elements found
+      if (!sectionElements || sectionElements.length === 0) {
+        sectionElements = rootRef.current?.querySelectorAll('[id]');
+      }
+      
       const detectedSections: Array<{ id: string; element: HTMLElement; rect: DOMRect }> = [];
 
       sectionElements?.forEach((el) => {
         const element = el as HTMLElement;
-        const id = element.id;
         
-        if (id && !id.includes('headlessui')) {
+        // Prefer data-section-id, fallback to id attribute
+        const sectionId = element.getAttribute('data-section-id') || element.id;
+        
+        // For ID-based detection, only include section-like IDs
+        const validSectionIds = ['hero', 'about', 'services', 'solutions', 'training', 'support', 'opportunity', 'benefits', 'success', 'life-insurance', 'health-insurance', 'annuities', 'family-protection', 'retirement-planning', 'quotes', 'contact'];
+        
+        const isDataSectionId = element.hasAttribute('data-section-id');
+        const isValidId = element.id && validSectionIds.includes(element.id);
+        
+        if (sectionId && (isDataSectionId || isValidId)) {
           const rect = element.getBoundingClientRect();
-          detectedSections.push({ id, element, rect });
+          detectedSections.push({ id: sectionId, element, rect });
         }
       });
 

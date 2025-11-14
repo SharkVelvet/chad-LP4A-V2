@@ -1,6 +1,6 @@
 import { CheckCircle, Target, Users, GraduationCap, TrendingUp, Award, Users2, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X } from "lucide-react";
-import { useState, useRef } from "react";
-import EditModeOverlay from "./edit-mode-overlay";
+import { useState } from "react";
+import { useTemplateEditor } from "./use-template-editor";
 
 interface Template13Props {
   className?: string;
@@ -13,12 +13,14 @@ interface Template13Props {
     address: string | null;
   };
   flexibleContent?: Record<string, string>;
+  hiddenSections?: string[];
   editMode?: boolean;
+  onToggleSectionVisibility?: (sectionId: string) => void;
 }
 
-export default function Template13({ className = "", content, flexibleContent = {}, editMode = false }: Template13Props) {
+export default function Template13({ className = "", content, flexibleContent = {}, hiddenSections, editMode, onToggleSectionVisibility }: Template13Props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const rootRef = useRef<HTMLDivElement>(null);
+  const { rootRef, isSectionHidden, overlays } = useTemplateEditor({ editMode, hiddenSections, onToggleSectionVisibility });
   
   const getValue = (key: string, defaultValue: string) => flexibleContent[key] ?? defaultValue;
 
@@ -37,8 +39,8 @@ export default function Template13({ className = "", content, flexibleContent = 
 
   return (
     <>
-      {editMode && <EditModeOverlay rootRef={rootRef} />}
       <div ref={rootRef} className={`bg-white ${className}`}>
+        {overlays}
         {/* Sticky Header */}
         <div className="bg-white border-b px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-sm">
           <div 
@@ -229,7 +231,8 @@ export default function Template13({ className = "", content, flexibleContent = 
       </div>
 
       {/* Section 3: Why Top Agents Choose Delta Life */}
-      <div id="about" className="py-16 px-6">
+      {(!isSectionHidden('about') || editMode) && (
+      <div id="about" className="py-16 px-6" style={isSectionHidden('about') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-6xl mx-auto">
           {/* Main heading and description */}
           <div className="text-center mb-16">
@@ -240,7 +243,8 @@ export default function Template13({ className = "", content, flexibleContent = 
           </div>
 
           {/* Training Programs Section */}
-          <div id="training" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          {(!isSectionHidden('training') || editMode) && (
+          <div id="training" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16" style={isSectionHidden('training') && editMode ? { opacity: 0.5 } : {}}>
             {/* Left side - Image */}
             <div>
               <img 
@@ -282,8 +286,11 @@ export default function Template13({ className = "", content, flexibleContent = 
             </div>
           </div>
 
+          )}
+
           {/* Advanced Resources Section */}
-          <div id="solutions" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {(!isSectionHidden('solutions') || editMode) && (
+          <div id="solutions" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" style={isSectionHidden('solutions') && editMode ? { opacity: 0.5 } : {}}>
             {/* Left side - Resources */}
             <div>
               <h3 className="text-3xl font-bold text-red-600 mb-6">Advanced Resources & Career Support</h3>
@@ -324,11 +331,14 @@ export default function Template13({ className = "", content, flexibleContent = 
               />
             </div>
           </div>
+          )}
         </div>
       </div>
+      )}
 
       {/* Section 4: Meet Mandy */}
-      <div id="support" className="py-16 px-6 bg-gray-50">
+      {(!isSectionHidden('support') || editMode) && (
+      <div id="support" className="py-16 px-6 bg-gray-50" style={isSectionHidden('support') && editMode ? { opacity: 0.5 } : {}}>
         <div className="max-w-6xl mx-auto">
           {/* Main heading and description */}
           <div className="text-center mb-16">
@@ -405,6 +415,7 @@ export default function Template13({ className = "", content, flexibleContent = 
           </div>
         </div>
       </div>
+      )}
 
       {/* Section 5: 3 Steps to Maximize */}
       <div className="py-16 px-6">

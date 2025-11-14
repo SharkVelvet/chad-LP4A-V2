@@ -1,6 +1,5 @@
-import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
-import EditModeOverlay from "./edit-mode-overlay";
+import { useTemplateEditor } from "./use-template-editor";
 import { EditableImage } from "./editable-media";
 
 interface Template10Props {
@@ -14,11 +13,13 @@ interface Template10Props {
     address?: string | null;
   };
   flexibleContent?: Record<string, string>;
+  hiddenSections?: string[];
   editMode?: boolean;
+  onToggleSectionVisibility?: (sectionId: string) => void;
 }
 
-export default function Template10({ className = "", content, flexibleContent = {}, editMode = false }: Template10Props) {
-  const rootRef = useRef<HTMLDivElement>(null);
+export default function Template10({ className = "", content, flexibleContent = {}, hiddenSections, editMode, onToggleSectionVisibility }: Template10Props) {
+  const { rootRef, isSectionHidden, overlays } = useTemplateEditor({ editMode, hiddenSections, onToggleSectionVisibility });
 
   const getValue = (key: string, defaultValue: string) => {
     return flexibleContent?.[key] || (content as any)?.[key] || defaultValue;
@@ -34,7 +35,7 @@ export default function Template10({ className = "", content, flexibleContent = 
 
   return (
       <div ref={rootRef} className="bg-white w-full overflow-auto" style={{ height: 'auto', minHeight: '100vh' }}>
-        {editMode && <EditModeOverlay rootRef={rootRef} />}
+        {overlays}
         {/* Minimalist Header */}
         <div className="bg-red-900 text-white relative">
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">

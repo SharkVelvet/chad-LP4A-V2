@@ -1,6 +1,5 @@
-import { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Shield, Heart, GraduationCap, Home, TrendingUp, FileText, Clock, Users, Award, Star, User, Briefcase, Target, MessageSquare, CheckCircle, Car, Trophy } from "lucide-react";
-import EditModeOverlay from "./edit-mode-overlay";
+import { useTemplateEditor } from "./use-template-editor";
 import { EditableImage } from "./editable-media";
 
 interface Template11Props {
@@ -14,11 +13,13 @@ interface Template11Props {
     address?: string | null;
   };
   flexibleContent?: Record<string, string>;
+  hiddenSections?: string[];
   editMode?: boolean;
+  onToggleSectionVisibility?: (sectionId: string) => void;
 }
 
-export default function Template11({ className = "", content, flexibleContent = {}, editMode = false }: Template11Props) {
-  const rootRef = useRef<HTMLDivElement>(null);
+export default function Template11({ className = "", content, flexibleContent = {}, hiddenSections, editMode, onToggleSectionVisibility }: Template11Props) {
+  const { rootRef, isSectionHidden, overlays } = useTemplateEditor({ editMode, hiddenSections, onToggleSectionVisibility });
 
   const getValue = (key: string, defaultValue: string) => {
     return flexibleContent?.[key] || (content as any)?.[key] || defaultValue;
@@ -34,7 +35,7 @@ export default function Template11({ className = "", content, flexibleContent = 
 
   return (
       <div ref={rootRef} className={`bg-white ${className}`}>
-        {editMode && <EditModeOverlay rootRef={rootRef} />}
+        {overlays}
         {/* Header */}
         <header className="relative bg-gray-50">
           <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">

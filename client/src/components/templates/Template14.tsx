@@ -1,6 +1,6 @@
 import { CheckCircle, Target, Users, GraduationCap, TrendingUp, Award, Users2, Lightbulb, MessageSquare, HeadphonesIcon, Menu, X, Star, ArrowRight, Clock, Zap } from "lucide-react";
-import { useState, useRef } from "react";
-import EditModeOverlay from "./edit-mode-overlay";
+import { useState } from "react";
+import { useTemplateEditor } from "./use-template-editor";
 
 interface Template14Props {
   className?: string;
@@ -12,12 +12,14 @@ interface Template14Props {
     address?: string | null;
   };
   flexibleContent?: Record<string, string>;
+  hiddenSections?: string[];
   editMode?: boolean;
+  onToggleSectionVisibility?: (sectionId: string) => void;
 }
 
-export default function Template14({ className = "", content, flexibleContent, editMode }: Template14Props) {
+export default function Template14({ className = "", content, flexibleContent, hiddenSections, editMode, onToggleSectionVisibility }: Template14Props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const rootRef = useRef<HTMLDivElement>(null);
+  const { rootRef, isSectionHidden, overlays } = useTemplateEditor({ editMode, hiddenSections, onToggleSectionVisibility });
 
   const getValue = (key: string, defaultValue: string) => {
     return flexibleContent?.[key] || defaultValue;
@@ -38,7 +40,7 @@ export default function Template14({ className = "", content, flexibleContent, e
 
   return (
     <div ref={rootRef} className={`bg-white ${className}`}>
-      {editMode && <EditModeOverlay rootRef={rootRef} />}
+      {overlays}
       
       {/* Header - Matching mockup design */}
       <header className="bg-white border-b border-gray-100 sticky top-0 z-50">

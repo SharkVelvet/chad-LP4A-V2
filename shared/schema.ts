@@ -3,6 +3,9 @@ import { relations } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+export const SECTION_KEYS = ["hero", "about", "services", "why-we-serve", "testimonials", "contact", "footer"] as const;
+export type SectionKey = typeof SECTION_KEYS[number];
+
 export const locations = pgTable("locations", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
@@ -78,6 +81,7 @@ export const pageContent = pgTable("page_content", {
   logo: text("logo"),
   galleryImages: jsonb("gallery_images").$type<string[]>(),
   content: jsonb("content").$type<Record<string, string>>().notNull().default({}),
+  hiddenSections: jsonb("hidden_sections").$type<string[]>().notNull().default([]),
   isPublished: boolean("is_published").notNull().default(false),
   maintenanceMode: boolean("maintenance_mode").notNull().default(false),
   publishedAt: timestamp("published_at"),
@@ -251,6 +255,8 @@ export const insertPageContentSchema = createInsertSchema(pageContent).omit({
   id: true,
   updatedAt: true,
   publishedAt: true,
+}).extend({
+  hiddenSections: z.array(z.enum(SECTION_KEYS)).optional(),
 });
 
 export const insertFormSubmissionSchema = createInsertSchema(formSubmissions).omit({

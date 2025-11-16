@@ -980,14 +980,63 @@ export default function WebsiteEditor() {
                     ) : (
                       <>
                         <p className="text-sm text-gray-600 mb-4">
-                          Your domain has been connected to this page. Follow the DNS setup instructions below to make it live.
+                          Your domain has been connected to this page. You can automatically configure DNS or set it up manually.
                         </p>
+                        
+                        {/* Auto-Configure Button - Only for domains purchased through our system */}
+                        {(page?.domainStatus === 'pending' || page?.domainStatus === 'needs_dns_configuration') && (
+                          <div className="bg-gradient-to-r from-purple-50 to-blue-50 border-2 border-purple-200 rounded-lg p-6 mb-6">
+                            <div className="flex items-start gap-4">
+                              <div className="flex-shrink-0">
+                                <div className="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center">
+                                  <svg className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                  </svg>
+                                </div>
+                              </div>
+                              <div className="flex-1">
+                                <h5 className="text-lg font-semibold text-purple-900 mb-2">
+                                  ⚡ Automatic DNS Configuration Available
+                                </h5>
+                                <p className="text-sm text-purple-800 mb-4">
+                                  Since you purchased this domain through our system, we can automatically configure your DNS settings with one click!
+                                </p>
+                                <Button
+                                  onClick={() => autoConfigureDomainMutation.mutate()}
+                                  disabled={autoConfigureDomainMutation.isPending}
+                                  className="bg-purple-600 hover:bg-purple-700 text-white"
+                                  data-testid="button-auto-configure-dns"
+                                >
+                                  {autoConfigureDomainMutation.isPending ? (
+                                    <>
+                                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                      </svg>
+                                      Configuring DNS...
+                                    </>
+                                  ) : (
+                                    <>
+                                      <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                      </svg>
+                                      Auto-Configure DNS Now
+                                    </>
+                                  )}
+                                </Button>
+                                <p className="text-xs text-purple-600 mt-3">
+                                  💡 This will automatically point your domain to Railway and configure SSL certificates. Your site will be live in 15-30 minutes.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                         
                         {/* Manual DNS Instructions */}
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                          <h5 className="font-semibold text-blue-900 mb-3">📋 DNS Setup Instructions</h5>
+                          <h5 className="font-semibold text-blue-900 mb-3">📋 Manual DNS Setup Instructions</h5>
                           <p className="text-sm text-blue-800 mb-4">
-                            Follow these steps at your domain registrar (GoDaddy, Dreamhost, Namecheap, etc.) to connect your domain:
+                            Or, follow these steps at your domain registrar (GoDaddy, Dreamhost, Namecheap, etc.) to connect your domain manually:
                           </p>
                           
                           {/* Step 1: WWW subdomain */}

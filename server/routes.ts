@@ -1112,22 +1112,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         console.log(`✓ Railway registration complete`);
 
-        // Extract DNS targets from Railway response
+        // Extract DNS targets from Railway response or query with retry
         if (rootDomainResult.status?.dnsRecords && rootDomainResult.status.dnsRecords.length > 0) {
-          console.log(`✓ Using Railway-provided DNS targets for automated SSL`);
+          console.log(`✓ Using Railway-provided DNS targets from add response`);
           const allRailwayRecords = [
             ...(rootDomainResult.status?.dnsRecords || []),
             ...(wwwDomainResult.status?.dnsRecords || [])
           ];
           dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
         } else {
-          // Railway didn't provide DNS targets - cannot proceed safely
-          console.error(`❌ Railway didn't provide DNS targets for ${domain}`);
-          console.log(`   Cannot auto-configure DNS without Railway's verification targets`);
+          // Railway didn't provide DNS targets - query with retry logic
+          console.log(`⚠️  Railway didn't provide DNS targets in response`);
+          console.log(`   Querying Railway with automatic retry logic...`);
           
-          return res.status(500).json({ 
-            message: 'Railway did not provide DNS verification targets. Please contact support or try removing and re-adding the domain in Railway dashboard.'
-          });
+          try {
+            // Retry up to 3 times with 5-second delays
+            const railwayRecords = await railwayService.getAllDomainDnsRecords(domain, 3, 5000);
+            
+            if (railwayRecords && railwayRecords.length > 0) {
+              console.log(`✅ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
+              dnsRecords = extractDnsRecordsFromRailway(railwayRecords, domain);
+            } else {
+              // Still no DNS targets after retries
+              console.error(`❌ Could not retrieve DNS targets from Railway after retries`);
+              
+              return res.status(500).json({ 
+                message: 'Railway did not provide DNS targets after multiple attempts. DNS targets may not be ready yet. Please wait a few minutes and try again.'
+              });
+            }
+          } catch (error: any) {
+            console.error(`❌ Error fetching Railway DNS targets:`, error.message);
+            
+            return res.status(500).json({ 
+              message: `Failed to fetch Railway DNS targets: ${error.message}`
+            });
+          }
         }
       } else {
         // Railway not configured - cannot proceed

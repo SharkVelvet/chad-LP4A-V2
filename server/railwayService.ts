@@ -384,8 +384,13 @@ class RailwayService {
         const allRecords: any[] = [];
         for (const customDomain of domains) {
           if (customDomain.domain === domain || customDomain.domain === `www.${domain}`) {
-            if (customDomain.status?.dnsRecords && customDomain.status.dnsRecords.length > 0) {
+            // Safely check for status and dnsRecords
+            if (customDomain.status && 
+                Array.isArray(customDomain.status.dnsRecords) && 
+                customDomain.status.dnsRecords.length > 0) {
               allRecords.push(...customDomain.status.dnsRecords);
+            } else {
+              console.log(`   ⚠️  ${customDomain.domain}: status or dnsRecords not available`);
             }
           }
         }

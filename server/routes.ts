@@ -21,6 +21,7 @@ import { validatePassword } from "./passwords.js";
 import { domainService } from "./domainService.js";
 import { railwayService } from "./railwayService.js";
 import { RAILWAY_DOMAIN, createRailwayDnsRecords } from "./config.js";
+import { extractDnsRecordsFromRailway, serializeDnsRecords } from "./railwayHelpers.js";
 
 // Configure multer for file uploads
 const upload = multer({ 
@@ -722,20 +723,45 @@ export async function registerRoutes(app: Express): Promise<Server> {
           try {
             const wwwDomain = `www.${domain}`;
             console.log(`🚂 Auto-registering purchased domains with Railway: ${domain} and ${wwwDomain}`);
-            await railwayService.addCustomDomain(domain);
-            await railwayService.addCustomDomain(wwwDomain);
-            console.log(`✓ Domains ${domain} and ${wwwDomain} registered with Railway`);
+            
+            // Add root domain to Railway and get DNS targets
+            const rootDomainResult = await railwayService.addCustomDomain(domain);
+            
+            // Add www domain to Railway and get DNS targets  
+            const wwwDomainResult = await railwayService.addCustomDomain(wwwDomain);
+            
+            console.log(`✓ Domains registered with Railway`);
+            
+            // Extract DNS records from Railway's response
+            let dnsRecords = [];
+            
+            // Try to use Railway-provided DNS targets first
+            if (rootDomainResult.status?.dnsRecords && rootDomainResult.status.dnsRecords.length > 0) {
+              console.log(`✓ Using Railway-provided DNS targets for automated SSL certificate issuance`);
+              
+              // Combine DNS records from both domain responses
+              const allRailwayRecords = [
+                ...(rootDomainResult.status?.dnsRecords || []),
+                ...(wwwDomainResult.status?.dnsRecords || [])
+              ];
+              
+              dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
+            } else {
+              console.log(`⚠️  Railway didn't provide DNS targets, using default configuration`);
+              dnsRecords = createRailwayDnsRecords();
+            }
             
             // Automatically configure DNS records to point to Railway
             console.log(`🌐 Auto-configuring DNS for ${domain}...`);
-            await domainService.setDnsRecords(domain, createRailwayDnsRecords());
+            await domainService.setDnsRecords(domain, dnsRecords);
             console.log(`✓ DNS configured automatically for ${domain}`);
             
-            // Mark domain as verified and auto-configured
+            // Mark domain as verified and auto-configured, store Railway DNS targets
             await storage.updatePage(parseInt(pageId), { 
               domain, 
               domainVerified: true,
-              domainStatus: 'auto_configured'
+              domainStatus: 'auto_configured',
+              railwayDnsTargets: serializeDnsRecords(dnsRecords)
             } as any);
           } catch (error: any) {
             console.error(`⚠️  Railway/DNS setup failed: ${error.message}`);

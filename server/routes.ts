@@ -969,6 +969,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin endpoint to force DNS reconfiguration
+  app.post("/api/admin/domains/:domain/force-fix-dns", async (req, res) => {
+    if (!req.isAuthenticated() || req.user.role !== 'admin') {
+      return res.sendStatus(403);
+    }
+
+    try {
+      const { domain } = req.params;
+      console.log(`🔧 ADMIN: Force fixing DNS for ${domain}...`);
+
+      // Configure DNS records
+      const railwayDomain = `chad-lp4a-v2-production.up.railway.app`;
+      const dnsRecords = [
+        {
+          Name: "www",
+          Type: "CNAME",
+          Address: railwayDomain,
+          TTL: "300"
+        },
+        {
+          Name: "@",
+          Type: "ALIAS",
+          Address: railwayDomain,
+          TTL: "300"
+        }
+      ];
+      
+      await domainService.setDnsRecords(domain, dnsRecords);
+      console.log(`✅ DNS records updated to ALIAS/CNAME`);
+
+      res.json({ 
+        success: true, 
+        message: "DNS records forcefully updated",
+        records: dnsRecords
+      });
+    } catch (error: any) {
+      console.error("Force DNS fix error:", error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Complete domain setup (Railway + DNS)
   // Auto-configure DNS for purchased domain
   app.post("/api/domains/:domain/auto-configure", async (req, res) => {
@@ -977,7 +1018,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     try {
-      const { domain } = req.params;
+      const { domain} = req.params;
       
       // Find the page with this domain
       const page = await storage.getPageByDomain(domain);

@@ -236,7 +236,7 @@ class RailwayService {
   }
 
   /**
-   * Get DNS records for a specific domain
+   * Get DNS records for a specific domain using Railway's domains query
    * @param domain - The domain name
    */
   async getDomainDnsRecords(domain: string): Promise<any[]> {
@@ -247,18 +247,17 @@ class RailwayService {
     console.log(`🔍 Fetching DNS records for ${domain} from Railway...`);
 
     const query = `
-      query customDomains($serviceId: String!) {
-        customDomains(serviceId: $serviceId) {
-          edges {
-            node {
-              id
-              domain
-              status {
-                dnsRecords {
-                  fqdn
-                  recordType
-                  requiredValue
-                }
+      query domains($environmentId: String!, $serviceId: String!, $projectId: String!) {
+        domains(environmentId: $environmentId, serviceId: $serviceId, projectId: $projectId) {
+          customDomains {
+            id
+            domain
+            status {
+              dnsRecords {
+                fqdn
+                recordType
+                requiredValue
+                status
               }
             }
           }
@@ -267,7 +266,9 @@ class RailwayService {
     `;
 
     const variables = {
+      environmentId: this.config.environmentId,
       serviceId: this.config.serviceId,
+      projectId: this.config.projectId,
     };
 
     try {
@@ -284,6 +285,8 @@ class RailwayService {
       });
 
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`❌ Railway API HTTP error ${response.status}:`, errorText);
         throw new Error(`Railway API error: ${response.status}`);
       }
 
@@ -299,15 +302,15 @@ class RailwayService {
         throw new Error('Railway API returned no data');
       }
 
-      // Find the domain in the list
-      const domains = result.data?.customDomains?.edges || [];
-      const matchingDomain = domains.find((edge: any) => 
-        edge.node.domain === domain || edge.node.domain === `www.${domain}`
+      // Find the domain in the customDomains list
+      const customDomains = result.data?.domains?.customDomains || [];
+      const matchingDomain = customDomains.find((d: any) => 
+        d.domain === domain || d.domain === `www.${domain}`
       );
 
-      if (matchingDomain?.node?.status?.dnsRecords) {
-        console.log(`✓ Found ${matchingDomain.node.status.dnsRecords.length} DNS records for ${domain}`);
-        return matchingDomain.node.status.dnsRecords;
+      if (matchingDomain?.status?.dnsRecords) {
+        console.log(`✓ Found ${matchingDomain.status.dnsRecords.length} DNS records for ${domain}`);
+        return matchingDomain.status.dnsRecords;
       }
 
       console.log(`⚠️  No DNS records found for ${domain} in Railway`);

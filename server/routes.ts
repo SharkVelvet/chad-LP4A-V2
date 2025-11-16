@@ -754,11 +754,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
             } else {
               // Railway didn't provide DNS targets in add response - query for them with retry
               console.log(`⚠️  Railway didn't provide DNS targets in mutation response`);
-              console.log(`   Querying Railway with automatic retry logic...`);
+              console.log(`   Querying Railway for DNS records (root + www subdomain) with automatic retry logic...`);
               
               try {
-                // Use simpler query without retry logic first
-                const railwayRecords = await railwayService.getDomainDnsRecords(domain);
+                // Use getAllDomainDnsRecords to fetch BOTH root and www subdomain DNS records
+                const railwayRecords = await railwayService.getAllDomainDnsRecords(domain, 3, 5000);
                 
                 if (railwayRecords && railwayRecords.length > 0) {
                   console.log(`✅ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
@@ -1121,13 +1121,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
           ];
           dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
         } else {
-          // Railway didn't provide DNS targets - query with retry logic
+          // Railway didn't provide DNS targets - query with retry logic for BOTH root and www
           console.log(`⚠️  Railway didn't provide DNS targets in response`);
-          console.log(`   Querying Railway with automatic retry logic...`);
+          console.log(`   Querying Railway for DNS records (root + www subdomain) with automatic retry logic...`);
           
           try {
-            // Use simpler query method
-            const railwayRecords = await railwayService.getDomainDnsRecords(domain);
+            // Use getAllDomainDnsRecords to fetch BOTH root and www subdomain DNS records
+            const railwayRecords = await railwayService.getAllDomainDnsRecords(domain, 3, 5000);
             
             if (railwayRecords && railwayRecords.length > 0) {
               console.log(`✅ Successfully fetched ${railwayRecords.length} DNS records from Railway`);

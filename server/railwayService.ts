@@ -322,11 +322,14 @@ class RailwayService {
       throw new Error('Railway API not configured');
     }
 
+    // Get serviceEnvironmentId (required for querying custom domains)
+    const serviceEnvironmentId = await this.getServiceEnvironmentId();
+
     const query = `
-      query service($id: String!) {
-        service(id: $id) {
-          domains {
-            customDomains {
+      query serviceEnvironment($id: String!) {
+        serviceEnvironment(id: $id) {
+          customDomains {
+            nodes {
               id
               domain
               status {
@@ -344,7 +347,7 @@ class RailwayService {
     `;
 
     const variables = {
-      id: this.config.serviceId,
+      id: serviceEnvironmentId,
     };
 
     // Retry loop with exponential backoff
@@ -375,7 +378,7 @@ class RailwayService {
           throw new Error(`Railway GraphQL error: ${result.errors[0]?.message}`);
         }
 
-        const domains = result.data?.service?.domains?.customDomains || [];
+        const domains = result.data?.serviceEnvironment?.customDomains?.nodes || [];
 
         // Get DNS records for both root and www
         const allRecords: any[] = [];

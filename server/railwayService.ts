@@ -226,6 +226,7 @@ class RailwayService {
 
       const domainData = result.data.customDomainCreate;
       console.log(`✓ Domain ${domain} added to Railway successfully`);
+      console.log(`📊 Railway mutation response:`, JSON.stringify(domainData, null, 2));
       
       return domainData;
     } catch (error: any) {

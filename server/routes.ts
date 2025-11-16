@@ -732,16 +732,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
             // Set up DNS records
             const dnsRecords = [
               {
-                RecordType: "CNAME",
-                HostName: "www",
-                Address: railwayDomain,
-                TTL: "300"
+                name: "www",
+                type: "CNAME",
+                address: railwayDomain,
+                ttl: 300
               },
               {
-                RecordType: "ALIAS",
-                HostName: "@",
-                Address: railwayDomain,
-                TTL: "300"
+                name: "@",
+                type: "ALIAS",
+                address: railwayDomain,
+                ttl: 300
               }
             ];
             
@@ -983,16 +983,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const railwayDomain = `chad-lp4a-v2-production.up.railway.app`;
       const dnsRecords = [
         {
-          Name: "www",
-          Type: "CNAME",
-          Address: railwayDomain,
-          TTL: "300"
+          name: "www",
+          type: "CNAME",
+          address: railwayDomain,
+          ttl: 300
         },
         {
-          Name: "@",
-          Type: "ALIAS",
-          Address: railwayDomain,
-          TTL: "300"
+          name: "@",
+          type: "ALIAS",
+          address: railwayDomain,
+          ttl: 300
         }
       ];
       
@@ -1069,16 +1069,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const dnsRecords = [
         {
-          RecordType: "CNAME",
-          HostName: "www",
-          Address: railwayDomain,
-          TTL: "300"
+          name: "www",
+          type: "CNAME",
+          address: railwayDomain,
+          ttl: 300
         },
         {
-          RecordType: "ALIAS",
-          HostName: "@",
-          Address: railwayDomain,
-          TTL: "300"
+          name: "@",
+          type: "ALIAS",
+          address: railwayDomain,
+          ttl: 300
         }
       ];
       
@@ -1206,19 +1206,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log(`📝 Setting up DNS records for ${domain}...`);
       
       // Railway DNS configuration:
-      // - Root domain (@): Two A records pointing to Railway's IP addresses
+      // - Root domain (@): ALIAS record pointing to Railway deployment
       // - www subdomain: CNAME pointing to Railway deployment domain
       const dnsRecords = [
         {
           name: '@',
-          type: 'A',
-          address: '75.2.60.5',
-          ttl: 300
-        },
-        {
-          name: '@',
-          type: 'A',
-          address: '99.83.190.102',
+          type: 'ALIAS',
+          address: deploymentDomain,
           ttl: 300
         },
         {
@@ -2420,8 +2414,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             
             // Step 3: Set DNS records via Namecheap to point to Railway
             const dnsRecords = [
-              { name: '@', type: 'A', address: '75.2.60.5', ttl: 300 },
-              { name: '@', type: 'A', address: '99.83.190.102', ttl: 300 },
+              { name: '@', type: 'ALIAS', address: deploymentDomain, ttl: 300 },
               { name: 'www', type: 'CNAME', address: deploymentDomain, ttl: 300 }
             ];
             

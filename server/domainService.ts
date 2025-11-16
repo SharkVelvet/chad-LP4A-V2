@@ -407,6 +407,36 @@ class DomainService {
       throw new Error("Domain service not configured");
     }
 
+    // Normalize records: lowercase field names and types
+    const normalizedRecords = records.map(record => ({
+      name: record.name.toLowerCase(),
+      type: record.type.toUpperCase(),
+      address: record.address.toLowerCase(),
+      mxPref: record.mxPref,
+      ttl: record.ttl || 300
+    }));
+
+    // CRITICAL VALIDATION: Warn if Railway domains are using A records instead of ALIAS/CNAME
+    const RAILWAY_DOMAIN = 'chad-lp4a-v2-production.up.railway.app';
+    normalizedRecords.forEach(record => {
+      if (record.address.includes(RAILWAY_DOMAIN) && record.type === 'A') {
+        console.error(`⚠️  CRITICAL: Railway domain detected with A record type! Domain: ${domain}, Record:`, record);
+        throw new Error(`Invalid DNS configuration: Railway domains must use ALIAS (for @) or CNAME (for www), not A records`);
+      }
+      
+      // Validate ALIAS/CNAME usage
+      if (record.address.includes(RAILWAY_DOMAIN)) {
+        if (record.name === '@' && record.type !== 'ALIAS') {
+          console.error(`⚠️  Root domain (@) must use ALIAS record, got ${record.type}`);
+          throw new Error(`Root domain (@) must use ALIAS record type, not ${record.type}`);
+        }
+        if (record.name === 'www' && record.type !== 'CNAME') {
+          console.error(`⚠️  WWW subdomain must use CNAME record, got ${record.type}`);
+          throw new Error(`WWW subdomain must use CNAME record type, not ${record.type}`);
+        }
+      }
+    });
+
     const sld = domain.split(".")[0];
     const tld = domain.split(".").slice(1).join(".");
 
@@ -415,12 +445,12 @@ class DomainService {
       TLD: tld,
     };
 
-    records.forEach((record, index) => {
+    normalizedRecords.forEach((record, index) => {
       const i = index + 1;
       params[`HostName${i}`] = record.name;
       params[`RecordType${i}`] = record.type;
       params[`Address${i}`] = record.address;
-      params[`TTL${i}`] = (record.ttl || 1800).toString();
+      params[`TTL${i}`] = record.ttl.toString();
       
       if (record.type === "MX" && record.mxPref !== undefined) {
         params[`MXPref${i}`] = record.mxPref.toString();

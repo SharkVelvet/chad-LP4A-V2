@@ -752,21 +752,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
               
               dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
             } else {
-              // Railway didn't provide DNS targets in add response - query for them
+              // Railway didn't provide DNS targets in add response - query for them with retry
               console.log(`⚠️  Railway didn't provide DNS targets in mutation response`);
-              console.log(`   Querying Railway to fetch DNS targets...`);
+              console.log(`   Querying Railway with automatic retry logic...`);
               
-              // Wait a moment for Railway to process the domains
-              await new Promise(resolve => setTimeout(resolve, 2000));
-              
-              const railwayRecords = await railwayService.getAllDomainDnsRecords(domain);
-              
-              if (railwayRecords && railwayRecords.length > 0) {
-                console.log(`✓ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
-                dnsRecords = extractDnsRecordsFromRailway(railwayRecords, domain);
-              } else {
-                // Still no DNS targets - fail with clear message
-                console.error(`❌ Could not retrieve DNS targets from Railway`);
+              try {
+                // Retry up to 3 times with 5-second delays
+                const railwayRecords = await railwayService.getAllDomainDnsRecords(domain, 3, 5000);
+                
+                if (railwayRecords && railwayRecords.length > 0) {
+                  console.log(`✅ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
+                  dnsRecords = extractDnsRecordsFromRailway(railwayRecords, domain);
+                } else {
+                  // Still no DNS targets after retries - fail with clear message
+                  console.error(`❌ Could not retrieve DNS targets from Railway after retries`);
+                  
+                  await storage.updatePage(parseInt(pageId), { 
+                    domain, 
+                    domainVerified: false,
+                    domainStatus: 'needs_dns_configuration'
+                  } as any);
+                  
+                  return res.json({ 
+                    ...result,
+                    warning: 'Domain registered with Railway but DNS targets not available after retries. Please wait a few minutes and use the auto-configure feature to complete setup.'
+                  });
+                }
+              } catch (error: any) {
+                console.error(`❌ Error fetching Railway DNS targets:`, error.message);
                 
                 await storage.updatePage(parseInt(pageId), { 
                   domain, 
@@ -776,7 +789,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                 
                 return res.json({ 
                   ...result,
-                  warning: 'Domain registered with Railway but DNS targets not yet available. Please wait a few minutes and use the auto-configure feature to complete setup.'
+                  error: `Domain registered but failed to fetch Railway DNS targets: ${error.message}`
                 });
               }
             }

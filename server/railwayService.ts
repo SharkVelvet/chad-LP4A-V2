@@ -312,15 +312,24 @@ class RailwayService {
   }
 
   /**
-   * Get DNS records for domain and www subdomain
+   * Get DNS records for domain and www subdomain with retry logic
    * @param domain - The root domain name
+   * @param maxRetries - Maximum number of retry attempts (default 3)
+   * @param delayMs - Delay between retries in milliseconds (default 5000)
    */
-  async getAllDomainDnsRecords(domain: string): Promise<any[]> {
+  async getAllDomainDnsRecords(domain: string, maxRetries: number = 3, delayMs: number = 5000): Promise<any[]> {
+    if (!this.config) {
+      throw new Error('Railway API not configured');
+    }
+
+    // Get serviceEnvironmentId (required by Railway API)
+    const serviceEnvironmentId = await this.getServiceEnvironmentId();
+
     const query = `
-      query customDomains($serviceId: String!) {
-        customDomains(serviceId: $serviceId) {
-          edges {
-            node {
+      query serviceInstance($id: String!) {
+        serviceInstance(id: $id) {
+          domains {
+            customDomains {
               id
               domain
               status {
@@ -328,6 +337,7 @@ class RailwayService {
                   fqdn
                   recordType
                   requiredValue
+                  status
                 }
               }
             }
@@ -337,40 +347,76 @@ class RailwayService {
     `;
 
     const variables = {
-      serviceId: this.config!.serviceId,
+      id: serviceEnvironmentId,
     };
 
-    try {
-      const response = await fetch(this.apiUrl, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${this.config!.apiToken}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          query,
-          variables,
-        }),
-      });
+    // Retry loop with exponential backoff
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        console.log(`🔄 Attempt ${attempt}/${maxRetries}: Fetching DNS records for ${domain}...`);
 
-      const result = await response.json();
-      const domains = result.data?.customDomains?.edges || [];
+        const response = await fetch(this.apiUrl, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${this.config.apiToken}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query,
+            variables,
+          }),
+        });
 
-      // Get DNS records for both root and www
-      const allRecords: any[] = [];
-      for (const edge of domains) {
-        if (edge.node.domain === domain || edge.node.domain === `www.${domain}`) {
-          if (edge.node.status?.dnsRecords) {
-            allRecords.push(...edge.node.status.dnsRecords);
+        if (!response.ok) {
+          throw new Error(`Railway API error: ${response.status} ${response.statusText}`);
+        }
+
+        const result = await response.json();
+
+        if (result.errors) {
+          console.error(`Railway GraphQL errors:`, JSON.stringify(result.errors, null, 2));
+          throw new Error(`Railway GraphQL error: ${result.errors[0]?.message}`);
+        }
+
+        const domains = result.data?.serviceInstance?.domains?.customDomains || [];
+
+        // Get DNS records for both root and www
+        const allRecords: any[] = [];
+        for (const customDomain of domains) {
+          if (customDomain.domain === domain || customDomain.domain === `www.${domain}`) {
+            if (customDomain.status?.dnsRecords && customDomain.status.dnsRecords.length > 0) {
+              allRecords.push(...customDomain.status.dnsRecords);
+            }
           }
         }
-      }
 
-      return allRecords;
-    } catch (error: any) {
-      console.error('Error fetching all domain DNS records:', error.message);
-      return [];
+        if (allRecords.length > 0) {
+          console.log(`✅ Found ${allRecords.length} DNS records for ${domain}`);
+          return allRecords;
+        }
+
+        // No records yet - retry if we have attempts left
+        if (attempt < maxRetries) {
+          console.log(`⏳ No DNS records found yet, waiting ${delayMs / 1000}s before retry...`);
+          await new Promise(resolve => setTimeout(resolve, delayMs));
+        } else {
+          console.log(`⚠️  No DNS records found after ${maxRetries} attempts`);
+          return [];
+        }
+      } catch (error: any) {
+        console.error(`❌ Error on attempt ${attempt}/${maxRetries}:`, error.message);
+        
+        // Re-throw on last attempt
+        if (attempt === maxRetries) {
+          throw error;
+        }
+        
+        // Wait before retry
+        await new Promise(resolve => setTimeout(resolve, delayMs));
+      }
     }
+
+    return [];
   }
 
   /**

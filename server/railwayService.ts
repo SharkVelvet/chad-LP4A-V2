@@ -235,6 +235,145 @@ class RailwayService {
   }
 
   /**
+   * Get DNS records for a specific domain
+   * @param domain - The domain name
+   */
+  async getDomainDnsRecords(domain: string): Promise<any[]> {
+    if (!this.config) {
+      throw new Error('Railway API not configured');
+    }
+
+    console.log(`🔍 Fetching DNS records for ${domain} from Railway...`);
+
+    const query = `
+      query customDomains($serviceId: String!) {
+        customDomains(serviceId: $serviceId) {
+          edges {
+            node {
+              id
+              domain
+              status {
+                dnsRecords {
+                  fqdn
+                  recordType
+                  requiredValue
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const variables = {
+      serviceId: this.config.serviceId,
+    };
+
+    try {
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.config.apiToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query,
+          variables,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Railway API error: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      if (result.errors) {
+        throw new Error(`Railway GraphQL error: ${result.errors[0]?.message}`);
+      }
+
+      // Find the domain in the list
+      const domains = result.data?.customDomains?.edges || [];
+      const matchingDomain = domains.find((edge: any) => 
+        edge.node.domain === domain || edge.node.domain === `www.${domain}`
+      );
+
+      if (matchingDomain?.node?.status?.dnsRecords) {
+        console.log(`✓ Found ${matchingDomain.node.status.dnsRecords.length} DNS records for ${domain}`);
+        return matchingDomain.node.status.dnsRecords;
+      }
+
+      console.log(`⚠️  No DNS records found for ${domain} in Railway`);
+      return [];
+    } catch (error: any) {
+      console.error('Error fetching DNS records:', error.message);
+      return [];
+    }
+  }
+
+  /**
+   * Get DNS records for domain and www subdomain
+   * @param domain - The root domain name
+   */
+  async getAllDomainDnsRecords(domain: string): Promise<any[]> {
+    const query = `
+      query customDomains($serviceId: String!) {
+        customDomains(serviceId: $serviceId) {
+          edges {
+            node {
+              id
+              domain
+              status {
+                dnsRecords {
+                  fqdn
+                  recordType
+                  requiredValue
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const variables = {
+      serviceId: this.config!.serviceId,
+    };
+
+    try {
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.config!.apiToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query,
+          variables,
+        }),
+      });
+
+      const result = await response.json();
+      const domains = result.data?.customDomains?.edges || [];
+
+      // Get DNS records for both root and www
+      const allRecords: any[] = [];
+      for (const edge of domains) {
+        if (edge.node.domain === domain || edge.node.domain === `www.${domain}`) {
+          if (edge.node.status?.dnsRecords) {
+            allRecords.push(...edge.node.status.dnsRecords);
+          }
+        }
+      }
+
+      return allRecords;
+    } catch (error: any) {
+      console.error('Error fetching all domain DNS records:', error.message);
+      return [];
+    }
+  }
+
+  /**
    * Remove a custom domain from Railway service
    * @param domainId - The Railway domain ID
    */

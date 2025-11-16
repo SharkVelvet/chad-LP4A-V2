@@ -737,7 +737,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             
             // Try to use Railway-provided DNS targets first
             if (rootDomainResult.status?.dnsRecords && rootDomainResult.status.dnsRecords.length > 0) {
-              console.log(`✓ Using Railway-provided DNS targets for automated SSL certificate issuance`);
+              console.log(`✓ Using Railway-provided DNS targets from add response`);
               
               // Combine DNS records from both domain responses
               const allRailwayRecords = [
@@ -747,22 +747,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
               
               dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
             } else {
-              // Railway didn't provide DNS targets - domain likely already exists
-              // Don't set DNS automatically - let user manually configure via auto-configure endpoint
-              console.log(`⚠️  Railway didn't provide DNS targets (domain likely already registered)`);
-              console.log(`   User should manually trigger auto-configure to fetch DNS targets`);
+              // Railway didn't provide DNS targets in add response - query for them
+              console.log(`⚠️  Railway didn't provide DNS targets in mutation response`);
+              console.log(`   Querying Railway to fetch DNS targets...`);
               
-              await storage.updatePage(parseInt(pageId), { 
-                domain, 
-                domainVerified: false,
-                domainStatus: 'needs_dns_configuration'
-              } as any);
+              // Wait a moment for Railway to process the domains
+              await new Promise(resolve => setTimeout(resolve, 2000));
               
-              // Return early - don't set DNS with incorrect targets
-              return res.json({ 
-                ...result,
-                warning: 'Domain registered but DNS targets not available. Please use auto-configure to complete setup.'
-              });
+              const railwayRecords = await railwayService.getAllDomainDnsRecords(domain);
+              
+              if (railwayRecords && railwayRecords.length > 0) {
+                console.log(`✓ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
+                dnsRecords = extractDnsRecordsFromRailway(railwayRecords, domain);
+              } else {
+                // Still no DNS targets - fail with clear message
+                console.error(`❌ Could not retrieve DNS targets from Railway`);
+                
+                await storage.updatePage(parseInt(pageId), { 
+                  domain, 
+                  domainVerified: false,
+                  domainStatus: 'needs_dns_configuration'
+                } as any);
+                
+                return res.json({ 
+                  ...result,
+                  warning: 'Domain registered with Railway but DNS targets not yet available. Please wait a few minutes and use the auto-configure feature to complete setup.'
+                });
+              }
             }
             
             // Automatically configure DNS records to point to Railway

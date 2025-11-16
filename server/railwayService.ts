@@ -289,7 +289,13 @@ class RailwayService {
       const result = await response.json();
 
       if (result.errors) {
+        console.error('❌ Railway API returned errors:', JSON.stringify(result.errors, null, 2));
         throw new Error(`Railway GraphQL error: ${result.errors[0]?.message}`);
+      }
+
+      if (!result.data) {
+        console.error('❌ Railway API returned no data:', JSON.stringify(result, null, 2));
+        throw new Error('Railway API returned no data');
       }
 
       // Find the domain in the list
@@ -306,8 +312,8 @@ class RailwayService {
       console.log(`⚠️  No DNS records found for ${domain} in Railway`);
       return [];
     } catch (error: any) {
-      console.error('Error fetching DNS records:', error.message);
-      return [];
+      console.error('❌ Error fetching DNS records from Railway:', error.message);
+      throw new Error(`Railway API query failed: ${error.message}`);
     }
   }
 

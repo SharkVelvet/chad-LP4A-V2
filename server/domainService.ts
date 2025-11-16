@@ -457,6 +457,7 @@ class DomainService {
       }
     });
 
+    console.log(`📤 Sending to Namecheap:`, JSON.stringify(params, null, 2));
     const response = await this.makeRequest("namecheap.domains.dns.setHosts", params);
     
     // Check if the operation actually succeeded

@@ -36,7 +36,7 @@ export function extractDnsRecordsFromRailway(
 
   console.log(`📋 Railway provided ${railwayDnsRecords.length} DNS records:`);
   railwayDnsRecords.forEach(record => {
-    console.log(`   ${record.fqdn} (${record.recordType}) → ${record.requiredValue}`);
+    console.log(`   ${record.fqdn} (${record.recordType}) → ${record.requiredValue} [status: ${record.status}]`);
   });
 
   const dnsRecords: DnsRecord[] = railwayDnsRecords.map(record => {

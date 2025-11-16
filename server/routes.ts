@@ -747,8 +747,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
               
               dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
             } else {
-              console.log(`⚠️  Railway didn't provide DNS targets, using default configuration`);
-              dnsRecords = createRailwayDnsRecords();
+              // Railway didn't provide DNS targets - domain likely already exists
+              // Don't set DNS automatically - let user manually configure via auto-configure endpoint
+              console.log(`⚠️  Railway didn't provide DNS targets (domain likely already registered)`);
+              console.log(`   User should manually trigger auto-configure to fetch DNS targets`);
+              
+              await storage.updatePage(parseInt(pageId), { 
+                domain, 
+                domainVerified: false,
+                domainStatus: 'needs_dns_configuration'
+              } as any);
+              
+              // Return early - don't set DNS with incorrect targets
+              return res.json({ 
+                ...result,
+                warning: 'Domain registered but DNS targets not available. Please use auto-configure to complete setup.'
+              });
             }
             
             // Automatically configure DNS records to point to Railway
@@ -1078,13 +1092,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
           ];
           dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
         } else {
-          console.log(`⚠️  Railway didn't provide DNS targets, using default`);
-          dnsRecords = createRailwayDnsRecords();
+          // Railway didn't provide DNS targets - cannot proceed safely
+          console.error(`❌ Railway didn't provide DNS targets for ${domain}`);
+          console.log(`   Cannot auto-configure DNS without Railway's verification targets`);
+          
+          return res.status(500).json({ 
+            message: 'Railway did not provide DNS verification targets. Please contact support or try removing and re-adding the domain in Railway dashboard.'
+          });
         }
       } else {
-        // Fallback: use default Railway domain
-        console.log(`⚠️  Railway not configured, using default DNS configuration`);
-        dnsRecords = createRailwayDnsRecords();
+        // Railway not configured - cannot proceed
+        console.error(`❌ Railway API not configured, cannot auto-configure DNS`);
+        return res.status(500).json({ 
+          message: 'Railway API not configured. DNS auto-configuration unavailable.'
+        });
       }
 
       // Step 3: Configure DNS records

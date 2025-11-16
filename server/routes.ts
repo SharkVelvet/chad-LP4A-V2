@@ -2326,6 +2326,102 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Super Admin: Fix domain auto-configuration (fetch Railway DNS targets)
+  app.post("/api/admin/fix-domain/:domain", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      const { domain } = req.params;
+      
+      console.log(`🔧 ADMIN: Fixing domain configuration for ${domain}...`);
+
+      // Find the page with this domain
+      const page = await storage.getPageByDomain(domain);
+      if (!page) {
+        return res.status(404).json({ error: "Page not found for this domain" });
+      }
+
+      if (!railwayService.isConfigured()) {
+        return res.status(500).json({ error: "Railway API not configured" });
+      }
+
+      // Try to get DNS targets from Railway (domain should already be registered there)
+      const wwwDomain = `www.${domain}`;
+      console.log(`🚂 Fetching DNS targets from Railway for: ${domain} and ${wwwDomain}`);
+      
+      let rootDomainResult, wwwDomainResult;
+      
+      try {
+        rootDomainResult = await railwayService.addCustomDomain(domain);
+        console.log(`✓ ${domain} registered/verified with Railway`);
+      } catch (error: any) {
+        if (error.message?.includes('not available') || error.message?.includes('already exists')) {
+          console.log(`ℹ️  ${domain} already registered with Railway, trying to fetch existing...`);
+          rootDomainResult = { domain, id: 'existing', status: undefined };
+        } else {
+          throw error;
+        }
+      }
+      
+      try {
+        wwwDomainResult = await railwayService.addCustomDomain(wwwDomain);
+        console.log(`✓ ${wwwDomain} registered/verified with Railway`);
+      } catch (error: any) {
+        if (error.message?.includes('not available') || error.message?.includes('already exists')) {
+          console.log(`ℹ️  ${wwwDomain} already registered with Railway`);
+          wwwDomainResult = { domain: wwwDomain, id: 'existing', status: undefined };
+        } else {
+          throw error;
+        }
+      }
+
+      // Extract DNS targets from Railway response
+      let dnsRecords = [];
+      if (rootDomainResult.status?.dnsRecords && rootDomainResult.status.dnsRecords.length > 0) {
+        console.log(`✓ Railway provided fresh DNS targets`);
+        const allRailwayRecords = [
+          ...(rootDomainResult.status?.dnsRecords || []),
+          ...(wwwDomainResult.status?.dnsRecords || [])
+        ];
+        dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
+
+        // Configure DNS records
+        console.log(`🌐 Updating DNS records at Namecheap for ${domain}...`);
+        await domainService.setDnsRecords(domain, dnsRecords);
+        console.log(`✓ DNS records updated`);
+
+        // Update database with Railway DNS targets
+        await storage.updatePage(page.id, { 
+          domainVerified: true,
+          domainStatus: 'auto_configured',
+          railwayDnsTargets: serializeDnsRecords(dnsRecords)
+        } as any);
+        console.log(`✓ Database updated with Railway DNS targets`);
+
+        res.json({ 
+          success: true, 
+          message: `Fixed ${domain} - DNS targets captured and configured`,
+          dnsRecords
+        });
+      } else {
+        // Railway didn't provide DNS targets
+        console.error(`❌ Railway didn't provide DNS targets for ${domain}`);
+        console.log(`   The domain exists in Railway but no verification targets were returned`);
+        console.log(`   You may need to REMOVE the domain from Railway dashboard and re-add it`);
+        
+        res.status(500).json({ 
+          error: 'Railway did not provide DNS verification targets. Try removing and re-adding the domain in Railway dashboard, then run this again.'
+        });
+      }
+    } catch (error: any) {
+      console.error('Error fixing domain:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   // Super Admin: Create a page for an existing user
   app.post("/api/admin/create-page-for-user", async (req, res) => {
     if (!req.isAuthenticated()) return res.sendStatus(401);

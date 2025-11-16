@@ -283,12 +283,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { templateId, name, subscriptionPlan, domainPreferences } = insertPageSchema.parse(req.body);
 
+      // Super admins get unlimited free pages for testing
+      const isSuperAdmin = req.user.role === 'admin' || req.user.role === 'super_admin';
+      
       const page = await storage.createPage({
         userId: req.user.id,
         templateId,
         name,
         subscriptionPlan,
         domainPreferences,
+        // Auto-activate subscription for super admins
+        ...(isSuperAdmin && { subscriptionStatus: 'active' })
       } as any);
 
       // Create default content

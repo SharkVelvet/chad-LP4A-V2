@@ -2326,6 +2326,74 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Super Admin: Create a page for an existing user
+  app.post("/api/admin/create-page-for-user", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      const createPageSchema = z.object({
+        userId: z.number().or(z.string().transform(Number)),
+        templateId: z.number().or(z.string().transform(Number)),
+        pageName: z.string().optional(),
+        subscriptionPlan: z.string().optional().default('free'),
+      });
+
+      const validationResult = createPageSchema.safeParse(req.body);
+      if (!validationResult.success) {
+        return res.status(400).json({ 
+          error: "Validation failed", 
+          details: validationResult.error.errors 
+        });
+      }
+
+      const { userId, templateId, pageName, subscriptionPlan } = validationResult.data;
+
+      // Verify user exists
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Verify template exists
+      const template = await storage.getTemplate(templateId);
+      if (!template) {
+        return res.status(404).json({ error: "Template not found" });
+      }
+
+      // Create page
+      const page = await storage.createPage({
+        userId,
+        templateId,
+        name: pageName || `${template.name} - ${new Date().toLocaleDateString()}`,
+        subscriptionPlan,
+        subscriptionStatus: 'active',
+      });
+
+      // Create default page content
+      await storage.createPageContent({
+        pageId: page.id,
+        businessName: user.firstName ? `${user.firstName} ${user.lastName || ''}`.trim() : 'Your Business',
+        tagline: 'Your tagline here',
+        content: {},
+        hiddenSections: [],
+        isPublished: true,
+      });
+
+      res.json({
+        success: true,
+        page,
+        template,
+        user: { id: user.id, email: user.email, username: user.username }
+      });
+    } catch (error: any) {
+      console.error('Error creating page for user:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   // Super Admin: Register all existing domains with Railway
   app.post("/api/admin/register-domains-railway", async (req, res) => {
     if (!req.isAuthenticated()) return res.sendStatus(401);

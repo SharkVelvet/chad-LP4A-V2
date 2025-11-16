@@ -1626,6 +1626,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
       return res.status(400).json({ error: 'Template ID is required' });
     }
 
+    // Super admins get free pages without payment - create page directly
+    const isSuperAdmin = user.role === 'admin' || user.role === 'super_admin';
+    
+    if (isSuperAdmin) {
+      try {
+        console.log(`🎉 Super admin ${user.email} bypassing payment for template ${templateId}`);
+        
+        // Get template name
+        const template = await storage.getTemplate(templateId);
+        const templateName = template?.name || 'Unknown Template';
+        
+        // Create page directly with active subscription
+        const page = await storage.createPage({
+          userId: user.id,
+          templateId,
+          name: `${templateName} - ${new Date().toLocaleDateString()}`,
+          subscriptionPlan: 'standard',
+          subscriptionStatus: 'active'
+        } as any);
+
+        // Create default content
+        await storage.createPageContent({
+          pageId: page.id,
+          businessName: "",
+          tagline: "",
+          aboutUs: "",
+          phone: "",
+          email: user.email,
+          address: "",
+        });
+
+        console.log(`✓ Page ${page.id} created for super admin without payment`);
+
+        // Return success with page ID - frontend will redirect appropriately
+        const baseUrl = process.env.NODE_ENV === 'production' 
+          ? `https://${process.env.REPLIT_DEV_DOMAIN}`
+          : `http://localhost:${process.env.PORT || 5000}`;
+
+        return res.json({ 
+          url: `${baseUrl}/dashboard?new_page=${page.id}`,
+          isSuperAdmin: true,
+          pageId: page.id
+        });
+      } catch (error: any) {
+        console.error('Super admin page creation error:', error);
+        return res.status(500).json({ error: error.message });
+      }
+    }
+
+    // Regular users go through Stripe checkout
     if (!stripe) {
       return res.status(500).json({ error: 'Payment processing not configured' });
     }

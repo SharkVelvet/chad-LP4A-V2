@@ -1,4 +1,5 @@
 import { XMLParser } from "fast-xml-parser";
+import { RAILWAY_DOMAIN } from './config.js';
 
 const NAMECHEAP_API_URL = process.env.NAMECHEAP_SANDBOX === "true" 
   ? "https://api.sandbox.namecheap.com/xml.response"
@@ -417,7 +418,6 @@ class DomainService {
     }));
 
     // CRITICAL VALIDATION: Warn if Railway domains are using A records instead of ALIAS/CNAME
-    const RAILWAY_DOMAIN = 'chad-lp4a-v2-production.up.railway.app';
     normalizedRecords.forEach(record => {
       if (record.address.includes(RAILWAY_DOMAIN) && record.type === 'A') {
         console.error(`⚠️  CRITICAL: Railway domain detected with A record type! Domain: ${domain}, Record:`, record);

@@ -20,6 +20,7 @@ import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sen
 import { validatePassword } from "./passwords.js";
 import { domainService } from "./domainService.js";
 import { railwayService } from "./railwayService.js";
+import { RAILWAY_DOMAIN, createRailwayDnsRecords } from "./config.js";
 
 // Configure multer for file uploads
 const upload = multer({ 
@@ -727,25 +728,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             
             // Automatically configure DNS records to point to Railway
             console.log(`🌐 Auto-configuring DNS for ${domain}...`);
-            const railwayDomain = `chad-lp4a-v2-production.up.railway.app`;
-            
-            // Set up DNS records
-            const dnsRecords = [
-              {
-                name: "www",
-                type: "CNAME",
-                address: railwayDomain,
-                ttl: 300
-              },
-              {
-                name: "@",
-                type: "ALIAS",
-                address: railwayDomain,
-                ttl: 300
-              }
-            ];
-            
-            await domainService.setDnsRecords(domain, dnsRecords);
+            await domainService.setDnsRecords(domain, createRailwayDnsRecords());
             console.log(`✓ DNS configured automatically for ${domain}`);
             
             // Mark domain as verified and auto-configured
@@ -980,22 +963,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log(`🔧 ADMIN: Force fixing DNS for ${domain}...`);
 
       // Configure DNS records
-      const railwayDomain = `chad-lp4a-v2-production.up.railway.app`;
-      const dnsRecords = [
-        {
-          name: "www",
-          type: "CNAME",
-          address: railwayDomain,
-          ttl: 300
-        },
-        {
-          name: "@",
-          type: "ALIAS",
-          address: railwayDomain,
-          ttl: 300
-        }
-      ];
-      
+      const dnsRecords = createRailwayDnsRecords();
       await domainService.setDnsRecords(domain, dnsRecords);
       console.log(`✅ DNS records updated to ALIAS/CNAME`);
 
@@ -1065,24 +1033,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Step 2: Configure DNS records
       console.log(`🌐 Configuring DNS records for ${domain}...`);
-      const railwayDomain = `chad-lp4a-v2-production.up.railway.app`;
-      
-      const dnsRecords = [
-        {
-          name: "www",
-          type: "CNAME",
-          address: railwayDomain,
-          ttl: 300
-        },
-        {
-          name: "@",
-          type: "ALIAS",
-          address: railwayDomain,
-          ttl: 300
-        }
-      ];
-      
-      await domainService.setDnsRecords(domain, dnsRecords);
+      await domainService.setDnsRecords(domain, createRailwayDnsRecords());
       console.log(`✓ DNS records configured`);
 
       // Step 3: Mark domain as verified and auto-configured
@@ -1126,9 +1077,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Get actual DNS records from Namecheap
       const actualRecords = await domainService.getDnsRecords(domain);
-      
-      // Expected Railway domain
-      const railwayDomain = 'chad-lp4a-v2-production.up.railway.app';
       
       // Check for required records
       const hasWwwCname = actualRecords.some(r => 

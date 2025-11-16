@@ -757,15 +757,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
               console.log(`   Querying Railway with automatic retry logic...`);
               
               try {
-                // Retry up to 3 times with 5-second delays
-                const railwayRecords = await railwayService.getAllDomainDnsRecords(domain, 3, 5000);
+                // Use simpler query without retry logic first
+                const railwayRecords = await railwayService.getDomainDnsRecords(domain);
                 
                 if (railwayRecords && railwayRecords.length > 0) {
                   console.log(`✅ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
                   dnsRecords = extractDnsRecordsFromRailway(railwayRecords, domain);
                 } else {
-                  // Still no DNS targets after retries - fail with clear message
-                  console.error(`❌ Could not retrieve DNS targets from Railway after retries`);
+                  // No DNS targets - fail with clear message
+                  console.error(`❌ Could not retrieve DNS targets from Railway`);
                   
                   await storage.updatePage(parseInt(pageId), { 
                     domain, 
@@ -775,7 +775,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                   
                   return res.json({ 
                     ...result,
-                    warning: 'Domain registered with Railway but DNS targets not available after retries. Please wait a few minutes and use the auto-configure feature to complete setup.'
+                    warning: 'Domain registered with Railway but DNS targets not available yet. Please wait a few minutes and use the auto-configure feature to complete setup.'
                   });
                 }
               } catch (error: any) {
@@ -1126,18 +1126,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
           console.log(`   Querying Railway with automatic retry logic...`);
           
           try {
-            // Retry up to 3 times with 5-second delays
-            const railwayRecords = await railwayService.getAllDomainDnsRecords(domain, 3, 5000);
+            // Use simpler query method
+            const railwayRecords = await railwayService.getDomainDnsRecords(domain);
             
             if (railwayRecords && railwayRecords.length > 0) {
               console.log(`✅ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
               dnsRecords = extractDnsRecordsFromRailway(railwayRecords, domain);
             } else {
-              // Still no DNS targets after retries
-              console.error(`❌ Could not retrieve DNS targets from Railway after retries`);
+              // No DNS targets
+              console.error(`❌ Could not retrieve DNS targets from Railway`);
               
               return res.status(500).json({ 
-                message: 'Railway did not provide DNS targets after multiple attempts. DNS targets may not be ready yet. Please wait a few minutes and try again.'
+                message: 'Railway did not provide DNS targets. DNS targets may not be ready yet. Please wait a few minutes and try again.'
               });
             }
           } catch (error: any) {

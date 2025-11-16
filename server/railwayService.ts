@@ -304,12 +304,15 @@ class RailwayService {
 
       // Find the domain in the customDomains list
       const customDomains = result.data?.domains?.customDomains || [];
+      console.log(`📋 Railway returned ${customDomains.length} custom domains`);
+      
       const matchingDomain = customDomains.find((d: any) => 
         d.domain === domain || d.domain === `www.${domain}`
       );
 
       if (matchingDomain?.status?.dnsRecords) {
         console.log(`✓ Found ${matchingDomain.status.dnsRecords.length} DNS records for ${domain}`);
+        console.log(`📊 DNS Records:`, JSON.stringify(matchingDomain.status.dnsRecords, null, 2));
         return matchingDomain.status.dnsRecords;
       }
 

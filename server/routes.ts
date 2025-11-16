@@ -1027,45 +1027,76 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       console.log(`🚀 Auto-configuring DNS for ${domain}...`);
 
-      // Step 1: Register with Railway (skip if already registered)
-      if (railwayService.isConfigured()) {
+      let dnsRecords = [];
+
+      // Step 1: Check if we have stored Railway DNS targets
+      if (page.railwayDnsTargets && page.railwayDnsTargets.length > 0) {
+        console.log(`✓ Using stored Railway DNS targets from database`);
+        dnsRecords = page.railwayDnsTargets.map(r => ({
+          ...r,
+          ttl: 300
+        }));
+      } else if (railwayService.isConfigured()) {
+        // Step 2: Register with Railway to get fresh DNS targets
         const wwwDomain = `www.${domain}`;
-        console.log(`🚂 Registering with Railway: ${domain} and ${wwwDomain}`);
+        console.log(`🚂 Registering with Railway to get DNS targets: ${domain} and ${wwwDomain}`);
+        
+        let rootDomainResult, wwwDomainResult;
         
         try {
-          await railwayService.addCustomDomain(domain);
+          rootDomainResult = await railwayService.addCustomDomain(domain);
           console.log(`✓ ${domain} registered with Railway`);
         } catch (error: any) {
           if (error.message?.includes('not available') || error.message?.includes('already exists')) {
-            console.log(`ℹ️  ${domain} already registered with Railway, skipping...`);
+            console.log(`ℹ️  ${domain} already registered with Railway`);
+            rootDomainResult = { domain, id: 'existing', status: undefined };
           } else {
             throw error;
           }
         }
         
         try {
-          await railwayService.addCustomDomain(wwwDomain);
+          wwwDomainResult = await railwayService.addCustomDomain(wwwDomain);
           console.log(`✓ ${wwwDomain} registered with Railway`);
         } catch (error: any) {
           if (error.message?.includes('not available') || error.message?.includes('already exists')) {
-            console.log(`ℹ️  ${wwwDomain} already registered with Railway, skipping...`);
+            console.log(`ℹ️  ${wwwDomain} already registered with Railway`);
+            wwwDomainResult = { domain: wwwDomain, id: 'existing', status: undefined };
           } else {
             throw error;
           }
         }
         
         console.log(`✓ Railway registration complete`);
+
+        // Extract DNS targets from Railway response
+        if (rootDomainResult.status?.dnsRecords && rootDomainResult.status.dnsRecords.length > 0) {
+          console.log(`✓ Using Railway-provided DNS targets for automated SSL`);
+          const allRailwayRecords = [
+            ...(rootDomainResult.status?.dnsRecords || []),
+            ...(wwwDomainResult.status?.dnsRecords || [])
+          ];
+          dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
+        } else {
+          console.log(`⚠️  Railway didn't provide DNS targets, using default`);
+          dnsRecords = createRailwayDnsRecords();
+        }
+      } else {
+        // Fallback: use default Railway domain
+        console.log(`⚠️  Railway not configured, using default DNS configuration`);
+        dnsRecords = createRailwayDnsRecords();
       }
 
-      // Step 2: Configure DNS records
+      // Step 3: Configure DNS records
       console.log(`🌐 Configuring DNS records for ${domain}...`);
-      await domainService.setDnsRecords(domain, createRailwayDnsRecords());
+      await domainService.setDnsRecords(domain, dnsRecords);
       console.log(`✓ DNS records configured`);
 
-      // Step 3: Mark domain as verified and auto-configured
+      // Step 4: Mark domain as verified and auto-configured, store DNS targets
       await storage.updatePage(page.id, { 
         domainVerified: true,
-        domainStatus: 'auto_configured'
+        domainStatus: 'auto_configured',
+        railwayDnsTargets: serializeDnsRecords(dnsRecords)
       } as any);
       console.log(`✓ Domain marked as verified and auto-configured`);
 

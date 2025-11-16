@@ -427,7 +427,23 @@ class DomainService {
       }
     });
 
-    await this.makeRequest("namecheap.domains.dns.setHosts", params);
+    const response = await this.makeRequest("namecheap.domains.dns.setHosts", params);
+    
+    // Check if the operation actually succeeded
+    const result = response.CommandResponse?.DomainDNSSetHostsResult;
+    const isSuccess = result?.["@_IsSuccess"] === "true";
+    
+    if (!isSuccess) {
+      const errors = response.Errors?.Error;
+      const errorMsg = Array.isArray(errors) ? errors.map((e: any) => e['#text'] || e).join(', ') : 
+                       (typeof errors === 'object' ? errors['#text'] : errors) ||
+                       `Failed to set DNS records for ${domain}`;
+      
+      console.error(`❌ Namecheap DNS setup failed for ${domain}:`, errorMsg);
+      throw new Error(`DNS configuration failed: ${errorMsg}`);
+    }
+    
+    console.log(`✅ DNS records successfully set for ${domain}`);
     return true;
   }
 

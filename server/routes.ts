@@ -306,6 +306,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Helper function to normalize domain names
+  function normalizeDomain(domain: string | null | undefined): string {
+    if (!domain) return '';
+    return domain.trim().toLowerCase()
+      .replace(/^https?:\/\//, '')  // Remove protocol
+      .replace(/^www\./, '')         // Remove www prefix
+      .replace(/\/$/, '');            // Remove trailing slash
+  }
+
+  // Helper function to ensure domains are registered with Railway
+  async function ensureRailwayDomains(domain: string): Promise<void> {
+    if (!railwayService.isConfigured()) {
+      console.log('⚠️  Railway not configured - skipping domain registration');
+      return;
+    }
+
+    try {
+      const normalizedDomain = normalizeDomain(domain);
+      if (!normalizedDomain) return;
+
+      const wwwDomain = `www.${normalizedDomain}`;
+      
+      console.log(`🚂 Registering domains with Railway: ${normalizedDomain} and ${wwwDomain}`);
+      
+      // Register both root and www subdomain (idempotent - Railway handles duplicates)
+      await railwayService.addCustomDomain(normalizedDomain);
+      await railwayService.addCustomDomain(wwwDomain);
+      
+      console.log(`✅ Domains ${normalizedDomain} and ${wwwDomain} registered with Railway`);
+    } catch (error: any) {
+      console.error(`⚠️  Railway domain registration failed: ${error.message}`);
+      // Continue anyway - domain saved to DB, admin can manually add to Railway if needed
+    }
+  }
+
   // Update page settings
   app.put("/api/pages/:id", async (req, res) => {
     if (!req.isAuthenticated()) {
@@ -322,27 +357,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const updateData = insertPageSchema.partial().parse(req.body);
       
-      // If domain is being added/updated, automatically register it with Railway
-      if (updateData.domain && updateData.domain !== page.domain) {
-        if (railwayService.isConfigured()) {
-          try {
-            const domain = updateData.domain;
-            const wwwDomain = `www.${domain}`;
-            
-            console.log(`🚂 Auto-registering domains with Railway: ${domain} and ${wwwDomain}`);
-            
-            // Register both root and www subdomain for full coverage
-            await railwayService.addCustomDomain(domain);
-            await railwayService.addCustomDomain(wwwDomain);
-            
-            console.log(`✓ Domains ${domain} and ${wwwDomain} registered with Railway`);
-          } catch (error: any) {
-            console.error(`⚠️  Railway domain registration failed: ${error.message}`);
-            // Continue anyway - domain saved to DB, admin can manually add to Railway
-          }
-        } else {
-          console.log('⚠️  Railway not configured - domain saved but not registered with Railway');
-        }
+      // Always register domain with Railway when domain is provided (idempotent)
+      // This handles: new domains, manual connections, re-saves, updates, etc.
+      // We don't check if the domain changed - Railway registration is idempotent and
+      // this ensures manually-connected domains get registered even on re-saves
+      const normalizedDomain = normalizeDomain(updateData.domain || page.domain);
+      
+      if (normalizedDomain) {
+        await ensureRailwayDomains(normalizedDomain);
       }
       
       const updatedPage = await storage.updatePage(pageId, updateData);
@@ -1036,6 +1058,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error("Auto-configure error:", error);
       res.status(500).json({ message: error.message || "Failed to auto-configure domain" });
+    }
+  });
+
+  // Verify DNS records are actually set at Namecheap
+  app.get("/api/domains/:domain/verify-dns", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      
+      // Find the page with this domain
+      const page = await storage.getPageByDomain(domain);
+      if (!page) {
+        return res.status(404).json({ message: "Page not found for this domain" });
+      }
+      
+      // Verify user owns this page
+      if (page.userId !== req.user.id) {
+        return res.status(403).json({ message: "You do not own this domain" });
+      }
+
+      console.log(`🔍 Verifying DNS records for ${domain}...`);
+      
+      // Get actual DNS records from Namecheap
+      const actualRecords = await domainService.getDnsRecords(domain);
+      
+      // Expected Railway domain
+      const railwayDomain = 'chad-lp4a-v2-production.up.railway.app';
+      
+      // Check for required records
+      const hasWwwCname = actualRecords.some(r => 
+        r.name === 'www' && 
+        r.type === 'CNAME' && 
+        r.address.toLowerCase().includes('railway.app')
+      );
+      
+      const hasRootRecord = actualRecords.some(r => 
+        r.name === '@' && 
+        (r.type === 'ALIAS' || r.type === 'A')
+      );
+      
+      const isConfigured = hasWwwCname && hasRootRecord;
+      
+      console.log(`   www CNAME: ${hasWwwCname ? '✅' : '❌'}`);
+      console.log(`   Root record: ${hasRootRecord ? '✅' : '❌'}`);
+      
+      res.json({
+        success: true,
+        isConfigured,
+        records: actualRecords,
+        hasWwwCname,
+        hasRootRecord,
+        message: isConfigured 
+          ? 'DNS records are properly configured' 
+          : 'DNS records are missing or incorrect'
+      });
+    } catch (error: any) {
+      console.error("DNS verification error:", error);
+      res.status(500).json({ message: error.message || "Failed to verify DNS" });
     }
   });
 

@@ -44,9 +44,12 @@ export function extractDnsRecordsFromRailway(
     const isRoot = record.fqdn === domain || record.fqdn === `${domain}.`;
     const name = isRoot ? '@' : record.fqdn.replace(`.${domain}`, '').replace(`.${domain}.`, '');
 
+    // Strip "DNS_RECORD_TYPE_" prefix from Railway's enum (e.g., "DNS_RECORD_TYPE_CNAME" → "CNAME")
+    const recordType = record.recordType.replace('DNS_RECORD_TYPE_', '');
+
     return {
       name,
-      type: record.recordType,
+      type: recordType,
       address: record.requiredValue,
       ttl: 300
     };

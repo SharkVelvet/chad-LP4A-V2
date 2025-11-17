@@ -410,10 +410,11 @@ class DomainService {
     }
 
     // Normalize records: lowercase field names and types
+    // EXCEPT: TXT record values must preserve case for validation tokens
     const normalizedRecords = records.map(record => ({
       name: record.name.toLowerCase(),
       type: record.type.toUpperCase(),
-      address: record.address.toLowerCase(),
+      address: record.type.toUpperCase() === 'TXT' ? record.address : record.address.toLowerCase(),
       mxPref: record.mxPref,
       ttl: record.ttl || 300
     }));
@@ -547,7 +548,7 @@ class DomainService {
     let cnameTarget = await this.getCloudflareProxyDomain();
     
     const customHostname = await cloudflareService.createCustomHostname(domain, {
-      sslMethod: 'http',
+      sslMethod: 'txt',
       certificateAuthority: 'google',
       minTlsVersion: '1.2'
     });

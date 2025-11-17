@@ -54,7 +54,16 @@ app.use((req, res, next) => {
 
     // Custom domain handler - MUST come before Vite/static serving
     app.use(async (req: Request, res: Response, next: NextFunction) => {
+      // Check multiple possible hostname sources
       const hostname = req.hostname || req.get('host')?.split(':')[0];
+      const cfHost = req.get('cf-connecting-hostname');
+      const xForwardedHost = req.get('x-forwarded-host');
+      const actualHostname = cfHost || xForwardedHost || hostname;
+      
+      // Log hostname detection for debugging
+      if (hostname !== 'localhost' && !req.path.startsWith('/api/') && !req.path.startsWith('/attached_assets/')) {
+        console.log(`🔍 Custom domain request: hostname="${hostname}", cf-connecting-hostname="${cfHost}", x-forwarded-host="${xForwardedHost}", actual="${actualHostname}"`);
+      }
       
       // List of platform domains - requests to these go to the SPA
       const platformDomains = [
@@ -62,12 +71,13 @@ app.use((req, res, next) => {
         '127.0.0.1',
         'replit.app',
         'replit.dev',
-        'chad-lp4a-v2-production.up.railway.app'
+        'chad-lp4a-v2-production.up.railway.app',
+        'landingpagesforagentsfallback.com' // Cloudflare fallback origin - not a custom domain
       ];
 
       // If this is a platform domain or an API request, skip custom domain handling
-      if (!hostname || 
-          platformDomains.some(d => hostname.includes(d)) || 
+      if (!actualHostname || 
+          platformDomains.some(d => actualHostname.includes(d)) || 
           req.path.startsWith('/api/') ||
           req.path.startsWith('/attached_assets/')) {
         return next();
@@ -75,7 +85,7 @@ app.use((req, res, next) => {
 
       // This is a custom domain - serve the public page
       try {
-        const page = await storage.getPageByDomain(hostname);
+        const page = await storage.getPageByDomain(actualHostname);
         
         if (!page) {
           return res.status(404).send(`
@@ -84,7 +94,7 @@ app.use((req, res, next) => {
               <head><title>Page Not Found</title></head>
               <body style="font-family: system-ui; padding: 40px; text-align: center;">
                 <h1>Page Not Found</h1>
-                <p>No page is configured for domain: ${hostname}</p>
+                <p>No page is configured for domain: ${actualHostname}</p>
               </body>
             </html>
           `);

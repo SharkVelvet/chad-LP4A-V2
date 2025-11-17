@@ -77,6 +77,12 @@ export default function WebsiteEditor() {
     staleTime: 1000,
   });
 
+  // Fetch current user to check role
+  const { data: currentUser } = useQuery<{ id: number; role: string }>({
+    queryKey: ["/api/user"],
+    staleTime: 5000,
+  });
+
   const impersonationBannerHeight = impersonationStatus?.isImpersonating ? 52 : 0;
 
   // Fetch page data
@@ -996,27 +1002,6 @@ export default function WebsiteEditor() {
                             <p className="text-xs text-green-600">
                               💡 <strong>No action needed from you</strong> - everything has been configured automatically! Your site will be live at {page.domain} once DNS propagation completes.
                             </p>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="mt-4 text-xs"
-                              onClick={async () => {
-                                try {
-                                  const res = await fetch(`/api/admin/domains/${page.domain}/reset-status`, {
-                                    method: 'POST',
-                                    credentials: 'include'
-                                  });
-                                  if (res.ok) {
-                                    toast({ title: "Status reset to pending" });
-                                    queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
-                                  }
-                                } catch (error) {
-                                  console.error('Reset failed:', error);
-                                }
-                              }}
-                            >
-                              🔧 Reset Status (Testing)
-                            </Button>
                           </div>
                         </div>
                       </div>
@@ -1071,6 +1056,41 @@ export default function WebsiteEditor() {
                           </div>
                         )}
                       </>
+                    )}
+
+                    {/* Super Admin: Reset Domain Status Button */}
+                    {currentUser?.role === 'super_admin' && page?.domain && (
+                      <div className="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h5 className="text-sm font-semibold text-gray-900">Super Admin Tools</h5>
+                            <p className="text-xs text-gray-600 mt-1">Reset domain status for testing</p>
+                          </div>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={async () => {
+                              try {
+                                const res = await fetch(`/api/admin/domains/${page.domain}/reset-status`, {
+                                  method: 'POST',
+                                  credentials: 'include'
+                                });
+                                if (res.ok) {
+                                  toast({ title: "✓ Status reset to pending" });
+                                  queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
+                                } else {
+                                  toast({ title: "Failed to reset status", variant: "destructive" });
+                                }
+                              } catch (error) {
+                                console.error('Reset failed:', error);
+                                toast({ title: "Error resetting status", variant: "destructive" });
+                              }
+                            }}
+                          >
+                            🔧 Reset to Pending
+                          </Button>
+                        </div>
+                      </div>
                     )}
                   </div>
                 )}

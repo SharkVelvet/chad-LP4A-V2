@@ -809,11 +809,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
           } catch (error: any) {
             console.error(`⚠️  Railway/DNS setup failed: ${error.message}`);
             // Still update with domain even if auto-config failed
-            await storage.updatePage(parseInt(pageId), { domain, domainVerified: false } as any);
+            // CRITICAL: Set domainStatus to 'pending' so the auto-configure button appears
+            await storage.updatePage(parseInt(pageId), { 
+              domain, 
+              domainVerified: false,
+              domainStatus: 'pending'
+            } as any);
           }
         } else {
           // Update page with the purchased domain
-          await storage.updatePage(parseInt(pageId), { domain, domainVerified: false } as any);
+          // CRITICAL: Set domainStatus to 'pending' so the auto-configure button appears
+          await storage.updatePage(parseInt(pageId), { 
+            domain, 
+            domainVerified: false,
+            domainStatus: 'pending'
+          } as any);
         }
       }
 

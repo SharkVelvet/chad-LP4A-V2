@@ -1079,6 +1079,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
           ...r,
           ttl: 300
         }));
+        
+        // CRITICAL: Ensure www subdomain is included (legacy cached records may be missing it)
+        const rootCnameRecord = dnsRecords.find(r => r.name === '@' && r.type === 'CNAME');
+        const hasWwwRecord = dnsRecords.some(r => r.name === 'www');
+        
+        if (rootCnameRecord && !hasWwwRecord) {
+          console.log(`✨ Auto-adding www subdomain to cached DNS records (Railway pattern: root and www use same CNAME target)`);
+          dnsRecords.push({
+            name: 'www',
+            type: 'CNAME',
+            address: rootCnameRecord.address,
+            ttl: 300
+          });
+        }
       } else if (railwayService.isConfigured()) {
         // Step 2: Register with Railway to get fresh DNS targets
         const wwwDomain = `www.${domain}`;

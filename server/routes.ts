@@ -1172,6 +1172,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Step 3: Configure DNS records
       console.log(`🌐 Configuring DNS records for ${domain}...`);
+      console.log(`   Sending ${dnsRecords.length} records to Namecheap:`);
+      dnsRecords.forEach((r, i) => {
+        console.log(`   [${i+1}] ${r.name} (${r.type}) → ${r.address}`);
+      });
       await domainService.setDnsRecords(domain, dnsRecords);
       console.log(`✓ DNS records configured`);
 

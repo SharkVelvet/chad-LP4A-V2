@@ -201,6 +201,10 @@ class CloudflareService {
     }
   }
 
+  async findExistingCustomHostname(hostname: string): Promise<CustomHostname | null> {
+    return this.getCustomHostnameByHostname(hostname);
+  }
+
   async listCustomHostnames(page: number = 1, perPage: number = 50): Promise<CustomHostname[]> {
     try {
       const response = await axios.get(

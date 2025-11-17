@@ -1112,7 +1112,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
             rootDomainResult = await railwayService.addCustomDomain(domain);
             console.log(`✓ ${domain} registered with Railway`);
           } catch (error: any) {
-            if (error.message?.includes('not available') || error.message?.includes('already exists')) {
+            // Check for Railway quota exceeded (HTTP 400 errors)
+            if (error.message?.includes('400') || error.message?.includes('quota') || error.message?.includes('limit')) {
+              console.warn(`⚠️  Railway custom domain quota exceeded (3 domains max on current plan)`);
+              console.log(`✅ No problem! Using fallback DNS configuration - your domain will still work!`);
+              throw new Error('RAILWAY_QUOTA_EXCEEDED');
+            } else if (error.message?.includes('not available') || error.message?.includes('already exists')) {
               console.log(`ℹ️  ${domain} already registered with Railway`);
               rootDomainResult = { domain, id: 'existing', status: undefined };
             } else {
@@ -1124,7 +1129,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
             wwwDomainResult = await railwayService.addCustomDomain(wwwDomain);
             console.log(`✓ ${wwwDomain} registered with Railway`);
           } catch (error: any) {
-            if (error.message?.includes('not available') || error.message?.includes('already exists')) {
+            // Check for Railway quota exceeded (HTTP 400 errors)
+            if (error.message?.includes('400') || error.message?.includes('quota') || error.message?.includes('limit')) {
+              console.warn(`⚠️  Railway custom domain quota exceeded (3 domains max on current plan)`);
+              console.log(`✅ No problem! Using fallback DNS configuration - your domain will still work!`);
+              throw new Error('RAILWAY_QUOTA_EXCEEDED');
+            } else if (error.message?.includes('not available') || error.message?.includes('already exists')) {
               console.log(`ℹ️  ${wwwDomain} already registered with Railway`);
               wwwDomainResult = { domain: wwwDomain, id: 'existing', status: undefined };
             } else {

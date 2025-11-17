@@ -57,14 +57,8 @@ export function extractDnsRecordsFromRailway(
 
   // IMPORTANT: Railway often returns only the root domain DNS record, but both root and www need to be configured
   // Automatically add www subdomain DNS record if we have a root CNAME record
-  console.log(`🔍 DEBUG: Checking for root CNAME record...`);
-  console.log(`   DNS records before www check:`, JSON.stringify(dnsRecords, null, 2));
-  
   const rootCnameRecord = dnsRecords.find(r => r.name === '@' && r.type === 'CNAME');
   const hasWwwRecord = dnsRecords.some(r => r.name === 'www');
-  
-  console.log(`   Root CNAME found: ${!!rootCnameRecord}`);
-  console.log(`   WWW record exists: ${hasWwwRecord}`);
   
   if (rootCnameRecord && !hasWwwRecord) {
     console.log(`✨ Auto-adding www subdomain DNS record (Railway pattern: root and www use same CNAME target)`);
@@ -74,8 +68,6 @@ export function extractDnsRecordsFromRailway(
       address: rootCnameRecord.address,
       ttl: 300
     });
-  } else {
-    console.log(`⚠️  Skipping www subdomain: rootCNAME=${!!rootCnameRecord}, hasWWW=${hasWwwRecord}`);
   }
 
   console.log(`✓ Formatted ${dnsRecords.length} DNS records for Namecheap:`);

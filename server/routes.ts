@@ -1058,8 +1058,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
         cnameTarget = page.cloudflareCnameTarget;
       } else {
         console.log(`🌐 Creating new Cloudflare custom hostname for ${domain}...`);
-        cloudflareResult = await domainService.setupCloudflareForSaaS(domain);
-        cnameTarget = cloudflareResult.cnameTarget;
+        try {
+          cloudflareResult = await domainService.setupCloudflareForSaaS(domain);
+          cnameTarget = cloudflareResult.cnameTarget;
+        } catch (error: any) {
+          // Handle duplicate custom hostname error (Code: 1408)
+          if (error.message && error.message.includes('1408')) {
+            console.log(`ℹ️  Custom hostname already exists for ${domain}, fetching existing one...`);
+            
+            // Fetch the existing custom hostname
+            const existingHostname = await cloudflareService.findExistingCustomHostname(domain);
+            
+            if (!existingHostname) {
+              throw new Error('Duplicate custom hostname found but could not retrieve it');
+            }
+            
+            // Extract TXT validation records
+            const txtRecords: Array<{ name: string; value: string }> = [];
+            if (existingHostname?.ssl?.validation_records) {
+              for (const record of existingHostname.ssl.validation_records) {
+                if (record.txt_name && record.txt_value) {
+                  txtRecords.push({
+                    name: record.txt_name,
+                    value: record.txt_value
+                  });
+                }
+              }
+            }
+            
+            cloudflareResult = {
+              customHostnameId: existingHostname.id,
+              cnameTarget: existingHostname.ownership_verification?.value || `landingpagesforagentsfallback.com`,
+              status: existingHostname.status || 'pending',
+              sslStatus: existingHostname.ssl?.status || 'pending_validation',
+              txtRecords: txtRecords.length > 0 ? txtRecords : undefined
+            };
+            cnameTarget = cloudflareResult.cnameTarget;
+            
+            console.log(`✓ Retrieved existing custom hostname: ${existingHostname.id}`);
+          } else {
+            throw error;
+          }
+        }
       }
 
       console.log(`🌐 Configuring DNS to point to Cloudflare...`);

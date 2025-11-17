@@ -55,6 +55,10 @@ export const pages = pgTable("pages", {
   domainStatus: text("domain_status").default("pending"), // pending, propagating, active
   domainPreferences: jsonb("domain_preferences").$type<string[]>(),
   railwayDnsTargets: jsonb("railway_dns_targets").$type<Array<{name: string, type: string, address: string}>>(),
+  cloudflareCustomHostnameId: text("cloudflare_custom_hostname_id"),
+  cloudflareHostnameStatus: text("cloudflare_hostname_status"),
+  cloudflareSslStatus: text("cloudflare_ssl_status"),
+  cloudflareCnameTarget: text("cloudflare_cname_target"),
   cloudflareZoneId: text("cloudflare_zone_id"),
   cloudflareNameservers: jsonb("cloudflare_nameservers").$type<string[]>(),
   route53ZoneId: text("route53_zone_id"),

@@ -972,7 +972,7 @@ export default function WebsiteEditor() {
                               </ul>
                             </div>
                             <p className="text-xs text-green-600">
-                              💡 No action needed from you - everything has been configured automatically! Your site will be live at {page.domain} once DNS propagation completes.
+                              💡 <strong>No action needed from you</strong> - everything has been configured automatically! Your site will be live at {page.domain} once DNS propagation completes.
                             </p>
                           </div>
                         </div>

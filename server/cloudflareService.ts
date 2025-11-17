@@ -545,9 +545,16 @@ class CloudflareService {
     proxied: boolean = true
   ): Promise<DNSRecord> {
     try {
+      const zone = await this.getZoneDetails();
+      if (!zone) {
+        throw new Error('Could not get zone details');
+      }
+      
+      const fullName = name.includes('.') ? name : `${name}.${zone.name}`;
+      
       const existingRecords = await this.getDNSRecords(zoneId);
       const existingRecord = existingRecords.find(
-        r => r.type === type && r.name === name
+        r => r.type === type && (r.name === name || r.name === fullName)
       );
 
       if (existingRecord) {

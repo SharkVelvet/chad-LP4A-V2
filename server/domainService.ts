@@ -567,25 +567,32 @@ class DomainService {
   }
 
   async getCloudflareProxyDomain(): Promise<string> {
-    const fallbackOrigin = await cloudflareService.getFallbackOrigin();
+    let fallbackOrigin = await cloudflareService.getFallbackOrigin();
     
     if (fallbackOrigin && fallbackOrigin.origin) {
       console.log(`✓ Using existing fallback origin: ${fallbackOrigin.origin}`);
+      
+      const dnsRecords = await cloudflareService.getDNSRecords(process.env.CLOUDFLARE_ZONE_ID!);
+      const zone = await cloudflareService.getZoneDetails();
+      const fallbackRecord = dnsRecords.find(r => 
+        r.type === 'CNAME' && 
+        r.name === `customers.${zone?.name}` && 
+        r.proxied === true
+      );
+      
+      if (!fallbackRecord) {
+        console.log(`⚠️  Fallback DNS record missing - recreating...`);
+        const hostname = await cloudflareService.createFallbackOriginDNS(RAILWAY_DOMAIN);
+        return hostname;
+      }
+      
       return fallbackOrigin.origin;
     }
     
     console.log(`⚠️  No fallback origin configured - setting up...`);
     
     try {
-      const zone = await cloudflareService.getZoneDetails();
-      if (!zone) {
-        throw new Error('Could not get zone details');
-      }
-
-      const fallbackHostname = `customers.${zone.name}`;
-      
-      console.log(`📡 Creating fallback origin DNS: ${fallbackHostname} → ${RAILWAY_DOMAIN}`);
-      await cloudflareService.createFallbackOriginDNS(RAILWAY_DOMAIN);
+      const fallbackHostname = await cloudflareService.createFallbackOriginDNS(RAILWAY_DOMAIN);
       
       console.log(`📡 Setting fallback origin to: ${fallbackHostname}`);
       await cloudflareService.setFallbackOrigin(fallbackHostname);
@@ -594,8 +601,7 @@ class DomainService {
       return fallbackHostname;
     } catch (error: any) {
       console.error(`❌ Failed to set up fallback origin:`, error.message);
-      console.log(`ℹ️  Falling back to Railway domain directly: ${RAILWAY_DOMAIN}`);
-      return RAILWAY_DOMAIN;
+      throw new Error(`Failed to configure fallback origin: ${error.message}`);
     }
   }
 
@@ -622,14 +628,25 @@ class DomainService {
       }
     ];
 
-    try {
-      await this.setDnsRecords(domain, records);
-      console.log(`✅ DNS configured for ${domain}`);
-      return true;
-    } catch (error: any) {
-      console.error(`❌ Failed to configure DNS for ${domain}:`, error.message);
-      throw error;
+    let lastError: any = null;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        await this.setDnsRecords(domain, records);
+        console.log(`✅ DNS configured for ${domain} (attempt ${attempt})`);
+        return true;
+      } catch (error: any) {
+        lastError = error;
+        console.error(`❌ DNS configuration attempt ${attempt} failed:`, error.message);
+        if (attempt < 3) {
+          const delay = attempt * 2000;
+          console.log(`   Retrying in ${delay}ms...`);
+          await new Promise(resolve => setTimeout(resolve, delay));
+        }
+      }
     }
+    
+    console.error(`❌ All DNS configuration attempts failed for ${domain}`);
+    throw lastError;
   }
 
   async checkCloudflareStatus(customHostnameId: string): Promise<{

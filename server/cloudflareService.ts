@@ -344,12 +344,11 @@ class CloudflareService {
     }
   }
 
-  async createFallbackOriginDNS(railwayDomain: string): Promise<boolean> {
+  async createFallbackOriginDNS(railwayDomain: string): Promise<string> {
     try {
       const zone = await this.getZoneDetails();
       if (!zone) {
-        console.error('❌ Could not get zone details');
-        return false;
+        throw new Error('Could not get zone details');
       }
 
       const fallbackHostname = `customers.${zone.name}`;
@@ -359,16 +358,16 @@ class CloudflareService {
       await this.createOrUpdateDNSRecord(
         this.zoneId,
         'CNAME',
-        fallbackHostname,
+        'customers',
         railwayDomain,
         true
       );
 
-      console.log(`✅ Fallback origin DNS record created`);
-      return true;
+      console.log(`✅ Fallback origin DNS record created at customers.${zone.name}`);
+      return fallbackHostname;
     } catch (error: any) {
       console.error('Error creating fallback origin DNS:', error.response?.data || error.message);
-      return false;
+      throw error;
     }
   }
 

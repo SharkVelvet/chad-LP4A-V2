@@ -1062,8 +1062,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           cloudflareResult = await domainService.setupCloudflareForSaaS(domain);
           cnameTarget = cloudflareResult.cnameTarget;
         } catch (error: any) {
-          // Handle duplicate custom hostname error (Code: 1408)
-          if (error.message && error.message.includes('1408')) {
+          // Handle duplicate custom hostname error (Code: 1406 or 1408)
+          if (error.message && (error.message.includes('1406') || error.message.includes('1408') || error.message.includes('Duplicate custom hostname'))) {
             console.log(`ℹ️  Custom hostname already exists for ${domain}, fetching existing one...`);
             
             // Fetch the existing custom hostname

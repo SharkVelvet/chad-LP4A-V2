@@ -1792,7 +1792,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
           
           // Update page with the purchased domain
-          await storage.updatePage(pageId, { domain, domainVerified: false } as any);
+          await storage.updatePage(pageId, { 
+            domain, 
+            domainVerified: false,
+            domainStatus: 'pending'
+          } as any);
           return res.json({ 
             success: true, 
             isFree: true,

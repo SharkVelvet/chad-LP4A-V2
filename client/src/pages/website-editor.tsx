@@ -138,6 +138,28 @@ export default function WebsiteEditor() {
     }
   }, [page]);
 
+  // Handle Stripe checkout success return
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+    const success = urlParams.get('success');
+    
+    if ((sessionId || success === 'true') && page?.domain && !page?.domainVerified) {
+      // User just returned from Stripe - show the Domain section and activate button
+      setActiveSection("domain");
+      
+      // Clear URL parameters
+      window.history.replaceState({}, '', window.location.pathname);
+      
+      // Show toast to guide user
+      toast({
+        title: "Domain Purchased Successfully!",
+        description: "Click the button below to activate your domain and go live.",
+        duration: 8000,
+      });
+    }
+  }, [page, toast]);
+
   // Save flexible content mutation (for any content ID)
   const saveFlexibleContentMutation = useMutation({
     mutationFn: async ({ contentId, value }: { contentId: string; value: string }) => {

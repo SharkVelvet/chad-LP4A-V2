@@ -996,6 +996,27 @@ export default function WebsiteEditor() {
                             <p className="text-xs text-green-600">
                               💡 <strong>No action needed from you</strong> - everything has been configured automatically! Your site will be live at {page.domain} once DNS propagation completes.
                             </p>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="mt-4 text-xs"
+                              onClick={async () => {
+                                try {
+                                  const res = await fetch(`/api/admin/domains/${page.domain}/reset-status`, {
+                                    method: 'POST',
+                                    credentials: 'include'
+                                  });
+                                  if (res.ok) {
+                                    toast({ title: "Status reset to pending" });
+                                    queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
+                                  }
+                                } catch (error) {
+                                  console.error('Reset failed:', error);
+                                }
+                              }}
+                            >
+                              🔧 Reset Status (Testing)
+                            </Button>
                           </div>
                         </div>
                       </div>

@@ -560,11 +560,15 @@ class DomainService {
     console.log(`   SSL Status: ${customHostname.ssl.status}`);
     console.log(`   CNAME Target: ${cnameTarget}`);
 
-    // Extract TXT validation records from Cloudflare response
+    // TXT records may not be in the initial response - fetch the hostname again to get them
+    console.log(`⏳ Fetching TXT validation records (may take a moment)...`);
+    await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2 seconds
+    
+    const refreshedHostname = await cloudflareService.getCustomHostname(customHostname.id);
     const txtRecords: Array<{ name: string; value: string }> = [];
     
-    if (customHostname.ssl?.validation_records) {
-      for (const record of customHostname.ssl.validation_records) {
+    if (refreshedHostname?.ssl?.validation_records) {
+      for (const record of refreshedHostname.ssl.validation_records) {
         if (record.txt_name && record.txt_value) {
           txtRecords.push({
             name: record.txt_name,
@@ -573,6 +577,10 @@ class DomainService {
           console.log(`   📝 TXT Record: ${record.txt_name} = ${record.txt_value.substring(0, 20)}...`);
         }
       }
+    }
+    
+    if (txtRecords.length === 0) {
+      console.log(`   ⚠️  No TXT validation records found yet - they may appear after DNS is configured`);
     }
 
     return {

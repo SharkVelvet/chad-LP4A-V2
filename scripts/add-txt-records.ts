@@ -1,8 +1,8 @@
 import { cloudflareService } from '../server/cloudflareService.js';
 import { domainService } from '../server/domainService.js';
 
-const CUSTOM_HOSTNAME_ID = '417b895c-394e-4d52-80f8-90cd6fee6e59';
-const DOMAIN = '5150insurance.com';
+const CUSTOM_HOSTNAME_ID = 'a29239c1-4a49-41f8-b7ed-cf91b9c3510d';
+const DOMAIN = 'vanhaleninsurance.com';
 
 async function addTxtRecords() {
   try {

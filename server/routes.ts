@@ -19,6 +19,7 @@ import {
 import { sendCustomerNotification, sendCustomerReceipt, testEmailConnection, sendCustomSolutionInquiry, sendContactFormSubmission } from "./email.js";
 import { validatePassword } from "./passwords.js";
 import { domainService } from "./domainService.js";
+import { cloudflareService } from "./cloudflareService.js";
 import { railwayService } from "./railwayService.js";
 import { RAILWAY_DOMAIN, createRailwayDnsRecords } from "./config.js";
 import { extractDnsRecordsFromRailway, serializeDnsRecords } from "./railwayHelpers.js";
@@ -1030,11 +1031,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       if (page.cloudflareCustomHostnameId && page.cloudflareCnameTarget) {
         console.log(`✓ Using existing Cloudflare custom hostname: ${page.cloudflareCustomHostnameId}`);
+        
+        // CRITICAL: Fetch latest data from Cloudflare to get TXT validation records
+        const hostname = await cloudflareService.getCustomHostname(page.cloudflareCustomHostnameId);
+        
+        // Extract TXT validation records
+        const txtRecords: Array<{ name: string; value: string }> = [];
+        if (hostname?.ssl?.validation_records) {
+          for (const record of hostname.ssl.validation_records) {
+            if (record.txt_name && record.txt_value) {
+              txtRecords.push({
+                name: record.txt_name,
+                value: record.txt_value
+              });
+            }
+          }
+        }
+        
         cloudflareResult = {
           customHostnameId: page.cloudflareCustomHostnameId,
           cnameTarget: page.cloudflareCnameTarget,
-          status: page.cloudflareHostnameStatus || 'pending',
-          sslStatus: page.cloudflareSslStatus || 'pending_validation'
+          status: hostname?.status || page.cloudflareHostnameStatus || 'pending',
+          sslStatus: hostname?.ssl?.status || page.cloudflareSslStatus || 'pending_validation',
+          txtRecords: txtRecords.length > 0 ? txtRecords : undefined
         };
         cnameTarget = page.cloudflareCnameTarget;
       } else {

@@ -1153,19 +1153,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
               console.log(`✅ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
               dnsRecords = extractDnsRecordsFromRailway(railwayRecords, domain);
             } else {
-              // No DNS targets
-              console.error(`❌ Could not retrieve DNS targets from Railway`);
-              
-              return res.status(500).json({ 
-                message: 'Railway did not provide DNS targets. DNS targets may not be ready yet. Please wait a few minutes and try again.'
-              });
+              // Railway API didn't return DNS records - use fallback
+              console.warn(`⚠️  Railway didn't return DNS records, using fallback configuration`);
+              dnsRecords = createRailwayDnsRecords();
             }
           } catch (error: any) {
-            console.error(`❌ Error fetching Railway DNS targets:`, error.message);
+            // Railway API failed (e.g., 400 error) - use fallback to ensure domain still gets configured
+            console.warn(`⚠️  Railway API error (${error.message}), using fallback DNS configuration`);
+            console.log(`   Railway is experiencing intermittent issues, but we'll still configure your domain automatically`);
             
-            return res.status(500).json({ 
-              message: `Failed to fetch Railway DNS targets: ${error.message}`
-            });
+            // Use default Railway DNS records as fallback
+            dnsRecords = createRailwayDnsRecords();
           }
         }
       } else {

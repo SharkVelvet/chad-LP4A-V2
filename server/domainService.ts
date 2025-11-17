@@ -542,14 +542,13 @@ class DomainService {
     cnameTarget: string;
     status: string;
     sslStatus: string;
-    txtRecords?: Array<{ name: string; value: string }>;
   }> {
     console.log(`🌐 Setting up Cloudflare for SaaS for ${domain}...`);
     
     let cnameTarget = await this.getCloudflareProxyDomain();
     
     const customHostname = await cloudflareService.createCustomHostname(domain, {
-      sslMethod: 'txt',
+      sslMethod: 'http',
       certificateAuthority: 'google',
       minTlsVersion: '1.2'
     });
@@ -558,37 +557,14 @@ class DomainService {
     console.log(`   Hostname ID: ${customHostname.id}`);
     console.log(`   Status: ${customHostname.status}`);
     console.log(`   SSL Status: ${customHostname.ssl.status}`);
+    console.log(`   SSL Method: HTTP validation (automatic)`);
     console.log(`   CNAME Target: ${cnameTarget}`);
-
-    // TXT records may not be in the initial response - fetch the hostname again to get them
-    console.log(`⏳ Fetching TXT validation records (may take a moment)...`);
-    await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2 seconds
-    
-    const refreshedHostname = await cloudflareService.getCustomHostname(customHostname.id);
-    const txtRecords: Array<{ name: string; value: string }> = [];
-    
-    if (refreshedHostname?.ssl?.validation_records) {
-      for (const record of refreshedHostname.ssl.validation_records) {
-        if (record.txt_name && record.txt_value) {
-          txtRecords.push({
-            name: record.txt_name,
-            value: record.txt_value
-          });
-          console.log(`   📝 TXT Record: ${record.txt_name} = ${record.txt_value.substring(0, 20)}...`);
-        }
-      }
-    }
-    
-    if (txtRecords.length === 0) {
-      console.log(`   ⚠️  No TXT validation records found yet - they may appear after DNS is configured`);
-    }
 
     return {
       customHostnameId: customHostname.id,
       cnameTarget,
       status: customHostname.status,
-      sslStatus: customHostname.ssl.status,
-      txtRecords: txtRecords.length > 0 ? txtRecords : undefined
+      sslStatus: customHostname.ssl.status
     };
   }
 

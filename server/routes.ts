@@ -732,23 +732,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           console.log(`🌐 Configuring DNS to point to Cloudflare...`);
           await domainService.configureCloudflareDNS(domain, cloudflareResult.cnameTarget);
           
-          // ✨ CRITICAL: Automatically add TXT validation records for SSL
-          if (cloudflareResult.txtRecords && cloudflareResult.txtRecords.length > 0) {
-            console.log(`🔐 Adding ${cloudflareResult.txtRecords.length} TXT validation record(s) for SSL...`);
-            
-            const currentRecords = await domainService.getDnsRecords(domain);
-            const txtRecordsToAdd = cloudflareResult.txtRecords.map(txt => ({
-              name: txt.name.replace(`.${domain}`, ''),
-              type: 'TXT' as const,
-              address: txt.value,
-              ttl: 300
-            }));
-
-            await domainService.setDnsRecords(domain, [...currentRecords, ...txtRecordsToAdd]);
-            console.log(`✅ TXT validation records added automatically - SSL will issue within minutes`);
-          }
-          
-          console.log(`✅ Domain ${domain} configured with Cloudflare for SaaS`);
+          console.log(`✅ Domain ${domain} configured with Cloudflare for SaaS (HTTP validation - automatic)`);
           
           await storage.updatePage(parseInt(pageId), { 
             domain, 
@@ -1032,28 +1016,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (page.cloudflareCustomHostnameId && page.cloudflareCnameTarget) {
         console.log(`✓ Using existing Cloudflare custom hostname: ${page.cloudflareCustomHostnameId}`);
         
-        // CRITICAL: Fetch latest data from Cloudflare to get TXT validation records
         const hostname = await cloudflareService.getCustomHostname(page.cloudflareCustomHostnameId);
-        
-        // Extract TXT validation records
-        const txtRecords: Array<{ name: string; value: string }> = [];
-        if (hostname?.ssl?.validation_records) {
-          for (const record of hostname.ssl.validation_records) {
-            if (record.txt_name && record.txt_value) {
-              txtRecords.push({
-                name: record.txt_name,
-                value: record.txt_value
-              });
-            }
-          }
-        }
         
         cloudflareResult = {
           customHostnameId: page.cloudflareCustomHostnameId,
           cnameTarget: page.cloudflareCnameTarget,
           status: hostname?.status || page.cloudflareHostnameStatus || 'pending',
-          sslStatus: hostname?.ssl?.status || page.cloudflareSslStatus || 'pending_validation',
-          txtRecords: txtRecords.length > 0 ? txtRecords : undefined
+          sslStatus: hostname?.ssl?.status || page.cloudflareSslStatus || 'pending_validation'
         };
         cnameTarget = page.cloudflareCnameTarget;
       } else {
@@ -1073,25 +1042,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
               throw new Error('Duplicate custom hostname found but could not retrieve it');
             }
             
-            // Extract TXT validation records
-            const txtRecords: Array<{ name: string; value: string }> = [];
-            if (existingHostname?.ssl?.validation_records) {
-              for (const record of existingHostname.ssl.validation_records) {
-                if (record.txt_name && record.txt_value) {
-                  txtRecords.push({
-                    name: record.txt_name,
-                    value: record.txt_value
-                  });
-                }
-              }
-            }
-            
             cloudflareResult = {
               customHostnameId: existingHostname.id,
               cnameTarget: existingHostname.ownership_verification?.value || `landingpagesforagentsfallback.com`,
               status: existingHostname.status || 'pending',
-              sslStatus: existingHostname.ssl?.status || 'pending_validation',
-              txtRecords: txtRecords.length > 0 ? txtRecords : undefined
+              sslStatus: existingHostname.ssl?.status || 'pending_validation'
             };
             cnameTarget = cloudflareResult.cnameTarget;
             
@@ -1104,23 +1059,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       console.log(`🌐 Configuring DNS to point to Cloudflare...`);
       await domainService.configureCloudflareDNS(domain, cnameTarget);
-      console.log(`✓ DNS configured`);
-
-      // ✨ CRITICAL: Automatically add TXT validation records for SSL
-      if (cloudflareResult.txtRecords && cloudflareResult.txtRecords.length > 0) {
-        console.log(`🔐 Adding ${cloudflareResult.txtRecords.length} TXT validation record(s) for SSL...`);
-        
-        const currentRecords = await domainService.getDnsRecords(domain);
-        const txtRecordsToAdd = cloudflareResult.txtRecords.map(txt => ({
-          name: txt.name.replace(`.${domain}`, ''),
-          type: 'TXT' as const,
-          address: txt.value,
-          ttl: 300
-        }));
-
-        await domainService.setDnsRecords(domain, [...currentRecords, ...txtRecordsToAdd]);
-        console.log(`✅ TXT validation records added automatically - SSL will issue within minutes`);
-      }
+      console.log(`✓ DNS configured (HTTP validation - automatic)`);
 
       await storage.updatePage(page.id, { 
         domainVerified: false,

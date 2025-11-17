@@ -2878,6 +2878,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin: Reset domain status to pending (for testing)
+  app.post("/api/admin/domains/:domain/reset-status", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+
+    try {
+      const { domain } = req.params;
+      const page = await storage.getPageByDomain(domain);
+      
+      if (!page) {
+        return res.status(404).json({ error: "Page not found for this domain" });
+      }
+
+      await storage.updatePage(page.id, { 
+        domainStatus: 'pending',
+        domainVerified: false
+      } as any);
+
+      console.log(`✓ Reset ${domain} status to 'pending'`);
+      res.json({ success: true, message: "Domain status reset to pending" });
+    } catch (error: any) {
+      console.error('Error resetting domain status:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   // Super Admin: Update user status
   app.patch("/api/admin/users/:userId/status", async (req, res) => {
     if (!req.isAuthenticated()) return res.sendStatus(401);

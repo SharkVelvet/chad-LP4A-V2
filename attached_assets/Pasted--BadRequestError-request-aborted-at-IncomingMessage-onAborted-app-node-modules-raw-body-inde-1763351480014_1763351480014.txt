@@ -1,0 +1,49 @@
+}
+BadRequestError: request aborted
+    at IncomingMessage.onAborted (/app/node_modules/raw-body/index.js:245:10)
+    at IncomingMessage.emit (node:events:517:28)
+    at IncomingMessage._destroy (node:_http_incoming:224:10)
+    at _destroy (node:internal/streams/destroy:109:10)
+    at IncomingMessage.destroy (node:internal/streams/destroy:71:5)
+    at abortIncoming (node:_http_server:781:9)
+    at socketOnClose (node:_http_server:775:3)
+    at Socket.emit (node:events:529:35)
+    at TCP.<anonymous> (node:net:350:12) {
+  code: 'ECONNABORTED',
+  expected: 170,
+  length: 170,
+  received: 0,
+  type: 'request.aborted'
+🚀 Auto-configuring vanhaleninsurance.com with Cloudflare for SaaS...
+🌐 Creating new Cloudflare custom hostname for vanhaleninsurance.com...
+🌐 Setting up Cloudflare for SaaS for vanhaleninsurance.com...
+Error getting fallback origin: {
+  success: false,
+  errors: [
+    {
+      code: 1456,
+      message: 'Access to configure this resource has not been granted for this zone. This feature is available with SSL for SaaS.'
+    }
+  ],
+  messages: []
+}
+⚠️  No fallback origin configured - setting up...
+📡 Creating fallback origin DNS record: customers.testingthisrailway.com → chad-lp4a-v2-production.up.railway.app
+    }
+  ],
+  messages: []
+}
+Error creating/updating DNS record: {
+Error creating fallback origin DNS: Failed to create/update DNS record: Request failed with status code 400
+  result: null,
+❌ Failed to set up fallback origin: Failed to create/update DNS record: Request failed with status code 400
+  success: false,
+  errors: [
+    {
+      code: 81053,
+      message: 'An A, AAAA, or CNAME record with that host already exists. For more details, refer to <https://developers.cloudflare.com/dns/manage-dns-records/troubleshooting/records-with-same-name/>.'
+Auto-configure error: Error: Failed to configure fallback origin: Failed to create/update DNS record: Request failed with status code 400
+    at DomainService.getCloudflareProxyDomain (/app/server/domainService.ts:604:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at DomainService.setupCloudflareForSaaS (/app/server/domainService.ts:547:23)
+    at <anonymous> (/app/server/routes.ts:1026:28)

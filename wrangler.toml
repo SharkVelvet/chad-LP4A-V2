@@ -1,0 +1,7 @@
+name = "customers-fallback"
+main = "worker.js"
+compatibility_date = "2023-11-17"
+
+routes = [
+  { pattern = "customers.testingthisrailway.com/*", zone_name = "testingthisrailway.com" }
+]

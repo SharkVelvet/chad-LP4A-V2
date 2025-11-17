@@ -815,6 +815,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
               domainVerified: false,
               domainStatus: 'pending'
             } as any);
+            
+            // Ensure page_content exists so publish/draft buttons work
+            await storage.ensurePageContent(parseInt(pageId));
           }
         } else {
           // Update page with the purchased domain
@@ -824,6 +827,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
             domainVerified: false,
             domainStatus: 'pending'
           } as any);
+          
+          // Ensure page_content exists so publish/draft buttons work
+          await storage.ensurePageContent(parseInt(pageId));
         }
       }
 

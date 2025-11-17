@@ -72,6 +72,7 @@ export interface IStorage {
 
   // Page content management
   getPageContent(pageId: number): Promise<PageContent | undefined>;
+  ensurePageContent(pageId: number): Promise<PageContent>;
   createPageContent(content: InsertPageContent): Promise<PageContent>;
   updatePageContent(pageId: number, content: Partial<InsertPageContent>): Promise<PageContent>;
   updateFlexibleContent(pageId: number, contentId: string, value: string): Promise<PageContent>;
@@ -405,6 +406,30 @@ export class DatabaseStorage implements IStorage {
   async getPageContent(pageId: number): Promise<PageContent | undefined> {
     const [content] = await db.select().from(pageContent).where(eq(pageContent.pageId, pageId));
     return content || undefined;
+  }
+
+  async ensurePageContent(pageId: number): Promise<PageContent> {
+    // Check if page_content already exists
+    const existing = await this.getPageContent(pageId);
+    if (existing) {
+      return existing;
+    }
+
+    // Create page_content if it doesn't exist
+    console.log(`📝 Creating missing page_content for page ID ${pageId}`);
+    const [newContent] = await db
+      .insert(pageContent)
+      .values({
+        pageId,
+        businessName: null,
+        content: {},
+        hiddenSections: [],
+        isPublished: false,
+        maintenanceMode: false
+      })
+      .returning();
+    
+    return newContent;
   }
 
   async createPageContent(content: InsertPageContent): Promise<PageContent> {

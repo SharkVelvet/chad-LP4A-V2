@@ -1075,14 +1075,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Step 1: Check if we have stored Railway DNS targets
       if (page.railwayDnsTargets && page.railwayDnsTargets.length > 0) {
         console.log(`✓ Using stored Railway DNS targets from database`);
+        console.log(`   Raw cached records:`, JSON.stringify(page.railwayDnsTargets, null, 2));
+        
         dnsRecords = page.railwayDnsTargets.map(r => ({
           ...r,
           ttl: 300
         }));
         
+        console.log(`   DNS records after mapping:`, JSON.stringify(dnsRecords, null, 2));
+        
         // CRITICAL: Ensure www subdomain is included (legacy cached records may be missing it)
         const rootCnameRecord = dnsRecords.find(r => r.name === '@' && r.type === 'CNAME');
         const hasWwwRecord = dnsRecords.some(r => r.name === 'www');
+        
+        console.log(`   Root CNAME found: ${!!rootCnameRecord}`);
+        console.log(`   WWW record exists: ${hasWwwRecord}`);
         
         if (rootCnameRecord && !hasWwwRecord) {
           console.log(`✨ Auto-adding www subdomain to cached DNS records (Railway pattern: root and www use same CNAME target)`);
@@ -1092,6 +1099,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
             address: rootCnameRecord.address,
             ttl: 300
           });
+          console.log(`   DNS records after www addition:`, JSON.stringify(dnsRecords, null, 2));
+        } else {
+          console.log(`⚠️ NOT adding www subdomain: rootCNAME=${!!rootCnameRecord}, hasWWW=${hasWwwRecord}`);
         }
       } else if (railwayService.isConfigured()) {
         // Step 2: Register with Railway to get fresh DNS targets

@@ -979,10 +979,6 @@ export default function WebsiteEditor() {
                       </div>
                     ) : (
                       <>
-                        <p className="text-sm text-gray-600 mb-4">
-                          Your domain has been connected to this page. You can automatically configure DNS or set it up manually.
-                        </p>
-                        
                         {/* Auto-Configure Button - Only for domains purchased through our system */}
                         {(page?.domainStatus === 'pending' || page?.domainStatus === 'needs_dns_configuration') && (
                           <div className="bg-gradient-to-r from-purple-50 to-blue-50 border-2 border-purple-200 rounded-lg p-6 mb-6">
@@ -996,16 +992,16 @@ export default function WebsiteEditor() {
                               </div>
                               <div className="flex-1">
                                 <h5 className="text-lg font-semibold text-purple-900 mb-2">
-                                  ⚡ Automatic DNS Configuration Available
+                                  🚀 Your Website is Ready to Go Live!
                                 </h5>
                                 <p className="text-sm text-purple-800 mb-4">
-                                  Since you purchased this domain through our system, we can automatically configure your DNS settings with one click!
+                                  One more step - click the button below to link your domain and make your website accessible online.
                                 </p>
                                 <Button
                                   onClick={() => autoConfigureDomainMutation.mutate()}
                                   disabled={autoConfigureDomainMutation.isPending}
                                   className="bg-purple-600 hover:bg-purple-700 text-white"
-                                  data-testid="button-auto-configure-dns"
+                                  data-testid="button-link-website"
                                 >
                                   {autoConfigureDomainMutation.isPending ? (
                                     <>
@@ -1013,117 +1009,24 @@ export default function WebsiteEditor() {
                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                       </svg>
-                                      Configuring DNS...
+                                      Linking your website...
                                     </>
                                   ) : (
                                     <>
                                       <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                       </svg>
-                                      Auto-Configure DNS Now
+                                      Click here to link your website
                                     </>
                                   )}
                                 </Button>
                                 <p className="text-xs text-purple-600 mt-3">
-                                  💡 This will automatically point your domain to Railway and configure SSL certificates. Your site will be live in 15-30 minutes.
+                                  💡 Your site will be live at {page.domain} in 15-30 minutes with automatic HTTPS security.
                                 </p>
                               </div>
                             </div>
                           </div>
                         )}
-                        
-                        {/* Manual DNS Instructions */}
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                          <h5 className="font-semibold text-blue-900 mb-3">📋 Manual DNS Setup Instructions</h5>
-                          <p className="text-sm text-blue-800 mb-4">
-                            Or, follow these steps at your domain registrar (GoDaddy, Dreamhost, Namecheap, etc.) to connect your domain manually:
-                          </p>
-                          
-                          {/* Step 1: WWW subdomain */}
-                          <div className="bg-white border border-blue-200 rounded p-4 mb-3">
-                            <p className="text-sm font-bold text-blue-900 mb-2">Step 1: Set up www.{page.domain}</p>
-                            <p className="text-xs text-gray-600 mb-3">Add this CNAME record for the www subdomain:</p>
-                            <div className="bg-gray-50 border border-gray-200 rounded p-3 space-y-2">
-                              <div className="flex justify-between">
-                                <span className="text-xs font-semibold text-gray-700">Record Type:</span>
-                                <span className="text-xs font-mono text-gray-900">CNAME</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-xs font-semibold text-gray-700">Name/Host:</span>
-                                <span className="text-xs font-mono text-gray-900">www</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-xs font-semibold text-gray-700">Points to:</span>
-                                <span className="text-xs font-mono text-blue-600 break-all">chad-lp4a-v2-production.up.railway.app</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-xs font-semibold text-gray-700">TTL:</span>
-                                <span className="text-xs font-mono text-gray-900">Automatic (or 300)</span>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          {/* Step 2: Root domain */}
-                          <div className="bg-white border border-blue-200 rounded p-4 mb-3">
-                            <p className="text-sm font-bold text-blue-900 mb-2">Step 2: Set up {page.domain} (without www)</p>
-                            <p className="text-xs text-gray-600 mb-3">Choose ONE of these options:</p>
-                            
-                            <div className="space-y-3">
-                              {/* Option 1 */}
-                              <div className="border-l-4 border-green-500 pl-3">
-                                <p className="text-xs font-bold text-green-700 mb-1">✅ Option 1: URL Redirect (RECOMMENDED)</p>
-                                <p className="text-xs text-gray-600 mb-2">
-                                  In your registrar's control panel, set up a <strong>301 Permanent Redirect</strong> from:
-                                </p>
-                                <div className="bg-gray-50 rounded p-2 mb-2">
-                                  <p className="text-xs font-mono">{page.domain} → www.{page.domain}</p>
-                                </div>
-                                <p className="text-xs text-gray-500">
-                                  This is the easiest option and works with all registrars. Look for "Forwarding", "Redirect", or "Domain Forwarding" in your registrar's settings.
-                                </p>
-                              </div>
-                              
-                              {/* Option 2 */}
-                              <div className="border-l-4 border-blue-500 pl-3">
-                                <p className="text-xs font-bold text-blue-700 mb-1">Option 2: ALIAS/ANAME Record</p>
-                                <p className="text-xs text-gray-600 mb-2">
-                                  If your registrar supports ALIAS or ANAME records, add this record:
-                                </p>
-                                <div className="bg-gray-50 border border-gray-200 rounded p-2">
-                                  <div className="space-y-1">
-                                    <div className="flex justify-between text-xs">
-                                      <span className="font-semibold text-gray-700">Record Type:</span>
-                                      <span className="font-mono">ALIAS or ANAME</span>
-                                    </div>
-                                    <div className="flex justify-between text-xs">
-                                      <span className="font-semibold text-gray-700">Name/Host:</span>
-                                      <span className="font-mono">@ (or leave blank)</span>
-                                    </div>
-                                    <div className="flex justify-between text-xs">
-                                      <span className="font-semibold text-gray-700">Points to:</span>
-                                      <span className="font-mono text-blue-600 break-all">chad-lp4a-v2-production.up.railway.app</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <p className="text-xs text-gray-500 mt-2">
-                                  Note: Not all registrars support ALIAS/ANAME records. If this option isn't available, use Option 1 instead.
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          {/* Important Notes */}
-                          <div className="bg-yellow-50 border border-yellow-200 rounded p-3">
-                            <p className="text-xs font-semibold text-yellow-900 mb-2">⚠️ Important:</p>
-                            <ul className="text-xs text-yellow-800 space-y-1">
-                              <li>• Remove any existing A or AAAA records for @ and www to avoid conflicts</li>
-                              <li>• Save your changes in your registrar's control panel</li>
-                              <li>• DNS changes typically take 15-30 minutes, but can take up to 48 hours</li>
-                              <li>• Both www.{page.domain} and {page.domain} will work once DNS propagates</li>
-                              <li>• Your site will automatically have HTTPS/SSL enabled by Railway</li>
-                            </ul>
-                          </div>
-                        </div>
                       </>
                     )}
                   </div>

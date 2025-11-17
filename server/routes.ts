@@ -1081,16 +1081,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
           ttl: 300
         }));
         
-        // CRITICAL: Ensure www subdomain is included (legacy cached records may be missing it)
-        const rootCnameRecord = dnsRecords.find(r => r.name === '@' && r.type === 'CNAME');
+        // CRITICAL: Ensure www subdomain is ALWAYS included (legacy cached records may be missing it)
         const hasWwwRecord = dnsRecords.some(r => r.name === 'www');
         
-        if (rootCnameRecord && !hasWwwRecord) {
-          console.log(`✨ Auto-adding www subdomain to cached DNS records (Railway pattern: root and www use same CNAME target)`);
+        if (!hasWwwRecord) {
+          // Derive the Railway CNAME target from root CNAME if available, otherwise use default RAILWAY_DOMAIN
+          const rootCnameRecord = dnsRecords.find(r => r.name === '@' && r.type === 'CNAME');
+          const cnameTarget = rootCnameRecord?.address || RAILWAY_DOMAIN;
+          
+          console.log(`✨ Auto-adding www subdomain to cached DNS records → ${cnameTarget}`);
+          console.log(`   (Required for both example.com and www.example.com to work with HTTPS)`);
+          
           dnsRecords.push({
             name: 'www',
             type: 'CNAME',
-            address: rootCnameRecord.address,
+            address: cnameTarget,
             ttl: 300
           });
         }

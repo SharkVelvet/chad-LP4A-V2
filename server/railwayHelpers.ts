@@ -3,6 +3,8 @@
  * Extract and format DNS records from Railway API responses
  */
 
+import { RAILWAY_DOMAIN } from './config.js';
+
 interface RailwayDnsRecord {
   fqdn: string;
   recordType: string;
@@ -55,17 +57,22 @@ export function extractDnsRecordsFromRailway(
     };
   });
 
-  // IMPORTANT: Railway often returns only the root domain DNS record, but both root and www need to be configured
-  // Automatically add www subdomain DNS record if we have a root CNAME record
-  const rootCnameRecord = dnsRecords.find(r => r.name === '@' && r.type === 'CNAME');
+  // CRITICAL: Railway often returns only the root domain DNS record, but both root and www MUST be configured
+  // ALWAYS add www subdomain CNAME record if missing (required for full domain coverage)
   const hasWwwRecord = dnsRecords.some(r => r.name === 'www');
   
-  if (rootCnameRecord && !hasWwwRecord) {
-    console.log(`✨ Auto-adding www subdomain DNS record (Railway pattern: root and www use same CNAME target)`);
+  if (!hasWwwRecord) {
+    // Derive the Railway CNAME target from root CNAME if available, otherwise use default RAILWAY_DOMAIN
+    const rootCnameRecord = dnsRecords.find(r => r.name === '@' && r.type === 'CNAME');
+    const cnameTarget = rootCnameRecord?.address || RAILWAY_DOMAIN;
+    
+    console.log(`✨ Auto-adding www subdomain CNAME record → ${cnameTarget}`);
+    console.log(`   (Required for both example.com and www.example.com to work with HTTPS)`);
+    
     dnsRecords.push({
       name: 'www',
       type: 'CNAME',
-      address: rootCnameRecord.address,
+      address: cnameTarget,
       ttl: 300
     });
   }

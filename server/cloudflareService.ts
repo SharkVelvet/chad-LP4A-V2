@@ -107,7 +107,6 @@ class CloudflareService {
         ssl: {
           method: sslMethod,
           type: 'dv',
-          certificate_authority: certificateAuthority,
           settings: {
             http2: 'on',
             min_tls_version: minTlsVersion,

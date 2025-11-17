@@ -1,0 +1,45 @@
+📋 Railway returned 15 custom domains
+✓ Found 1 DNS records for insurance-test-2027.com
+📊 DNS Records: [
+   insurance-test-2027.com (DNS_RECORD_TYPE_CNAME) → 943bdluk.up.railway.app [status: DNS_RECORD_STATUS_PROPAGATED]
+✓ Formatted 1 DNS records for Namecheap:
+✅ DNS records successfully set for insurance-test-2027.com
+   @ (CNAME) → 943bdluk.up.railway.app
+✓ DNS records configured
+✓ Domain marked as verified and auto-configured
+  {
+🌐 Configuring DNS records for insurance-test-2027.com...
+    "fqdn": "insurance-test-2027.com",
+📤 Sending 1 records to Namecheap:
+    "recordType": "DNS_RECORD_TYPE_CNAME",
+   [1] @ (CNAME) → 943bdluk.up.railway.app
+]
+✅ Successfully fetched 1 DNS records from Railway
+📋 Railway provided 1 DNS records:
+    "requiredValue": "943bdluk.up.railway.app",
+    "status": "DNS_RECORD_STATUS_PROPAGATED"
+  }
+🚀 Auto-configuring DNS for insurance-test-2027.com...
+🚂 Registering with Railway to get DNS targets: insurance-test-2027.com and www.insurance-test-2027.com
+🚂 Adding custom domain to Railway: insurance-test-2027.com
+🔍 Railway mutation input: {
+  "domain": "insurance-test-2027.com",
+  "projectId": "95fd9a0f-380a-41cd-ad2f-c7f36f76fbdd",
+  "serviceId": "b7aa2271-5422-41de-a610-dab0466b17c3",
+  "environmentId": "2f0f33bd-df82-4906-a333-1a5e884e6831"
+}
+Railway API error: Railway GraphQL error: Domain is not available
+ℹ️  insurance-test-2027.com already registered with Railway
+🚂 Adding custom domain to Railway: www.insurance-test-2027.com
+🔍 Railway mutation input: {
+  "domain": "www.insurance-test-2027.com",
+  "projectId": "95fd9a0f-380a-41cd-ad2f-c7f36f76fbdd",
+  "serviceId": "b7aa2271-5422-41de-a610-dab0466b17c3",
+  "environmentId": "2f0f33bd-df82-4906-a333-1a5e884e6831"
+}
+Railway API error: Railway GraphQL error: Domain is not available
+ℹ️  www.insurance-test-2027.com already registered with Railway
+✓ Railway registration complete
+⚠️  Railway didn't provide DNS targets in response
+   Querying Railway with automatic retry logic...
+🔍 Fetching DNS records for insurance-test-2027.com from Railway...

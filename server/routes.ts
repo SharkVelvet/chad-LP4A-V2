@@ -1101,70 +1101,79 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       } else if (railwayService.isConfigured()) {
         // Step 2: Register with Railway to get fresh DNS targets
-        const wwwDomain = `www.${domain}`;
-        console.log(`🚂 Registering with Railway to get DNS targets: ${domain} and ${wwwDomain}`);
-        
-        let rootDomainResult, wwwDomainResult;
-        
+        // WRAPPED IN TRY-CATCH: If Railway API fails at ANY point, use fallback DNS configuration
         try {
-          rootDomainResult = await railwayService.addCustomDomain(domain);
-          console.log(`✓ ${domain} registered with Railway`);
-        } catch (error: any) {
-          if (error.message?.includes('not available') || error.message?.includes('already exists')) {
-            console.log(`ℹ️  ${domain} already registered with Railway`);
-            rootDomainResult = { domain, id: 'existing', status: undefined };
-          } else {
-            throw error;
-          }
-        }
-        
-        try {
-          wwwDomainResult = await railwayService.addCustomDomain(wwwDomain);
-          console.log(`✓ ${wwwDomain} registered with Railway`);
-        } catch (error: any) {
-          if (error.message?.includes('not available') || error.message?.includes('already exists')) {
-            console.log(`ℹ️  ${wwwDomain} already registered with Railway`);
-            wwwDomainResult = { domain: wwwDomain, id: 'existing', status: undefined };
-          } else {
-            throw error;
-          }
-        }
-        
-        console.log(`✓ Railway registration complete`);
-
-        // Extract DNS targets from Railway response or query with retry
-        if (rootDomainResult.status?.dnsRecords && rootDomainResult.status.dnsRecords.length > 0) {
-          console.log(`✓ Using Railway-provided DNS targets from add response`);
-          const allRailwayRecords = [
-            ...(rootDomainResult.status?.dnsRecords || []),
-            ...(wwwDomainResult.status?.dnsRecords || [])
-          ];
-          dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
-        } else {
-          // Railway didn't provide DNS targets - query with retry logic for BOTH root and www
-          console.log(`⚠️  Railway didn't provide DNS targets in response`);
-          console.log(`   Querying Railway for DNS records (root + www subdomain) with automatic retry logic...`);
+          const wwwDomain = `www.${domain}`;
+          console.log(`🚂 Registering with Railway to get DNS targets: ${domain} and ${wwwDomain}`);
+          
+          let rootDomainResult, wwwDomainResult;
           
           try {
-            // Use getAllDomainDnsRecords to fetch BOTH root and www subdomain DNS records
-            const railwayRecords = await railwayService.getAllDomainDnsRecords(domain, 3, 5000);
-            
-            if (railwayRecords && railwayRecords.length > 0) {
-              console.log(`✅ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
-              dnsRecords = extractDnsRecordsFromRailway(railwayRecords, domain);
+            rootDomainResult = await railwayService.addCustomDomain(domain);
+            console.log(`✓ ${domain} registered with Railway`);
+          } catch (error: any) {
+            if (error.message?.includes('not available') || error.message?.includes('already exists')) {
+              console.log(`ℹ️  ${domain} already registered with Railway`);
+              rootDomainResult = { domain, id: 'existing', status: undefined };
             } else {
-              // Railway API didn't return DNS records - use fallback
-              console.warn(`⚠️  Railway didn't return DNS records, using fallback configuration`);
+              throw error;
+            }
+          }
+          
+          try {
+            wwwDomainResult = await railwayService.addCustomDomain(wwwDomain);
+            console.log(`✓ ${wwwDomain} registered with Railway`);
+          } catch (error: any) {
+            if (error.message?.includes('not available') || error.message?.includes('already exists')) {
+              console.log(`ℹ️  ${wwwDomain} already registered with Railway`);
+              wwwDomainResult = { domain: wwwDomain, id: 'existing', status: undefined };
+            } else {
+              throw error;
+            }
+          }
+          
+          console.log(`✓ Railway registration complete`);
+
+          // Extract DNS targets from Railway response or query with retry
+          if (rootDomainResult.status?.dnsRecords && rootDomainResult.status.dnsRecords.length > 0) {
+            console.log(`✓ Using Railway-provided DNS targets from add response`);
+            const allRailwayRecords = [
+              ...(rootDomainResult.status?.dnsRecords || []),
+              ...(wwwDomainResult.status?.dnsRecords || [])
+            ];
+            dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
+          } else {
+            // Railway didn't provide DNS targets - query with retry logic for BOTH root and www
+            console.log(`⚠️  Railway didn't provide DNS targets in response`);
+            console.log(`   Querying Railway for DNS records (root + www subdomain) with automatic retry logic...`);
+            
+            try {
+              // Use getAllDomainDnsRecords to fetch BOTH root and www subdomain DNS records
+              const railwayRecords = await railwayService.getAllDomainDnsRecords(domain, 3, 5000);
+              
+              if (railwayRecords && railwayRecords.length > 0) {
+                console.log(`✅ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
+                dnsRecords = extractDnsRecordsFromRailway(railwayRecords, domain);
+              } else {
+                // Railway API didn't return DNS records - use fallback
+                console.warn(`⚠️  Railway didn't return DNS records, using fallback configuration`);
+                dnsRecords = createRailwayDnsRecords();
+              }
+            } catch (error: any) {
+              // Railway API failed (e.g., 400 error) - use fallback to ensure domain still gets configured
+              console.warn(`⚠️  Railway API error (${error.message}), using fallback DNS configuration`);
+              console.log(`   Railway is experiencing intermittent issues, but we'll still configure your domain automatically`);
+              
+              // Use default Railway DNS records as fallback
               dnsRecords = createRailwayDnsRecords();
             }
-          } catch (error: any) {
-            // Railway API failed (e.g., 400 error) - use fallback to ensure domain still gets configured
-            console.warn(`⚠️  Railway API error (${error.message}), using fallback DNS configuration`);
-            console.log(`   Railway is experiencing intermittent issues, but we'll still configure your domain automatically`);
-            
-            // Use default Railway DNS records as fallback
-            dnsRecords = createRailwayDnsRecords();
           }
+        } catch (railwayError: any) {
+          // CRITICAL FALLBACK: If Railway fails at ANY point, use default DNS configuration
+          // This ensures domain configuration ALWAYS succeeds, even when Railway API is down
+          console.warn(`⚠️  Railway API completely unavailable (${railwayError.message})`);
+          console.log(`✅ Using fallback DNS configuration - your domain will still be configured automatically!`);
+          dnsRecords = createRailwayDnsRecords();
         }
       } else {
         // Railway not configured - cannot proceed

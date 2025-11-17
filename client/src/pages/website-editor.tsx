@@ -1058,6 +1058,51 @@ export default function WebsiteEditor() {
                       </>
                     )}
 
+                    {/* SSL Status Check Button (visible to all users with domain) */}
+                    {page?.domain && !page?.domainVerified && (
+                      <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h5 className="text-sm font-semibold text-blue-900">SSL Certificate Status</h5>
+                            <p className="text-xs text-blue-600 mt-1">Check if your SSL certificate has been issued</p>
+                          </div>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={async () => {
+                              try {
+                                const res = await fetch(`/api/domains/${page.domain}/cloudflare-status`, {
+                                  credentials: 'include'
+                                });
+                                const data = await res.json();
+                                if (res.ok) {
+                                  if (data.isActive) {
+                                    toast({ 
+                                      title: "✅ SSL Certificate Active!", 
+                                      description: "Your site is now live with HTTPS" 
+                                    });
+                                    queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
+                                  } else {
+                                    toast({ 
+                                      title: "⏳ SSL Pending", 
+                                      description: `Status: ${data.sslStatus}. Usually takes 15-30 minutes.` 
+                                    });
+                                  }
+                                } else {
+                                  toast({ title: data.message || "Failed to check status", variant: "destructive" });
+                                }
+                              } catch (error) {
+                                console.error('Status check failed:', error);
+                                toast({ title: "Error checking status", variant: "destructive" });
+                              }
+                            }}
+                          >
+                            🔍 Check SSL Status
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+
                     {/* Super Admin: Reset Domain Status Button */}
                     {currentUser?.role === 'super_admin' && page?.domain && (
                       <div className="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-lg">

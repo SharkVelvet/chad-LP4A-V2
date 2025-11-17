@@ -1,5 +1,6 @@
 import { XMLParser } from "fast-xml-parser";
 import { RAILWAY_DOMAIN } from './config.js';
+import { cloudflareService } from './cloudflareService.js';
 
 const NAMECHEAP_API_URL = process.env.NAMECHEAP_SANDBOX === "true" 
   ? "https://api.sandbox.namecheap.com/xml.response"
@@ -533,6 +534,112 @@ class DomainService {
     })), ...newMxRecords];
 
     return this.setDnsRecords(domain, allRecords);
+  }
+
+  async setupCloudflareForSaaS(domain: string): Promise<{
+    customHostnameId: string;
+    cnameTarget: string;
+    status: string;
+    sslStatus: string;
+  }> {
+    console.log(`🌐 Setting up Cloudflare for SaaS for ${domain}...`);
+    
+    let cnameTarget = await this.getCloudflareProxyDomain();
+    
+    const customHostname = await cloudflareService.createCustomHostname(domain, {
+      sslMethod: 'http',
+      certificateAuthority: 'google',
+      minTlsVersion: '1.2'
+    });
+
+    console.log(`✅ Custom hostname created for ${domain}`);
+    console.log(`   Hostname ID: ${customHostname.id}`);
+    console.log(`   Status: ${customHostname.status}`);
+    console.log(`   SSL Status: ${customHostname.ssl.status}`);
+    console.log(`   CNAME Target: ${cnameTarget}`);
+
+    return {
+      customHostnameId: customHostname.id,
+      cnameTarget,
+      status: customHostname.status,
+      sslStatus: customHostname.ssl.status
+    };
+  }
+
+  async getCloudflareProxyDomain(): Promise<string> {
+    const fallbackOrigin = await cloudflareService.getFallbackOrigin();
+    
+    if (fallbackOrigin && fallbackOrigin.origin) {
+      console.log(`✓ Using existing fallback origin: ${fallbackOrigin.origin}`);
+      return fallbackOrigin.origin;
+    }
+    
+    console.log(`⚠️  No fallback origin configured - setting up...`);
+    
+    try {
+      const zone = await cloudflareService.getZoneDetails();
+      if (!zone) {
+        throw new Error('Could not get zone details');
+      }
+
+      const fallbackHostname = `customers.${zone.name}`;
+      
+      console.log(`📡 Creating fallback origin DNS: ${fallbackHostname} → ${RAILWAY_DOMAIN}`);
+      await cloudflareService.createFallbackOriginDNS(RAILWAY_DOMAIN);
+      
+      console.log(`📡 Setting fallback origin to: ${fallbackHostname}`);
+      await cloudflareService.setFallbackOrigin(fallbackHostname);
+      
+      console.log(`✅ Fallback origin configured: ${fallbackHostname}`);
+      return fallbackHostname;
+    } catch (error: any) {
+      console.error(`❌ Failed to set up fallback origin:`, error.message);
+      console.log(`ℹ️  Falling back to Railway domain directly: ${RAILWAY_DOMAIN}`);
+      return RAILWAY_DOMAIN;
+    }
+  }
+
+  async configureCloudflareDNS(domain: string, cnameTarget: string): Promise<boolean> {
+    if (!this.isConfigured()) {
+      throw new Error("Domain service not configured");
+    }
+
+    console.log(`📡 Configuring DNS for ${domain} to point to Cloudflare...`);
+    console.log(`   Target: ${cnameTarget}`);
+
+    const records = [
+      {
+        name: '@',
+        type: 'ALIAS',
+        address: cnameTarget,
+        ttl: 300
+      },
+      {
+        name: 'www',
+        type: 'CNAME',
+        address: cnameTarget,
+        ttl: 300
+      }
+    ];
+
+    try {
+      await this.setDnsRecords(domain, records);
+      console.log(`✅ DNS configured for ${domain}`);
+      return true;
+    } catch (error: any) {
+      console.error(`❌ Failed to configure DNS for ${domain}:`, error.message);
+      throw error;
+    }
+  }
+
+  async checkCloudflareStatus(customHostnameId: string): Promise<{
+    hostname: string;
+    status: string;
+    sslStatus: string;
+    isActive: boolean;
+    errors: string[];
+  }> {
+    return await cloudflareService.checkCustomHostnameStatus(customHostnameId);
   }
 }
 

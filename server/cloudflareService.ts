@@ -321,6 +321,57 @@ class CloudflareService {
     }
   }
 
+  async getZoneDetails(): Promise<{ id: string; name: string; status: string } | null> {
+    try {
+      const response = await axios.get(
+        `${this.baseUrl}/zones/${this.zoneId}`,
+        { headers: this.getHeaders() }
+      );
+
+      if (!response.data.success) {
+        return null;
+      }
+
+      const zone = response.data.result;
+      return {
+        id: zone.id,
+        name: zone.name,
+        status: zone.status
+      };
+    } catch (error: any) {
+      console.error('Error getting zone details:', error.response?.data || error.message);
+      return null;
+    }
+  }
+
+  async createFallbackOriginDNS(railwayDomain: string): Promise<boolean> {
+    try {
+      const zone = await this.getZoneDetails();
+      if (!zone) {
+        console.error('❌ Could not get zone details');
+        return false;
+      }
+
+      const fallbackHostname = `customers.${zone.name}`;
+      
+      console.log(`📡 Creating fallback origin DNS record: ${fallbackHostname} → ${railwayDomain}`);
+      
+      await this.createOrUpdateDNSRecord(
+        this.zoneId,
+        'CNAME',
+        fallbackHostname,
+        railwayDomain,
+        true
+      );
+
+      console.log(`✅ Fallback origin DNS record created`);
+      return true;
+    } catch (error: any) {
+      console.error('Error creating fallback origin DNS:', error.response?.data || error.message);
+      return false;
+    }
+  }
+
   private formatCustomHostname(data: any): CustomHostname {
     return {
       id: data.id,

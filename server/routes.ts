@@ -723,112 +723,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const result = await domainService.registerDomain(domain, parseInt(years) || 1, parsedContactInfo);
 
       if (result.success && pageId) {
-        // Automatically register domain with Railway (both root and www)
-        if (railwayService.isConfigured()) {
-          try {
-            const wwwDomain = `www.${domain}`;
-            console.log(`🚂 Auto-registering purchased domains with Railway: ${domain} and ${wwwDomain}`);
-            
-            // Add root domain to Railway and get DNS targets
-            const rootDomainResult = await railwayService.addCustomDomain(domain);
-            
-            // Add www domain to Railway and get DNS targets  
-            const wwwDomainResult = await railwayService.addCustomDomain(wwwDomain);
-            
-            console.log(`✓ Domains registered with Railway`);
-            
-            // Extract DNS records from Railway's response
-            let dnsRecords = [];
-            
-            // Try to use Railway-provided DNS targets first
-            if (rootDomainResult.status?.dnsRecords && rootDomainResult.status.dnsRecords.length > 0) {
-              console.log(`✓ Using Railway-provided DNS targets from add response`);
-              
-              // Combine DNS records from both domain responses
-              const allRailwayRecords = [
-                ...(rootDomainResult.status?.dnsRecords || []),
-                ...(wwwDomainResult.status?.dnsRecords || [])
-              ];
-              
-              dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
-            } else {
-              // Railway didn't provide DNS targets in add response - query for them with retry
-              console.log(`⚠️  Railway didn't provide DNS targets in mutation response`);
-              console.log(`   Querying Railway for DNS records (root + www subdomain) with automatic retry logic...`);
-              
-              try {
-                // Use getAllDomainDnsRecords to fetch BOTH root and www subdomain DNS records
-                const railwayRecords = await railwayService.getAllDomainDnsRecords(domain, 3, 5000);
-                
-                if (railwayRecords && railwayRecords.length > 0) {
-                  console.log(`✅ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
-                  dnsRecords = extractDnsRecordsFromRailway(railwayRecords, domain);
-                } else {
-                  // No DNS targets - fail with clear message
-                  console.error(`❌ Could not retrieve DNS targets from Railway`);
-                  
-                  await storage.updatePage(parseInt(pageId), { 
-                    domain, 
-                    domainVerified: false,
-                    domainStatus: 'needs_dns_configuration'
-                  } as any);
-                  
-                  return res.json({ 
-                    ...result,
-                    warning: 'Domain registered with Railway but DNS targets not available yet. Please wait a few minutes and use the auto-configure feature to complete setup.'
-                  });
-                }
-              } catch (error: any) {
-                console.error(`❌ Error fetching Railway DNS targets:`, error.message);
-                
-                await storage.updatePage(parseInt(pageId), { 
-                  domain, 
-                  domainVerified: false,
-                  domainStatus: 'needs_dns_configuration'
-                } as any);
-                
-                return res.json({ 
-                  ...result,
-                  error: `Domain registered but failed to fetch Railway DNS targets: ${error.message}`
-                });
-              }
-            }
-            
-            // Automatically configure DNS records to point to Railway
-            console.log(`🌐 Auto-configuring DNS for ${domain}...`);
-            await domainService.setDnsRecords(domain, dnsRecords);
-            console.log(`✓ DNS configured automatically for ${domain}`);
-            
-            // Mark domain as verified and auto-configured, store Railway DNS targets
-            await storage.updatePage(parseInt(pageId), { 
-              domain, 
-              domainVerified: true,
-              domainStatus: 'auto_configured',
-              railwayDnsTargets: serializeDnsRecords(dnsRecords)
-            } as any);
-          } catch (error: any) {
-            console.error(`⚠️  Railway/DNS setup failed: ${error.message}`);
-            // Still update with domain even if auto-config failed
-            // CRITICAL: Set domainStatus to 'pending' so the auto-configure button appears
-            await storage.updatePage(parseInt(pageId), { 
-              domain, 
-              domainVerified: false,
-              domainStatus: 'pending'
-            } as any);
-            
-            // Ensure page_content exists so publish/draft buttons work
-            await storage.ensurePageContent(parseInt(pageId));
-          }
-        } else {
-          // Update page with the purchased domain
-          // CRITICAL: Set domainStatus to 'pending' so the auto-configure button appears
+        try {
+          console.log(`🌐 Setting up Cloudflare for SaaS for ${domain}...`);
+          
+          const cloudflareResult = await domainService.setupCloudflareForSaaS(domain);
+          
+          console.log(`🌐 Configuring DNS to point to Cloudflare...`);
+          await domainService.configureCloudflareDNS(domain, cloudflareResult.cnameTarget);
+          
+          console.log(`✅ Domain ${domain} configured with Cloudflare for SaaS`);
+          
+          await storage.updatePage(parseInt(pageId), { 
+            domain, 
+            domainVerified: false,
+            domainStatus: 'pending',
+            cloudflareCustomHostnameId: cloudflareResult.customHostnameId,
+            cloudflareHostnameStatus: cloudflareResult.status,
+            cloudflareSslStatus: cloudflareResult.sslStatus,
+            cloudflareCnameTarget: cloudflareResult.cnameTarget
+          } as any);
+          
+          await storage.ensurePageContent(parseInt(pageId));
+          
+        } catch (error: any) {
+          console.error(`⚠️  Cloudflare/DNS setup failed: ${error.message}`);
+          
           await storage.updatePage(parseInt(pageId), { 
             domain, 
             domainVerified: false,
             domainStatus: 'pending'
           } as any);
           
-          // Ensure page_content exists so publish/draft buttons work
           await storage.ensurePageContent(parseInt(pageId));
         }
       }
@@ -1063,7 +988,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Complete domain setup (Railway + DNS)
+  // Complete domain setup (Cloudflare for SaaS + DNS)
   // Auto-configure DNS for purchased domain
   app.post("/api/domains/:domain/auto-configure", async (req, res) => {
     if (!req.isAuthenticated()) {
@@ -1073,166 +998,124 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { domain} = req.params;
       
-      // Find the page with this domain
       const page = await storage.getPageByDomain(domain);
       if (!page) {
         return res.status(404).json({ message: "Page not found for this domain" });
       }
       
-      // Verify user owns this page
       if (page.userId !== req.user.id) {
         return res.status(403).json({ message: "You do not own this domain" });
       }
 
-      console.log(`🚀 Auto-configuring DNS for ${domain}...`);
+      console.log(`🚀 Auto-configuring ${domain} with Cloudflare for SaaS...`);
 
-      let dnsRecords = [];
+      let cloudflareResult;
+      let cnameTarget;
 
-      // Step 1: Check if we have stored Railway DNS targets
-      if (page.railwayDnsTargets && page.railwayDnsTargets.length > 0) {
-        console.log(`✓ Using stored Railway DNS targets from database`);
-        
-        dnsRecords = page.railwayDnsTargets.map(r => ({
-          ...r,
-          ttl: 300
-        }));
-        
-        // CRITICAL: Ensure www subdomain is ALWAYS included (legacy cached records may be missing it)
-        const hasWwwRecord = dnsRecords.some(r => r.name === 'www');
-        
-        if (!hasWwwRecord) {
-          // Derive the Railway CNAME target from root CNAME if available, otherwise use default RAILWAY_DOMAIN
-          const rootCnameRecord = dnsRecords.find(r => r.name === '@' && r.type === 'CNAME');
-          const cnameTarget = rootCnameRecord?.address || RAILWAY_DOMAIN;
-          
-          console.log(`✨ Auto-adding www subdomain to cached DNS records → ${cnameTarget}`);
-          console.log(`   (Required for both example.com and www.example.com to work with HTTPS)`);
-          
-          dnsRecords.push({
-            name: 'www',
-            type: 'CNAME',
-            address: cnameTarget,
-            ttl: 300
-          });
-        }
-      } else if (railwayService.isConfigured()) {
-        // Step 2: Register with Railway to get fresh DNS targets
-        // WRAPPED IN TRY-CATCH: If Railway API fails at ANY point, use fallback DNS configuration
-        try {
-          const wwwDomain = `www.${domain}`;
-          console.log(`🚂 Registering with Railway to get DNS targets: ${domain} and ${wwwDomain}`);
-          
-          let rootDomainResult, wwwDomainResult;
-          
-          try {
-            rootDomainResult = await railwayService.addCustomDomain(domain);
-            console.log(`✓ ${domain} registered with Railway`);
-          } catch (error: any) {
-            // Check for Railway quota exceeded (HTTP 400 errors)
-            if (error.message?.includes('400') || error.message?.includes('quota') || error.message?.includes('limit')) {
-              console.warn(`⚠️  Railway custom domain quota exceeded (3 domains max on current plan)`);
-              console.log(`✅ No problem! Using fallback DNS configuration - your domain will still work!`);
-              throw new Error('RAILWAY_QUOTA_EXCEEDED');
-            } else if (error.message?.includes('not available') || error.message?.includes('already exists')) {
-              console.log(`ℹ️  ${domain} already registered with Railway`);
-              rootDomainResult = { domain, id: 'existing', status: undefined };
-            } else {
-              throw error;
-            }
-          }
-          
-          try {
-            wwwDomainResult = await railwayService.addCustomDomain(wwwDomain);
-            console.log(`✓ ${wwwDomain} registered with Railway`);
-          } catch (error: any) {
-            // Check for Railway quota exceeded (HTTP 400 errors)
-            if (error.message?.includes('400') || error.message?.includes('quota') || error.message?.includes('limit')) {
-              console.warn(`⚠️  Railway custom domain quota exceeded (3 domains max on current plan)`);
-              console.log(`✅ No problem! Using fallback DNS configuration - your domain will still work!`);
-              throw new Error('RAILWAY_QUOTA_EXCEEDED');
-            } else if (error.message?.includes('not available') || error.message?.includes('already exists')) {
-              console.log(`ℹ️  ${wwwDomain} already registered with Railway`);
-              wwwDomainResult = { domain: wwwDomain, id: 'existing', status: undefined };
-            } else {
-              throw error;
-            }
-          }
-          
-          console.log(`✓ Railway registration complete`);
-
-          // Extract DNS targets from Railway response or query with retry
-          if (rootDomainResult.status?.dnsRecords && rootDomainResult.status.dnsRecords.length > 0) {
-            console.log(`✓ Using Railway-provided DNS targets from add response`);
-            const allRailwayRecords = [
-              ...(rootDomainResult.status?.dnsRecords || []),
-              ...(wwwDomainResult.status?.dnsRecords || [])
-            ];
-            dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
-          } else {
-            // Railway didn't provide DNS targets - query with retry logic for BOTH root and www
-            console.log(`⚠️  Railway didn't provide DNS targets in response`);
-            console.log(`   Querying Railway for DNS records (root + www subdomain) with automatic retry logic...`);
-            
-            try {
-              // Use getAllDomainDnsRecords to fetch BOTH root and www subdomain DNS records
-              const railwayRecords = await railwayService.getAllDomainDnsRecords(domain, 3, 5000);
-              
-              if (railwayRecords && railwayRecords.length > 0) {
-                console.log(`✅ Successfully fetched ${railwayRecords.length} DNS records from Railway`);
-                dnsRecords = extractDnsRecordsFromRailway(railwayRecords, domain);
-              } else {
-                // Railway API didn't return DNS records - use fallback
-                console.warn(`⚠️  Railway didn't return DNS records, using fallback configuration`);
-                dnsRecords = createRailwayDnsRecords();
-              }
-            } catch (error: any) {
-              // Railway API failed (e.g., 400 error) - use fallback to ensure domain still gets configured
-              console.warn(`⚠️  Railway API error (${error.message}), using fallback DNS configuration`);
-              console.log(`   Railway is experiencing intermittent issues, but we'll still configure your domain automatically`);
-              
-              // Use default Railway DNS records as fallback
-              dnsRecords = createRailwayDnsRecords();
-            }
-          }
-        } catch (railwayError: any) {
-          // CRITICAL FALLBACK: If Railway fails at ANY point, use default DNS configuration
-          // This ensures domain configuration ALWAYS succeeds, even when Railway API is down
-          console.warn(`⚠️  Railway API completely unavailable (${railwayError.message})`);
-          console.log(`✅ Using fallback DNS configuration - your domain will still be configured automatically!`);
-          dnsRecords = createRailwayDnsRecords();
-        }
+      if (page.cloudflareCustomHostnameId && page.cloudflareCnameTarget) {
+        console.log(`✓ Using existing Cloudflare custom hostname: ${page.cloudflareCustomHostnameId}`);
+        cloudflareResult = {
+          customHostnameId: page.cloudflareCustomHostnameId,
+          cnameTarget: page.cloudflareCnameTarget,
+          status: page.cloudflareHostnameStatus || 'pending',
+          sslStatus: page.cloudflareSslStatus || 'pending_validation'
+        };
+        cnameTarget = page.cloudflareCnameTarget;
       } else {
-        // Railway not configured - cannot proceed
-        console.error(`❌ Railway API not configured, cannot auto-configure DNS`);
-        return res.status(500).json({ 
-          message: 'Railway API not configured. DNS auto-configuration unavailable.'
-        });
+        console.log(`🌐 Creating new Cloudflare custom hostname for ${domain}...`);
+        cloudflareResult = await domainService.setupCloudflareForSaaS(domain);
+        cnameTarget = cloudflareResult.cnameTarget;
       }
 
-      // Step 3: Configure DNS records
-      console.log(`🌐 Configuring DNS records for ${domain}...`);
-      console.log(`   Sending ${dnsRecords.length} records to Namecheap:`);
-      dnsRecords.forEach((r, i) => {
-        console.log(`   [${i+1}] ${r.name} (${r.type}) → ${r.address}`);
-      });
-      await domainService.setDnsRecords(domain, dnsRecords);
-      console.log(`✓ DNS records configured`);
+      console.log(`🌐 Configuring DNS to point to Cloudflare...`);
+      await domainService.configureCloudflareDNS(domain, cnameTarget);
+      console.log(`✓ DNS configured`);
 
-      // Step 4: Mark domain as verified and auto-configured, store DNS targets
       await storage.updatePage(page.id, { 
-        domainVerified: true,
-        domainStatus: 'auto_configured',
-        railwayDnsTargets: serializeDnsRecords(dnsRecords)
+        domainVerified: false,
+        domainStatus: 'pending',
+        cloudflareCustomHostnameId: cloudflareResult.customHostnameId,
+        cloudflareHostnameStatus: cloudflareResult.status,
+        cloudflareSslStatus: cloudflareResult.sslStatus,
+        cloudflareCnameTarget: cnameTarget
       } as any);
-      console.log(`✓ Domain marked as verified and auto-configured`);
+      console.log(`✓ Domain configured with Cloudflare for SaaS`);
 
       res.json({ 
         success: true, 
-        message: "Domain automatically configured and connected to Railway" 
+        message: "Domain automatically configured with Cloudflare. SSL certificate will be issued shortly.",
+        status: cloudflareResult.status,
+        sslStatus: cloudflareResult.sslStatus
       });
     } catch (error: any) {
       console.error("Auto-configure error:", error);
       res.status(500).json({ message: error.message || "Failed to auto-configure domain" });
+    }
+  });
+
+  // Check Cloudflare custom hostname status
+  app.get("/api/domains/:domain/cloudflare-status", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.params;
+      
+      const page = await storage.getPageByDomain(domain);
+      if (!page) {
+        return res.status(404).json({ message: "Page not found for this domain" });
+      }
+      
+      if (page.userId !== req.user.id) {
+        return res.status(403).json({ message: "You do not own this domain" });
+      }
+
+      if (!page.cloudflareCustomHostnameId) {
+        return res.json({
+          success: false,
+          message: "Cloudflare custom hostname not configured"
+        });
+      }
+
+      console.log(`🔍 Checking Cloudflare status for ${domain}...`);
+      
+      const status = await domainService.checkCloudflareStatus(page.cloudflareCustomHostnameId);
+      
+      const isActive = status.isActive;
+      
+      console.log(`   Hostname status: ${status.status}`);
+      console.log(`   SSL status: ${status.sslStatus}`);
+      console.log(`   Is active: ${isActive ? '✅' : '⏳'}`);
+      
+      if (isActive && !page.domainVerified) {
+        await storage.updatePage(page.id, {
+          domainVerified: true,
+          domainStatus: 'active',
+          cloudflareHostnameStatus: status.status,
+          cloudflareSslStatus: status.sslStatus
+        } as any);
+        console.log(`✅ Domain ${domain} marked as verified and active`);
+      } else if (status.status !== page.cloudflareHostnameStatus || status.sslStatus !== page.cloudflareSslStatus) {
+        await storage.updatePage(page.id, {
+          cloudflareHostnameStatus: status.status,
+          cloudflareSslStatus: status.sslStatus
+        } as any);
+      }
+      
+      res.json({
+        success: true,
+        isActive,
+        status: status.status,
+        sslStatus: status.sslStatus,
+        errors: status.errors,
+        message: isActive 
+          ? 'Domain is active with HTTPS' 
+          : 'Domain is pending SSL certificate issuance (usually takes 15-30 minutes)'
+      });
+    } catch (error: any) {
+      console.error("Cloudflare status check error:", error);
+      res.status(500).json({ message: error.message || "Failed to check Cloudflare status" });
     }
   });
 
@@ -1245,27 +1128,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { domain } = req.params;
       
-      // Find the page with this domain
       const page = await storage.getPageByDomain(domain);
       if (!page) {
         return res.status(404).json({ message: "Page not found for this domain" });
       }
       
-      // Verify user owns this page
       if (page.userId !== req.user.id) {
         return res.status(403).json({ message: "You do not own this domain" });
       }
 
       console.log(`🔍 Verifying DNS records for ${domain}...`);
       
-      // Get actual DNS records from Namecheap
       const actualRecords = await domainService.getDnsRecords(domain);
       
-      // Check for required records
+      const expectedTarget = page.cloudflareCnameTarget || RAILWAY_DOMAIN;
+      
       const hasWwwCname = actualRecords.some(r => 
         r.name === 'www' && 
         r.type === 'CNAME' && 
-        r.address.toLowerCase().includes('railway.app')
+        r.address.toLowerCase().includes(expectedTarget.toLowerCase())
       );
       
       const hasRootRecord = actualRecords.some(r => 

@@ -731,6 +731,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
           console.log(`🌐 Configuring DNS to point to Cloudflare...`);
           await domainService.configureCloudflareDNS(domain, cloudflareResult.cnameTarget);
           
+          // ✨ CRITICAL: Automatically add TXT validation records for SSL
+          if (cloudflareResult.txtRecords && cloudflareResult.txtRecords.length > 0) {
+            console.log(`🔐 Adding ${cloudflareResult.txtRecords.length} TXT validation record(s) for SSL...`);
+            
+            const currentRecords = await domainService.getDnsRecords(domain);
+            const txtRecordsToAdd = cloudflareResult.txtRecords.map(txt => ({
+              name: txt.name.replace(`.${domain}`, ''),
+              type: 'TXT' as const,
+              address: txt.value,
+              ttl: 300
+            }));
+
+            await domainService.setDnsRecords(domain, [...currentRecords, ...txtRecordsToAdd]);
+            console.log(`✅ TXT validation records added automatically - SSL will issue within minutes`);
+          }
+          
           console.log(`✅ Domain ${domain} configured with Cloudflare for SaaS`);
           
           await storage.updatePage(parseInt(pageId), { 
@@ -1030,6 +1046,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log(`🌐 Configuring DNS to point to Cloudflare...`);
       await domainService.configureCloudflareDNS(domain, cnameTarget);
       console.log(`✓ DNS configured`);
+
+      // ✨ CRITICAL: Automatically add TXT validation records for SSL
+      if (cloudflareResult.txtRecords && cloudflareResult.txtRecords.length > 0) {
+        console.log(`🔐 Adding ${cloudflareResult.txtRecords.length} TXT validation record(s) for SSL...`);
+        
+        const currentRecords = await domainService.getDnsRecords(domain);
+        const txtRecordsToAdd = cloudflareResult.txtRecords.map(txt => ({
+          name: txt.name.replace(`.${domain}`, ''),
+          type: 'TXT' as const,
+          address: txt.value,
+          ttl: 300
+        }));
+
+        await domainService.setDnsRecords(domain, [...currentRecords, ...txtRecordsToAdd]);
+        console.log(`✅ TXT validation records added automatically - SSL will issue within minutes`);
+      }
 
       await storage.updatePage(page.id, { 
         domainVerified: false,

@@ -542,6 +542,7 @@ class DomainService {
     cnameTarget: string;
     status: string;
     sslStatus: string;
+    txtRecords?: Array<{ name: string; value: string }>;
   }> {
     console.log(`🌐 Setting up Cloudflare for SaaS for ${domain}...`);
     
@@ -559,11 +560,27 @@ class DomainService {
     console.log(`   SSL Status: ${customHostname.ssl.status}`);
     console.log(`   CNAME Target: ${cnameTarget}`);
 
+    // Extract TXT validation records from Cloudflare response
+    const txtRecords: Array<{ name: string; value: string }> = [];
+    
+    if (customHostname.ssl?.validation_records) {
+      for (const record of customHostname.ssl.validation_records) {
+        if (record.txt_name && record.txt_value) {
+          txtRecords.push({
+            name: record.txt_name,
+            value: record.txt_value
+          });
+          console.log(`   📝 TXT Record: ${record.txt_name} = ${record.txt_value.substring(0, 20)}...`);
+        }
+      }
+    }
+
     return {
       customHostnameId: customHostname.id,
       cnameTarget,
       status: customHostname.status,
-      sslStatus: customHostname.ssl.status
+      sslStatus: customHostname.ssl.status,
+      txtRecords: txtRecords.length > 0 ? txtRecords : undefined
     };
   }
 

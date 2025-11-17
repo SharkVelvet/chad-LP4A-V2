@@ -8,34 +8,43 @@ async function setupFallbackOrigin() {
   try {
     console.log('🚀 Setting up fallback origin domain...\n');
     
-    // Step 1: Check availability
-    console.log(`1️⃣  Checking availability of ${FALLBACK_DOMAIN}...`);
-    const availabilityResults = await domainService.checkAvailability([FALLBACK_DOMAIN]);
-    const isAvailable = availabilityResults[0]?.available;
-    
-    if (!isAvailable) {
-      console.log(`   ⚠️  Domain already owned - proceeding with configuration`);
-    } else {
-      // Step 2: Purchase domain
-      console.log(`   ✅ Available! Purchasing domain...`);
-      await domainService.registerDomain(FALLBACK_DOMAIN, 1, {
-        firstName: 'Chad',
-        lastName: 'Admin',
-        address1: '123 Main St',
-        city: 'New York',
-        stateProvince: 'NY',
-        postalCode: '10001',
-        country: 'US',
-        phone: '5555555555',
-        email: 'admin@landingpagesforagents.com'
-      });
-      console.log(`   ✅ Domain purchased successfully!\n`);
+    // Step 1: Check if we already own the domain
+    console.log(`1️⃣  Checking ${FALLBACK_DOMAIN}...`);
+    try {
+      const availabilityResults = await domainService.checkAvailability([FALLBACK_DOMAIN]);
+      const isAvailable = availabilityResults[0]?.available;
+      
+      if (!isAvailable) {
+        console.log(`   ✅ Domain already owned - proceeding with configuration\n`);
+      } else {
+        // Step 2: Purchase domain
+        console.log(`   ✅ Available! Purchasing domain...`);
+        await domainService.registerDomain(FALLBACK_DOMAIN, 1, {
+          firstName: 'Chad',
+          lastName: 'Admin',
+          address1: '123 Main St',
+          city: 'New York',
+          stateProvince: 'NY',
+          postalCode: '10001',
+          country: 'US',
+          phone: '5555555555',
+          email: 'admin@landingpagesforagents.com'
+        });
+        console.log(`   ✅ Domain purchased successfully!\n`);
+      }
+    } catch (error: any) {
+      // If error contains "not available", we likely already own it
+      if (error.message?.includes('not available')) {
+        console.log(`   ✅ Domain already owned - proceeding with configuration\n`);
+      } else {
+        throw error;
+      }
     }
     
     // Step 3: Configure DNS to point to Railway
     console.log(`2️⃣  Configuring DNS records...`);
     await domainService.setDnsRecords(FALLBACK_DOMAIN, [
-      { name: '@', type: 'CNAME', address: RAILWAY_TARGET, ttl: 300 },
+      { name: '@', type: 'ALIAS', address: RAILWAY_TARGET, ttl: 300 },
       { name: 'www', type: 'CNAME', address: RAILWAY_TARGET, ttl: 300 }
     ]);
     console.log(`   ✅ DNS configured to point to Railway\n`);
@@ -47,7 +56,10 @@ async function setupFallbackOrigin() {
     
     // Step 5: Set as Cloudflare fallback origin
     console.log(`4️⃣  Setting as Cloudflare fallback origin...`);
-    await cloudflareService.createOrUpdateFallbackOrigin(FALLBACK_DOMAIN);
+    const result = await cloudflareService.setFallbackOrigin(FALLBACK_DOMAIN);
+    if (!result) {
+      throw new Error('Failed to set Cloudflare fallback origin');
+    }
     console.log(`   ✅ Fallback origin configured!\n`);
     
     console.log('✅ SUCCESS! Fallback origin is ready.');

@@ -34,7 +34,15 @@ Preferred communication style: Simple, everyday language.
 - **Payment Processing**: Stripe integration for subscription billing, customer management, and secure payment forms.
 - **Content Management**: Dynamic website content editing, business information collection, domain preference, and media asset management.
 - **Email Automation**: Gmail API integration (via Replit connector or OAuth 2.0 for production) for OTP verification and customer notifications.
-- **Domain Management**: Railway automatic SSL certificate provisioning for custom domains (Squarespace-like experience), Namecheap API integration for domain registration, DNS management, and automated DNS configuration. Supports "FREE" domain system for eligible .com/.net domains. **Full DNS automation**: Single-button auto-configuration that automatically configures both root domain (@) and www subdomain DNS records, ensuring both URLs work with HTTPS.
+- **Domain Management**: 
+  - **Cloudflare for SaaS**: Enterprise SSL automation with dedicated fallback origin (landingpagesforagentsfallback.com) to avoid circular IP detection
+  - **Namecheap API**: Domain registration and DNS management via DigitalOcean proxy (134.199.194.110:3000)
+  - **Full DNS Automation**: Single-button auto-configuration that:
+    - Automatically configures root domain (@) with ALIAS record
+    - Automatically configures www subdomain with CNAME record
+    - Automatically adds Cloudflare TXT validation records for SSL certificate issuance
+    - Zero manual DNS steps required - everything happens automatically
+  - **FREE Domain System**: Eligible .com/.net domains ≤$18 included in subscription
 - **Deployment**: Railway hosting with automatic SSL certificate generation and renewal, Vite/ESBuild for production builds, Node.js production server, and environment variable configuration.
 - **User Management**: Manual user creation for super admins with optional free website provisioning.
 - **Visual Editing**: Universal image and background editing system, and dynamic content refactoring for visual editing across various templates.

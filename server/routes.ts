@@ -1033,7 +1033,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       await storage.updatePage(page.id, { 
         domainVerified: false,
-        domainStatus: 'pending',
+        domainStatus: 'auto_configured',
         cloudflareCustomHostnameId: cloudflareResult.customHostnameId,
         cloudflareHostnameStatus: cloudflareResult.status,
         cloudflareSslStatus: cloudflareResult.sslStatus,

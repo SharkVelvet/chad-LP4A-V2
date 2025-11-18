@@ -77,10 +77,11 @@ app.use((req, res, next) => {
         'landingpagesforagentsfallback.com' // Cloudflare fallback origin - not a custom domain
       ];
 
-      // If this is a platform domain or an API request, skip custom domain handling
+      // If this is a platform domain or an API request or static asset, skip custom domain handling
       if (!actualHostname || 
           platformDomains.some(d => actualHostname.includes(d)) || 
           req.path.startsWith('/api/') ||
+          req.path.startsWith('/assets/') ||
           req.path.startsWith('/attached_assets/')) {
         return next();
       }

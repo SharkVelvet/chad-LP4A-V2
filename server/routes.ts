@@ -1778,76 +1778,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const result = await domainService.registerDomain(domain, years, contactInfo);
         
         if (result.success) {
-          // Automatically register domain with Railway and configure DNS
-          if (railwayService.isConfigured()) {
-            try {
-              console.log(`🚂 Auto-registering free domain with Railway: ${domain}`);
-              await railwayService.addCustomDomain(domain);
-              await railwayService.addCustomDomain(`www.${domain}`);
-              console.log(`✓ Domain ${domain} and www.${domain} registered with Railway`);
-              
-              // Wait for Railway to generate DNS records (with retry)
-              console.log(`⏳ Waiting for Railway DNS records...`);
-              const dnsRecords = await railwayService.getAllDomainDnsRecords(domain, 5, 3000);
-              
-              if (dnsRecords && dnsRecords.length > 0) {
-                console.log(`✓ Got ${dnsRecords.length} DNS records from Railway`);
-                
-                // Extract the CNAME target from Railway DNS records
-                const cnameRecord = dnsRecords.find(r => 
-                  r.recordType === 'CNAME' && r.requiredValue
-                );
-                
-                if (cnameRecord) {
-                  const railwayTarget = cnameRecord.requiredValue;
-                  console.log(`🎯 Railway CNAME target: ${railwayTarget}`);
-                  
-                  // Automatically configure DNS in Namecheap
-                  console.log(`⚙️  Auto-configuring DNS records for ${domain}...`);
-                  await domainService.setDnsRecords(domain, [
-                    {
-                      name: '@',
-                      type: 'ALIAS',
-                      address: railwayTarget,
-                      ttl: 300
-                    },
-                    {
-                      name: 'www',
-                      type: 'CNAME',
-                      address: railwayTarget,
-                      ttl: 300
-                    }
-                  ]);
-                  console.log(`✅ DNS auto-configured! Domain will be live in 5-30 minutes.`);
-                  
-                  // Update page with successful domain configuration
-                  await storage.updatePage(pageId, { 
-                    domain, 
-                    domainVerified: false,
-                    domainStatus: 'dns_configured'
-                  } as any);
-                  
-                  return res.json({ 
-                    success: true, 
-                    isFree: true,
-                    message: 'Domain registered and DNS auto-configured! Your site will be live in 5-30 minutes.',
-                    domain,
-                    railwayTarget,
-                    dnsConfigured: true
-                  });
-                } else {
-                  console.log(`⚠️  No CNAME record found in Railway response`);
-                }
-              } else {
-                console.log(`⚠️  Railway did not return DNS records yet`);
+          // Automatically configure DNS to point to DigitalOcean droplet (Caddy proxy)
+          try {
+            console.log(`🌐 Auto-configuring DNS for ${domain} → DigitalOcean droplet...`);
+            
+            // Point both @ and www to the droplet IP
+            await domainService.setDnsRecords(domain, [
+              {
+                name: '@',
+                type: 'A',
+                address: '134.199.194.110',
+                ttl: 300
+              },
+              {
+                name: 'www',
+                type: 'A',
+                address: '134.199.194.110',
+                ttl: 300
               }
-            } catch (error: any) {
-              console.error(`⚠️  Railway domain registration/DNS failed: ${error.message}`);
-              // Continue anyway - user can configure DNS manually
-            }
+            ]);
+            
+            console.log(`✅ DNS auto-configured! Caddy proxy will auto-provision SSL.`);
+            
+            // Update page with successful domain configuration
+            await storage.updatePage(pageId, { 
+              domain, 
+              domainVerified: false,
+              domainStatus: 'dns_configured'
+            } as any);
+            
+            return res.json({ 
+              success: true, 
+              isFree: true,
+              message: 'Domain registered and DNS auto-configured! Your site will be live in 5-15 minutes with automatic SSL.',
+              domain,
+              dnsConfigured: true
+            });
+          } catch (error: any) {
+            console.error(`⚠️  DNS configuration failed: ${error.message}`);
           }
           
-          // Update page with the purchased domain
+          // Fallback: Update page with the purchased domain
           await storage.updatePage(pageId, { 
             domain, 
             domainVerified: false,

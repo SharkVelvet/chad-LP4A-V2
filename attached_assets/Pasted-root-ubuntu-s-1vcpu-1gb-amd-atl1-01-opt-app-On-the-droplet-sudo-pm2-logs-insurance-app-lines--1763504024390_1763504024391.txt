@@ -1,0 +1,68 @@
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:/opt/app# # On the droplet:
+sudo pm2 logs insurance-app --lines 30 --nostream
+[TAILING] Tailing last 30 lines for [insurance-app] process (change the value with --lines option)
+/root/.pm2/logs/insurance-app-out.log last 30 lines:
+6|insuranc | 10:09:10 PM [express] API routes registered and ready
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 10:10:24 PM [express] SIGINT received, shutting down gracefully
+6|insuranc | 10:10:24 PM [express] Process terminated
+6|insuranc | 
+6|insuranc | > rest-express@1.0.0 start
+6|insuranc | > NODE_ENV=production node dist/index.js
+6|insuranc | 
+6|insuranc | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insuranc | 🔧 Namecheap API Configuration:
+6|insuranc |    API URL: https://api.namecheap.com/xml.response
+6|insuranc |    Proxy URL: Direct connection
+6|insuranc |    API User: chadlanding
+6|insuranc |    Username: chadlanding
+6|insuranc |    Client IP: 34.148.226.28
+6|insuranc |    API Key: 71622f200d...
+6|insuranc |    Sandbox Mode: undefined
+6|insuranc | ✓ Railway API configured
+6|insuranc | 10:10:28 PM [express] serving on 0.0.0.0:5000 (NODE_ENV: production)
+6|insuranc | 10:10:28 PM [express] API routes registered and ready
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+
+/root/.pm2/logs/insurance-app-error.log last 30 lines:
+6|insuranc | Custom domain error: Error: ENOENT: no such file or directory, open '/opt/app/dist/public/index.html'
+6|insuranc |     at Module.readFileSync (node:fs:449:20)
+6|insuranc |     at file:///opt/app/dist/index.js:5468:24
+6|insuranc |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+6|insuranc |   errno: -2,
+6|insuranc |   code: 'ENOENT',
+6|insuranc |   syscall: 'open',
+6|insuranc |   path: '/opt/app/dist/public/index.html'
+6|insuranc | }
+6|insuranc | Error: ENOENT: no such file or directory, stat '/opt/app/dist/public/index.html'
+6|insuranc | Custom domain error: Error: ENOENT: no such file or directory, open '/opt/app/dist/public/index.html'
+6|insuranc |     at Module.readFileSync (node:fs:449:20)
+6|insuranc |     at file:///opt/app/dist/index.js:5468:24
+6|insuranc |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+6|insuranc |   errno: -2,
+6|insuranc |   code: 'ENOENT',
+6|insuranc |   syscall: 'open',
+6|insuranc |   path: '/opt/app/dist/public/index.html'
+6|insuranc | }
+6|insuranc | Error: ENOENT: no such file or directory, stat '/opt/app/dist/public/index.html'
+6|insuranc | Custom domain error: Error: ENOENT: no such file or directory, open '/opt/app/dist/public/index.html'
+6|insuranc |     at Module.readFileSync (node:fs:449:20)
+6|insuranc |     at file:///opt/app/dist/index.js:5468:24
+6|insuranc |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+6|insuranc |   errno: -2,
+6|insuranc |   code: 'ENOENT',
+6|insuranc |   syscall: 'open',
+6|insuranc |   path: '/opt/app/dist/public/index.html'
+6|insuranc | }
+6|insuranc | Error: ENOENT: no such file or directory, stat '/opt/app/dist/public/index.html'
+
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:/opt/app# 

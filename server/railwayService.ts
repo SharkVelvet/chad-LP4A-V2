@@ -140,7 +140,7 @@ class RailwayService {
     this.config.serviceEnvironmentId = targetInstance.node.id;
     console.log(`✓ Found serviceEnvironmentId: ${this.config.serviceEnvironmentId}`);
 
-    return this.config.serviceEnvironmentId;
+    return this.config.serviceEnvironmentId!;
   }
 
   /**

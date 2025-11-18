@@ -1,0 +1,73 @@
+echo "✅ Setup complete! Now we need to configure environment variables."
+echo "I'll provide those in the next step..."Password for 'https://%23%21%2Fbin%2Fbash@github.com': 
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for 'https://github.com/YOUR_USERNAME/YOUR_REPO.git/'
+-bash: cd: /opt/app: No such file or directory
+npm error code ENOENT
+npm error syscall open
+npm error path /opt/package.json
+npm error errno -2
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/opt/package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: /root/.npm/_logs/2025-11-18T20_20_51_871Z-debug-0.log
+npm error code ENOENT
+npm error syscall open
+npm error path /opt/package.json
+npm error errno -2
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/opt/package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: /root/.npm/_logs/2025-11-18T20_20_52_470Z-debug-0.log
+tee: /opt/app/.env: No such file or directory
+[PM2] Starting /usr/bin/npm in fork_mode (1 instance)
+[PM2] Done.
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 1  │ insurance-app      │ fork     │ 0    │ online    │ 0%       │ 10.6mb   │
+│ 0  │ namecheap-proxy    │ fork     │ 0    │ online    │ 0%       │ 54.7mb   │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+[PM2] Init System found: systemd
+Platform systemd
+Template
+[Unit]
+Description=PM2 process manager
+Documentation=https://pm2.keymetrics.io/
+After=network.target
+
+[Service]
+Type=forking
+User=root
+LimitNOFILE=infinity
+LimitNPROC=infinity
+LimitCORE=infinity
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+Environment=PM2_HOME=/root/.pm2
+PIDFile=/root/.pm2/pm2.pid
+Restart=on-failure
+
+ExecStart=/usr/lib/node_modules/pm2/bin/pm2 resurrect
+ExecReload=/usr/lib/node_modules/pm2/bin/pm2 reload all
+ExecStop=/usr/lib/node_modules/pm2/bin/pm2 kill
+
+[Install]
+WantedBy=multi-user.target
+
+Target path
+/etc/systemd/system/pm2-root.service
+Command list
+[ 'systemctl enable pm2-root' ]
+[PM2] Writing init configuration in /etc/systemd/system/pm2-root.service
+[PM2] Making script booting at startup...
+[PM2] [-] Executing: systemctl enable pm2-root...
+[PM2] [v] Command successfully executed.
++---------------------------------------+
+[PM2] Freeze a process list on reboot via:
+$ pm2 save
+
+[PM2] Remove init script via:
+$ pm2 unstartup systemd
+[PM2] Saving current process list...
+[PM2] Successfully saved in /root/.pm2/dump.pm2
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:/opt# 

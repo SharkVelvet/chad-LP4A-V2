@@ -2,6 +2,8 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { storage } from "./storage";
+import * as fs from "fs";
+import * as path from "path";
 
 const app = express();
 app.use(express.json({ limit: '10mb' }));
@@ -104,30 +106,15 @@ app.use((req, res, next) => {
         const content = await storage.getPageContent(page.id);
         const template = await storage.getTemplate(page.templateId);
 
-        // Serve the public page HTML
-        res.send(`
-          <!DOCTYPE html>
-          <html lang="en">
-            <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>${page.businessName || 'Page'}</title>
-              <style>
-                body { margin: 0; font-family: system-ui; }
-              </style>
-            </head>
-            <body>
-              <div id="root"></div>
-              <script>
-                window.__PAGE_DATA__ = ${JSON.stringify({ page, content, template })};
-              </script>
-              <script type="module">
-                // Load the public viewer component
-                import { createRoot} from '/src/main.tsx';
-              </script>
-            </body>
-          </html>
-        `);
+        // Read the built index.html from dist/public
+        const indexPath = path.resolve(import.meta.dirname, "public", "index.html");
+        let html = fs.readFileSync(indexPath, "utf-8");
+
+        // Inject page data into the HTML
+        const pageDataScript = `<script>window.__PAGE_DATA__ = ${JSON.stringify({ page, content, template })};</script>`;
+        html = html.replace('</head>', `${pageDataScript}</head>`);
+
+        res.send(html);
       } catch (error) {
         console.error('Custom domain error:', error);
         return next();

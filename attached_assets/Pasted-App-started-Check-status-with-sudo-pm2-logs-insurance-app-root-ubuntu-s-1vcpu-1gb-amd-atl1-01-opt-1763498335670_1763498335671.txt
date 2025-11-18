@@ -1,0 +1,450 @@
+App started! Check status with: sudo pm2 logs insurance-app
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:/opt/app# sudo pm2 logs insurance-app --lines 50
+[TAILING] Tailing last 50 lines for [insurance-app] process (change the value with --lines option)
+/root/.pm2/logs/insurance-app-error.log last 50 lines:
+2|insuranc |     at file:///opt/app/dist/index.js:622:9
+2|insuranc |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insuranc |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insuranc |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insuranc | 
+2|insuranc | Node.js v20.19.5
+2|insuranc | file:///opt/app/dist/index.js:622
+2|insuranc |   throw new Error(
+2|insuranc |         ^
+2|insuranc | 
+2|insuranc | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insuranc |     at file:///opt/app/dist/index.js:622:9
+2|insuranc |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insuranc |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insuranc |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insuranc | 
+2|insuranc | Node.js v20.19.5
+2|insuranc | file:///opt/app/dist/index.js:622
+2|insuranc |   throw new Error(
+2|insuranc |         ^
+2|insuranc | 
+2|insuranc | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insuranc |     at file:///opt/app/dist/index.js:622:9
+2|insuranc |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insuranc |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insuranc |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insuranc | 
+2|insuranc | Node.js v20.19.5
+2|insuranc | file:///opt/app/dist/index.js:622
+2|insuranc |   throw new Error(
+2|insuranc |         ^
+2|insuranc | 
+2|insuranc | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insuranc |     at file:///opt/app/dist/index.js:622:9
+2|insuranc |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insuranc |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insuranc |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insuranc | 
+2|insuranc | Node.js v20.19.5
+2|insuranc | file:///opt/app/dist/index.js:622
+2|insuranc |   throw new Error(
+2|insuranc |         ^
+2|insuranc | 
+2|insuranc | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insuranc |     at file:///opt/app/dist/index.js:622:9
+2|insuranc |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insuranc |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insuranc |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insuranc | 
+2|insuranc | Node.js v20.19.5
+
+/root/.pm2/logs/insurance-app-out.log last 50 lines:
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+2|insuranc | 
+2|insuranc | > rest-express@1.0.0 start
+2|insuranc | > NODE_ENV=production node dist/index.js
+2|insuranc | 
+
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+ 2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js
+
+2|insurance-app  | file:///opt/app/dist/index.js:622
+2|insurance-app  |   throw new Error(
+2|insurance-app  |         ^
+2|insurance-app  | Error: DATABASE_URL must be set. Did you forget to provision a database?
+2|insurance-app  |     at file:///opt/app/dist/index.js:622:9
+2|insurance-app  |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+2|insurance-app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+2|insurance-app  |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+2|insurance-app  | Node.js v20.19.5
+2|insurance-app  | > rest-express@1.0.0 start
+2|insurance-app  | > NODE_ENV=production node dist/index.js

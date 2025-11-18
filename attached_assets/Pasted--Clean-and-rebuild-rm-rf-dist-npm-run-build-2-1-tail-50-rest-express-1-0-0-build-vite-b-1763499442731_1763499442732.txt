@@ -1,0 +1,52 @@
+# Clean and rebuild
+rm -rf dist/
+npm run build 2>&1 | tail -50
+
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+vite v5.4.14 building for production...
+transforming...
+Browserslist: browsers data (caniuse-lite) is 13 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 1933 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/public/index.html                                                              1.94 kB │ gzip:   0.99 kB
+../dist/public/assets/temp1-pr-DFP9ClDC.jpg                                           30.93 kB
+../dist/public/assets/temp3-pr-Dd68Q6gP.jpg                                           30.98 kB
+../dist/public/assets/temp2-pr-BlFYqj89.jpg                                           35.13 kB
+../dist/public/assets/temp4-pr-B0cp9rxs.jpg                                           64.58 kB
+../dist/public/assets/planright-w2_1751850806336-7bRZnlXI.jpg                         96.56 kB
+../dist/public/assets/scroll7_1760274006088-DnDkVHft.png                             121.90 kB
+../dist/public/assets/scroll5_1760273718259-ZWjnGVn7.png                             160.96 kB
+../dist/public/assets/tempalte1-hero-BRpwgpCo.jpg                                    187.46 kB
+../dist/public/assets/planright-w4_1751851299514-9N9ERhU7.jpg                        201.59 kB
+../dist/public/assets/planright-park-back_1751851568156-CcHkjk6I.jpg                 224.82 kB
+../dist/public/assets/scroll6_1760273898739-BIDF8Zl2.png                             242.62 kB
+../dist/public/assets/landingpagesforagents-hand-shake_1760211806774-D-D96Avs.jpg    248.37 kB
+../dist/public/assets/scroll2_1760273238786-DbJVM1F5.png                             250.80 kB
+../dist/public/assets/scroll4_1760273592823-BuStk4qe.png                             304.12 kB
+../dist/public/assets/scroll3_1760273349134-DUCsV6j3.png                             317.85 kB
+../dist/public/assets/scroll1_1760272781662-ClptsDzz.png                             335.91 kB
+../dist/public/assets/landingpagesforagents-leaders_1760213764577-CtL1vSvY.jpg       368.37 kB
+../dist/public/assets/lp4a-logo-design_1757611811508-DkE3v6XW.jpg                    437.05 kB
+../dist/public/assets/lp4a-print-design_1757611869956-BOTzWxXi.jpg                   651.50 kB
+../dist/public/assets/LPFA-PLAY-now_1757278621958-DpVbnGtH.png                     1,254.66 kB
+../dist/public/assets/LPFA-PLAY-AGAIN_1757278384329-IJtctK8H.png                   1,258.18 kB
+../dist/public/assets/lpfa-designers_1757289648427-Bng9CiAw.png                    1,324.43 kB
+../dist/public/assets/landing-temp1_1753549944630-CJ3zC2KA.png                     2,802.84 kB
+../dist/public/assets/index-Bc_r3NZy.css                                             121.86 kB │ gzip:  18.85 kB
+../dist/public/assets/index-BF_-eyCo.js                                            1,568.33 kB │ gzip: 313.92 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 24.15s
+
+  dist/index.js  205.1kb
+
+⚡ Done in 47ms

@@ -1,0 +1,114 @@
+
+vite v5.4.14 building for production...
+transforming (8) src/lib/queryClient.tsBrowserslist: browsers data (caniuse-lite) is 13 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 1933 modules transformed.
+../dist/public/index.html                                                              1.94 kB │ gzip:   0.99 kB
+../dist/public/assets/temp1-pr-DFP9ClDC.jpg                                           30.93 kB
+../dist/public/assets/temp3-pr-Dd68Q6gP.jpg                                           30.98 kB
+../dist/public/assets/temp2-pr-BlFYqj89.jpg                                           35.13 kB
+../dist/public/assets/temp4-pr-B0cp9rxs.jpg                                           64.58 kB
+../dist/public/assets/planright-w2_1751850806336-7bRZnlXI.jpg                         96.56 kB
+../dist/public/assets/scroll7_1760274006088-DnDkVHft.png                             121.90 kB
+../dist/public/assets/scroll5_1760273718259-ZWjnGVn7.png                             160.96 kB
+../dist/public/assets/tempalte1-hero-BRpwgpCo.jpg                                    187.46 kB
+../dist/public/assets/planright-w4_1751851299514-9N9ERhU7.jpg                        201.59 kB
+../dist/public/assets/planright-park-back_1751851568156-CcHkjk6I.jpg                 224.82 kB
+../dist/public/assets/scroll6_1760273898739-BIDF8Zl2.png                             242.62 kB
+../dist/public/assets/landingpagesforagents-hand-shake_1760211806774-D-D96Avs.jpg    248.37 kB
+../dist/public/assets/scroll2_1760273238786-DbJVM1F5.png                             250.80 kB
+../dist/public/assets/scroll4_1760273592823-BuStk4qe.png                             304.12 kB
+../dist/public/assets/scroll3_1760273349134-DUCsV6j3.png                             317.85 kB
+../dist/public/assets/scroll1_1760272781662-ClptsDzz.png                             335.91 kB
+../dist/public/assets/landingpagesforagents-leaders_1760213764577-CtL1vSvY.jpg       368.37 kB
+../dist/public/assets/lp4a-logo-design_1757611811508-DkE3v6XW.jpg                    437.05 kB
+../dist/public/assets/lp4a-print-design_1757611869956-BOTzWxXi.jpg                   651.50 kB
+../dist/public/assets/LPFA-PLAY-now_1757278621958-DpVbnGtH.png                     1,254.66 kB
+../dist/public/assets/LPFA-PLAY-AGAIN_1757278384329-IJtctK8H.png                   1,258.18 kB
+../dist/public/assets/lpfa-designers_1757289648427-Bng9CiAw.png                    1,324.43 kB
+../dist/public/assets/landing-temp1_1753549944630-CJ3zC2KA.png                     2,802.84 kB
+../dist/public/assets/index-Bc_r3NZy.css                                             121.86 kB │ gzip:  18.85 kB
+../dist/public/assets/index-BF_-eyCo.js                                            1,568.33 kB │ gzip: 313.92 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 14.97s
+
+  dist/index.js  205.1kb
+
+⚡ Done in 62ms
+cd /opt/app
+export $(cat .env | xargs)
+sudo -E pm2 start insurance-app
+Use --update-env to update environment variables
+[PM2] Applying action restartProcessId on app [insurance-app](ids: [ 6 ])
+[PM2] [insurance-app](6) ✓
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 6  │ insurance-app      │ fork     │ 5    │ online    │ 0%       │ 7.9mb    │
+│ 0  │ namecheap-proxy    │ fork     │ 0    │ online    │ 0%       │ 62.8mb   │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+[TAILING] Tailing last 20 lines for [insurance-app] process (change the value with --lines option)
+/root/.pm2/logs/insurance-app-error.log last 20 lines:
+6|insuranc |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+6|insuranc | 
+6|insuranc | Node.js v20.19.5
+6|insuranc | file:///opt/app/dist/index.js:622
+6|insuranc |   throw new Error(
+6|insuranc |         ^
+6|insuranc | 
+6|insuranc | Error: DATABASE_URL must be set. Did you forget to provision a database?
+6|insuranc |     at file:///opt/app/dist/index.js:622:9
+6|insuranc |     at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+6|insuranc |     at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+6|insuranc |     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+6|insuranc | 
+6|insuranc | Node.js v20.19.5
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+
+/root/.pm2/logs/insurance-app-out.log last 20 lines:
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="www.insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="www.insuranceoninsurance.com", actual="www.insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="insuranceoninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="insuranceoninsurance.com", actual="insuranceoninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 🔍 Custom domain request: hostname="vanhaleninsurance.com", cf-connecting-hostname="undefined", x-forwarded-host="vanhaleninsurance.com", actual="vanhaleninsurance.com"
+6|insuranc | 9:39:20 PM [express] SIGINT received, shutting down gracefully
+6|insuranc | 9:39:20 PM [express] Process terminated
+
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 9:41:14 PM [express] serving on 0.0.0.0:5000 (NODE_ENV: production)
+6|insurance-app  | 9:41:14 PM [express] API routes registered and ready

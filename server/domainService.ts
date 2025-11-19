@@ -82,6 +82,12 @@ export async function processDomainJob(jobId: number): Promise<void> {
       throw new Error(`Job ${jobId} not found`);
     }
 
+    // Guard against concurrent execution: exit early if another worker already grabbed this job
+    if (job.status !== 'pending') {
+      console.log(`Job ${jobId} is ${job.status}, skipping (likely processed by another worker)`);
+      return;
+    }
+
     if (job.status === 'completed') {
       console.log(`Job ${jobId} already completed`);
       return;
@@ -99,14 +105,26 @@ export async function processDomainJob(jobId: number): Promise<void> {
       throw new Error(`Job ${jobId} failed: max attempts reached`);
     }
 
-    await db
+    // Atomically claim the job: only update if status is still 'pending'
+    // This prevents race conditions with concurrent workers
+    const claimed = await db
       .update(domainJobs)
       .set({
         status: 'processing',
-        attempts: job.attempts + 1,
         updatedAt: new Date(),
       })
-      .where(eq(domainJobs.id, jobId));
+      .where(
+        and(
+          eq(domainJobs.id, jobId),
+          eq(domainJobs.status, 'pending')
+        )
+      )
+      .returning();
+
+    if (claimed.length === 0) {
+      console.log(`Job ${jobId} was claimed by another worker, skipping`);
+      return;
+    }
 
     console.log(`🔄 Processing job ${jobId} - Step: ${job.step}, Attempt: ${job.attempts + 1}`);
 
@@ -126,13 +144,26 @@ export async function processDomainJob(jobId: number): Promise<void> {
   } catch (error: any) {
     console.error(`❌ Error processing job ${jobId}:`, error);
 
+    // Check current job status to avoid overwriting terminal states
+    const [currentJob] = await db.select().from(domainJobs).where(eq(domainJobs.id, jobId));
+    
+    // Don't requeue if job is already in a terminal state (failed or completed)
+    if (currentJob?.status === 'failed' || currentJob?.status === 'completed') {
+      console.log(`Job ${jobId} is in terminal state ${currentJob.status}, not requeuing`);
+      throw error;
+    }
+
+    // Increment attempts only when a step fails
+    const nextAttempts = (currentJob?.attempts || 0) + 1;
+
     await db
       .update(domainJobs)
       .set({
         status: 'pending',
+        attempts: nextAttempts,
         lastError: error.message,
         updatedAt: new Date(),
-        scheduledFor: new Date(Date.now() + Math.pow(2, (await getJobAttempts(jobId))) * 60000),
+        scheduledFor: new Date(Date.now() + Math.pow(2, nextAttempts) * 60000),
       })
       .where(eq(domainJobs.id, jobId));
 
@@ -277,11 +308,6 @@ async function processSSLProvisioningStep(job: DomainJob): Promise<void> {
       })
       .where(eq(domainJobs.id, job.id));
   }
-}
-
-async function getJobAttempts(jobId: number): Promise<number> {
-  const [job] = await db.select().from(domainJobs).where(eq(domainJobs.id, jobId));
-  return job?.attempts || 0;
 }
 
 export async function getDomainJobStatus(pageId: number): Promise<{

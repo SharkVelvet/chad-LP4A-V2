@@ -1,0 +1,648 @@
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# sudo systemctl status caddy -l
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+lines 1-22/22 (END)...skipping...
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-22/22 (END)...skipping...
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-22/22 (END)...skipping...
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-22/22 (END)...skipping...
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-22/22 (END)...skipping...
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-22/22 (END)...skipping...
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-22/22 (END)...skipping...
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-22/22 (END)...skipping...
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-22/22 (END)...skipping...
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-22/22 (END)...skipping...
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-22/22 (END)...skipping...
+● caddy.service - Caddy
+     Loaded: loaded (/lib/systemd/system/caddy.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-11-18 20:35:37 UTC; 5h 41min ago
+       Docs: https://caddyserver.com/docs/
+    Process: 266386 ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force (code=exited, status=>
+   Main PID: 245177 (caddy)
+      Tasks: 8 (limit: 1102)
+     Memory: 51.8M
+        CPU: 7.917s
+     CGroup: /system.slice/caddy.service
+             └─245177 /usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5015795,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5589364,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.5623424,"logger":">
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6194947,"msg":"got>
+Nov 19 02:15:37 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[245177]: {"level":"info","ts":1763518537.6228333,"logger":">
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: {"level":"info","ts":1763518554.7997272,"msg":"usi>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[266386]: Error: adapting config using caddyfile: Unexpected>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, s>
+Nov 19 02:15:54 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-22/22 (END)

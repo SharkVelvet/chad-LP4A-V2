@@ -1,7 +1,7 @@
 import { db } from './db';
 import { pages, domainJobs, domainRegistrants, type DomainJob, type DomainRegistrant } from '@shared/schema';
 import { eq, and } from 'drizzle-orm';
-import * as namecheap from './namecheapService';
+import { getRegistrar } from './registrars';
 import * as cloudflare from './cloudflareService';
 
 export async function searchDomain(domain: string): Promise<{
@@ -10,7 +10,8 @@ export async function searchDomain(domain: string): Promise<{
   price?: number;
 }> {
   try {
-    return await namecheap.checkDomainAvailability(domain);
+    const registrar = getRegistrar('godaddy');
+    return await registrar.searchDomain(domain);
   } catch (error: any) {
     console.error('Error searching domain:', error);
     throw new Error(`Failed to search domain: ${error.message}`);
@@ -187,9 +188,14 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
 
   console.log(`✅ Cloudflare zone created: ${zoneId}`);
 
-  const registrationResult = await namecheap.registerDomain(job.domain, registrant, nameservers);
+  const registrar = getRegistrar('godaddy');
+  const registrationResult = await registrar.registerDomain(job.domain, registrant);
 
-  console.log(`✅ Domain registered with Namecheap. Order ID: ${registrationResult.orderId}`);
+  console.log(`✅ Domain registered with GoDaddy. Order ID: ${registrationResult.orderId}`);
+
+  await registrar.setNameservers(job.domain, nameservers);
+
+  console.log(`✅ Nameservers set to Cloudflare`);
 
   await db
     .update(pages)
@@ -210,7 +216,8 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
         ...job.metadata,
         zoneId,
         nameservers,
-        namecheapOrderId: registrationResult.orderId,
+        registrarOrderId: registrationResult.orderId,
+        registrarProvider: 'godaddy',
       },
       updatedAt: new Date(),
       scheduledFor: new Date(Date.now() + 60000),
@@ -339,7 +346,7 @@ export async function getDomainJobStatus(pageId: number): Promise<{
     };
 
     const stepMessages: Record<string, string> = {
-      register: 'Registering domain with Namecheap...',
+      register: 'Registering domain...',
       configure_dns: 'Configuring DNS records...',
       provision_ssl: 'Provisioning SSL certificate...',
       complete: 'All done!',

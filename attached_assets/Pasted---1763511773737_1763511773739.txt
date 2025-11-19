@@ -1,0 +1,261 @@
+└────┴────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:/opt/app/dist# sudo pm2 logs insurance-app --lines 50
+[TAILING] Tailing last 50 lines for [insurance-app] process (change the value with --lines option)
+/root/.pm2/logs/insurance-app-error.log last 50 lines:
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+6|insuranc | ⚠️ Cloudflare API credentials not fully configured
+
+/root/.pm2/logs/insurance-app-out.log last 50 lines:
+6|insuranc | 12:22:11 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insuranc | 
+6|insuranc | > rest-express@1.0.0 start
+6|insuranc | > NODE_ENV=production node dist/index.js
+6|insuranc | 
+6|insuranc | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insuranc | 🔧 Namecheap API Configuration:
+6|insuranc |    API URL: https://api.namecheap.com/xml.response
+6|insuranc |    Proxy URL: Direct connection
+6|insuranc |    API User: chadlanding
+6|insuranc |    Username: chadlanding
+6|insuranc |    Client IP: 34.148.226.28
+6|insuranc |    API Key: 71622f200d...
+6|insuranc |    Sandbox Mode: undefined
+6|insuranc | ✓ Railway API configured
+6|insuranc | 12:22:13 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insuranc | 
+6|insuranc | > rest-express@1.0.0 start
+6|insuranc | > NODE_ENV=production node dist/index.js
+6|insuranc | 
+6|insuranc | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insuranc | 🔧 Namecheap API Configuration:
+6|insuranc |    API URL: https://api.namecheap.com/xml.response
+6|insuranc |    Proxy URL: Direct connection
+6|insuranc |    API User: chadlanding
+6|insuranc |    Username: chadlanding
+6|insuranc |    Client IP: 34.148.226.28
+6|insuranc |    API Key: 71622f200d...
+6|insuranc |    Sandbox Mode: undefined
+6|insuranc | ✓ Railway API configured
+6|insuranc | 12:22:15 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insuranc | 
+6|insuranc | > rest-express@1.0.0 start
+6|insuranc | > NODE_ENV=production node dist/index.js
+6|insuranc | 
+6|insuranc | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insuranc | 🔧 Namecheap API Configuration:
+6|insuranc |    API URL: https://api.namecheap.com/xml.response
+6|insuranc |    Proxy URL: Direct connection
+6|insuranc |    API User: chadlanding
+6|insuranc |    Username: chadlanding
+6|insuranc |    Client IP: 34.148.226.28
+6|insuranc |    API Key: 71622f200d...
+6|insuranc |    Sandbox Mode: undefined
+6|insuranc | ✓ Railway API configured
+6|insuranc | 12:22:17 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insuranc | 
+6|insuranc | > rest-express@1.0.0 start
+6|insuranc | > NODE_ENV=production node dist/index.js
+6|insuranc | 
+
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 12:22:20 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 12:22:22 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 12:22:24 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 12:22:27 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 12:22:29 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 12:22:32 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 12:22:34 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 12:22:36 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 12:22:38 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 12:22:41 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js
+6|insurance-app  | ⚠️ Cloudflare API credentials not fully configured
+6|insurance-app  | Required: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID
+6|insurance-app  | 🔧 Namecheap API Configuration:
+6|insurance-app  |    API URL: https://api.namecheap.com/xml.response
+6|insurance-app  |    Proxy URL: Direct connection
+6|insurance-app  |    API User: chadlanding
+6|insurance-app  |    Username: chadlanding
+6|insurance-app  |    Client IP: 34.148.226.28
+6|insurance-app  |    API Key: 71622f200d...
+6|insurance-app  |    Sandbox Mode: undefined
+6|insurance-app  | ✓ Railway API configured
+6|insurance-app  | 12:22:43 AM [express] Failed to start server: Error: Could not find the build directory: /opt/app/dist/public, make sure to build the client first
+6|insurance-app  | > rest-express@1.0.0 start
+6|insurance-app  | > NODE_ENV=production node dist/index.js

@@ -1,0 +1,57 @@
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-161-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Wed Nov 19 13:04:12 UTC 2025
+
+  System load:  0.01               Processes:             97
+  Usage of /:   21.9% of 24.05GB   Users logged in:       0
+  Memory usage: 42%                IPv4 address for eth0: 134.199.194.110
+  Swap usage:   0%                 IPv4 address for eth0: 10.50.0.5
+
+Expanded Security Maintenance for Applications is not enabled.
+
+1 update can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+1 additional security update can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+New release '24.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Wed Nov 19 13:04:13 2025 from 198.211.111.194
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# sudo journalctl -xeu caddy.service --no-pager | tail -30
+░░ 
+░░ A reload job for unit caddy.service has finished.
+░░ 
+░░ The job identifier is 1588 and the job result is failed.
+Nov 19 13:04:16 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reloading Caddy...
+░░ Subject: A reload job for unit caddy.service has begun execution
+░░ Defined-By: systemd
+░░ Support: http://www.ubuntu.com/support
+░░ 
+░░ A reload job for unit caddy.service has begun execution.
+░░ 
+░░ The job identifier is 1763.
+Nov 19 13:04:16 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[3346]: {"level":"info","ts":1763557456.154008,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+Nov 19 13:04:16 ubuntu-s-1vcpu-1gb-amd-atl1-01 caddy[3346]: Error: adapting config using caddyfile: parsing caddyfile tokens for 'on_demand_tls': the on_demand_tls 'interval' option is no longer supported, remove it from your config, at /etc/caddy/Caddyfile:8
+Nov 19 13:04:16 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: caddy.service: Control process exited, code=exited, status=1/FAILURE
+░░ Subject: Unit process exited
+░░ Defined-By: systemd
+░░ Support: http://www.ubuntu.com/support
+░░ 
+░░ An ExecReload= process belonging to unit caddy.service has exited.
+░░ 
+░░ The process' exit code is 'exited' and its exit status is 1.
+Nov 19 13:04:16 ubuntu-s-1vcpu-1gb-amd-atl1-01 systemd[1]: Reload failed for Caddy.
+░░ Subject: A reload job for unit caddy.service has finished
+░░ Defined-By: systemd
+░░ Support: http://www.ubuntu.com/support
+░░ 
+░░ A reload job for unit caddy.service has finished.
+░░ 
+░░ The job identifier is 1763 and the job result is failed.

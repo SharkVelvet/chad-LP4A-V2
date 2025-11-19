@@ -125,7 +125,7 @@ export class GoDaddyRegistrar implements IRegistrar {
         consent: {
           agreedBy: registrant.clientIp || registrant.email,
           agreedAt: new Date().toISOString(),
-          agreementKeys: ['DNRA'],
+          agreementKeys: ['DNRA', 'DNPA'],
         },
         contactAdmin: contact,
         contactBilling: contact,
@@ -172,7 +172,7 @@ export class GoDaddyRegistrar implements IRegistrar {
         consent: {
           agreedBy: clientIp || '127.0.0.1',
           agreedAt: new Date().toISOString(),
-          agreementKeys: ['DNRA'],
+          agreementKeys: ['DNRA', 'DNPA'],
         },
       };
 

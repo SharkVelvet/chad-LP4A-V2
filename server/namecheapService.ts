@@ -7,6 +7,17 @@ const API_KEY = process.env.NAMECHEAP_API_KEY!;
 const USERNAME = process.env.NAMECHEAP_USERNAME!;
 const CLIENT_IP = process.env.NAMECHEAP_CLIENT_IP!;
 
+// DigitalOcean proxy for static IP whitelisting with Namecheap
+const PROXY_HOST = '134.199.194.110';
+const PROXY_PORT = 3000;
+
+const axiosInstance = axios.create({
+  proxy: {
+    host: PROXY_HOST,
+    port: PROXY_PORT,
+  },
+});
+
 const parser = new XMLParser({
   ignoreAttributes: false,
   attributeNamePrefix: '@_',
@@ -37,7 +48,7 @@ export async function checkDomainAvailability(domain: string): Promise<{
       DomainList: domain,
     });
 
-    const response = await axios.get(`${NAMECHEAP_API_URL}?${params.toString()}`);
+    const response = await axiosInstance.get(`${NAMECHEAP_API_URL}?${params.toString()}`);
     const parsed: NamecheapResponse = parser.parse(response.data);
 
     if (parsed.ApiResponse['@_Status'] !== 'OK') {
@@ -141,7 +152,7 @@ export async function registerDomain(
       WGEnabled: 'yes',
     });
 
-    const response = await axios.post(NAMECHEAP_API_URL, params.toString(), {
+    const response = await axiosInstance.post(NAMECHEAP_API_URL, params.toString(), {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     });
 
@@ -185,7 +196,7 @@ export async function setNameservers(
       Nameservers: nameservers.join(','),
     });
 
-    const response = await axios.post(NAMECHEAP_API_URL, params.toString(), {
+    const response = await axiosInstance.post(NAMECHEAP_API_URL, params.toString(), {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     });
 

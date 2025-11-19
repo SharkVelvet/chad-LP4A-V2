@@ -326,6 +326,25 @@ class DomainService {
     };
   }
 
+  async setDefaultNameservers(domain: string): Promise<boolean> {
+    if (!this.isConfigured()) {
+      throw new Error("Domain service not configured");
+    }
+
+    const sld = domain.split(".")[0];
+    const tld = domain.split(".").slice(1).join(".");
+
+    const params: Record<string, string> = {
+      SLD: sld,
+      TLD: tld,
+    };
+
+    console.log(`🔄 Setting ${domain} to use Namecheap Basic DNS (required for custom DNS records)...`);
+    await this.makeRequest("namecheap.domains.dns.setDefault", params);
+    console.log(`✅ ${domain} now uses Namecheap Basic DNS`);
+    return true;
+  }
+
   async setNameservers(domain: string, nameservers: string[]): Promise<boolean> {
     if (!this.isConfigured()) {
       throw new Error("Domain service not configured");

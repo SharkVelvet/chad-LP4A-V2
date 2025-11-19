@@ -1793,6 +1793,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
           try {
             console.log(`🌐 Auto-configuring DNS for ${domain} → DigitalOcean droplet...`);
             
+            // CRITICAL: Switch from parking nameservers to Namecheap Basic DNS
+            // This is required for custom DNS records to actually work
+            await domainService.setDefaultNameservers(domain);
+            
             // Point both @ and www to the droplet IP
             await domainService.setDnsRecords(domain, [
               {
@@ -2991,6 +2995,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const result = await addDomainToAllowlist(domain);
       return res.json(result);
     } catch (error: any) {
+      return res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Fix DNS for existing domain (switch to Namecheap Basic DNS and re-apply DNS records)
+  app.post('/api/admin/fix-domain-dns', async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+    
+    const user = req.user as any;
+    if (user.role !== 'super_admin') {
+      return res.status(403).json({ error: 'Super admin access required' });
+    }
+    
+    const { domain } = req.body;
+    if (!domain) {
+      return res.status(400).json({ error: 'Domain is required' });
+    }
+    
+    try {
+      console.log(`🔧 Fixing DNS for ${domain}...`);
+      
+      // Step 1: Switch to Namecheap Basic DNS
+      await domainService.setDefaultNameservers(domain);
+      
+      // Step 2: Re-apply DNS records to droplet
+      await domainService.setDnsRecords(domain, [
+        {
+          name: '@',
+          type: 'A',
+          address: '134.199.194.110',
+          ttl: 300
+        },
+        {
+          name: 'www',
+          type: 'A',
+          address: '134.199.194.110',
+          ttl: 300
+        }
+      ]);
+      
+      // Step 3: Add to Caddy allowlist
+      const caddyResult = await addDomainToAllowlist(domain);
+      
+      console.log(`✅ DNS fixed for ${domain}`);
+      
+      return res.json({
+        success: true,
+        message: `DNS fixed for ${domain}. Site should be live in 5-15 minutes.`,
+        caddyAllowlist: caddyResult.success
+      });
+    } catch (error: any) {
+      console.error(`❌ Failed to fix DNS for ${domain}:`, error);
       return res.status(500).json({ error: error.message });
     }
   });

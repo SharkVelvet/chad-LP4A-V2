@@ -1,15 +1,21 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
-import { HttpsProxyAgent } from 'https-proxy-agent';
 
-const NAMECHEAP_API_URL = 'https://api.namecheap.com/xml.response';
 const API_USER = process.env.NAMECHEAP_API_USER!;
 const API_KEY = process.env.NAMECHEAP_API_KEY!;
 const USERNAME = process.env.NAMECHEAP_USERNAME!;
 const CLIENT_IP = process.env.NAMECHEAP_CLIENT_IP!;
 
-// Temporarily test direct calls to Namecheap (no proxy)
-const axiosInstance = axios.create();
+// Relay service on DigitalOcean droplet with whitelisted IP
+const RELAY_URL = 'http://134.199.194.110:3000/namecheap-proxy';
+
+async function callNamecheapViaRelay(params: URLSearchParams, method: 'GET' | 'POST' = 'GET') {
+  const response = await axios.post(RELAY_URL, {
+    method,
+    params: Object.fromEntries(params.entries()),
+  });
+  return response.data;
+}
 
 const parser = new XMLParser({
   ignoreAttributes: false,
@@ -41,8 +47,8 @@ export async function checkDomainAvailability(domain: string): Promise<{
       DomainList: domain,
     });
 
-    const response = await axiosInstance.get(`${NAMECHEAP_API_URL}?${params.toString()}`);
-    const parsed: NamecheapResponse = parser.parse(response.data);
+    const response = await callNamecheapViaRelay(params, 'GET');
+    const parsed: NamecheapResponse = parser.parse(response);
 
     if (parsed.ApiResponse['@_Status'] !== 'OK') {
       const error = parsed.ApiResponse.Errors?.Error;
@@ -145,11 +151,9 @@ export async function registerDomain(
       WGEnabled: 'yes',
     });
 
-    const response = await axiosInstance.post(NAMECHEAP_API_URL, params.toString(), {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    });
+    const response = await callNamecheapViaRelay(params, 'POST');
 
-    const parsed: NamecheapResponse = parser.parse(response.data);
+    const parsed: NamecheapResponse = parser.parse(response);
 
     if (parsed.ApiResponse['@_Status'] !== 'OK') {
       const error = parsed.ApiResponse.Errors?.Error;
@@ -189,11 +193,9 @@ export async function setNameservers(
       Nameservers: nameservers.join(','),
     });
 
-    const response = await axiosInstance.post(NAMECHEAP_API_URL, params.toString(), {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    });
+    const response = await callNamecheapViaRelay(params, 'POST');
 
-    const parsed: NamecheapResponse = parser.parse(response.data);
+    const parsed: NamecheapResponse = parser.parse(response);
 
     if (parsed.ApiResponse['@_Status'] !== 'OK') {
       const error = parsed.ApiResponse.Errors?.Error;

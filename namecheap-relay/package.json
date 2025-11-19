@@ -1,0 +1,13 @@
+{
+  "name": "namecheap-relay",
+  "version": "1.0.0",
+  "description": "Relay service for Namecheap API calls from whitelisted IP",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.0"
+  }
+}

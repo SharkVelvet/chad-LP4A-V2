@@ -176,6 +176,40 @@ export const adminUsers = pgTable("admin_users", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
+// Domain registrant information (required for Namecheap)
+export const domainRegistrants = pgTable("domain_registrants", {
+  id: serial("id").primaryKey(),
+  pageId: integer("page_id").notNull().references(() => pages.id),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  address1: text("address_1").notNull(),
+  address2: text("address_2"),
+  city: text("city").notNull(),
+  stateProvince: text("state_province").notNull(),
+  postalCode: text("postal_code").notNull(),
+  country: text("country").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+// Domain provisioning jobs queue
+export const domainJobs = pgTable("domain_jobs", {
+  id: serial("id").primaryKey(),
+  pageId: integer("page_id").notNull().references(() => pages.id),
+  domain: text("domain").notNull(),
+  status: text("status").notNull().default("pending"), // pending, processing, completed, failed
+  step: text("step").notNull().default("register"), // register, configure_dns, provision_ssl, complete
+  attempts: integer("attempts").notNull().default(0),
+  maxAttempts: integer("max_attempts").notNull().default(5),
+  lastError: text("last_error"),
+  metadata: jsonb("metadata").$type<Record<string, any>>(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  completedAt: timestamp("completed_at"),
+  scheduledFor: timestamp("scheduled_for"),
+});
+
 // Relations
 export const locationsRelations = relations(locations, ({ many }) => ({
   users: many(users),
@@ -296,6 +330,18 @@ export const insertAdminUserSchema = createInsertSchema(adminUsers).omit({
   createdAt: true,
 });
 
+export const insertDomainRegistrantSchema = createInsertSchema(domainRegistrants).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertDomainJobSchema = createInsertSchema(domainJobs).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+  completedAt: true,
+});
+
 // Types
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -319,3 +365,7 @@ export type SeoData = typeof seoData.$inferSelect;
 export type InsertSeoData = z.infer<typeof insertSeoDataSchema>;
 export type AdminUser = typeof adminUsers.$inferSelect;
 export type InsertAdminUser = z.infer<typeof insertAdminUserSchema>;
+export type DomainRegistrant = typeof domainRegistrants.$inferSelect;
+export type InsertDomainRegistrant = z.infer<typeof insertDomainRegistrantSchema>;
+export type DomainJob = typeof domainJobs.$inferSelect;
+export type InsertDomainJob = z.infer<typeof insertDomainJobSchema>;

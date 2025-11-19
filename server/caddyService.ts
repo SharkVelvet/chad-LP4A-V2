@@ -34,7 +34,7 @@ export async function addDomainToAllowlist(domain: string): Promise<CaddyDomainR
     
     // Add both apex and www if not already present
     const domainsToAdd = [domain, `www.${domain}`];
-    const newAllowed = [...new Set([...currentAllowed, ...domainsToAdd])]; // Remove duplicates
+    const newAllowed = Array.from(new Set([...currentAllowed, ...domainsToAdd])); // Remove duplicates
     
     // Use PATCH to update the Caddy configuration
     const response = await fetch(`${CADDY_ADMIN_API}/config/`, {

@@ -1,0 +1,231 @@
+# Check the logs
+pm2 logs caddy-proxy --lines 20
+Use --update-env to update environment variables
+[PM2] Applying action restartProcessId on app [caddy-proxy](ids: [ 2 ])
+[PM2] [caddy-proxy](2) ✓
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ app                │ fork     │ 0    │ online    │ 0%       │ 174.0mb  │
+│ 2  │ caddy-proxy        │ fork     │ 0    │ online    │ 0%       │ 16.7mb   │
+│ 1  │ namecheap-proxy    │ fork     │ 0    │ online    │ 0%       │ 48.3mb   │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+[TAILING] Tailing last 20 lines for [caddy-proxy] process (change the value with --lines option)
+/root/.pm2/logs/caddy-proxy-out.log last 20 lines:
+2|caddy-pr | 🚀 Caddy Proxy Server running on port 3001
+2|caddy-pr |    Auth token configured: 999d8902...
+2|caddy-pr |    Caddy Admin API: http://localhost:2019
+2|caddy-pr | [Caddy Proxy] Adding domain to allowlist: insurance-999.com
+2|caddy-pr | [Caddy Proxy] ✅ Domain added to allowlist: insurance-999.com
+
+/root/.pm2/logs/caddy-proxy-error.log last 20 lines:
+2|caddy-pr | [Caddy Proxy] Warning: on_demand.ask not found in Caddy config
+2|caddy-pr | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-pr |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-pr |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-pr |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-pr |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-pr |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-pr |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-pr |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-pr |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-pr |     at node:internal/main/run_main_module:28:49 {
+2|caddy-pr |   code: 'MODULE_NOT_FOUND',
+2|caddy-pr |   requireStack: []
+2|caddy-pr | }
+
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }
+2|caddy-proxy  | Error: Cannot find module '/opt/caddy-proxy/server.js'
+2|caddy-proxy  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2|caddy-proxy  |     at Object.<anonymous> (/usr/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2|caddy-proxy  |     at Module._compile (node:internal/modules/cjs/loader:1521:14)
+2|caddy-proxy  |     at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+2|caddy-proxy  |     at Module.load (node:internal/modules/cjs/loader:1266:32)
+2|caddy-proxy  |     at Module._load (node:internal/modules/cjs/loader:1091:12)
+2|caddy-proxy  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+2|caddy-proxy  |     at node:internal/main/run_main_module:28:49 {
+2|caddy-proxy  |   code: 'MODULE_NOT_FOUND',
+2|caddy-proxy  |   requireStack: []
+2|caddy-proxy  | }

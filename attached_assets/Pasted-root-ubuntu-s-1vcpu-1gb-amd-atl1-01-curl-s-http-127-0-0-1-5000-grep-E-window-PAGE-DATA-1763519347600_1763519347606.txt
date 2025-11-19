@@ -1,0 +1,38 @@
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# curl -s http://127.0.0.1:5000/ | grep -E "window\.__PAGE_DATA__|<script" | head -10
+    <script>
+    <script type="module" crossorigin src="/assets/index-BF_-eyCo.js"></script>
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# ls -lh /opt/app/dist/public/assets/ | head -20
+total 1.1M
+-rw-r--r-- 1 root root 44K Nov 19 00:52 LPFA-PLAY-AGAIN_1757278384329-IJtctK8H.png
+-rw-r--r-- 1 root root 44K Nov 19 00:52 LPFA-PLAY-now_1757278621958-DpVbnGtH.png
+-rwxr-xr-x 1 root root 330 Nov 19 00:38 download.sh
+-rw-r--r-- 1 root root 44K Nov 19 00:52 index-BF_-eyCo.js
+-rw-r--r-- 1 root root 44K Nov 19 00:52 index-Bc_r3NZy.css
+-rw-r--r-- 1 root root 44K Nov 19 00:52 landing-temp1_1753549944630-CJ3zC2KA.png
+-rw-r--r-- 1 root root 44K Nov 19 00:52 landingpagesforagents-hand-shake_1760211806774-D-D96Avs.jpg
+-rw-r--r-- 1 root root 44K Nov 19 00:52 landingpagesforagents-leaders_1760213764577-CtL1vSvY.jpg
+-rw-r--r-- 1 root root 44K Nov 19 00:52 lp4a-logo-design_1757611811508-DkE3v6XW.jpg
+-rw-r--r-- 1 root root 44K Nov 19 00:52 lp4a-print-design_1757611869956-BOTzWxXi.jpg
+-rw-r--r-- 1 root root 44K Nov 19 00:52 lpfa-designers_1757289648427-Bng9CiAw.png
+-rw-r--r-- 1 root root 44K Nov 19 00:52 planright-park-back_1751851568156-CcHkjk6I.jpg
+-rw-r--r-- 1 root root 44K Nov 19 00:52 planright-w2_1751850806336-7bRZnlXI.jpg
+-rw-r--r-- 1 root root 44K Nov 19 00:52 planright-w4_1751851299514-9N9ERhU7.jpg
+-rw-r--r-- 1 root root 44K Nov 19 00:52 scroll1_1760272781662-ClptsDzz.png
+-rw-r--r-- 1 root root 44K Nov 19 00:52 scroll2_1760273238786-DbJVM1F5.png
+-rw-r--r-- 1 root root 44K Nov 19 00:52 scroll3_1760273349134-DUCsV6j3.png
+-rw-r--r-- 1 root root 44K Nov 19 00:52 scroll4_1760273592823-BuStk4qe.png
+-rw-r--r-- 1 root root 44K Nov 19 00:52 scroll5_1760273718259-ZWjnGVn7.png
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# curl -I http://127.0.0.1:5000/assets/index-BF_-eyCo.js
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Wed, 19 Nov 2025 00:52:46 GMT
+ETag: W/"ae6a-19a9999865b"
+Content-Type: application/javascript; charset=UTF-8
+Content-Length: 44650
+Date: Wed, 19 Nov 2025 02:29:00 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# 

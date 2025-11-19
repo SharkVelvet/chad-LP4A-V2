@@ -190,6 +190,7 @@ export const domainRegistrants = pgTable("domain_registrants", {
   stateProvince: text("state_province").notNull(),
   postalCode: text("postal_code").notNull(),
   country: text("country").notNull(),
+  clientIp: text("client_ip"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 

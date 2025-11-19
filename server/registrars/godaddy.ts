@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import { parsePhoneNumber } from 'libphonenumber-js';
 import type { IRegistrar, DomainSearchResult, DomainRegistrationResult, Registrant } from './types';
 
 export class GoDaddyRegistrar implements IRegistrar {
@@ -20,6 +21,24 @@ export class GoDaddyRegistrar implements IRegistrar {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
+  }
+
+  private formatPhoneNumber(phone: string, country: string): string {
+    try {
+      const parsed = parsePhoneNumber(phone, country as any);
+      
+      if (!parsed || !parsed.isValid()) {
+        throw new Error(`Invalid phone number for country ${country}: ${phone}. Please provide a valid phone number with country code.`);
+      }
+      
+      const countryCode = parsed.countryCallingCode;
+      const nationalNumber = parsed.nationalNumber;
+      
+      return `+${countryCode}.${nationalNumber}`;
+    } catch (error: any) {
+      console.error('Error formatting phone number:', error);
+      throw new Error(`Phone number validation failed: ${error.message}. Please ensure the phone number includes the country code.`);
+    }
   }
 
   async searchDomain(domain: string): Promise<DomainSearchResult> {
@@ -56,11 +75,13 @@ export class GoDaddyRegistrar implements IRegistrar {
     years: number = 1
   ): Promise<DomainRegistrationResult> {
     try {
+      const phoneNumber = this.formatPhoneNumber(registrant.phone, registrant.country);
+      
       const contact = {
         nameFirst: registrant.firstName,
         nameLast: registrant.lastName,
         email: registrant.email,
-        phone: registrant.phone.replace(/\D/g, ''),
+        phone: phoneNumber,
         addressMailing: {
           address1: registrant.address1,
           address2: registrant.address2 || '',
@@ -81,7 +102,7 @@ export class GoDaddyRegistrar implements IRegistrar {
         renewAuto: true,
         privacy: true,
         consent: {
-          agreedBy: registrant.email,
+          agreedBy: registrant.clientIp || registrant.email,
           agreedAt: new Date().toISOString(),
           agreementKeys: ['DNRA'],
         },
@@ -121,15 +142,25 @@ export class GoDaddyRegistrar implements IRegistrar {
 
   async setNameservers(
     domain: string,
-    nameservers: string[]
+    nameservers: string[],
+    clientIp?: string
   ): Promise<{ success: boolean }> {
     try {
+      const requestBody = {
+        nameServers: nameservers,
+        consent: {
+          agreedBy: clientIp || '127.0.0.1',
+          agreedAt: new Date().toISOString(),
+          agreementKeys: ['DNRA'],
+        },
+      };
+
       const response = await fetch(
         `${this.baseUrl}/v1/domains/${domain}`,
         {
           method: 'PATCH',
           headers: this.getHeaders(),
-          body: JSON.stringify({ nameServers: nameservers }),
+          body: JSON.stringify(requestBody),
         }
       );
 

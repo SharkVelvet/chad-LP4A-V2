@@ -32,6 +32,7 @@ export async function initiateDomainRegistration(
     stateProvince: string;
     postalCode: string;
     country: string;
+    clientIp?: string;
   }
 ): Promise<{ jobId: number; message: string }> {
   try {
@@ -193,7 +194,7 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
 
   console.log(`✅ Domain registered with GoDaddy. Order ID: ${registrationResult.orderId}`);
 
-  await registrar.setNameservers(job.domain, nameservers);
+  await registrar.setNameservers(job.domain, nameservers, registrant.clientIp);
 
   console.log(`✅ Nameservers set to Cloudflare`);
 

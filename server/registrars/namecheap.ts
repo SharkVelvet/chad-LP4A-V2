@@ -81,7 +81,8 @@ export class NamecheapRegistrar implements IRegistrar {
 
   async setNameservers(
     domain: string,
-    nameservers: string[]
+    nameservers: string[],
+    clientIp?: string
   ): Promise<{ success: boolean }> {
     throw new Error('Namecheap nameserver updates require IP whitelisting - use GoDaddy instead');
   }

@@ -402,8 +402,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Page not found" });
       }
 
+      const clientIp = req.headers['x-forwarded-for']?.toString().split(',')[0].trim() 
+        || req.headers['x-real-ip']?.toString()
+        || req.socket.remoteAddress 
+        || '127.0.0.1';
+
+      const registrantWithIp = { ...registrant, clientIp };
+
       const { initiateDomainRegistration } = await import('./domainService.js');
-      const result = await initiateDomainRegistration(pageId, domain, registrant);
+      const result = await initiateDomainRegistration(pageId, domain, registrantWithIp);
       
       res.json(result);
     } catch (error: any) {

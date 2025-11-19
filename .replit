@@ -4,6 +4,7 @@ hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
 [nix]
 channel = "stable-24_05"
+packages = ["rsync", "openssh"]
 
 [deployment]
 deploymentTarget = "gce"
@@ -42,6 +43,10 @@ externalPort = 3000
 [[ports]]
 localPort = 43123
 externalPort = 3003
+
+[[ports]]
+localPort = 43293
+externalPort = 4200
 
 [[ports]]
 localPort = 44767

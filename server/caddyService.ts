@@ -21,13 +21,38 @@ export async function addDomainToAllowlist(domain: string): Promise<CaddyDomainR
   try {
     console.log(`📋 Adding ${domain} to Caddy allowlist...`);
     
-    // Caddy admin API endpoint to add domain to allowed hosts
-    const response = await fetch(`${CADDY_ADMIN_API}/config/apps/tls/automation/on_demand/allowed`, {
-      method: 'POST',
+    // First, get the current allowed list
+    let currentAllowed: string[] = [];
+    try {
+      const getCurrentResponse = await fetch(`${CADDY_ADMIN_API}/config/apps/tls/automation/on_demand/allowed`);
+      if (getCurrentResponse.ok) {
+        currentAllowed = await getCurrentResponse.json();
+      }
+    } catch (e) {
+      console.log('No existing allowed list found, creating new one');
+    }
+    
+    // Add both apex and www if not already present
+    const domainsToAdd = [domain, `www.${domain}`];
+    const newAllowed = [...new Set([...currentAllowed, ...domainsToAdd])]; // Remove duplicates
+    
+    // Use PATCH to update the Caddy configuration
+    const response = await fetch(`${CADDY_ADMIN_API}/config/`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify([domain, `www.${domain}`])
+      body: JSON.stringify({
+        apps: {
+          tls: {
+            automation: {
+              on_demand: {
+                allowed: newAllowed
+              }
+            }
+          }
+        }
+      })
     });
 
     if (!response.ok) {
@@ -39,7 +64,7 @@ export async function addDomainToAllowlist(domain: string): Promise<CaddyDomainR
       };
     }
 
-    console.log(`✅ ${domain} added to Caddy allowlist`);
+    console.log(`✅ ${domain} added to Caddy allowlist (total: ${newAllowed.length} domains)`);
     return {
       success: true,
       message: `Domain ${domain} added to Caddy allowlist for SSL provisioning`

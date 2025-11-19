@@ -123,7 +123,7 @@ export class GoDaddyRegistrar implements IRegistrar {
         renewAuto: true,
         privacy: true,
         consent: {
-          agreedBy: registrant.clientIp || registrant.email,
+          agreedBy: registrant.clientIp || '127.0.0.1',
           agreedAt: new Date().toISOString(),
           agreementKeys: ['DNRA', 'DNPA'],
         },
@@ -169,11 +169,6 @@ export class GoDaddyRegistrar implements IRegistrar {
     try {
       const requestBody = {
         nameServers: nameservers,
-        consent: {
-          agreedBy: clientIp || '127.0.0.1',
-          agreedAt: new Date().toISOString(),
-          agreementKeys: ['DNRA', 'DNPA'],
-        },
       };
 
       const response = await fetch(

@@ -974,7 +974,7 @@ export default function WebsiteEditor() {
                     <h4 className="text-lg font-semibold mb-4">🌐 Your Custom Domain: {page.domain}</h4>
                     
                     {/* Success Message - Show for auto-configured domains */}
-                    {page?.domainStatus === 'auto_configured' ? (
+                    {(page?.domainStatus === 'auto_configured' || page?.domainStatus === 'dns_configured') ? (
                       <div className="bg-green-50 border border-green-200 rounded-lg p-6" data-testid="alert-domain-auto-configured">
                         <div className="flex items-start gap-4">
                           <div className="flex-shrink-0">

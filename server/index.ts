@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { storage } from "./storage";
+import { startDomainWorker, stopDomainWorker } from "./domainWorker";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -165,6 +166,9 @@ app.use((req, res, next) => {
     server.listen(port, host, () => {
       log(`serving on ${host}:${port} (NODE_ENV: ${process.env.NODE_ENV})`);
       log(`API routes registered and ready`);
+      
+      // Start domain provisioning worker
+      startDomainWorker();
     });
 
     // Handle server startup errors
@@ -181,6 +185,7 @@ app.use((req, res, next) => {
     // Graceful shutdown handling
     process.on('SIGTERM', () => {
       log('SIGTERM received, shutting down gracefully');
+      stopDomainWorker();
       server.close(() => {
         log('Process terminated');
         process.exit(0);
@@ -189,6 +194,7 @@ app.use((req, res, next) => {
 
     process.on('SIGINT', () => {
       log('SIGINT received, shutting down gracefully');
+      stopDomainWorker();
       server.close(() => {
         log('Process terminated');
         process.exit(0);

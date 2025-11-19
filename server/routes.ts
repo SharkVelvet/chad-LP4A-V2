@@ -368,6 +368,71 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Domain automation routes
+  app.post("/api/domains/search", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { domain } = req.body;
+      
+      if (!domain || typeof domain !== 'string') {
+        return res.status(400).json({ message: "Domain is required" });
+      }
+
+      const result = await domainService.checkAvailability(domain);
+      res.json(result);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/domains/register", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const { pageId, domain, registrant } = req.body;
+
+      const page = await storage.getPage(pageId);
+      
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
+      }
+
+      const { initiateDomainRegistration } = await import('./domainService.js');
+      const result = await initiateDomainRegistration(pageId, domain, registrant);
+      
+      res.json(result);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.get("/api/domains/status/:pageId", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const pageId = parseInt(req.params.pageId);
+      const page = await storage.getPage(pageId);
+      
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
+      }
+
+      const { getDomainJobStatus } = await import('./domainService.js');
+      const status = await getDomainJobStatus(pageId);
+      
+      res.json(status);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Page content routes
   app.put("/api/pages/:id/content", async (req, res) => {
     if (!req.isAuthenticated()) {

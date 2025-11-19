@@ -57,14 +57,18 @@ app.use((req, res, next) => {
       process.env.NODE_ENV = "production";
     }
 
-    // Setup static file serving FIRST (before custom domain middleware)
+    // In production, serve static files FIRST (before all middleware)
     if (process.env.NODE_ENV === "production") {
-      serveStatic(app);
+      const distPath = path.resolve(import.meta.dirname, "public");
+      if (!fs.existsSync(distPath)) {
+        throw new Error(`Could not find the build directory: ${distPath}`);
+      }
+      app.use(express.static(distPath));
     }
 
     const server = await registerRoutes(app);
 
-    // Custom domain handler - MUST come after static file serving
+    // Custom domain handler
     app.use(async (req: Request, res: Response, next: NextFunction) => {
       // Check multiple possible hostname sources
       const hostname = req.hostname || req.get('host')?.split(':')[0];
@@ -132,9 +136,15 @@ app.use((req, res, next) => {
       }
     });
 
-    // Setup Vite in development mode (if not already done)
+    // Setup Vite in development mode, or serve fallback index.html in production
     if (process.env.NODE_ENV === "development") {
       await setupVite(app, server);
+    } else {
+      // Fallback to index.html for client-side routing
+      const distPath = path.resolve(import.meta.dirname, "public");
+      app.use("*", (_req, res) => {
+        res.sendFile(path.resolve(distPath, "index.html"));
+      });
     }
 
     app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {

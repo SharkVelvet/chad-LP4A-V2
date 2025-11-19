@@ -13,6 +13,14 @@ export class GoDaddyRegistrar implements IRegistrar {
     this.baseUrl = useSandbox 
       ? 'https://api.ote-godaddy.com'
       : 'https://api.godaddy.com';
+    
+    console.log('GoDaddy Registrar initialized:', {
+      hasApiKey: !!this.apiKey,
+      apiKeyLength: this.apiKey?.length || 0,
+      hasApiSecret: !!this.apiSecret,
+      apiSecretLength: this.apiSecret?.length || 0,
+      baseUrl: this.baseUrl
+    });
   }
 
   private getHeaders() {

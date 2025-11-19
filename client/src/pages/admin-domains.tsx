@@ -33,11 +33,10 @@ export default function AdminDomains() {
   });
 
   const fixDnsMutation = useMutation({
-    mutationFn: (domain: string) => 
-      apiRequest("/api/admin/fix-domain-dns", {
-        method: "POST",
-        body: JSON.stringify({ domain }),
-      }),
+    mutationFn: async (domain: string) => {
+      const res = await apiRequest("POST", "/api/admin/fix-domain-dns", { domain });
+      return res.json();
+    },
     onSuccess: (data: any) => {
       toast({
         title: "DNS Fixed",
@@ -55,11 +54,10 @@ export default function AdminDomains() {
   });
 
   const addToCaddyMutation = useMutation({
-    mutationFn: (domain: string) => 
-      apiRequest("/api/admin/caddy/add-domain", {
-        method: "POST",
-        body: JSON.stringify({ domain }),
-      }),
+    mutationFn: async (domain: string) => {
+      const res = await apiRequest("POST", "/api/admin/caddy/add-domain", { domain });
+      return res.json();
+    },
     onSuccess: () => {
       toast({
         title: "Added to Caddy",

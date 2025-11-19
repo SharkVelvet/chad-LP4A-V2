@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 
 const NAMECHEAP_API_URL = 'https://api.namecheap.com/xml.response';
 const API_USER = process.env.NAMECHEAP_API_USER!;
@@ -11,11 +12,11 @@ const CLIENT_IP = process.env.NAMECHEAP_CLIENT_IP!;
 const PROXY_HOST = '134.199.194.110';
 const PROXY_PORT = 3000;
 
+const proxyAgent = new HttpsProxyAgent(`http://${PROXY_HOST}:${PROXY_PORT}`);
+
 const axiosInstance = axios.create({
-  proxy: {
-    host: PROXY_HOST,
-    port: PROXY_PORT,
-  },
+  httpsAgent: proxyAgent,
+  proxy: false,
 });
 
 const parser = new XMLParser({

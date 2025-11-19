@@ -1654,328 +1654,328 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(pages);
     } catch (error: any) {
       console.error('Error fetching all pages:', error);
-// DISABLED:       res.status(500).json({ error: error.message });
-// DISABLED:     }
-// DISABLED:   });
-// DISABLED: 
-// DISABLED:   // Super Admin: Fix domain auto-configuration (fetch Railway DNS targets)
-// DISABLED:   app.post("/api/admin/fix-domain/:domain", async (req, res) => {
-// DISABLED:     if (!req.isAuthenticated()) return res.sendStatus(401);
-// DISABLED:     if (req.user.role !== 'super_admin') {
-// DISABLED:       return res.status(403).json({ error: "Forbidden: Super admin access required" });
-// DISABLED:     }
-// DISABLED: 
-// DISABLED:     try {
-// DISABLED:       const { domain } = req.params;
-// DISABLED:       
-// DISABLED:       console.log(`🔧 ADMIN: Fixing domain configuration for ${domain}...`);
-// DISABLED: 
-// DISABLED:       // Find the page with this domain
-// DISABLED:       const page = await storage.getPageByDomain(domain);
-// DISABLED:       if (!page) {
-// DISABLED:         return res.status(404).json({ error: "Page not found for this domain" });
-// DISABLED:       }
-// DISABLED: 
-// DISABLED:       if (!railwayService.isConfigured()) {
-// DISABLED:         return res.status(500).json({ error: "Railway API not configured" });
-// DISABLED:       }
-// DISABLED: 
-// DISABLED:       // Try to get DNS targets from Railway (domain should already be registered there)
-// DISABLED:       const wwwDomain = `www.${domain}`;
-// DISABLED:       console.log(`🚂 Fetching DNS targets from Railway for: ${domain} and ${wwwDomain}`);
-// DISABLED:       
-// DISABLED:       let rootDomainResult, wwwDomainResult;
-// DISABLED:       
-// DISABLED:       try {
-// DISABLED:         rootDomainResult = await railwayService.addCustomDomain(domain);
-// DISABLED:         console.log(`✓ ${domain} registered/verified with Railway`);
-// DISABLED:       } catch (error: any) {
-// DISABLED:         if (error.message?.includes('not available') || error.message?.includes('already exists')) {
-// DISABLED:           console.log(`ℹ️  ${domain} already registered with Railway, trying to fetch existing...`);
-// DISABLED:           rootDomainResult = { domain, id: 'existing', status: undefined };
-// DISABLED:         } else {
-// DISABLED:           throw error;
-// DISABLED:         }
-// DISABLED:       }
-// DISABLED:       
-// DISABLED:       try {
-// DISABLED:         wwwDomainResult = await railwayService.addCustomDomain(wwwDomain);
-// DISABLED:         console.log(`✓ ${wwwDomain} registered/verified with Railway`);
-// DISABLED:       } catch (error: any) {
-// DISABLED:         if (error.message?.includes('not available') || error.message?.includes('already exists')) {
-// DISABLED:           console.log(`ℹ️  ${wwwDomain} already registered with Railway`);
-// DISABLED:           wwwDomainResult = { domain: wwwDomain, id: 'existing', status: undefined };
-// DISABLED:         } else {
-// DISABLED:           throw error;
-// DISABLED:         }
-// DISABLED:       }
-// DISABLED: 
-// DISABLED:       // Extract DNS targets from Railway response
-// DISABLED:       let dnsRecords = [];
-// DISABLED:       if (rootDomainResult.status?.dnsRecords && rootDomainResult.status.dnsRecords.length > 0) {
-// DISABLED:         console.log(`✓ Railway provided fresh DNS targets`);
-// DISABLED:         const allRailwayRecords = [
-// DISABLED:           ...(rootDomainResult.status?.dnsRecords || []),
-// DISABLED:           ...(wwwDomainResult.status?.dnsRecords || [])
-// DISABLED:         ];
-// DISABLED:         dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
-// DISABLED: 
-// DISABLED:         // Configure DNS records
-// DISABLED:         console.log(`🌐 Updating DNS records at Namecheap for ${domain}...`);
-// DISABLED:         await domainService.setDnsRecords(domain, dnsRecords);
-// DISABLED:         console.log(`✓ DNS records updated`);
-// DISABLED: 
-// DISABLED:         // Update database with Railway DNS targets
-// DISABLED:         await storage.updatePage(page.id, { 
-// DISABLED:           domainVerified: true,
-// DISABLED:           domainStatus: 'auto_configured',
-// DISABLED:           railwayDnsTargets: serializeDnsRecords(dnsRecords)
-// DISABLED:         } as any);
-// DISABLED:         console.log(`✓ Database updated with Railway DNS targets`);
-// DISABLED: 
-// DISABLED:         res.json({ 
-// DISABLED:           success: true, 
-// DISABLED:           message: `Fixed ${domain} - DNS targets captured and configured`,
-// DISABLED:           dnsRecords
-// DISABLED:         });
-// DISABLED:       } else {
-// DISABLED:         // Railway didn't provide DNS targets
-// DISABLED:         console.error(`❌ Railway didn't provide DNS targets for ${domain}`);
-// DISABLED:         console.log(`   The domain exists in Railway but no verification targets were returned`);
-// DISABLED:         console.log(`   You may need to REMOVE the domain from Railway dashboard and re-add it`);
-// DISABLED:         
-// DISABLED:         res.status(500).json({ 
-// DISABLED:           error: 'Railway did not provide DNS verification targets. Try removing and re-adding the domain in Railway dashboard, then run this again.'
-// DISABLED:         });
-// DISABLED:       }
-// DISABLED:     } catch (error: any) {
-// DISABLED:       console.error('Error fixing domain:', error);
-// DISABLED:       res.status(500).json({ error: error.message });
-// DISABLED:     }
-// DISABLED:   });
-// DISABLED: 
-// DISABLED:   // Super Admin: Create a page for an existing user
-// DISABLED:   app.post("/api/admin/create-page-for-user", async (req, res) => {
-// DISABLED:     if (!req.isAuthenticated()) return res.sendStatus(401);
-// DISABLED:     if (req.user.role !== 'super_admin') {
-// DISABLED:       return res.status(403).json({ error: "Forbidden: Super admin access required" });
-// DISABLED:     }
-// DISABLED: 
-// DISABLED:     try {
-// DISABLED:       const createPageSchema = z.object({
-// DISABLED:         userId: z.number().or(z.string().transform(Number)),
-// DISABLED:         templateId: z.number().or(z.string().transform(Number)),
-// DISABLED:         pageName: z.string().optional(),
-// DISABLED:         subscriptionPlan: z.string().optional().default('free'),
-// DISABLED:       });
-// DISABLED: 
-// DISABLED:       const validationResult = createPageSchema.safeParse(req.body);
-// DISABLED:       if (!validationResult.success) {
-// DISABLED:         return res.status(400).json({ 
-// DISABLED:           error: "Validation failed", 
-// DISABLED:           details: validationResult.error.errors 
-// DISABLED:         });
-// DISABLED:       }
-// DISABLED: 
-// DISABLED:       const { userId, templateId, pageName, subscriptionPlan } = validationResult.data;
-// DISABLED: 
-// DISABLED:       // Verify user exists
-// DISABLED:       const user = await storage.getUser(userId);
-// DISABLED:       if (!user) {
-// DISABLED:         return res.status(404).json({ error: "User not found" });
-// DISABLED:       }
-// DISABLED: 
-// DISABLED:       // Verify template exists
-// DISABLED:       const template = await storage.getTemplate(templateId);
-// DISABLED:       if (!template) {
-// DISABLED:         return res.status(404).json({ error: "Template not found" });
-// DISABLED:       }
-// DISABLED: 
-// DISABLED:       // Create page
-// DISABLED:       const page = await storage.createPage({
-// DISABLED:         userId,
-// DISABLED:         templateId,
-// DISABLED:         name: pageName || `${template.name} - ${new Date().toLocaleDateString()}`,
-// DISABLED:         subscriptionPlan,
-// DISABLED:         subscriptionStatus: 'active',
-// DISABLED:       });
-// DISABLED: 
-// DISABLED:       // Create default page content
-// DISABLED:       await storage.createPageContent({
-// DISABLED:         pageId: page.id,
-// DISABLED:         businessName: user.firstName ? `${user.firstName} ${user.lastName || ''}`.trim() : 'Your Business',
-// DISABLED:         tagline: 'Your tagline here',
-// DISABLED:         content: {},
-// DISABLED:         hiddenSections: [],
-// DISABLED:         isPublished: true,
-// DISABLED:       });
-// DISABLED: 
-// DISABLED:       res.json({
-// DISABLED:         success: true,
-// DISABLED:         page,
-// DISABLED:         template,
-// DISABLED:         user: { id: user.id, email: user.email, username: user.username }
-// DISABLED:       });
-// DISABLED:     } catch (error: any) {
-// DISABLED:       console.error('Error creating page for user:', error);
-// DISABLED:       res.status(500).json({ error: error.message });
-// DISABLED:     }
-// DISABLED:   });
-// DISABLED: 
-// DISABLED:   // Super Admin: Register all existing domains with Railway
-// DISABLED:   app.post("/api/admin/register-domains-railway", async (req, res) => {
-// DISABLED:     if (!req.isAuthenticated()) return res.sendStatus(401);
-// DISABLED:     if (req.user.role !== 'super_admin') {
-// DISABLED:       return res.status(403).json({ error: "Forbidden: Super admin access required" });
-// DISABLED:     }
-// DISABLED: 
-// DISABLED:     try {
-// DISABLED:       if (!railwayService.isConfigured()) {
-// DISABLED:         return res.status(500).json({ error: "Railway API not configured" });
-// DISABLED:       }
-// DISABLED: 
-// DISABLED:       // Get all pages with domains
-// DISABLED:       const allUsers = await storage.getAllUsers();
-// DISABLED:       const results = {
-// DISABLED:         total: 0,
-// DISABLED:         successful: 0,
-// DISABLED:         failed: 0,
-// DISABLED:         details: [] as Array<{ domain: string; status: string; error?: string }>,
-// DISABLED:       };
-// DISABLED: 
-// DISABLED:       for (const user of allUsers) {
-// DISABLED:         const pages = await storage.getUserPages(user.id);
-// DISABLED:         
-// DISABLED:         for (const page of pages) {
-// DISABLED:           if (page.domain) {
-// DISABLED:             results.total += 2; // root and www
-// DISABLED:             
-// DISABLED:             // Register root domain
-// DISABLED:             try {
-// DISABLED:               await railwayService.addCustomDomain(page.domain);
-// DISABLED:               results.successful++;
-// DISABLED:               results.details.push({ domain: page.domain, status: 'success' });
-// DISABLED:             } catch (error: any) {
-// DISABLED:               results.failed++;
-// DISABLED:               results.details.push({ domain: page.domain, status: 'failed', error: error.message });
-// DISABLED:             }
-// DISABLED:             
-// DISABLED:             // Register www subdomain
-// DISABLED:             try {
-// DISABLED:               const wwwDomain = `www.${page.domain}`;
-// DISABLED:               await railwayService.addCustomDomain(wwwDomain);
-// DISABLED:               results.successful++;
-// DISABLED:               results.details.push({ domain: wwwDomain, status: 'success' });
-// DISABLED:             } catch (error: any) {
-// DISABLED:               results.failed++;
-// DISABLED:               results.details.push({ domain: `www.${page.domain}`, status: 'failed', error: error.message });
-// DISABLED:             }
-// DISABLED:           }
-// DISABLED:         }
-// DISABLED:       }
-// DISABLED: 
-// DISABLED:       res.json(results);
-// DISABLED:     } catch (error: any) {
-// DISABLED:       console.error('Error registering domains with Railway:', error);
-// DISABLED:       res.status(500).json({ error: error.message });
-// DISABLED:     }
-// DISABLED:   });
-// DISABLED: 
-// DISABLED:   // Super Admin: Migrate existing domains from Cloudflare to Railway direct DNS
-// DISABLED:   app.post("/api/admin/migrate-domains-from-cloudflare", async (req, res) => {
-// DISABLED:     if (!req.isAuthenticated()) return res.sendStatus(401);
-// DISABLED:     if (req.user.role !== 'super_admin') {
-// DISABLED:       return res.status(403).json({ error: "Forbidden: Super admin access required" });
-// DISABLED:     }
-// DISABLED: 
-// DISABLED:     try {
-// DISABLED:       const deploymentDomain = req.body.deploymentDomain || 'chad-lp4a-v2-production.up.railway.app';
-// DISABLED:       
-// DISABLED:       // Get all pages with domains
-// DISABLED:       const allUsers = await storage.getAllUsers();
-// DISABLED:       const results = {
-// DISABLED:         total: 0,
-// DISABLED:         successful: 0,
-// DISABLED:         failed: 0,
-// DISABLED:         skipped: 0,
-// DISABLED:         details: [] as Array<{ domain: string; status: string; error?: string; message?: string }>,
-// DISABLED:       };
-// DISABLED: 
-// DISABLED:       for (const user of allUsers) {
-// DISABLED:         const pages = await storage.getUserPages(user.id);
-// DISABLED:         
-// DISABLED:         for (const page of pages) {
-// DISABLED:           if (!page.domain) continue;
-// DISABLED:           
-// DISABLED:           const domain = page.domain;
-// DISABLED:           results.total++;
-// DISABLED:           
-// DISABLED:           try {
-// DISABLED:             console.log(`🔄 Migrating ${domain} from Cloudflare to Railway...`);
-// DISABLED:             
-// DISABLED:             // Step 1: Clear Cloudflare metadata
-// DISABLED:             await storage.updatePage(page.id, { 
-// DISABLED:               cloudflareZoneId: null,
-// DISABLED:               cloudflareNameservers: null,
-// DISABLED:               domainStatus: 'migrating'
-// DISABLED:             } as any);
-// DISABLED:             
-// DISABLED:             // Step 2: Register with Railway (both root and www)
-// DISABLED:             if (railwayService.isConfigured()) {
-// DISABLED:               try {
-// DISABLED:                 await railwayService.addCustomDomain(domain);
-// DISABLED:                 await railwayService.addCustomDomain(`www.${domain}`);
-// DISABLED:                 console.log(`  ✓ Registered with Railway`);
-// DISABLED:               } catch (error: any) {
-// DISABLED:                 if (!error.message.includes('already exists')) {
-// DISABLED:                   throw error;
-// DISABLED:                 }
-// DISABLED:                 console.log(`  ℹ Already registered with Railway`);
-// DISABLED:               }
-// DISABLED:             }
-// DISABLED:             
-// DISABLED:             // Step 3: Set DNS records via Namecheap to point to Railway
-// DISABLED:             const dnsRecords = [
-// DISABLED:               { name: '@', type: 'ALIAS', address: deploymentDomain, ttl: 300 },
-// DISABLED:               { name: 'www', type: 'CNAME', address: deploymentDomain, ttl: 300 }
-// DISABLED:             ];
-// DISABLED:             
-// DISABLED:             await domainService.setDnsRecords(domain, dnsRecords);
-// DISABLED:             console.log(`  ✓ DNS records updated to point to Railway`);
-// DISABLED:             
-// DISABLED:             // Step 4: Update page status
-// DISABLED:             await storage.updatePage(page.id, { 
-// DISABLED:               domainStatus: 'propagating'
-// DISABLED:             } as any);
-// DISABLED:             
-// DISABLED:             results.successful++;
-// DISABLED:             results.details.push({ 
-// DISABLED:               domain, 
-// DISABLED:               status: 'success',
-// DISABLED:               message: 'Migrated to Railway DNS. SSL will be generated within 5-10 minutes after DNS propagates.'
-// DISABLED:             });
-// DISABLED:             
-// DISABLED:             console.log(`  ✅ Migration complete for ${domain}`);
-// DISABLED:             
-// DISABLED:           } catch (error: any) {
-// DISABLED:             console.error(`  ❌ Migration failed for ${domain}:`, error.message);
-// DISABLED:             results.failed++;
-// DISABLED:             results.details.push({ domain, status: 'failed', error: error.message });
-// DISABLED:           }
-// DISABLED:         }
-// DISABLED:       }
-// DISABLED: 
-// DISABLED:       res.json({
-// DISABLED:         ...results,
-// DISABLED:         instructions: [
-// DISABLED:           'Domains have been migrated from Cloudflare to Railway direct DNS',
-// DISABLED:           'Railway will automatically generate SSL certificates within 5-10 minutes',
-// DISABLED:           'DNS propagation may take up to 24 hours',
-// DISABLED:           'Check Railway dashboard to verify SSL certificate status'
-// DISABLED:         ]
-// DISABLED:       });
-// DISABLED:     } catch (error: any) {
-// DISABLED:       console.error('Error migrating domains:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Super Admin: Fix domain auto-configuration (fetch Railway DNS targets)
+  app.post("/api/admin/fix-domain/:domain", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      const { domain } = req.params;
+      
+      console.log(`🔧 ADMIN: Fixing domain configuration for ${domain}...`);
+
+      // Find the page with this domain
+      const page = await storage.getPageByDomain(domain);
+      if (!page) {
+        return res.status(404).json({ error: "Page not found for this domain" });
+      }
+
+      if (!railwayService.isConfigured()) {
+        return res.status(500).json({ error: "Railway API not configured" });
+      }
+
+      // Try to get DNS targets from Railway (domain should already be registered there)
+      const wwwDomain = `www.${domain}`;
+      console.log(`🚂 Fetching DNS targets from Railway for: ${domain} and ${wwwDomain}`);
+      
+      let rootDomainResult, wwwDomainResult;
+      
+      try {
+        rootDomainResult = await railwayService.addCustomDomain(domain);
+        console.log(`✓ ${domain} registered/verified with Railway`);
+      } catch (error: any) {
+        if (error.message?.includes('not available') || error.message?.includes('already exists')) {
+          console.log(`ℹ️  ${domain} already registered with Railway, trying to fetch existing...`);
+          rootDomainResult = { domain, id: 'existing', status: undefined };
+        } else {
+          throw error;
+        }
+      }
+      
+      try {
+        wwwDomainResult = await railwayService.addCustomDomain(wwwDomain);
+        console.log(`✓ ${wwwDomain} registered/verified with Railway`);
+      } catch (error: any) {
+        if (error.message?.includes('not available') || error.message?.includes('already exists')) {
+          console.log(`ℹ️  ${wwwDomain} already registered with Railway`);
+          wwwDomainResult = { domain: wwwDomain, id: 'existing', status: undefined };
+        } else {
+          throw error;
+        }
+      }
+
+      // Extract DNS targets from Railway response
+      let dnsRecords = [];
+      if (rootDomainResult.status?.dnsRecords && rootDomainResult.status.dnsRecords.length > 0) {
+        console.log(`✓ Railway provided fresh DNS targets`);
+        const allRailwayRecords = [
+          ...(rootDomainResult.status?.dnsRecords || []),
+          ...(wwwDomainResult.status?.dnsRecords || [])
+        ];
+        dnsRecords = extractDnsRecordsFromRailway(allRailwayRecords, domain);
+
+        // Configure DNS records
+        console.log(`🌐 Updating DNS records at Namecheap for ${domain}...`);
+        await domainService.setDnsRecords(domain, dnsRecords);
+        console.log(`✓ DNS records updated`);
+
+        // Update database with Railway DNS targets
+        await storage.updatePage(page.id, { 
+          domainVerified: true,
+          domainStatus: 'auto_configured',
+          railwayDnsTargets: serializeDnsRecords(dnsRecords)
+        } as any);
+        console.log(`✓ Database updated with Railway DNS targets`);
+
+        res.json({ 
+          success: true, 
+          message: `Fixed ${domain} - DNS targets captured and configured`,
+          dnsRecords
+        });
+      } else {
+        // Railway didn't provide DNS targets
+        console.error(`❌ Railway didn't provide DNS targets for ${domain}`);
+        console.log(`   The domain exists in Railway but no verification targets were returned`);
+        console.log(`   You may need to REMOVE the domain from Railway dashboard and re-add it`);
+        
+        res.status(500).json({ 
+          error: 'Railway did not provide DNS verification targets. Try removing and re-adding the domain in Railway dashboard, then run this again.'
+        });
+      }
+    } catch (error: any) {
+      console.error('Error fixing domain:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Super Admin: Create a page for an existing user
+  app.post("/api/admin/create-page-for-user", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      const createPageSchema = z.object({
+        userId: z.number().or(z.string().transform(Number)),
+        templateId: z.number().or(z.string().transform(Number)),
+        pageName: z.string().optional(),
+        subscriptionPlan: z.string().optional().default('free'),
+      });
+
+      const validationResult = createPageSchema.safeParse(req.body);
+      if (!validationResult.success) {
+        return res.status(400).json({ 
+          error: "Validation failed", 
+          details: validationResult.error.errors 
+        });
+      }
+
+      const { userId, templateId, pageName, subscriptionPlan } = validationResult.data;
+
+      // Verify user exists
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Verify template exists
+      const template = await storage.getTemplate(templateId);
+      if (!template) {
+        return res.status(404).json({ error: "Template not found" });
+      }
+
+      // Create page
+      const page = await storage.createPage({
+        userId,
+        templateId,
+        name: pageName || `${template.name} - ${new Date().toLocaleDateString()}`,
+        subscriptionPlan,
+        subscriptionStatus: 'active',
+      });
+
+      // Create default page content
+      await storage.createPageContent({
+        pageId: page.id,
+        businessName: user.firstName ? `${user.firstName} ${user.lastName || ''}`.trim() : 'Your Business',
+        tagline: 'Your tagline here',
+        content: {},
+        hiddenSections: [],
+        isPublished: true,
+      });
+
+      res.json({
+        success: true,
+        page,
+        template,
+        user: { id: user.id, email: user.email, username: user.username }
+      });
+    } catch (error: any) {
+      console.error('Error creating page for user:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Super Admin: Register all existing domains with Railway
+  app.post("/api/admin/register-domains-railway", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      if (!railwayService.isConfigured()) {
+        return res.status(500).json({ error: "Railway API not configured" });
+      }
+
+      // Get all pages with domains
+      const allUsers = await storage.getAllUsers();
+      const results = {
+        total: 0,
+        successful: 0,
+        failed: 0,
+        details: [] as Array<{ domain: string; status: string; error?: string }>,
+      };
+
+      for (const user of allUsers) {
+        const pages = await storage.getUserPages(user.id);
+        
+        for (const page of pages) {
+          if (page.domain) {
+            results.total += 2; // root and www
+            
+            // Register root domain
+            try {
+              await railwayService.addCustomDomain(page.domain);
+              results.successful++;
+              results.details.push({ domain: page.domain, status: 'success' });
+            } catch (error: any) {
+              results.failed++;
+              results.details.push({ domain: page.domain, status: 'failed', error: error.message });
+            }
+            
+            // Register www subdomain
+            try {
+              const wwwDomain = `www.${page.domain}`;
+              await railwayService.addCustomDomain(wwwDomain);
+              results.successful++;
+              results.details.push({ domain: wwwDomain, status: 'success' });
+            } catch (error: any) {
+              results.failed++;
+              results.details.push({ domain: `www.${page.domain}`, status: 'failed', error: error.message });
+            }
+          }
+        }
+      }
+
+      res.json(results);
+    } catch (error: any) {
+      console.error('Error registering domains with Railway:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Super Admin: Migrate existing domains from Cloudflare to Railway direct DNS
+  app.post("/api/admin/migrate-domains-from-cloudflare", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      const deploymentDomain = req.body.deploymentDomain || 'chad-lp4a-v2-production.up.railway.app';
+      
+      // Get all pages with domains
+      const allUsers = await storage.getAllUsers();
+      const results = {
+        total: 0,
+        successful: 0,
+        failed: 0,
+        skipped: 0,
+        details: [] as Array<{ domain: string; status: string; error?: string; message?: string }>,
+      };
+
+      for (const user of allUsers) {
+        const pages = await storage.getUserPages(user.id);
+        
+        for (const page of pages) {
+          if (!page.domain) continue;
+          
+          const domain = page.domain;
+          results.total++;
+          
+          try {
+            console.log(`🔄 Migrating ${domain} from Cloudflare to Railway...`);
+            
+            // Step 1: Clear Cloudflare metadata
+            await storage.updatePage(page.id, { 
+              cloudflareZoneId: null,
+              cloudflareNameservers: null,
+              domainStatus: 'migrating'
+            } as any);
+            
+            // Step 2: Register with Railway (both root and www)
+            if (railwayService.isConfigured()) {
+              try {
+                await railwayService.addCustomDomain(domain);
+                await railwayService.addCustomDomain(`www.${domain}`);
+                console.log(`  ✓ Registered with Railway`);
+              } catch (error: any) {
+                if (!error.message.includes('already exists')) {
+                  throw error;
+                }
+                console.log(`  ℹ Already registered with Railway`);
+              }
+            }
+            
+            // Step 3: Set DNS records via Namecheap to point to Railway
+            const dnsRecords = [
+              { name: '@', type: 'ALIAS', address: deploymentDomain, ttl: 300 },
+              { name: 'www', type: 'CNAME', address: deploymentDomain, ttl: 300 }
+            ];
+            
+            await domainService.setDnsRecords(domain, dnsRecords);
+            console.log(`  ✓ DNS records updated to point to Railway`);
+            
+            // Step 4: Update page status
+            await storage.updatePage(page.id, { 
+              domainStatus: 'propagating'
+            } as any);
+            
+            results.successful++;
+            results.details.push({ 
+              domain, 
+              status: 'success',
+              message: 'Migrated to Railway DNS. SSL will be generated within 5-10 minutes after DNS propagates.'
+            });
+            
+            console.log(`  ✅ Migration complete for ${domain}`);
+            
+          } catch (error: any) {
+            console.error(`  ❌ Migration failed for ${domain}:`, error.message);
+            results.failed++;
+            results.details.push({ domain, status: 'failed', error: error.message });
+          }
+        }
+      }
+
+      res.json({
+        ...results,
+        instructions: [
+          'Domains have been migrated from Cloudflare to Railway direct DNS',
+          'Railway will automatically generate SSL certificates within 5-10 minutes',
+          'DNS propagation may take up to 24 hours',
+          'Check Railway dashboard to verify SSL certificate status'
+        ]
+      });
+    } catch (error: any) {
+      console.error('Error migrating domains:', error);
       res.status(500).json({ error: error.message });
     }
   });
@@ -2075,31 +2075,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(results);
     } catch (error: any) {
       console.error('Error processing bulk upload:', error);
-// DISABLED:       res.status(500).json({ error: error.message });
-// DISABLED:     }
-// DISABLED:   });
-// DISABLED: 
-// DISABLED:   // Admin: Reset domain status to pending (for testing)
-// DISABLED:   app.post("/api/admin/domains/:domain/reset-status", async (req, res) => {
-// DISABLED:     if (!req.isAuthenticated()) return res.sendStatus(401);
-// DISABLED: 
-// DISABLED:     try {
-// DISABLED:       const { domain } = req.params;
-// DISABLED:       const page = await storage.getPageByDomain(domain);
-// DISABLED:       
-// DISABLED:       if (!page) {
-// DISABLED:         return res.status(404).json({ error: "Page not found for this domain" });
-// DISABLED:       }
-// DISABLED: 
-// DISABLED:       await storage.updatePage(page.id, { 
-// DISABLED:         domainStatus: 'pending',
-// DISABLED:         domainVerified: false
-// DISABLED:       } as any);
-// DISABLED: 
-// DISABLED:       console.log(`✓ Reset ${domain} status to 'pending'`);
-// DISABLED:       res.json({ success: true, message: "Domain status reset to pending" });
-// DISABLED:     } catch (error: any) {
-// DISABLED:       console.error('Error resetting domain status:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Admin: Reset domain status to pending (for testing)
+  app.post("/api/admin/domains/:domain/reset-status", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+
+    try {
+      const { domain } = req.params;
+      const page = await storage.getPageByDomain(domain);
+      
+      if (!page) {
+        return res.status(404).json({ error: "Page not found for this domain" });
+      }
+
+      await storage.updatePage(page.id, { 
+        domainStatus: 'pending',
+        domainVerified: false
+      } as any);
+
+      console.log(`✓ Reset ${domain} status to 'pending'`);
+      res.json({ success: true, message: "Domain status reset to pending" });
+    } catch (error: any) {
+      console.error('Error resetting domain status:', error);
       res.status(500).json({ error: error.message });
     }
   });
@@ -2183,82 +2183,82 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ success: true, user: updatedUser });
     } catch (error: any) {
       console.error('Error updating user billing status:', error);
-// DISABLED:       res.status(500).json({ error: error.message });
-// DISABLED:     }
-// DISABLED:   });
-// DISABLED: 
-// DISABLED:   // Manual Caddy allowlist management endpoint (for fixing existing domains)
-// DISABLED:   app.post('/api/admin/caddy/add-domain', async (req, res) => {
-// DISABLED:     if (!req.isAuthenticated()) {
-// DISABLED:       return res.sendStatus(401);
-// DISABLED:     }
-// DISABLED:     
-// DISABLED:     const user = req.user as any;
-// DISABLED:     if (user.role !== 'super_admin') {
-// DISABLED:       return res.status(403).json({ error: 'Super admin access required' });
-// DISABLED:     }
-// DISABLED:     
-// DISABLED:     const { domain } = req.body;
-// DISABLED:     if (!domain) {
-// DISABLED:       return res.status(400).json({ error: 'Domain is required' });
-// DISABLED:     }
-// DISABLED:     
-// DISABLED:     try {
-// DISABLED:       const result = await addDomainToAllowlist(domain);
-// DISABLED:       return res.json(result);
-// DISABLED:     } catch (error: any) {
-// DISABLED:       return res.status(500).json({ error: error.message });
-// DISABLED:     }
-// DISABLED:   });
-// DISABLED: 
-// DISABLED:   // Fix DNS for existing domain (switch to Namecheap Basic DNS and re-apply DNS records)
-// DISABLED:   app.post('/api/admin/fix-domain-dns', async (req, res) => {
-// DISABLED:     if (!req.isAuthenticated()) {
-// DISABLED:       return res.sendStatus(401);
-// DISABLED:     }
-// DISABLED:     
-// DISABLED:     const user = req.user as any;
-// DISABLED:     if (user.role !== 'super_admin') {
-// DISABLED:       return res.status(403).json({ error: 'Super admin access required' });
-// DISABLED:     }
-// DISABLED:     
-// DISABLED:     const { domain } = req.body;
-// DISABLED:     if (!domain) {
-// DISABLED:       return res.status(400).json({ error: 'Domain is required' });
-// DISABLED:     }
-// DISABLED:     
-// DISABLED:     try {
-// DISABLED:       console.log(`🔧 Fixing DNS for ${domain}...`);
-// DISABLED:       
-// DISABLED:       // Step 1: Switch to Namecheap Basic DNS
-// DISABLED:       await domainService.setDefaultNameservers(domain);
-// DISABLED:       
-// DISABLED:       // Step 2: Re-apply DNS records to droplet
-// DISABLED:       await domainService.setDnsRecords(domain, [
-// DISABLED:         {
-// DISABLED:           name: '@',
-// DISABLED:           type: 'A',
-// DISABLED:           address: '134.199.194.110',
-// DISABLED:           ttl: 300
-// DISABLED:         },
-// DISABLED:         {
-// DISABLED:           name: 'www',
-// DISABLED:           type: 'A',
-// DISABLED:           address: '134.199.194.110',
-// DISABLED:           ttl: 300
-// DISABLED:         }
-// DISABLED:       ]);
-// DISABLED:       
-// DISABLED:       // Step 3: Add to Caddy allowlist
-// DISABLED:       const caddyResult = await addDomainToAllowlist(domain);
-// DISABLED:       
-// DISABLED:       console.log(`✅ DNS fixed for ${domain}`);
-// DISABLED:       
-// DISABLED:       return res.json({
-// DISABLED:         success: true,
-// DISABLED:         message: `DNS fixed for ${domain}. Site should be live in 5-15 minutes.`,
-// DISABLED:         caddyAllowlist: caddyResult.success
-// DISABLED:       });
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Manual Caddy allowlist management endpoint (for fixing existing domains)
+  app.post('/api/admin/caddy/add-domain', async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+    
+    const user = req.user as any;
+    if (user.role !== 'super_admin') {
+      return res.status(403).json({ error: 'Super admin access required' });
+    }
+    
+    const { domain } = req.body;
+    if (!domain) {
+      return res.status(400).json({ error: 'Domain is required' });
+    }
+    
+    try {
+      const result = await addDomainToAllowlist(domain);
+      return res.json(result);
+    } catch (error: any) {
+      return res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Fix DNS for existing domain (switch to Namecheap Basic DNS and re-apply DNS records)
+  app.post('/api/admin/fix-domain-dns', async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+    
+    const user = req.user as any;
+    if (user.role !== 'super_admin') {
+      return res.status(403).json({ error: 'Super admin access required' });
+    }
+    
+    const { domain } = req.body;
+    if (!domain) {
+      return res.status(400).json({ error: 'Domain is required' });
+    }
+    
+    try {
+      console.log(`🔧 Fixing DNS for ${domain}...`);
+      
+      // Step 1: Switch to Namecheap Basic DNS
+      await domainService.setDefaultNameservers(domain);
+      
+      // Step 2: Re-apply DNS records to droplet
+      await domainService.setDnsRecords(domain, [
+        {
+          name: '@',
+          type: 'A',
+          address: '134.199.194.110',
+          ttl: 300
+        },
+        {
+          name: 'www',
+          type: 'A',
+          address: '134.199.194.110',
+          ttl: 300
+        }
+      ]);
+      
+      // Step 3: Add to Caddy allowlist
+      const caddyResult = await addDomainToAllowlist(domain);
+      
+      console.log(`✅ DNS fixed for ${domain}`);
+      
+      return res.json({
+        success: true,
+        message: `DNS fixed for ${domain}. Site should be live in 5-15 minutes.`,
+        caddyAllowlist: caddyResult.success
+      });
     } catch (error: any) {
       console.error(`❌ Failed to fix DNS for ${domain}:`, error);
       return res.status(500).json({ error: error.message });

@@ -47,7 +47,7 @@ export default function DomainAutomation({ pageId, onDomainRegistered }: DomainA
     if (domainStatus.status === 'registering' || domainStatus.status === 'configuring_dns') {
       const interval = setInterval(async () => {
         try {
-          const res = await apiRequest("GET", `/api/domains/status/${pageId}`, {});
+          const res = await apiRequest("GET", `/api/domains/status/${pageId}`);
           const status = await res.json();
           
           if (status.status === 'completed') {

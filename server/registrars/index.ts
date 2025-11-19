@@ -8,10 +8,10 @@ export { GoDaddyRegistrar, NamecheapRegistrar };
 export function getRegistrar(provider: 'godaddy' | 'namecheap' = 'godaddy'): IRegistrar {
   switch (provider) {
     case 'godaddy':
-      return new GoDaddyRegistrar();
+      return new GoDaddyRegistrar(undefined, undefined, true);
     case 'namecheap':
       return new NamecheapRegistrar();
     default:
-      return new GoDaddyRegistrar();
+      return new GoDaddyRegistrar(undefined, undefined, true);
   }
 }

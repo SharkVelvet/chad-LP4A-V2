@@ -42,8 +42,9 @@ export async function checkDomainAvailability(domain: string): Promise<{
 
     if (parsed.ApiResponse['@_Status'] !== 'OK') {
       const error = parsed.ApiResponse.Errors?.Error;
+      console.log('Namecheap API error object:', JSON.stringify(error, null, 2));
       const errorMsg = Array.isArray(error) ? error[0]['#text'] : error;
-      throw new Error(`Namecheap API error: ${errorMsg}`);
+      throw new Error(`Namecheap API error: ${JSON.stringify(errorMsg)}`);
     }
 
     const domainCheck = parsed.ApiResponse.CommandResponse?.DomainCheckResult;

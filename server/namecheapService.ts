@@ -8,16 +8,8 @@ const API_KEY = process.env.NAMECHEAP_API_KEY!;
 const USERNAME = process.env.NAMECHEAP_USERNAME!;
 const CLIENT_IP = process.env.NAMECHEAP_CLIENT_IP!;
 
-// DigitalOcean proxy for static IP whitelisting with Namecheap
-const PROXY_HOST = '134.199.194.110';
-const PROXY_PORT = 3000;
-
-const proxyAgent = new HttpsProxyAgent(`http://${PROXY_HOST}:${PROXY_PORT}`);
-
-const axiosInstance = axios.create({
-  httpsAgent: proxyAgent,
-  proxy: false,
-});
+// Temporarily test direct calls to Namecheap (no proxy)
+const axiosInstance = axios.create();
 
 const parser = new XMLParser({
   ignoreAttributes: false,

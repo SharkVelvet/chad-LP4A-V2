@@ -185,14 +185,34 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     throw new Error('Registrant data not found');
   }
 
-  const { zoneId, nameservers } = await cloudflare.createZone(job.domain);
+  const [page] = await db
+    .select()
+    .from(pages)
+    .where(eq(pages.id, job.pageId));
 
-  console.log(`✅ Cloudflare zone created: ${zoneId}`);
+  let zoneId = page?.cloudflareZoneId || job.metadata?.zoneId;
+  let nameservers = page?.cloudflareNameservers || job.metadata?.nameservers;
+
+  if (!zoneId) {
+    const zoneResult = await cloudflare.createZone(job.domain);
+    zoneId = zoneResult.zoneId;
+    nameservers = zoneResult.nameservers;
+    console.log(`✅ Cloudflare zone created: ${zoneId}`);
+  } else {
+    console.log(`✅ Using existing Cloudflare zone: ${zoneId}`);
+  }
 
   const registrar = getRegistrar('godaddy');
-  const registrationResult = await registrar.registerDomain(job.domain, registrant);
-
-  console.log(`✅ Domain registered with GoDaddy. Order ID: ${registrationResult.orderId}`);
+  
+  let registrarOrderId = job.metadata?.registrarOrderId;
+  
+  if (!registrarOrderId) {
+    const registrationResult = await registrar.registerDomain(job.domain, registrant);
+    console.log(`✅ Domain registered with GoDaddy. Order ID: ${registrationResult.orderId}`);
+    registrarOrderId = registrationResult.orderId;
+  } else {
+    console.log(`✅ Domain already registered. Order ID: ${registrarOrderId}`);
+  }
 
   await registrar.setNameservers(job.domain, nameservers, registrant.clientIp);
 
@@ -217,7 +237,7 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
         ...job.metadata,
         zoneId,
         nameservers,
-        registrarOrderId: registrationResult.orderId,
+        registrarOrderId,
         registrarProvider: 'godaddy',
       },
       updatedAt: new Date(),

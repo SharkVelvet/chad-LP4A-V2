@@ -11,6 +11,7 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import DomainSearch from "@/components/domain-search";
+import DomainAutomation from "@/components/domain-automation";
 import DnsManager from "@/components/dns-manager";
 
 type Page = {
@@ -807,18 +808,21 @@ export default function WebsiteEditor() {
                   </div>
                 )}
 
-                {/* Domain Search and Purchase - Only show if no domain attached */}
+                {/* Domain Search and Registration - Only show if no domain attached */}
                 {!page?.domain && (
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold mb-4">Search and Purchase Domain</h4>
-                    <DomainSearch
+                    <h4 className="text-lg font-semibold mb-4">Search and Register Domain</h4>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Search for an available domain and register it automatically. Eligible .com/.net domains ≤$18 are FREE with your subscription!
+                    </p>
+                    <DomainAutomation
                       pageId={pageId!}
-                      onDomainPurchased={(domain) => {
+                      onDomainRegistered={(domain) => {
                         queryClient.invalidateQueries({ queryKey: ["/api/pages", String(pageId)] });
                         queryClient.invalidateQueries({ queryKey: ["/api/pages"] });
                         toast({
-                          title: "Domain Purchased and Linked",
-                          description: `${domain} has been purchased and linked to this page.`,
+                          title: "Domain Registered Successfully!",
+                          description: `${domain} has been registered and will be live shortly.`,
                         });
                       }}
                     />

@@ -57,14 +57,14 @@ app.use((req, res, next) => {
       process.env.NODE_ENV = "production";
     }
 
-    // In production, serve static assets ONLY (not index.html)
+    // In production, serve static files but NOT index.html (let custom domain middleware handle root)
     if (process.env.NODE_ENV === "production") {
       const distPath = path.resolve(import.meta.dirname, "public");
       if (!fs.existsSync(distPath)) {
         throw new Error(`Could not find the build directory: ${distPath}`);
       }
-      // Only serve /assets/ directory, not root - custom domain middleware needs to inject page data
-      app.use('/assets', express.static(path.resolve(distPath, 'assets')));
+      // Serve all static files but disable auto-serving index.html - custom domain middleware needs to inject page data
+      app.use(express.static(distPath, { index: false }));
     }
 
     const server = await registerRoutes(app);

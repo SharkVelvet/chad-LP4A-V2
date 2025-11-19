@@ -1,0 +1,66 @@
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# curl -Ik https://insuranceoninsurance.com/ 2>&1 | head -20
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0  3194    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 200 
+alt-svc: h3=":443"; ma=2592000
+content-type: text/html; charset=utf-8
+date: Wed, 19 Nov 2025 02:27:06 GMT
+etag: W/"c7a-/v52gnboi89y6jLVDB1yNJ70Hn4"
+via: 1.1 Caddy
+x-powered-by: Express
+content-length: 3194
+
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# curl -s https://insuranceoninsurance.com/ | head -50
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Professional Landing Pages for Insurance Agents</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Facebook Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      
+      // Initialize pixel with ID from environment variable
+      window.addEventListener('DOMContentLoaded', function() {
+        if (window.FACEBOOK_PIXEL_ID) {
+          fbq('init', window.FACEBOOK_PIXEL_ID);
+          fbq('track', 'PageView');
+        }
+      });
+    </script>
+    <!-- End Facebook Pixel Code -->
+    <script type="module" crossorigin src="/assets/index-BF_-eyCo.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bc_r3NZy.css">
+  <script>window.__PAGE_DATA__ = {"page":{"id":88,"userId":1,"locationId":null,"templateId":4,"name":"Template 4 - 11/16/2025","domain":"insuranceoninsurance.com","domainVerified":false,"domainStatus":"auto_configured","domainPreferences":null,"railwayDnsTargets":null,"cloudflareCustomHostnameId":"e495f90f-39ad-4085-b447-377751ac724f","cloudflareHostnameStatus":"pending","cloudflareSslStatus":"active","cloudflareCnameTarget":"landingpagesforagentsfallback.com","cloudflareZoneId":null,"cloudflareNameservers":null,"route53ZoneId":null,"route53Nameservers":null,"acmCertificateArn":null,"awsCertificateStatus":null,"subscriptionPlan":"standard","subscriptionStatus":"active","primaryColor":"#000000","isActive":true,"createdAt":"2025-11-16T19:20:28.315Z","updatedAt":"2025-11-17T17:56:09.863Z"},"content":{"id":86,"pageId":88,"businessName":null,"tagline":null,"aboutUs":null,"phone":null,"email":"chad@fotype.com","address":null,"heroImage":null,"logo":null,"galleryImages":null,"content":{},"hiddenSections":[],"isPublished":true,"maintenanceMode":false,"publishedAt":"2025-11-18T20:50:30.553Z","formEnabled":false,"formProvider":null,"formEmbedCode":null,"updatedAt":"2025-11-18T20:50:30.553Z"},"template":{"id":4,"name":"Template 4","slug":"Template4","description":"Clean and professional template perfect for consulting firms, agencies, and corporate websites","category":"Business","previewImage":"/attached_assets/planright-cameron-snapshot_1751852578360.jpg","isActive":true}};</script></head>
+  <body>
+    <!-- Facebook Pixel noscript fallback -->
+    <noscript>
+      <img height="1" width="1" style="display:none" id="fb-pixel-noscript" />
+    </noscript>
+    <div id="root"></div>
+  </body>
+</html>
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# ls -lh /opt/app/dist/public/
+total 2.0M
+drwxr-xr-x 2 root root 4.0K Nov 19 00:52 assets
+-rw-r--r-- 1 root root 1.7K Nov 19 01:17 index.html
+-rw-r--r-- 1 root root 2.0M Nov 18 22:36 template-11-preview.png
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# curl -s http://127.0.0.1:5000/ | grep -E "window\.__PAGE_DATA__|<script" | head -10
+    <script>
+    <script type="module" crossorigin src="/assets/index-BF_-eyCo.js"></script>
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# 

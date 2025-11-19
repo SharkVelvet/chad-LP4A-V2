@@ -44,6 +44,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   setupAuth(app);
   setupAdminAuth(app);
 
+  // TEMPORARY: Download endpoint for backend transfer to droplet
+  app.get("/api/__download-backend__", async (req, res) => {
+    const fs = await import('fs');
+    const path = await import('path');
+    const backendPath = path.resolve(import.meta.dirname, "../dist/index.js");
+    res.setHeader('Content-Type', 'application/javascript');
+    res.setHeader('Content-Disposition', 'attachment; filename="index.js"');
+    res.sendFile(backendPath);
+  });
+
   // Public API - Get page by custom domain (no authentication required)
   app.get("/api/public/page-by-domain/:domain", async (req, res) => {
     try {

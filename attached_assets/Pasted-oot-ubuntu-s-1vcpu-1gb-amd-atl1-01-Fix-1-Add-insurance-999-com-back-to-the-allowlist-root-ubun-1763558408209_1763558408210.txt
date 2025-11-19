@@ -1,0 +1,62 @@
+oot@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# # Fix 1: Add insurance-999.com back to the allowlist
+root@ubuntu-s-1vcpu-1gb-amd-atl1-01:~# # Fix 1: Add insurance-999.com back to the allowlist
+curl -X POST \Type: application/json" \
+  -H "Content-Type: application/json" \e7751ab204198cf331956a78ffa877b2f38ba3eee639d61edb2d5" \
+  -H "Authorization: Bearer 999d8902beee7751ab204198cf331956a78ffa877b2f38ba3eee639d61edb2d5" \
+  -d '{"domain":"insurance-999.com"}' \
+  http://localhost:3001/allowlist
+echo ""
+echo ""
+# Fix 2: Update Caddyfile to use 127.0.0.1 instead of localhost
+# Fix 2: Update Caddyfile to use 127.0.0.1 instead of localhost
+sudo tee /etc/caddy/Caddyfile > /dev/null << 'ENDOFFILE'
+{ email chadlanding@gmail.com
+  email chadlanding@gmail.com
+  on_demand_tls {
+  on_demand_tls {7.0.0.1:3001/allowlist-check
+    ask http://127.0.0.1:3001/allowlist-check
+  }
+}
+:443 {
+:443 {{
+  tls {demand
+    on_demand
+  }
+  reverse_proxy 127.0.0.1:5000 {
+  reverse_proxy 127.0.0.1:5000 {
+    header_up Host {host}remote_host}
+    header_up X-Real-IP {remote_host}_host}
+    header_up X-Forwarded-For {remote_host}
+    header_up X-Forwarded-Proto {scheme}
+  }
+}
+:80 {
+:80 {ir https://{host}{uri} permanent
+  redir https://{host}{uri} permanent
+}NDOFFILE
+ENDOFFILE
+# Reload Caddy
+# Reload Caddy reload caddy
+sudo systemctl reload caddy
+# Verify domain is in allowlist
+# Verify domain is in allowlist."
+echo "Testing allowlist check..."ist-check?domain=insurance-999.com
+curl http://localhost:3001/allowlist-check?domain=insurance-999.com
+# Wait and test HTTPS
+# Wait and test HTTPS
+echo ""esting HTTPS..."
+echo "Testing HTTPS..."
+sleep 5 https://insurance-999.com
+curl -I https://insurance-999.com
+{"success":true,"domain":"insurance-999.com","message":"Domain added to allowlist","totalDomains":2}
+Testing allowlist check...
+OK
+Testing HTTPS...
+HTTP/2 200 
+alt-svc: h3=":443"; ma=2592000
+content-type: text/html; charset=utf-8
+date: Wed, 19 Nov 2025 13:19:50 GMT
+etag: W/"d66-weUjZgdHxUZ1LJLdhAcarahaY3Q"
+via: 1.1 Caddy
+x-powered-by: Express
+content-length: 3430

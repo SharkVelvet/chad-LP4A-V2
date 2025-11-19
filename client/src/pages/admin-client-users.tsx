@@ -273,14 +273,9 @@ export default function AdminClientUsers() {
       <nav className="bg-white shadow-sm border-b border-border h-16">
         <div className="h-full px-6 flex justify-between items-center">
           <h1 className="text-xl font-semibold text-gray-900">Super Admin - Client Users</h1>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm" onClick={() => navigate('/admin/domains')}>
-              Domains
-            </Button>
-            <Button variant="ghost" size="sm" onClick={() => navigate('/dashboard')}>
-              Back to Dashboard
-            </Button>
-          </div>
+          <Button variant="ghost" size="sm" onClick={() => navigate('/dashboard')}>
+            Back to Dashboard
+          </Button>
         </div>
       </nav>
 

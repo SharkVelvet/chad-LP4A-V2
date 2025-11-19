@@ -21,6 +21,7 @@ import { validatePassword } from "./passwords.js";
 import { domainService } from "./domainService.js";
 import { cloudflareService } from "./cloudflareService.js";
 import { railwayService } from "./railwayService.js";
+import { addDomainToAllowlist } from "./caddyService.js";
 import { RAILWAY_DOMAIN, createRailwayDnsRecords } from "./config.js";
 import { extractDnsRecordsFromRailway, serializeDnsRecords } from "./railwayHelpers.js";
 
@@ -1810,6 +1811,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
             
             console.log(`✅ DNS auto-configured! Caddy proxy will auto-provision SSL.`);
             
+            // Add domain to Caddy's on-demand TLS allowlist
+            const caddyResult = await addDomainToAllowlist(domain);
+            if (!caddyResult.success) {
+              console.warn(`⚠️  Failed to add ${domain} to Caddy allowlist: ${caddyResult.error}`);
+            }
+            
             // Update page with successful domain configuration
             await storage.updatePage(pageId, { 
               domain, 
@@ -2961,6 +2968,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Error updating user billing status:', error);
       res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Manual Caddy allowlist management endpoint (for fixing existing domains)
+  app.post('/api/admin/caddy/add-domain', async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+    
+    const user = req.user as any;
+    if (user.role !== 'super_admin') {
+      return res.status(403).json({ error: 'Super admin access required' });
+    }
+    
+    const { domain } = req.body;
+    if (!domain) {
+      return res.status(400).json({ error: 'Domain is required' });
+    }
+    
+    try {
+      const result = await addDomainToAllowlist(domain);
+      return res.json(result);
+    } catch (error: any) {
+      return res.status(500).json({ error: error.message });
     }
   });
 

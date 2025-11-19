@@ -51,16 +51,29 @@ export class GoDaddyRegistrar implements IRegistrar {
 
   async searchDomain(domain: string): Promise<DomainSearchResult> {
     try {
-      const response = await fetch(
-        `${this.baseUrl}/v1/domains/available?domain=${encodeURIComponent(domain)}`,
-        {
-          method: 'GET',
-          headers: this.getHeaders(),
-        }
-      );
+      const url = `${this.baseUrl}/v1/domains/available?domain=${encodeURIComponent(domain)}`;
+      const headers = this.getHeaders();
+      
+      console.log('🔍 GoDaddy API Request:', {
+        url,
+        hasAuth: !!headers.Authorization,
+        authPrefix: headers.Authorization?.substring(0, 10),
+      });
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        headers,
+      });
+
+      console.log('✅ GoDaddy API Response:', {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+      });
 
       if (!response.ok) {
         const error = await response.text();
+        console.error('❌ GoDaddy API Error Response:', error);
         throw new Error(`GoDaddy API error: ${error}`);
       }
 

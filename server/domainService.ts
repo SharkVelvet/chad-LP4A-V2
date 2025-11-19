@@ -198,6 +198,19 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     zoneId = zoneResult.zoneId;
     nameservers = zoneResult.nameservers;
     console.log(`✅ Cloudflare zone created: ${zoneId}`);
+    
+    // Save zone ID immediately to job metadata for retry protection
+    await db
+      .update(domainJobs)
+      .set({
+        metadata: {
+          ...job.metadata,
+          zoneId,
+          nameservers,
+        },
+        updatedAt: new Date(),
+      })
+      .where(eq(domainJobs.id, job.id));
   } else {
     console.log(`✅ Using existing Cloudflare zone: ${zoneId}`);
   }
@@ -210,6 +223,21 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     const registrationResult = await registrar.registerDomain(job.domain, registrant);
     console.log(`✅ Domain registered with GoDaddy. Order ID: ${registrationResult.orderId}`);
     registrarOrderId = registrationResult.orderId;
+    
+    // Save order ID immediately to job metadata for retry protection
+    await db
+      .update(domainJobs)
+      .set({
+        metadata: {
+          ...job.metadata,
+          zoneId,
+          nameservers,
+          registrarOrderId,
+          registrarProvider: 'godaddy',
+        },
+        updatedAt: new Date(),
+      })
+      .where(eq(domainJobs.id, job.id));
   } else {
     console.log(`✅ Domain already registered. Order ID: ${registrarOrderId}`);
   }

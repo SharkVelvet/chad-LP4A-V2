@@ -6,8 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { BarChart3, Users, Eye, FileText, LogOut, Shield, TrendingUp, Calendar } from "lucide-react";
+import { BarChart3, Users, Eye, FileText, LogOut, Shield, TrendingUp, Calendar, Globe, CheckCircle, AlertCircle, RefreshCw } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 interface DashboardSummary {
   pageViews: number;
@@ -34,6 +35,7 @@ interface FormSubmission {
 export default function AdminDashboard() {
   const [selectedTab, setSelectedTab] = useState("overview");
   const queryClient = useQueryClient();
+  const { toast } = useToast();
 
   // Check if user is authenticated
   const { data: adminUser, isLoading: userLoading } = useQuery({
@@ -65,6 +67,12 @@ export default function AdminDashboard() {
     enabled: !!adminUser && selectedTab === "seo",
   });
 
+  // Get all pages/domains
+  const { data: pages = [], isLoading: pagesLoading, refetch: refetchPages } = useQuery({
+    queryKey: ["/api/admin/all-pages"],
+    enabled: !!adminUser && selectedTab === "domains",
+  });
+
   // Logout mutation
   const logoutMutation = useMutation({
     mutationFn: () => apiRequest("/api/admin/logout", { method: "POST" }),
@@ -83,6 +91,52 @@ export default function AdminDashboard() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/form-submissions"] });
       queryClient.invalidateQueries({ queryKey: ["/api/admin/dashboard-summary"] });
+    },
+  });
+
+  // Fix domain DNS
+  const fixDnsMutation = useMutation({
+    mutationFn: (domain: string) => 
+      apiRequest("/api/admin/fix-domain-dns", {
+        method: "POST",
+        body: JSON.stringify({ domain }),
+      }),
+    onSuccess: (data: any) => {
+      toast({
+        title: "DNS Fixed",
+        description: data.message || "Domain DNS has been reconfigured",
+      });
+      refetchPages();
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Failed to Fix DNS",
+        description: error.message || "Something went wrong",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Add to Caddy allowlist
+  const addToCaddyMutation = useMutation({
+    mutationFn: (domain: string) => 
+      apiRequest("/api/admin/caddy/add-domain", {
+        method: "POST",
+        body: JSON.stringify({ domain }),
+      }),
+    onSuccess: () => {
+      toast({
+        title: "Added to Caddy",
+        description: "Domain added to Caddy allowlist",
+      });
+      refetchPages();
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Failed to Add to Caddy",
+        description: error.message || "Something went wrong",
+        variant: "destructive",
+      });
     },
   });
 
@@ -144,11 +198,12 @@ export default function AdminDashboard() {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Tabs value={selectedTab} onValueChange={setSelectedTab}>
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="submissions">Form Submissions</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
             <TabsTrigger value="seo">SEO Data</TabsTrigger>
+            <TabsTrigger value="domains">Domains</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">

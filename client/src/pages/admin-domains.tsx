@@ -1,11 +1,13 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { useAuth } from "@/hooks/use-auth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Shield, Globe, CheckCircle, AlertCircle, RefreshCw } from "lucide-react";
-import { apiRequest } from "@/lib/queryClient";
+import { Globe, CheckCircle, AlertCircle, RefreshCw } from "lucide-react";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
 
 interface Page {
   id: number;
@@ -17,17 +19,17 @@ interface Page {
 }
 
 export default function AdminDomains() {
+  const { user } = useAuth();
   const { toast } = useToast();
-  const queryClient = useQueryClient();
+  const [, navigate] = useLocation();
 
-  const { data: adminUser, isLoading: userLoading } = useQuery({
-    queryKey: ["/api/admin/user"],
-    retry: false,
-  });
+  if (user?.role !== 'super_admin') {
+    navigate('/dashboard');
+    return null;
+  }
 
   const { data: pages = [], isLoading: pagesLoading, refetch } = useQuery<Page[]>({
     queryKey: ["/api/admin/all-pages"],
-    enabled: !!adminUser,
   });
 
   const fixDnsMutation = useMutation({
@@ -74,22 +76,6 @@ export default function AdminDomains() {
     },
   });
 
-  if (userLoading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <Shield className="h-8 w-8 text-purple-600 mx-auto mb-4" />
-          <div>Verifying credentials...</div>
-        </div>
-      </div>
-    );
-  }
-
-  if (!adminUser) {
-    window.location.href = "/admin/login";
-    return null;
-  }
-
   const domainsWithPages = pages.filter(p => p.domain);
 
   return (
@@ -106,12 +92,22 @@ export default function AdminDomains() {
                 <p className="text-sm text-gray-500">View and fix domain configurations</p>
               </div>
             </div>
-            <Button
-              variant="outline"
-              onClick={() => window.location.href = "/admin/dashboard"}
-            >
-              Back to Dashboard
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => navigate('/admin/client-users')}
+              >
+                Client Users
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate('/dashboard')}
+              >
+                Back to Dashboard
+              </Button>
+            </div>
           </div>
         </div>
       </div>

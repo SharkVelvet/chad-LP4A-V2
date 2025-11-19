@@ -1,11 +1,9 @@
 /**
  * Caddy API Service
- * Manages domain allowlist for on-demand TLS certificate provisioning
+ * Manages domain allowlist for on-demand TLS certificate provisioning via proxy
  */
 
-import { DROPLET_IP } from './config';
-
-const CADDY_ADMIN_API = `http://${DROPLET_IP}:2019`;
+import { CADDY_PROXY_URL, CADDY_PROXY_AUTH_TOKEN } from './config';
 
 export interface CaddyDomainResult {
   success: boolean;
@@ -14,60 +12,45 @@ export interface CaddyDomainResult {
 }
 
 /**
- * Add a domain to Caddy's on-demand TLS allowlist
+ * Add a domain to Caddy's on-demand TLS allowlist via proxy
  * This enables automatic SSL certificate provisioning for the domain
  */
 export async function addDomainToAllowlist(domain: string): Promise<CaddyDomainResult> {
   try {
-    console.log(`📋 Adding ${domain} to Caddy allowlist...`);
+    console.log(`📋 Adding ${domain} to Caddy allowlist via proxy...`);
     
-    // First, get the current allowed list
-    let currentAllowed: string[] = [];
-    try {
-      const getCurrentResponse = await fetch(`${CADDY_ADMIN_API}/config/apps/tls/automation/on_demand/allowed`);
-      if (getCurrentResponse.ok) {
-        currentAllowed = await getCurrentResponse.json();
-      }
-    } catch (e) {
-      console.log('No existing allowed list found, creating new one');
-    }
-    
-    // Add both apex and www if not already present
-    const domainsToAdd = [domain, `www.${domain}`];
-    const newAllowed = Array.from(new Set([...currentAllowed, ...domainsToAdd])); // Remove duplicates
-    
-    // Use PATCH to update the Caddy configuration
-    const response = await fetch(`${CADDY_ADMIN_API}/config/`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        apps: {
-          tls: {
-            automation: {
-              on_demand: {
-                allowed: newAllowed
-              }
-            }
-          }
-        }
-      })
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`❌ Failed to add ${domain} to Caddy allowlist:`, errorText);
+    if (!CADDY_PROXY_AUTH_TOKEN) {
+      console.error('❌ CADDY_PROXY_AUTH_TOKEN not configured!');
       return {
         success: false,
-        error: `Caddy API error: ${response.status} - ${errorText}`
+        error: 'Caddy proxy auth token not configured'
+      };
+    }
+    
+    // Call the Caddy proxy to add the domain
+    const response = await fetch(`${CADDY_PROXY_URL}/allowlist`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${CADDY_PROXY_AUTH_TOKEN}`
+      },
+      body: JSON.stringify({ domain })
+    });
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      console.error(`❌ Failed to add ${domain} to Caddy allowlist:`, responseData);
+      return {
+        success: false,
+        error: responseData.error || `Proxy error: ${response.status}`
       };
     }
 
-    console.log(`✅ ${domain} added to Caddy allowlist (total: ${newAllowed.length} domains)`);
+    console.log(`✅ ${domain} added to Caddy allowlist successfully`);
     return {
       success: true,
-      message: `Domain ${domain} added to Caddy allowlist for SSL provisioning`
+      message: responseData.message || `Domain ${domain} added to Caddy allowlist for SSL provisioning`
     };
   } catch (error: any) {
     console.error(`❌ Error adding ${domain} to Caddy allowlist:`, error.message);
@@ -79,33 +62,41 @@ export async function addDomainToAllowlist(domain: string): Promise<CaddyDomainR
 }
 
 /**
- * Remove a domain from Caddy's allowlist
+ * Remove a domain from Caddy's allowlist via proxy
  */
 export async function removeDomainFromAllowlist(domain: string): Promise<CaddyDomainResult> {
   try {
-    console.log(`🗑️  Removing ${domain} from Caddy allowlist...`);
+    console.log(`🗑️  Removing ${domain} from Caddy allowlist via proxy...`);
     
-    const response = await fetch(`${CADDY_ADMIN_API}/config/apps/tls/automation/on_demand/allowed`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify([domain, `www.${domain}`])
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`❌ Failed to remove ${domain} from Caddy allowlist:`, errorText);
+    if (!CADDY_PROXY_AUTH_TOKEN) {
+      console.error('❌ CADDY_PROXY_AUTH_TOKEN not configured!');
       return {
         success: false,
-        error: `Caddy API error: ${response.status} - ${errorText}`
+        error: 'Caddy proxy auth token not configured'
+      };
+    }
+    
+    const response = await fetch(`${CADDY_PROXY_URL}/allowlist/${domain}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${CADDY_PROXY_AUTH_TOKEN}`
+      }
+    });
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      console.error(`❌ Failed to remove ${domain} from Caddy allowlist:`, responseData);
+      return {
+        success: false,
+        error: responseData.error || `Proxy error: ${response.status}`
       };
     }
 
     console.log(`✅ ${domain} removed from Caddy allowlist`);
     return {
       success: true,
-      message: `Domain ${domain} removed from Caddy allowlist`
+      message: responseData.message || `Domain ${domain} removed from Caddy allowlist`
     };
   } catch (error: any) {
     console.error(`❌ Error removing ${domain} from Caddy allowlist:`, error.message);
@@ -117,17 +108,17 @@ export async function removeDomainFromAllowlist(domain: string): Promise<CaddyDo
 }
 
 /**
- * Check Caddy server health
+ * Check Caddy proxy health
  */
 export async function checkCaddyHealth(): Promise<boolean> {
   try {
-    const response = await fetch(`${CADDY_ADMIN_API}/config/`, {
+    const response = await fetch(`${CADDY_PROXY_URL}/health`, {
       method: 'GET',
       signal: AbortSignal.timeout(5000)
     });
     return response.ok;
   } catch (error) {
-    console.error('Caddy health check failed:', error);
+    console.error('Caddy proxy health check failed:', error);
     return false;
   }
 }

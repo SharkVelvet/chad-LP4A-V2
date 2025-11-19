@@ -10,6 +10,18 @@ export const RAILWAY_DOMAIN = 'chad-lp4a-v2-production.up.railway.app';
 export const DROPLET_IP = '134.199.194.110';
 
 /**
+ * Caddy Proxy URL (for remote Caddy Admin API management)
+ * Set via environment variable: CADDY_PROXY_URL
+ */
+export const CADDY_PROXY_URL = process.env.CADDY_PROXY_URL || `http://${DROPLET_IP}:3001`;
+
+/**
+ * Caddy Proxy Auth Token (for secure API access)
+ * Set via environment variable: CADDY_PROXY_AUTH_TOKEN
+ */
+export const CADDY_PROXY_AUTH_TOKEN = process.env.CADDY_PROXY_AUTH_TOKEN || '';
+
+/**
  * Create standardized DNS records for DigitalOcean droplet deployment
  * All customer domains point to the Caddy reverse proxy which handles SSL + routing
  */

@@ -2446,6 +2446,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Super Admin: Get all pages (for domain management)
+  app.get("/api/admin/all-pages", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    if (req.user.role !== 'super_admin') {
+      return res.status(403).json({ error: "Forbidden: Super admin access required" });
+    }
+
+    try {
+      const pages = await storage.getAllPages();
+      res.json(pages);
+    } catch (error: any) {
+      console.error('Error fetching all pages:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   // Super Admin: Fix domain auto-configuration (fetch Railway DNS targets)
   app.post("/api/admin/fix-domain/:domain", async (req, res) => {
     if (!req.isAuthenticated()) return res.sendStatus(401);

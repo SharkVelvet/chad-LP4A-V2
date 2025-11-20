@@ -766,15 +766,20 @@ export default function WebsiteEditor() {
 
                 {/* Domain Status Message */}
                 {page?.domain ? (
-                  page?.domainVerified ? (
+                  page?.domainVerified || page?.domainStatus === 'active' || page?.domainStatus === 'completed' ? (
                     <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                       <div className="flex items-start gap-4">
                         <Globe className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
-                        <div>
+                        <div className="flex-1">
                           <h4 className="text-lg font-semibold text-green-900 mb-2">
-                            ✅ You have this domain name setup for this page:
+                            ✅ Your domain is fully configured and live!
                           </h4>
-                          <p className="text-2xl font-bold text-green-700">{page.domain}</p>
+                          <p className="text-2xl font-bold text-green-700 mb-2">{page.domain}</p>
+                          <div className="bg-white border border-green-200 rounded-lg p-4">
+                            <p className="text-sm text-green-800">
+                              🎉 Your website is now accessible at <a href={`https://${page.domain}`} target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:text-green-900">{page.domain}</a> with automatic SSL/HTTPS!
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -972,8 +977,8 @@ export default function WebsiteEditor() {
                   <DnsManager domain={page.domain} />
                 )}
                 
-                {/* Domain Configuration - Show when domain is connected but NOT purchased via Cloudflare */}
-                {page?.domain && !page?.cloudflareZoneId && (
+                {/* Domain Configuration - Show when domain is connected but NOT purchased via Cloudflare and NOT using automation */}
+                {page?.domain && !page?.cloudflareZoneId && page?.domainStatus !== 'active' && page?.domainStatus !== 'completed' && page?.domainStatus !== 'propagating' && page?.domainStatus !== 'configuring_dns' && page?.domainStatus !== 'registering' && (
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <h4 className="text-lg font-semibold mb-4">🌐 Your Custom Domain: {page.domain}</h4>
                     

@@ -10,14 +10,14 @@ export { GoDaddyRegistrar, NamecheapRegistrar, DomainNameAPIRegistrar, NameComRe
 export function getRegistrar(provider: 'godaddy' | 'namecheap' | 'domainnameapi' | 'namecom' = 'namecom'): IRegistrar {
   switch (provider) {
     case 'godaddy':
-      return new GoDaddyRegistrar(undefined, undefined, false);
+      return new GoDaddyRegistrar(undefined, undefined, true);
     case 'namecheap':
       return new NamecheapRegistrar();
     case 'domainnameapi':
-      return new DomainNameAPIRegistrar(undefined, undefined, false);
+      return new DomainNameAPIRegistrar(undefined, undefined, true);
     case 'namecom':
-      return new NameComRegistrar(undefined, undefined, false);
+      return new NameComRegistrar(undefined, undefined, true);
     default:
-      return new NameComRegistrar(undefined, undefined, false);
+      return new NameComRegistrar(undefined, undefined, true);
   }
 }

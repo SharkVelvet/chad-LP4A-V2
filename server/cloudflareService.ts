@@ -107,12 +107,22 @@ export async function createDNSRecords(
 
 export async function setupOriginHostHeader(zoneId: string, domain: string): Promise<{ success: boolean }> {
   try {
-    await cloudflareApi.post(`/zones/${zoneId}/rulesets/phases/http_request_origin/entrypoint`, {
+    // Use http_request_transform phase with set_header action (requires Zone-level Rulesets:Edit permission)
+    await cloudflareApi.put(`/zones/${zoneId}/rulesets/phases/http_request_transform/entrypoint`, {
+      description: `Host header override for custom domains`,
+      kind: 'zone',
+      name: 'default',
+      phase: 'http_request_transform',
       rules: [
         {
-          action: 'route',
+          action: 'rewrite',
           action_parameters: {
-            host_header: REPLIT_ORIGIN,
+            headers: {
+              Host: {
+                operation: 'set',
+                value: REPLIT_ORIGIN,
+              },
+            },
           },
           expression: `(http.host eq "${domain}" or http.host eq "www.${domain}")`,
           description: `Override Host header for ${domain} to ${REPLIT_ORIGIN}`,
@@ -125,10 +135,11 @@ export async function setupOriginHostHeader(zoneId: string, domain: string): Pro
       value: 'on',
     });
 
+    console.log(`✅ Host header override configured for ${domain}`);
     return { success: true };
   } catch (error: any) {
     console.error('Error setting up origin host header:', error.response?.data || error);
-    return { success: true };
+    throw new Error(`Failed to configure Host header: ${error.response?.data?.errors?.[0]?.message || error.message}`);
   }
 }
 

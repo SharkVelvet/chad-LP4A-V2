@@ -3,6 +3,7 @@ import { pages, domainJobs, domainRegistrants, type DomainJob, type DomainRegist
 import { eq, and } from 'drizzle-orm';
 import { getRegistrar } from './registrars';
 import * as cloudflare from './cloudflareService';
+import { railwayService } from './railwayService';
 
 export async function searchDomain(domain: string): Promise<{
   available: boolean;
@@ -139,6 +140,9 @@ export async function processDomainJob(jobId: number): Promise<void> {
         break;
       case 'provision_ssl':
         await processSSLProvisioningStep(job);
+        break;
+      case 'add_to_railway':
+        await processRailwaySetupStep(job);
         break;
       default:
         throw new Error(`Unknown step: ${job.step}`);
@@ -339,9 +343,45 @@ async function processSSLProvisioningStep(job: DomainJob): Promise<void> {
     await db
       .update(pages)
       .set({
+        cloudflareSslStatus: 'active',
+        updatedAt: new Date(),
+      })
+      .where(eq(pages.id, job.pageId));
+
+    await db
+      .update(domainJobs)
+      .set({
+        step: 'add_to_railway',
+        status: 'pending',
+        updatedAt: new Date(),
+        scheduledFor: new Date(Date.now() + 10000),
+      })
+      .where(eq(domainJobs.id, job.id));
+
+    console.log(`✅ SSL provisioned. Moving to Railway setup step.`);
+  } else {
+    console.log(`⏳ SSL not active yet (status: ${sslStatus.status}). Will retry later.`);
+    await db
+      .update(domainJobs)
+      .set({
+        status: 'pending',
+        updatedAt: new Date(),
+        scheduledFor: new Date(Date.now() + 120000),
+      })
+      .where(eq(domainJobs.id, job.id));
+  }
+}
+
+async function processRailwaySetupStep(job: DomainJob): Promise<void> {
+  console.log(`🚂 Adding ${job.domain} to Railway...`);
+
+  if (!railwayService.isConfigured()) {
+    console.warn('⚠️ Railway service not configured. Skipping Railway setup.');
+    await db
+      .update(pages)
+      .set({
         domainStatus: 'active',
         domainVerified: true,
-        cloudflareSslStatus: 'active',
         updatedAt: new Date(),
       })
       .where(eq(pages.id, job.pageId));
@@ -356,17 +396,42 @@ async function processSSLProvisioningStep(job: DomainJob): Promise<void> {
       })
       .where(eq(domainJobs.id, job.id));
 
-    console.log(`🎉 Domain ${job.domain} is fully provisioned and live!`);
-  } else {
-    console.log(`⏳ SSL not active yet (status: ${sslStatus.status}). Will retry later.`);
+    console.log(`🎉 Domain ${job.domain} is fully provisioned (Railway skipped)!`);
+    return;
+  }
+
+  try {
+    const railwayDomain = await railwayService.addCustomDomain(job.domain);
+    
+    console.log(`✅ Domain added to Railway:`, railwayDomain);
+
+    await db
+      .update(pages)
+      .set({
+        domainStatus: 'active',
+        domainVerified: true,
+        updatedAt: new Date(),
+      })
+      .where(eq(pages.id, job.pageId));
+
     await db
       .update(domainJobs)
       .set({
-        status: 'pending',
+        status: 'completed',
+        step: 'complete',
+        completedAt: new Date(),
+        metadata: {
+          ...job.metadata,
+          railwayDomainId: railwayDomain.id,
+        },
         updatedAt: new Date(),
-        scheduledFor: new Date(Date.now() + 120000),
       })
       .where(eq(domainJobs.id, job.id));
+
+    console.log(`🎉 Domain ${job.domain} is fully provisioned and live!`);
+  } catch (error: any) {
+    console.error('Error adding domain to Railway:', error);
+    throw new Error(`Failed to add domain to Railway: ${error.message}`);
   }
 }
 
@@ -402,6 +467,7 @@ export async function getDomainJobStatus(pageId: number): Promise<{
       register: 'Registering domain...',
       configure_dns: 'Configuring DNS records...',
       provision_ssl: 'Provisioning SSL certificate...',
+      add_to_railway: 'Activating your website...',
       complete: 'All done!',
     };
 

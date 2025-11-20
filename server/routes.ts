@@ -1052,76 +1052,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const domainPrice = pricing[0];
       
-      // If domain is FREE, register it directly without payment
+      // If domain is FREE, register it directly without payment using new automation system
       if (domainPrice.isFree) {
-        const result = await domainService.registerDomain(domain, years, contactInfo);
+        const clientIp = req.headers['x-forwarded-for']?.toString().split(',')[0].trim() 
+          || req.headers['x-real-ip']?.toString()
+          || req.socket.remoteAddress 
+          || '127.0.0.1';
+
+        const registrantWithIp = { ...contactInfo, clientIp };
+
+        const result = await domainService.initiateDomainRegistration(pageId, domain, registrantWithIp);
         
-        if (result.success) {
-          // Automatically configure DNS to point to DigitalOcean droplet (Caddy proxy)
-          try {
-            console.log(`🌐 Auto-configuring DNS for ${domain} → DigitalOcean droplet...`);
-            
-            // CRITICAL: Switch from parking nameservers to Namecheap Basic DNS
-            // This is required for custom DNS records to actually work
-            await domainService.setDefaultNameservers(domain);
-            
-            // Point both @ and www to the droplet IP
-            await domainService.setDnsRecords(domain, [
-              {
-                name: '@',
-                type: 'A',
-                address: '134.199.194.110',
-                ttl: 300
-              },
-              {
-                name: 'www',
-                type: 'A',
-                address: '134.199.194.110',
-                ttl: 300
-              }
-            ]);
-            
-            console.log(`✅ DNS auto-configured! Caddy proxy will auto-provision SSL.`);
-            
-            // Add domain to Caddy's on-demand TLS allowlist
-            const caddyResult = await addDomainToAllowlist(domain);
-            if (!caddyResult.success) {
-              console.warn(`⚠️  Failed to add ${domain} to Caddy allowlist: ${caddyResult.error}`);
-            }
-            
-            // Update page with successful domain configuration
-            await storage.updatePage(pageId, { 
-              domain, 
-              domainVerified: false,
-              domainStatus: 'dns_configured'
-            } as any);
-            
-            return res.json({ 
-              success: true, 
-              isFree: true,
-              message: 'Domain registered and DNS auto-configured! Your site will be live in 5-15 minutes with automatic SSL.',
-              domain,
-              dnsConfigured: true
-            });
-          } catch (error: any) {
-            console.error(`⚠️  DNS configuration failed: ${error.message}`);
-          }
-          
-          // Fallback: Update page with the purchased domain
-          await storage.updatePage(pageId, { 
-            domain, 
-            domainVerified: false,
-            domainStatus: 'pending'
-          } as any);
-          return res.json({ 
-            success: true, 
-            isFree: true,
-            message: 'Domain registered successfully for free!',
-            domain 
-          });
-        } else {
-          return res.status(400).json({ error: 'Failed to register domain with registrar' });
-        }
+        return res.json({ 
+          success: true, 
+          isFree: true,
+          message: 'Domain registration initiated! Your domain will be live in 10-60 minutes with automatic SSL.',
+          domain,
+          jobId: result.jobId
+        });
       }
       
       // Premium domain - create Stripe checkout

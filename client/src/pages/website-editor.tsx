@@ -784,16 +784,19 @@ export default function WebsiteEditor() {
                       </div>
                     </div>
                   ) : (
-                    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                       <div className="flex items-start gap-4">
-                        <Globe className="h-6 w-6 text-yellow-600 flex-shrink-0 mt-1" />
+                        <Globe className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
                         <div>
-                          <h4 className="text-lg font-semibold text-yellow-900 mb-2">
-                            ⏳ You are setting up this domain for this page:
+                          <h4 className="text-lg font-semibold text-green-900 mb-2">
+                            ✅ Success! Your domain is being set up:
                           </h4>
-                          <p className="text-2xl font-bold text-yellow-700">{page.domain}</p>
-                          <p className="text-sm text-yellow-600 mt-2">
-                            DNS configuration is in progress. Your site will be live once DNS propagation completes.
+                          <p className="text-2xl font-bold text-green-700 mb-3">{page.domain}</p>
+                          <p className="text-sm text-green-800">
+                            Your domain is currently propagating across the internet. This usually takes 15-30 minutes, but can take up to 24 hours.
+                          </p>
+                          <p className="text-sm text-green-600 mt-3">
+                            💡 <strong>No action needed from you</strong> - everything is being configured automatically!
                           </p>
                         </div>
                       </div>
@@ -971,12 +974,6 @@ export default function WebsiteEditor() {
                   </div>
                 )}
 
-                {/* DNS Management - Only show for purchased domains or skip this entirely for manual domains */}
-                {/* For manually-connected domains, users configure DNS at their own registrar */}
-                {page?.domain && page?.cloudflareZoneId && (
-                  <DnsManager domain={page.domain} />
-                )}
-                
                 {/* Domain Configuration - Only show for manually connected domains (not using automation) */}
                 {page?.domain && !page?.cloudflareZoneId && page?.domainStatus !== 'propagating' && page?.domainStatus !== 'active' && page?.domainStatus !== 'completed' && (
                   <div className="bg-white border border-gray-200 rounded-lg p-6">

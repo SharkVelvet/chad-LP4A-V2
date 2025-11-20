@@ -10,7 +10,7 @@ export async function searchDomain(domain: string): Promise<{
   price?: number;
 }> {
   try {
-    const registrar = getRegistrar('domainnameapi');
+    const registrar = getRegistrar('namecom');
     return await registrar.searchDomain(domain);
   } catch (error: any) {
     console.error('Error searching domain:', error);
@@ -215,13 +215,17 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     console.log(`✅ Using existing Cloudflare zone: ${zoneId}`);
   }
 
-  const registrar = getRegistrar('domainnameapi');
+  const registrar = getRegistrar('namecom');
   
   let registrarOrderId = job.metadata?.registrarOrderId;
   
   if (!registrarOrderId) {
-    const registrationResult = await registrar.registerDomain(job.domain, registrant);
-    console.log(`✅ Domain registered with DomainNameAPI. Order ID: ${registrationResult.orderId}`);
+    const registrationResult = await registrar.registerDomain(job.domain, {
+      ...registrant,
+      address2: registrant.address2 || undefined,
+      clientIp: registrant.clientIp || undefined,
+    });
+    console.log(`✅ Domain registered with Name.com. Order ID: ${registrationResult.orderId}`);
     registrarOrderId = registrationResult.orderId;
     
     // Save order ID immediately to job metadata for retry protection
@@ -233,7 +237,7 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
           zoneId,
           nameservers,
           registrarOrderId,
-          registrarProvider: 'domainnameapi',
+          registrarProvider: 'namecom',
         },
         updatedAt: new Date(),
       })
@@ -242,7 +246,7 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     console.log(`✅ Domain already registered. Order ID: ${registrarOrderId}`);
   }
 
-  await registrar.setNameservers(job.domain, nameservers, registrant.clientIp);
+  await registrar.setNameservers(job.domain, nameservers, registrant.clientIp || undefined);
 
   console.log(`✅ Nameservers set to Cloudflare`);
 

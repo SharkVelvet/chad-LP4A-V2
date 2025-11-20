@@ -1,12 +1,13 @@
 import { GoDaddyRegistrar } from './godaddy';
 import { NamecheapRegistrar } from './namecheap';
 import { DomainNameAPIRegistrar } from './domainnameapi';
+import { NameComRegistrar } from './namecom';
 import type { IRegistrar } from './types';
 
 export type { IRegistrar, DomainSearchResult, DomainRegistrationResult, Registrant } from './types';
-export { GoDaddyRegistrar, NamecheapRegistrar, DomainNameAPIRegistrar };
+export { GoDaddyRegistrar, NamecheapRegistrar, DomainNameAPIRegistrar, NameComRegistrar };
 
-export function getRegistrar(provider: 'godaddy' | 'namecheap' | 'domainnameapi' = 'domainnameapi'): IRegistrar {
+export function getRegistrar(provider: 'godaddy' | 'namecheap' | 'domainnameapi' | 'namecom' = 'namecom'): IRegistrar {
   switch (provider) {
     case 'godaddy':
       return new GoDaddyRegistrar(undefined, undefined, false);
@@ -14,7 +15,9 @@ export function getRegistrar(provider: 'godaddy' | 'namecheap' | 'domainnameapi'
       return new NamecheapRegistrar();
     case 'domainnameapi':
       return new DomainNameAPIRegistrar(undefined, undefined, false);
+    case 'namecom':
+      return new NameComRegistrar(undefined, undefined, true);
     default:
-      return new DomainNameAPIRegistrar(undefined, undefined, false);
+      return new NameComRegistrar(undefined, undefined, true);
   }
 }

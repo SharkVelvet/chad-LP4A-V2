@@ -72,12 +72,13 @@ app.use((req, res, next) => {
 
     // Custom domain handler
     app.use(async (req: Request, res: Response, next: NextFunction) => {
-      // Prioritize actual Host header over Replit workspace headers
-      const hostname = req.hostname || req.get('host')?.split(':')[0];
-      const xForwardedHost = req.get('x-forwarded-host');
+      // In production, Replit passes custom domain via x-forwarded-host
+      // In development, use host header
+      const xForwardedHost = req.get('x-forwarded-host')?.split(':')[0];
+      const host = req.get('host')?.split(':')[0] || '';
       
-      // Use actual hostname first, fallback to x-forwarded-host for proxy scenarios
-      let actualHostname = hostname || xForwardedHost || '';
+      // Prioritize x-forwarded-host for production deployments
+      let actualHostname = xForwardedHost || host;
       
       // Normalize: lowercase and strip www.
       actualHostname = actualHostname.toLowerCase().replace(/^www\./, '');

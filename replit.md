@@ -36,23 +36,25 @@ Preferred communication style: Simple, everyday language.
 - **Email Automation**: Gmail API integration (via Replit connector or OAuth 2.0 for production) for OTP verification and customer notifications.
 - **Domain Management**: 
   - **Name.com API**: Domain registration (.com and .net domains)
-  - **Cloudflare DNS**: DNS management and SSL/TLS certificates
-  - **Railway Reverse Proxy**: Universal proxy service deployed on Railway that:
+  - **Cloudflare DNS**: DNS management (proxied A records for SSL/TLS)
+  - **Caddy Reverse Proxy**: Deployed on DigitalOcean at 134.199.194.110 that:
     - Handles Host header rewriting (Replit requirement)
-    - Routes ALL custom domains through single proxy instance
-    - Points to: `chad-lp4a-v2-production-710c.up.railway.app`
-    - Eliminates need for Cloudflare Workers (which require Enterprise plan for Host header override)
+    - Accepts UNLIMITED custom domains (no whitelist limits)
+    - Automatic SSL certificate provisioning via Let's Encrypt on-demand TLS
+    - API-based allowlist management at port 3001
+    - Eliminates need for Cloudflare Workers or Railway domain limits
   - **Full DNS Automation**: Single-button auto-configuration that:
     - Automatically registers domain with Name.com
     - Automatically creates Cloudflare zone
-    - Automatically configures DNS records (@ and www) pointing to Railway proxy
+    - Automatically configures DNS A records (@ and www) pointing to Caddy proxy IP
+    - Automatically adds domain to Caddy allowlist for SSL provisioning
     - Automatically sets nameservers to Cloudflare
     - Zero manual steps required - completely automated
   - **FREE Domain System**: .com and .net domains included free with subscription
-  - **Traffic Flow**: Custom Domain → Cloudflare (DNS/SSL) → Railway Proxy (Host rewrite) → Replit App
+  - **Traffic Flow**: Custom Domain → Cloudflare (DNS/proxy) → Caddy Proxy (SSL + Host rewrite) → Replit App
 - **Deployment**: 
   - **Main App**: Deployed on Replit at `landing-pages-for-agents-v-2-sharkvelvet.replit.app`
-  - **Railway Proxy**: Node.js reverse proxy deployed on Railway (separate service)
+  - **Caddy Proxy**: Caddy server deployed on DigitalOcean (134.199.194.110) with management API on port 3001
 - **User Management**: Manual user creation for super admins with optional free website provisioning.
 - **Visual Editing**: Universal image and background editing system, and dynamic content refactoring for visual editing across various templates.
 
@@ -63,8 +65,8 @@ Preferred communication style: Simple, everyday language.
 - **Stripe**: Payment processing and subscription management.
 - **Gmail API**: Email delivery for OTP and notifications.
 - **Name.com API**: Domain registration (.com and .net).
-- **Cloudflare API**: DNS management and SSL/TLS certificates.
-- **Railway**: Hosts reverse proxy service for Host header rewriting.
+- **Cloudflare API**: DNS management and proxying.
+- **DigitalOcean**: Hosts Caddy reverse proxy at 134.199.194.110 for unlimited domain support and automatic SSL.
 
 ### Development & UI Libraries
 - **Vite**: Build tooling.

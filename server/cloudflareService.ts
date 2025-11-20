@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const CLOUDFLARE_API_URL = 'https://api.cloudflare.com/client/v4';
 const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN || process.env.CLOUDFLARE_WORKERS_API_TOKEN!;
-// Use the Railway proxy which handles Host header rewriting
-const RAILWAY_PROXY = process.env.RAILWAY_PROXY_URL || 'chad-lp4a-v2-production-710c.up.railway.app';
-// Replit origin for reference (Railway proxy forwards to this)
+// Use the Caddy proxy on DigitalOcean which handles Host header rewriting and SSL
+const CADDY_PROXY_IP = process.env.CADDY_PROXY_IP || '134.199.194.110';
+// Replit origin for reference (Caddy proxy forwards to this)
 const REPLIT_ORIGIN = 'landing-pages-for-agents-v-2-sharkvelvet.replit.app';
 
 interface CloudflareZone {
@@ -94,19 +94,34 @@ export async function createDNSRecords(
     );
     
     if (rootRecord) {
-      console.log(`🔄 Updating existing root domain DNS record...`);
-      await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${rootRecord.id}`, {
-        type: 'CNAME',
-        content: RAILWAY_PROXY,
-        proxied: true,
-        ttl: 1,
-      });
+      // If it's a CNAME, delete and recreate as A record (can't PATCH type change)
+      if (rootRecord.type === 'CNAME') {
+        console.log(`🗑️  Deleting existing CNAME record for root domain...`);
+        await cloudflareApi.delete(`/zones/${zoneId}/dns_records/${rootRecord.id}`);
+        
+        console.log(`➕ Creating new A record for root domain...`);
+        await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
+          type: 'A',
+          name: '@',
+          content: CADDY_PROXY_IP,
+          proxied: true,
+          ttl: 1,
+        });
+      } else {
+        // It's already an A record, just update the IP
+        console.log(`🔄 Updating existing A record for root domain...`);
+        await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${rootRecord.id}`, {
+          content: CADDY_PROXY_IP,
+          proxied: true,
+          ttl: 1,
+        });
+      }
     } else {
       console.log(`➕ Creating new root domain DNS record...`);
       await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
-        type: 'CNAME',
+        type: 'A',
         name: '@',
-        content: RAILWAY_PROXY,
+        content: CADDY_PROXY_IP,
         proxied: true,
         ttl: 1,
       });
@@ -118,25 +133,40 @@ export async function createDNSRecords(
     );
     
     if (wwwRecord) {
-      console.log(`🔄 Updating existing www subdomain DNS record...`);
-      await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${wwwRecord.id}`, {
-        type: 'CNAME',
-        content: RAILWAY_PROXY,
-        proxied: true,
-        ttl: 1,
-      });
+      // If it's a CNAME, delete and recreate as A record (can't PATCH type change)
+      if (wwwRecord.type === 'CNAME') {
+        console.log(`🗑️  Deleting existing CNAME record for www subdomain...`);
+        await cloudflareApi.delete(`/zones/${zoneId}/dns_records/${wwwRecord.id}`);
+        
+        console.log(`➕ Creating new A record for www subdomain...`);
+        await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
+          type: 'A',
+          name: 'www',
+          content: CADDY_PROXY_IP,
+          proxied: true,
+          ttl: 1,
+        });
+      } else {
+        // It's already an A record, just update the IP
+        console.log(`🔄 Updating existing A record for www subdomain...`);
+        await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${wwwRecord.id}`, {
+          content: CADDY_PROXY_IP,
+          proxied: true,
+          ttl: 1,
+        });
+      }
     } else {
       console.log(`➕ Creating new www subdomain DNS record...`);
       await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
-        type: 'CNAME',
+        type: 'A',
         name: 'www',
-        content: RAILWAY_PROXY,
+        content: CADDY_PROXY_IP,
         proxied: true,
         ttl: 1,
       });
     }
 
-    console.log(`✅ DNS records configured pointing to Railway proxy: ${RAILWAY_PROXY}`);
+    console.log(`✅ DNS records configured pointing to Caddy proxy: ${CADDY_PROXY_IP}`);
     return { success: true };
   } catch (error: any) {
     console.error('Error creating DNS records:', error.response?.data || error);
@@ -144,30 +174,62 @@ export async function createDNSRecords(
   }
 }
 
-export async function updateDNSRecordsToRailway(zoneId: string, domain: string): Promise<{ success: boolean }> {
+export async function updateDNSRecordsToCaddy(zoneId: string, domain: string): Promise<{ success: boolean }> {
   try {
     // Get existing DNS records
     const response = await cloudflareApi.get(`/zones/${zoneId}/dns_records`);
     const records = response.data.result || [];
 
     // Update root domain record
-    const rootRecord = records.find((r: any) => r.type === 'CNAME' && r.name === domain);
+    const rootRecord = records.find((r: any) => (r.type === 'CNAME' || r.type === 'A') && r.name === domain);
     if (rootRecord) {
-      await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${rootRecord.id}`, {
-        content: RAILWAY_PROXY,
-        proxied: true,
-      });
-      console.log(`✅ Updated root domain DNS to Railway proxy`);
+      // If it's a CNAME, delete and recreate as A record
+      if (rootRecord.type === 'CNAME') {
+        console.log(`🗑️  Deleting existing CNAME record for root domain...`);
+        await cloudflareApi.delete(`/zones/${zoneId}/dns_records/${rootRecord.id}`);
+        
+        console.log(`➕ Creating new A record for root domain...`);
+        await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
+          type: 'A',
+          name: '@',
+          content: CADDY_PROXY_IP,
+          proxied: true,
+          ttl: 1,
+        });
+      } else {
+        // It's already an A record, just update the IP
+        await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${rootRecord.id}`, {
+          content: CADDY_PROXY_IP,
+          proxied: true,
+        });
+      }
+      console.log(`✅ Updated root domain DNS to Caddy proxy`);
     }
 
     // Update www record
-    const wwwRecord = records.find((r: any) => r.type === 'CNAME' && r.name === `www.${domain}`);
+    const wwwRecord = records.find((r: any) => (r.type === 'CNAME' || r.type === 'A') && r.name === `www.${domain}`);
     if (wwwRecord) {
-      await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${wwwRecord.id}`, {
-        content: RAILWAY_PROXY,
-        proxied: true,
-      });
-      console.log(`✅ Updated www subdomain DNS to Railway proxy`);
+      // If it's a CNAME, delete and recreate as A record
+      if (wwwRecord.type === 'CNAME') {
+        console.log(`🗑️  Deleting existing CNAME record for www subdomain...`);
+        await cloudflareApi.delete(`/zones/${zoneId}/dns_records/${wwwRecord.id}`);
+        
+        console.log(`➕ Creating new A record for www subdomain...`);
+        await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
+          type: 'A',
+          name: 'www',
+          content: CADDY_PROXY_IP,
+          proxied: true,
+          ttl: 1,
+        });
+      } else {
+        // It's already an A record, just update the IP
+        await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${wwwRecord.id}`, {
+          content: CADDY_PROXY_IP,
+          proxied: true,
+        });
+      }
+      console.log(`✅ Updated www subdomain DNS to Caddy proxy`);
     }
 
     return { success: true };
@@ -179,13 +241,13 @@ export async function updateDNSRecordsToRailway(zoneId: string, domain: string):
 
 export async function setupOriginHostHeader(zoneId: string, domain: string): Promise<{ success: boolean }> {
   try {
-    // Railway proxy handles Host header rewriting - no Cloudflare Worker needed
+    // Caddy proxy handles Host header rewriting - no Cloudflare Worker needed
     // Just enable HTTPS redirect
     await cloudflareApi.patch(`/zones/${zoneId}/settings/always_use_https`, {
       value: 'on',
     });
 
-    console.log(`✅ HTTPS redirect enabled for ${domain} (Railway proxy handles Host header)`);
+    console.log(`✅ HTTPS redirect enabled for ${domain} (Caddy proxy handles Host header)`);
     return { success: true };
   } catch (error: any) {
     console.error('Error enabling HTTPS:', error.response?.data || error);

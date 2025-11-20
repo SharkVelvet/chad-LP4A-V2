@@ -4,6 +4,7 @@ import { eq, and } from 'drizzle-orm';
 import { getRegistrar } from './registrars';
 import * as cloudflare from './cloudflareService';
 import { railwayService } from './railwayService';
+import { addDomainToAllowlist } from './caddyService';
 
 export async function searchDomain(domain: string): Promise<{
   available: boolean;
@@ -141,7 +142,11 @@ export async function processDomainJob(jobId: number): Promise<void> {
       case 'provision_ssl':
         await processSSLProvisioningStep(job);
         break;
+      case 'add_to_caddy':
+        await processCaddySetupStep(job);
+        break;
       case 'add_to_railway':
+        // Legacy Railway step - redirect to Caddy
         await processRailwaySetupStep(job);
         break;
       default:
@@ -352,14 +357,14 @@ async function processSSLProvisioningStep(job: DomainJob): Promise<void> {
     await db
       .update(domainJobs)
       .set({
-        step: 'add_to_railway',
+        step: 'add_to_caddy',
         status: 'pending',
         updatedAt: new Date(),
         scheduledFor: new Date(Date.now() + 10000),
       })
       .where(eq(domainJobs.id, job.id));
 
-    console.log(`✅ SSL provisioned. Moving to Railway setup step.`);
+    console.log(`✅ SSL provisioned. Moving to Caddy allowlist setup step.`);
   } else {
     console.log(`⏳ SSL not active yet (status: ${sslStatus.status}). Will retry later.`);
     await db
@@ -373,38 +378,13 @@ async function processSSLProvisioningStep(job: DomainJob): Promise<void> {
   }
 }
 
-async function processRailwaySetupStep(job: DomainJob): Promise<void> {
-  console.log(`🚂 Adding ${job.domain} to Railway...`);
-
-  if (!railwayService.isConfigured()) {
-    console.warn('⚠️ Railway service not configured. Skipping Railway setup.');
-    await db
-      .update(pages)
-      .set({
-        domainStatus: 'active',
-        domainVerified: true,
-        updatedAt: new Date(),
-      })
-      .where(eq(pages.id, job.pageId));
-
-    await db
-      .update(domainJobs)
-      .set({
-        status: 'completed',
-        step: 'complete',
-        completedAt: new Date(),
-        updatedAt: new Date(),
-      })
-      .where(eq(domainJobs.id, job.id));
-
-    console.log(`🎉 Domain ${job.domain} is fully provisioned (Railway skipped)!`);
-    return;
-  }
+async function processCaddySetupStep(job: DomainJob): Promise<void> {
+  console.log(`🔧 Adding ${job.domain} to Caddy allowlist...`);
 
   try {
-    const railwayDomain = await railwayService.addCustomDomain(job.domain);
+    await addDomainToAllowlist(job.domain);
     
-    console.log(`✅ Domain added to Railway:`, railwayDomain);
+    console.log(`✅ Domain added to Caddy allowlist`);
 
     await db
       .update(pages)
@@ -421,19 +401,20 @@ async function processRailwaySetupStep(job: DomainJob): Promise<void> {
         status: 'completed',
         step: 'complete',
         completedAt: new Date(),
-        metadata: {
-          ...job.metadata,
-          railwayDomainId: railwayDomain.id,
-        },
         updatedAt: new Date(),
       })
       .where(eq(domainJobs.id, job.id));
 
     console.log(`🎉 Domain ${job.domain} is fully provisioned and live!`);
   } catch (error: any) {
-    console.error('Error adding domain to Railway:', error);
-    throw new Error(`Failed to add domain to Railway: ${error.message}`);
+    console.error('Error adding domain to Caddy allowlist:', error);
+    throw new Error(`Failed to add domain to Caddy allowlist: ${error.message}`);
   }
+}
+
+async function processRailwaySetupStep(job: DomainJob): Promise<void> {
+  console.log(`⚠️ Railway step deprecated - redirecting to Caddy setup...`);
+  return processCaddySetupStep(job);
 }
 
 export async function getDomainJobStatus(pageId: number): Promise<{
@@ -468,6 +449,7 @@ export async function getDomainJobStatus(pageId: number): Promise<{
       register: 'Registering domain...',
       configure_dns: 'Configuring DNS records...',
       provision_ssl: 'Provisioning SSL certificate...',
+      add_to_caddy: 'Activating your website...',
       add_to_railway: 'Activating your website...',
       complete: 'All done!',
     };

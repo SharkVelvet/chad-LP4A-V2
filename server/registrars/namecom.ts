@@ -27,17 +27,21 @@ export class NameComRegistrar implements IRegistrar {
     try {
       console.log('🔍 Name.com Search:', { domain });
 
-      const response = await axios.get(`${this.baseUrl}/core/v1/domains/${domain}:checkAvailability`, {
+      const response = await axios.post(`${this.baseUrl}/v4/domains:checkAvailability`, {
+        domainNames: [domain]
+      }, {
         headers: {
           'Authorization': this.getAuthHeader(),
+          'Content-Type': 'application/json'
         }
       });
       
       console.log('✅ Name.com Search Response:', JSON.stringify(response.data, null, 2));
 
-      if (response.data) {
-        const available = response.data.purchasable === true;
-        const price = response.data.purchasePrice || 15;
+      if (response.data && response.data.results && response.data.results.length > 0) {
+        const result = response.data.results[0];
+        const available = result.purchasable === true;
+        const price = result.purchasePrice || 15;
 
         return {
           available,

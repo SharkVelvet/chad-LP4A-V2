@@ -84,24 +84,59 @@ export async function createDNSRecords(
   domain: string
 ): Promise<{ success: boolean }> {
   try {
-    // Point DNS to Railway proxy (which forwards to Replit with correct Host header)
-    await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
-      type: 'CNAME',
-      name: '@',
-      content: RAILWAY_PROXY,
-      proxied: true,
-      ttl: 1,
-    });
+    // Get existing DNS records first
+    const response = await cloudflareApi.get(`/zones/${zoneId}/dns_records`);
+    const existingRecords = response.data.result || [];
 
-    await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
-      type: 'CNAME',
-      name: 'www',
-      content: RAILWAY_PROXY,
-      proxied: true,
-      ttl: 1,
-    });
+    // Handle root domain (@) record
+    const rootRecord = existingRecords.find((r: any) => 
+      (r.type === 'CNAME' || r.type === 'A') && (r.name === domain || r.name === '@')
+    );
+    
+    if (rootRecord) {
+      console.log(`🔄 Updating existing root domain DNS record...`);
+      await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${rootRecord.id}`, {
+        type: 'CNAME',
+        content: RAILWAY_PROXY,
+        proxied: true,
+        ttl: 1,
+      });
+    } else {
+      console.log(`➕ Creating new root domain DNS record...`);
+      await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
+        type: 'CNAME',
+        name: '@',
+        content: RAILWAY_PROXY,
+        proxied: true,
+        ttl: 1,
+      });
+    }
 
-    console.log(`✅ DNS records created pointing to Railway proxy: ${RAILWAY_PROXY}`);
+    // Handle www subdomain record
+    const wwwRecord = existingRecords.find((r: any) => 
+      (r.type === 'CNAME' || r.type === 'A') && (r.name === `www.${domain}` || r.name === 'www')
+    );
+    
+    if (wwwRecord) {
+      console.log(`🔄 Updating existing www subdomain DNS record...`);
+      await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${wwwRecord.id}`, {
+        type: 'CNAME',
+        content: RAILWAY_PROXY,
+        proxied: true,
+        ttl: 1,
+      });
+    } else {
+      console.log(`➕ Creating new www subdomain DNS record...`);
+      await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
+        type: 'CNAME',
+        name: 'www',
+        content: RAILWAY_PROXY,
+        proxied: true,
+        ttl: 1,
+      });
+    }
+
+    console.log(`✅ DNS records configured pointing to Railway proxy: ${RAILWAY_PROXY}`);
     return { success: true };
   } catch (error: any) {
     console.error('Error creating DNS records:', error.response?.data || error);

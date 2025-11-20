@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const CLOUDFLARE_API_URL = 'https://api.cloudflare.com/client/v4';
-const API_TOKEN = process.env.CLOUDFLARE_WORKERS_API_TOKEN!;
+const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN || process.env.CLOUDFLARE_WORKERS_API_TOKEN!;
 // Use the production Replit deployment URL
 const REPLIT_ORIGIN = 'landing-pages-for-agents-v-2-sharkvelvet.replit.app';
 

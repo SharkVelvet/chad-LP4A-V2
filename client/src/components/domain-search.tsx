@@ -160,6 +160,21 @@ export default function DomainSearch({ pageId, onDomainPurchased }: DomainSearch
       });
       return;
     }
+    
+    // Validate TLD if user included one
+    const cleanDomain = searchTerm.toLowerCase().replace(/^www\./, "").replace(/\s+/g, "").trim();
+    if (cleanDomain.includes(".")) {
+      const tld = cleanDomain.split('.').pop();
+      if (tld !== 'com' && tld !== 'net') {
+        toast({
+          title: "Invalid Domain Extension",
+          description: "Only .com and .net domains are available. Please search for a .com or .net domain.",
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+    
     setShowUnavailableWarning(false);
     searchMutation.mutate(searchTerm);
   };

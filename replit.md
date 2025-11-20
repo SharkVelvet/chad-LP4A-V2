@@ -42,7 +42,7 @@ Preferred communication style: Simple, everyday language.
     - Automatically configures www subdomain with CNAME record
     - Automatically adds Cloudflare TXT validation records for SSL certificate issuance
     - Zero manual DNS steps required - everything happens automatically
-  - **FREE Domain System**: Eligible .com/.net domains ≤$18 included in subscription
+  - **FREE Domain System**: .com and .net domains included free with subscription
 - **Deployment**: Railway hosting with automatic SSL certificate generation and renewal, Vite/ESBuild for production builds, Node.js production server, and environment variable configuration.
 - **User Management**: Manual user creation for super admins with optional free website provisioning.
 - **Visual Editing**: Universal image and background editing system, and dynamic content refactoring for visual editing across various templates.

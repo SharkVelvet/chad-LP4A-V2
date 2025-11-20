@@ -813,7 +813,7 @@ export default function WebsiteEditor() {
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <h4 className="text-lg font-semibold mb-4">Search and Register Domain</h4>
                     <p className="text-sm text-gray-600 mb-4">
-                      Search for an available domain and register it automatically. Eligible .com/.net domains ≤$18 are FREE with your subscription!
+                      Search for an available domain and register it automatically. .com and .net domains are FREE with your subscription!
                     </p>
                     <DomainAutomation
                       pageId={pageId!}

@@ -53,11 +53,20 @@ export async function createZone(domain: string): Promise<{
   }
 }
 
-export async function checkZoneStatus(zoneId: string): Promise<{
+export async function checkZoneStatus(zoneId: string, testModeBypass: boolean = false): Promise<{
   status: string;
   nameservers: string[];
 }> {
   try {
+    // Test mode bypass: Simulate zone activation for testing
+    if (testModeBypass) {
+      console.log('⚠️  Test mode: Simulating zone activation (skipping real Cloudflare check)');
+      return {
+        status: 'active',
+        nameservers: ['ns1.cloudflare.com', 'ns2.cloudflare.com'],
+      };
+    }
+
     const response = await cloudflareApi.get(`/zones/${zoneId}`);
 
     if (!response.data.success) {

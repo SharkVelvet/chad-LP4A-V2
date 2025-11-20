@@ -76,16 +76,29 @@ app.use((req, res, next) => {
       const hostname = req.hostname || req.get('host')?.split(':')[0];
       const cfHost = req.get('cf-connecting-hostname');
       const xForwardedHost = req.get('x-forwarded-host');
-      let actualHostname = cfHost || xForwardedHost || hostname;
+      const replitHost = req.get('x-replit-user-host');
+      const forwardedProto = req.get('x-forwarded-proto');
+      let actualHostname = replitHost || cfHost || xForwardedHost || hostname;
       
       // Strip www. from hostname to normalize domain lookups
       if (actualHostname && actualHostname.startsWith('www.')) {
         actualHostname = actualHostname.substring(4);
       }
       
-      // Log hostname detection for debugging
+      // Log hostname detection for debugging (show ALL headers for agentmaterials.com)
       if (hostname !== 'localhost' && !req.path.startsWith('/api/') && !req.path.startsWith('/attached_assets/')) {
-        console.log(`🔍 Custom domain request: hostname="${hostname}", cf-connecting-hostname="${cfHost}", x-forwarded-host="${xForwardedHost}", actual="${actualHostname}"`);
+        if (hostname?.includes('agentmaterial') || xForwardedHost?.includes('agentmaterial') || replitHost?.includes('agentmaterial')) {
+          console.log(`🔍 AGENTMATERIALS REQUEST - ALL HEADERS:`, JSON.stringify({
+            hostname,
+            'host': req.get('host'),
+            'x-forwarded-host': xForwardedHost,
+            'x-replit-user-host': replitHost,
+            'cf-connecting-hostname': cfHost,
+            'x-forwarded-proto': forwardedProto,
+            actualHostname,
+            path: req.path
+          }, null, 2));
+        }
       }
       
       // List of platform domains - requests to these go to the SPA

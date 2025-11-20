@@ -104,8 +104,7 @@ app.use((req, res, next) => {
           'localhost',
           '127.0.0.1',
           'replit.app',
-          'replit.dev',
-          'agentmaterials.com' // Main platform domain
+          'replit.dev'
         ];
         return platformDomains.some(d => host.includes(d));
       };

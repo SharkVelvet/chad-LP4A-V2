@@ -10,7 +10,7 @@ export async function searchDomain(domain: string): Promise<{
   price?: number;
 }> {
   try {
-    const registrar = getRegistrar('godaddy');
+    const registrar = getRegistrar('domainnameapi');
     return await registrar.searchDomain(domain);
   } catch (error: any) {
     console.error('Error searching domain:', error);
@@ -215,13 +215,13 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     console.log(`✅ Using existing Cloudflare zone: ${zoneId}`);
   }
 
-  const registrar = getRegistrar('godaddy');
+  const registrar = getRegistrar('domainnameapi');
   
   let registrarOrderId = job.metadata?.registrarOrderId;
   
   if (!registrarOrderId) {
     const registrationResult = await registrar.registerDomain(job.domain, registrant);
-    console.log(`✅ Domain registered with GoDaddy. Order ID: ${registrationResult.orderId}`);
+    console.log(`✅ Domain registered with DomainNameAPI. Order ID: ${registrationResult.orderId}`);
     registrarOrderId = registrationResult.orderId;
     
     // Save order ID immediately to job metadata for retry protection
@@ -233,7 +233,7 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
           zoneId,
           nameservers,
           registrarOrderId,
-          registrarProvider: 'godaddy',
+          registrarProvider: 'domainnameapi',
         },
         updatedAt: new Date(),
       })

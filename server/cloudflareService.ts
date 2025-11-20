@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const CLOUDFLARE_API_URL = 'https://api.cloudflare.com/client/v4';
 const API_TOKEN = process.env.CLOUDFLARE_WORKERS_API_TOKEN!;
-const RAILWAY_ORIGIN = 'chad-lp4a-v2-production.up.railway.app';
+const FALLBACK_ORIGIN = 'landingpagesforagentsfallback.com';
 
 interface CloudflareZone {
   id: string;
@@ -84,7 +84,7 @@ export async function createDNSRecords(
     await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
       type: 'CNAME',
       name: '@',
-      content: RAILWAY_ORIGIN,
+      content: FALLBACK_ORIGIN,
       proxied: true,
       ttl: 1,
     });
@@ -92,7 +92,7 @@ export async function createDNSRecords(
     await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
       type: 'CNAME',
       name: 'www',
-      content: RAILWAY_ORIGIN,
+      content: FALLBACK_ORIGIN,
       proxied: true,
       ttl: 1,
     });

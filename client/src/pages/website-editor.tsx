@@ -977,8 +977,8 @@ export default function WebsiteEditor() {
                   <DnsManager domain={page.domain} />
                 )}
                 
-                {/* Domain Configuration - Show when domain is connected but NOT purchased via Cloudflare and NOT using automation */}
-                {page?.domain && !page?.cloudflareZoneId && page?.domainStatus !== 'active' && page?.domainStatus !== 'completed' && page?.domainStatus !== 'propagating' && page?.domainStatus !== 'configuring_dns' && page?.domainStatus !== 'registering' && (
+                {/* Domain Configuration - Only show for manually connected domains (not using automation) */}
+                {page?.domain && !page?.cloudflareZoneId && page?.domainStatus !== 'propagating' && page?.domainStatus !== 'active' && page?.domainStatus !== 'completed' && (
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <h4 className="text-lg font-semibold mb-4">🌐 Your Custom Domain: {page.domain}</h4>
                     

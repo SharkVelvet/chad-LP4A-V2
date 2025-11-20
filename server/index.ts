@@ -72,9 +72,9 @@ app.use((req, res, next) => {
 
     // Custom domain handler
     app.use(async (req: Request, res: Response, next: NextFunction) => {
-      // In production, Replit passes custom domain via x-forwarded-host
-      // In development, use host header
-      const xForwardedHost = req.get('x-forwarded-host')?.split(':')[0];
+      // Get all possible hostname sources
+      // x-forwarded-host can be comma-separated in production proxies - take first value
+      const xForwardedHost = req.get('x-forwarded-host')?.split(',')[0]?.trim().split(':')[0];
       const host = req.get('host')?.split(':')[0] || '';
       
       // Prioritize x-forwarded-host for production deployments
@@ -82,6 +82,21 @@ app.use((req, res, next) => {
       
       // Normalize: lowercase and strip www.
       actualHostname = actualHostname.toLowerCase().replace(/^www\./, '');
+      
+      // TEMPORARY DEBUG: Log all hostname values for agentmaterials.com requests
+      if (actualHostname.includes('agentmaterial') && !req.path.startsWith('/api/')) {
+        console.log('🔍 AGENTMATERIALS DEBUG:', JSON.stringify({
+          actualHostname,
+          xForwardedHost,
+          host,
+          hostname,
+          path: req.path,
+          headers: {
+            'x-forwarded-host': req.get('x-forwarded-host'),
+            'host': req.get('host')
+          }
+        }, null, 2));
+      }
       
       // Helper to check if domain is a platform domain
       const isPlatformDomain = (host: string): boolean => {

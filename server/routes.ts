@@ -440,6 +440,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update DNS records to point to Railway proxy
+  app.post("/api/domains/update-dns/:pageId", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.sendStatus(401);
+    }
+
+    try {
+      const pageId = parseInt(req.params.pageId);
+      const page = await storage.getPage(pageId);
+      
+      if (!page || page.userId !== req.user.id) {
+        return res.status(404).json({ message: "Page not found" });
+      }
+
+      if (!page.cloudflareZoneId || !page.domain) {
+        return res.status(400).json({ message: "Page does not have a configured domain" });
+      }
+
+      const { updateDNSRecordsToRailway } = await import('./cloudflareService.js');
+      await updateDNSRecordsToRailway(page.cloudflareZoneId, page.domain);
+      
+      res.json({ success: true, message: "DNS records updated to Railway proxy" });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
   // Page content routes
   app.put("/api/pages/:id/content", async (req, res) => {
     if (!req.isAuthenticated()) {

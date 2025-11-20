@@ -2,7 +2,9 @@ import axios from 'axios';
 
 const CLOUDFLARE_API_URL = 'https://api.cloudflare.com/client/v4';
 const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN || process.env.CLOUDFLARE_WORKERS_API_TOKEN!;
-// Use the production Replit deployment URL
+// Use the Railway proxy which handles Host header rewriting
+const RAILWAY_PROXY = process.env.RAILWAY_PROXY_URL || 'chad-lp4a-v2-production-710c.up.railway.app';
+// Replit origin for reference (Railway proxy forwards to this)
 const REPLIT_ORIGIN = 'landing-pages-for-agents-v-2-sharkvelvet.replit.app';
 
 interface CloudflareZone {
@@ -82,10 +84,11 @@ export async function createDNSRecords(
   domain: string
 ): Promise<{ success: boolean }> {
   try {
+    // Point DNS to Railway proxy (which forwards to Replit with correct Host header)
     await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
       type: 'CNAME',
       name: '@',
-      content: REPLIT_ORIGIN,
+      content: RAILWAY_PROXY,
       proxied: true,
       ttl: 1,
     });
@@ -93,11 +96,12 @@ export async function createDNSRecords(
     await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
       type: 'CNAME',
       name: 'www',
-      content: REPLIT_ORIGIN,
+      content: RAILWAY_PROXY,
       proxied: true,
       ttl: 1,
     });
 
+    console.log(`✅ DNS records created pointing to Railway proxy: ${RAILWAY_PROXY}`);
     return { success: true };
   } catch (error: any) {
     console.error('Error creating DNS records:', error.response?.data || error);
@@ -105,72 +109,52 @@ export async function createDNSRecords(
   }
 }
 
-export async function setupOriginHostHeader(zoneId: string, domain: string): Promise<{ success: boolean }> {
+export async function updateDNSRecordsToRailway(zoneId: string, domain: string): Promise<{ success: boolean }> {
   try {
-    // Deploy Cloudflare Worker to rewrite Host header (works on Pro plan)
-    const workerName = `proxy-${domain.replace(/\./g, '-')}`;
-    
-    const workerScript = `
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    
-    // Forward request to Replit origin with correct Host header
-    const replitUrl = \`https://${REPLIT_ORIGIN}\${url.pathname}\${url.search}\`;
-    
-    const modifiedHeaders = new Headers(request.headers);
-    modifiedHeaders.set('Host', '${REPLIT_ORIGIN}');
-    modifiedHeaders.set('X-Forwarded-Host', url.hostname);
-    modifiedHeaders.set('X-Original-URL', request.url);
-    
-    const modifiedRequest = new Request(replitUrl, {
-      method: request.method,
-      headers: modifiedHeaders,
-      body: request.method !== 'GET' && request.method !== 'HEAD' ? request.body : null,
-      redirect: 'manual'
-    });
-    
-    return fetch(modifiedRequest);
-  }
-}`;
+    // Get existing DNS records
+    const response = await cloudflareApi.get(`/zones/${zoneId}/dns_records`);
+    const records = response.data.result || [];
 
-    const accountId = process.env.CLOUDFLARE_ACCOUNT_ID;
-    if (!accountId) {
-      throw new Error('CLOUDFLARE_ACCOUNT_ID environment variable not set');
+    // Update root domain record
+    const rootRecord = records.find((r: any) => r.type === 'CNAME' && r.name === domain);
+    if (rootRecord) {
+      await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${rootRecord.id}`, {
+        content: RAILWAY_PROXY,
+        proxied: true,
+      });
+      console.log(`✅ Updated root domain DNS to Railway proxy`);
     }
 
-    // Upload Worker script
-    await cloudflareApi.put(
-      `/accounts/${accountId}/workers/scripts/${workerName}`,
-      workerScript,
-      {
-        headers: {
-          'Content-Type': 'application/javascript',
-        },
-      }
-    );
+    // Update www record
+    const wwwRecord = records.find((r: any) => r.type === 'CNAME' && r.name === `www.${domain}`);
+    if (wwwRecord) {
+      await cloudflareApi.patch(`/zones/${zoneId}/dns_records/${wwwRecord.id}`, {
+        content: RAILWAY_PROXY,
+        proxied: true,
+      });
+      console.log(`✅ Updated www subdomain DNS to Railway proxy`);
+    }
 
-    // Create Worker route for root domain
-    await cloudflareApi.post(`/zones/${zoneId}/workers/routes`, {
-      pattern: `${domain}/*`,
-      script: workerName,
-    });
+    return { success: true };
+  } catch (error: any) {
+    console.error('Error updating DNS records:', error.response?.data || error);
+    throw new Error(`Failed to update DNS records: ${error.message}`);
+  }
+}
 
-    // Create Worker route for www subdomain
-    await cloudflareApi.post(`/zones/${zoneId}/workers/routes`, {
-      pattern: `www.${domain}/*`,
-      script: workerName,
-    });
-
+export async function setupOriginHostHeader(zoneId: string, domain: string): Promise<{ success: boolean }> {
+  try {
+    // Railway proxy handles Host header rewriting - no Cloudflare Worker needed
+    // Just enable HTTPS redirect
     await cloudflareApi.patch(`/zones/${zoneId}/settings/always_use_https`, {
       value: 'on',
     });
 
-    console.log(`✅ Cloudflare Worker deployed for ${domain} (${workerName})`);
+    console.log(`✅ HTTPS redirect enabled for ${domain} (Railway proxy handles Host header)`);
     return { success: true };
   } catch (error: any) {
-    console.error('Error setting up Cloudflare Worker:', error.response?.data || error);
-    throw new Error(`Failed to deploy Worker: ${error.response?.data?.errors?.[0]?.message || error.message}`);
+    console.error('Error enabling HTTPS:', error.response?.data || error);
+    throw new Error(`Failed to enable HTTPS: ${error.response?.data?.errors?.[0]?.message || error.message}`);
   }
 }
 

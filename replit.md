@@ -35,15 +35,24 @@ Preferred communication style: Simple, everyday language.
 - **Content Management**: Dynamic website content editing, business information collection, domain preference, and media asset management.
 - **Email Automation**: Gmail API integration (via Replit connector or OAuth 2.0 for production) for OTP verification and customer notifications.
 - **Domain Management**: 
-  - **Cloudflare for SaaS**: Enterprise SSL automation with dedicated fallback origin (landingpagesforagentsfallback.com) to avoid circular IP detection
-  - **Namecheap API**: Domain registration and DNS management via DigitalOcean proxy (134.199.194.110:3000)
+  - **Name.com API**: Domain registration (.com and .net domains)
+  - **Cloudflare DNS**: DNS management and SSL/TLS certificates
+  - **Railway Reverse Proxy**: Universal proxy service deployed on Railway that:
+    - Handles Host header rewriting (Replit requirement)
+    - Routes ALL custom domains through single proxy instance
+    - Points to: `chad-lp4a-v2-production-710c.up.railway.app`
+    - Eliminates need for Cloudflare Workers (which require Enterprise plan for Host header override)
   - **Full DNS Automation**: Single-button auto-configuration that:
-    - Automatically configures root domain (@) with ALIAS record
-    - Automatically configures www subdomain with CNAME record
-    - Automatically adds Cloudflare TXT validation records for SSL certificate issuance
-    - Zero manual DNS steps required - everything happens automatically
+    - Automatically registers domain with Name.com
+    - Automatically creates Cloudflare zone
+    - Automatically configures DNS records (@ and www) pointing to Railway proxy
+    - Automatically sets nameservers to Cloudflare
+    - Zero manual steps required - completely automated
   - **FREE Domain System**: .com and .net domains included free with subscription
-- **Deployment**: Railway hosting with automatic SSL certificate generation and renewal, Vite/ESBuild for production builds, Node.js production server, and environment variable configuration.
+  - **Traffic Flow**: Custom Domain → Cloudflare (DNS/SSL) → Railway Proxy (Host rewrite) → Replit App
+- **Deployment**: 
+  - **Main App**: Deployed on Replit at `landing-pages-for-agents-v-2-sharkvelvet.replit.app`
+  - **Railway Proxy**: Node.js reverse proxy deployed on Railway (separate service)
 - **User Management**: Manual user creation for super admins with optional free website provisioning.
 - **Visual Editing**: Universal image and background editing system, and dynamic content refactoring for visual editing across various templates.
 
@@ -53,9 +62,9 @@ Preferred communication style: Simple, everyday language.
 - **Neon Database**: PostgreSQL hosting.
 - **Stripe**: Payment processing and subscription management.
 - **Gmail API**: Email delivery for OTP and notifications.
-- **Namecheap API**: Domain registration and DNS management.
-- **Railway API**: Automatic SSL certificate provisioning and custom domain hosting.
-- **DigitalOcean**: Optional proxy for Namecheap API static IP whitelisting.
+- **Name.com API**: Domain registration (.com and .net).
+- **Cloudflare API**: DNS management and SSL/TLS certificates.
+- **Railway**: Hosts reverse proxy service for Host header rewriting.
 
 ### Development & UI Libraries
 - **Vite**: Build tooling.

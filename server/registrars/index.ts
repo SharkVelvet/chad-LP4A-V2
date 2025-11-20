@@ -16,8 +16,8 @@ export function getRegistrar(provider: 'godaddy' | 'namecheap' | 'domainnameapi'
     case 'domainnameapi':
       return new DomainNameAPIRegistrar(undefined, undefined, false);
     case 'namecom':
-      return new NameComRegistrar(undefined, undefined, false);
+      return new NameComRegistrar(undefined, undefined, true);
     default:
-      return new NameComRegistrar(undefined, undefined, false);
+      return new NameComRegistrar(undefined, undefined, true);
   }
 }

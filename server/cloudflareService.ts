@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const CLOUDFLARE_API_URL = 'https://api.cloudflare.com/client/v4';
 const API_TOKEN = process.env.CLOUDFLARE_WORKERS_API_TOKEN!;
-const FALLBACK_ORIGIN = 'landingpagesforagentsfallback.com';
+// Use the actual Replit deployment URL as the origin
+const REPLIT_ORIGIN = process.env.REPLIT_DOMAINS?.split(',')[0] || 'e592e125-95d1-4809-aeeb-7c5fafd28272-00-18nxcxp6smxaz.janeway.replit.dev';
 
 interface CloudflareZone {
   id: string;
@@ -84,7 +85,7 @@ export async function createDNSRecords(
     await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
       type: 'CNAME',
       name: '@',
-      content: FALLBACK_ORIGIN,
+      content: REPLIT_ORIGIN,
       proxied: true,
       ttl: 1,
     });
@@ -92,7 +93,7 @@ export async function createDNSRecords(
     await cloudflareApi.post(`/zones/${zoneId}/dns_records`, {
       type: 'CNAME',
       name: 'www',
-      content: FALLBACK_ORIGIN,
+      content: REPLIT_ORIGIN,
       proxied: true,
       ttl: 1,
     });

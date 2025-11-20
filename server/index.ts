@@ -76,7 +76,12 @@ app.use((req, res, next) => {
       const hostname = req.hostname || req.get('host')?.split(':')[0];
       const cfHost = req.get('cf-connecting-hostname');
       const xForwardedHost = req.get('x-forwarded-host');
-      const actualHostname = cfHost || xForwardedHost || hostname;
+      let actualHostname = cfHost || xForwardedHost || hostname;
+      
+      // Strip www. from hostname to normalize domain lookups
+      if (actualHostname && actualHostname.startsWith('www.')) {
+        actualHostname = actualHostname.substring(4);
+      }
       
       // Log hostname detection for debugging
       if (hostname !== 'localhost' && !req.path.startsWith('/api/') && !req.path.startsWith('/attached_assets/')) {

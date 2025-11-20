@@ -257,7 +257,7 @@ export default function DomainAutomation({ pageId, onDomainRegistered }: DomainA
         </Card>
       )}
 
-      {/* Registration Status */}
+      {/* Registration Status with Progress Tracker */}
       {domainStatus.status !== 'idle' && (
         <Card className={
           domainStatus.status === 'completed' ? 'border-green-500 bg-green-50' :
@@ -265,28 +265,78 @@ export default function DomainAutomation({ pageId, onDomainRegistered }: DomainA
           'border-blue-500 bg-blue-50'
         }>
           <CardContent className="pt-6">
-            <div className="flex items-start gap-3">
-              {domainStatus.status === 'completed' ? (
-                <CheckCircle2 className="h-6 w-6 text-green-600 flex-shrink-0" />
-              ) : domainStatus.status === 'failed' ? (
-                <AlertCircle className="h-6 w-6 text-red-600 flex-shrink-0" />
-              ) : (
-                <Loader2 className="h-6 w-6 text-blue-600 animate-spin flex-shrink-0" />
-              )}
-              <div className="flex-1">
-                <h4 className="font-semibold mb-1">
-                  {domainStatus.status === 'completed' && 'Registration Complete!'}
-                  {domainStatus.status === 'failed' && 'Registration Failed'}
-                  {domainStatus.status === 'registering' && 'Registering Domain...'}
-                  {domainStatus.status === 'configuring_dns' && 'Configuring DNS...'}
-                </h4>
-                <p className="text-sm">
-                  {domainStatus.progress || domainStatus.error}
-                </p>
-                {domainStatus.domain && (
-                  <p className="text-sm font-mono mt-1">{domainStatus.domain}</p>
-                )}
+            {/* Domain Name Header */}
+            {domainStatus.domain && (
+              <div className="mb-4 text-center">
+                <p className="text-sm text-gray-600">Registering</p>
+                <p className="text-xl font-bold font-mono">{domainStatus.domain}</p>
               </div>
+            )}
+
+            {/* Progress Steps */}
+            <div className="space-y-3">
+              {/* Step 1: Domain Registration */}
+              <div className="flex items-center gap-3">
+                {domainStatus.status === 'failed' ? (
+                  <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
+                ) : domainStatus.status === 'completed' || domainStatus.status === 'configuring_dns' ? (
+                  <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                ) : (
+                  <Loader2 className="h-5 w-5 text-blue-600 animate-spin flex-shrink-0" />
+                )}
+                <div className="flex-1">
+                  <p className="font-medium text-sm">Step 1: Domain Registration</p>
+                  <p className="text-xs text-gray-600">
+                    {domainStatus.status === 'failed' ? 'Failed' : 
+                     domainStatus.status === 'completed' || domainStatus.status === 'configuring_dns' ? 'Completed' : 
+                     'In progress'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 2: DNS Configuration */}
+              <div className="flex items-center gap-3">
+                {domainStatus.status === 'completed' ? (
+                  <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                ) : domainStatus.status === 'configuring_dns' ? (
+                  <Loader2 className="h-5 w-5 text-blue-600 animate-spin flex-shrink-0" />
+                ) : (
+                  <Clock className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                )}
+                <div className="flex-1">
+                  <p className="font-medium text-sm">Step 2: DNS Configuration</p>
+                  <p className="text-xs text-gray-600">
+                    {domainStatus.status === 'completed' ? 'Completed' : 
+                     domainStatus.status === 'configuring_dns' ? 'Configuring (Cloudflare zone activating...)' : 
+                     'Pending'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 3: SSL Certificate */}
+              <div className="flex items-center gap-3">
+                {domainStatus.status === 'completed' ? (
+                  <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                ) : (
+                  <Clock className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                )}
+                <div className="flex-1">
+                  <p className="font-medium text-sm">Step 3: SSL Certificate</p>
+                  <p className="text-xs text-gray-600">
+                    {domainStatus.status === 'completed' ? 'Completed - Your site is live!' : 'Pending'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Overall Status Message */}
+            <div className="mt-4 pt-4 border-t">
+              <p className="text-sm text-center">
+                {domainStatus.status === 'completed' && '✅ Domain is fully configured and live!'}
+                {domainStatus.status === 'failed' && `❌ ${domainStatus.error || 'Registration failed'}`}
+                {domainStatus.status === 'registering' && '⏳ Registering domain with provider...'}
+                {domainStatus.status === 'configuring_dns' && '⏳ Waiting for Cloudflare zone to activate (usually 30-90 seconds)...'}
+              </p>
             </div>
           </CardContent>
         </Card>

@@ -95,7 +95,8 @@ app.use((req, res, next) => {
         'replit.app',
         'replit.dev',
         'chad-lp4a-v2-production.up.railway.app',
-        'landingpagesforagentsfallback.com' // Cloudflare fallback origin - not a custom domain
+        'landingpagesforagentsfallback.com', // Cloudflare fallback origin - not a custom domain
+        'agentmaterials.com' // Main platform domain via Replit
       ];
 
       // If this is a platform domain or an API request or static asset, skip custom domain handling

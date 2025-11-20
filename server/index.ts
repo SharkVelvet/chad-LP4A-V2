@@ -72,49 +72,34 @@ app.use((req, res, next) => {
 
     // Custom domain handler
     app.use(async (req: Request, res: Response, next: NextFunction) => {
-      // Check multiple possible hostname sources
+      // Prioritize actual Host header over Replit workspace headers
       const hostname = req.hostname || req.get('host')?.split(':')[0];
-      const cfHost = req.get('cf-connecting-hostname');
       const xForwardedHost = req.get('x-forwarded-host');
-      const replitHost = req.get('x-replit-user-host');
-      const forwardedProto = req.get('x-forwarded-proto');
-      let actualHostname = replitHost || cfHost || xForwardedHost || hostname;
       
-      // Strip www. from hostname to normalize domain lookups
-      if (actualHostname && actualHostname.startsWith('www.')) {
-        actualHostname = actualHostname.substring(4);
-      }
+      // Use actual hostname first, fallback to x-forwarded-host for proxy scenarios
+      let actualHostname = hostname || xForwardedHost || '';
       
-      // Log hostname detection for debugging (show ALL headers for agentmaterials.com)
-      if (hostname !== 'localhost' && !req.path.startsWith('/api/') && !req.path.startsWith('/attached_assets/')) {
-        if (hostname?.includes('agentmaterial') || xForwardedHost?.includes('agentmaterial') || replitHost?.includes('agentmaterial')) {
-          console.log(`🔍 AGENTMATERIALS REQUEST - ALL HEADERS:`, JSON.stringify({
-            hostname,
-            'host': req.get('host'),
-            'x-forwarded-host': xForwardedHost,
-            'x-replit-user-host': replitHost,
-            'cf-connecting-hostname': cfHost,
-            'x-forwarded-proto': forwardedProto,
-            actualHostname,
-            path: req.path
-          }, null, 2));
-        }
-      }
+      // Normalize: lowercase and strip www.
+      actualHostname = actualHostname.toLowerCase().replace(/^www\./, '');
       
-      // List of platform domains - requests to these go to the SPA
-      const platformDomains = [
-        'localhost',
-        '127.0.0.1',
-        'replit.app',
-        'replit.dev',
-        'chad-lp4a-v2-production.up.railway.app',
-        'landingpagesforagentsfallback.com', // Cloudflare fallback origin - not a custom domain
-        'agentmaterials.com' // Main platform domain via Replit
-      ];
+      // Helper to check if domain is a platform domain
+      const isPlatformDomain = (host: string): boolean => {
+        const platformDomains = [
+          'localhost',
+          '127.0.0.1',
+          'replit.app',
+          'replit.dev',
+          'agentmaterials.com' // Main platform domain
+        ];
+        return platformDomains.some(d => host.includes(d));
+      };
 
-      // If this is a platform domain or an API request or static asset, skip custom domain handling
+      // Skip custom domain handling for:
+      // 1. Platform domains (serve normal SPA)
+      // 2. API requests
+      // 3. Static assets
       if (!actualHostname || 
-          platformDomains.some(d => actualHostname.includes(d)) || 
+          isPlatformDomain(actualHostname) ||
           req.path.startsWith('/api/') ||
           req.path.startsWith('/assets/') ||
           req.path.startsWith('/attached_assets/')) {

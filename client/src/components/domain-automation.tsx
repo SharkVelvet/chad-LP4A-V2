@@ -48,31 +48,36 @@ export default function DomainAutomation({ pageId, onDomainRegistered }: DomainA
       const interval = setInterval(async () => {
         try {
           const res = await apiRequest("GET", `/api/domains/status/${pageId}`);
-          const status = await res.json();
+          const jobStatus = await res.json();
           
-          if (status.status === 'completed') {
+          if (jobStatus.status === 'completed') {
             setDomainStatus({
               status: 'completed',
-              domain: status.domain,
+              domain: jobStatus.domain,
               progress: 'Domain registered and DNS configured successfully!'
             });
             clearInterval(interval);
-            onDomainRegistered?.(status.domain);
+            onDomainRegistered?.(jobStatus.domain);
             toast({
               title: "Domain Registered!",
-              description: `${status.domain} is now live and configured.`,
+              description: `Your domain is now live and configured.`,
             });
-          } else if (status.status === 'failed') {
+          } else if (jobStatus.status === 'failed') {
             setDomainStatus({
               status: 'failed',
-              error: status.error || 'Registration failed',
+              error: jobStatus.message || 'Registration failed',
             });
             clearInterval(interval);
           } else {
+            // Map backend step to frontend status
+            let frontendStatus: 'registering' | 'configuring_dns' = 'registering';
+            if (jobStatus.step === 'configure_dns' || jobStatus.step === 'provision_ssl') {
+              frontendStatus = 'configuring_dns';
+            }
+            
             setDomainStatus({
-              status: status.currentStep as any,
-              domain: status.domain,
-              progress: status.message,
+              status: frontendStatus,
+              progress: jobStatus.message,
             });
           }
         } catch (error) {

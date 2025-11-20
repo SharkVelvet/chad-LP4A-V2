@@ -107,22 +107,17 @@ export async function createDNSRecords(
 
 export async function setupOriginHostHeader(zoneId: string, domain: string): Promise<{ success: boolean }> {
   try {
-    // Use http_request_transform phase with set_header action (requires Zone-level Rulesets:Edit permission)
-    await cloudflareApi.put(`/zones/${zoneId}/rulesets/phases/http_request_transform/entrypoint`, {
+    // Use Origin Rules to rewrite the Host header (requires Zone → Origin Rules → Edit permission)
+    const response = await cloudflareApi.put(`/zones/${zoneId}/rulesets/phases/http_request_origin/entrypoint`, {
       description: `Host header override for custom domains`,
       kind: 'zone',
       name: 'default',
-      phase: 'http_request_transform',
+      phase: 'http_request_origin',
       rules: [
         {
-          action: 'rewrite',
+          action: 'route',
           action_parameters: {
-            headers: {
-              Host: {
-                operation: 'set',
-                value: REPLIT_ORIGIN,
-              },
-            },
+            host_header: REPLIT_ORIGIN,
           },
           expression: `(http.host eq "${domain}" or http.host eq "www.${domain}")`,
           description: `Override Host header for ${domain} to ${REPLIT_ORIGIN}`,
@@ -130,6 +125,10 @@ export async function setupOriginHostHeader(zoneId: string, domain: string): Pro
         },
       ],
     });
+
+    if (!response.data.success) {
+      throw new Error(`Cloudflare error: ${JSON.stringify(response.data.errors)}`);
+    }
 
     await cloudflareApi.patch(`/zones/${zoneId}/settings/always_use_https`, {
       value: 'on',

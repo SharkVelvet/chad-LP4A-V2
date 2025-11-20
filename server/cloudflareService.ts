@@ -107,38 +107,70 @@ export async function createDNSRecords(
 
 export async function setupOriginHostHeader(zoneId: string, domain: string): Promise<{ success: boolean }> {
   try {
-    // Use Origin Rules to rewrite the Host header (requires Zone → Origin Rules → Edit permission)
-    const response = await cloudflareApi.put(`/zones/${zoneId}/rulesets/phases/http_request_origin/entrypoint`, {
-      description: `Host header override for custom domains`,
-      kind: 'zone',
-      name: 'default',
-      phase: 'http_request_origin',
-      rules: [
-        {
-          action: 'route',
-          action_parameters: {
-            host_header: REPLIT_ORIGIN,
-          },
-          expression: `(http.host eq "${domain}" or http.host eq "www.${domain}")`,
-          description: `Override Host header for ${domain} to ${REPLIT_ORIGIN}`,
-          enabled: true,
+    // Deploy Cloudflare Worker to rewrite Host header (works on Pro plan)
+    const workerName = `proxy-${domain.replace(/\./g, '-')}`;
+    
+    const workerScript = `
+export default {
+  async fetch(request) {
+    const url = new URL(request.url);
+    
+    // Forward request to Replit origin with correct Host header
+    const replitUrl = \`https://${REPLIT_ORIGIN}\${url.pathname}\${url.search}\`;
+    
+    const modifiedHeaders = new Headers(request.headers);
+    modifiedHeaders.set('Host', '${REPLIT_ORIGIN}');
+    modifiedHeaders.set('X-Forwarded-Host', url.hostname);
+    modifiedHeaders.set('X-Original-URL', request.url);
+    
+    const modifiedRequest = new Request(replitUrl, {
+      method: request.method,
+      headers: modifiedHeaders,
+      body: request.method !== 'GET' && request.method !== 'HEAD' ? request.body : null,
+      redirect: 'manual'
+    });
+    
+    return fetch(modifiedRequest);
+  }
+}`;
+
+    const accountId = process.env.CLOUDFLARE_ACCOUNT_ID;
+    if (!accountId) {
+      throw new Error('CLOUDFLARE_ACCOUNT_ID environment variable not set');
+    }
+
+    // Upload Worker script
+    await cloudflareApi.put(
+      `/accounts/${accountId}/workers/scripts/${workerName}`,
+      workerScript,
+      {
+        headers: {
+          'Content-Type': 'application/javascript',
         },
-      ],
+      }
+    );
+
+    // Create Worker route for root domain
+    await cloudflareApi.post(`/zones/${zoneId}/workers/routes`, {
+      pattern: `${domain}/*`,
+      script: workerName,
     });
 
-    if (!response.data.success) {
-      throw new Error(`Cloudflare error: ${JSON.stringify(response.data.errors)}`);
-    }
+    // Create Worker route for www subdomain
+    await cloudflareApi.post(`/zones/${zoneId}/workers/routes`, {
+      pattern: `www.${domain}/*`,
+      script: workerName,
+    });
 
     await cloudflareApi.patch(`/zones/${zoneId}/settings/always_use_https`, {
       value: 'on',
     });
 
-    console.log(`✅ Host header override configured for ${domain}`);
+    console.log(`✅ Cloudflare Worker deployed for ${domain} (${workerName})`);
     return { success: true };
   } catch (error: any) {
-    console.error('Error setting up origin host header:', error.response?.data || error);
-    throw new Error(`Failed to configure Host header: ${error.response?.data?.errors?.[0]?.message || error.message}`);
+    console.error('Error setting up Cloudflare Worker:', error.response?.data || error);
+    throw new Error(`Failed to deploy Worker: ${error.response?.data?.errors?.[0]?.message || error.message}`);
   }
 }
 

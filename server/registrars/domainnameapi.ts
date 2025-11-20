@@ -50,25 +50,9 @@ export class DomainNameAPIRegistrar implements IRegistrar {
         }
       }
 
-      // Default to available in test mode for testing
-      return {
-        available: this.testMode,
-        domain,
-        price: 15
-      };
+      throw new Error(`Invalid response from DomainNameAPI: ${JSON.stringify(response.data)}`);
     } catch (error: any) {
       console.error('Error searching domain with DomainNameAPI:', error);
-      
-      // In test mode, return available for testing
-      if (this.testMode) {
-        console.log('⚠️ Test mode: Returning domain as available for testing');
-        return {
-          available: true,
-          domain,
-          price: 15
-        };
-      }
-      
       throw new Error(`DomainNameAPI domain search error: ${error.message}`);
     }
   }
@@ -92,15 +76,6 @@ export class DomainNameAPIRegistrar implements IRegistrar {
 
       console.log('✅ DomainNameAPI Registration Response:', JSON.stringify(response.data, null, 2));
 
-      if (this.testMode) {
-        console.log('⚠️ Test mode: Simulating successful domain registration');
-        return {
-          success: true,
-          orderId: `test-${domain}-${Date.now()}`,
-          chargedAmount: 0
-        };
-      }
-
       if (response.data && response.data.result === 'OK') {
         return {
           success: true,
@@ -112,17 +87,6 @@ export class DomainNameAPIRegistrar implements IRegistrar {
       throw new Error(`Registration failed: ${JSON.stringify(response.data)}`);
     } catch (error: any) {
       console.error('Error registering domain with DomainNameAPI:', error);
-      
-      // In test mode, simulate success
-      if (this.testMode) {
-        console.log('⚠️ Test mode: Simulating successful domain registration despite error');
-        return {
-          success: true,
-          orderId: `test-${domain}-${Date.now()}`,
-          chargedAmount: 0
-        };
-      }
-      
       throw new Error(`Failed to register domain: ${error.message}`);
     }
   }
@@ -140,11 +104,6 @@ export class DomainNameAPIRegistrar implements IRegistrar {
 
       console.log('✅ DomainNameAPI Nameserver Response:', JSON.stringify(response.data, null, 2));
 
-      if (this.testMode) {
-        console.log('⚠️ Test mode: Simulating successful nameserver update');
-        return { success: true };
-      }
-
       if (response.data && response.data.result === 'OK') {
         return { success: true };
       }
@@ -152,13 +111,6 @@ export class DomainNameAPIRegistrar implements IRegistrar {
       throw new Error(`Failed to set nameservers: ${JSON.stringify(response.data)}`);
     } catch (error: any) {
       console.error('Error setting nameservers with DomainNameAPI:', error);
-      
-      // In test mode, simulate success
-      if (this.testMode) {
-        console.log('⚠️ Test mode: Simulating successful nameserver update despite error');
-        return { success: true };
-      }
-      
       throw new Error(`Failed to set nameservers: ${error.message}`);
     }
   }

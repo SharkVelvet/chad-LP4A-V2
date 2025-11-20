@@ -1,0 +1,15 @@
+{
+  "name": "landing-pages-proxy",
+  "version": "1.0.0",
+  "description": "Reverse proxy for custom domains pointing to Replit",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}

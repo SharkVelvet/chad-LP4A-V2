@@ -95,11 +95,11 @@ export class NameComRegistrar implements IRegistrar {
     }
   }
 
-  async setNameservers(domain: string, nameservers: string[]): Promise<{ success: boolean }> {
+  async setNameservers(domain: string, nameservers: string[], clientIp?: string): Promise<{ success: boolean }> {
     try {
       console.log('📝 Setting nameservers with Name.com:', { domain, nameservers });
 
-      const response = await axios.put(`${this.baseUrl}/core/v1/domains/${domain}:setNameservers`, {
+      const response = await axios.post(`${this.baseUrl}/v4/domains/${domain}:setNameservers`, {
         nameservers
       }, {
         headers: {

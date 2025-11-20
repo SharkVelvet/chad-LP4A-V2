@@ -310,6 +310,7 @@ async function processDNSConfigurationStep(job: DomainJob): Promise<void> {
   console.log(`✅ Zone is active. Creating DNS records...`);
 
   await cloudflare.createDNSRecords(zoneId, job.domain);
+  await cloudflare.setupOriginHostHeader(zoneId, job.domain);
   await cloudflare.setupWWWRedirect(zoneId, job.domain);
 
   await db

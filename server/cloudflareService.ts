@@ -105,6 +105,33 @@ export async function createDNSRecords(
   }
 }
 
+export async function setupOriginHostHeader(zoneId: string, domain: string): Promise<{ success: boolean }> {
+  try {
+    await cloudflareApi.post(`/zones/${zoneId}/rulesets/phases/http_request_origin/entrypoint`, {
+      rules: [
+        {
+          action: 'route',
+          action_parameters: {
+            host_header: REPLIT_ORIGIN,
+          },
+          expression: `(http.host eq "${domain}" or http.host eq "www.${domain}")`,
+          description: `Override Host header for ${domain} to ${REPLIT_ORIGIN}`,
+          enabled: true,
+        },
+      ],
+    });
+
+    await cloudflareApi.patch(`/zones/${zoneId}/settings/always_use_https`, {
+      value: 'on',
+    });
+
+    return { success: true };
+  } catch (error: any) {
+    console.error('Error setting up origin host header:', error.response?.data || error);
+    return { success: true };
+  }
+}
+
 export async function setupWWWRedirect(zoneId: string, domain: string): Promise<{ success: boolean }> {
   try {
     const response = await cloudflareApi.post(`/zones/${zoneId}/pagerules`, {

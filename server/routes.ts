@@ -5,7 +5,7 @@ import multer from "multer";
 import * as XLSX from "xlsx";
 import { storage } from "./storage.js";
 import { setupAuth } from "./auth.js";
-import { setupAdminAuth, isAdminAuthenticated } from "./adminAuth.js";
+import { setupAdminAuth, isAdminAuthenticated, isSuperAdminAuthenticated } from "./adminAuth.js";
 import Stripe from "stripe";
 import { z } from "zod";
 import { 
@@ -1949,6 +1949,129 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(results);
     } catch (error: any) {
       console.error('Error registering domains with Railway:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Super Admin: Get all users for template provisioning
+  app.get("/api/admin/super-admin-pages/users", isSuperAdminAuthenticated, async (req, res) => {
+    try {
+      const search = req.query.search as string | undefined;
+      const allUsers = await storage.getAllUsers();
+      
+      let filteredUsers = allUsers;
+      if (search) {
+        const searchLower = search.toLowerCase();
+        filteredUsers = allUsers.filter(user => 
+          user.email?.toLowerCase().includes(searchLower) ||
+          user.username?.toLowerCase().includes(searchLower) ||
+          user.firstName?.toLowerCase().includes(searchLower) ||
+          user.lastName?.toLowerCase().includes(searchLower)
+        );
+      }
+
+      // Get page counts for each user
+      const usersWithPages = await Promise.all(
+        filteredUsers.map(async (user) => {
+          const pages = await storage.getUserPages(user.id);
+          return {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            status: user.status,
+            billingStatus: user.billingStatus,
+            pageCount: pages.length,
+            createdAt: user.createdAt,
+          };
+        })
+      );
+
+      res.json(usersWithPages);
+    } catch (error: any) {
+      console.error('Error fetching users:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Super Admin: Get all templates for provisioning
+  app.get("/api/admin/super-admin-pages/templates", isSuperAdminAuthenticated, async (req, res) => {
+    try {
+      const templates = await storage.getAllTemplates();
+      const activeTemplates = templates.filter(t => t.isActive);
+      res.json(activeTemplates);
+    } catch (error: any) {
+      console.error('Error fetching templates:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Super Admin: Create page for user without payment (complimentary)
+  app.post("/api/admin/super-admin-pages/create-page-for-user", isSuperAdminAuthenticated, async (req, res) => {
+    try {
+      const { userId, templateId, name, subscriptionPlan, domainPreferences } = req.body;
+
+      if (!userId || !templateId || !name) {
+        return res.status(400).json({ error: "userId, templateId, and name are required" });
+      }
+
+      // Verify user exists
+      const user = await storage.getUserById(userId);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Verify template exists
+      const template = await storage.getTemplateById(templateId);
+      if (!template) {
+        return res.status(404).json({ error: "Template not found" });
+      }
+
+      // Create page WITHOUT payment (complimentary)
+      const page = await storage.createPage({
+        userId: user.id,
+        templateId: template.id,
+        name,
+        subscriptionPlan: subscriptionPlan || 'premium',
+        subscriptionStatus: 'active',
+        isComplimentary: true, // Mark as free/complimentary (no Stripe payment)
+        domainPreferences: domainPreferences || [],
+        isActive: true,
+      });
+
+      // Create default page content
+      await storage.createPageContent({
+        pageId: page.id,
+        businessName: user.firstName ? `${user.firstName} ${user.lastName || ''}`.trim() : 'Your Business',
+        tagline: 'Your tagline here',
+        content: {},
+        hiddenSections: [],
+        isPublished: false, // Start as draft for admin to configure
+      });
+
+      // Log audit trail
+      console.log(`🎁 Super Admin created complimentary page:`, {
+        adminId: req.user.id,
+        adminUsername: req.user.username,
+        userId: user.id,
+        userEmail: user.email,
+        pageId: page.id,
+        pageName: name,
+        templateId: template.id,
+        templateName: template.name,
+        subscriptionPlan: page.subscriptionPlan,
+      });
+
+      res.json({
+        success: true,
+        page,
+        template,
+        user: { id: user.id, email: user.email, username: user.username },
+        message: 'Complimentary page created successfully',
+      });
+    } catch (error: any) {
+      console.error('Error creating complimentary page:', error);
       res.status(500).json({ error: error.message });
     }
   });

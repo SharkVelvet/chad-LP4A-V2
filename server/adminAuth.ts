@@ -28,10 +28,18 @@ async function comparePasswords(supplied: string, stored: string) {
   return timingSafeEqual(hashedBuf, suppliedBuf);
 }
 
-// Middleware to check if user is authenticated admin
+// Middleware to check if user is authenticated admin (includes both admin and super_admin)
 export function isAdminAuthenticated(req: any, res: any, next: any) {
-  if (!req.isAuthenticated() || !req.user || req.user.role !== 'admin') {
+  if (!req.isAuthenticated() || !req.user || (req.user.role !== 'admin' && req.user.role !== 'super_admin')) {
     return res.status(401).json({ message: "Unauthorized - Admin access required" });
+  }
+  next();
+}
+
+// Middleware to check if user is super admin (highest privileges)
+export function isSuperAdminAuthenticated(req: any, res: any, next: any) {
+  if (!req.isAuthenticated() || !req.user || req.user.role !== 'super_admin') {
+    return res.status(403).json({ message: "Forbidden - Super Admin access required" });
   }
   next();
 }

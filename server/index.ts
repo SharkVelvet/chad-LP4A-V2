@@ -77,36 +77,21 @@ app.use((req, res, next) => {
       const xForwardedHost = req.get('x-forwarded-host')?.split(',')[0]?.trim().split(':')[0];
       const host = req.get('host')?.split(':')[0] || '';
       
-      // Prioritize x-forwarded-host for production deployments
-      let actualHostname = xForwardedHost || host;
-      
-      // Normalize: lowercase and strip www.
-      actualHostname = actualHostname.toLowerCase().replace(/^www\./, '');
-      
-      // TEMPORARY DEBUG: Log all hostname values for agentmaterials.com requests
-      if (actualHostname.includes('agentmaterial') && !req.path.startsWith('/api/')) {
-        console.log('🔍 AGENTMATERIALS DEBUG:', JSON.stringify({
-          actualHostname,
-          xForwardedHost,
-          host,
-          path: req.path,
-          headers: {
-            'x-forwarded-host': req.get('x-forwarded-host'),
-            'host': req.get('host')
-          }
-        }, null, 2));
-      }
+      // In production, Replit rewrites Host to repl slug, but X-Forwarded-Host contains actual domain
+      // Prioritize x-forwarded-host when present
+      let actualHostname = (xForwardedHost || host).toLowerCase().replace(/^www\./, '');
       
       // Helper to check if domain is a platform domain
-      const isPlatformDomain = (host: string): boolean => {
+      const isPlatformDomain = (hostname: string): boolean => {
         const platformDomains = [
           'localhost',
           '127.0.0.1',
           'replit.app',
           'replit.dev',
-          'agentmaterials.com'
+          'agentmaterials.com',
+          'landing-pages-for-agents-v-2-sharkvelvet.replit.app' // Production repl slug
         ];
-        return platformDomains.some(d => host.includes(d));
+        return platformDomains.some(d => hostname.includes(d));
       };
 
       // Skip custom domain handling for:

@@ -77,6 +77,11 @@ app.use((req, res, next) => {
       const host = req.get('host')?.split(':')[0] || '';
       const hostname = (xForwardedHost || host).toLowerCase().replace(/^www\./, '');
       
+      // DEBUG: Log all domain routing decisions
+      if (process.env.NODE_ENV === 'production') {
+        console.log(`[DOMAIN ROUTING] hostname=${hostname} xForwardedHost=${xForwardedHost} host=${host} path=${req.path}`);
+      }
+      
       // Skip custom domain handling for platform domains and API routes
       if (!hostname ||
           hostname === 'localhost' ||

@@ -312,12 +312,12 @@ export default function SelectTemplateByCategory() {
                   <span>Monthly thereafter</span>
                   <span>$18.00/month</span>
                 </div>
-                {hasExistingWebsites && (
+                {hasExistingPages && (
                   <div className="pt-3 mt-3 border-t">
                     <p className="text-sm text-gray-600 mb-2">Your billing:</p>
                     <div className="flex justify-between">
                       <span className="text-sm font-medium">New monthly total</span>
-                      <span className="font-semibold">${18 * (websites?.length || 0) + 18}/month</span>
+                      <span className="font-semibold">${18 * (pages?.length || 0) + 18}/month</span>
                     </div>
                     <p className="text-xs text-gray-500 mt-1">
                       (after your first month payment of $38)

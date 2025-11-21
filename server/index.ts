@@ -70,57 +70,6 @@ app.use((req, res, next) => {
 
     const server = await registerRoutes(app);
 
-    // Custom domain handler - ONLY for customer domains, NOT for platform domains
-    app.use(async (req: Request, res: Response, next: NextFunction) => {
-      // Get hostname - check X-Forwarded-Host first (for Replit's native domains), then Host
-      const xForwardedHost = req.get('x-forwarded-host')?.split(',')[0]?.trim().split(':')[0];
-      const host = req.get('host')?.split(':')[0] || '';
-      const hostname = (xForwardedHost || host).toLowerCase().replace(/^www\./, '');
-      
-      // Skip if no hostname or API routes
-      if (!hostname || req.path.startsWith('/api/') || req.path.startsWith('/assets/') || req.path.startsWith('/attached_assets/')) {
-        return next();
-      }
-
-      // Skip platform domains - let them fall through to SPA handler
-      if (hostname === 'localhost' ||
-          hostname === '127.0.0.1' ||
-          hostname === 'agentmaterials.com' ||
-          hostname.includes('replit.app') ||
-          hostname.includes('replit.dev') ||
-          hostname.includes('repl.co')) {
-        return next();
-      }
-
-      // This is a customer domain - serve the public page
-      try {
-        const page = await storage.getPageByDomain(hostname);
-        
-        if (!page) {
-          // If no page found for this domain, let it fall through to the SPA handler
-          // This allows agentmaterials.com to serve the admin dashboard
-          return next();
-        }
-
-        // Get page content and template
-        const content = await storage.getPageContent(page.id);
-        const template = await storage.getTemplate(page.templateId);
-
-        // Read the built index.html from dist/public
-        const indexPath = path.resolve(import.meta.dirname, "public", "index.html");
-        let html = fs.readFileSync(indexPath, "utf-8");
-
-        // Inject page data into the HTML
-        const pageDataScript = `<script>window.__PAGE_DATA__ = ${JSON.stringify({ page, content, template })};</script>`;
-        html = html.replace('</head>', `${pageDataScript}</head>`);
-
-        res.send(html);
-      } catch (error) {
-        console.error('Custom domain error:', error);
-        return next();
-      }
-    });
-
     // Setup Vite in development mode, or serve fallback index.html in production
     if (process.env.NODE_ENV === "development") {
       await setupVite(app, server);

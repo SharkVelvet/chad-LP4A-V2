@@ -82,6 +82,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.setHeader('Expires', '0');
       
       const domain = req.params.domain;
+      
+      // Platform admin domain - not a customer domain, let frontend router handle it
+      if (domain === 'agentmaterials.com' || domain === 'www.agentmaterials.com') {
+        return res.status(404).json({ message: "Not a customer domain" });
+      }
+      
       const page = await storage.getPageByDomain(domain);
       
       if (!page) {

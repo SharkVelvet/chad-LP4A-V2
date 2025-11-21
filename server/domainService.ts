@@ -194,36 +194,6 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     throw new Error('Registrant data not found');
   }
 
-  const [page] = await db
-    .select()
-    .from(pages)
-    .where(eq(pages.id, job.pageId));
-
-  let zoneId = page?.cloudflareZoneId || job.metadata?.zoneId;
-  let nameservers = page?.cloudflareNameservers || job.metadata?.nameservers;
-
-  if (!zoneId) {
-    const zoneResult = await cloudflare.createZone(job.domain);
-    zoneId = zoneResult.zoneId;
-    nameservers = zoneResult.nameservers;
-    console.log(`✅ Cloudflare zone created: ${zoneId}`);
-    
-    // Save zone ID immediately to job metadata for retry protection
-    await db
-      .update(domainJobs)
-      .set({
-        metadata: {
-          ...job.metadata,
-          zoneId,
-          nameservers,
-        },
-        updatedAt: new Date(),
-      })
-      .where(eq(domainJobs.id, job.id));
-  } else {
-    console.log(`✅ Using existing Cloudflare zone: ${zoneId}`);
-  }
-
   const registrar = getRegistrar('namecom');
   
   let registrarOrderId = job.metadata?.registrarOrderId;
@@ -243,8 +213,6 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
       .set({
         metadata: {
           ...job.metadata,
-          zoneId,
-          nameservers,
           registrarOrderId,
           registrarProvider: 'namecom',
         },
@@ -255,38 +223,38 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     console.log(`✅ Domain already registered. Order ID: ${registrarOrderId}`);
   }
 
-  await registrar.setNameservers(job.domain, nameservers, registrant.clientIp || undefined);
-
-  console.log(`✅ Nameservers set to Cloudflare`);
+  // Point to Caddy proxy IP directly (134.199.194.110) via Name.com
+  // Caddy's on-demand TLS handles SSL provisioning automatically
+  const caddyIp = '134.199.194.110';
+  await registrar.setNameservers(job.domain, undefined, registrant.clientIp || undefined);
+  
+  console.log(`✅ Domain registered and configured. Skipping Cloudflare (using Caddy proxy directly).`);
 
   await db
     .update(pages)
     .set({
-      cloudflareZoneId: zoneId,
-      cloudflareNameservers: nameservers,
-      domainStatus: 'propagating',
+      domainStatus: 'provisioning',
       updatedAt: new Date(),
     })
     .where(eq(pages.id, job.pageId));
 
+  // Skip to Caddy setup - this is what makes the domain live
   await db
     .update(domainJobs)
     .set({
-      step: 'configure_dns',
+      step: 'add_to_caddy',
       status: 'pending',
       metadata: {
         ...job.metadata,
-        zoneId,
-        nameservers,
         registrarOrderId,
-        registrarProvider: 'godaddy',
+        registrarProvider: 'namecom',
       },
       updatedAt: new Date(),
-      scheduledFor: new Date(Date.now() + 60000),
+      scheduledFor: new Date(Date.now() + 30000),
     })
     .where(eq(domainJobs.id, job.id));
 
-  console.log(`✅ Registration complete. Moving to DNS configuration step.`);
+  console.log(`✅ Registration complete. Moving to Caddy setup.`);
 }
 
 async function processDNSConfigurationStep(job: DomainJob): Promise<void> {

@@ -92,11 +92,6 @@ export async function processDomainJob(jobId: number): Promise<void> {
       return;
     }
 
-    if (job.status === 'completed') {
-      console.log(`Job ${jobId} already completed`);
-      return;
-    }
-
     if (job.attempts >= job.maxAttempts) {
       await db
         .update(domainJobs)
@@ -223,12 +218,10 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     console.log(`✅ Domain already registered. Order ID: ${registrarOrderId}`);
   }
 
-  // Point to Caddy proxy IP directly (134.199.194.110) via Name.com
-  // Caddy's on-demand TLS handles SSL provisioning automatically
-  const caddyIp = '134.199.194.110';
-  await registrar.setNameservers(job.domain, undefined, registrant.clientIp || undefined);
+  // Domain is registered. Caddy proxy will handle DNS and SSL via on-demand TLS.
+  // Nameserver configuration skipped - Caddy setup will complete the provisioning.
   
-  console.log(`✅ Domain registered and configured. Skipping Cloudflare (using Caddy proxy directly).`);
+  console.log(`✅ Domain registered. Moving to Caddy proxy setup.`);
 
   await db
     .update(pages)

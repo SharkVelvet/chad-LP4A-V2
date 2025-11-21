@@ -89,7 +89,6 @@ app.use((req, res, next) => {
           actualHostname,
           xForwardedHost,
           host,
-          hostname,
           path: req.path,
           headers: {
             'x-forwarded-host': req.get('x-forwarded-host'),
@@ -104,7 +103,8 @@ app.use((req, res, next) => {
           'localhost',
           '127.0.0.1',
           'replit.app',
-          'replit.dev'
+          'replit.dev',
+          'agentmaterials.com'
         ];
         return platformDomains.some(d => host.includes(d));
       };

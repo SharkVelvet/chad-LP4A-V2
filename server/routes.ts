@@ -317,7 +317,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     try {
-      const { templateId, name, subscriptionPlan, domainPreferences } = insertPageSchema.parse(req.body);
+      const { templateId, name, subscriptionPlan, domainPreferences, subscriptionStatus, isComplimentary } = insertPageSchema.parse(req.body);
 
       // Super admins get unlimited free pages for testing
       const isSuperAdmin = req.user.role === 'admin' || req.user.role === 'super_admin';
@@ -328,8 +328,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         name,
         subscriptionPlan,
         domainPreferences,
-        // Auto-activate subscription for super admins
-        ...(isSuperAdmin && { subscriptionStatus: 'active' })
+        subscriptionStatus: subscriptionStatus || (isSuperAdmin ? 'active' : 'pending'),
+        isComplimentary: isComplimentary || false,
       } as any);
 
       // Create default content

@@ -331,6 +331,7 @@ export class DatabaseStorage implements IStorage {
       name: page.name,
       subscriptionPlan: page.subscriptionPlan,
       subscriptionStatus: page.subscriptionStatus || 'active',
+      isComplimentary: page.isComplimentary || false,
       domain: page.domain || null,
       domainVerified: page.domainVerified || false,
       domainPreferences: page.domainPreferences || null,

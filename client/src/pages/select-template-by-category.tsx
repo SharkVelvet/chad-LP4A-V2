@@ -31,23 +31,36 @@ export default function SelectTemplateByCategory() {
   const categoryDisplay = category === 'get-clients' ? 'Get More Clients' : 'Hire Agents';
   const templateCategory = category === 'get-clients' ? 'client' : 'hiring';
 
+  // Check if user is a super admin
+  const { data: user } = useQuery({
+    queryKey: ["/api/user"],
+    retry: false,
+  });
+  const isSuperAdmin = user?.role === "super_admin";
+
   // Check if user already has websites
   const { data: websites } = useQuery({ queryKey: ['/api/websites'] });
   const hasExistingWebsites = websites && Array.isArray(websites) && websites.length > 0;
 
-  // Create website mutation
+  // Create website mutation (for super admins - complimentary)
   const createWebsiteMutation = useMutation({
     mutationFn: async (templateId: number) => {
       const res = await apiRequest("POST", "/api/websites", {
         templateId,
         name: `My Page`,
-        subscriptionPlan: "basic",
+        subscriptionPlan: "premium",
+        subscriptionStatus: "active",
         domainPreferences: [],
+        isComplimentary: true, // Super admin - no payment
       });
       return await res.json();
     },
     onSuccess: (newWebsite: any) => {
       queryClient.invalidateQueries({ queryKey: ["/api/websites"] });
+      toast({
+        title: "Website Created!",
+        description: "Your complimentary website has been created successfully.",
+      });
       setLocation(`/editor/${newWebsite.id}`);
     },
     onError: () => {
@@ -220,11 +233,18 @@ export default function SelectTemplateByCategory() {
               size="sm"
               className="bg-[#6458AF] hover:bg-[#5347A0]"
               onClick={() => {
-                setShowPaymentModal(true);
+                // Super admins bypass payment and create website directly
+                if (isSuperAdmin && selectedTemplate) {
+                  createWebsiteMutation.mutate(selectedTemplate.id);
+                  setSelectedTemplate(null);
+                } else {
+                  setShowPaymentModal(true);
+                }
               }}
+              disabled={createWebsiteMutation.isPending}
               data-testid="button-choose-template"
             >
-              Choose this Template
+              {createWebsiteMutation.isPending ? "Creating..." : "Choose this Template"}
             </Button>
             
             <h3 className="text-sm font-semibold text-gray-900">{selectedTemplate?.name}</h3>

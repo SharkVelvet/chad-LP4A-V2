@@ -101,16 +101,9 @@ app.use((req, res, next) => {
         const page = await storage.getPageByDomain(hostname);
         
         if (!page) {
-          return res.status(404).send(`
-            <!DOCTYPE html>
-            <html>
-              <head><title>Page Not Found</title></head>
-              <body style="font-family: system-ui; padding: 40px; text-align: center;">
-                <h1>Page Not Found</h1>
-                <p>No page is configured for domain: ${hostname}</p>
-              </body>
-            </html>
-          `);
+          // If no page found for this domain, let it fall through to the SPA handler
+          // This allows agentmaterials.com to serve the admin dashboard
+          return next();
         }
 
         // Get page content and template

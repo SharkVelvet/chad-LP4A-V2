@@ -125,13 +125,13 @@ export class NameComRegistrar implements IRegistrar {
     try {
       console.log('🌐 Setting DNS A records with Name.com:', { domain, caddyProxyIp });
 
-      // Set A record for @ (root domain)
+      // Set A record for @ (root domain) using correct Name.com v4 API
       const rootResponse = await axios.post(
-        `${this.baseUrl}/v4/domains/${domain}/records`,
+        `${this.baseUrl}/v4/domains/${domain}/records:create`,
         {
           host: '@',
           type: 'A',
-          data: caddyProxyIp,
+          answer: caddyProxyIp,
           ttl: 300
         },
         {
@@ -146,11 +146,11 @@ export class NameComRegistrar implements IRegistrar {
 
       // Set A record for www subdomain
       const wwwResponse = await axios.post(
-        `${this.baseUrl}/v4/domains/${domain}/records`,
+        `${this.baseUrl}/v4/domains/${domain}/records:create`,
         {
           host: 'www',
           type: 'A',
-          data: caddyProxyIp,
+          answer: caddyProxyIp,
           ttl: 300
         },
         {

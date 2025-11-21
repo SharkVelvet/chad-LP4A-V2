@@ -131,6 +131,9 @@ export async function processDomainJob(jobId: number): Promise<void> {
       case 'register':
         await processRegistrationStep(job);
         break;
+      case 'configure_namecom_dns':
+        await processNameComDNSStep(job);
+        break;
       case 'configure_dns':
         await processDNSConfigurationStep(job);
         break;
@@ -218,10 +221,7 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     console.log(`✅ Domain already registered. Order ID: ${registrarOrderId}`);
   }
 
-  // Domain is registered. Caddy proxy will handle DNS and SSL via on-demand TLS.
-  // Nameserver configuration skipped - Caddy setup will complete the provisioning.
-  
-  console.log(`✅ Domain registered. Moving to Caddy proxy setup.`);
+  console.log(`✅ Domain registered. Moving to DNS configuration via Name.com.`);
 
   await db
     .update(pages)
@@ -231,11 +231,11 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     })
     .where(eq(pages.id, job.pageId));
 
-  // Skip to Caddy setup - this is what makes the domain live
+  // Move to DNS configuration step using Name.com
   await db
     .update(domainJobs)
     .set({
-      step: 'add_to_caddy',
+      step: 'configure_namecom_dns',
       status: 'pending',
       metadata: {
         ...job.metadata,
@@ -247,7 +247,33 @@ async function processRegistrationStep(job: DomainJob): Promise<void> {
     })
     .where(eq(domainJobs.id, job.id));
 
-  console.log(`✅ Registration complete. Moving to Caddy setup.`);
+  console.log(`✅ Registration complete. Moving to DNS configuration.`);
+}
+
+async function processNameComDNSStep(job: DomainJob): Promise<void> {
+  console.log(`🌐 Configuring DNS with Name.com for ${job.domain}...`);
+
+  try {
+    const registrar = getRegistrar('namecom');
+    await (registrar as any).setDNSRecords(job.domain);
+    
+    console.log(`✅ DNS records configured via Name.com`);
+
+    await db
+      .update(domainJobs)
+      .set({
+        step: 'add_to_caddy',
+        status: 'pending',
+        updatedAt: new Date(),
+        scheduledFor: new Date(Date.now() + 60000),
+      })
+      .where(eq(domainJobs.id, job.id));
+
+    console.log(`✅ DNS configured. Moving to Caddy setup.`);
+  } catch (error: any) {
+    console.error('Error configuring DNS with Name.com:', error);
+    throw new Error(`Failed to configure DNS: ${error.message}`);
+  }
 }
 
 async function processDNSConfigurationStep(job: DomainJob): Promise<void> {

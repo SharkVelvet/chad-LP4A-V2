@@ -121,6 +121,55 @@ export class NameComRegistrar implements IRegistrar {
     }
   }
 
+  async setDNSRecords(domain: string, caddyProxyIp: string = '134.199.194.110'): Promise<{ success: boolean }> {
+    try {
+      console.log('🌐 Setting DNS A records with Name.com:', { domain, caddyProxyIp });
+
+      // Set A record for @ (root domain)
+      const rootResponse = await axios.post(
+        `${this.baseUrl}/v4/domains/${domain}/records`,
+        {
+          host: '@',
+          type: 'A',
+          data: caddyProxyIp,
+          ttl: 300
+        },
+        {
+          headers: {
+            'Authorization': this.getAuthHeader(),
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      console.log('✅ Name.com Root A Record Response:', JSON.stringify(rootResponse.data, null, 2));
+
+      // Set A record for www subdomain
+      const wwwResponse = await axios.post(
+        `${this.baseUrl}/v4/domains/${domain}/records`,
+        {
+          host: 'www',
+          type: 'A',
+          data: caddyProxyIp,
+          ttl: 300
+        },
+        {
+          headers: {
+            'Authorization': this.getAuthHeader(),
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      console.log('✅ Name.com WWW A Record Response:', JSON.stringify(wwwResponse.data, null, 2));
+
+      return { success: true };
+    } catch (error: any) {
+      console.error('Error setting DNS records with Name.com:', error.response?.data || error.message);
+      throw new Error(`Failed to set DNS records: ${error.response?.data?.message || error.message}`);
+    }
+  }
+
   private formatContact(registrant: Registrant) {
     const contact = {
       firstName: registrant.firstName,

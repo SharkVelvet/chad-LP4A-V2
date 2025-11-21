@@ -70,56 +70,30 @@ app.use((req, res, next) => {
 
     const server = await registerRoutes(app);
 
-    // Helper function to resolve the canonical hostname from request headers
-    const resolveRequestedHost = (req: Request): string => {
-      // Get all possible hostname sources
-      const xForwardedHost = req.get('x-forwarded-host')?.split(',')[0]?.trim().split(':')[0];
-      const replitUserDomain = req.get('x-replit-user-domain')?.split(',')[0]?.trim().split(':')[0];
-      const host = req.get('host')?.split(':')[0] || '';
-      
-      // Prioritize headers in order: x-forwarded-host, x-replit-user-domain, host
-      let hostname = (xForwardedHost || replitUserDomain || host).toLowerCase().replace(/^www\./, '');
-      
-      // Map Replit infrastructure domains back to platform domain
-      // If we get .repl.co or .repl.dev hostnames, these are Replit's internal routing
-      if (hostname.includes('.repl.co') || hostname.includes('.repl.dev') || hostname.includes('.replit.app')) {
-        // This is the Replit deployment infrastructure - map to platform domain
-        return 'agentmaterials.com';
-      }
-      
-      return hostname;
-    };
-
-    // Custom domain handler
+    // Custom domain handler - ONLY for customer domains, NOT for platform domains
     app.use(async (req: Request, res: Response, next: NextFunction) => {
-      // Resolve the canonical hostname
-      const actualHostname = resolveRequestedHost(req);
+      // Get hostname - check X-Forwarded-Host first (for Replit's native domains), then Host
+      const xForwardedHost = req.get('x-forwarded-host')?.split(',')[0]?.trim().split(':')[0];
+      const host = req.get('host')?.split(':')[0] || '';
+      const hostname = (xForwardedHost || host).toLowerCase().replace(/^www\./, '');
       
-      // Platform domains that serve the admin SPA
-      const platformDomains = [
-        'localhost',
-        '127.0.0.1',
-        'agentmaterials.com'
-      ];
-      
-      // Check if this is a platform domain
-      const isPlatformDomain = platformDomains.some(d => actualHostname.includes(d));
-
-      // Skip custom domain handling for:
-      // 1. Platform domains (serve normal SPA)
-      // 2. API requests
-      // 3. Static assets
-      if (!actualHostname || 
-          isPlatformDomain ||
+      // Skip custom domain handling for platform domains and API routes
+      if (!hostname ||
+          hostname === 'localhost' ||
+          hostname === '127.0.0.1' ||
+          hostname.includes('replit.app') ||
+          hostname.includes('replit.dev') ||
+          hostname.includes('repl.co') ||
+          hostname === 'agentmaterials.com' ||
           req.path.startsWith('/api/') ||
           req.path.startsWith('/assets/') ||
           req.path.startsWith('/attached_assets/')) {
         return next();
       }
 
-      // This is a custom domain - serve the public page
+      // This is a customer domain - serve the public page
       try {
-        const page = await storage.getPageByDomain(actualHostname);
+        const page = await storage.getPageByDomain(hostname);
         
         if (!page) {
           return res.status(404).send(`
@@ -128,7 +102,7 @@ app.use((req, res, next) => {
               <head><title>Page Not Found</title></head>
               <body style="font-family: system-ui; padding: 40px; text-align: center;">
                 <h1>Page Not Found</h1>
-                <p>No page is configured for domain: ${actualHostname}</p>
+                <p>No page is configured for domain: ${hostname}</p>
               </body>
             </html>
           `);

@@ -54,6 +54,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.sendFile(backendPath);
   });
 
+  // DEBUG ENDPOINT: Show all request headers to diagnose domain routing
+  app.get("/api/__debug-headers__", async (req, res) => {
+    res.json({
+      hostname: req.hostname,
+      headers: req.headers,
+      url: req.url,
+      protocol: req.protocol,
+      secure: req.secure,
+      ip: req.ip,
+      ips: req.ips,
+      computed: {
+        'x-forwarded-host': req.get('x-forwarded-host'),
+        'host': req.get('host'),
+        'x-forwarded-proto': req.get('x-forwarded-proto'),
+        'x-forwarded-for': req.get('x-forwarded-for')
+      }
+    });
+  });
+
   // Public API - Get page by custom domain (no authentication required)
   app.get("/api/public/page-by-domain/:domain", async (req, res) => {
     try {

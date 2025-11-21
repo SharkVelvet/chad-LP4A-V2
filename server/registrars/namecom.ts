@@ -126,14 +126,18 @@ export class NameComRegistrar implements IRegistrar {
       console.log('🌐 Setting DNS A records with Name.com:', { domain, caddyProxyIp });
 
       // Set A record for @ (root domain) using correct Name.com v4 API
+      const rootPayload = {
+        host: '',
+        type: 'A',
+        answer: caddyProxyIp,
+        ttl: 300
+      };
+      
+      console.log('📤 Name.com Root Record Request:', JSON.stringify(rootPayload));
+      
       const rootResponse = await axios.post(
         `${this.baseUrl}/v4/domains/${domain}/records`,
-        {
-          host: '',
-          type: 'A',
-          answer: caddyProxyIp,
-          ttl: 300
-        },
+        rootPayload,
         {
           headers: {
             'Authorization': this.getAuthHeader(),
@@ -165,7 +169,15 @@ export class NameComRegistrar implements IRegistrar {
 
       return { success: true };
     } catch (error: any) {
-      console.error('Error setting DNS records with Name.com:', error.response?.data || error.message);
+      console.error('❌ Error setting DNS records with Name.com:');
+      console.error('   Status:', error.response?.status);
+      console.error('   Data:', JSON.stringify(error.response?.data, null, 2));
+      console.error('   Message:', error.message);
+      if (error.request) {
+        console.error('   Request URL:', error.config?.url);
+        console.error('   Request Method:', error.config?.method);
+        console.error('   Request Headers:', JSON.stringify(error.config?.headers, null, 2));
+      }
       throw new Error(`Failed to set DNS records: ${error.response?.data?.message || error.message}`);
     }
   }

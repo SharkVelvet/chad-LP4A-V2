@@ -67,6 +67,7 @@ export const pages = pgTable("pages", {
   awsCertificateStatus: text("aws_certificate_status"),
   subscriptionPlan: text("subscription_plan").notNull(),
   subscriptionStatus: text("subscription_status").notNull().default("active"),
+  isComplimentary: boolean("is_complimentary").notNull().default(false), // True if added by super admin without payment
   primaryColor: text("primary_color").default("#000000"),
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at").notNull().defaultNow(),

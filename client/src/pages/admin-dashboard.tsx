@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { BarChart3, Users, Eye, FileText, LogOut, Shield, TrendingUp, Calendar, Globe, CheckCircle, AlertCircle, RefreshCw } from "lucide-react";
+import { BarChart3, Users, Eye, FileText, LogOut, Shield, TrendingUp, Calendar, Globe, CheckCircle, AlertCircle, RefreshCw, Gift, Search, Layout } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -34,6 +34,10 @@ interface FormSubmission {
 
 export default function AdminDashboard() {
   const [selectedTab, setSelectedTab] = useState("overview");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
+  const [selectedTemplateId, setSelectedTemplateId] = useState<number | null>(null);
+  const [pageName, setPageName] = useState("");
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
@@ -71,6 +75,18 @@ export default function AdminDashboard() {
   const { data: pages = [], isLoading: pagesLoading, refetch: refetchPages } = useQuery({
     queryKey: ["/api/admin/all-pages"],
     enabled: !!adminUser && selectedTab === "domains",
+  });
+
+  // Super Admin: Get users for provisioning
+  const { data: provisionUsers = [], isLoading: usersLoading } = useQuery({
+    queryKey: ["/api/admin/super-admin-pages/users", searchTerm],
+    enabled: !!adminUser && adminUser.role === "super_admin" && selectedTab === "provision",
+  });
+
+  // Super Admin: Get templates for provisioning
+  const { data: provisionTemplates = [], isLoading: templatesLoading } = useQuery({
+    queryKey: ["/api/admin/super-admin-pages/templates"],
+    enabled: !!adminUser && adminUser.role === "super_admin" && selectedTab === "provision",
   });
 
   // Logout mutation
@@ -140,6 +156,32 @@ export default function AdminDashboard() {
     },
   });
 
+  // Super Admin: Create complimentary page
+  const createComplimentaryPageMutation = useMutation({
+    mutationFn: (data: { userId: number; templateId: number; name: string }) =>
+      apiRequest("/api/admin/super-admin-pages/create-page-for-user", {
+        method: "POST",
+        body: JSON.stringify(data),
+      }),
+    onSuccess: (data: any) => {
+      toast({
+        title: "Success!",
+        description: `Complimentary page "${data.page.name}" created for ${data.user.email}`,
+      });
+      setSelectedUserId(null);
+      setSelectedTemplateId(null);
+      setPageName("");
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/super-admin-pages/users"] });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Failed to Create Page",
+        description: error.message || "Something went wrong",
+        variant: "destructive",
+      });
+    },
+  });
+
   // Redirect if not authenticated
   if (userLoading) {
     return (
@@ -198,12 +240,18 @@ export default function AdminDashboard() {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Tabs value={selectedTab} onValueChange={setSelectedTab}>
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className={`grid w-full ${adminUser.role === 'super_admin' ? 'grid-cols-6' : 'grid-cols-5'}`}>
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="submissions">Form Submissions</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
             <TabsTrigger value="seo">SEO Data</TabsTrigger>
             <TabsTrigger value="domains">Domains</TabsTrigger>
+            {adminUser.role === 'super_admin' && (
+              <TabsTrigger value="provision">
+                <Gift className="h-4 w-4 mr-2" />
+                Provision
+              </TabsTrigger>
+            )}
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">

@@ -1,27 +1,81 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, Check, DollarSign, Calendar, Globe, Settings, Camera, CreditCard, FileText } from "lucide-react";
+import { ArrowLeft, Check, DollarSign, Calendar, Globe, Settings, Camera, CreditCard, FileText, Crown } from "lucide-react";
 import { trackPricingView } from "@/lib/facebook-pixel";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Step3Pricing() {
   const [, navigate] = useLocation();
   const [agreed, setAgreed] = useState(false);
   const [disclaimerAgreed, setDisclaimerAgreed] = useState(false);
+  const { toast } = useToast();
+
+  // Check if user is logged in and if they're a super admin
+  const { data: user } = useQuery({
+    queryKey: ["/api/user"],
+    retry: false,
+  });
+
+  const isSuperAdmin = user?.role === "super_admin";
 
   // Track pricing page view
   useEffect(() => {
     trackPricingView();
   }, []);
 
+  // Super Admin: Create complimentary page without payment
+  const createComplimentaryPageMutation = useMutation({
+    mutationFn: async () => {
+      // Get data from localStorage
+      const templateData = JSON.parse(localStorage.getItem('selectedTemplate') || '{}');
+      const domainData = JSON.parse(localStorage.getItem('domainPreferences') || '[]');
+      const customerData = JSON.parse(localStorage.getItem('customerData') || '{}');
+
+      return apiRequest("/api/website-checkout", {
+        method: "POST",
+        body: JSON.stringify({
+          template: templateData.name,
+          domains: domainData,
+          customer: customerData,
+          isComplimentary: true, // Mark as complimentary (no payment)
+          bypassPayment: true,
+        }),
+      });
+    },
+    onSuccess: (data: any) => {
+      toast({
+        title: "Website Created!",
+        description: "Your complimentary website has been created successfully.",
+      });
+      // Navigate to success page
+      navigate("/step5-success");
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to create website",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleContinue = () => {
     if (agreed && disclaimerAgreed) {
       // Store checkbox confirmations in localStorage
       localStorage.setItem('contractAgreed', JSON.stringify(agreed));
       localStorage.setItem('disclaimerAgreed', JSON.stringify(disclaimerAgreed));
-      navigate("/step4-payment");
+      
+      // If super admin, create complimentary page without payment
+      if (isSuperAdmin) {
+        createComplimentaryPageMutation.mutate();
+      } else {
+        navigate("/step4-payment");
+      }
     }
   };
 
@@ -65,6 +119,18 @@ export default function Step3Pricing() {
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Pricing & Service Agreement</h2>
           <p className="text-gray-600">Review our pricing structure and what's included in your 12-month page plan.</p>
+          
+          {isSuperAdmin && (
+            <div className="mt-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-300 rounded-lg">
+              <div className="flex items-center space-x-2">
+                <Crown className="h-5 w-5 text-purple-600" />
+                <p className="font-semibold text-purple-900">Super Admin - Complimentary Access</p>
+              </div>
+              <p className="text-sm text-purple-700 mt-1">
+                As a super admin, you'll receive this website FREE without payment. Click "Continue" to create your website instantly.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Pricing Overview */}
@@ -261,13 +327,24 @@ export default function Step3Pricing() {
             style={{ backgroundColor: '#6458AF' }} 
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5347A3'} 
             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6458AF'}
-            disabled={!agreed || !disclaimerAgreed}
+            disabled={!agreed || !disclaimerAgreed || createComplimentaryPageMutation.isPending}
             onClick={handleContinue}
           >
-            Continue to Payment
+            {createComplimentaryPageMutation.isPending ? (
+              "Creating Website..."
+            ) : isSuperAdmin ? (
+              <>
+                <Crown className="h-4 w-4 mr-2 inline" />
+                Create Free Website
+              </>
+            ) : (
+              "Continue to Payment"
+            )}
           </Button>
           <p className="text-xs text-gray-500 mt-2">
-            Next: Enter payment information to complete your page setup
+            {isSuperAdmin 
+              ? "Your website will be created instantly without payment" 
+              : "Next: Enter payment information to complete your page setup"}
           </p>
         </div>
         

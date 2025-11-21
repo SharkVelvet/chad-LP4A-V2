@@ -282,7 +282,6 @@ export const insertPageSchema = createInsertSchema(pages).omit({
   userId: true,
   locationId: true,
   domainVerified: true,
-  subscriptionStatus: true,
   primaryColor: true,
   isActive: true,
   createdAt: true,

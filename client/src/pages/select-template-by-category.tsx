@@ -38,14 +38,14 @@ export default function SelectTemplateByCategory() {
   });
   const isSuperAdmin = user?.role === "super_admin";
 
-  // Check if user already has websites
-  const { data: websites } = useQuery({ queryKey: ['/api/websites'] });
-  const hasExistingWebsites = websites && Array.isArray(websites) && websites.length > 0;
+  // Check if user already has pages
+  const { data: pages } = useQuery({ queryKey: ['/api/pages'] });
+  const hasExistingPages = pages && Array.isArray(pages) && pages.length > 0;
 
   // Create website mutation (for super admins - complimentary)
   const createWebsiteMutation = useMutation({
     mutationFn: async (templateId: number) => {
-      const res = await apiRequest("POST", "/api/websites", {
+      const res = await apiRequest("POST", "/api/pages", {
         templateId,
         name: `My Page`,
         subscriptionPlan: "premium",
@@ -55,13 +55,13 @@ export default function SelectTemplateByCategory() {
       });
       return await res.json();
     },
-    onSuccess: (newWebsite: any) => {
-      queryClient.invalidateQueries({ queryKey: ["/api/websites"] });
+    onSuccess: (newPage: any) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/pages"] });
       toast({
         title: "Website Created!",
         description: "Your complimentary website has been created successfully.",
       });
-      setLocation(`/editor/${newWebsite.id}`);
+      setLocation(`/editor/${newPage.id}`);
     },
     onError: () => {
       toast({

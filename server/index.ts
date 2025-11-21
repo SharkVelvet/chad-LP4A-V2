@@ -70,29 +70,47 @@ app.use((req, res, next) => {
 
     const server = await registerRoutes(app);
 
-    // Custom domain handler - ONLY for customer domains, NOT for platform domains
-    app.use(async (req: Request, res: Response, next: NextFunction) => {
+    // Platform domain handler - serve SPA for agentmaterials.com and Replit infrastructure
+    app.use((req: Request, res: Response, next: NextFunction) => {
       // Get hostname - check X-Forwarded-Host first (for Replit's native domains), then Host
       const xForwardedHost = req.get('x-forwarded-host')?.split(',')[0]?.trim().split(':')[0];
       const host = req.get('host')?.split(':')[0] || '';
       const hostname = (xForwardedHost || host).toLowerCase().replace(/^www\./, '');
       
-      // DEBUG: Log all domain routing decisions
-      if (process.env.NODE_ENV === 'production') {
-        console.log(`[DOMAIN ROUTING] hostname=${hostname} xForwardedHost=${xForwardedHost} host=${host} path=${req.path}`);
+      // Check if this is a platform domain (skip API routes and static assets)
+      const isPlatformDomain = 
+        hostname === 'localhost' ||
+        hostname === '127.0.0.1' ||
+        hostname === 'agentmaterials.com' ||
+        hostname.includes('replit.app') ||
+        hostname.includes('replit.dev') ||
+        hostname.includes('repl.co');
+      
+      const isApiOrStatic = 
+        req.path.startsWith('/api/') ||
+        req.path.startsWith('/assets/') ||
+        req.path.startsWith('/attached_assets/');
+      
+      // If it's a platform domain (and not API/static), serve the SPA directly
+      if (isPlatformDomain && !isApiOrStatic) {
+        const distPath = process.env.NODE_ENV === 'production' 
+          ? path.resolve(import.meta.dirname, "public")
+          : path.resolve(import.meta.dirname, "dist/public");
+        return res.sendFile(path.resolve(distPath, "index.html"));
       }
       
-      // Skip custom domain handling for platform domains and API routes
-      if (!hostname ||
-          hostname === 'localhost' ||
-          hostname === '127.0.0.1' ||
-          hostname.includes('replit.app') ||
-          hostname.includes('replit.dev') ||
-          hostname.includes('repl.co') ||
-          hostname === 'agentmaterials.com' ||
-          req.path.startsWith('/api/') ||
-          req.path.startsWith('/assets/') ||
-          req.path.startsWith('/attached_assets/')) {
+      return next();
+    });
+
+    // Custom domain handler - ONLY for customer domains, NOT for platform domains
+    app.use(async (req: Request, res: Response, next: NextFunction) => {
+      // Get hostname - this middleware only runs for non-platform domains at this point
+      const xForwardedHost = req.get('x-forwarded-host')?.split(',')[0]?.trim().split(':')[0];
+      const host = req.get('host')?.split(':')[0] || '';
+      const hostname = (xForwardedHost || host).toLowerCase().replace(/^www\./, '');
+      
+      // Skip if no hostname or API routes (shouldn't reach here but double-check)
+      if (!hostname || req.path.startsWith('/api/') || req.path.startsWith('/assets/') || req.path.startsWith('/attached_assets/')) {
         return next();
       }
 

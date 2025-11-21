@@ -70,36 +70,47 @@ app.use((req, res, next) => {
 
     const server = await registerRoutes(app);
 
-    // Custom domain handler
-    app.use(async (req: Request, res: Response, next: NextFunction) => {
+    // Helper function to resolve the canonical hostname from request headers
+    const resolveRequestedHost = (req: Request): string => {
       // Get all possible hostname sources
-      // x-forwarded-host can be comma-separated in production proxies - take first value
       const xForwardedHost = req.get('x-forwarded-host')?.split(',')[0]?.trim().split(':')[0];
+      const replitUserDomain = req.get('x-replit-user-domain')?.split(',')[0]?.trim().split(':')[0];
       const host = req.get('host')?.split(':')[0] || '';
       
-      // In production, Replit rewrites Host to repl slug, but X-Forwarded-Host contains actual domain
-      // Prioritize x-forwarded-host when present
-      let actualHostname = (xForwardedHost || host).toLowerCase().replace(/^www\./, '');
+      // Prioritize headers in order: x-forwarded-host, x-replit-user-domain, host
+      let hostname = (xForwardedHost || replitUserDomain || host).toLowerCase().replace(/^www\./, '');
       
-      // Helper to check if domain is a platform domain
-      const isPlatformDomain = (hostname: string): boolean => {
-        const platformDomains = [
-          'localhost',
-          '127.0.0.1',
-          'replit.app',
-          'replit.dev',
-          'agentmaterials.com',
-          'landing-pages-for-agents-v-2-sharkvelvet.replit.app' // Production repl slug
-        ];
-        return platformDomains.some(d => hostname.includes(d));
-      };
+      // Map Replit infrastructure domains back to platform domain
+      // If we get .repl.co or .repl.dev hostnames, these are Replit's internal routing
+      if (hostname.includes('.repl.co') || hostname.includes('.repl.dev') || hostname.includes('.replit.app')) {
+        // This is the Replit deployment infrastructure - map to platform domain
+        return 'agentmaterials.com';
+      }
+      
+      return hostname;
+    };
+
+    // Custom domain handler
+    app.use(async (req: Request, res: Response, next: NextFunction) => {
+      // Resolve the canonical hostname
+      const actualHostname = resolveRequestedHost(req);
+      
+      // Platform domains that serve the admin SPA
+      const platformDomains = [
+        'localhost',
+        '127.0.0.1',
+        'agentmaterials.com'
+      ];
+      
+      // Check if this is a platform domain
+      const isPlatformDomain = platformDomains.some(d => actualHostname.includes(d));
 
       // Skip custom domain handling for:
       // 1. Platform domains (serve normal SPA)
       // 2. API requests
       // 3. Static assets
       if (!actualHostname || 
-          isPlatformDomain(actualHostname) ||
+          isPlatformDomain ||
           req.path.startsWith('/api/') ||
           req.path.startsWith('/assets/') ||
           req.path.startsWith('/attached_assets/')) {
